@@ -5,3 +5,7 @@
 vim.keymap.set("n", "gs", function()
   vim.cmd("update")
 end, { noremap = true, silent = true })
+
+-- Increment and decrement numbers
+vim.keymap.set("n", "+", "<C-a>")
+vim.keymap.set("n", "-", "<C-x>")
