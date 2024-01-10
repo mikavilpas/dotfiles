@@ -10,11 +10,6 @@ end, { noremap = true, silent = true })
 vim.keymap.set("n", "+", "<C-a>")
 vim.keymap.set("n", "-", "<C-x>")
 
--- bidirectional search
-vim.keymap.set("n", "<leader><leader>", function()
-  require("leap").leap({ target_windows = { vim.api.nvim_get_current_win() } })
-end)
-
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt.formatoptions:remove({ "c", "r", "o" })
