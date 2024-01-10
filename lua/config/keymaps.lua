@@ -9,3 +9,8 @@ end, { noremap = true, silent = true })
 -- Increment and decrement numbers
 vim.keymap.set("n", "+", "<C-a>")
 vim.keymap.set("n", "-", "<C-x>")
+
+-- bidirectional search
+vim.keymap.set("n", "<leader><leader>", function()
+  require("leap").leap({ target_windows = { vim.api.nvim_get_current_win() } })
+end)
