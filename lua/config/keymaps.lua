@@ -24,3 +24,12 @@ vim.keymap.set("n", "<leader>gl", function()
   local path = vim.api.nvim_buf_get_name(0)
   Util.terminal({ "lazygit", "--filter", path }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false })
 end, { desc = "Lazygit (root dir)" })
+
+-- disable esc j and esc k moving lines accidentally
+-- https://github.com/LazyVim/LazyVim/discussions/658
+vim.keymap.set("n", "<A-k>", "<esc>k", { desc = "Move up" })
+vim.keymap.set("n", "<A-j>", "<esc>j", { desc = "Move down" })
+vim.keymap.set("i", "<A-k>", "<esc>gk", { desc = "Move up" })
+vim.keymap.set("i", "<A-j>", "<esc>gj", { desc = "Move down" })
+vim.keymap.set("v", "<A-k>", "<esc>gk", { desc = "Move up" })
+vim.keymap.set("v", "<A-j>", "<esc>gj", { desc = "Move down" })
