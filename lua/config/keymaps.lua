@@ -6,10 +6,6 @@ vim.keymap.set("n", "gs", function()
   vim.cmd("update")
 end, { noremap = true, silent = true })
 
--- Increment and decrement numbers
-vim.keymap.set("n", "+", "<C-a>")
-vim.keymap.set("n", "-", "<C-x>")
-
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt.formatoptions:remove({ "c", "r", "o" })
@@ -33,3 +29,7 @@ vim.keymap.set("i", "<A-k>", "<esc>gk", { desc = "Move up" })
 vim.keymap.set("i", "<A-j>", "<esc>gj", { desc = "Move down" })
 vim.keymap.set("v", "<A-k>", "<esc>gk", { desc = "Move up" })
 vim.keymap.set("v", "<A-j>", "<esc>gj", { desc = "Move down" })
+
+-- move to previous and next changes in the current file
+vim.api.nvim_set_keymap("n", "-", "g;", { noremap = true })
+vim.api.nvim_set_keymap("n", "+", "g,", { noremap = true })
