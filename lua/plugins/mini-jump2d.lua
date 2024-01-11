@@ -17,6 +17,7 @@ return {
             spotter = MiniJump2d.gen_pattern_spotter("^%s*%S", "end"),
           })
         end,
+        mode = { "n", "v", "o" },
       },
     },
   },
