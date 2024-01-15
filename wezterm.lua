@@ -21,15 +21,11 @@ config.font = wezterm.font("DejaVuSansMono NF", { weight = "Medium", stretch = "
 config.font_size = 13
 
 -- from https://github.com/wez/wezterm/issues/4051#issue-1820224035
-if wezterm.gui.get_appearance():find("Dark") then
-	-- config.color_scheme = "Catppuccin Mocha"
-	-- config.color_scheme = "Tartan (terminal.sexy)"
-	config.color_scheme = "Tokyo Night"
-else
-	-- config.color_scheme = "Catppuccino Latte"
-	-- config.color_scheme = "tokyonight-day"
-	config.color_scheme = "Papercolor Light (Gogh)"
-end
+-- if wezterm.gui.get_appearance():find("Dark") then
+-- 	-- config.color_scheme = "Catppuccin Mocha"
+-- 	-- config.color_scheme = "Tartan (terminal.sexy)"
+-- end
+config.color_scheme = "Tokyo Night"
 
 -- fix not being able to write "|" on a mac
 -- https://wezfurlong.org/wezterm/config/keyboard-concepts.html?h=mac#macos-left-and-right-option-key
