@@ -17,7 +17,7 @@ end
 --
 --
 
-config.font = wezterm.font("DejaVuSansMono NF", { weight = "Regular" })
+config.font = wezterm.font("DejaVuSansMono NF", { weight = "Medium", stretch = "Expanded" })
 config.font_size = 13
 
 -- from https://github.com/wez/wezterm/issues/4051#issue-1820224035
