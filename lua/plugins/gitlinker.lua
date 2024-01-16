@@ -1,5 +1,6 @@
 return {
   "linrongbin16/gitlinker.nvim",
+  event = "VeryLazy",
   config = function()
     require("gitlinker").setup({
       router = {
