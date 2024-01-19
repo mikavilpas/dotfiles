@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "gabrielpoca/replacer.nvim",
 

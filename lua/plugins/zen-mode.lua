@@ -1,4 +1,5 @@
 -- https://github.com/folke/zen-mode.nvim
+---@type LazySpec
 return {
   "folke/zen-mode.nvim",
   dependencies = { "folke/twilight.nvim" },

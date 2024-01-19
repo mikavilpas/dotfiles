@@ -1,3 +1,4 @@
+---@type LazySpec
 -- https://github.com/gsuuon/tshjkl.nvim
 return {
   -- "gsuuon/tshjkl.nvim",

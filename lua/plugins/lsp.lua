@@ -1,4 +1,5 @@
 -- https://www.lazyvim.org/plugins/lsp
+---@type LazySpec
 return {
   "neovim/nvim-lspconfig",
   dependencies = { "jose-elias-alvarez/typescript.nvim" },

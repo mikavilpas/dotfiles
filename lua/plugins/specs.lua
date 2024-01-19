@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "edluffy/specs.nvim",
   config = function()
