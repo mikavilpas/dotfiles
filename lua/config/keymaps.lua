@@ -39,11 +39,11 @@ vim.api.nvim_set_keymap("n", "+", "g,", { noremap = true })
 -- search for the current visual mode selection
 -- https://github.com/nvim-telescope/telescope.nvim/issues/2497#issuecomment-1676551193
 local function get_visual()
-  vim.cmd('noau normal! "vy"')
+  vim.cmd('noautocmd normal! "vy"')
   local text = vim.fn.getreg("v")
   vim.fn.setreg("v", {})
 
-  text = string.gsub(text, "\n", "")
+  text = string.gsub(text or "", "\n", "")
   if #text > 0 then
     return text
   else
