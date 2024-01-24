@@ -13,6 +13,17 @@ return {
   },
   keys = {
     { "<leader><leader>", false },
+    {
+      "<leader>ff",
+      function()
+        local cwd = require("telescope.utils").buffer_dir()
+        require("telescope.builtin").git_files({
+          recurse_submodules = true,
+          cwd = cwd,
+        })
+      end,
+      { desc = "Find files (including in git submodules)" },
+    },
   },
 
   opts = {
