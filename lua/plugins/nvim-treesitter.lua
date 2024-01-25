@@ -12,6 +12,7 @@ return {
       "make",
       "markdown",
       "markdown_inline",
+      "sql",
       "query",
       "regex",
       "tsx",
