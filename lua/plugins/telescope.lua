@@ -10,6 +10,7 @@ return {
     -- Usage:
     -- <leader>sc (search commands), then Telescope undo
     "debugloop/telescope-undo.nvim",
+    "smartpde/telescope-recent-files",
   },
   keys = {
     { "<leader><leader>", false },
@@ -64,5 +65,6 @@ return {
     -- defaults, as well as each extension).
     require("telescope").setup(opts)
     require("telescope").load_extension("undo")
+    require("telescope").load_extension("recent_files")
   end,
 }
