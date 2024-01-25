@@ -1,0 +1,12 @@
+{
+  "neodev": {
+    "library": {
+      "enabled": true
+    }
+  },
+  "lspconfig": {
+    "lua_ls": {
+      "Lua.hint.enable": true
+    }
+  }
+}
