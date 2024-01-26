@@ -2,7 +2,6 @@
 ---@type LazySpec
 return {
   "neovim/nvim-lspconfig",
-  dependencies = { "jose-elias-alvarez/typescript.nvim" },
 
   opts = {
 
@@ -40,11 +39,6 @@ return {
     inlay_hints = {
       enabled = true,
     },
-    setup = {
-      tsserver = function(_, opts)
-        require("typescript").setup({ server = opts })
-        return true
-      end,
-    },
+    setup = {},
   },
 }
