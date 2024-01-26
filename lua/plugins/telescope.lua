@@ -11,6 +11,17 @@ return {
     -- <leader>sc (search commands), then Telescope undo
     "debugloop/telescope-undo.nvim",
     "smartpde/telescope-recent-files",
+
+    -- https://github.com/AckslD/nvim-neoclip.lua
+    {
+      "AckslD/nvim-neoclip.lua",
+      dependencies = { "kkharji/sqlite.lua" },
+      opts = {
+        default_register = { "+" },
+        enable_persistent_history = true,
+      },
+      event = "VeryLazy",
+    },
   },
   keys = {
     { "<leader><leader>", false },
@@ -24,6 +35,15 @@ return {
         })
       end,
       { desc = "Find files (including in git submodules)" },
+    },
+    {
+      -- mnemonic: "paste"
+      "<leader>p",
+      function()
+        --
+        require("telescope").extensions.neoclip.default({})
+      end,
+      { desc = "Paste with telescope (neoclip)" },
     },
   },
 
@@ -63,8 +83,10 @@ return {
     -- Calling telescope's setup from multiple specs does not hurt, it will happily merge the
     -- configs for us. We won't use data, as everything is in it's own namespace (telescope
     -- defaults, as well as each extension).
-    require("telescope").setup(opts)
-    require("telescope").load_extension("undo")
-    require("telescope").load_extension("recent_files")
+    local telescope = require("telescope")
+    telescope.setup(opts)
+    telescope.load_extension("undo")
+    telescope.load_extension("recent_files")
+    telescope.load_extension("neoclip")
   end,
 }
