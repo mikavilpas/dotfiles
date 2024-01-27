@@ -62,3 +62,28 @@ vim.keymap.set("v", "<leader>/", function()
     end,
   })
 end, { noremap = true, desc = "Grep visual selection" })
+
+-- based mapping section from ThePrimeagen
+
+-- move lines up and down
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
+
+-- joins lines without moving the cursor
+vim.keymap.set("n", "J", "mzJ`z", { desc = "Join line" })
+
+-- move screen up and down but keep the cursor in place (less disorienting)
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move screen up" })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move screen down" })
+
+-- when searching, move to the next match and center the screen
+vim.keymap.set("n", "n", "nzzzv", { desc = "Move to next match" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Move to previous match" })
+
+-- replace whatever is visually selected with the next pasted text, without overwriting the clipboard
+-- NOTE: prime uses "<leader>p" but I use that for something else
+vim.keymap.set("x", "p", '"_dP')
+
+-- easy navigation between quickfix items such as errors
+vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>zz", { desc = "Next quickfix" })
+vim.keymap.set("n", "<leader>k", "<cmd>cprev<CR>zz", { desc = "Previous quickfix" })
