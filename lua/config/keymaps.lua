@@ -87,3 +87,30 @@ vim.keymap.set("x", "p", '"_dP')
 -- easy navigation between quickfix items such as errors
 vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>zz", { desc = "Next quickfix" })
 vim.keymap.set("n", "<leader>k", "<cmd>cprev<CR>zz", { desc = "Previous quickfix" })
+
+--
+-- Replace the current word interactively
+--
+local function editSubstitutionCommand()
+  -- Get the word under the cursor
+  local word = vim.fn.expand("<cword>")
+
+  -- Reposition the cursor at the beginning of the word.
+  -- This is important because deleting the & suggestion will cause nvim to jump to the next match by default (this is disorienting). For some reason this doesn't happen when we reposition the cursor.
+  vim.cmd("normal! viwo")
+
+  -- Construct the substitution command
+  local substitutionCommand = ":%s/\\<" .. word .. "\\>/&/gI"
+
+  -- Open the command-line window with the command pre-filled and editable, but don't execute it yet
+  vim.cmd("normal! :q:")
+  vim.fn.feedkeys(substitutionCommand)
+  -- position the cursor at the beginning of the word ("&")
+  for _ = 1, 3 do
+    vim.api.nvim_input("<Left>")
+  end
+end
+
+vim.keymap.set("n", "<leader>r", function()
+  editSubstitutionCommand()
+end, { desc = "Replace the current word interactively" })
