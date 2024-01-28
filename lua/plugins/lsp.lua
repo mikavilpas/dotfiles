@@ -3,6 +3,53 @@
 return {
   "neovim/nvim-lspconfig",
 
+  dependencies = {
+    {
+      "folke/noice.nvim",
+      opts = {
+        lsp = {
+          signature = {
+            enabled = false,
+          },
+        },
+      },
+    },
+    {
+      "ray-x/lsp_signature.nvim",
+      event = "VeryLazy",
+      opts = {
+        -- https://github.com/ray-x/lsp_signature.nvim?tab=readme-ov-file#full-configuration-with-default-values
+        bind = true, -- This is mandatory, otherwise border config won't get registered.
+        handler_opts = {
+          border = "rounded",
+        },
+      },
+      config = function(_, opts)
+        require("lsp_signature").setup(opts)
+      end,
+    },
+    {
+      "hrsh7th/nvim-cmp",
+      dependencies = {},
+      ---@param opts cmp.ConfigSchema
+      opts = function(_, opts)
+        --
+      end,
+    },
+  },
+
+  init = function()
+    -- configure keymaps here
+    -- https://www.lazyvim.org/plugins/lsp#%EF%B8%8F-customizing-lsp-keymaps
+    -- local keys = require("lazyvim.plugins.lsp.keymaps").get()
+    -- -- change a keymap
+    -- keys[#keys + 1] = { "K", "<cmd>echo 'hello'<cr>" }
+    -- -- disable a keymap
+    -- keys[#keys + 1] = { "K", false }
+    -- -- add a keymap
+    -- keys[#keys + 1] = { "H", "<cmd>echo 'hello'<cr>" }
+  end,
+
   opts = {
 
     servers = {
