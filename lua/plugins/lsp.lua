@@ -31,9 +31,23 @@ return {
     {
       "hrsh7th/nvim-cmp",
       dependencies = {},
+
       ---@param opts cmp.ConfigSchema
       opts = function(_, opts)
-        --
+        local cmp = require("cmp")
+
+        ---@type cmp.ConfigSchema
+        local new_options = {
+          window = {
+            completion = cmp.config.window.bordered({
+              winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
+            }),
+            documentation = cmp.config.window.bordered({
+              winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
+            }),
+          },
+        }
+        return vim.tbl_deep_extend("keep", new_options, opts)
       end,
     },
   },
