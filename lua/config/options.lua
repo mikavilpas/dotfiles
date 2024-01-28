@@ -8,3 +8,6 @@ vim.opt.number = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.scrolloff = 8
+
+-- disable pop up menu transparency
+vim.opt.pumblend = 0
