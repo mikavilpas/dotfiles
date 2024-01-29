@@ -9,9 +9,6 @@ return {
       -- https://github.com/zbirenbaum/copilot.lua?tab=readme-ov-file#setup-and-configuration
       suggestion = { enabled = true, auto_trigger = true },
       debounce = 300, --ms
-      -- keys:
-      -- accept the suggestion with <M-l> in insert mode
-
       filetypes = {
         markdown = true,
         help = true,
@@ -19,7 +16,12 @@ return {
     },
 
     config = function(_, opts)
-      require("copilot").setup(opts)
+      local copilot = require("copilot")
+      copilot.setup(opts)
+
+      vim.keymap.set("i", "<S-Enter>", function()
+        require("copilot.suggestion").accept_line()
+      end)
     end,
   },
 }
