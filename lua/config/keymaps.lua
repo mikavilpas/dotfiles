@@ -114,3 +114,19 @@ end
 vim.keymap.set("n", "<leader>r", function()
   editSubstitutionCommand()
 end, { desc = "Replace the current word interactively" })
+
+-- Copy the current buffer path to the clipboard
+-- https://stackoverflow.com/a/17096082/1336788
+vim.keymap.set("n", "<leader>fyr", function()
+  vim.fn.setreg("+", vim.fn.expand("%"))
+end, { desc = "Copy relative path to clipboard" })
+
+-- full path
+vim.keymap.set("n", "<leader>fyp", function()
+  vim.fn.setreg("+", vim.fn.expand("%:p"))
+end, { desc = "Copy full path to clipboard" })
+
+-- just filename
+vim.keymap.set("n", "<leader>fyf", function()
+  vim.fn.setreg("+", vim.fn.expand("%:t"))
+end, { desc = "Copy filename to clipboard" })
