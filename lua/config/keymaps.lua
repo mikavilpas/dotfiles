@@ -4,6 +4,7 @@
 --
 
 local Util = require("lazyvim.util")
+vim.g.maplocalleader = [[\]]
 
 vim.keymap.set("n", "gs", function()
   vim.cmd("update")
