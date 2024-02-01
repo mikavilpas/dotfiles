@@ -42,11 +42,11 @@ default-root-container-orientation = 'auto'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide.html#assign-workspaces-to-monitors
 gaps.inner.horizontal = 0
-gaps.inner.vertical =   0
-gaps.outer.left =       0
-gaps.outer.bottom =     0
-gaps.outer.top =        0
-gaps.outer.right =      0
+gaps.inner.vertical = 0
+gaps.outer.left = 0
+gaps.outer.bottom = 0
+gaps.outer.top = 0
+gaps.outer.right = 0
 
 # Visual indent makes it easier to understand that containers of the same orientation are nested.
 # If you have 'enable-normalization-opposite-orientation-for-nested-containers' enabled then
@@ -179,7 +179,10 @@ alt-shift-slash = 'mode join'
 [mode.service.binding]
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+f = [
+  'layout floating tiling',
+  'mode main',
+] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 esc = ['reload-config', 'mode main']
 
