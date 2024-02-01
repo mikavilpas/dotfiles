@@ -20,7 +20,10 @@ require("lazy").setup({
     -- you are - within functions, classes, etc - in the statusline.
     { import = "lazyvim.plugins.extras.editor.navic" },
     { import = "lazyvim.plugins.extras.util.project" },
+
+    { import = "lazyvim.plugins.extras.linting.eslint" },
     { import = "lazyvim.plugins.extras.formatting.prettier" },
+
     { import = "lazyvim.plugins.extras.test.core" },
 
     -- import/override with your plugins
