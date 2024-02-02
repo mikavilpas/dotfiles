@@ -187,9 +187,11 @@ alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands.html#move-workspace-to-monitor
 # alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands.html#mode
-# alt-shift-semicolon = 'mode service'
-# alt-shift-slash = 'mode join'
+# hold a to get access to these commands on the QMK level
+cmd-ctrl-shift-alt-h = "focus left"
+cmd-ctrl-shift-alt-l = "focus right"
+cmd-ctrl-shift-alt-k = "focus up"
+cmd-ctrl-shift-alt-j = "focus down"
 
 # ] # Toggle between floating and tiling layout# 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide.html#binding-modes
