@@ -149,16 +149,16 @@ ctrl-shift-alt-9 = 'workspace 9'
 # alt-z = 'workspace Z'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands.html#move-node-to-workspace
-cmd-ctrl-shift-alt-0 = 'move-node-to-workspace 0'
-cmd-ctrl-shift-alt-1 = 'move-node-to-workspace 1'
-cmd-ctrl-shift-alt-2 = 'move-node-to-workspace 2'
-cmd-ctrl-shift-alt-3 = 'move-node-to-workspace 3'
-cmd-ctrl-shift-alt-4 = 'move-node-to-workspace 4'
-cmd-ctrl-shift-alt-5 = 'move-node-to-workspace 5'
-cmd-ctrl-shift-alt-6 = 'move-node-to-workspace 6'
-cmd-ctrl-shift-alt-7 = 'move-node-to-workspace 7'
-cmd-ctrl-shift-alt-8 = 'move-node-to-workspace 8'
-cmd-ctrl-shift-alt-9 = 'move-node-to-workspace 9'
+cmd-ctrl-shift-alt-0 = ['move-node-to-workspace 0', 'workspace 0']
+cmd-ctrl-shift-alt-1 = ['move-node-to-workspace 1', 'workspace 1']
+cmd-ctrl-shift-alt-2 = ['move-node-to-workspace 2', 'workspace 2']
+cmd-ctrl-shift-alt-3 = ['move-node-to-workspace 3', 'workspace 3']
+cmd-ctrl-shift-alt-4 = ['move-node-to-workspace 4', 'workspace 4']
+cmd-ctrl-shift-alt-5 = ['move-node-to-workspace 5', 'workspace 5']
+cmd-ctrl-shift-alt-6 = ['move-node-to-workspace 6', 'workspace 6']
+cmd-ctrl-shift-alt-7 = ['move-node-to-workspace 7', 'workspace 7']
+cmd-ctrl-shift-alt-8 = ['move-node-to-workspace 8', 'workspace 8']
+cmd-ctrl-shift-alt-9 = ['move-node-to-workspace 9', 'workspace 9']
 # alt-shift-a = 'move-node-to-workspace A'
 # alt-shift-b = 'move-node-to-workspace B'
 # alt-shift-c = 'move-node-to-workspace C'
