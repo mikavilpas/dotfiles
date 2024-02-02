@@ -202,6 +202,7 @@ cmd-ctrl-shift-alt-h = "focus left"
 cmd-ctrl-shift-alt-l = "focus right"
 cmd-ctrl-shift-alt-k = "focus up"
 cmd-ctrl-shift-alt-j = "focus down"
+cmd-ctrl-shift-alt-f = "fullscreen"
 
 cmd-ctrl-shift-alt-n = "resize smart +70"
 cmd-ctrl-shift-alt-t = "resize smart -70"
