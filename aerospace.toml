@@ -115,16 +115,26 @@ indent-for-nested-containers-with-the-same-orientation = 30
 # alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands.html#workspace
-ctrl-shift-alt-0 = 'workspace 0'
-ctrl-shift-alt-1 = 'workspace 1'
-ctrl-shift-alt-2 = 'workspace 2'
-ctrl-shift-alt-3 = 'workspace 3'
-ctrl-shift-alt-4 = 'workspace 4'
-ctrl-shift-alt-5 = 'workspace 5'
-ctrl-shift-alt-6 = 'workspace 6'
-ctrl-shift-alt-7 = 'workspace 7'
-ctrl-shift-alt-8 = 'workspace 8'
-ctrl-shift-alt-9 = 'workspace 9'
+
+# I have 3 monitors, let's call them abc.
+# The idea is to always associate a monitor with a workspace.
+#
+# We can show three sets of workspaces like this:
+# abc  abc  abc
+# 123  456  789
+# show 123 but focus on 2. I find this reduces the cognitive load of
+# remembering which workspace is where.
+
+ctrl-shift-alt-1 = ['workspace 2', 'workspace 3', 'workspace 1']
+ctrl-shift-alt-2 = ['workspace 1', 'workspace 3', 'workspace 2']
+ctrl-shift-alt-3 = ['workspace 1', "workspace 2", 'workspace 3']
+ctrl-shift-alt-4 = ['workspace 5', 'workspace 6', 'workspace 4']
+ctrl-shift-alt-5 = ['workspace 4', 'workspace 6', 'workspace 5']
+ctrl-shift-alt-6 = ['workspace 4', 'workspace 5', 'workspace 6']
+ctrl-shift-alt-7 = ['workspace 8', 'workspace 9', 'workspace 7']
+ctrl-shift-alt-8 = ['workspace 7', 'workspace 9', 'workspace 8']
+ctrl-shift-alt-9 = ['workspace 7', 'workspace 8', 'workspace 9']
+ctrl-shift-alt-0 = ['workspace 0']
 # alt-a = 'workspace A'
 # alt-b = 'workspace B'
 # alt-c = 'workspace C'
