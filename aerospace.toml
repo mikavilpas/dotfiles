@@ -193,6 +193,9 @@ cmd-ctrl-shift-alt-l = "focus right"
 cmd-ctrl-shift-alt-k = "focus up"
 cmd-ctrl-shift-alt-j = "focus down"
 
+cmd-ctrl-shift-alt-n = "resize smart +70"
+cmd-ctrl-shift-alt-t = "resize smart -70"
+
 # ] # Toggle between floating and tiling layout# 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide.html#binding-modes
 # [mode.service.binding]
