@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+
+services:
+  "gitlab.baronatechnologies.fi": "gitlab:gitlab.baronatechnologies.fi"
+
+keybinding:
+  universal:
+    edit: e
+
+os:
+  # https://github.com/jesseduffield/lazygit/blob/master/pkg/config/editor_presets.go#L49
+  editPreset: "vim"
+  openLink: open "$(echo "{{link}}" | sed 's/%2F/\//g')"
+
+promptToReturnFromSubprocess: false
+
+# https://github.com/catppuccin/lazygit/blob/main/themes-mergable/frappe/flamingo.yml
+gui:
+  theme:
+    activeBorderColor:
+      - "#eebebe"
+      - bold
+    inactiveBorderColor:
+      - "#a5adce"
+    optionsTextColor:
+      - "#8caaee"
+    selectedLineBgColor:
+      - "#616268"
+    selectedRangeBgColor:
+      - "#616268"
+    cherryPickedCommitBgColor:
+      - "#51576d"
+    cherryPickedCommitFgColor:
+      - "#eebebe"
+    unstagedChangesColor:
+      - "#e78284"
+    defaultFgColor:
+      - "#c6d0f5"
+    searchingActiveBorderColor:
+      - "#e5c890"
+
+git:
+  paging:
+    colorArg: always
+    pager: whenDark.sh delta --paging=never --syntax-theme zenburn || delta --paging=never --syntax-theme light
