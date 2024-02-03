@@ -6,10 +6,6 @@
 local Util = require("lazyvim.util")
 vim.g.maplocalleader = [[\]]
 
-vim.keymap.set("n", "gs", function()
-  vim.cmd("update")
-end, { noremap = true, silent = true })
-
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt.formatoptions:remove({ "c", "r", "o" })
