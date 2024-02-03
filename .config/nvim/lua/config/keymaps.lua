@@ -131,3 +131,8 @@ end, { desc = "Copy full path to clipboard" })
 vim.keymap.set("n", "<leader>fyf", function()
   vim.fn.setreg("+", vim.fn.expand("%:t"))
 end, { desc = "Copy filename to clipboard" })
+
+-- Remap y to ygv<esc> in visual mode so the cursor does not jump back to where
+-- you started the selection.
+-- https://www.reddit.com/r/neovim/comments/13y3thq/comment/jmm7tut/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+vim.keymap.set("v", "y", "ygv<esc>")
