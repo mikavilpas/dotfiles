@@ -136,3 +136,5 @@ end, { desc = "Copy filename to clipboard" })
 -- you started the selection.
 -- https://www.reddit.com/r/neovim/comments/13y3thq/comment/jmm7tut/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 vim.keymap.set("v", "y", "ygv<esc>")
+
+vim.keymap.set("n", "<backspace>", ":wa<cr>", { desc = "Save all files", silent = true })
