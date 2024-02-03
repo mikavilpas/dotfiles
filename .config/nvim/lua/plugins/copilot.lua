@@ -19,7 +19,7 @@ return {
       local copilot = require("copilot")
       copilot.setup(opts)
 
-      vim.keymap.set("i", "<S-Enter>", function()
+      vim.keymap.set("i", "<S-down>", function()
         require("copilot.suggestion").accept_line()
       end)
     end,
