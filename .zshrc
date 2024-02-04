@@ -121,6 +121,7 @@ eval "$(starship init zsh)"
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 alias dc="docker-compose"
+alias w="watchexec"
 
 # jelpp-env stuff
 # alias klm="cd /Users/mikavilpas/git/jelpp/jelpp-env; npm run klm --"
