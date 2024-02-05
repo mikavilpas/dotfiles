@@ -150,16 +150,7 @@ function isDarkMode() {
 }
 
 # a function to start lazygit using the correct theme
-function lg() {
-  config="$HOME/Library/Application Support/lazygit"
-  if (isDarkMode); then
-    # also allow using any provided arguments at the end
-    lazygit --use-config-file "$config/config.yml" "$@"
-  else
-    echo starting in light mode...
-    lazygit --use-config-file "$config/config.yml,$config/latte.yml" "$@"
-  fi
-}
+alias lg="lazygit"
 
 # tabtab source for packages
 # uninstall by removing these lines
