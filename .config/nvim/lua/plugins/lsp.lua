@@ -28,40 +28,42 @@ return {
         require("lsp_signature").setup(opts)
       end,
     },
+
+    {
+      "hrsh7th/cmp-cmdline",
+      dependencies = { "hrsh7th/nvim-cmp", "hrsh7th/cmp-buffer" },
+      event = { "InsertEnter", "CmdlineEnter" },
+      config = function()
+        -- https://github.com/hrsh7th/cmp-cmdline
+        local cmp = require("cmp")
+        -- `/` cmdline setup.
+        cmp.setup.cmdline({ "/", "?" }, {
+          mapping = cmp.mapping.preset.cmdline(),
+          completion = { completeopt = "menu,menuone,noselect" },
+          sources = {
+            { name = "buffer" },
+          },
+        })
+
+        -- `:` cmdline setup.
+        cmp.setup.cmdline(":", {
+          mapping = cmp.mapping.preset.cmdline(),
+          completion = { completeopt = "menu,menuone,noselect" },
+          sources = cmp.config.sources({
+            { name = "path" },
+          }, {
+            {
+              name = "cmdline",
+              option = {
+                ignore_cmds = { "Man", "!" },
+              },
+            },
+          }),
+        })
+      end,
+    },
     {
       "hrsh7th/nvim-cmp",
-      dependencies = {
-        {
-          "hrsh7th/cmp-cmdline",
-          config = function(_, opts)
-            -- https://github.com/hrsh7th/cmp-cmdline
-            local cmp = require("cmp")
-            -- `/` cmdline setup.
-            cmp.setup.cmdline("/", {
-              mapping = cmp.mapping.preset.cmdline(),
-              sources = {
-                { name = "buffer" },
-              },
-            })
-
-            -- `:` cmdline setup.
-            cmp.setup.cmdline(":", {
-              mapping = cmp.mapping.preset.cmdline(),
-              sources = cmp.config.sources({
-                { name = "path" },
-              }, {
-                {
-                  name = "cmdline",
-                  option = {
-                    ignore_cmds = { "Man", "!" },
-                  },
-                },
-              }),
-            })
-          end,
-        },
-      },
-
       ---@param opts cmp.ConfigSchema
       opts = function(_, opts)
         local cmp = require("cmp")
