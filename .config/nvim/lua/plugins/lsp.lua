@@ -39,6 +39,8 @@ return {
         -- `/` cmdline setup.
         cmp.setup.cmdline({ "/", "?" }, {
           mapping = cmp.mapping.preset.cmdline(),
+          -- this fixes a bug
+          -- https://github.com/hrsh7th/cmp-cmdline/issues/96#issuecomment-1705873476
           completion = { completeopt = "menu,menuone,noselect" },
           sources = {
             { name = "buffer" },
@@ -48,6 +50,8 @@ return {
         -- `:` cmdline setup.
         cmp.setup.cmdline(":", {
           mapping = cmp.mapping.preset.cmdline(),
+          -- this fixes a bug
+          -- https://github.com/hrsh7th/cmp-cmdline/issues/96#issuecomment-1705873476
           completion = { completeopt = "menu,menuone,noselect" },
           sources = cmp.config.sources({
             { name = "path" },
