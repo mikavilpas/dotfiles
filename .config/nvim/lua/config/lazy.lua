@@ -74,3 +74,25 @@ if vim.g.neovide then
   -- vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
   -- vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
 end
+
+-- 📆 User Events
+-- https://github.com/folke/lazy.nvim?tab=readme-ov-file#-user-events
+-- The following user events will be triggered:
+---@alias LazyCompatibleEvent
+---| '"LazyDone"' when lazy has finished starting up and loaded your config
+---| '"LazySync"' after running sync
+---| '"LazyInstall"' after an install
+---| '"LazyUpdate"' after an update
+---| '"LazyClean"' after a clean
+---| '"LazyCheck"' after checking for updates
+---| '"LazyLog"' after running log
+---| '"LazyLoad"' after loading a plugin. The data attribute will contain the plugin name.
+---| '"LazySyncPre"' before running sync
+---| '"LazyInstallPre"' before an install
+---| '"LazyUpdatePre"' before an update
+---| '"LazyCleanPre"' before a clean
+---| '"LazyCheckPre"' before checking for updates
+---| '"LazyLogPre"' before running log
+---| '"LazyReload"' triggered by change detection after reloading plugin specs
+---| '"VeryLazy"' triggered after LazyDone and processing VimEnter auto commands
+---| '"LazyVimStarted"' triggered after UIEnter when require("lazy").stats().startuptime has been calculated. Useful to update the startuptime on your dashboard.
