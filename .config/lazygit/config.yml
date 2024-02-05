@@ -9,13 +9,16 @@ keybinding:
 
 os:
   # https://github.com/jesseduffield/lazygit/blob/master/pkg/config/editor_presets.go#L49
-  editPreset: "vim"
+  editPreset: "nvim"
   openLink: open "$(echo "{{link}}" | sed 's/%2F/\//g')"
 
 promptToReturnFromSubprocess: false
 
+notARepository: "quit"
+
 # https://github.com/catppuccin/lazygit/blob/main/themes-mergable/frappe/flamingo.yml
 gui:
+  nerdFontsVersion: "3"
   theme:
     activeBorderColor:
       - "#eebebe"
