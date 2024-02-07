@@ -1,13 +1,8 @@
 ---@type LazySpec
 return {
   "folke/flash.nvim",
-  event = "VeryLazy",
-  keys = {
-    -- enable substitute with (normal) s
-    { "s", mode = { "n", "x", "o" }, false },
-    -- enable surround with (visual) S
-    { "S", mode = { "n", "x", "o" }, false },
-  },
-  -- @type Flash.Config
-  config = function() end,
+  -- Navigate your code with search labels, enhanced character motions and
+  -- Treesitter integration
+  -- https://github.com/folke/flash.nvim#-examples
+  enabled = false,
 }
