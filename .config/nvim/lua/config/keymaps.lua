@@ -32,34 +32,6 @@ vim.keymap.set("v", "<A-j>", "<esc>gj", { desc = "Move down" })
 vim.api.nvim_set_keymap("n", "-", "g;", { noremap = true })
 vim.api.nvim_set_keymap("n", "+", "g,", { noremap = true })
 
---
--- search for the current visual mode selection
--- https://github.com/nvim-telescope/telescope.nvim/issues/2497#issuecomment-1676551193
-local function get_visual()
-  vim.cmd('noautocmd normal! "vy"')
-  local text = vim.fn.getreg("v")
-  vim.fn.setreg("v", {})
-
-  text = string.gsub(text or "", "\n", "")
-  if #text > 0 then
-    return text
-  else
-    return ""
-  end
-end
-
-vim.keymap.set("v", "<leader>/", function()
-  local selection = get_visual()
-
-  require("telescope.builtin").live_grep({
-    default_text = selection,
-    only_sort_text = true,
-    additional_args = function()
-      return { "--pcre2" }
-    end,
-  })
-end, { noremap = true, desc = "Grep visual selection" })
-
 -- based mapping section from ThePrimeagen
 
 -- move lines up and down

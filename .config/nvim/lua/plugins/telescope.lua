@@ -45,6 +45,39 @@ return {
       end,
       { desc = "Paste with telescope (neoclip)" },
     },
+    {
+      "<leader>/",
+      mode = { "n", "v" },
+      function()
+        --
+        -- search for the current visual mode selection
+        -- https://github.com/nvim-telescope/telescope.nvim/issues/2497#issuecomment-1676551193
+        local function get_visual()
+          vim.cmd('noautocmd normal! "vy"')
+          local text = vim.fn.getreg("v")
+          vim.fn.setreg("v", {})
+
+          text = string.gsub(text or "", "\n", "")
+          if #text > 0 then
+            return text
+          else
+            return ""
+          end
+        end
+
+        local selection = get_visual()
+
+        require("telescope.builtin").live_grep({
+          cwd = false,
+          default_text = selection,
+          only_sort_text = true,
+          additional_args = function()
+            return { "--pcre2" }
+          end,
+        })
+      end,
+      desc = "search project 🤞🏻",
+    },
   },
 
   opts = {
