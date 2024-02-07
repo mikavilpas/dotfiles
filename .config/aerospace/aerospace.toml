@@ -61,13 +61,13 @@ indent-for-nested-containers-with-the-same-orientation = 30
 [workspace-to-monitor-force-assignment]
 # Can find these out using `aerospace list-monitors`
 1 = 'D32u-40'
-2 = 'main'
-3 = 'DELL U2415'
 4 = 'D32u-40'
-5 = 'main'
-6 = 'DELL U2415'
 7 = 'D32u-40'
+2 = 'main'
+5 = 'main'
 8 = 'main'
+3 = 'DELL U2415'
+6 = 'DELL U2415'
 9 = 'DELL U2415'
 
 # 'main' binding mode declaration
