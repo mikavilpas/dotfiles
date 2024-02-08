@@ -134,10 +134,11 @@ klm() {
 
 
 #source ~/bin/aws-profile.zsh
+# fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
 
 fzcd() {
   local selected_dir
-  selected_dir=$(z -l | sort --reverse | fzf --height 40% | awk '{print $2}')
+  selected_dir=$(z -t | awk '{print $2}' | sort --reverse | fzf --height 40% --preview "ls -a --color=always {}")
   if [ -n "$selected_dir" ]; then
     echo "cd '$selected_dir'"
     cd "$selected_dir"
