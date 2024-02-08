@@ -34,8 +34,6 @@ end
 
 -- fix not being able to write "|" on a mac
 -- https://wezfurlong.org/wezterm/config/keyboard-concepts.html?h=mac#macos-left-and-right-option-key
--- NOTE: left option + HJKL is used to control zellij, right option + 7 sends |. This needs to be configured conrrectly in the ergadox EZ layout.
-
 config.send_composed_key_when_left_alt_is_pressed = false
 
 -- integration with nvim and zen-mode
