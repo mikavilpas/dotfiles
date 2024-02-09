@@ -126,6 +126,10 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 alias dc="docker-compose"
 alias w="watchexec"
 
+# A modern, maintained replacement for ls
+# https://github.com/eza-community/eza
+alias l="eza --oneline --all --long --no-user --icons=auto --no-permissions --time-style=long-iso"
+
 # jelpp-env stuff
 # alias klm="cd /Users/mikavilpas/git/jelpp/jelpp-env; npm run klm --"
 klm() {
