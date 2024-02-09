@@ -160,6 +160,12 @@ function isDarkMode() {
 # a function to start lazygit using the correct theme
 alias lg="lazygit"
 
+function my_git_grep_history() {
+  needle=$1
+  git log -S "$1" --oneline --color=always |\
+    fzf --multi --ansi --preview="git show --color=always {1} | bat --style=numbers,changes --color=always"
+}
+
 # tabtab source for packages
 # uninstall by removing these lines
 # [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
