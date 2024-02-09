@@ -138,7 +138,7 @@ klm() {
 
 fzcd() {
   local selected_dir
-  selected_dir=$(z -t | awk '{print $2}' | sort --reverse | fzf --height 40% --preview "ls -a --color=always {}")
+  selected_dir=$(z -t | awk '{print $2}' | sort --reverse | fzf --height 40% --preview "echo '{}' && ls -a --color=always {}")
   if [ -n "$selected_dir" ]; then
     echo "cd '$selected_dir'"
     cd "$selected_dir"
