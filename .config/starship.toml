@@ -1,61 +1,138 @@
+# format = """
+# [░▒▓](#a3aed2)\
+# [   ](bg:#a3aed2 fg:#090c0c)\
+# [](bg:#769ff0 fg:#a3aed2)\
+# $directory\
+# [](fg:#769ff0 bg:#394260)\
+# $git_branch\
+# $git_status\
+# [](fg:#394260 bg:#212736)\
+# $nodejs\
+# $rust\
+# $aws\
+# [](fg:#212736 bg:#1d2230)\
+# $time\
+# [ ](fg:#1d2230)\
+# $shell\
+# \n$character"""
+#
+# [directory]
+# style = "fg:#e3e5e5 bg:#769ff0"
+# format = "[ $path ]($style)"
+# truncation_length = 3
+# truncation_symbol = "…/"
+#
+# [git_branch]
+# symbol = ""
+# style = "bg:#394260"
+# format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
+#
+# [git_status]
+# style = "bg:#394260"
+# format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
+#
+# [nodejs]
+# symbol = ""
+# style = "bg:#212736"
+# format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+#
+# [shell]
+# disabled = false
+# nu_indicator = "[](purple)"
+# zsh_indicator = "[](bold blue)"
+#
+# [rust]
+# symbol = ""
+# style = "bg:#212736"
+# format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+#
+# [time]
+# disabled = false
+# time_format = "%R" # Hour:Minute Format
+# style = "bg:#1d2230"
+# format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
+#
+# [aws]
+# format = 'on [$symbol$profile]($style) '
+# style = 'bold blue'
+# symbol = '🅰 '
+# [aws.profile_aliases]
+# Enterprise_Naming_Scheme-voidstars = 'void**'
+
+# https://github.com/etrigan63/Catppuccin-starship/blob/main/user_starship.toml
+
 format = """
-[░▒▓](#a3aed2)\
-[   ](bg:#a3aed2 fg:#090c0c)\
-[](bg:#769ff0 fg:#a3aed2)\
+[](#89B4FA)\
+$username\
+[ ](fg:#11111b bg:#89B4FA)\
+[](bg:#CDD6F4 fg:#89B4FA)\
 $directory\
-[](fg:#769ff0 bg:#394260)\
+[](fg:#cdd6f4 bg:#fab387)\
 $git_branch\
 $git_status\
-[](fg:#394260 bg:#212736)\
+[](fg:#fab387 bg:#cba6f7)\
 $nodejs\
 $rust\
-$aws\
-[](fg:#212736 bg:#1d2230)\
+[](fg:#cba6f7 bg:#a6e3a1)\
+$status\
+[](fg:#a6e3a1 bg:#89b4fa)\
 $time\
-[ ](fg:#1d2230)\
-$shell\
-\n$character"""
+$cmd_duration\
+[ ](fg:#89B4FA)\
+"""
+
+# Disable the blank line at the start of the prompt
+# add_newline = false
+
+# You can also replace your username with a neat symbol like  to save some space
+[username]
+show_always = false
+style_user = "fg:#11111b bg:#89B4FA"
+style_root = "fg:#11111b bg:#f38ba8"
+format = '[$user ]($style)'
 
 [directory]
-style = "fg:#e3e5e5 bg:#769ff0"
+style = "fg:#11111b bg:#cdd6f4"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:#394260"
-format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
+style = "fg:#11111b bg:#fab387"
+format = '[[ $symbol $branch ](fg:#11111b bg:#fab387)]($style)'
 
 [git_status]
-style = "bg:#394260"
-format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
+style = "fg:#11111b bg:#fab387"
+format = '[[($all_status$ahead_behind )](fg:#11111b bg:#fab387)]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
-
-[shell]
-disabled = false
-nu_indicator = "[](purple)"
-zsh_indicator = "[](bold blue)"
+style = "fg:#11111b bg:#cba6f7"
+format = '[[ $symbol ($version) ](fg:#11111b bg:#cba6f7)]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+style = "fg:#11111b bg:#cba6f7"
+format = '[[ $symbol ($version) ](fg:#11111b bg:#cba6f7)]($style)'
 
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "bg:#1d2230"
-format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
+style = "fg:#11111b bg:#89b4fa"
+format = '[[  $time ](fg:#11111b bg:#89b4fa)]($style)'
 
-[aws]
-format = 'on [$symbol$profile]($style) '
-style = 'bold blue'
-symbol = '🅰 '
-[aws.profile_aliases]
-Enterprise_Naming_Scheme-voidstars = 'void**'
+[cmd_duration]
+min_time = 500
+# format = 'underwent [$duration](bold yellow)'
+style = "fg:#11111b bg:#89b4fa"
+format = '[[ 󱫡 $duration ](fg:#11111b bg:#89b4fa)]($style)'
 
+
+[status]
+style = 'fg:#11111b bg:#a6e3a1'
+symbol = '🔴'
+success_symbol = ''
+format = '[ $symbol$signal_name$int]($style)'
+map_symbol = true
+disabled = false
