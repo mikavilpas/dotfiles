@@ -50,7 +50,10 @@ return {
         -- `:` cmdline setup.
         cmp.setup.cmdline(":", {
           mapping = cmp.mapping.preset.cmdline(),
-          -- this fixes a bug
+          -- this fixes this bug
+          --
+          -- first result auto-selected, but it doesn't search for the text in
+          -- that result until I move selection down and back up again #96
           -- https://github.com/hrsh7th/cmp-cmdline/issues/96#issuecomment-1705873476
           completion = { completeopt = "menu,menuone,noselect" },
           sources = cmp.config.sources({
