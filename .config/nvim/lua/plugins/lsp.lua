@@ -89,6 +89,18 @@ return {
         return vim.tbl_deep_extend("keep", new_options, opts)
       end,
     },
+    {
+      "marilari88/twoslash-queries.nvim",
+      -- Usage
+      -- Write a '//    ^?' placing the sign '^' under the variable to inspected
+      opts = {
+
+        -- https://github.com/marilari88/twoslash-queries.nvim?tab=readme-ov-file#config
+        multi_line = true, -- to print types in multi line mode
+        is_enabled = true, -- to keep disabled at startup and enable it on request with the TwoslashQueriesEnable
+        highlight = "@comment.note", -- to set up a highlight group for the virtual text
+      },
+    },
   },
 
   init = function()
@@ -107,6 +119,9 @@ return {
 
     servers = {
       tsserver = {
+        on_attach = function(client, bufnr)
+          require("twoslash-queries").attach(client, bufnr)
+        end,
         settings = {
           typescript = {
             inlayHints = {
