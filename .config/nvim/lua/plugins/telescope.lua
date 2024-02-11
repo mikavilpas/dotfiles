@@ -1,3 +1,36 @@
+local function my_copy_relative_path(prompt_bufnr)
+  local current_file_dir = vim.fn.expand("#:p:h")
+  if current_file_dir == nil then
+    error("no current_file_dir, cannot do anything")
+  end
+
+  local Path = require("plenary.path")
+  local action_state = require("telescope.actions.state")
+  local actions = require("telescope.actions")
+  local telescopeUtils = require("telescope.utils")
+
+  local selection = action_state.get_selected_entry()
+
+  if selection == nil then
+    error("no selection, cannot continue")
+  end
+
+  local selected_file = Path:new(selection.cwd, selection.value):__tostring()
+
+  local stdout, ret, stderr =
+    telescopeUtils.get_os_command_output({ "grealpath", "--relative-to", current_file_dir, selected_file })
+
+  if ret ~= 0 then
+    print(vim.inspect(stderr))
+    error("error running command, exit code " .. ret)
+  end
+
+  local relative_path = stdout
+  vim.fn.setreg("*", relative_path)
+
+  actions.close(prompt_bufnr)
+end
+
 ---@type LazySpec
 return {
   "nvim-telescope/telescope.nvim",
@@ -86,6 +119,15 @@ return {
       layout_config = { prompt_position = "top" },
       sorting_strategy = "ascending",
       winblend = 0,
+
+      mappings = {
+        n = {
+          ["<C-y>"] = my_copy_relative_path,
+        },
+        i = {
+          ["<C-y>"] = my_copy_relative_path,
+        },
+      },
     },
 
     extensions = {
