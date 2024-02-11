@@ -19,7 +19,7 @@ $status\
 $time\
 $cmd_duration\
 [ ](fg:blue)\
-"""
+\n$character"""
 
 # Disable the blank line at the start of the prompt
 # add_newline = false
@@ -69,6 +69,10 @@ success_symbol = ''
 format = '[ $symbol$signal_name$int]($style)'
 map_symbol = true
 disabled = false
+
+[character]
+format ="$symbol "
+success_symbol = "\\$"
 
 # palettes should be the last thing in this configuration file
 [palettes.catppuccin_macchiato]
