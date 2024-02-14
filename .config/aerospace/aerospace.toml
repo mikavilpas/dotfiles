@@ -229,8 +229,8 @@ cmd-ctrl-shift-alt-f = "fullscreen"
 cmd-ctrl-shift-alt-r = ["move left"]
 
 
-cmd-ctrl-shift-alt-n = "resize smart +70"
-cmd-ctrl-shift-alt-t = "resize smart -70"
+cmd-ctrl-shift-alt-n = "resize smart +120"
+cmd-ctrl-shift-alt-t = "resize smart -120"
 
 # ] # Toggle between floating and tiling layout# 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide.html#binding-modes
