@@ -20,13 +20,15 @@ local function my_copy_relative_path(prompt_bufnr)
   local stdout, ret, stderr =
     telescopeUtils.get_os_command_output({ "grealpath", "--relative-to", current_file_dir, selected_file })
 
-  if ret ~= 0 then
+  if ret ~= 0 or stdout == nil or stdout == "" then
     print(vim.inspect(stderr))
     error("error running command, exit code " .. ret)
   end
 
-  local relative_path = stdout
+  local relative_path = stdout[1]
   vim.fn.setreg("*", relative_path)
+  -- display a message with the relative path
+  vim.api.nvim_echo({ { "Copied: ", "Normal" }, { relative_path, "String" } }, true, {})
 
   actions.close(prompt_bufnr)
 end
