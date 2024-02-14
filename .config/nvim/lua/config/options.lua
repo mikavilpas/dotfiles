@@ -7,7 +7,7 @@ vim.opt.relativenumber = false
 vim.opt.number = false
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 15 -- makes sure zt and zb have some context
 
 -- disable pop up menu transparency
 vim.opt.pumblend = 0
