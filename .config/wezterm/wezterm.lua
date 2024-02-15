@@ -36,6 +36,16 @@ config.color_scheme = "Catppuccin Macchiato"
 -- https://wezfurlong.org/wezterm/config/keyboard-concepts.html?h=mac#macos-left-and-right-option-key
 config.send_composed_key_when_left_alt_is_pressed = false
 
+local act = wezterm.action
+config.keys = {
+	-- Clears the scrollback and viewport leaving the prompt line the new first line.
+	{
+		key = "k",
+		mods = "SUPER",
+		action = act.ClearScrollback("ScrollbackAndViewport"),
+	},
+}
+
 -- integration with nvim and zen-mode
 -- https://github.com/folke/zen-mode.nvim?tab=readme-ov-file#wezterm
 wezterm.on("user-var-changed", function(window, pane, name, value)
