@@ -1,3 +1,6 @@
+
+source ~/dotfiles/.wezterm.sh
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/go/bin/:/usr/local/bin:$PATH:$HOME/Library/Android/sdk/platform-tools
 
