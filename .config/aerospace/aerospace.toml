@@ -134,7 +134,6 @@ ctrl-shift-alt-6 = ['workspace 4', 'workspace 5', 'workspace 6']
 ctrl-shift-alt-7 = ['workspace 8', 'workspace 9', 'workspace 7']
 ctrl-shift-alt-8 = ['workspace 7', 'workspace 9', 'workspace 8']
 ctrl-shift-alt-9 = ['workspace 7', 'workspace 8', 'workspace 9']
-ctrl-shift-alt-0 = ['workspace 0']
 # alt-a = 'workspace A'
 # alt-b = 'workspace B'
 # alt-c = 'workspace C'
