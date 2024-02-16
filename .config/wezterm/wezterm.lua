@@ -44,6 +44,9 @@ config.keys = {
 		mods = "SUPER",
 		action = act.ClearScrollback("ScrollbackAndViewport"),
 	},
+
+	{ key = "UpArrow", mods = "SUPER", action = act.ScrollToPrompt(-1) },
+	{ key = "DownArrow", mods = "SUPER", action = act.ScrollToPrompt(1) },
 }
 
 -- integration with nvim and zen-mode
