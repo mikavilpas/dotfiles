@@ -61,11 +61,16 @@ return {
   keys = {
     { "<leader><leader>", false },
     {
+      -- Find files from the root of the current repository.
+      -- Does not search parents if we're currently in a submodule.
       "<leader>ff",
       function()
-        local cwd = require("telescope.utils").buffer_dir()
-        require("telescope.builtin").git_files({
-          recurse_submodules = true,
+        local stdout, ret = require("telescope.utils").get_os_command_output({ "git", "rev-parse", "--show-toplevel" })
+        if ret ~= 0 then
+          error("could not determine top level git directory")
+        end
+        local cwd = stdout[1]
+        require("telescope.builtin").find_files({
           cwd = cwd,
         })
       end,
