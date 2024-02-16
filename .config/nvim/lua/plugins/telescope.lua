@@ -107,7 +107,7 @@ return {
           default_text = selection,
           only_sort_text = true,
           additional_args = function()
-            return { "--pcre2" }
+            return { "--pcre2", "--hidden" }
           end,
         })
       end,
