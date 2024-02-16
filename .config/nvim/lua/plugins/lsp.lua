@@ -123,6 +123,7 @@ return {
           require("twoslash-queries").attach(client, bufnr)
         end,
         settings = {
+          scss = { lint = { enabled = false } },
           typescript = {
             inlayHints = {
               includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
