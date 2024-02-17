@@ -58,9 +58,14 @@ keybinding:
     edit: e
 
 os:
-  # https://github.com/jesseduffield/lazygit/blob/master/pkg/config/editor_presets.go#L49
-  editPreset: "nvim"
-  openLink: open "$(echo "{{link}}" | sed 's/%2F/\//g')"
+  # I usually use lazygit embedded in nvim.
+  #
+  # When using lazygit, pressing e on a file will open a new nvim _tab_ and
+  # allow editing that file in nvim. Pressing spc wd (window delete) will close
+  # that tab and display the lazygit view again, returning back.
+  edit: 'nvim --server "$NVIM" --remote-tab {{filename}}'
+  editAtLine: 'nvim --server "$NVIM" --remote-tab {{filename}}; [ -z "$NVIM" ] || nvim --server "$NVIM" --remote-send ":{{line}}<CR>"'
+  editAtLineAndWait: "nvim +{{line}} {{filename}}"
 
 promptToReturnFromSubprocess: false
 
