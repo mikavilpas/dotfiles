@@ -108,12 +108,26 @@ return {
 
         local selection = get_visual()
 
+        -- pro tip: search for an initial, wide result with this, and then hit
+        -- c-spc to use fuzzy matching to narrow it down
         require("telescope.builtin").live_grep({
           cwd = false,
           default_text = selection,
           only_sort_text = true,
           additional_args = function()
-            return { "--pcre2", "--hidden" }
+            -- --pcre2
+            -- The --pcre2 flag in ripgrep is used to enable the PCRE2 (Perl
+            -- Compatible Regular Expressions) engine for pattern matching.
+            -- PCRE2 is an optional feature in ripgrep that provides more
+            -- advanced regex features such as look-around and backreferences,
+            -- which are not supported by ripgrep's default regex engine 134.
+
+            -- --smart-case
+            -- This flag instructs ripgrep to searches case insensitively if
+            -- the pattern is all lowercase. Otherwise, ripgrep will search
+            -- case sensitively.
+
+            return { "--pcre2", "--hidden", "--smart-case" }
           end,
         })
       end,
