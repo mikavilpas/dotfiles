@@ -143,6 +143,11 @@ klm() {
 #source ~/bin/aws-profile.zsh
 # fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
 
+# a nice preview command for ctrl_t
+# https://github.com/sharkdp/bat/issues/357#issuecomment-555971886
+export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"
+export FZF_CTRL_T_OPTS="--min-height 30 --preview-window right:60% --preview-window noborder --preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'"
+
 fzcd() {
   local selected_dir
   selected_dir=$(z -t | awk '{print $2}' | sort --reverse | fzf --height 40% --preview "echo '{}' && ls -a --color=always {}")
