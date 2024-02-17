@@ -1,1 +1,5 @@
 .config/lazygit/state.yml
+
+# This makes ripgrep (rg) ignore the .git directory everywhere
+# NOTE: ripgrep uses the global .gitignore file, so this will affect all repos.
+.git
