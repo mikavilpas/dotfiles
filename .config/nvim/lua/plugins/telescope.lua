@@ -71,6 +71,7 @@ return {
         end
         local cwd = stdout[1]
         require("telescope.builtin").find_files({
+          find_command = { "fd", "--hidden" },
           cwd = cwd,
         })
       end,
