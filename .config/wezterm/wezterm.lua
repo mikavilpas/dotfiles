@@ -19,6 +19,7 @@ end
 
 config.font = wezterm.font("DejaVuSansMono NF", { weight = "Medium", stretch = "Expanded" })
 config.font_size = 13
+config.freetype_load_target = "Light"
 
 -- from https://github.com/wez/wezterm/issues/4051#issue-1820224035
 if wezterm.gui.get_appearance():find("Dark") then
