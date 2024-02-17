@@ -48,6 +48,12 @@ config.keys = {
 
 	{ key = "UpArrow", mods = "SUPER", action = act.ScrollToPrompt(-1) },
 	{ key = "DownArrow", mods = "SUPER", action = act.ScrollToPrompt(1) },
+
+	{
+		key = "P",
+		mods = "SUPER|SHIFT",
+		action = wezterm.action.ActivateCommandPalette,
+	},
 }
 
 -- integration with nvim and zen-mode
