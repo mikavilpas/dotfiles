@@ -21,6 +21,16 @@ config.font = wezterm.font("DejaVuSansMono NF", { weight = "Medium", stretch = "
 config.font_size = 13
 config.freetype_load_target = "Light"
 
+config.visual_bell = {
+	fade_in_function = "EaseIn",
+	fade_in_duration_ms = 150,
+	fade_out_function = "EaseOut",
+	fade_out_duration_ms = 150,
+}
+config.colors = {
+	visual_bell = "#303030",
+}
+
 -- from https://github.com/wez/wezterm/issues/4051#issue-1820224035
 if wezterm.gui.get_appearance():find("Dark") then
 	-- config.color_scheme = "Catppuccin Macchiato"
