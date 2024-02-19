@@ -1,4 +1,24 @@
 set hidden
 set icons
 set number
-set drawbox
+set autoquit
+
+# Split words by default in zsh
+#
+# zsh does not split words by default as described here, which makes it
+# difficult to work with $fs and $fx variables, but a compatibility option
+# named shwordsplit (-y or --sh-word-split) is provided for this purpose. You
+# can set this option for all commands as such:
+set shell zsh
+set shellopts '-euy'
+set ifs "\n"
+
+# Can be executed when embedded in a nvim process. Opens the selected file or directory in a new split
+map <enter> ${{
+  [ -f $f ] && nvr --nostart -cc vsplit "$f"
+
+  # TODO directory opening doesn't work yet
+  [ -d $f ] && nvr --nostart --remote-expr ":Neotree<cr>"
+
+  killall lf
+}}
