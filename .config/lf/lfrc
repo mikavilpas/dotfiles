@@ -12,6 +12,7 @@ set autoquit
 set shell zsh
 set shellopts '-euy'
 set ifs "\n"
+set previewer "~/dotfiles/.config/lf/previewer.sh"
 
 # Can be executed when embedded in a nvim process. Opens the selected file or directory in a new split
 map <enter> ${{
