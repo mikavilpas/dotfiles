@@ -5,5 +5,6 @@ return {
   opts = {
     retirementAgeMins = 5,
   },
+  config = true,
   event = "VeryLazy",
 }
