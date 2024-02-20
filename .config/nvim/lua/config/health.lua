@@ -11,12 +11,17 @@ return {
     end
 
     check("fd")
-    check("rg")
-    check("grealpath")
-    check("lf")
-    check("lazygit")
-    check("presenterm")
+    check("ffmpegthumbnailer")
     check("fzf")
+    check("grealpath")
+    check("jq")
+    check("lazygit")
+    check("lf")
+    check("poppler")
+    check("presenterm")
+    check("rg")
+    check("unar")
+    check("zoxide")
 
     vim.health.ok("my-cli-tools")
   end,
