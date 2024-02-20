@@ -14,12 +14,12 @@ set shellopts '-euy'
 set ifs "\n"
 set previewer "~/dotfiles/.config/lf/previewer.sh"
 
-# Can be executed when embedded in a nvim process. Opens the selected file or directory in a new split
+# Can be executed when embedded in a nvim process. Opens the selected file or directory in the current window.
 map <enter> ${{
-  [ -f $f ] && nvr --nostart -cc vsplit "$f"
+  [ -f $f ] && nvr --nostart -remote "$f"
 
   # TODO directory opening doesn't work yet
-  [ -d $f ] && nvr --nostart --remote-expr ":Neotree<cr>"
+  #[ -d $f ] && nvr --nostart --remote-expr ":Neotree<cr>"
 
   killall lf
 }}
