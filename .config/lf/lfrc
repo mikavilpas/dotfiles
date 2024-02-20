@@ -16,7 +16,7 @@ set previewer "~/dotfiles/.config/lf/previewer.sh"
 
 # Can be executed when embedded in a nvim process. Opens the selected file or directory in the current window.
 map <enter> ${{
-  [ -f $f ] && nvr --nostart -remote "$f"
+  [ -f $f ] && nvr --nostart -l "$f"
 
   # TODO directory opening doesn't work yet
   #[ -d $f ] && nvr --nostart --remote-expr ":Neotree<cr>"
