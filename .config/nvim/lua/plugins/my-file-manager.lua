@@ -9,7 +9,7 @@ return {
     {
       "<leader>-",
       function()
-        require("my-file-manager").open_lf()
+        require("my-file-manager").open_file_manager()
       end,
       { desc = "Open the file manager" },
     },
