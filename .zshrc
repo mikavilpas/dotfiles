@@ -174,6 +174,19 @@ function my_git_grep_history() {
     fzf --multi --ansi --preview="git show --color=always {1} | bat --style=numbers,changes --color=always"
 }
 
+# yazi integration (terminal file manager)
+# https://yazi-rs.github.io/docs/quick-start
+function ya() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
+alias y="ya"
+
 # tabtab source for packages
 # uninstall by removing these lines
 # [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
