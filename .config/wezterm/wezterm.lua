@@ -18,7 +18,7 @@ end
 --
 
 config.font = wezterm.font("DejaVuSansMono NF", { weight = "Medium", stretch = "Expanded" })
-config.font_size = 13
+config.font_size = 15
 config.freetype_load_target = "Light"
 
 config.visual_bell = {
