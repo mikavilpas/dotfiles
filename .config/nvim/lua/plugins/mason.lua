@@ -21,7 +21,6 @@ return {
       -- general / web development
       "prettier",
       "tailwindcss-language-server",
-      "typescript-language-server",
       "yaml-language-server",
     },
   },
