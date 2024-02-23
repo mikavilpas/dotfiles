@@ -17,6 +17,8 @@ return {
   -- nvim-lspconfig is not required to use the builtin Nvim |lsp| client, it is
   -- just a convenience layer.
   --
+
+  "folke/neoconf.nvim",
   "neovim/nvim-lspconfig",
 
   dependencies = {
@@ -122,7 +124,6 @@ return {
       dependencies = {
         "nvim-lua/plenary.nvim",
         "neovim/nvim-lspconfig",
-        { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
       },
       opts = {},
     },
