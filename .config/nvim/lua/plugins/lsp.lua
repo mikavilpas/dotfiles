@@ -1,6 +1,22 @@
 -- https://www.lazyvim.org/plugins/lsp
 ---@type LazySpec
 return {
+  -- nvim-lspconfig is a collection of community-contributed configurations for the
+  -- built-in language server client in Nvim core. This plugin provides four
+  -- primary functionalities:
+  --
+  --  - default launch commands, initialization options, and settings for each
+  --    server
+  --  - a root directory resolver which attempts to detect the root of your project
+  --  - an autocommand mapping that either launches a new language server or
+  --    attempts to attach a language server to each opened buffer if it falls
+  --    under a tracked project
+  --  - utility commands such as LspInfo, LspStart, LspStop, and LspRestart for
+  --    managing language server instances
+  --
+  -- nvim-lspconfig is not required to use the builtin Nvim |lsp| client, it is
+  -- just a convenience layer.
+  --
   "neovim/nvim-lspconfig",
 
   dependencies = {
