@@ -36,7 +36,7 @@ return {
       config = function()
         -- https://github.com/hrsh7th/cmp-cmdline
         local cmp = require("cmp")
-        -- `/` cmdline setup.
+        -- `/` and '?' cmdline setup.
         cmp.setup.cmdline({ "/", "?" }, {
           mapping = cmp.mapping.preset.cmdline(),
           -- this fixes a bug
