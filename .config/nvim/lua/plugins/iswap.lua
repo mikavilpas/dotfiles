@@ -5,7 +5,6 @@ return {
   -- more. Powered by tree-sitter.
   --
   -- https://github.com/mizlan/iswap.nvim
-  event = "VeryLazy",
   keys = {
     {
       "<leader>mh",
