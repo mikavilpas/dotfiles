@@ -22,7 +22,12 @@ return {
   dependencies = {
     {
       "folke/noice.nvim",
+      ---@type NoiceConfig
       opts = {
+        ---@type NoicePresets
+        presets = {
+          lsp_doc_border = true,
+        },
         lsp = {
           signature = {
             enabled = false,
@@ -157,6 +162,5 @@ return {
     inlay_hints = {
       enabled = true,
     },
-    setup = {},
   },
 }
