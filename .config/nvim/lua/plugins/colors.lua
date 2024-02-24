@@ -27,7 +27,7 @@ return {
       -- https://github.com/catppuccin/nvim?tab=readme-ov-file#configuration
       flavour = "macchiato",
 
-      dim_inactive = { enabled = true, percentage = 0.9 },
+      dim_inactive = { enabled = true, percentage = 0.13 },
 
       highlight_overrides = {
         macchiato = function(colors)
