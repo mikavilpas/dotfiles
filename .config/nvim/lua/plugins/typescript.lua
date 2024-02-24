@@ -24,5 +24,9 @@ return {
     on_attach = function(client, bufnr)
       require("twoslash-queries").attach(client, bufnr)
     end,
+
+    settings = {
+      expose_as_code_action = "all",
+    },
   },
 }
