@@ -3,7 +3,6 @@
 return {
   "folke/zen-mode.nvim",
   dependencies = { "folke/twilight.nvim" },
-  event = "VeryLazy",
   keys = {
     { "<leader>uz", ":ZenMode<CR>", silent = true, noremap = true },
   },

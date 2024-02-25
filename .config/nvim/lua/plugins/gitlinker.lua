@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
   "linrongbin16/gitlinker.nvim",
-  event = "VeryLazy",
+  cmd = "GitLink",
   config = function()
     require("gitlinker").setup({
       router = {
