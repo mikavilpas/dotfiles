@@ -72,4 +72,18 @@ return {
       },
     }
   end,
+
+  dependencies = {
+
+    {
+      "akinsho/toggleterm.nvim",
+      version = "*",
+      ---@type ToggleTermConfig
+      opts = {
+        float_opts = {
+          border = "curved",
+        },
+      },
+    },
+  },
 }
