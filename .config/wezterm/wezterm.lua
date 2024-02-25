@@ -21,6 +21,11 @@ config.font = wezterm.font("DejaVuSansMono NF", { weight = "Medium", stretch = "
 config.font_size = 15
 config.freetype_load_target = "Light"
 
+-- https://github.com/folke/dot/blob/1007fc65738ad1f7a3e9c91432430017a6878378/config/wezterm/wezterm.lua
+
+config.front_end = "WebGpu"
+config.webgpu_power_preference = "HighPerformance"
+
 config.visual_bell = {
 	fade_in_function = "EaseIn",
 	fade_in_duration_ms = 150,
