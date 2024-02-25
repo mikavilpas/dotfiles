@@ -1,15 +1,15 @@
 ---@type LazySpec
 return {
-  dir = "~/dotfiles/.config/nvim/lua/embedded-plugins/my-file-manager/",
+  "DreamMaoMao/yazi.nvim",
   dependencies = {
-    "akinsho/toggleterm.nvim",
+    "nvim-telescope/telescope.nvim",
+    "nvim-lua/plenary.nvim",
   },
-
   keys = {
     {
       "<leader>-",
       function()
-        require("my-file-manager").open_file_manager()
+        require("yazi").yazi()
       end,
       { desc = "Open the file manager" },
     },
