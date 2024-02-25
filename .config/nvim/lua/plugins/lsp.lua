@@ -37,7 +37,7 @@ return {
         routes = {
           -- disable some annoying messages popping up. I hate them!
           -- stylua: ignore start
-          { view = "split", filter = { event = "msg_show", min_height = 20 } },
+          { view = "split", filter = { event = "msg_show", min_height = 3 } },
           { filter = { find = "No information available" }, opts = { stop = true } },
           { filter = { find = "fewer lines;" }, opts = { skip = true } },
           { filter = { find = "more line;" }, opts = { skip = true } },
