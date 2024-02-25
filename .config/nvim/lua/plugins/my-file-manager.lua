@@ -2,7 +2,7 @@
 return {
   dir = "~/dotfiles/.config/nvim/lua/embedded-plugins/my-file-manager/",
   dependencies = {
-    "LazyVim/LazyVim",
+    "akinsho/toggleterm.nvim",
   },
 
   keys = {
