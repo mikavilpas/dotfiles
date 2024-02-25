@@ -3,7 +3,6 @@
 -- Add any additional keymaps here
 --
 
-local Util = require("lazyvim.util")
 vim.g.maplocalleader = [[\]]
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -13,17 +12,24 @@ vim.api.nvim_create_autocmd("BufEnter", {
   desc = "Disable New Line Comment",
 })
 
+local Terminal = require("toggleterm.terminal").Terminal
+
 -- open lazygit history for the current file
 vim.keymap.set("n", "<leader>gl", function()
-  local path = vim.api.nvim_buf_get_name(0)
-  Util.terminal({ "lazygit", "--filter", path }, {
-    cwd = Util.root(),
-    esc_esc = false,
-    ctrl_hjkl = false,
-    env = {
-      EDITOR = [[nvim --server "$NVIM" --remote-tab ]],
+  local absolutePath = vim.api.nvim_buf_get_name(0)
+
+  local lazygit = Terminal:new({
+    cmd = "lazygit --filter " .. absolutePath,
+    dir = "git_dir",
+    direction = "float",
+    close_on_exit = true,
+    float_opts = {
+      -- lazygit itself already has a border
+      border = "none",
     },
   })
+
+  lazygit:open()
 end, { desc = "lazygit file commits" })
 
 -- disable esc j and esc k moving lines accidentally
