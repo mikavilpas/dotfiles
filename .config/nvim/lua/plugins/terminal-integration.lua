@@ -4,9 +4,21 @@ return {
   -- your current neovim instance
   -- https://github.com/willothy/flatten.nvim
   "willothy/flatten.nvim",
+
   -- Ensure that it runs first to minimize delay when opening file from terminal
   lazy = false,
   priority = 1001,
+
+  -- disable for headless and embedded neovim
+  enabled = function()
+    for _, value in ipairs(vim.v.argv) do
+      if value == "--headless" or value == "--embed" then
+        return false
+      end
+    end
+
+    return true
+  end,
 
   opts = function()
     ---@type Terminal?
@@ -73,16 +85,13 @@ return {
     }
   end,
 
-  dependencies = {
-
-    {
-      "akinsho/toggleterm.nvim",
-      version = "*",
-      ---@type ToggleTermConfig
-      opts = {
-        float_opts = {
-          border = "curved",
-        },
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    ---@type ToggleTermConfig
+    opts = {
+      float_opts = {
+        border = "curved",
       },
     },
   },
