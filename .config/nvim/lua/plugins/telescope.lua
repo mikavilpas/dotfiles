@@ -42,7 +42,9 @@ return {
     {
       "<leader>/",
       mode = { "n", "v" },
-      require("my-telescope-searches").my_live_grep,
+      function()
+        require("my-telescope-searches").my_live_grep()
+      end,
       desc = "search project 🤞🏻",
     },
     {
