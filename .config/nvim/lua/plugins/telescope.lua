@@ -45,6 +45,26 @@ return {
       require("my-telescope-searches").my_live_grep,
       desc = "search project 🤞🏻",
     },
+    {
+      "<leader>fr",
+      mode = { "n", "v" },
+      function()
+        require("telescope").extensions.recent_files.pick({
+          only_cwd = true,
+        })
+      end,
+      desc = "search recent_files (cwd)",
+    },
+    {
+      "<leader>fR",
+      mode = { "n", "v" },
+      function()
+        require("telescope").extensions.recent_files.pick({
+          only_cwd = false,
+        })
+      end,
+      desc = "search recent_files (global)",
+    },
   },
 
   opts = {
