@@ -1,6 +1,9 @@
 ---@type LazySpec
 return {
+  -- NOTE the defaults for LazyVim are here https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/treesitter.lua
+
   "nvim-treesitter/nvim-treesitter",
+  ---@type TSConfig
   opts = {
     -- add more treesitter parsers
     ensure_installed = {
@@ -20,6 +23,10 @@ return {
       "typescript",
       "yaml",
     },
+
+    autotag = {
+      enable = true,
+    },
   },
 
   config = function(_, opts)
@@ -28,7 +35,7 @@ return {
     -- Custom filetype detection for .css files
     vim.cmd([[
         autocmd BufRead,BufNewFile *.css set filetype=scss
-      ]])
+    ]])
   end,
 
   {
