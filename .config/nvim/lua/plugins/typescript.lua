@@ -25,6 +25,13 @@ return {
           highlight = "@comment.note", -- to set up a highlight group for the virtual text
         },
       },
+      {
+        -- Neovim plugin to automatic change normal string to template string
+        -- in JS like languages
+        -- https://github.com/axelvc/template-string.nvim
+        "axelvc/template-string.nvim",
+        config = true,
+      },
     },
 
     opts = {
