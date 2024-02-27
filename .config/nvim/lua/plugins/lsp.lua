@@ -165,9 +165,10 @@ return {
     ---@type lspconfig.options
     servers = {
       tsserver = {
-        settings = {},
+        settings = {
+          scss = { lint = { enabled = false } },
+        },
       },
-      scss = { lint = { enabled = false } },
     },
     inlay_hints = {
       enabled = true,
