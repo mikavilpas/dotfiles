@@ -165,35 +165,9 @@ return {
     ---@type lspconfig.options
     servers = {
       tsserver = {
-        settings = {
-          scss = { lint = { enabled = false } },
-          typescript = {
-            inlayHints = {
-              includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
-              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-              includeInlayVariableTypeHints = true,
-              includeInlayFunctionParameterTypeHints = true,
-              includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-              includeInlayPropertyDeclarationTypeHints = true,
-              includeInlayFunctionLikeReturnTypeHints = true,
-              includeInlayEnumMemberValueHints = true,
-            },
-          },
-          javascript = {
-            inlayHints = {
-              includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
-              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-              includeInlayVariableTypeHints = true,
-
-              includeInlayFunctionParameterTypeHints = true,
-              includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-              includeInlayPropertyDeclarationTypeHints = true,
-              includeInlayFunctionLikeReturnTypeHints = true,
-              includeInlayEnumMemberValueHints = true,
-            },
-          },
-        },
+        settings = {},
       },
+      scss = { lint = { enabled = false } },
     },
     inlay_hints = {
       enabled = true,
