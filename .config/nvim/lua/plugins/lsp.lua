@@ -27,6 +27,10 @@ return {
         ---@type NoicePresets
         presets = {
           lsp_doc_border = true,
+
+          -- https://github.com/nicknisi/dotfiles/blob/3a394aa71ab034502e8866a442be22d78f1556ee/config/nvim/lua/plugins/noice.lua#L7
+          long_message_to_split = true, -- long messages will be sent to a split
+          cmdline_output_to_split = true,
         },
         lsp = {
           signature = {
