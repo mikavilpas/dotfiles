@@ -18,7 +18,6 @@ require("lazy").setup({
     -- lsp symbol navigation for lualine. This shows where in the code structure
     -- you are - within functions, classes, etc - in the statusline.
     { import = "lazyvim.plugins.extras.editor.navic" },
-    { import = "lazyvim.plugins.extras.util.project" },
 
     { import = "lazyvim.plugins.extras.linting.eslint" },
     { import = "lazyvim.plugins.extras.formatting.prettier" },
