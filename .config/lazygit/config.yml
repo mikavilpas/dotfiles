@@ -62,8 +62,8 @@ os:
   # https://github.com/willothy/flatten.nvim to simplify the setup without the
   # need for external applications.
   #
-  edit: 'nvim {{filename}}'
-  editAtLine: 'nvim +{{line}} {{filename}}'
+  edit: "nvim {{filename}}"
+  editAtLine: "nvim +{{line}} {{filename}}"
   editAtLineAndWait: "nvim +{{line}} {{filename}}"
 
 promptToReturnFromSubprocess: false
