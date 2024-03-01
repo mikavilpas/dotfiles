@@ -4,6 +4,14 @@ return {
     "ckolkey/ts-node-action",
     dependencies = { "nvim-treesitter" },
     opts = {},
+    keys = {
+      {
+        "<esc>",
+        function()
+          require("ts-node-action").node_action()
+        end,
+      },
+    },
   },
   {
     -- https://github.com/Wansmer/treesj
