@@ -4,6 +4,7 @@ return {
 
   "nvim-treesitter/nvim-treesitter",
   ---@type TSConfig
+  ---@diagnostic disable-next-line: missing-fields
   opts = {
     -- add more treesitter parsers
     ensure_installed = {
