@@ -6,7 +6,7 @@ return {
     opts = {},
     keys = {
       {
-        "<esc>",
+        "<leader><enter>",
         function()
           require("ts-node-action").node_action()
         end,
