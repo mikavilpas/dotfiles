@@ -159,19 +159,4 @@ return {
     -- -- add a keymap
     -- keys[#keys + 1] = { "H", "<cmd>echo 'hello'<cr>" }
   end,
-
-  opts = {
-
-    ---@type lspconfig.options
-    servers = {
-      tsserver = {
-        settings = {
-          scss = { lint = { enabled = false } },
-        },
-      },
-    },
-    inlay_hints = {
-      enabled = true,
-    },
-  },
 }
