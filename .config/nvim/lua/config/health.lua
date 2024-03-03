@@ -13,6 +13,7 @@ return {
     check("fd")
     check("ffmpegthumbnailer")
     check("fzf")
+    check("zf")
     check("grealpath")
     check("jq")
     check("lazygit")

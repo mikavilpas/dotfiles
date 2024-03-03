@@ -12,6 +12,14 @@ return {
     "debugloop/telescope-undo.nvim",
     "smartpde/telescope-recent-files",
 
+    -- native telescope bindings to zf for sorting results.
+    -- In short, zf is a filepath fuzzy finder. It is designed for better
+    -- matching on filepaths than fzf or fzy. Matches on filenames are
+    -- prioritized, and the strict path matching feature helps narrow down
+    -- directory trees with precision. See the zf repo for full details.
+    -- https://github.com/natecraddock/telescope-zf-native.nvim
+    "natecraddock/telescope-zf-native.nvim",
+
     -- https://github.com/AckslD/nvim-neoclip.lua
     {
       "AckslD/nvim-neoclip.lua",
