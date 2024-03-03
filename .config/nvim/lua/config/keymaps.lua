@@ -3,7 +3,7 @@
 -- Add any additional keymaps here
 --
 
-vim.g.maplocalleader = [[\]]
+vim.g.maplocalleader = " "
 
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
