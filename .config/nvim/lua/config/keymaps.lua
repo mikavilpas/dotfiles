@@ -112,6 +112,9 @@ vim.keymap.set("n", "<leader>k", function()
   vim.cmd("normal [d")
 end, { desc = "Previous quickfix" })
 
+vim.keymap.set({ "v" }, "I", "<c-v>$o_I", { desc = "Insert at the beginning of the lines", silent = true })
+vim.keymap.set({ "v" }, "A", "<c-v>$A", { desc = "Insert at the end of the lines", silent = true })
+
 --
 -- Replace the current word interactively
 --
