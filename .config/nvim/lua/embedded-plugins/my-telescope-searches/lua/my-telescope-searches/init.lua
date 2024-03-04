@@ -37,14 +37,23 @@ function M.my_copy_relative_path(prompt_bufnr)
   actions.close(prompt_bufnr)
 end
 
--- Find files from the root of the current repository.
--- Does not search parents if we're currently in a submodule.
-function M.my_find_file_in_project()
+---@return string?
+function M.find_project_root()
   local stdout, ret = require("telescope.utils").get_os_command_output({ "git", "rev-parse", "--show-toplevel" })
   if ret ~= 0 then
     error("could not determine top level git directory")
   end
   local cwd = stdout[1]
+
+  return cwd
+end
+
+-- Find files from the root of the current repository.
+-- Does not search parents if we're currently in a submodule.
+function M.my_find_file_in_project()
+  local cwd = M.find_project_root()
+
+  vim.notify("searching in " .. cwd)
   require("telescope.builtin").find_files({
     find_command = { "fd", "--hidden" },
     cwd = cwd,
@@ -73,10 +82,13 @@ function M.my_live_grep()
 
   local selection = get_visual()
 
+  local cwd = M.find_project_root()
+  vim.notify("searching in " .. cwd)
+
   -- pro tip: search for an initial, wide result with this, and then hit
   -- c-spc to use fuzzy matching to narrow it down
   require("telescope.builtin").live_grep({
-    cwd = false,
+    cwd = cwd,
     default_text = selection,
     only_sort_text = true,
     additional_args = function()
