@@ -105,8 +105,14 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Move to previous match" })
 vim.keymap.set("x", "p", '"_dP')
 
 -- easy navigation between quickfix items such as errors
-vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>zz", { desc = "Next quickfix" })
-vim.keymap.set("n", "<leader>k", "<cmd>cprev<CR>zz", { desc = "Previous quickfix" })
+vim.keymap.set("n", "<leader>j", function()
+  vim.cmd("normal ]d")
+  vim.cmd("normal zz")
+end, { desc = "Next quickfix" })
+vim.keymap.set("n", "<leader>k", function()
+  vim.cmd("normal [d")
+  vim.cmd("normal zz")
+end, { desc = "Previous quickfix" })
 
 --
 -- Replace the current word interactively
