@@ -8,6 +8,7 @@ vim.opt.number = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.scrolloff = 15 -- makes sure zt and zb have some context
+vim.o.pumheight = 0 -- take as much space as needed
 vim.o.timeoutlen = 100
 vim.o.ttimeoutlen = 10
 
