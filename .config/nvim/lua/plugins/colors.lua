@@ -29,6 +29,11 @@ return {
 
       dim_inactive = { enabled = true, percentage = 0.13 },
 
+      integrations = {
+        hop = true,
+        mason = true,
+      },
+
       highlight_overrides = {
         macchiato = function(colors)
           -- macchiato colors:
