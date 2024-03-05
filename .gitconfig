@@ -8,8 +8,12 @@
 [interactive]
   diffFilter = delta --color-only --features=interactive
 
+[include]
+  path = ~/dotfiles/.config/lazygit/delta-macchiato.gitconfig
+
 [delta]
   features = decorations
+  features = catppuccin-macchiato
 
 [delta "interactive"]
   keep-plus-minus-markers = false
