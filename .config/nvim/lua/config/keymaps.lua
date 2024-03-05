@@ -115,6 +115,28 @@ end, { desc = "Previous quickfix" })
 vim.keymap.set({ "v" }, "I", "<c-v>$o_I", { desc = "Insert at the beginning of the lines", silent = true })
 vim.keymap.set({ "v" }, "A", "<c-v>$A", { desc = "Insert at the end of the lines", silent = true })
 
+vim.keymap.set({ "n" }, "<leader>cy", function()
+  -- yank the current line and paste it below
+  vim.cmd("normal yypk")
+
+  -- comment the current line and indent
+  vim.cmd("normal gccV=")
+
+  -- move the cursor down
+  vim.cmd("normal j")
+end, { desc = "Comment line", silent = true })
+
+vim.keymap.set({ "v" }, "<leader>cy", function()
+  -- yank the current selection and reactivate it in visual mode
+  vim.cmd("normal ygv")
+
+  -- comment the current selection and indent
+  vim.cmd("normal gcgv=")
+
+  -- jump to the end of the last visual selection and paste the yanked text
+  vim.cmd("normal `>p")
+end, { desc = "Comment line", silent = true })
+
 --
 -- Replace the current word interactively
 --
