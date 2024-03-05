@@ -16,7 +16,7 @@
 
 [delta]
   features = decorations
-  features = catppuccin-macchiato
+  features = catppuccin-mocha
 
 [delta "interactive"]
   keep-plus-minus-markers = false
