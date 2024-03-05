@@ -12,7 +12,7 @@
   diffFilter = delta --color-only --features=interactive
 
 [include]
-  path = ~/dotfiles/.config/lazygit/delta-macchiato.gitconfig
+  path = ~/dotfiles/.config/lazygit/delta-colors.gitconfig
 
 [delta]
   features = decorations
