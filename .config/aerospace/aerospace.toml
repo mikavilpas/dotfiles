@@ -56,15 +56,12 @@ indent-for-nested-containers-with-the-same-orientation = 30
 
 [workspace-to-monitor-force-assignment]
 # Can find these out using `aerospace list-monitors`
-1 = 'D32u-40'
-4 = 'D32u-40'
-7 = 'D32u-40'
+1 = 'DELL U3421WE'
 2 = 'main'
-5 = 'main'
-8 = 'main'
-3 = 'DELL U2415'
-6 = 'DELL U2415'
-9 = 'DELL U2415'
+3 = 'DELL U3421WE'
+4 = 'main'
+5 = 'DELL U3421WE'
+6 = 'main'
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide.html#binding-modes
@@ -121,15 +118,16 @@ indent-for-nested-containers-with-the-same-orientation = 30
 # show 123 but focus on 2. I find this reduces the cognitive load of
 # remembering which workspace is where.
 
-ctrl-shift-alt-1 = ['workspace 2', 'workspace 3', 'workspace 1']
-ctrl-shift-alt-2 = ['workspace 1', 'workspace 3', 'workspace 2']
-ctrl-shift-alt-3 = ['workspace 1', "workspace 2", 'workspace 3']
-ctrl-shift-alt-4 = ['workspace 5', 'workspace 6', 'workspace 4']
-ctrl-shift-alt-5 = ['workspace 4', 'workspace 6', 'workspace 5']
-ctrl-shift-alt-6 = ['workspace 4', 'workspace 5', 'workspace 6']
-ctrl-shift-alt-7 = ['workspace 8', 'workspace 9', 'workspace 7']
-ctrl-shift-alt-8 = ['workspace 7', 'workspace 9', 'workspace 8']
-ctrl-shift-alt-9 = ['workspace 7', 'workspace 8', 'workspace 9']
+ctrl-shift-alt-1 = ["workspace 2", "workspace 1"]
+ctrl-shift-alt-2 = ['workspace 1', 'workspace 2']
+ctrl-shift-alt-3 = ['workspace 4', 'workspace 3']
+ctrl-shift-alt-4 = ['workspace 3', 'workspace 4']
+ctrl-shift-alt-5 = ['workspace 6', 'workspace 5']
+ctrl-shift-alt-6 = ['workspace 5', 'workspace 6']
+# ctrl-shift-alt-6 = ['workspace 4', 'workspace 5', 'workspace 6']
+# ctrl-shift-alt-7 = ['workspace 8', 'workspace 9', 'workspace 7']
+# ctrl-shift-alt-8 = ['workspace 7', 'workspace 9', 'workspace 8']
+# ctrl-shift-alt-9 = ['workspace 7', 'workspace 8', 'workspace 9']
 # alt-a = 'workspace A'
 # alt-b = 'workspace B'
 # alt-c = 'workspace C'
@@ -156,32 +154,27 @@ ctrl-shift-alt-9 = ['workspace 7', 'workspace 8', 'workspace 9']
 # See: https://nikitabobko.github.io/AeroSpace/commands.html#move-node-to-workspace
 cmd-ctrl-shift-alt-1 = [
   'move-node-to-workspace 1',
-  'workspace 2',
-  'workspace 3',
   'workspace 1',
+  'workspace 2',
 ]
 cmd-ctrl-shift-alt-2 = [
   'move-node-to-workspace 2',
   'workspace 1',
-  'workspace 3',
   'workspace 2',
 ]
 cmd-ctrl-shift-alt-3 = [
   'move-node-to-workspace 3',
-  'workspace 1',
-  "workspace 2",
-  'workspace 3',
+  "workspace 3",
+  'workspace 4',
 ]
 cmd-ctrl-shift-alt-4 = [
   'move-node-to-workspace 4',
-  'workspace 5',
-  'workspace 6',
+  'workspace 3',
   'workspace 4',
 ]
 cmd-ctrl-shift-alt-5 = [
   'move-node-to-workspace 5',
   'workspace 4',
-  'workspace 6',
   'workspace 5',
 ]
 cmd-ctrl-shift-alt-6 = [
