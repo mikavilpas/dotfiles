@@ -74,30 +74,28 @@ promptToReturnFromSubprocess: false
 
 notARepository: "quit"
 
-# https://github.com/catppuccin/lazygit/blob/main/themes-mergable/frappe/flamingo.yml
 gui:
-  nerdFontsVersion: "3"
   theme:
+    # https://github.com/catppuccin/lazygit/blob/main/themes-mergable/macchiato/blue.yml
     activeBorderColor:
-      - "#eebebe"
+      - "#8aadf4"
       - bold
     inactiveBorderColor:
-      - "#a5adce"
+      - "#a5adcb"
     optionsTextColor:
-      - "#8caaee"
+      - "#8aadf4"
     selectedLineBgColor:
-      - "#616268"
+      - "#363a4f"
     cherryPickedCommitBgColor:
-      - "#51576d"
+      - "#494d64"
     cherryPickedCommitFgColor:
-      - "#eebebe"
+      - "#8aadf4"
     unstagedChangesColor:
-      - "#e78284"
+      - "#ed8796"
     defaultFgColor:
-      - "#c6d0f5"
+      - "#cad3f5"
     searchingActiveBorderColor:
-      - "#e5c890"
-
+      - "#eed49f"
 git:
   paging:
     colorArg: always
