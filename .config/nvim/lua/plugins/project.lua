@@ -6,7 +6,6 @@ return {
     -- seems to add projects to list automatically when I open files. Cool.
     manual_mode = false,
   },
-  event = "VeryLazy",
   config = function(_, opts)
     require("project_nvim").setup(opts)
     require("lazyvim.util").on_load("telescope.nvim", function()
