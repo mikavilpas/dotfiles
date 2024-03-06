@@ -5,4 +5,5 @@ return {
   -- implementation, no external dependencies needed.
   --
   -- https://github.com/tzachar/highlight-undo.nvim
+  event = "BufRead",
 }
