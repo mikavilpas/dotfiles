@@ -19,17 +19,6 @@ return {
       -- directory trees with precision. See the zf repo for full details.
       -- https://github.com/natecraddock/telescope-zf-native.nvim
       "natecraddock/telescope-zf-native.nvim",
-
-      -- https://github.com/AckslD/nvim-neoclip.lua
-      {
-        "AckslD/nvim-neoclip.lua",
-        dependencies = { "kkharji/sqlite.lua" },
-        opts = {
-          default_register = { "+" },
-          enable_persistent_history = true,
-        },
-        event = "VeryLazy",
-      },
     },
     keys = {
       { "<leader><leader>", false },
@@ -37,15 +26,6 @@ return {
         "<leader>ff",
         require("my-telescope-searches").my_find_file_in_project,
         { desc = "Find files (including in git submodules)" },
-      },
-      {
-        -- mnemonic: "paste"
-        "<leader>p",
-        function()
-          --
-          require("telescope").extensions.neoclip.default({})
-        end,
-        { desc = "Paste with telescope (neoclip)" },
       },
       {
         "<leader>/",
@@ -126,7 +106,6 @@ return {
       telescope.setup(opts)
       telescope.load_extension("undo")
       telescope.load_extension("recent_files")
-      telescope.load_extension("neoclip")
     end,
   },
   {
@@ -148,6 +127,32 @@ return {
           },
         },
       })
+    end,
+  },
+
+  {
+    -- https://github.com/AckslD/nvim-neoclip.lua
+    "AckslD/nvim-neoclip.lua",
+    dependencies = { "kkharji/sqlite.lua" },
+    lazy = true,
+    keys = {
+      {
+        -- mnemonic: "paste"
+        "<leader>p",
+        function()
+          --
+          require("telescope").extensions.neoclip.default({})
+        end,
+        { desc = "Paste with telescope (neoclip)" },
+      },
+    },
+    opts = {
+      default_register = { "+" },
+      enable_persistent_history = true,
+    },
+    config = function(_, opts)
+      require("neoclip").setup(opts)
+      require("telescope").load_extension("neoclip")
     end,
   },
 }
