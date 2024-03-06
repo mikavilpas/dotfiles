@@ -191,6 +191,11 @@ function ya() {
 
 alias y="ya"
 
+my_git_commit_messages() {
+  local start_commit_inclusive=$1
+  git log "$start_commit_inclusive^..HEAD"
+}
+
 # tabtab source for packages
 # uninstall by removing these lines
 # [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
