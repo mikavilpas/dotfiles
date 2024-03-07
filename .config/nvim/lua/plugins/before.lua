@@ -2,6 +2,10 @@
 return {
   {
     "bloznelis/before.nvim",
+    event = "BufReadPre",
+    config = function()
+      require("before").setup()
+    end,
     keys = {
       {
         "ö",
