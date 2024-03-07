@@ -1,8 +1,7 @@
 ---@type LazySpec
 return {
-  "sp3ctum/yazi.nvim",
+  "mikavilpas/yazi.nvim",
   dependencies = {
-    "nvim-telescope/telescope.nvim",
     "nvim-lua/plenary.nvim",
   },
   cmd = { "Yazi" },
