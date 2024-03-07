@@ -39,7 +39,9 @@ end
 
 ---@return string?
 function M.find_project_root()
-  local stdout, ret = require("telescope.utils").get_os_command_output({ "git", "rev-parse", "--show-toplevel" })
+  local current_file_dir = vim.fn.expand("%:p:h")
+  local stdout, ret =
+    require("telescope.utils").get_os_command_output({ "git", "rev-parse", "--show-toplevel" }, current_file_dir)
   if ret ~= 0 then
     error("could not determine top level git directory")
   end
