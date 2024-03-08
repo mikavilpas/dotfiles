@@ -44,7 +44,7 @@ vim.keymap.set("n", "<leader>gl", function()
 end, { desc = "lazygit file commits" })
 
 -- open lazygit in the current git directory
-vim.keymap.set("n", "<leader>gg", function()
+local function openLazyGit()
   local lazygit = Terminal:new({
     cmd = "lazygit",
     dir = "git_dir",
@@ -68,7 +68,9 @@ vim.keymap.set("n", "<leader>gg", function()
   })
 
   lazygit:open()
-end, { desc = "lazygit" })
+end
+vim.keymap.set("n", "<leader>gg", openLazyGit, { desc = "lazygit" })
+vim.keymap.set("n", "<right>", openLazyGit, { desc = "lazygit" })
 
 -- disable esc j and esc k moving lines accidentally
 -- https://github.com/LazyVim/LazyVim/discussions/658
