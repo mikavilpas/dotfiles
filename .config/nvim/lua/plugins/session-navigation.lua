@@ -41,6 +41,11 @@ return {
 
     config = function()
       require("harpoon"):setup({
+        settings = {
+          get_root_dir = function()
+            return require("my-telescope-searches").find_project_root()
+          end,
+        },
       })
     end,
   },
