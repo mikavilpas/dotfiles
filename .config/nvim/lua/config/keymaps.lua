@@ -69,7 +69,7 @@ local function openLazyGit()
 
   lazygit:open()
 end
-vim.keymap.set("n", "<leader>gg", openLazyGit, { desc = "lazygit" })
+-- vim.keymap.set("n", "<leader>gg", openLazyGit, { desc = "lazygit" })
 vim.keymap.set("n", "<right>", openLazyGit, { desc = "lazygit" })
 
 -- disable esc j and esc k moving lines accidentally
