@@ -10,7 +10,26 @@ return {
       -- Usage:
       -- <leader>sc (search commands), then Telescope undo
       "debugloop/telescope-undo.nvim",
-      "smartpde/telescope-recent-files",
+
+      {
+        -- https://github.com/smartpde/telescope-recent-files
+        -- Telescope extension for Neovim to pick a recent file
+        "smartpde/telescope-recent-files",
+        keys = {
+          {
+            "<leader>fr",
+            mode = { "n", "v" },
+            function()
+              local telescope = require("telescope")
+              telescope.load_extension("recent_files")
+              telescope.extensions.recent_files.pick({
+                only_cwd = true,
+              })
+            end,
+            desc = "search recent_files (cwd)",
+          },
+        },
+      },
 
       -- native telescope bindings to zf for sorting results.
       -- In short, zf is a filepath fuzzy finder. It is designed for better
@@ -34,16 +53,6 @@ return {
           require("my-telescope-searches").my_live_grep()
         end,
         desc = "search project 🤞🏻",
-      },
-      {
-        "<leader>fr",
-        mode = { "n", "v" },
-        function()
-          require("telescope").extensions.recent_files.pick({
-            only_cwd = true,
-          })
-        end,
-        desc = "search recent_files (cwd)",
       },
       {
         "<leader>fR",
@@ -105,7 +114,6 @@ return {
       local telescope = require("telescope")
       telescope.setup(opts)
       telescope.load_extension("undo")
-      telescope.load_extension("recent_files")
     end,
   },
   {
