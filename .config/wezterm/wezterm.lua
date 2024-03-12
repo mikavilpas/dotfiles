@@ -52,6 +52,10 @@ config.color_scheme = "Catppuccin Macchiato"
 -- https://wezfurlong.org/wezterm/config/keyboard-concepts.html?h=mac#macos-left-and-right-option-key
 config.send_composed_key_when_left_alt_is_pressed = false
 
+-- timeout_milliseconds defaults to 1000 and can be omitted
+-- https://wezfurlong.org/wezterm/config/keys.html#leader-key
+config.leader = { key = "a", mods = "SUPER", timeout_milliseconds = 1000 }
+
 local act = wezterm.action
 config.keys = {
 	-- Clears the scrollback and viewport leaving the prompt line the new first line.
