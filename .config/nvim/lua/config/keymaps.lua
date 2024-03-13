@@ -137,33 +137,6 @@ vim.keymap.set({ "v" }, "<leader>cy", function()
   vim.cmd("normal `>p")
 end, { desc = "Comment line", silent = true })
 
---
--- Replace the current word interactively
---
-local function editSubstitutionCommand()
-  -- Get the word under the cursor
-  local word = vim.fn.expand("<cword>")
-
-  -- Reposition the cursor at the beginning of the word.
-  -- This is important because deleting the & suggestion will cause nvim to jump to the next match by default (this is disorienting). For some reason this doesn't happen when we reposition the cursor.
-  vim.cmd("normal! viwo")
-
-  -- Construct the substitution command
-  local substitutionCommand = ":%s/\\<" .. word .. "\\>/&/gI"
-
-  -- Open the command-line window with the command pre-filled and editable, but don't execute it yet
-  vim.cmd("normal! :q:")
-  vim.fn.feedkeys(substitutionCommand)
-  -- position the cursor at the beginning of the word ("&")
-  for _ = 1, 3 do
-    vim.api.nvim_input("<Left>")
-  end
-end
-
-vim.keymap.set("n", "<leader>r", function()
-  editSubstitutionCommand()
-end, { desc = "Replace the current word interactively" })
-
 -- Copy the current buffer path to the clipboard
 -- https://stackoverflow.com/a/17096082/1336788
 vim.keymap.set("n", "<leader>fyr", function()
