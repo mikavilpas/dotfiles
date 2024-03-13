@@ -4,7 +4,7 @@ palette = "catppuccin_mocha"
 format = """
 [](blue)\
 $username\
-[ ](fg:crust bg:blue)\
+[ ](fg:crust bg:blue)\
 [](bg:text fg:blue)\
 $directory\
 [](fg:text bg:peach)\
@@ -59,8 +59,7 @@ format = '[[  $time ](fg:crust bg:blue)]($style)'
 min_time = 500
 # format = 'underwent [$duration](bold yellow)'
 style = "fg:crust bg:blue"
-format = '[[ 󱫡 $duration ](fg:crust bg:blue)]($style)'
-
+format = '[[  $duration ](fg:crust bg:blue)]($style)'
 
 [status]
 style = 'fg:crust bg:green'
