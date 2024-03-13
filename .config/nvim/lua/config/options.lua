@@ -14,3 +14,5 @@ vim.o.ttimeoutlen = 10
 
 -- disable pop up menu transparency
 vim.opt.pumblend = 0
+
+vim.g.maplocalleader = " "
