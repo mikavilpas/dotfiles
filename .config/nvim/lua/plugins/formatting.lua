@@ -39,6 +39,7 @@ return {
         ["markdown.mdx"] = { { "prettierd" } },
         ["graphql"] = { { "prettierd" } },
         ["handlebars"] = { { "prettierd" } },
+        ["toml"] = { "prettier" },
       },
     },
   },
