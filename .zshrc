@@ -136,7 +136,7 @@ alias l="eza --oneline --all --long --no-user --icons=auto --no-permissions --ti
 # jelpp-env stuff
 # alias klm="cd /Users/mikavilpas/git/jelpp/jelpp-env; npm run klm --"
 klm() {
-  (cd /Users/mikavilpas/git/jelpp/jelpp-env && npm run klm "$@")
+  (cd /Users/mikavilpas/git/jelpp/jelpp-env && nvm use && npm run klm "$@")
 }
 
 
