@@ -64,6 +64,11 @@ config.keys = {
 		mods = "SUPER",
 		action = act.ClearScrollback("ScrollbackAndViewport"),
 	},
+	{
+		key = "+",
+		mods = "SUPER",
+		action = act.IncreaseFontSize,
+	},
 
 	{ key = "UpArrow", mods = "SUPER", action = act.ScrollToPrompt(-1) },
 	{ key = "DownArrow", mods = "SUPER", action = act.ScrollToPrompt(1) },
