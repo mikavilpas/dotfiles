@@ -5,7 +5,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
-  cmd = { "Yazi" },
+  event = "VeryLazy",
   keys = {
     {
       "<leader>-",
@@ -14,5 +14,9 @@ return {
       end,
       { desc = "Open the file manager" },
     },
+  },
+  ---@type YaziConfig
+  opts = {
+    open_for_directories = true,
   },
 }
