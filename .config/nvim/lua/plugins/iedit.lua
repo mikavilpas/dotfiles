@@ -10,7 +10,7 @@ return {
         "<leader>r",
         mode = { "n", "x", "o" },
         function()
-          require("iedit").select()
+          require("iedit").toggle()
         end,
         desc = "Start iedit",
       },
