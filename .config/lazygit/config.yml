@@ -74,11 +74,11 @@ promptToReturnFromSubprocess: false
 
 notARepository: "quit"
 
+# https://github.com/catppuccin/lazygit/blob/main/themes-mergable/macchiato/pink.yml
 gui:
   theme:
-    # https://github.com/catppuccin/lazygit/blob/main/themes-mergable/macchiato/blue.yml
     activeBorderColor:
-      - "#8aadf4"
+      - "#f5bde6"
       - bold
     inactiveBorderColor:
       - "#a5adcb"
@@ -89,13 +89,14 @@ gui:
     cherryPickedCommitBgColor:
       - "#494d64"
     cherryPickedCommitFgColor:
-      - "#8aadf4"
+      - "#f5bde6"
     unstagedChangesColor:
       - "#ed8796"
     defaultFgColor:
       - "#cad3f5"
     searchingActiveBorderColor:
       - "#eed49f"
+
 git:
   paging:
     colorArg: always
