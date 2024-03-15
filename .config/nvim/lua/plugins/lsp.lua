@@ -85,8 +85,27 @@ return {
         require("lsp_signature").setup(opts)
       end,
     },
-
     {
+      -- https://github.com/lukas-reineke/cmp-rg
+      "lukas-reineke/cmp-rg",
+      keys = {
+        {
+          -- https://github.com/lukas-reineke/cmp-rg/issues/46#issuecomment-1345672195
+          "<c-a>",
+          mode = { "i" },
+          function()
+            require("cmp").complete({
+              config = {
+                sources = { { name = "rg" } },
+              },
+            })
+          end,
+          desc = "Complete with word in project",
+        },
+      },
+    },
+    {
+      -- https://github.com/hrsh7th/cmp-cmdline
       "hrsh7th/cmp-cmdline",
       dependencies = { "hrsh7th/nvim-cmp", "hrsh7th/cmp-buffer" },
       event = { "InsertEnter", "CmdlineEnter" },
