@@ -14,6 +14,7 @@ return {
         --- @param node TSNode
         return function(node)
           local content_nodes = helpers.destructure_node(node)
+          -- tsx calls this name, html calls it tag_name
           local tag_name = content_nodes[element_name]
 
           local node_text = helpers.node_text(node)
@@ -61,6 +62,21 @@ return {
       end
 
       local opts = {
+        tsx = {
+          jsx_self_closing_element = {
+            {
+              expand_tag("name"),
+              name = "Expand tag",
+            },
+          },
+
+          jsx_opening_element = {
+            {
+              collapse_tag(),
+              name = "Collapse empty tag",
+            },
+          },
+        },
         html = {
           self_closing_tag = {
             {
