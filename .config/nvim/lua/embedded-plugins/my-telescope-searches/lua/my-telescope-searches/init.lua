@@ -53,7 +53,7 @@ end
 --
 -- search for the current visual mode selection
 -- https://github.com/nvim-telescope/telescope.nvim/issues/2497#issuecomment-1676551193
-local function get_visual()
+function M.get_visual()
   vim.cmd('noautocmd normal! "vy"')
   local text = vim.fn.getreg("v")
   vim.fn.setreg("v", {})
@@ -70,7 +70,7 @@ end
 -- Does not search parents if we're currently in a submodule.
 function M.my_find_file_in_project()
   local cwd = M.find_project_root()
-  local selection = get_visual()
+  local selection = M.get_visual()
 
   vim.notify("searching in " .. cwd)
   require("telescope.builtin").find_files({
@@ -84,7 +84,7 @@ end
 -- Like the built in live_grep but with the options that I like, plus some
 -- documentation on how the whole thing works.
 function M.my_live_grep()
-  local selection = get_visual()
+  local selection = M.get_visual()
 
   local cwd = M.find_project_root()
   vim.notify("searching in " .. cwd)
