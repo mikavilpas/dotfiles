@@ -1,0 +1,4 @@
+.config/nvim/lazy-lock.json
+.config/nvim/lazyvim.json
+.oh-my-zsh/
+.config/bat/themes/catppuccin-bat
