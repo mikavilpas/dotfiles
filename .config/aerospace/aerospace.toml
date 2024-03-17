@@ -12,8 +12,7 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands.html
-after-startup-command = [
-]
+after-startup-command = []
 
 # Start AeroSpace at login
 start-at-login = true
@@ -223,7 +222,6 @@ cmd-ctrl-shift-alt-k = "focus up"
 cmd-ctrl-shift-alt-j = "focus down"
 cmd-ctrl-shift-alt-f = "fullscreen"
 cmd-ctrl-shift-alt-r = ["move left"]
-
 
 cmd-ctrl-shift-alt-n = "resize smart +150"
 cmd-ctrl-shift-alt-t = "resize smart -150"
