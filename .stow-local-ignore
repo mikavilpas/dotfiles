@@ -1,7 +1,11 @@
+# note: trailing slashes are not supported
 .gitmodules
 .git
 .wezterm.sh
-node_modules/
+node_modules
 package.json
 package-lock.json
 .gitignore
+.prettierignore
+.prettierrc.yml
+.nvmrc
