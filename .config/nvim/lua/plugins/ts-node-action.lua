@@ -107,6 +107,20 @@ return {
             },
           },
         },
+        xml = {
+          EmptyElemTag = {
+            {
+              expand_tag("Name"),
+              name = "Expand tag",
+            },
+          },
+          STag = {
+            {
+              collapse_tag(),
+              name = "Collapse empty tag",
+            },
+          },
+        },
       }
 
       require("ts-node-action").setup(opts)
