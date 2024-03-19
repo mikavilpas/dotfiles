@@ -10,18 +10,32 @@ return {
       end
     end
 
+    -- "find" replacement with a well-designed command-line interface
     check("fd")
-    check("ffmpegthumbnailer")
+
+    -- fzf - a command-line fuzzy finder
     check("fzf")
+
+    -- zf - a commandline fuzzy finder that prioritizes matches on filenames
     check("zf")
+
+    -- utility for printing the resolved path of a file, used for e.g. relative
+    -- file resolution
     check("grealpath")
+
+    -- jq - a lightweight and flexible command-line JSON processor
     check("jq")
+
+    -- lazygit - simple terminal UI for git commands
     check("lazygit")
-    check("lf")
-    check("poppler")
+
+    -- a markdown terminal slideshow tool
     check("presenterm")
+
+    -- ripgrep - recursively searches directories for a regex pattern
     check("rg")
-    check("unar")
+
+    -- a smarter cd command
     check("zoxide")
 
     vim.health.ok("my-cli-tools")
