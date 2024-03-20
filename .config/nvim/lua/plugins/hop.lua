@@ -1,5 +1,6 @@
 ---@type LazySpec
 return {
+  -- https://github.com/smoka7/hop.nvim
   "smoka7/hop.nvim",
   version = "*",
   opts = {},
