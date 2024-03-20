@@ -3,7 +3,11 @@ return {
   -- https://github.com/smoka7/hop.nvim
   "smoka7/hop.nvim",
   version = "*",
-  opts = {},
+  opts = {
+    -- remove the g and q keys because catppuccin/nvim sets an underline highlight
+    -- group. It's very hard to tell g and q apart.
+    keys = ("asdghklqwertyuiopzxcvbnmfjäö"):gsub("g", ""):gsub("q", ""),
+  },
   keys = {
     {
       "<leader>y",
