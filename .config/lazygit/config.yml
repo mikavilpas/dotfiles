@@ -13,7 +13,8 @@ customCommands:
         title: "Type of change"
         options:
           - name: "build"
-            description: "Changes that affect the build system or external dependencies"
+            description:
+              "Changes that affect the build system or external dependencies"
             value: "build"
           - name: "feat"
             description: "A new feature"
@@ -34,7 +35,8 @@ customCommands:
             description: "A code change that improves performance"
             value: "perf"
           - name: "refactor"
-            description: "A code change that neither fixes a bug nor adds a feature"
+            description:
+              "A code change that neither fixes a bug nor adds a feature"
             value: "refactor"
           - name: "revert"
             description: "Reverts a previous commit"
@@ -50,7 +52,9 @@ customCommands:
         key: "Message"
         initialValue: "{{.Form.Type}}: "
 
-    command: "git commit --message '{{.Form.Type}}{{.Form.Scope}}{{.Form.Breaking}}: {{.Form.Message}}'"
+    command:
+      "git commit --message '{{.Form.Type}}{{.Form.Scope}}{{.Form.Breaking}}:
+      {{.Form.Message}}'"
     loadingText: "Creating conventional commit..."
 
 keybinding:
@@ -100,4 +104,6 @@ gui:
 git:
   paging:
     colorArg: always
-    pager: whenDark.sh delta --paging=never --syntax-theme zenburn || delta --paging=never --syntax-theme light
+    pager:
+      whenDark.sh delta --paging=never --syntax-theme zenburn || delta
+      --paging=never --syntax-theme light
