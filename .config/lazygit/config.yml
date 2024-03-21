@@ -60,6 +60,8 @@ customCommands:
 keybinding:
   universal:
     edit: e
+    prevTab: ö
+    nextTab: ä
 
 os:
   # I usually use lazygit embedded in nvim. For this, I use
