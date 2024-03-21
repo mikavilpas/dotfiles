@@ -31,3 +31,9 @@
   hunk-header-style = file line-number syntax
 [rerere]
   enabled = true
+[rebase]
+  ; https://andrewlock.net/working-with-stacked-branches-in-git-is-easier-with-update-refs/
+  ;
+  ; So You Think You Know Git Part 2 - DevWorld 2024
+  ; https://youtu.be/Md44rcw13k4?t=1077
+  updateRefs = true
