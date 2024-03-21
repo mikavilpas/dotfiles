@@ -28,7 +28,7 @@ the home directory.
 stow --verbose 2 . --simulate
 
 # Really sync the dotfiles
-stow --verbose 2 . --simulate
+stow --verbose 2 .
 ```
 
 ### Testing
