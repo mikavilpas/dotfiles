@@ -82,6 +82,7 @@ notARepository: "quit"
 
 # https://github.com/catppuccin/lazygit/blob/main/themes-mergable/macchiato/pink.yml
 gui:
+  scrollHeight: 15
   theme:
     activeBorderColor:
       - "#f5bde6"
