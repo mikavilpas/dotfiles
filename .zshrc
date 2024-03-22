@@ -1,4 +1,3 @@
-
 source ~/dotfiles/.wezterm.sh
 
 # If you come from bash you might have to change your $PATH.
@@ -82,9 +81,12 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
+# https://dev.to/thraizz/fix-slow-zsh-startup-due-to-nvm-408k
+zstyle ':omz:plugins:nvm' lazy yes
+
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z
 # https://github.com/agkozak/zsh-z
-plugins=(git httpie npm z fd)
+plugins=(git httpie npm z fd nvm)
 
 # User configuration
 
@@ -110,9 +112,6 @@ export VISUAL="nvr --remote-wait"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-export NVM_DIR=~/.nvm
-source ~/.nvm/nvm.sh
 
 # needs to be the last command, otherwise ctrl+r doesn*t work
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
