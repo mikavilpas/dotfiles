@@ -143,7 +143,7 @@ return {
     -- https://github.com/AckslD/nvim-neoclip.lua
     "AckslD/nvim-neoclip.lua",
     dependencies = { "kkharji/sqlite.lua" },
-    lazy = true,
+    event = "BufReadPost",
     keys = {
       {
         -- mnemonic: "paste"
