@@ -64,7 +64,6 @@ return {
           -- mantle = "#1e2030",
           -- crust = "#181926",
           return {
-            LspInlayHint = { fg = colors.surface0, bg = colors.none },
             HopNextKey = { fg = colors.peach, bg = colors.none, style = { "bold" } },
           }
         end,
