@@ -347,10 +347,10 @@ keymap = [
   ], exec = "tab_switch 8", desc = "Switch to the ninth tab" },
 
   { on = [
-    "[",
+    "ö",
   ], exec = "tab_switch -1 --relative", desc = "Switch to the previous tab" },
   { on = [
-    "]",
+    "ä",
   ], exec = "tab_switch 1 --relative", desc = "Switch to the next tab" },
 
   { on = [
