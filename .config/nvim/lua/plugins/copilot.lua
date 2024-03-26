@@ -11,6 +11,8 @@ return {
       debounce = 300, --ms
       filetypes = {
         markdown = true,
+        yaml = true,
+        gitcommit = true,
         help = true,
       },
     },
