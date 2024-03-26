@@ -6,8 +6,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-require("lazy").setup({
-  spec = {
+local plugin_spec = {}
+
+if os.getenv("NVIM") == nil then
+  -- When running in normal mode
+  plugin_spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
@@ -27,7 +30,18 @@ require("lazy").setup({
 
     -- import/override with your plugins
     { import = "plugins" },
-  },
+  }
+else
+  -- When running embedded in another process.
+  -- I use this for quick edits and I want it to be extremely fast
+  plugin_spec = {
+    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { import = "fast-plugins" },
+  }
+end
+
+require("lazy").setup({
+  spec = plugin_spec,
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
     -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
