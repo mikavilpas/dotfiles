@@ -62,6 +62,7 @@ local function openLazyGit()
       vim.keymap.set({ "t" }, "<C-j>", function()
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "n", true)
       end, { buffer = term.bufnr })
+      vim.cmd("startinsert")
     end,
   })
 
