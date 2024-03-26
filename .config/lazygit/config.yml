@@ -62,6 +62,9 @@ keybinding:
     edit: e
     prevTab: ö
     nextTab: ä
+  files:
+    commitChanges: C # using the interactive commit dialog
+    commitChangesWithEditor: c # using neovim
 
 os:
   # I usually use lazygit embedded in nvim. For this, I use
