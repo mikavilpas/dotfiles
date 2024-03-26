@@ -117,27 +117,6 @@ return {
       telescope.load_extension("undo")
     end,
   },
-  {
-    -- Ast-grep picker for telescop.nvim
-    -- https://github.com/Marskey/telescope-sg
-    "Marskey/telescope-sg",
-    lazy = true,
-    command = "Telescope ast_grep",
-    config = function()
-      require("telescope").setup({
-        extensions = {
-          ast_grep = {
-            command = {
-              "sg",
-              "--json=stream",
-            }, -- must have --json=stream
-            grep_open_files = false, -- search in opened files
-            lang = nil, -- string value, specify language for ast-grep `nil` for default
-          },
-        },
-      })
-    end,
-  },
 
   {
     -- https://github.com/AckslD/nvim-neoclip.lua
