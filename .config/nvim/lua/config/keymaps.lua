@@ -71,6 +71,9 @@ end
 -- vim.keymap.set("n", "<leader>gg", openLazyGit, { desc = "lazygit" })
 vim.keymap.set("n", "<right>", openLazyGit, { desc = "lazygit" })
 
+-- expose the openLazyGit function so it can be used in other files
+_G.openLazyGit = openLazyGit
+
 -- disable esc j and esc k moving lines accidentally
 -- https://github.com/LazyVim/LazyVim/discussions/658
 vim.keymap.set("n", "<A-k>", "<esc>k", { desc = "Move up" })
