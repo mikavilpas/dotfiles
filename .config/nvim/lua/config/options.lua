@@ -16,3 +16,8 @@ vim.o.ttimeoutlen = 10
 vim.opt.pumblend = 0
 
 vim.g.maplocalleader = " "
+
+-- **lazygit** now automatically uses the colors of your current colorscheme.
+-- This is enabled by default. To disable, add the below to your `options.lua`:
+-- https://github.com/LazyVim/LazyVim/commit/7d0dbc6dedc2d6cb4c3bc77fa296dc07ce5927c9
+vim.g.lazygit_theme = false
