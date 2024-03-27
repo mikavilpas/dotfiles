@@ -116,8 +116,9 @@ vim.keymap.set("n", "<leader>k", function()
   vim.cmd("normal [d")
 end, { desc = "Previous quickfix" })
 
-vim.keymap.set({ "v" }, "I", "<c-v>$o_I", { desc = "Insert at the beginning of the lines", silent = true })
-vim.keymap.set({ "v" }, "A", "<c-v>$A", { desc = "Insert at the end of the lines", silent = true })
+-- https://vi.stackexchange.com/questions/18151/bind-visual-mode-i-and-a-to-always-use-visual-block-mode-before-inserting?noredirect=1&lq=1
+vim.cmd([[ vnoremap <expr> I mode()=~? '<C-v>' ? 'I' : '<c-v>$o_I' ]])
+vim.cmd([[ vnoremap <expr> A mode()=~? '<C-v>' ? 'A' : '<c-v>$A' ]])
 
 vim.keymap.set({ "n" }, "<leader>cy", function()
   -- yank the current line and paste it below
