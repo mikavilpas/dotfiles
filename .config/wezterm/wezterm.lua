@@ -70,6 +70,7 @@ config.keys = {
 		action = act.IncreaseFontSize,
 	},
 
+	-- https://wezfurlong.org/wezterm/scrollback.html#enabledisable-scrollbar
 	{ key = "f", mods = "SUPER", action = act.Search({ CaseInSensitiveString = "" }) },
 
 	{ key = "UpArrow", mods = "SUPER", action = act.ScrollToPrompt(-1) },
