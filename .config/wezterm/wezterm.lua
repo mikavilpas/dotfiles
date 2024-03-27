@@ -70,6 +70,8 @@ config.keys = {
 		action = act.IncreaseFontSize,
 	},
 
+	{ key = "f", mods = "SUPER", action = act.Search({ CaseInSensitiveString = "" }) },
+
 	{ key = "UpArrow", mods = "SUPER", action = act.ScrollToPrompt(-1) },
 	{ key = "DownArrow", mods = "SUPER", action = act.ScrollToPrompt(1) },
 
