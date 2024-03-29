@@ -63,63 +63,20 @@ return {
 
       local opts = {
         javascript = {
-          jsx_self_closing_element = {
-            {
-              expand_tag("name"),
-              name = "Expand tag",
-            },
-          },
-
-          jsx_opening_element = {
-            {
-              collapse_tag(),
-              name = "Collapse empty tag",
-            },
-          },
+          jsx_self_closing_element = { { expand_tag("name"), name = "Expand tag" } },
+          jsx_opening_element = { { collapse_tag(), name = "Collapse empty tag" } },
         },
         tsx = {
-          jsx_self_closing_element = {
-            {
-              expand_tag("name"),
-              name = "Expand tag",
-            },
-          },
-
-          jsx_opening_element = {
-            {
-              collapse_tag(),
-              name = "Collapse empty tag",
-            },
-          },
+          jsx_self_closing_element = { { expand_tag("name"), name = "Expand tag" } },
+          jsx_opening_element = { { collapse_tag(), name = "Collapse empty tag" } },
         },
         html = {
-          self_closing_tag = {
-            {
-              expand_tag("tag_name"),
-              name = "Expand tag",
-            },
-          },
-
-          start_tag = {
-            {
-              collapse_tag(),
-              name = "Collapse empty tag",
-            },
-          },
+          self_closing_tag = { { expand_tag("tag_name"), name = "Expand tag" } },
+          start_tag = { { collapse_tag(), name = "Collapse empty tag" } },
         },
         xml = {
-          EmptyElemTag = {
-            {
-              expand_tag("Name"),
-              name = "Expand tag",
-            },
-          },
-          STag = {
-            {
-              collapse_tag(),
-              name = "Collapse empty tag",
-            },
-          },
+          EmptyElemTag = { { expand_tag("Name"), name = "Expand tag" } },
+          STag = { { collapse_tag(), name = "Collapse empty tag" } },
         },
       }
 
