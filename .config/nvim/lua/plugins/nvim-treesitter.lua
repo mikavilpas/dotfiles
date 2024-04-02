@@ -11,6 +11,7 @@ return {
       "bash",
       "html",
       "scss",
+      "css",
       "javascript",
       "json",
       "lua",
@@ -34,9 +35,9 @@ return {
     require("nvim-treesitter.configs").setup(opts)
 
     -- Custom filetype detection for .css files
-    vim.cmd([[
-        autocmd BufRead,BufNewFile *.css set filetype=scss
-    ]])
+    -- vim.cmd([[
+    --     autocmd BufRead,BufNewFile *.css set filetype=scss
+    -- ]])
   end,
 
   {
