@@ -4,6 +4,11 @@ services:
   "gitlab.baronatechnologies.fi": "gitlab:gitlab.baronatechnologies.fi"
 
 customCommands:
+  - key: "-"
+    context: global
+    description: Show branch graph
+    command: git lg # custom git alias
+    subprocess: true
   - key: "<c-v>"
     context: "global"
     description: "Create new conventional commit"
