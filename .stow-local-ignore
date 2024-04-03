@@ -10,3 +10,4 @@ package-lock.json
 .prettierrc.yml
 .nvmrc
 assets
+readme.md
