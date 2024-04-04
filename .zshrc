@@ -198,3 +198,7 @@ my_git_commit_messages() {
 # tabtab source for packages
 # uninstall by removing these lines
 # [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+
+# Cool syntax highlighting for zsh, almost like the fish shell
+# https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
