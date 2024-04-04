@@ -64,7 +64,7 @@ customCommands:
   - key: "<c-a>"
     context: "global"
     description: "Save everything as WIP"
-    command: "git commit --all --message 'WIP: work in progress'"
+    command: "git commit --all --no-verify --message 'WIP: work in progress'"
 
 keybinding:
   universal:
