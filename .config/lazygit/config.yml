@@ -61,6 +61,10 @@ customCommands:
       "git commit --message '{{.Form.Type}}{{.Form.Scope}}{{.Form.Breaking}}:
       {{.Form.Message}}'"
     loadingText: "Creating conventional commit..."
+  - key: "<c-a>"
+    context: "global"
+    description: "Save everything as WIP"
+    command: "git commit --all --message 'WIP: work in progress'"
 
 keybinding:
   universal:
