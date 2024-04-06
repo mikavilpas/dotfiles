@@ -97,8 +97,17 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up", silent = t
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join line" })
 
 -- move screen up and down but keep the cursor in place (less disorienting)
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move screen up" })
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move screen down" })
+vim.keymap.set("n", "<C-u>", function()
+  local screen_height = vim.api.nvim_win_get_height(0)
+
+  vim.cmd("normal! " .. math.floor(screen_height / 2) .. "k")
+  vim.cmd("normal! zz")
+end, { desc = "Move screen up" })
+vim.keymap.set("n", "<C-d>", function()
+  local screen_height = vim.api.nvim_win_get_height(0)
+  vim.cmd("normal! " .. math.floor(screen_height / 2) .. "j")
+  vim.cmd("normal! zz")
+end, { desc = "Move screen down" })
 
 -- when searching, move to the next match and center the screen
 vim.keymap.set("n", "n", "nzzzv", { desc = "Move to next match" })
