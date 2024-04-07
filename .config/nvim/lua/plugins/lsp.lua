@@ -162,7 +162,19 @@ return {
             }),
           },
         }
-        return vim.tbl_deep_extend("keep", new_options, opts)
+        local final_options = vim.tbl_deep_extend("keep", new_options, {
+          window = {
+            completion = {
+              -- use all available space
+              max_height = 0,
+            },
+            documentation = {
+              -- use all available space
+              max_height = 0,
+            },
+          },
+        }, opts)
+        return final_options
       end,
     },
   },
