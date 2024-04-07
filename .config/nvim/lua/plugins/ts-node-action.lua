@@ -101,8 +101,23 @@ return {
       {
         "<enter>",
         function()
-          require("treesj").toggle()
+          local function is_in_quickfix_window()
+            local win_info = vim.fn.getwininfo(vim.api.nvim_get_current_win())
+            if win_info[1] and win_info[1].quickfix == 1 then
+              return true
+            else
+              return false
+            end
+          end
+
+          -- work around some issues with the quickfix window
+          if is_in_quickfix_window() then
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<cr>", true, true, true), "n", true)
+          else
+            require("treesj").toggle()
+          end
         end,
+        { noremap = true, silent = true },
       },
     },
     opts = {
