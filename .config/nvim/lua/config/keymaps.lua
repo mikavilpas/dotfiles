@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   desc = "Disable New Line Comment",
 })
 
-vim.keymap.set("n", "<leader>gD", ":vsplit | lua vim.lsp.buf.definition()<CR>", { desc = "Goto definition in vsplit" })
+vim.keymap.set("n", "<leader>gd", ":vsplit | lua vim.lsp.buf.definition()<CR>", { desc = "Goto definition in vsplit" })
 
 local Terminal = require("toggleterm.terminal").Terminal
 
