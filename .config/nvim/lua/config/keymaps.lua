@@ -125,6 +125,14 @@ vim.keymap.set("n", "<leader>k", function()
   vim.cmd("normal [d")
 end, { desc = "Previous diagnostic" })
 
+-- the same thing for quickfix lists
+vim.keymap.set("n", "<leader><down>", function()
+  vim.cmd("cnext")
+end, { desc = "Next quickfix item" })
+vim.keymap.set("n", "<leader><up>", function()
+  vim.cmd("cprev")
+end, { desc = "Previous quickfix item" })
+
 -- https://vi.stackexchange.com/questions/18151/bind-visual-mode-i-and-a-to-always-use-visual-block-mode-before-inserting?noredirect=1&lq=1
 vim.cmd([[ vnoremap <expr> I mode()=~? '<C-v>' ? 'I' : '<c-v>$o_I' ]])
 vim.cmd([[ vnoremap <expr> A mode()=~? '<C-v>' ? 'A' : '<c-v>$A' ]])
