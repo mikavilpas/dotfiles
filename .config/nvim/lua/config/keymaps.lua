@@ -117,13 +117,13 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Move to previous match" })
 -- NOTE: prime uses "<leader>p" but I use that for something else
 vim.keymap.set("x", "p", '"_dP')
 
--- easy navigation between quickfix items such as errors
+-- easy navigation between diagnostic items such as errors
 vim.keymap.set("n", "<leader>j", function()
   vim.cmd("normal ]d")
-end, { desc = "Next quickfix" })
+end, { desc = "Next diagnostic" })
 vim.keymap.set("n", "<leader>k", function()
   vim.cmd("normal [d")
-end, { desc = "Previous quickfix" })
+end, { desc = "Previous diagnostic" })
 
 -- https://vi.stackexchange.com/questions/18151/bind-visual-mode-i-and-a-to-always-use-visual-block-mode-before-inserting?noredirect=1&lq=1
 vim.cmd([[ vnoremap <expr> I mode()=~? '<C-v>' ? 'I' : '<c-v>$o_I' ]])
