@@ -4,9 +4,9 @@
 
 These keybindings are used when running yazi inside neovim.
 
-| Key        | Action    |
-| ---------- | --------- |
-| `<space>-` | Open yazi |
+| Key    | Action    |
+| ------ | --------- |
+| `<up>` | Open yazi |
 
 These keybindings can be used in yazi itself.
 
