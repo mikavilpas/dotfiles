@@ -11,12 +11,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 vim.keymap.set("n", "<leader>gd", function()
-  vim.cmd("vsplit")
-  vim.lsp.buf.definition({ reuse_win = false })
-
-  vim.schedule(function()
-    vim.cmd("normal zz")
-  end)
+  require("telescope.builtin").lsp_definitions({ jump_type = "vsplit" })
 end, { desc = "Goto definition in vsplit" })
 
 local Terminal = require("toggleterm.terminal").Terminal
