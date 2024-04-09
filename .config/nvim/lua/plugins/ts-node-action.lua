@@ -101,20 +101,13 @@ return {
       {
         "<enter>",
         function()
-          local function is_in_quickfix_window()
-            local win_info = vim.fn.getwininfo(vim.api.nvim_get_current_win())
-            if win_info[1] and win_info[1].quickfix == 1 then
-              return true
-            else
-              return false
-            end
-          end
+          local is_writeable = vim.api.nvim_buf_get_option(0, "modifiable")
 
           -- work around some issues with the quickfix window
-          if is_in_quickfix_window() then
-            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<cr>", true, true, true), "n", true)
-          else
+          if is_writeable then
             require("treesj").toggle()
+          else
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<cr>", true, true, true), "n", true)
           end
         end,
         { noremap = true, silent = true },
