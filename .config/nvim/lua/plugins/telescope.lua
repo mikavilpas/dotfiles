@@ -42,7 +42,7 @@ return {
     keys = {
       { "<leader><leader>", false },
       {
-        "<leader>ff",
+        "<down>",
         mode = { "n", "v" },
         require("my-telescope-searches").my_find_file_in_project,
         { desc = "Find files (including in git submodules)" },
