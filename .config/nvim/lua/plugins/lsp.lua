@@ -82,6 +82,7 @@ return {
         max_height = 999,
         doc_lines = 999,
         hi_parameter = "@text.note",
+        hint_prefix = "🤔 ",
         handler_opts = { border = "rounded" },
       },
       config = function(_, opts)
