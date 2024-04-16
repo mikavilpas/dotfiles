@@ -58,10 +58,10 @@ indent-for-nested-containers-with-the-same-orientation = 30
 # Can find these out using `aerospace list-monitors`
 1 = 'DELL U3421WE'
 2 = 'main'
-3 = 'DELL U3421WE'
-4 = 'main'
-5 = 'DELL U3421WE'
-6 = 'main'
+4 = 'DELL U3421WE'
+5 = 'main'
+7 = 'DELL U3421WE'
+8 = 'main'
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide.html#binding-modes
@@ -120,12 +120,13 @@ indent-for-nested-containers-with-the-same-orientation = 30
 
 ctrl-shift-alt-1 = ["workspace 2", "workspace 1"]
 ctrl-shift-alt-2 = ['workspace 1', 'workspace 2']
-ctrl-shift-alt-3 = ['workspace 4', 'workspace 3']
-ctrl-shift-alt-4 = ['workspace 3', 'workspace 4']
-ctrl-shift-alt-5 = ['workspace 6', 'workspace 5']
-ctrl-shift-alt-6 = ['workspace 5', 'workspace 6']
-# ctrl-shift-alt-6 = ['workspace 4', 'workspace 5', 'workspace 6']
-# ctrl-shift-alt-7 = ['workspace 8', 'workspace 9', 'workspace 7']
+
+ctrl-shift-alt-4 = ['workspace 5', 'workspace 4']
+ctrl-shift-alt-5 = ['workspace 4', 'workspace 5']
+
+ctrl-shift-alt-7 = ['workspace 8', 'workspace 7']
+ctrl-shift-alt-8 = ['workspace 7', 'workspace 8']
+
 # ctrl-shift-alt-8 = ['workspace 7', 'workspace 9', 'workspace 8']
 # ctrl-shift-alt-9 = ['workspace 7', 'workspace 8', 'workspace 9']
 # alt-a = 'workspace A'
@@ -154,22 +155,17 @@ ctrl-shift-alt-6 = ['workspace 5', 'workspace 6']
 # See: https://nikitabobko.github.io/AeroSpace/commands.html#move-node-to-workspace
 cmd-ctrl-shift-alt-1 = [
   'move-node-to-workspace 1',
-  'workspace 1',
   'workspace 2',
+  'workspace 1',
 ]
 cmd-ctrl-shift-alt-2 = [
   'move-node-to-workspace 2',
   'workspace 1',
   'workspace 2',
 ]
-cmd-ctrl-shift-alt-3 = [
-  'move-node-to-workspace 3',
-  "workspace 3",
-  'workspace 4',
-]
 cmd-ctrl-shift-alt-4 = [
   'move-node-to-workspace 4',
-  'workspace 3',
+  'workspace 5',
   'workspace 4',
 ]
 cmd-ctrl-shift-alt-5 = [
@@ -177,29 +173,15 @@ cmd-ctrl-shift-alt-5 = [
   'workspace 4',
   'workspace 5',
 ]
-cmd-ctrl-shift-alt-6 = [
-  'move-node-to-workspace 6',
-  'workspace 4',
-  'workspace 5',
-  'workspace 6',
-]
 cmd-ctrl-shift-alt-7 = [
   'move-node-to-workspace 7',
   'workspace 8',
-  'workspace 9',
   'workspace 7',
 ]
 cmd-ctrl-shift-alt-8 = [
   'move-node-to-workspace 8',
   'workspace 7',
-  'workspace 9',
   'workspace 8',
-]
-cmd-ctrl-shift-alt-9 = [
-  'move-node-to-workspace 9',
-  'workspace 7',
-  'workspace 8',
-  'workspace 9',
 ]
 cmd-ctrl-shift-alt-0 = ['move-node-to-workspace 0', 'workspace 0']
 
