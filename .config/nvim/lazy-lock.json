@@ -96,6 +96,6 @@
   "vim-rhubarb": { "branch": "master", "commit": "ee69335de176d9325267b0fd2597a22901d927b1" },
   "vim-startuptime": { "branch": "master", "commit": "ac2cccb5be617672add1f4f3c0a55ce99ba34e01" },
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" },
-  "yazi.nvim": { "branch": "master", "commit": "47395abede8017e12092386e61cd3a044caed1b8" },
+  "yazi.nvim": { "branch": "master", "commit": "47fff41923a96479a5b15a02a4d29fbae451b29c" },
   "zen-mode.nvim": { "branch": "main", "commit": "78557d972b4bfbb7488e17b5703d25164ae64e6a" }
 }
