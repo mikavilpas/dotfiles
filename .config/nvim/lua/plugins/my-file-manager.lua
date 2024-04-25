@@ -18,5 +18,6 @@ return {
   ---@type YaziConfig
   opts = {
     open_for_directories = true,
+    enable_mouse_support = true,
   },
 }
