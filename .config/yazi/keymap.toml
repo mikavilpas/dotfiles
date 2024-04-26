@@ -112,10 +112,10 @@ keymap = [
   ], run = "arrow 1", desc = "Move cursor down" },
   { on = [
     "<Left>",
-  ], run = "leave", desc = "Go back to the parent directory" },
+  ], run = "noop" },
   { on = [
     "<Right>",
-  ], run = "enter", desc = "Enter the child directory" },
+  ], run = "noop" },
 
   { on = [
     "g",
