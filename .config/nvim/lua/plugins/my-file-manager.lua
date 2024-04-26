@@ -12,7 +12,14 @@ return {
       function()
         require("yazi").yazi()
       end,
-      { desc = "Open the file manager" },
+      desc = "Open the file manager",
+    },
+    {
+      "<s-up>",
+      function()
+        require("yazi").yazi(nil, vim.fn.getcwd())
+      end,
+      desc = "Open the file manager in the cwd",
     },
   },
   ---@type YaziConfig
