@@ -94,6 +94,7 @@ notARepository: "quit"
 
 # https://github.com/catppuccin/lazygit/blob/main/themes-mergable/macchiato/pink.yml
 gui:
+  nerdFontsVersion: "3"
   scrollHeight: 15
   theme:
     activeBorderColor:
