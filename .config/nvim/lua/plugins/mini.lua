@@ -14,6 +14,13 @@ return {
         goto_top = "",
         goto_bottom = "",
       },
+      draw = {
+        delay = 300,
+        animation = function()
+          -- this is the implementation from the plugin
+          return 0
+        end,
+      },
     },
   },
   {
