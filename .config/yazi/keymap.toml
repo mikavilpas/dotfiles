@@ -383,6 +383,10 @@ keymap = [
   ], run = "cd ~", desc = "Go to the home directory" },
   { on = [
     "g",
+    "p",
+  ], run = "cd ~/git/", desc = "Go to projects (~/git)" },
+  { on = [
+    "g",
     "c",
   ], run = "cd ~/.config", desc = "Go to the config directory" },
   { on = [
