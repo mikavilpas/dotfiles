@@ -65,6 +65,13 @@ customCommands:
     context: "global"
     description: "Save everything as WIP"
     command: "git commit --all --no-verify --message 'WIP: work in progress'"
+  - key: "<c-r>"
+    context: "commits"
+    description: "Reword, leaving only the first line"
+    # this is really useful when I have tons of squashed temp commits and I
+    # want to reduce the repetition in the commit messages
+    command:
+      "git commit --amend --no-verify --message '{{.SelectedLocalCommit.Name}}'"
 
 keybinding:
   universal:
