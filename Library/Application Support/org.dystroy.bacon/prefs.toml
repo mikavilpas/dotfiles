@@ -30,7 +30,7 @@
 # This is equivalent to always adding -e to bacon commands
 # but can still be cancelled on specific launches with -E
 [export]
-enabled = false
+enabled = true
 path = ".bacon-locations"
 line_format = "{kind} {path}:{line}:{column} {message}"
 
