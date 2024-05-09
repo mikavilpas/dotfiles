@@ -38,6 +38,13 @@ line_format = "{kind} {path}:{line}:{column} {message}"
 # (some of those ones are the defaults and are just here
 #  for illustration)
 [keybindings]
+esc = "back"
+g = "scroll-to-top"
+shift-g = "scroll-to-bottom"
+k = "scroll-lines(-1)"
+j = "scroll-lines(1)"
+ctrl-u = "scroll-page(-1)"
+ctrl-d = "scroll-page(1)"
 # esc = "back"
 # g = "scroll-to-top"
 # shift-g = "scroll-to-bottom"
