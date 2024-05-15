@@ -1,7 +1,6 @@
 ---@type LazySpec
 return {
-  -- "Canop/nvim-bacon",
-  dir = "~/git/nvim-bacon/",
+  "Canop/nvim-bacon",
   -- cmd = { "BaconLoad", "BaconShow", "BaconList", "BaconPrevious", "BaconNext" },
   opts = {
     quickfix = {
