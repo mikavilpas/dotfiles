@@ -27,7 +27,7 @@ $cmd_duration\
 [directory]
 style = "fg:crust bg:text"
 format = "[ $path ]($style)"
-truncation_length = 3
+truncation_length = 100
 truncation_symbol = "…/"
 
 [git_branch]
