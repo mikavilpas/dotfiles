@@ -160,6 +160,8 @@ fzcd() {
   fi
 }
 
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 # j for "jump"
 alias j="fzcd"
 
