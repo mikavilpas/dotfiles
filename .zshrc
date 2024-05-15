@@ -162,6 +162,11 @@ fzcd() {
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
+function battail() {
+  # https://github.com/sharkdp/bat?tab=readme-ov-file#tail--f
+  tail -f $1 | bat --paging=never -l log
+}
+
 # j for "jump"
 alias j="fzcd"
 
