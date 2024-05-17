@@ -72,6 +72,10 @@ customCommands:
     # want to reduce the repetition in the commit messages
     command:
       "git commit --amend --no-verify --message '{{.SelectedLocalCommit.Name}}'"
+  - key: R
+    context: commits
+    command: git commit --allow-empty --amend --no-verify
+    subprocess: true
 
 keybinding:
   universal:
