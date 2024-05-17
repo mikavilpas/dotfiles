@@ -24,6 +24,7 @@ if os.getenv("NVIM") == nil then
     { import = "lazyvim.plugins.extras.editor.navic" },
 
     { import = "lazyvim.plugins.extras.linting.eslint" },
+    { import = "lazyvim.plugins.extras.coding.luasnip" },
     { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
     { import = "lazyvim.plugins.extras.ui.treesitter-context", opts = {
       max_lines = 0,
