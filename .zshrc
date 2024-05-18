@@ -14,6 +14,15 @@ export XDG_CONFIG_HOME="$HOME/.config"
 set editing-mode vi
 set blink-matching-paren on
 
+# https://youtu.be/ud7YxC33Z3w?t=698
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
