@@ -98,6 +98,10 @@ return {
               return
             end
             require("lsp_signature").on_attach(opts, bufnr)
+
+            vim.keymap.set({ "i" }, "<C-k>", function()
+              require("lsp_signature").toggle_float_win()
+            end, { silent = true, noremap = true, desc = "signature help" })
           end,
         })
       end,
