@@ -37,8 +37,11 @@ if os.getenv("NVIM") == nil then
     { import = "plugins" },
   }
 else
+  -- When running embedded in another process.
+  -- I use this for quick edits and I want it to be extremely fast
   plugin_spec = {
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { import = "fast-plugins" },
   }
 end
 

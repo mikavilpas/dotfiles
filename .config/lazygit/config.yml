@@ -88,7 +88,13 @@ keybinding:
     toggleTreeView: f
 
 os:
-  editPreset: "nvim-remote"
+  # I usually use lazygit embedded in nvim. For this, I use
+  # https://github.com/willothy/flatten.nvim to simplify the setup without the
+  # need for external applications.
+  #
+  edit: "nvim {{filename}}"
+  editAtLine: "nvim +{{line}} {{filename}}"
+  editAtLineAndWait: "nvim +{{line}} {{filename}}"
 
   # Create pull request command opens a URL with incorrect escaping #3064
   # https://github.com/jesseduffield/lazygit/issues/3064
