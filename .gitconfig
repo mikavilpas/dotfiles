@@ -17,6 +17,7 @@
 [delta]
   features = decorations
   features = catppuccin-mocha
+  tabs = 4
 
 [delta "interactive"]
   keep-plus-minus-markers = false
