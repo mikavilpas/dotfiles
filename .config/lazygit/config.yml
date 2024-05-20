@@ -131,6 +131,7 @@ gui:
       - "#eed49f"
 
 git:
+  parseEmoji: true
   paging:
     colorArg: always
     pager:
