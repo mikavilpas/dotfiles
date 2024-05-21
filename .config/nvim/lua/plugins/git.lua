@@ -22,7 +22,11 @@ return {
 
       "nvim-telescope/telescope.nvim",
       -- to show diff splits and open commits in browser
-      "tpope/vim-fugitive",
+      {
+        "tpope/vim-fugitive",
+        cmd = { "Git" },
+        lazy = true,
+      },
       -- to open commits in browser with fugitive
       "tpope/vim-rhubarb",
       -- optional: to replace the diff from fugitive with diffview.nvim
