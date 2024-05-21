@@ -6,6 +6,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
+---@type LazyConfig
 local plugin_spec = {}
 
 if os.getenv("NVIM") == nil then
