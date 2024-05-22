@@ -119,7 +119,18 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Move to previous match" })
 
 -- replace whatever is visually selected with the next pasted text, without overwriting the clipboard
 -- NOTE: prime uses "<leader>p" but I use that for something else
-vim.keymap.set("x", "p", '"_dP')
+vim.keymap.set("x", "p", function()
+  local current_column = vim.fn.virtcol(".")
+  vim.cmd('normal! "_dP')
+  vim.cmd("normal! " .. current_column .. "|")
+end)
+
+-- paste and stay in the same column
+vim.keymap.set("n", "p", function()
+  local current_column = vim.fn.virtcol(".")
+  vim.cmd("normal! p")
+  vim.cmd("normal! " .. current_column .. "|")
+end)
 
 -- easy navigation between diagnostic items such as errors
 vim.keymap.set("n", "<leader>j", function()
