@@ -4,9 +4,3 @@
 [submodule ".config/bat/themes/catppuccin-bat"]
 	path = .config/bat/themes/catppuccin-bat
 	url = https://github.com/catppuccin/bat
-[submodule ".config/yazi/plugins/keyjump.yazi"]
-	path = .config/yazi/plugins/keyjump.yazi
-	url = https://github.com/DreamMaoMao/keyjump.yazi
-[submodule ".config/yazi/plugins/starship.yazi"]
-	path = .config/yazi/plugins/starship.yazi
-	url = https://github.com/Rolv-Apneseth/starship.yazi.git
