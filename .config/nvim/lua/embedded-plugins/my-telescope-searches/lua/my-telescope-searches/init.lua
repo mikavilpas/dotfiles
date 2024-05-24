@@ -83,10 +83,11 @@ end
 -- Search for the current visual mode selection.
 -- Like the built in live_grep but with the options that I like, plus some
 -- documentation on how the whole thing works.
-function M.my_live_grep()
+---@param options { cwd: string? }
+function M.my_live_grep(options)
+  local cwd = options.cwd or M.find_project_root()
   local selection = M.get_visual()
 
-  local cwd = M.find_project_root()
   vim.notify("searching in " .. cwd)
 
   -- pro tip: search for an initial, wide result with this, and then hit
