@@ -28,6 +28,11 @@ return {
       open_for_directories = true,
       enable_mouse_support = true,
       -- log_level = vim.log.levels.DEBUG,
+      integrations = {
+        grep_in_directory = function(directory)
+          require("my-telescope-searches").my_live_grep({ cwd = directory })
+        end,
+      },
     },
   },
   {
@@ -41,12 +46,6 @@ return {
 
   -- HACK: Manage yazi plugins using lazy.nvim.
   -- https://github.com/folke/lazy.nvim
-  -- To make this work, you must manually create symbolic links using these
-  -- instructions:
-  --
-  -- cd ~/.config/yazi/plugins/
-  -- ln -s ~/.local/share/nvim/lazy/keyjump.yazi/
-  -- ln -s ~/.local/share/nvim/lazy/starship.yazi/
   --
   -- Benefits of this approach:
   -- - easily keep your yazi plugins up to date along with your neovim plugins.
@@ -56,6 +55,25 @@ return {
   -- - commit the symbolic links to your dotfiles git repository. They should work on all platforms.
   --
   -- NOTE: you must set `lazy = true` to make neovim not load them. They are only for yazi.
-  { "DreamMaoMao/keyjump.yazi", lazy = true },
-  { "Rolv-Apneseth/starship.yazi", lazy = true },
+  {
+    "DreamMaoMao/keyjump.yazi",
+    lazy = true,
+    build = function(plugin)
+      require("yazi.plugin").build_plugin(plugin)
+    end,
+  },
+  {
+    "Rolv-Apneseth/starship.yazi",
+    lazy = true,
+    build = function(plugin)
+      require("yazi.plugin").build_plugin(plugin)
+    end,
+  },
+  {
+    "ndtoan96/ouch.yazi",
+    lazy = true,
+    build = function(plugin)
+      require("yazi.plugin").build_plugin(plugin)
+    end,
+  },
 }
