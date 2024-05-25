@@ -85,7 +85,7 @@ end
 -- documentation on how the whole thing works.
 ---@param options { cwd: string? }
 function M.my_live_grep(options)
-  local cwd = options.cwd or M.find_project_root()
+  local cwd = (options or {}).cwd or M.find_project_root()
   local selection = M.get_visual()
 
   vim.notify("searching in " .. cwd)
