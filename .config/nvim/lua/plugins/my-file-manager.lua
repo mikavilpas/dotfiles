@@ -1,5 +1,6 @@
 ---@type LazySpec
 return {
+  ---@type LazyPlugin
   {
     "mikavilpas/yazi.nvim",
     -- dir = "~/git/yazi.nvim/",
@@ -43,18 +44,6 @@ return {
       },
     },
   },
-
-  -- HACK: Manage yazi plugins using lazy.nvim.
-  -- https://github.com/folke/lazy.nvim
-  --
-  -- Benefits of this approach:
-  -- - easily keep your yazi plugins up to date along with your neovim plugins.
-  -- - use lazy.nvim's excellent ui to inspect the changes in the plugins.
-  -- - use lazy-lock.json to lock the versions of these plugins in your dotfiles.
-  -- - load plugins from all the locations lazy.nvim supports.
-  -- - commit the symbolic links to your dotfiles git repository. They should work on all platforms.
-  --
-  -- NOTE: you must set `lazy = true` to make neovim not load them. They are only for yazi.
   {
     "DreamMaoMao/keyjump.yazi",
     lazy = true,
