@@ -34,8 +34,12 @@ return {
       },
 
       {
-        -- https://github.com/ecosse3/nvim/blob/98f5d88971b8011701b8516ad5819a1fee470724/lua/config/plugins.lua#L474C2-L496C5
         "rcarriga/nvim-notify",
+        opts = {
+          -- position notifications at the bottom, rather than at the top
+          -- https://github.com/folke/noice.nvim/discussions/469#discussioncomment-9570150
+          top_down = false,
+        },
       },
     },
 
