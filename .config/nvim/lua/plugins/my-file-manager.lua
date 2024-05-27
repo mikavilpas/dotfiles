@@ -37,14 +37,6 @@ return {
     },
   },
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      filesystem = {
-        hijack_netrw_behavior = "disabled",
-      },
-    },
-  },
-  {
     "DreamMaoMao/keyjump.yazi",
     lazy = true,
     build = function(plugin)
@@ -64,5 +56,13 @@ return {
     build = function(plugin)
       require("yazi.plugin").build_plugin(plugin)
     end,
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      filesystem = {
+        hijack_netrw_behavior = "disabled",
+      },
+    },
   },
 }
