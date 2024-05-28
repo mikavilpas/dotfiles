@@ -16,35 +16,6 @@ end, { desc = "Goto definition in vsplit" })
 
 local Terminal = require("toggleterm.terminal").Terminal
 
--- open lazygit history for the current file
-vim.keymap.set("n", "<leader>gl", function()
-  local absolutePath = vim.api.nvim_buf_get_name(0)
-
-  local lazygit = Terminal:new({
-    cmd = "lazygit --filter " .. absolutePath,
-    dir = "git_dir",
-    direction = "float",
-    close_on_exit = true,
-    float_opts = {
-      -- lazygit itself already has a border
-      border = "none",
-    },
-    on_open = function(term)
-      -- these are added by LazyVim and they prevent moving commits up and down in lazygit
-      -- https://github.com/LazyVim/LazyVim/blob/91126b9896bebcea9a21bce43be4e613e7607164/lua/lazyvim/config/keymaps.lua#L150
-      vim.keymap.set({ "t" }, "<C-k>", function()
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-k>", true, false, true), "n", true)
-      end, { buffer = term.bufnr })
-
-      vim.keymap.set({ "t" }, "<C-j>", function()
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "n", true)
-      end, { buffer = term.bufnr })
-    end,
-  })
-
-  lazygit:open()
-end, { desc = "lazygit file commits" })
-
 -- open lazygit in the current git directory
 local function openLazyGit()
   local lazygit = Terminal:new({
