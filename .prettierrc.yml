@@ -1,4 +1,2 @@
 printWidth: 80
 proseWrap: always
-plugins:
-  - prettier-plugin-toml
