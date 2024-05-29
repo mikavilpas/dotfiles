@@ -57,5 +57,16 @@ The test checks that I have all the applications installed, and acts as a
 reminder.
 
 ```vim
+-- in neovim
 :checkhealth
 ```
+
+### Formatting
+
+Here is how the files in this repository are formatted. Since I am the only
+maintainer, most use the editor's "format on save" functionality.
+
+| Filetype | Formatter                                 | Notes                   |
+| -------- | ----------------------------------------- | ----------------------- |
+| Markdown | [prettier](https://prettier.io/)          |                         |
+| TOML     | [taplo](https://github.com/tamasfe/taplo) | Run with `taplo format` |
