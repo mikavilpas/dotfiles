@@ -17,8 +17,9 @@ with mechanical switches.
 
 ![Image of my keyboard layout](./assets/keyboard.png)
 
-My keyboard layout is based on [DAS](https://c.seres.fi/das), a layout optimized
-for the Finnish language created by Cristian Seres.
+My keyboard layout is based on
+[DAS](https://web.archive.org/web/20231108015515/https://c.seres.fi/das), a
+layout optimized for the Finnish language created by Cristian Seres.
 
 The layout and all its customizations are embedded in the keyboard's firmware
 using [QMK](https://qmk.fm/).
