@@ -19,6 +19,12 @@ vim.keymap.set("n", "<leader>xl", function()
   vim.notify("Reloaded lua file", "info")
 end, { desc = "Reload file" })
 
+vim.keymap.set("n", "<left>", function()
+  local windows = vim.api.nvim_tabpage_list_wins(0)
+  local win = windows[1]
+  vim.api.nvim_win_close(win, true)
+end, { desc = "Close leftmost window" })
+
 local Terminal = require("toggleterm.terminal").Terminal
 
 -- open lazygit history for the current file
