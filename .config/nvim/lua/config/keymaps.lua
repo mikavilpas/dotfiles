@@ -14,6 +14,11 @@ vim.keymap.set("n", "<leader>gd", function()
   require("telescope.builtin").lsp_definitions({ jump_type = "vsplit" })
 end, { desc = "Goto definition in vsplit" })
 
+vim.keymap.set("n", "<leader>xl", function()
+  vim.cmd("luafile %")
+  vim.notify("Reloaded lua file", "info")
+end, { desc = "Reload file" })
+
 local Terminal = require("toggleterm.terminal").Terminal
 
 -- open lazygit history for the current file
