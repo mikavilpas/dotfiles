@@ -37,7 +37,27 @@ return {
   {
     -- https://github.com/hrsh7th/cmp-cmdline
     "hrsh7th/cmp-cmdline",
-    dependencies = { "hrsh7th/nvim-cmp", "hrsh7th/cmp-buffer" },
+    dependencies = {
+      "hrsh7th/nvim-cmp",
+      {
+        "hrsh7th/cmp-buffer",
+        config = function()
+          local cmp = require("cmp")
+          cmp.setup.buffer({
+            sources = {
+              {
+                name = "buffer",
+                ---@type cmp_buffer.Options
+                ---@diagnostic disable-next-line: missing-fields
+                option = {
+                  keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\%(\w\|á\|Á\|é\|É\|í\|Í\|ó\|Ó\|ú\|Ú\|ä\|ö\|Ä\|Ö\)*\%(-\%(\w\|á\|Á\|é\|É\|í\|Í\|ó\|Ó\|ú\|Ú\|ä\|ö\|Ä\|Ö\)*\)*\)]],
+                },
+              },
+            },
+          })
+        end,
+      },
+    },
     event = { "InsertEnter", "CmdlineEnter" },
     config = function()
       -- https://github.com/hrsh7th/cmp-cmdline
