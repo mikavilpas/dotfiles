@@ -1,195 +1,167 @@
 -- https://www.lazyvim.org/plugins/lsp
 ---@type LazySpec
 return {
-  -- nvim-lspconfig is a collection of community-contributed configurations for the
-  -- built-in language server client in Nvim core. This plugin provides four
-  -- primary functionalities:
-  --
-  --  - default launch commands, initialization options, and settings for each
-  --    server
-  --  - a root directory resolver which attempts to detect the root of your project
-  --  - an autocommand mapping that either launches a new language server or
-  --    attempts to attach a language server to each opened buffer if it falls
-  --    under a tracked project
-  --  - utility commands such as LspInfo, LspStart, LspStop, and LspRestart for
-  --    managing language server instances
-  --
-  -- nvim-lspconfig is not required to use the builtin Nvim |lsp| client, it is
-  -- just a convenience layer.
-  --
-  "neovim/nvim-lspconfig",
+  {
+    -- nvim-lspconfig is a collection of community-contributed configurations for the
+    -- built-in language server client in Nvim core. This plugin provides four
+    -- primary functionalities:
+    --
+    --  - default launch commands, initialization options, and settings for each
+    --    server
+    --  - a root directory resolver which attempts to detect the root of your project
+    --  - an autocommand mapping that either launches a new language server or
+    --    attempts to attach a language server to each opened buffer if it falls
+    --    under a tracked project
+    --  - utility commands such as LspInfo, LspStart, LspStop, and LspRestart for
+    --    managing language server instances
+    --
+    -- nvim-lspconfig is not required to use the builtin Nvim |lsp| client, it is
+    -- just a convenience layer.
+    --
+    "neovim/nvim-lspconfig",
 
-  opts = {
-    inlay_hints = { enabled = false },
-  },
+    opts = {
+      inlay_hints = { enabled = false },
+    },
 
-  dependencies = {
-    {
-      "folke/noice.nvim",
-      ---@type NoiceConfig
-      opts = {
-        ---@type NoicePresets
-        presets = {
-          lsp_doc_border = true,
-
-          -- https://github.com/nicknisi/dotfiles/blob/3a394aa71ab034502e8866a442be22d78f1556ee/config/nvim/lua/plugins/noice.lua#L7
-          long_message_to_split = true, -- long messages will be sent to a split
-          cmdline_output_to_split = true,
+    dependencies = {
+      {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        opts = {
+          -- https://github.com/ray-x/lsp_signature.nvim?tab=readme-ov-file#full-configuration-with-default-values
+          bind = true, -- This is mandatory, otherwise border config won't get registered.
+          max_height = 999,
+          doc_lines = 999,
+          hi_parameter = "@text.note",
+          hint_prefix = "🤔 ",
+          handler_opts = { border = "rounded" },
         },
-        lsp = {
-          signature = {
-            enabled = false,
+        config = function(_, opts)
+          vim.api.nvim_create_autocmd("LspAttach", {
+            callback = function(args)
+              local bufnr = args.buf
+              local client = vim.lsp.get_client_by_id(args.data.client_id)
+              if not client then
+                vim.notify("LSP client not found: " .. args.data.client_id, "error")
+                return
+              end
+              if vim.tbl_contains({ "null-ls" }, client.name) then -- blacklist lsp
+                return
+              end
+              require("lsp_signature").on_attach(opts, bufnr)
+
+              vim.keymap.set({ "i" }, "<C-k>", function()
+                require("lsp_signature").toggle_float_win()
+              end, { silent = true, noremap = true, desc = "signature help" })
+            end,
+          })
+        end,
+      },
+      {
+        -- https://github.com/lukas-reineke/cmp-rg
+        "lukas-reineke/cmp-rg",
+        keys = {
+          {
+            -- https://github.com/lukas-reineke/cmp-rg/issues/46#issuecomment-1345672195
+            "<c-a>",
+            mode = { "i" },
+            function()
+              require("cmp").complete({
+                config = {
+                  sources = { { name = "rg" } },
+                },
+              })
+            end,
+            desc = "Complete with word in project",
           },
         },
-
-        routes = {
-          -- disable some annoying messages popping up. I hate them!
-          -- stylua: ignore start
-
-          -- Disable "file_path" AMOUNT_OF_LINESL, AMOUNT_OF_BYTESB message
-          -- https://github.com/KoalaVim/KoalaVim/blob/e4649e74a1838e6a4a1a55a72e58280064bb909c/lua/KoalaVim/misc/noice_routes.lua#L6
-          { filter = { event = "msg_show", kind = "", find = '"[%w%p]+" %d+L, %d+B' }, opts = { skip = true } },
-
-          -- stylua: ignore end
-        },
       },
-    },
-    {
-      "ray-x/lsp_signature.nvim",
-      event = "VeryLazy",
-      opts = {
-        -- https://github.com/ray-x/lsp_signature.nvim?tab=readme-ov-file#full-configuration-with-default-values
-        bind = true, -- This is mandatory, otherwise border config won't get registered.
-        max_height = 999,
-        doc_lines = 999,
-        hi_parameter = "@text.note",
-        hint_prefix = "🤔 ",
-        handler_opts = { border = "rounded" },
-      },
-      config = function(_, opts)
-        vim.api.nvim_create_autocmd("LspAttach", {
-          callback = function(args)
-            local bufnr = args.buf
-            local client = vim.lsp.get_client_by_id(args.data.client_id)
-            if not client then
-              vim.notify("LSP client not found: " .. args.data.client_id, "error")
-              return
-            end
-            if vim.tbl_contains({ "null-ls" }, client.name) then -- blacklist lsp
-              return
-            end
-            require("lsp_signature").on_attach(opts, bufnr)
-
-            vim.keymap.set({ "i" }, "<C-k>", function()
-              require("lsp_signature").toggle_float_win()
-            end, { silent = true, noremap = true, desc = "signature help" })
-          end,
-        })
-      end,
-    },
-    {
-      -- https://github.com/lukas-reineke/cmp-rg
-      "lukas-reineke/cmp-rg",
-      keys = {
-        {
-          -- https://github.com/lukas-reineke/cmp-rg/issues/46#issuecomment-1345672195
-          "<c-a>",
-          mode = { "i" },
-          function()
-            require("cmp").complete({
-              config = {
-                sources = { { name = "rg" } },
-              },
-            })
-          end,
-          desc = "Complete with word in project",
-        },
-      },
-    },
-    {
-      -- https://github.com/hrsh7th/cmp-cmdline
-      "hrsh7th/cmp-cmdline",
-      dependencies = { "hrsh7th/nvim-cmp", "hrsh7th/cmp-buffer" },
-      event = { "InsertEnter", "CmdlineEnter" },
-      config = function()
+      {
         -- https://github.com/hrsh7th/cmp-cmdline
-        local cmp = require("cmp")
-        -- `/` and '?' cmdline setup.
-        cmp.setup.cmdline({ "/", "?" }, {
-          mapping = cmp.mapping.preset.cmdline(),
-          -- this fixes a bug
-          -- https://github.com/hrsh7th/cmp-cmdline/issues/96#issuecomment-1705873476
-          completion = { completeopt = "menu,menuone,noselect" },
-          sources = {
-            { name = "buffer" },
-          },
-        })
+        "hrsh7th/cmp-cmdline",
+        dependencies = { "hrsh7th/nvim-cmp", "hrsh7th/cmp-buffer" },
+        event = { "InsertEnter", "CmdlineEnter" },
+        config = function()
+          -- https://github.com/hrsh7th/cmp-cmdline
+          local cmp = require("cmp")
+          -- `/` and '?' cmdline setup.
+          cmp.setup.cmdline({ "/", "?" }, {
+            mapping = cmp.mapping.preset.cmdline(),
+            -- this fixes a bug
+            -- https://github.com/hrsh7th/cmp-cmdline/issues/96#issuecomment-1705873476
+            completion = { completeopt = "menu,menuone,noselect" },
+            sources = {
+              { name = "buffer" },
+            },
+          })
 
-        -- `:` cmdline setup.
-        cmp.setup.cmdline(":", {
-          mapping = cmp.mapping.preset.cmdline(),
-          -- this fixes this bug
-          --
-          -- first result auto-selected, but it doesn't search for the text in
-          -- that result until I move selection down and back up again #96
-          -- https://github.com/hrsh7th/cmp-cmdline/issues/96#issuecomment-1705873476
-          completion = { completeopt = "menu,menuone,noselect" },
-          sources = cmp.config.sources({
-            { name = "path" },
-          }, {
-            {
-              name = "cmdline",
-              option = {
-                ignore_cmds = { "Man", "!" },
+          -- `:` cmdline setup.
+          cmp.setup.cmdline(":", {
+            mapping = cmp.mapping.preset.cmdline(),
+            -- this fixes this bug
+            --
+            -- first result auto-selected, but it doesn't search for the text in
+            -- that result until I move selection down and back up again #96
+            -- https://github.com/hrsh7th/cmp-cmdline/issues/96#issuecomment-1705873476
+            completion = { completeopt = "menu,menuone,noselect" },
+            sources = cmp.config.sources({
+              { name = "path" },
+            }, {
+              {
+                name = "cmdline",
+                option = {
+                  ignore_cmds = { "Man", "!" },
+                },
+              },
+            }),
+          })
+        end,
+      },
+      {
+        "hrsh7th/nvim-cmp",
+        ---@param opts cmp.ConfigSchema
+        opts = function(_, opts)
+          local cmp = require("cmp")
+
+          ---@type cmp.ConfigSchema
+          local new_options = {
+            window = {
+              completion = cmp.config.window.bordered({
+                winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
+              }),
+              documentation = cmp.config.window.bordered({
+                winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
+              }),
+            },
+          }
+          local final_options = vim.tbl_deep_extend("keep", new_options, {
+            window = {
+              completion = {
+                -- use all available space
+                max_height = 0,
+              },
+              documentation = {
+                -- use all available space
+                max_height = 0,
               },
             },
-          }),
-        })
-      end,
+          }, opts)
+          return final_options
+        end,
+      },
     },
-    {
-      "hrsh7th/nvim-cmp",
-      ---@param opts cmp.ConfigSchema
-      opts = function(_, opts)
-        local cmp = require("cmp")
 
-        ---@type cmp.ConfigSchema
-        local new_options = {
-          window = {
-            completion = cmp.config.window.bordered({
-              winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
-            }),
-            documentation = cmp.config.window.bordered({
-              winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
-            }),
-          },
-        }
-        local final_options = vim.tbl_deep_extend("keep", new_options, {
-          window = {
-            completion = {
-              -- use all available space
-              max_height = 0,
-            },
-            documentation = {
-              -- use all available space
-              max_height = 0,
-            },
-          },
-        }, opts)
-        return final_options
-      end,
-    },
+    init = function()
+      -- configure keymaps here
+      -- https://www.lazyvim.org/plugins/lsp#%EF%B8%8F-customizing-lsp-keymaps
+      -- local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      -- -- change a keymap
+      -- keys[#keys + 1] = { "K", "<cmd>echo 'hello'<cr>" }
+      -- -- disable a keymap
+      -- keys[#keys + 1] = { "K", false }
+      -- -- add a keymap
+      -- keys[#keys + 1] = { "H", "<cmd>echo 'hello'<cr>" }
+    end,
   },
-
-  init = function()
-    -- configure keymaps here
-    -- https://www.lazyvim.org/plugins/lsp#%EF%B8%8F-customizing-lsp-keymaps
-    -- local keys = require("lazyvim.plugins.lsp.keymaps").get()
-    -- -- change a keymap
-    -- keys[#keys + 1] = { "K", "<cmd>echo 'hello'<cr>" }
-    -- -- disable a keymap
-    -- keys[#keys + 1] = { "K", false }
-    -- -- add a keymap
-    -- keys[#keys + 1] = { "H", "<cmd>echo 'hello'<cr>" }
-  end,
 }
