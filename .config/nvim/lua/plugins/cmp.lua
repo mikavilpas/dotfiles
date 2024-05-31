@@ -39,24 +39,7 @@ return {
     "hrsh7th/cmp-cmdline",
     dependencies = {
       "hrsh7th/nvim-cmp",
-      {
-        "hrsh7th/cmp-buffer",
-        config = function()
-          local cmp = require("cmp")
-          cmp.setup.buffer({
-            sources = {
-              {
-                name = "buffer",
-                ---@type cmp_buffer.Options
-                ---@diagnostic disable-next-line: missing-fields
-                option = {
-                  keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\%(\w\|á\|Á\|é\|É\|í\|Í\|ó\|Ó\|ú\|Ú\|ä\|ö\|Ä\|Ö\)*\%(-\%(\w\|á\|Á\|é\|É\|í\|Í\|ó\|Ó\|ú\|Ú\|ä\|ö\|Ä\|Ö\)*\)*\)]],
-                },
-              },
-            },
-          })
-        end,
-      },
+      "hrsh7th/cmp-buffer",
     },
     event = { "InsertEnter", "CmdlineEnter" },
     config = function()
@@ -95,6 +78,25 @@ return {
       })
     end,
   },
+  -- TODO this seems to disable lsp completion completely when enabled
+  -- {
+  --   "hrsh7th/cmp-buffer",
+  --   config = function()
+  --     local cmp = require("cmp")
+  --     cmp.setup.buffer({
+  --       sources = {
+  --         {
+  --           name = "buffer",
+  --           ---@type cmp_buffer.Options
+  --           ---@diagnostic disable-next-line: missing-fields
+  --           option = {
+  --             keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\%(\w\|á\|Á\|é\|É\|í\|Í\|ó\|Ó\|ú\|Ú\|ä\|ö\|Ä\|Ö\)*\%(-\%(\w\|á\|Á\|é\|É\|í\|Í\|ó\|Ó\|ú\|Ú\|ä\|ö\|Ä\|Ö\)*\)*\)]],
+  --           },
+  --         },
+  --       },
+  --     })
+  --   end,
+  -- },
 
   {
     -- https://github.com/lukas-reineke/cmp-rg
