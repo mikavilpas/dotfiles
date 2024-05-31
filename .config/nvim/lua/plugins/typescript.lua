@@ -15,6 +15,7 @@ return {
 
       {
         "marilari88/twoslash-queries.nvim",
+        event = "LspAttach",
         -- Usage
         -- Write a '//    ^?' placing the sign '^' under the variable to inspected
         opts = {
