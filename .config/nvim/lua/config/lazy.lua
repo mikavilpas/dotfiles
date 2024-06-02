@@ -32,7 +32,6 @@ if os.getenv("NVIM") == nil then
 
     { import = "lazyvim.plugins.extras.dap.core" },
     { import = "lazyvim.plugins.extras.dap.nlua" },
-    { import = "lazyvim.plugins.extras.lsp.neoconf" },
 
     -- import/override with your plugins
     { import = "plugins" },
