@@ -162,10 +162,6 @@ fzcd() {
   if [ -n "$selected_dir" ]; then
     echo "cd '$selected_dir'"
     cd "$selected_dir"
-    if [ -f .nvmrc ]; then
-      echo "Automatically applying the correct nvm version $(cat .nvmrc)"
-      nvm use
-    fi
   fi
 }
 
