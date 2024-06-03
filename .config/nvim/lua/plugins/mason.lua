@@ -12,9 +12,6 @@ return {
       "shellcheck",
       "shfmt",
 
-      -- toml
-      "taplo",
-
       -- markdown
       "marksman",
 
