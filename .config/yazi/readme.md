@@ -24,6 +24,7 @@ These keybindings are used when running yazi inside neovim.
 
 These keybindings can be used in yazi itself.
 
-| Key | Action       |
-| --- | ------------ |
-| `i` | jump to line |
+| Key       | Action       |
+| --------- | ------------ |
+| `i`       | jump to line |
+| `<right>` | Open lazygit |

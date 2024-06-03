@@ -15,7 +15,6 @@ return {
         local bacon = require("bacon")
         bacon.bacon_load()
         bacon.bacon_next()
-        vim.cmd("copen")
       end,
     },
   },

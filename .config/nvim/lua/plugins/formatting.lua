@@ -39,7 +39,9 @@ return {
         ["markdown.mdx"] = { { "prettierd" } },
         ["graphql"] = { { "prettierd" } },
         ["handlebars"] = { { "prettierd" } },
-        ["toml"] = { "prettier" },
+        -- currently prettier-plugin-toml is not configurable, and I don't like
+        -- the default formatting
+        -- ["toml"] = { "prettier" },
       },
     },
   },

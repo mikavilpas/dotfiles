@@ -14,6 +14,17 @@ vim.keymap.set("n", "<leader>gd", function()
   require("telescope.builtin").lsp_definitions({ jump_type = "vsplit" })
 end, { desc = "Goto definition in vsplit" })
 
+vim.keymap.set("n", "<leader>xl", function()
+  vim.cmd("luafile %")
+  vim.notify("Reloaded lua file", "info")
+end, { desc = "Reload file" })
+
+vim.keymap.set("n", "<left>", function()
+  local windows = vim.api.nvim_tabpage_list_wins(0)
+  local win = windows[1]
+  vim.api.nvim_win_close(win, true)
+end, { desc = "Close leftmost window" })
+
 local Terminal = require("toggleterm.terminal").Terminal
 
 -- open lazygit history for the current file
@@ -119,7 +130,18 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Move to previous match" })
 
 -- replace whatever is visually selected with the next pasted text, without overwriting the clipboard
 -- NOTE: prime uses "<leader>p" but I use that for something else
-vim.keymap.set("x", "p", '"_dP')
+vim.keymap.set("x", "p", function()
+  local current_column = vim.fn.virtcol(".")
+  vim.cmd('normal! "_dP')
+  vim.cmd("normal! " .. current_column .. "|")
+end)
+
+-- paste and stay in the same column
+vim.keymap.set("n", "p", function()
+  local current_column = vim.fn.virtcol(".")
+  vim.cmd("normal! p")
+  vim.cmd("normal! " .. current_column .. "|")
+end)
 
 -- easy navigation between diagnostic items such as errors
 vim.keymap.set("n", "<leader>j", function()

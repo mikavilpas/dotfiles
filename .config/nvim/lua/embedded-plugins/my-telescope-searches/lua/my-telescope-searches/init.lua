@@ -72,9 +72,9 @@ function M.my_find_file_in_project()
   local cwd = M.find_project_root()
   local selection = M.get_visual()
 
-  vim.notify("searching in " .. cwd)
   require("telescope.builtin").find_files({
     find_command = { "fd", "--hidden" },
+    prompt_title = "Find files in " .. cwd,
     cwd = cwd,
     search_file = selection,
   })
@@ -83,16 +83,16 @@ end
 -- Search for the current visual mode selection.
 -- Like the built in live_grep but with the options that I like, plus some
 -- documentation on how the whole thing works.
-function M.my_live_grep()
+---@param options { cwd: string? }
+function M.my_live_grep(options)
+  local cwd = (options or {}).cwd or M.find_project_root()
   local selection = M.get_visual()
-
-  local cwd = M.find_project_root()
-  vim.notify("searching in " .. cwd)
 
   -- pro tip: search for an initial, wide result with this, and then hit
   -- c-spc to use fuzzy matching to narrow it down
   require("telescope.builtin").live_grep({
     cwd = cwd,
+    prompt_title = "Live grep in " .. cwd,
     default_text = selection,
     only_sort_text = true,
     additional_args = function()

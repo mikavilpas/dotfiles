@@ -17,8 +17,9 @@ with mechanical switches.
 
 ![Image of my keyboard layout](./assets/keyboard.png)
 
-My keyboard layout is based on [DAS](https://c.seres.fi/das), a layout optimized
-for the Finnish language created by Cristian Seres.
+My keyboard layout is based on
+[DAS](https://web.archive.org/web/20231108015515/https://c.seres.fi/das), a
+layout optimized for the Finnish language created by Cristian Seres.
 
 The layout and all its customizations are embedded in the keyboard's firmware
 using [QMK](https://qmk.fm/).
@@ -57,5 +58,16 @@ The test checks that I have all the applications installed, and acts as a
 reminder.
 
 ```vim
+-- in neovim
 :checkhealth
 ```
+
+### Formatting
+
+Here is how the files in this repository are formatted. Since I am the only
+maintainer, most use the editor's "format on save" functionality.
+
+| Filetype | Formatter                                 | Notes                   |
+| -------- | ----------------------------------------- | ----------------------- |
+| Markdown | [prettier](https://prettier.io/)          |                         |
+| TOML     | [taplo](https://github.com/tamasfe/taplo) | Run with `taplo format` |

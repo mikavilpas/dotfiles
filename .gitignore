@@ -7,3 +7,5 @@
 .config/nvim/spell/en.utf-8.add.spl
 .config/node_modules
 node_modules
+.config/bat/themes/catppuccin-bat
+.oh-my-zsh

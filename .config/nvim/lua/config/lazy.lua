@@ -6,6 +6,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
+---@type LazyConfig
 local plugin_spec = {}
 
 if os.getenv("NVIM") == nil then
@@ -18,12 +19,19 @@ if os.getenv("NVIM") == nil then
     { import = "lazyvim.plugins.extras.lang.markdown" },
     { import = "lazyvim.plugins.extras.lang.yaml" },
     { import = "lazyvim.plugins.extras.lang.rust" },
+    { import = "lazyvim.plugins.extras.lang.rust" },
+    { import = "lazyvim.plugins.extras.lang.toml" },
+    { import = "lazyvim.plugins.extras.lang.tailwind" },
 
     -- lsp symbol navigation for lualine. This shows where in the code structure
     -- you are - within functions, classes, etc - in the statusline.
     { import = "lazyvim.plugins.extras.editor.navic" },
 
     { import = "lazyvim.plugins.extras.linting.eslint" },
+    { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
+    { import = "lazyvim.plugins.extras.ui.treesitter-context", opts = {
+      max_lines = 0,
+    } },
 
     { import = "lazyvim.plugins.extras.dap.core" },
     { import = "lazyvim.plugins.extras.dap.nlua" },
@@ -35,13 +43,12 @@ else
   -- When running embedded in another process.
   -- I use this for quick edits and I want it to be extremely fast
   plugin_spec = {
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    -- { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     { import = "fast-plugins" },
   }
 end
 
-require("lazy").setup({
-  spec = plugin_spec,
+require("lazy").setup(plugin_spec, {
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
     -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.

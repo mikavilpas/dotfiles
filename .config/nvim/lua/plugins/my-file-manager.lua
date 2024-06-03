@@ -1,5 +1,6 @@
 ---@type LazySpec
 return {
+  ---@type LazyPlugin
   {
     "mikavilpas/yazi.nvim",
     -- dir = "~/git/yazi.nvim/",
@@ -26,9 +27,34 @@ return {
     ---@type YaziConfig
     opts = {
       open_for_directories = true,
-      enable_mouse_support = true,
       -- log_level = vim.log.levels.DEBUG,
+      integrations = {
+        grep_in_directory = function(directory)
+          require("my-telescope-searches").my_live_grep({ cwd = directory })
+        end,
+      },
     },
+  },
+  {
+    "DreamMaoMao/keyjump.yazi",
+    lazy = true,
+    build = function(plugin)
+      require("yazi.plugin").build_plugin(plugin)
+    end,
+  },
+  {
+    "Rolv-Apneseth/starship.yazi",
+    lazy = true,
+    build = function(plugin)
+      require("yazi.plugin").build_plugin(plugin)
+    end,
+  },
+  {
+    "ndtoan96/ouch.yazi",
+    lazy = true,
+    build = function(plugin)
+      require("yazi.plugin").build_plugin(plugin)
+    end,
   },
   {
     "nvim-neo-tree/neo-tree.nvim",

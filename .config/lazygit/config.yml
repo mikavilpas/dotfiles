@@ -81,6 +81,7 @@ keybinding:
   files:
     commitChanges: C # using the interactive commit dialog
     commitChangesWithEditor: c # using neovim
+    toggleTreeView: f
 
 os:
   # I usually use lazygit embedded in nvim. For this, I use
@@ -126,6 +127,7 @@ gui:
       - "#eed49f"
 
 git:
+  parseEmoji: true
   paging:
     colorArg: always
     pager:

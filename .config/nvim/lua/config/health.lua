@@ -16,7 +16,7 @@ return {
     -- fzf - a command-line fuzzy finder
     check("fzf")
 
-    -- zf - a commandline fuzzy finder that prioritizes matches on filenames
+    -- zf - a commandline fuzzy finder that prioritizes matches on filenames
     check("zf")
 
     -- utility for printing the resolved path of a file, used for e.g. relative
@@ -37,6 +37,9 @@ return {
 
     -- a smarter cd command
     check("zoxide")
+
+    -- 🦀 Painless compression and decompression in the terminal
+    check("ouch")
 
     vim.health.ok("my-cli-tools")
   end,

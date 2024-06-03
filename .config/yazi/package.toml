@@ -1,5 +1,0 @@
-[plugin]
-deps = [{ use = "DreamMaoMao/keyjump.yazi", commit = "06383de" }, { use = "Rolv-Apneseth/starship.yazi", commit = "6197e4c" }]
-
-[flavor]
-deps = []

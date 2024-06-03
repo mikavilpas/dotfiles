@@ -1,8 +1,11 @@
 {
   "private": true,
   "description": "",
+  "scripts": {
+    "linkspector": "linkspector check"
+  },
   "devDependencies": {
-    "prettier": "3.2.5",
-    "prettier-plugin-toml": "2.0.1"
+    "@umbrelladocs/linkspector": "0.3.8",
+    "prettier": "3.2.5"
   }
 }

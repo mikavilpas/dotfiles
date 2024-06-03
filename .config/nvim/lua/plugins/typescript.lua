@@ -15,6 +15,7 @@ return {
 
       {
         "marilari88/twoslash-queries.nvim",
+        event = "LspAttach",
         -- Usage
         -- Write a '//    ^?' placing the sign '^' under the variable to inspected
         opts = {
@@ -34,23 +35,12 @@ return {
       },
 
       {
-        -- https://github.com/ecosse3/nvim/blob/98f5d88971b8011701b8516ad5819a1fee470724/lua/config/plugins.lua#L474C2-L496C5
         "rcarriga/nvim-notify",
-        init = function()
-          local banned_messages = {
-            "No information available",
-          }
-
-          ---@diagnostic disable-next-line: duplicate-set-field
-          vim.notify = function(msg, ...)
-            for _, banned in ipairs(banned_messages) do
-              if msg == banned then
-                return
-              end
-            end
-            return require("notify")(msg, ...)
-          end
-        end,
+        opts = {
+          -- position notifications at the bottom, rather than at the top
+          -- https://github.com/folke/noice.nvim/discussions/469#discussioncomment-9570150
+          top_down = false,
+        },
       },
     },
 

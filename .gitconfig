@@ -1,6 +1,6 @@
 [user]
 	name = Mika Vilpas
-	email = mika.vilpas@barona.fi
+	email = mika.vilpas@gmail.com
 [core]
 	editor = nvim
   pager = delta
@@ -17,6 +17,7 @@
 [delta]
   features = decorations
   features = catppuccin-mocha
+  tabs = 4
 
 [delta "interactive"]
   keep-plus-minus-markers = false
