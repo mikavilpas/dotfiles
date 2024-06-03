@@ -58,7 +58,6 @@ prepend_previewers = [
 ]
 
 preloaders = [
-  { name = "*", cond = "!mime", run = "mime", multi = true, prio = "high" },
   # Image
   { mime = "image/vnd.djvu", run = "noop" },
   { mime = "image/*", run = "image" },
