@@ -27,7 +27,6 @@ return {
     ---@type YaziConfig
     opts = {
       open_for_directories = true,
-      enable_mouse_support = true,
       -- log_level = vim.log.levels.DEBUG,
       integrations = {
         grep_in_directory = function(directory)
