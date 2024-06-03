@@ -4,7 +4,7 @@ return {
     "ohmyzsh/ohmyzsh",
     lazy = true,
     build = function(self)
-      require("yazi.plugin").symlink(self, vim.fn.expand("~/dotfiles/.oh-my-zsh"))
+      require("yazi.plugin").symlink(self, vim.fn.expand("~/.oh-my-zsh"))
     end,
   },
 
