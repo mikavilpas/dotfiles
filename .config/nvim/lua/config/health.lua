@@ -41,6 +41,9 @@ return {
     -- 🦀 Painless compression and decompression in the terminal
     check("ouch")
 
+    -- 🦀 Source code spell checker
+    check("typos")
+
     vim.health.ok("my-cli-tools")
   end,
 }
