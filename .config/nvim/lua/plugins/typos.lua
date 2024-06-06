@@ -23,7 +23,18 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        typos_lsp = {},
+        typos_lsp = {
+          filetypes = {
+            "lua",
+            "typescript",
+            "javascript",
+            "typescriptreact",
+            "javascriptreact",
+            "rust",
+            "markdown",
+            "toml",
+          },
+        },
       },
     },
   },
