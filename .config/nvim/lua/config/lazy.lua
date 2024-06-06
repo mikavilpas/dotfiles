@@ -22,6 +22,7 @@ if os.getenv("NVIM") == nil then
     { import = "lazyvim.plugins.extras.lang.rust" },
     { import = "lazyvim.plugins.extras.lang.toml" },
     { import = "lazyvim.plugins.extras.lang.tailwind" },
+    { import = "lazyvim.plugins.extras.lang.git" },
 
     -- lsp symbol navigation for lualine. This shows where in the code structure
     -- you are - within functions, classes, etc - in the statusline.
