@@ -44,6 +44,14 @@ return {
     -- 🦀 Source code spell checker
     check("typos")
 
+    -- 🦀 Sccache is a ccache-like tool. It is used as a compiler wrapper and
+    -- avoids compilation when possible. Sccache has the capability to utilize
+    -- caching in remote storage environments, including various cloud storage
+    -- options, or alternatively, in local storage.
+    --
+    -- https://github.com/mozilla/sccache
+    check("sccache")
+
     vim.health.ok("my-cli-tools")
   end,
 }

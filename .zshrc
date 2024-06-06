@@ -166,6 +166,7 @@ fzcd() {
 }
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export RUSTC_WRAPPER=/opt/homebrew/bin/sccache
 
 function battail() {
   # https://github.com/sharkdp/bat?tab=readme-ov-file#tail--f
