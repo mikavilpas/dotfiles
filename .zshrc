@@ -156,16 +156,8 @@ klm() {
 export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"
 export FZF_CTRL_T_OPTS="--min-height 30 --preview-window right:60% --preview-window noborder --preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'"
 
-fzcd() {
-  local selected_dir
-  selected_dir=$(z -t | awk '{print $2}' | sort --reverse | fzf --height 40% --preview "echo '{}' && ls -a --color=always {}")
-  if [ -n "$selected_dir" ]; then
-    echo "cd '$selected_dir'"
-    cd "$selected_dir"
-  fi
-}
+eval "$(zoxide init zsh)"export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export RUSTC_WRAPPER=/opt/homebrew/bin/sccache
 
 function battail() {
@@ -174,7 +166,7 @@ function battail() {
 }
 
 # j for "jump"
-alias j="fzcd"
+alias j="zi"
 
 function isDarkMode() {
   defaults read -globalDomain AppleInterfaceStyle &> /dev/null
