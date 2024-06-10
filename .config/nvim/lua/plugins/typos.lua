@@ -23,6 +23,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
+        ---@type vim.lsp.ClientConfig
         typos_lsp = {
           filetypes = {
             "lua",
@@ -48,7 +49,8 @@ return {
           -- These settings are useful when I develop this LSP
           -- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
           cmd_env = { RUST_LOG = "debug" },
-          cmd = { "/Users/mikavilpas/git/typos-lsp/target/debug/typos-lsp" },
+          -- cmd = { "/Users/mikavilpas/git/typos-lsp/target/debug/typos-lsp" },
+          cmd = { "typos-lsp" },
         },
       },
     },
