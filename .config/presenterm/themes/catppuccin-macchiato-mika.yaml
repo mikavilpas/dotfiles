@@ -1,0 +1,5 @@
+extends: catppuccin-macchiato
+
+code:
+  # Code highlighting themes are loaded from ./highlighting/
+  theme_name: Catppuccin Frappe
