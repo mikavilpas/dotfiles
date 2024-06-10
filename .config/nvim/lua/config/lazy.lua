@@ -34,8 +34,8 @@ if os.getenv("NVIM") == nil then
       max_lines = 0,
     } },
 
-    { import = "lazyvim.plugins.extras.dap.core" },
-    { import = "lazyvim.plugins.extras.dap.nlua" },
+    -- { import = "lazyvim.plugins.extras.dap.core" },
+    -- { import = "lazyvim.plugins.extras.dap.nlua" },
 
     -- import/override with your plugins
     { import = "plugins" },
