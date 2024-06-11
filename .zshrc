@@ -179,7 +179,6 @@ function isDarkMode() {
   return $?
 }
 
-# a function to start lazygit using the correct theme
 alias lg="lazygit"
 
 function my_git_grep_history() {
