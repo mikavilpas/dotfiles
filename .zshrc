@@ -161,8 +161,14 @@ eval "$(zoxide init zsh)"export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export RUSTC_WRAPPER=/opt/homebrew/bin/sccache
 
 function battail() {
+  local file=$1
+  local needle=$2
   # https://github.com/sharkdp/bat?tab=readme-ov-file#tail--f
-  tail -f $1 | bat --style="plain" --paging=never -l log
+  if [ -z "$needle" ]; then
+    tail -F $file | bat --style="plain" --color=always --paging=never --language log
+  else
+    tail -F $file | rg --line-buffered "$needle" | bat --style="plain" --paging=never --language log
+  fi
 }
 
 # j for "jump"
