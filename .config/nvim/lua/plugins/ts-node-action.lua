@@ -4,8 +4,15 @@ return {
     -- https://github.com/ckolkey/ts-node-action
     -- Neovim Plugin for running functions on nodes.
     "ckolkey/ts-node-action",
-    event = "BufRead",
     dependencies = { "nvim-treesitter" },
+    keys = {
+      {
+        "<leader><enter>",
+        function()
+          require("ts-node-action").node_action()
+        end,
+      },
+    },
     config = function()
       local helpers = require("ts-node-action.helpers")
 
@@ -82,14 +89,6 @@ return {
 
       require("ts-node-action").setup(opts)
     end,
-    keys = {
-      {
-        "<leader><enter>",
-        function()
-          require("ts-node-action").node_action()
-        end,
-      },
-    },
   },
   {
     -- https://github.com/Wansmer/treesj

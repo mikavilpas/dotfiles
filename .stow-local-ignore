@@ -11,3 +11,4 @@ package-lock.json
 .nvmrc
 assets
 readme.md
+taplo.toml

@@ -27,7 +27,7 @@ return {
     dependencies = {
       {
         "ray-x/lsp_signature.nvim",
-        event = "VeryLazy",
+        event = "LspAttach",
         opts = {
           -- https://github.com/ray-x/lsp_signature.nvim?tab=readme-ov-file#full-configuration-with-default-values
           bind = true, -- This is mandatory, otherwise border config won't get registered.

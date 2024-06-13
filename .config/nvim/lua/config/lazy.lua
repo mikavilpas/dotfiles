@@ -22,6 +22,7 @@ if os.getenv("NVIM") == nil then
     { import = "lazyvim.plugins.extras.lang.rust" },
     { import = "lazyvim.plugins.extras.lang.toml" },
     { import = "lazyvim.plugins.extras.lang.tailwind" },
+    { import = "lazyvim.plugins.extras.lang.git" },
 
     -- lsp symbol navigation for lualine. This shows where in the code structure
     -- you are - within functions, classes, etc - in the statusline.
@@ -33,8 +34,8 @@ if os.getenv("NVIM") == nil then
       max_lines = 0,
     } },
 
-    { import = "lazyvim.plugins.extras.dap.core" },
-    { import = "lazyvim.plugins.extras.dap.nlua" },
+    -- { import = "lazyvim.plugins.extras.dap.core" },
+    -- { import = "lazyvim.plugins.extras.dap.nlua" },
 
     -- import/override with your plugins
     { import = "plugins" },

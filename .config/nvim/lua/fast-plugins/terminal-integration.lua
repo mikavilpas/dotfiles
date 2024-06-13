@@ -1,3 +1,5 @@
+---@module "flatten"
+
 ---@type LazySpec
 return {
   {
@@ -10,12 +12,10 @@ return {
     lazy = false,
     priority = 1001,
     enabled = true,
-    opts = function()
-      return {
-        window = {
-          open = "alternate",
-        },
-      }
-    end,
+    opts = {
+      window = {
+        open = "alternate",
+      },
+    },
   },
 }

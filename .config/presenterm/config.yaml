@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mfontanini/presenterm/master/config-file-schema.json
+defaults:
+  # the theme to use by default in every presentation unless overridden.
+  theme: catppuccin-macchiato-mika
+
+  # the image protocol to use.
+  image_protocol: iterm2

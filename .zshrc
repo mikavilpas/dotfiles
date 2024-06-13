@@ -156,31 +156,29 @@ klm() {
 export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"
 export FZF_CTRL_T_OPTS="--min-height 30 --preview-window right:60% --preview-window noborder --preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'"
 
-fzcd() {
-  local selected_dir
-  selected_dir=$(z -t | awk '{print $2}' | sort --reverse | fzf --height 40% --preview "echo '{}' && ls -a --color=always {}")
-  if [ -n "$selected_dir" ]; then
-    echo "cd '$selected_dir'"
-    cd "$selected_dir"
+eval "$(zoxide init zsh)"export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+export RUSTC_WRAPPER=/opt/homebrew/bin/sccache
+
+function battail() {
+  local file=$1
+  local needle=$2
+  # https://github.com/sharkdp/bat?tab=readme-ov-file#tail--f
+  if [ -z "$needle" ]; then
+    tail -F $file | bat --style="plain" --color=always --paging=never --language log
+  else
+    tail -F $file | rg --line-buffered "$needle" | bat --style="plain" --paging=never --language log
   fi
 }
 
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
-function battail() {
-  # https://github.com/sharkdp/bat?tab=readme-ov-file#tail--f
-  tail -f $1 | bat --style="plain" --paging=never -l log
-}
-
 # j for "jump"
-alias j="fzcd"
+alias j="zi"
 
 function isDarkMode() {
   defaults read -globalDomain AppleInterfaceStyle &> /dev/null
   return $?
 }
 
-# a function to start lazygit using the correct theme
 alias lg="lazygit"
 
 function my_git_grep_history() {

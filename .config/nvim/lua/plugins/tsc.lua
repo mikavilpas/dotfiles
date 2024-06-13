@@ -16,8 +16,4 @@ return {
     -- function should look like this:
     flags = { build = true },
   },
-
-  config = function()
-    require("tsc").setup({})
-  end,
 }
