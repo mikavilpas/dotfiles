@@ -2,6 +2,7 @@ source ~/dotfiles/.wezterm.sh
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/go/bin/:/usr/local/bin:$PATH:$HOME/Library/Android/sdk/platform-tools
+export PATH=$PATH:$HOME/.luarocks/bin:
 
 export LANG=fi_FI.UTF-8
 export LC_ALL=fi_FI.UTF-8
