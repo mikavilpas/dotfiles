@@ -217,6 +217,7 @@ return {
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
   {
     "L3MON4D3/LuaSnip",
+    config = true,
     keys = function()
       return {}
     end,
