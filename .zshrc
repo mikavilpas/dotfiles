@@ -206,6 +206,12 @@ my_git_commit_messages() {
   git log "$start_commit_inclusive^..HEAD"
 }
 
+# Global aliases for automatically highlighting help messages
+# (these don't always work. E.g. `docker-compose --help build` doesn't work)
+# https://github.com/sharkdp/bat?tab=readme-ov-file#highlighting---help-messages
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+
 # tabtab source for packages
 # uninstall by removing these lines
 # [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
