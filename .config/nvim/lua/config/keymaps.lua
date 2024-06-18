@@ -16,7 +16,7 @@ end, { desc = "Goto definition in vsplit" })
 
 vim.keymap.set("n", "<leader>xl", function()
   vim.cmd("luafile %")
-  vim.notify("Reloaded lua file", "info")
+  vim.notify("Reloaded lua file", vim.log.levels.INFO)
 end, { desc = "Reload file" })
 
 vim.keymap.set("n", "<left>", function()
