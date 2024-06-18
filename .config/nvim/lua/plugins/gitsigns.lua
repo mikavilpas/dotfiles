@@ -6,6 +6,6 @@ return {
   ---@type Gitsigns.Config
   ---@diagnostic disable-next-line: missing-fields
   opts = {
-    _signs_staged_enable = true,
+    signs_staged_enable = true,
   },
 }
