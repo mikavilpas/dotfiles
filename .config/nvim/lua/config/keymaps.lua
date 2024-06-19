@@ -51,6 +51,9 @@ vim.keymap.set("n", "<leader>gl", function()
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "n", true)
       end, { buffer = term.bufnr })
     end,
+    on_close = function()
+      vim.cmd("checktime")
+    end,
   })
 
   lazygit:open()
@@ -78,6 +81,9 @@ local function openLazyGit()
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "n", true)
       end, { buffer = term.bufnr })
       vim.cmd("startinsert")
+    end,
+    on_close = function()
+      vim.cmd("checktime")
     end,
   })
 
