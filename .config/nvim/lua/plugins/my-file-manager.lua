@@ -1,6 +1,5 @@
 ---@type LazySpec
 return {
-  ---@type LazyPlugin
   {
     "mikavilpas/yazi.nvim",
     -- dir = "~/git/yazi.nvim/",
