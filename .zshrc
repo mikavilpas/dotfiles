@@ -136,7 +136,9 @@ eval "$(starship init zsh)"
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 alias dc="docker-compose"
-alias w="watchexec"
+function w() {
+  watchexec --timings --project-origin . $@
+}
 
 # A modern, maintained replacement for ls
 # https://github.com/eza-community/eza
