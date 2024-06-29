@@ -54,7 +54,7 @@ format = '[[ $symbol ($version) ](fg:crust bg:mauve)]($style)'
 disabled = false
 time_format = "%R"                                 # Hour:Minute Format
 style = "fg:crust bg:blue"
-format = '[[  $time ](fg:crust bg:blue)]($style)'
+format = '[[ 󱑎 $time ](fg:crust bg:blue)]($style)'
 
 [cmd_duration]
 min_time = 500
