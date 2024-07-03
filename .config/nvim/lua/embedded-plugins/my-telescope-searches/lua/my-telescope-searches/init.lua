@@ -11,7 +11,6 @@ function M.my_copy_relative_path(prompt_bufnr)
   local Path = require("plenary.path")
   local action_state = require("telescope.actions.state")
   local actions = require("telescope.actions")
-  local telescopeUtils = require("telescope.utils")
 
   local selection = action_state.get_selected_entry()
 
