@@ -3,9 +3,6 @@ return {
   {
     "mikavilpas/yazi.nvim",
     -- dir = "~/git/yazi.nvim/",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
     event = "VeryLazy",
     keys = {
       {
