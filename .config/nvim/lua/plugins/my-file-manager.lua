@@ -22,6 +22,7 @@ return {
     },
     ---@type YaziConfig
     opts = {
+      use_ya_for_events_reading = true,
       open_for_directories = true,
       -- log_level = vim.log.levels.DEBUG,
       integrations = {
