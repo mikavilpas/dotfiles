@@ -3,6 +3,7 @@ return {
   {
     "mikavilpas/yazi.nvim",
     -- dir = "~/git/yazi.nvim/",
+    branch = "highlight-hovered-window",
     event = "VeryLazy",
     keys = {
       {
@@ -29,6 +30,9 @@ return {
         grep_in_directory = function(directory)
           require("my-telescope-searches").my_live_grep({ cwd = directory })
         end,
+      },
+      highlight_groups = {
+        hovered_buffer_background = { bg = "#363a4f" },
       },
     },
   },
