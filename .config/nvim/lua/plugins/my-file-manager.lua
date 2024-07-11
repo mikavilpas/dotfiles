@@ -33,10 +33,10 @@ return {
     },
   },
   {
-    "mikavilpas/keyjump.yazi",
+    "redbeardymcgee/yazi-plugins",
     lazy = true,
     build = function(plugin)
-      require("yazi.plugin").build_plugin(plugin)
+      require("yazi.plugin").build_plugin(plugin, { sub_dir = "keyjump.yazi" })
     end,
   },
   {
