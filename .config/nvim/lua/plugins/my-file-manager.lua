@@ -3,7 +3,6 @@ return {
   {
     "mikavilpas/yazi.nvim",
     -- dir = "~/git/yazi.nvim/",
-    branch = "highlight-hovered-window",
     event = "VeryLazy",
     keys = {
       {
