@@ -93,7 +93,7 @@
   "vim-fugitive": { "branch": "master", "commit": "8c8cdf4405cb8bdb70dd9812a33bb52363a87dbc" },
   "vim-indent-object": { "branch": "master", "commit": "8ab36d5ec2a3a60468437a95e142ce994df598c6" },
   "vim-rhubarb": { "branch": "master", "commit": "ee69335de176d9325267b0fd2597a22901d927b1" },
-  "which-key.nvim": { "branch": "main", "commit": "499caae765837b2ecf117ded2a76f82ede2d7d16" },
+  "which-key.nvim": { "branch": "main", "commit": "af4ded85542d40e190014c732fa051bdbf88be3d" },
   "yazi-plugins": { "branch": "main", "commit": "60d393f6b64bb0db1a67dabc21a2aca9228f0fc1" },
   "yazi.nvim": { "branch": "main", "commit": "c706fee2af3073ff241be3bae96fa289dad7e090" },
   "zen-mode.nvim": { "branch": "main", "commit": "fa1db24343a4282280ab8b69340770661184c2e1" }
