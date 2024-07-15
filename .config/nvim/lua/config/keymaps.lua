@@ -49,6 +49,11 @@ vim.keymap.set("n", "<leader>gl", function()
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-k>", true, false, true), "n", true)
       end, { buffer = term.bufnr })
 
+      -- which-key v3 pops up when I press esc by default, causing esc to not work. Work around it.
+      vim.keymap.set({ "t" }, "<esc>", function()
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "n", true)
+      end, { buffer = term.bufnr })
+
       vim.keymap.set({ "t" }, "<C-j>", function()
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "n", true)
       end, { buffer = term.bufnr })
@@ -77,6 +82,11 @@ local function openLazyGit()
       -- https://github.com/LazyVim/LazyVim/blob/91126b9896bebcea9a21bce43be4e613e7607164/lua/lazyvim/config/keymaps.lua#L150
       vim.keymap.set({ "t" }, "<C-k>", function()
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-k>", true, false, true), "n", true)
+      end, { buffer = term.bufnr })
+
+      -- which-key v3 pops up when I press esc by default, causing esc to not work. Work around it.
+      vim.keymap.set({ "t" }, "<esc>", function()
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "n", true)
       end, { buffer = term.bufnr })
 
       vim.keymap.set({ "t" }, "<C-j>", function()
