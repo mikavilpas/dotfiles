@@ -28,6 +28,7 @@
   "iedit.nvim": { "branch": "main", "commit": "d3ca9802aecb982c9b6c0ba6def62b68b5133479" },
   "indent-blankline.nvim": { "branch": "master", "commit": "65e20ab94a26d0e14acac5049b8641336819dfc7" },
   "iswap.nvim": { "branch": "master", "commit": "e02cc91f2a8feb5c5a595767d208c54b6e3258ec" },
+  "keyjump.yazi": { "branch": "main", "commit": "811d0ba2a4df2a8e33a19eaed74b6c612919f5ca" },
   "lazy.nvim": { "branch": "main", "commit": "b02c9eae6a250f98908c146d1dc1a891f5019f0a" },
   "lazydev.nvim": { "branch": "main", "commit": "a33be921553ba478743206161380edacfc25d69b" },
   "lsp_signature.nvim": { "branch": "master", "commit": "a38da0a61c172bb59e34befc12efe48359884793" },
@@ -94,7 +95,6 @@
   "vim-indent-object": { "branch": "master", "commit": "8ab36d5ec2a3a60468437a95e142ce994df598c6" },
   "vim-rhubarb": { "branch": "master", "commit": "ee69335de176d9325267b0fd2597a22901d927b1" },
   "which-key.nvim": { "branch": "main", "commit": "f392212fd372e61171d9f81e4ab1ba28132b00d0" },
-  "yazi-plugins": { "branch": "main", "commit": "60d393f6b64bb0db1a67dabc21a2aca9228f0fc1" },
   "yazi.nvim": { "branch": "main", "commit": "bf72d7699867ea19eecfd3333eb57a3241181371" },
   "zen-mode.nvim": { "branch": "main", "commit": "2694c5a2bc4dc26c7a9e74b9e2b812920c90a830" }
 }

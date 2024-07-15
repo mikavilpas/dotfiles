@@ -35,10 +35,11 @@ return {
     },
   },
   {
-    "redbeardymcgee/yazi-plugins",
+    name = "keyjump.yazi",
+    url = "https://gitee.com/DreamMaoMao/keyjump.yazi.git",
     lazy = true,
     build = function(plugin)
-      require("yazi.plugin").build_plugin(plugin, { sub_dir = "keyjump.yazi" })
+      require("yazi.plugin").build_plugin(plugin)
     end,
   },
   {
