@@ -17,6 +17,7 @@ return {
       "lua",
       "make",
       "markdown",
+      "mermaid",
       "markdown_inline",
       "sql",
       "query",

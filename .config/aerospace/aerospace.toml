@@ -49,11 +49,6 @@ gaps.outer.bottom = 0
 gaps.outer.top = 0
 gaps.outer.right = 0
 
-# Visual indent makes it easier to understand that containers of the same orientation are nested.
-# If you have 'enable-normalization-opposite-orientation-for-nested-containers' enabled then
-# there is no way to observe the indent
-indent-for-nested-containers-with-the-same-orientation = 30
-
 [workspace-to-monitor-force-assignment]
 # Can find these out using `aerospace list-monitors`
 1 = 'DELL U3421WE'

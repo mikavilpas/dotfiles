@@ -1,12 +1,10 @@
+---@module "yazi"
+
 ---@type LazySpec
 return {
-  ---@type LazyPlugin
   {
     "mikavilpas/yazi.nvim",
     -- dir = "~/git/yazi.nvim/",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
     event = "VeryLazy",
     keys = {
       {
@@ -26,6 +24,7 @@ return {
     },
     ---@type YaziConfig
     opts = {
+      use_ya_for_events_reading = true,
       open_for_directories = true,
       -- log_level = vim.log.levels.DEBUG,
       integrations = {
@@ -36,10 +35,10 @@ return {
     },
   },
   {
-    "DreamMaoMao/keyjump.yazi",
+    "redbeardymcgee/yazi-plugins",
     lazy = true,
     build = function(plugin)
-      require("yazi.plugin").build_plugin(plugin)
+      require("yazi.plugin").build_plugin(plugin, { sub_dir = "keyjump.yazi" })
     end,
   },
   {

@@ -3,6 +3,8 @@
 -- Add any additional keymaps here
 --
 
+vim.keymap.set({ "t" }, "<esc><esc>", "<Nop>")
+
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt.formatoptions:remove({ "c", "r", "o" })
@@ -16,7 +18,7 @@ end, { desc = "Goto definition in vsplit" })
 
 vim.keymap.set("n", "<leader>xl", function()
   vim.cmd("luafile %")
-  vim.notify("Reloaded lua file", "info")
+  vim.notify("Reloaded lua file", vim.log.levels.INFO)
 end, { desc = "Reload file" })
 
 vim.keymap.set("n", "<left>", function()
@@ -47,9 +49,17 @@ vim.keymap.set("n", "<leader>gl", function()
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-k>", true, false, true), "n", true)
       end, { buffer = term.bufnr })
 
+      -- which-key v3 pops up when I press esc by default, causing esc to not work. Work around it.
+      vim.keymap.set({ "t" }, "<esc>", function()
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "n", true)
+      end, { buffer = term.bufnr })
+
       vim.keymap.set({ "t" }, "<C-j>", function()
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "n", true)
       end, { buffer = term.bufnr })
+    end,
+    on_close = function()
+      vim.cmd("checktime")
     end,
   })
 
@@ -74,10 +84,18 @@ local function openLazyGit()
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-k>", true, false, true), "n", true)
       end, { buffer = term.bufnr })
 
+      -- which-key v3 pops up when I press esc by default, causing esc to not work. Work around it.
+      vim.keymap.set({ "t" }, "<esc>", function()
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "n", true)
+      end, { buffer = term.bufnr })
+
       vim.keymap.set({ "t" }, "<C-j>", function()
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "n", true)
       end, { buffer = term.bufnr })
       vim.cmd("startinsert")
+    end,
+    on_close = function()
+      vim.cmd("checktime")
     end,
   })
 

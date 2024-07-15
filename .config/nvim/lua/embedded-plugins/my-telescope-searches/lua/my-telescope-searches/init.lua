@@ -11,7 +11,6 @@ function M.my_copy_relative_path(prompt_bufnr)
   local Path = require("plenary.path")
   local action_state = require("telescope.actions.state")
   local actions = require("telescope.actions")
-  local telescopeUtils = require("telescope.utils")
 
   local selection = action_state.get_selected_entry()
 
@@ -21,6 +20,19 @@ function M.my_copy_relative_path(prompt_bufnr)
 
   local selected_file = Path:new(selection.cwd, selection.value):__tostring()
 
+  local relative_path = M.relative_path_to_file(current_file_dir, selected_file)
+  vim.fn.setreg("*", relative_path)
+  -- display a message with the relative path
+  vim.api.nvim_echo({ { "Copied: ", "Normal" }, { relative_path, "String" } }, true, {})
+
+  actions.close(prompt_bufnr)
+end
+
+---@param current_file_dir string
+---@param selected_file string
+---@return string
+function M.relative_path_to_file(current_file_dir, selected_file)
+  local telescopeUtils = require("telescope.utils")
   local stdout, ret, stderr =
     telescopeUtils.get_os_command_output({ "grealpath", "--relative-to", current_file_dir, selected_file })
 
@@ -30,11 +42,8 @@ function M.my_copy_relative_path(prompt_bufnr)
   end
 
   local relative_path = stdout[1]
-  vim.fn.setreg("*", relative_path)
-  -- display a message with the relative path
-  vim.api.nvim_echo({ { "Copied: ", "Normal" }, { relative_path, "String" } }, true, {})
 
-  actions.close(prompt_bufnr)
+  return relative_path
 end
 
 ---@return string?

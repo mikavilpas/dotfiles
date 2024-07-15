@@ -2,6 +2,7 @@ source ~/dotfiles/.wezterm.sh
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/go/bin/:/usr/local/bin:$PATH:$HOME/Library/Android/sdk/platform-tools
+export PATH=$PATH:$HOME/.luarocks/bin:
 
 export LANG=fi_FI.UTF-8
 export LC_ALL=fi_FI.UTF-8
@@ -134,8 +135,10 @@ eval "$(starship init zsh)"
 
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-alias dc="docker-compose"
-alias w="watchexec"
+alias dc="docker compose"
+function w() {
+  watchexec --timings --project-origin . $@
+}
 
 # A modern, maintained replacement for ls
 # https://github.com/eza-community/eza
@@ -204,6 +207,12 @@ my_git_commit_messages() {
   local start_commit_inclusive=$1
   git log "$start_commit_inclusive^..HEAD"
 }
+
+# Global aliases for automatically highlighting help messages
+# (these don't always work. E.g. `docker-compose --help build` doesn't work)
+# https://github.com/sharkdp/bat?tab=readme-ov-file#highlighting---help-messages
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
 # tabtab source for packages
 # uninstall by removing these lines
