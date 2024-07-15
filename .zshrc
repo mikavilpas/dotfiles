@@ -221,3 +221,4 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 # Cool syntax highlighting for zsh, almost like the fish shell
 # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+eval "$(atuin init zsh)"
