@@ -69,7 +69,7 @@
   "replacer.nvim": { "branch": "master", "commit": "32e1713230844fa52f7f0598c59295de3c90dc95" },
   "rustaceanvim": { "branch": "master", "commit": "047f9c9d8cd2861745eb9de6c1570ee0875aa795" },
   "sqlite.lua": { "branch": "master", "commit": "d0ffd703b56d090d213b497ed4eb840495f14a11" },
-  "starship.yazi": { "branch": "main", "commit": "0a141f6dd80a4f9f53af8d52a5802c69f5b4b618" },
+  "starship.yazi": { "branch": "main", "commit": "6197e4cca4caed0121654079151632f6abcdcae9" },
   "tailwindcss-colorizer-cmp.nvim": { "branch": "main", "commit": "3d3cd95e4a4135c250faf83dd5ed61b8e5502b86" },
   "telescope-all-recent.nvim": { "branch": "main", "commit": "267e9e5fd13a6e9a4cc6ffe00452d446d040401d" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "cf48d4dfce44e0b9a2e19a008d6ec6ea6f01a83b" },
