@@ -96,5 +96,6 @@
   "vim-rhubarb": { "branch": "master", "commit": "ee69335de176d9325267b0fd2597a22901d927b1" },
   "which-key.nvim": { "branch": "main", "commit": "f29387d82055b091564b33a805fec8f1b52b39f9" },
   "yazi.nvim": { "branch": "main", "commit": "97effcc21a9c50be2920492b05295b7bd288ab84" },
+  "yaziline.yazi": { "branch": "master", "commit": "2da9b34a2e9fa2482bf665518849a66a3f7aeb89" },
   "zen-mode.nvim": { "branch": "main", "commit": "a31cf7113db34646ca320f8c2df22cf1fbfc6f2a" }
 }

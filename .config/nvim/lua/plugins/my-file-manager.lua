@@ -57,6 +57,15 @@ return {
     end,
   },
   {
+    -- Simple lualine-like status line for yazi.
+    -- https://github.com/llanosrocas/yaziline.yazi
+    "llanosrocas/yaziline.yazi",
+    lazy = true,
+    build = function(plugin)
+      require("yazi.plugin").build_plugin(plugin)
+    end,
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       filesystem = {
