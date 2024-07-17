@@ -44,6 +44,13 @@ return {
     -- 🦀 Source code spell checker
     check("typos")
 
+    -- 🦀 Atuin replaces your existing shell history with a SQLite database,
+    -- and records additional context for your commands. Additionally, it
+    -- provides optional and fully encrypted synchronisation of your history
+    -- between machines, via an Atuin server.
+    -- https://github.com/atuinsh/atuin
+    check("atuin")
+
     -- 🦀 Sccache is a ccache-like tool. It is used as a compiler wrapper and
     -- avoids compilation when possible. Sccache has the capability to utilize
     -- caching in remote storage environments, including various cloud storage
