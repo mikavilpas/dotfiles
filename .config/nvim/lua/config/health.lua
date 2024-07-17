@@ -51,6 +51,10 @@ return {
     -- https://github.com/atuinsh/atuin
     check("atuin")
 
+    -- 🦀 Yet another cross-platform graphical process/system monitor.
+    -- https://github.com/ClementTsang/bottom
+    check("btm")
+
     -- 🦀 Sccache is a ccache-like tool. It is used as a compiler wrapper and
     -- avoids compilation when possible. Sccache has the capability to utilize
     -- caching in remote storage environments, including various cloud storage

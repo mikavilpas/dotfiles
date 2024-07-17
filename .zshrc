@@ -214,6 +214,8 @@ my_git_commit_messages() {
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
+alias top="btm"
+
 # tabtab source for packages
 # uninstall by removing these lines
 # [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
