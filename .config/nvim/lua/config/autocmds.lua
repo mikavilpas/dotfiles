@@ -1,3 +1,5 @@
+---@module "plenary.path"
+
 -- Autocmds are automatically loaded on the VeryLazy event
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
@@ -6,26 +8,31 @@
 vim.api.nvim_create_autocmd("BufDelete", {
   callback = function()
     local file_name = vim.fn.expand("<afile>")
+
     if file_name:match("COMMIT_EDITMSG") then
       -- write to a backup file because sometimes lazygit fails to create a new
       -- commit, and the message can be lost
-      local file = io.open(file_name, "r")
-      if file == nil then
-        vim.notify("Unable to open file: " .. file_name, vim.log.levels.ERROR)
+      local plenary_path = require("plenary.path")
+      ---@type Path
+      local file = plenary_path:new(file_name)
+
+      if not file:exists() then
+        -- should not happen
+        vim.notify(string.format("File does not exist: %s", file_name), vim.log.levels.ERROR)
         return
       end
 
-      local contents = file:read("*all")
-      local backup_file = io.open("COMMIT_EDITMSG.backup", "w+")
-      if backup_file == nil then
-        print("Could not open file for writing")
+      local contents = file:readlines()
+      file:close()
+
+      local backup_file_path = vim.fs.joinpath(vim.fs.dirname(file_name), "COMMIT_EDITMSG.backup")
+      local backup_file = io.open(backup_file_path, "w+")
+      if not backup_file then
+        vim.notify(string.format("Failed to open file: %s", backup_file_path), vim.log.levels.ERROR)
         return
       end
-      local _, err = backup_file:write(contents)
-      if err then
-        vim.notify(string.format("Error writing to backup file: %s", err), vim.log.levels.ERROR)
-      end
-      file:close()
+      backup_file:write(table.concat(contents, "\n"))
+      backup_file:close()
 
       require("lazygit").LazyGit_G.openLazyGit()
 
