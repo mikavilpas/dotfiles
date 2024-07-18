@@ -34,8 +34,6 @@ vim.api.nvim_create_autocmd("BufDelete", {
       backup_file:write(table.concat(contents, "\n"))
       backup_file:close()
 
-      require("lazygit").LazyGit_G.openLazyGit()
-
       _G.openLazyGit()
     end
   end,
