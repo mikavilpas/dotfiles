@@ -95,6 +95,7 @@
   "vim-indent-object": { "branch": "master", "commit": "8ab36d5ec2a3a60468437a95e142ce994df598c6" },
   "vim-rhubarb": { "branch": "master", "commit": "ee69335de176d9325267b0fd2597a22901d927b1" },
   "which-key.nvim": { "branch": "main", "commit": "c74c245d9277ad6865b28ea7e37158b7f990b7fe" },
+  "yazi.nvim": { "branch": "main", "commit": "2c2d1a93c57bd76cde8c9fa752ee8f13867f2070" },
   "yaziline.yazi": { "branch": "master", "commit": "b22e2e8962c6fc8a27f8510a29a186b764577c1a" },
   "zen-mode.nvim": { "branch": "main", "commit": "a31cf7113db34646ca320f8c2df22cf1fbfc6f2a" }
 }
