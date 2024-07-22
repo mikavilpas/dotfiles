@@ -21,6 +21,13 @@ return {
         end,
         desc = "Open the file manager in the cwd",
       },
+      {
+        "<c-up>",
+        function()
+          require("yazi").toggle()
+        end,
+        desc = "Open the file manager with the last hovered file",
+      },
     },
     ---@type YaziConfig
     opts = {
