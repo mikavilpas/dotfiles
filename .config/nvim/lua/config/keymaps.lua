@@ -4,6 +4,7 @@
 --
 
 vim.keymap.set({ "t" }, "<esc><esc>", "<Nop>")
+vim.keymap.set({ "n" }, "<leader>w", "<Nop>")
 
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
