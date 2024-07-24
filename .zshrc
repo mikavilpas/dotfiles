@@ -96,7 +96,7 @@ zstyle ':omz:plugins:nvm' lazy yes
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z
 # https://github.com/agkozak/zsh-z
-plugins=(git httpie npm z fd nvm)
+plugins=(git httpie npm z nvm)
 
 # User configuration
 
