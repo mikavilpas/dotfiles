@@ -4,7 +4,5 @@
 return {
   "folke/which-key.nvim",
   ---@type wk.Opts
-  opts = {
-    delay = 0,
-  },
+  opts = {},
 }
