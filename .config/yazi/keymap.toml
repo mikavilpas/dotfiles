@@ -4,8 +4,8 @@
 
 [[manager.prepend_keymap]]
 on = ["i"]
-run = "plugin keyjump"
-desc = "Keyjump (Normal mode)"
+run = "plugin easyjump"
+desc = "easyjump"
 
 [[manager.prepend_keymap]]
 on = ["<Right>"]
