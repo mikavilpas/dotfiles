@@ -13,7 +13,7 @@
   "cmp-rg": { "branch": "master", "commit": "677a7874ee8f1afc648c2e7d63a97bc21a7663c5" },
   "conform.nvim": { "branch": "master", "commit": "25d48271e3d4404ba017cb92a37d3a681c1ad149" },
   "copilot.lua": { "branch": "master", "commit": "86537b286f18783f8b67bccd78a4ef4345679625" },
-  "crates.nvim": { "branch": "main", "commit": "29435f7b99706984b8325cbc6eaff22426a80bbb" },
+  "crates.nvim": { "branch": "main", "commit": "d1be10c1fcf4adb1eed2f2f510176db035efc68d" },
   "dashboard-nvim": { "branch": "master", "commit": "fabf5feec96185817c732d47d363f34034212685" },
   "dressing.nvim": { "branch": "master", "commit": "6741f1062d3dc6e4755367a7e9b347b553623f04" },
   "easyjump.yazi": { "branch": "master", "commit": "8018a71d0b878ee56b5598ae10da57b37e3c7583" },
@@ -38,7 +38,7 @@
   "mason-lspconfig.nvim": { "branch": "main", "commit": "ba9c2f0b93deb48d0a99ae0e8d8dd36f7cc286d6" },
   "mason.nvim": { "branch": "main", "commit": "e2f7f9044ec30067bc11800a9e266664b88cda22" },
   "mini.ai": { "branch": "main", "commit": "45587078f323eaf41b9f701bbc04f8d1ab008979" },
-  "mini.icons": { "branch": "main", "commit": "842e51b660c6843662e07506c06812b4ae0e2adb" },
+  "mini.icons": { "branch": "main", "commit": "8d35c9fbcce7f4c2f0404f694441f5782a407496" },
   "mini.indentscope": { "branch": "main", "commit": "1222393d9c5e8d92b913ccab6701a7164b21781c" },
   "mini.pairs": { "branch": "main", "commit": "927d19cbdd0e752ab1c7eed87072e71d2cd6ff51" },
   "move.nvim": { "branch": "main", "commit": "cccbd4ea9049ca5f99f025ffaddb7392359c7d6a" },
@@ -94,6 +94,7 @@
   "vim-indent-object": { "branch": "master", "commit": "8ab36d5ec2a3a60468437a95e142ce994df598c6" },
   "vim-rhubarb": { "branch": "master", "commit": "ee69335de176d9325267b0fd2597a22901d927b1" },
   "which-key.nvim": { "branch": "main", "commit": "6c1584eb76b55629702716995cca4ae2798a9cca" },
-  "yaziline.yazi": { "branch": "master", "commit": "b22e2e8962c6fc8a27f8510a29a186b764577c1a" },
+  "yazi.nvim": { "branch": "main", "commit": "f675258e2a890f49a16bc045d7b7743154a22278" },
+  "yaziline.yazi": { "branch": "master", "commit": "5886330df6fdb5f7f8658276dccce9a585e83404" },
   "zen-mode.nvim": { "branch": "main", "commit": "29b292bdc58b76a6c8f294c961a8bf92c5a6ebd6" }
 }
