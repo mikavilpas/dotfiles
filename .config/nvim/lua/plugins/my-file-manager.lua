@@ -58,6 +58,16 @@ return {
     end,
   },
   {
+    "yazi-rs/flavors",
+    name = "yazi-flavor-catppuccino-macchiato",
+    lazy = true,
+    build = function(spec)
+      require("yazi.plugin").build_flavor(spec, {
+        sub_dir = "catppuccin-macchiato.yazi",
+      })
+    end,
+  },
+  {
     "ndtoan96/ouch.yazi",
     lazy = true,
     build = function(plugin)
