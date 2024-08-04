@@ -23,6 +23,7 @@ if os.getenv("NVIM") == nil then
     { import = "lazyvim.plugins.extras.lang.toml" },
     { import = "lazyvim.plugins.extras.lang.tailwind" },
     { import = "lazyvim.plugins.extras.lang.git" },
+    { import = "lazyvim.plugins.extras.lang.typescript" },
 
     { import = "lazyvim.plugins.extras.lsp.neoconf" },
 
