@@ -1,5 +1,35 @@
 ---@type LazySpec
 return {
+  "nvim-lua/plenary.nvim",
+  "neovim/nvim-lspconfig",
+
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      -- position notifications at the bottom, rather than at the top
+      -- https://github.com/folke/noice.nvim/discussions/469#discussioncomment-9570150
+      top_down = false,
+    },
+  },
+
+  {
+    -- Neovim plugin to automatic change normal string to template string
+    -- in JS like languages
+    -- https://github.com/axelvc/template-string.nvim
+    "axelvc/template-string.nvim",
+    ft = {
+      "html",
+      "typescript",
+      "javascript",
+      "typescriptreact",
+      "javascriptreact",
+      "vue",
+      "svelte",
+      "python",
+    },
+    config = true,
+  },
+
   {
     "pmizio/typescript-tools.nvim",
     ft = {
@@ -9,9 +39,6 @@ return {
       "javascriptreact",
     },
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "neovim/nvim-lspconfig",
-
       {
         "marilari88/twoslash-queries.nvim",
         event = "LspAttach",
@@ -23,22 +50,6 @@ return {
           multi_line = true, -- to print types in multi line mode
           is_enabled = true, -- to keep disabled at startup and enable it on request with the TwoslashQueriesEnable
           highlight = "@comment.note", -- to set up a highlight group for the virtual text
-        },
-      },
-      {
-        -- Neovim plugin to automatic change normal string to template string
-        -- in JS like languages
-        -- https://github.com/axelvc/template-string.nvim
-        "axelvc/template-string.nvim",
-        config = true,
-      },
-
-      {
-        "rcarriga/nvim-notify",
-        opts = {
-          -- position notifications at the bottom, rather than at the top
-          -- https://github.com/folke/noice.nvim/discussions/469#discussioncomment-9570150
-          top_down = false,
         },
       },
     },
