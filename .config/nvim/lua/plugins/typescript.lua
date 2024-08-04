@@ -31,29 +31,47 @@ return {
   },
 
   {
-    "marilari88/twoslash-queries.nvim",
-    event = "LspAttach",
+    "pmizio/typescript-tools.nvim",
     ft = {
       "typescript",
       "javascript",
       "typescriptreact",
       "javascriptreact",
     },
-    -- Usage:
-    -- Write a '//    ^?' placing the sign '^' under the variable to inspected
-    opts = {
-      -- https://github.com/marilari88/twoslash-queries.nvim?tab=readme-ov-file#config
-      multi_line = true,
-      is_enabled = true,
-      highlight = "@comment.note",
-    },
-    config = function(_, opts)
-      local tsq = require("twoslash-queries")
-      tsq.setup(opts)
+    dependencies = {
+      {
+        "marilari88/twoslash-queries.nvim",
+        event = "LspAttach",
+        -- Usage
+        -- Write a '//    ^?' placing the sign '^' under the variable to inspected
+        opts = {
 
-      require("lazyvim.util.lsp").on_attach(function(client, buffer)
-        tsq.attach(client, buffer)
-      end, "vtsls")
-    end,
+          -- https://github.com/marilari88/twoslash-queries.nvim?tab=readme-ov-file#config
+          multi_line = true, -- to print types in multi line mode
+          is_enabled = true, -- to keep disabled at startup and enable it on request with the TwoslashQueriesEnable
+          highlight = "@comment.note", -- to set up a highlight group for the virtual text
+        },
+      },
+    },
+
+    opts = {
+      on_attach = function(client, bufnr)
+        require("twoslash-queries").attach(client, bufnr)
+      end,
+
+      settings = {
+        expose_as_code_action = "all",
+
+        tsserver_file_preferences = {
+          includeInlayParameterNameHints = "all",
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
+      },
+    },
   },
 }
