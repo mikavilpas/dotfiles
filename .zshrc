@@ -96,7 +96,7 @@ zstyle ':omz:plugins:nvm' lazy yes
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z
 # https://github.com/agkozak/zsh-z
-plugins=(git httpie npm z fd nvm)
+plugins=(git httpie npm z nvm)
 
 # User configuration
 
@@ -213,6 +213,8 @@ my_git_commit_messages() {
 # https://github.com/sharkdp/bat?tab=readme-ov-file#highlighting---help-messages
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+
+alias top="btm"
 
 # tabtab source for packages
 # uninstall by removing these lines

@@ -4,6 +4,9 @@
 --
 
 vim.keymap.set({ "t" }, "<esc><esc>", "<Nop>")
+vim.keymap.set({ "n" }, "<leader>w", "<Nop>")
+
+vim.keymap.set({ "v" }, "s", "<Plug>(nvim-surround-visual)")
 
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()

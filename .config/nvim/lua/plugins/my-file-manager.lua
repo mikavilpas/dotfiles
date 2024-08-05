@@ -21,10 +21,18 @@ return {
         end,
         desc = "Open the file manager in the cwd",
       },
+      {
+        "<c-up>",
+        function()
+          require("yazi").toggle()
+        end,
+        desc = "Open the file manager with the last hovered file",
+      },
     },
     ---@type YaziConfig
     opts = {
       use_ya_for_events_reading = true,
+      use_yazi_client_id_flag = true,
       open_for_directories = true,
       -- log_level = vim.log.levels.DEBUG,
       integrations = {
@@ -35,8 +43,8 @@ return {
     },
   },
   {
-    name = "keyjump.yazi",
-    url = "https://gitee.com/DreamMaoMao/keyjump.yazi.git",
+    name = "easyjump.yazi",
+    url = "https://gitee.com/DreamMaoMao/easyjump.yazi.git",
     lazy = true,
     build = function(plugin)
       require("yazi.plugin").build_plugin(plugin)
@@ -47,6 +55,16 @@ return {
     lazy = true,
     build = function(plugin)
       require("yazi.plugin").build_plugin(plugin)
+    end,
+  },
+  {
+    "yazi-rs/flavors",
+    name = "yazi-flavor-catppuccino-macchiato",
+    lazy = true,
+    build = function(spec)
+      require("yazi.plugin").build_flavor(spec, {
+        sub_dir = "catppuccin-macchiato.yazi",
+      })
     end,
   },
   {
