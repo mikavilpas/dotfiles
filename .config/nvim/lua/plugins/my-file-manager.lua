@@ -67,6 +67,7 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
+    lazy = true,
     opts = {
       filesystem = {
         hijack_netrw_behavior = "disabled",
