@@ -34,7 +34,13 @@ return {
       integrations = {
         hop = true,
         mason = true,
+        grug_far = true,
+        cmp = true,
+        noice = true,
+        gitsigns = true,
+        treesitter_context = true,
       },
+      default_integrations = true,
 
       highlight_overrides = {
         macchiato = function(colors)
