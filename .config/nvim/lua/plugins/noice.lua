@@ -33,12 +33,6 @@ return {
       { filter = { find = "indent" }, opts = { skip = true } },
       { filter = { find = "move" }, opts = { skip = true } },
       { filter = { find = "move" }, opts = { skip = true } },
-      {
-        filter = {
-          find = "eslint: -32603: %w+?: Could not find config file.",
-        },
-        opts = { skip = true },
-      },
 
       -- Disable "file_path" AMOUNT_OF_LINESL, AMOUNT_OF_BYTESB message
       -- https://github.com/KoalaVim/KoalaVim/blob/e4649e74a1838e6a4a1a55a72e58280064bb909c/lua/KoalaVim/misc/noice_routes.lua#L6
