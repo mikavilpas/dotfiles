@@ -35,7 +35,7 @@ return {
       { filter = { find = "move" }, opts = { skip = true } },
       {
         filter = {
-          find = "eslint: -32603: Request textDocument/diagnostic failed with message: Could not find config file.",
+          find = "eslint: -32603: %w+?: Could not find config file.",
         },
         opts = { skip = true },
       },
