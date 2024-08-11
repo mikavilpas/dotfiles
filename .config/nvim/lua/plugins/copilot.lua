@@ -26,6 +26,10 @@ return {
 
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, true, true), "n", true)
       end)
+
+      vim.keymap.set("i", "<S-right>", function()
+        require("copilot.suggestion").accept()
+      end)
     end,
   },
 }
