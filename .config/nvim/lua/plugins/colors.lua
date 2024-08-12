@@ -44,6 +44,7 @@ return {
 
       highlight_overrides = {
         macchiato = function(colors)
+          -- https://catppuccin.com/palette
           -- macchiato colors:
           -- rosewater = "#f4dbd6",
           -- flamingo = "#f0c6c6",
@@ -81,7 +82,7 @@ return {
             -- HopNextKey1 = { bg = colors.none, fg = colors.blue, style = { "bold" } },
             -- HopNextKey2 = { bg = colors.none, fg = colors.teal, style = { "bold", "italic" } },
             HopNextKey1 = { bg = colors.none, fg = colors.teal, style = { "bold" } },
-            HopNextKey2 = { bg = colors.none, fg = colors.blue, style = { "bold", "italic" } },
+            HopNextKey2 = { bg = colors.none, fg = colors.subtext1, style = { "bold", "italic" } },
           }
         end,
       },
