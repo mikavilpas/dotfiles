@@ -6,19 +6,19 @@
 vim.keymap.set({ "t" }, "<esc><esc>", "<Nop>")
 vim.keymap.set({ "n" }, "<leader>w", "<Nop>")
 
--- Reopen the current buffer/file to fix LSP warnings being out of sync. For
--- some reason this seems to fix it.
 vim.keymap.set({ "n" }, "<leader>br", function()
-  local current_file = vim.fn.expand("%")
-  local current_line = vim.fn.line(".")
-  local current_column = vim.fn.col(".")
-  local current_buffer = vim.api.nvim_get_current_buf()
-
+  -- Reopen the current buffer/file to fix LSP warnings being out of sync. For
+  -- some reason this seems to fix it.
+  local state = {
+    file = vim.fn.expand("%"),
+    buffer = vim.api.nvim_get_current_buf(),
+    scroll = vim.fn.winsaveview(),
+  }
   -- save changes and reopen the file
-  require("lazyvim.util.ui").bufremove(current_buffer)
+  require("lazyvim.util.ui").bufremove(state.buffer)
 
-  vim.cmd("edit " .. current_file)
-  vim.cmd("normal! " .. current_line .. "G" .. current_column .. "|")
+  vim.cmd("edit " .. state.file)
+  vim.fn.winrestview(state.scroll)
 end, { desc = "Reopen buffer" })
 
 vim.keymap.set({ "v" }, "s", "<Plug>(nvim-surround-visual)")
