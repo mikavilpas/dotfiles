@@ -7,32 +7,15 @@ return {
     -- dir = "~/git/yazi.nvim/",
     event = "VeryLazy",
     keys = {
-      {
-        "<up>",
-        function()
-          require("yazi").yazi()
-        end,
-        desc = "Open the file manager",
-      },
-      {
-        "<s-up>",
-        function()
-          require("yazi").yazi(nil, vim.fn.getcwd())
-        end,
-        desc = "Open the file manager in the cwd",
-      },
-      {
-        "<c-up>",
-        function()
-          require("yazi").toggle()
-        end,
-        desc = "Open the file manager with the last hovered file",
-      },
+      { "<up>", "<cmd>Yazi<cr>", desc = "Open yazi" },
+      { "<s-up>", "<cmd>Yazi cwd<cr>", desc = "Open yazi in cwd" },
+      { "<c-up>", "<cmd>Yazi toggle<cr>", desc = "Open yazi with the last hovered file" },
     },
     ---@type YaziConfig
     opts = {
       use_ya_for_events_reading = true,
       use_yazi_client_id_flag = true,
+      open_multiple_tabs = true,
       open_for_directories = true,
       -- log_level = vim.log.levels.DEBUG,
       integrations = {
@@ -85,6 +68,7 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
+    lazy = true,
     opts = {
       filesystem = {
         hijack_netrw_behavior = "disabled",

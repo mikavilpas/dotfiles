@@ -34,10 +34,17 @@ return {
       integrations = {
         hop = true,
         mason = true,
+        grug_far = true,
+        cmp = true,
+        noice = true,
+        gitsigns = true,
+        treesitter_context = true,
       },
+      default_integrations = true,
 
       highlight_overrides = {
         macchiato = function(colors)
+          -- https://catppuccin.com/palette
           -- macchiato colors:
           -- rosewater = "#f4dbd6",
           -- flamingo = "#f0c6c6",
@@ -67,6 +74,15 @@ return {
           -- crust = "#181926",
           return {
             HopNextKey = { fg = colors.peach, bg = colors.none, style = { "bold" } },
+            -- Swap these two for the default macchiato colors
+            --
+            -- Justification: the brighter color grabs the attention as the
+            -- "priority", and should come first
+            --
+            -- HopNextKey1 = { bg = colors.none, fg = colors.blue, style = { "bold" } },
+            -- HopNextKey2 = { bg = colors.none, fg = colors.teal, style = { "bold", "italic" } },
+            HopNextKey1 = { bg = colors.none, fg = colors.teal, style = { "bold" } },
+            HopNextKey2 = { bg = colors.none, fg = colors.subtext1, style = { "bold", "italic" } },
           }
         end,
       },
