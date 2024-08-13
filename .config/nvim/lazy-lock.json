@@ -95,6 +95,7 @@
   "vim-rhubarb": { "branch": "master", "commit": "ee69335de176d9325267b0fd2597a22901d927b1" },
   "which-key.nvim": { "branch": "main", "commit": "6c1584eb76b55629702716995cca4ae2798a9cca" },
   "yazi-flavor-catppuccino-macchiato": { "branch": "main", "commit": "a97684c8f7e5efe6d9306f064f6408c9d0979b62" },
+  "yazi.nvim": { "branch": "main", "commit": "065685bf0e3acd2393f42f788f46e12c4b9732f5" },
   "yaziline.yazi": { "branch": "master", "commit": "5886330df6fdb5f7f8658276dccce9a585e83404" },
   "zen-mode.nvim": { "branch": "main", "commit": "29b292bdc58b76a6c8f294c961a8bf92c5a6ebd6" }
 }
