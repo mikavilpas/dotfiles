@@ -41,18 +41,25 @@ return {
     dependencies = {
       {
         "marilari88/twoslash-queries.nvim",
+        -- Usage
+        -- Write a '//    ^?' placing the sign '^' under the variable to inspected
         event = "LspAttach",
         keys = {
           { "<leader>at", "<cmd>TwoslashQueriesInspect<cr>", desc = "Show typescript type" },
         },
-        -- Usage
-        -- Write a '//    ^?' placing the sign '^' under the variable to inspected
-        opts = {
-          -- https://github.com/marilari88/twoslash-queries.nvim?tab=readme-ov-file#config
-          multi_line = true,
-          is_enabled = true,
-          highlight = "@comment.note", -- to set up a highlight group for the virtual text
-        },
+        config = function(_, opts)
+          local palette = require("catppuccin.palettes.macchiato")
+          local darken = require("catppuccin.utils.colors").darken
+          vim.api.nvim_set_hl(0, "MikaTwoslashQueries", {
+            fg = palette.base,
+            bg = darken(palette.blue, 0.8),
+          })
+          opts.multi_line = true
+          opts.highlight = "MikaTwoslashQueries"
+          opts.is_enabled = true
+
+          require("twoslash-queries").setup(opts)
+        end,
       },
     },
 
