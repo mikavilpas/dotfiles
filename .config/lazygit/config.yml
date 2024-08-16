@@ -42,7 +42,9 @@ os:
 
   # Create pull request command opens a URL with incorrect escaping #3064
   # https://github.com/jesseduffield/lazygit/issues/3064
-  openLink: open -n "$(echo {{link}} | sed 's/%3E/>/g' | sed 's/%2F/\//g' )"
+  openLink:
+    open -n "$(echo {{link}} | sed 's/%3E/>/g' | sed 's/%2F/\//g' | sed
+    s/%27/\'/g )"
 
 promptToReturnFromSubprocess: false
 
