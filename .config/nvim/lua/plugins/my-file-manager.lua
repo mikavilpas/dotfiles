@@ -42,7 +42,7 @@ return {
   },
   {
     "yazi-rs/flavors",
-    name = "yazi-flavor-catppuccino-macchiato",
+    name = "yazi-flavor-catppuccin-macchiato",
     lazy = true,
     build = function(spec)
       require("yazi.plugin").build_flavor(spec, {
