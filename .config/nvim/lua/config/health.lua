@@ -63,7 +63,7 @@ return {
     -- https://github.com/mozilla/sccache
     check("sccache")
 
-    -- fnm (🚀 Fast and simple Node.js version manager, built in Rust)
+    -- 🦀 fnm (🚀 Fast and simple Node.js version manager, built in Rust)
     -- https://github.com/Schniz/fnm
     check("fnm")
 
