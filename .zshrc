@@ -91,12 +91,10 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-# https://dev.to/thraizz/fix-slow-zsh-startup-due-to-nvm-408k
-zstyle ':omz:plugins:nvm' lazy yes
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z
 # https://github.com/agkozak/zsh-z
-plugins=(git httpie npm z nvm)
+plugins=(git httpie npm z)
 
 # User configuration
 
@@ -224,3 +222,8 @@ alias top="btm"
 # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(atuin init zsh)"
+
+# fnm (🚀 Fast and simple Node.js version manager, built in Rust)
+# https://github.com/Schniz/fnm
+eval "`fnm env --use-on-cd`"
+alias nvm="fnm"
