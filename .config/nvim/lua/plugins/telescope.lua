@@ -40,7 +40,8 @@ return {
       "natecraddock/telescope-zf-native.nvim",
     },
     keys = {
-      -- { "<leader><leader>", false },
+      -- prevent conflicts with hop
+      { "<leader><leader>", false },
       {
         "<down>",
         mode = { "n", "v" },
