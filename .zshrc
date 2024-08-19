@@ -225,5 +225,5 @@ eval "$(atuin init zsh)"
 
 # fnm (🚀 Fast and simple Node.js version manager, built in Rust)
 # https://github.com/Schniz/fnm
-eval "`fnm env --use-on-cd`"
+eval "`fnm env --use-on-cd --version-file-strategy=recursive`"
 alias nvm="fnm"
