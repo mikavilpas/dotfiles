@@ -40,18 +40,20 @@ return {
       "natecraddock/telescope-zf-native.nvim",
     },
     keys = {
-      { "<leader><leader>", false },
+      -- { "<leader><leader>", false },
       {
         "<down>",
         mode = { "n", "v" },
-        require("my-telescope-searches").my_find_file_in_project,
+        function()
+          require("my-nvim-micro-plugins.main").my_find_file_in_project()
+        end,
         { desc = "Find files (including in git submodules)" },
       },
       {
         "<leader>/",
         mode = { "n", "v" },
-        function()
-          require("my-telescope-searches").my_live_grep()
+        function(...)
+          require("my-nvim-micro-plugins.main").my_live_grep(...)
         end,
         desc = "search project 🤞🏻",
       },
@@ -81,10 +83,14 @@ return {
 
         mappings = {
           n = {
-            ["<C-y>"] = require("my-telescope-searches").my_copy_relative_path,
+            ["<C-y>"] = function(...)
+              require("my-nvim-micro-plugins.main").my_copy_relative_path(...)
+            end,
           },
           i = {
-            ["<C-y>"] = require("my-telescope-searches").my_copy_relative_path,
+            ["<C-y>"] = function(...)
+              require("my-nvim-micro-plugins.main").my_copy_relative_path(...)
+            end,
           },
         },
       },

@@ -20,7 +20,7 @@ return {
       -- log_level = vim.log.levels.DEBUG,
       integrations = {
         grep_in_directory = function(directory)
-          require("my-telescope-searches").my_live_grep({ cwd = directory })
+          require("my-nvim-micro-plugins").my_live_grep({ cwd = directory })
         end,
       },
     },
