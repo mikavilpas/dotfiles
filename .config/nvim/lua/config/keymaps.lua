@@ -239,7 +239,7 @@ vim.keymap.set("n", "<leader>fyd", function()
 end, { desc = "Copy directory to clipboard" })
 
 vim.keymap.set("v", "<leader>ä", function()
-  local selection = require("my-nvim-micro-plugins").get_visual()
+  local selection = require("my-nvim-micro-plugins.main").get_visual()
   vim.cmd("= " .. selection)
 end, { desc = "Evaluate visual selection as lua" })
 
