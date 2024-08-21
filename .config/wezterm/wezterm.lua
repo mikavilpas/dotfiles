@@ -36,12 +36,6 @@ config.colors = {
 	visual_bell = "#303030",
 }
 
--- from https://github.com/wez/wezterm/issues/4051#issue-1820224035
-if wezterm.gui.get_appearance():find("Dark") then
-	-- config.color_scheme = "Catppuccin Macchiato"
-else
-	-- config.color_scheme = "Catppuccin Latte"
-end
 -- config.color_scheme = "Tokyo Night"
 -- config.color_scheme = "Catppuccin Latte"
 config.color_scheme = "Catppuccin Macchiato"
