@@ -18,7 +18,7 @@ end
 --
 
 config.font = wezterm.font("DejaVuSansMono NF")
-config.font_size = 14
+config.font_size = 18
 config.freetype_load_target = "Light"
 
 -- https://github.com/folke/dot/blob/1007fc65738ad1f7a3e9c91432430017a6878378/config/wezterm/wezterm.lua
