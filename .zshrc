@@ -121,6 +121,10 @@ export VISUAL="nvr --remote-wait"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# https://github.com/junegunn/fzf#respecting-gitignore
+# If you want the command to follow symbolic links and don't want it to exclude
+# hidden files, use the following command:
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 # needs to be the last command, otherwise ctrl+r doesn*t work
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
