@@ -12,11 +12,5 @@ return {
     -- https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/141
     vim.treesitter.language.register("markdown", "gitcommit")
     vim.list_extend(opts.file_types, { "gitcommit" })
-
-    opts.overrides = opts.overrides or {}
-    opts.overrides.filetype = opts.overrides.filetype or {}
-    opts.overrides.filetype.gitcommit = {
-      heading = { enabled = false },
-    }
   end,
 }
