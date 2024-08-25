@@ -185,10 +185,10 @@ end, { desc = "Previous diagnostic" })
 
 -- the same thing for quickfix lists
 vim.keymap.set("n", "<leader><down>", function()
-  vim.cmd("cnext")
+  vim.cmd("silent! cnext")
 end, { desc = "Next quickfix item" })
 vim.keymap.set("n", "<leader><up>", function()
-  vim.cmd("cprev")
+  vim.cmd("silent! cprev")
 end, { desc = "Previous quickfix item" })
 
 -- https://vi.stackexchange.com/questions/18151/bind-visual-mode-i-and-a-to-always-use-visual-block-mode-before-inserting?noredirect=1&lq=1
@@ -196,6 +196,7 @@ vim.cmd([[ vnoremap <expr> I mode()=~? '<C-v>' ? 'I' : '<c-v>$o_I' ]])
 vim.cmd([[ vnoremap <expr> A mode()=~? '<C-v>' ? 'A' : '<c-v>$A' ]])
 
 vim.keymap.set({ "n" }, "<leader>cy", function()
+  local current_column = vim.fn.virtcol(".")
   -- yank the current line and paste it below
   vim.cmd("normal yypk")
 
@@ -204,9 +205,13 @@ vim.keymap.set({ "n" }, "<leader>cy", function()
 
   -- move the cursor down
   vim.cmd("normal j")
+
+  -- move the cursor to the same column as before
+  vim.cmd("normal " .. current_column .. "|")
 end, { desc = "Comment line", silent = true })
 
 vim.keymap.set({ "v" }, "<leader>cy", function()
+  local current_column = vim.fn.virtcol(".")
   -- yank the current selection and reactivate it in visual mode
   vim.cmd("normal ygv")
 
@@ -215,6 +220,7 @@ vim.keymap.set({ "v" }, "<leader>cy", function()
 
   -- jump to the end of the last visual selection and paste the yanked text
   vim.cmd("normal `>p")
+  vim.cmd("normal " .. current_column .. "|")
 end, { desc = "Comment line", silent = true })
 
 -- Copy the current buffer path to the clipboard
