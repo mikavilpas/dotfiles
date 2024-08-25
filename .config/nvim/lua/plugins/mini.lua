@@ -34,4 +34,5 @@ return {
     "michaeljsmith/vim-indent-object",
     event = "BufRead",
   },
+  { "echasnovski/mini.cursorword", config = true },
 }
