@@ -10,7 +10,7 @@ return {
   ---@param opts render.md.Config
   opts = function(_, opts)
     -- https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/141
-    vim.treesitter.language.register("markdown", "gitcommit")
+    -- vim.treesitter.language.register("markdown", "gitcommit")
     vim.list_extend(opts.file_types, { "gitcommit" })
   end,
 }
