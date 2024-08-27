@@ -1,5 +1,6 @@
 ---@type LazySpec
 return {
+  { "petertriho/cmp-git", enabled = false },
   {
     "hrsh7th/nvim-cmp",
     ---@param opts cmp.ConfigSchema
