@@ -11,5 +11,6 @@ return {
   opts = function(_, opts)
     -- https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/141
     vim.list_extend(opts.file_types, { "gitcommit" })
+    require("luasnip").filetype_extend("gitcommit", { "markdown" })
   end,
 }
