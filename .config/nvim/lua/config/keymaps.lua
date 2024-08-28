@@ -196,18 +196,7 @@ vim.cmd([[ vnoremap <expr> I mode()=~? '<C-v>' ? 'I' : '<c-v>$o_I' ]])
 vim.cmd([[ vnoremap <expr> A mode()=~? '<C-v>' ? 'A' : '<c-v>$A' ]])
 
 vim.keymap.set({ "n" }, "<leader>cy", function()
-  local current_column = vim.fn.virtcol(".")
-  -- yank the current line and paste it below
-  vim.cmd("normal yypk")
-
-  -- comment the current line and indent
-  vim.cmd("normal gccV=")
-
-  -- move the cursor down
-  vim.cmd("normal j")
-
-  -- move the cursor to the same column as before
-  vim.cmd("normal " .. current_column .. "|")
+  require("my-nvim-micro-plugins.main").comment_line()
 end, { desc = "Comment line", silent = true })
 
 vim.keymap.set({ "v" }, "<leader>cy", function()
