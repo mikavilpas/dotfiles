@@ -30,14 +30,6 @@ return {
           },
         },
       },
-
-      -- native telescope bindings to zf for sorting results.
-      -- In short, zf is a filepath fuzzy finder. It is designed for better
-      -- matching on filepaths than fzf or fzy. Matches on filenames are
-      -- prioritized, and the strict path matching feature helps narrow down
-      -- directory trees with precision. See the zf repo for full details.
-      -- https://github.com/natecraddock/telescope-zf-native.nvim
-      "natecraddock/telescope-zf-native.nvim",
     },
     keys = {
       -- prevent conflicts with hop
@@ -167,5 +159,51 @@ return {
     opts = {
       -- your config goes here
     },
+  },
+
+  {
+    -- native telescope bindings to zf for sorting results.
+    -- In short, zf is a filepath fuzzy finder. It is designed for better
+    -- matching on filepaths than fzf or fzy. Matches on filenames are
+    -- prioritized, and the strict path matching feature helps narrow down
+    -- directory trees with precision. See the zf repo for full details.
+    -- https://github.com/natecraddock/telescope-zf-native.nvim
+    "natecraddock/telescope-zf-native.nvim",
+    config = function()
+      require("telescope").setup({
+        extensions = {
+          ["zf-native"] = {
+            -- options for sorting file-like items
+            file = {
+              -- override default telescope file sorter
+              enable = true,
+              -- highlight matching text in results
+              highlight_results = true,
+              -- enable zf filename match priority
+              match_filename = true,
+              -- optional function to define a sort order when the query is empty
+              initial_sort = nil,
+              -- set to false to enable case sensitive matching
+              smart_case = true,
+            },
+
+            -- options for sorting all other items
+            generic = {
+              -- override default telescope generic item sorter
+              enable = true,
+              -- highlight matching text in results
+              highlight_results = true,
+              -- disable zf filename match priority
+              match_filename = false,
+              -- optional function to define a sort order when the query is empty
+              initial_sort = nil,
+              -- set to false to enable case sensitive matching
+              smart_case = true,
+            },
+          },
+        },
+      })
+      require("telescope").load_extension("zf-native")
+    end,
   },
 }
