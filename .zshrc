@@ -178,12 +178,6 @@ function battail() {
 
 # j for "jump"
 alias j="zi"
-
-function isDarkMode() {
-  defaults read -globalDomain AppleInterfaceStyle &> /dev/null
-  return $?
-}
-
 alias lg="lazygit"
 
 function my_git_grep_history() {
