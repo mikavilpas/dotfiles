@@ -124,6 +124,7 @@ return {
                   name = "rg",
                   option = {
                     cwd = require("my-nvim-micro-plugins.main").find_project_root(),
+                    additional_arguments = "--ignore-case",
                   },
                 },
               },
