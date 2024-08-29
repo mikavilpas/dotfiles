@@ -58,7 +58,7 @@ The test checks that I have all the applications installed, and acts as a
 reminder.
 
 ```vim
--- in neovim
+" in neovim
 :checkhealth
 ```
 

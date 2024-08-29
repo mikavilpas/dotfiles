@@ -91,12 +91,10 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-# https://dev.to/thraizz/fix-slow-zsh-startup-due-to-nvm-408k
-zstyle ':omz:plugins:nvm' lazy yes
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z
 # https://github.com/agkozak/zsh-z
-plugins=(git httpie npm z nvm)
+plugins=(git httpie npm z)
 
 # User configuration
 
@@ -123,6 +121,10 @@ export VISUAL="nvr --remote-wait"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# https://github.com/junegunn/fzf#respecting-gitignore
+# If you want the command to follow symbolic links and don't want it to exclude
+# hidden files, use the following command:
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 # needs to be the last command, otherwise ctrl+r doesn*t work
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -147,7 +149,7 @@ alias l="eza --oneline --all --long --no-user --icons=auto --no-permissions --ti
 # jelpp-env stuff
 # alias klm="cd /Users/mikavilpas/git/jelpp/jelpp-env; npm run klm --"
 klm() {
-  (cd /Users/mikavilpas/git/jelpp/jelpp-env && nvm use && npm run klm "$@")
+  (cd /Users/mikavilpas/git/jelpp/jelpp-env && fnm use && npm run klm "$@")
 }
 
 
@@ -176,12 +178,6 @@ function battail() {
 
 # j for "jump"
 alias j="zi"
-
-function isDarkMode() {
-  defaults read -globalDomain AppleInterfaceStyle &> /dev/null
-  return $?
-}
-
 alias lg="lazygit"
 
 function my_git_grep_history() {
@@ -224,3 +220,8 @@ alias top="btm"
 # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(atuin init zsh)"
+
+# fnm (🚀 Fast and simple Node.js version manager, built in Rust)
+# https://github.com/Schniz/fnm
+eval "`fnm env --use-on-cd --version-file-strategy=recursive`"
+alias nvm="fnm"

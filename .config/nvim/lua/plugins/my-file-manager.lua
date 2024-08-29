@@ -20,7 +20,7 @@ return {
       -- log_level = vim.log.levels.DEBUG,
       integrations = {
         grep_in_directory = function(directory)
-          require("my-telescope-searches").my_live_grep({ cwd = directory })
+          require("my-nvim-micro-plugins.main").my_live_grep({ cwd = directory })
         end,
       },
     },
@@ -42,7 +42,7 @@ return {
   },
   {
     "yazi-rs/flavors",
-    name = "yazi-flavor-catppuccino-macchiato",
+    name = "yazi-flavor-catppuccin-macchiato",
     lazy = true,
     build = function(spec)
       require("yazi.plugin").build_flavor(spec, {

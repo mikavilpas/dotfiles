@@ -185,10 +185,10 @@ end, { desc = "Previous diagnostic" })
 
 -- the same thing for quickfix lists
 vim.keymap.set("n", "<leader><down>", function()
-  vim.cmd("cnext")
+  vim.cmd("silent! cnext")
 end, { desc = "Next quickfix item" })
 vim.keymap.set("n", "<leader><up>", function()
-  vim.cmd("cprev")
+  vim.cmd("silent! cprev")
 end, { desc = "Previous quickfix item" })
 
 -- https://vi.stackexchange.com/questions/18151/bind-visual-mode-i-and-a-to-always-use-visual-block-mode-before-inserting?noredirect=1&lq=1
@@ -196,17 +196,11 @@ vim.cmd([[ vnoremap <expr> I mode()=~? '<C-v>' ? 'I' : '<c-v>$o_I' ]])
 vim.cmd([[ vnoremap <expr> A mode()=~? '<C-v>' ? 'A' : '<c-v>$A' ]])
 
 vim.keymap.set({ "n" }, "<leader>cy", function()
-  -- yank the current line and paste it below
-  vim.cmd("normal yypk")
-
-  -- comment the current line and indent
-  vim.cmd("normal gccV=")
-
-  -- move the cursor down
-  vim.cmd("normal j")
+  require("my-nvim-micro-plugins.main").comment_line()
 end, { desc = "Comment line", silent = true })
 
 vim.keymap.set({ "v" }, "<leader>cy", function()
+  local current_column = vim.fn.virtcol(".")
   -- yank the current selection and reactivate it in visual mode
   vim.cmd("normal ygv")
 
@@ -215,6 +209,7 @@ vim.keymap.set({ "v" }, "<leader>cy", function()
 
   -- jump to the end of the last visual selection and paste the yanked text
   vim.cmd("normal `>p")
+  vim.cmd("normal " .. current_column .. "|")
 end, { desc = "Comment line", silent = true })
 
 -- Copy the current buffer path to the clipboard
@@ -239,7 +234,7 @@ vim.keymap.set("n", "<leader>fyd", function()
 end, { desc = "Copy directory to clipboard" })
 
 vim.keymap.set("v", "<leader>ä", function()
-  local selection = require("my-telescope-searches").get_visual()
+  local selection = require("my-nvim-micro-plugins.main").get_visual()
   vim.cmd("= " .. selection)
 end, { desc = "Evaluate visual selection as lua" })
 

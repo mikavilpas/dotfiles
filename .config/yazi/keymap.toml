@@ -87,11 +87,12 @@ keymap = [
   { on = [";"], run = "shell --interactive", desc = "Run a shell command" },
   { on = [":"], run = "shell 'zsh' --block --confirm", desc = "Run a shell command (block the UI until the command finishes)" },
   { on = ["."], run = "hidden toggle", desc = "Toggle the visibility of hidden files" },
+  # { on = ["s"], run = "search fd", desc = "Search files by name using fd" },
+  { on = ["s"], run = "plugin fzf", desc = "Jump to a directory, or reveal a file using fzf" },
   { on = ["s"], run = "search fd", desc = "Search files by name using fd" },
   { on = ["S"], run = "search rg", desc = "Search files by content using ripgrep" },
   { on = ["<C-s>"], run = "search none", desc = "Cancel the ongoing search" },
   { on = ["z"], run = "plugin zoxide", desc = "Jump to a directory using zoxide" },
-  { on = ["Z"], run = "plugin fzf", desc = "Jump to a directory, or reveal a file using fzf" },
 
   # Linemode
   { on = ["m", "s"], run = "linemode size", desc = "Set linemode to size" },
@@ -156,6 +157,7 @@ keymap = [
   { on = ["g", "c"], run = "cd ~/.config", desc = "Go to the config directory" },
   { on = ["g", "d"], run = "cd ~/Downloads", desc = "Go to the downloads directory" },
   { on = ["g", "t"], run = "cd /tmp", desc = "Go to the temporary directory" },
+  { on = ["g", "l"], run = "cd ~/.local", desc = "Go to ~/.local" },
   { on = ["g", "<Space>"], run = "cd --interactive", desc = "Go to a directory interactively" },
 
   # Help

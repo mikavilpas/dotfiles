@@ -3,8 +3,6 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 
-headsup.disable_exec_warn = true
-
 [manager]
 ratio = [2, 2, 4]
 sort_by = "alphabetical"

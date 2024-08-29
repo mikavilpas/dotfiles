@@ -1,5 +1,6 @@
 ---@type LazySpec
 return {
+  { "petertriho/cmp-git", enabled = false },
   {
     "hrsh7th/nvim-cmp",
     ---@param opts cmp.ConfigSchema
@@ -8,6 +9,15 @@ return {
 
       ---@type cmp.ConfigSchema
       local new_options = {
+        ---@diagnostic disable-next-line: missing-fields
+        performance = {
+          debounce = 0,
+          throttle = 0,
+        },
+        ---@diagnostic disable-next-line: missing-fields
+        confirmation = {
+          default_behavior = "replace",
+        },
         window = {
           completion = cmp.config.window.bordered({
             winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
@@ -109,7 +119,15 @@ return {
         function()
           require("cmp").complete({
             config = {
-              sources = { { name = "rg" } },
+              sources = {
+                {
+                  name = "rg",
+                  option = {
+                    cwd = require("my-nvim-micro-plugins.main").find_project_root(),
+                    additional_arguments = "--ignore-case",
+                  },
+                },
+              },
             },
           })
         end,

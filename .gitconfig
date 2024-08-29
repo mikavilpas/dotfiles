@@ -4,6 +4,7 @@
 [core]
 	editor = nvim
   pager = delta
+  ; commentChar = ";"
 
 [diff]
   colorMoved = default

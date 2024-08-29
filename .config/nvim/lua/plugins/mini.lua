@@ -24,6 +24,14 @@ return {
     },
   },
   {
+    "echasnovski/mini.ai",
+    opts = {
+      custom_textobjects = {
+        i = "",
+      },
+    },
+  },
+  {
     -- Usage
     -- This plugin defines two new text objects. These are very similar - they differ only in whether they include the line below the block or not.
     -- Key bindings	Description
@@ -34,4 +42,5 @@ return {
     "michaeljsmith/vim-indent-object",
     event = "BufRead",
   },
+  { "echasnovski/mini.cursorword", config = true },
 }
