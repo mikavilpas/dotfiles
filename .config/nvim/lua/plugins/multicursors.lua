@@ -31,6 +31,7 @@ return {
     vim.keymap.set({ "n", "v" }, "<leader>mj", mc.nextCursor, { desc = "jump to previous cursor" })
     vim.keymap.set({ "n", "v" }, "<right>mk", mc.prevCursor, { desc = "jump to next cursor" })
     vim.keymap.set({ "n", "v" }, "<leader>mx", mc.deleteCursor, { desc = "delete cursor" })
+    vim.keymap.set({ "n", "v" }, "<leader>ma", mc.alignCursors, { desc = "align cursors" })
 
     vim.keymap.set({ "v" }, "I", function()
       require("my-nvim-micro-plugins.multicursors").add_multicursors_at_line_starts()
