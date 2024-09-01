@@ -50,25 +50,34 @@ return {
       end
     end
 
+    ---@param start_line number
+    ---@param end_line number
+    ---@param motion? string
+    local function add_line_multicursors(start_line, end_line, motion)
+      -- return to normal mode from visual mode
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "x", false)
+
+      vim.cmd("normal! " .. start_line .. "G")
+      if motion then
+        vim.cmd("normal! " .. motion)
+      end
+
+      for _ = start_line, end_line - 1, 1 do
+        mc.addCursor("j" .. (motion or ""))
+      end
+    end
+
     vim.keymap.set({ "v" }, "I", function()
       local mode = vim.fn.mode()
       local is_visual_line = mode:sub(1, 1) == "V"
       local is_visual_block = mode:sub(1, 1) == "\22"
 
       local start_line, end_line = get_current_visual_selection_line_numbers()
-      -- return to normal mode from visual mode
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "x", false)
 
       if is_visual_line then
-        vim.cmd("normal! " .. start_line .. "G_")
-        for _ = start_line, end_line - 1, 1 do
-          mc.addCursor("j_")
-        end
+        add_line_multicursors(start_line, end_line, "_")
       elseif is_visual_block then
-        vim.cmd("normal! " .. start_line .. "G")
-        for _ = start_line, end_line - 1, 1 do
-          mc.addCursor("j")
-        end
+        add_line_multicursors(start_line, end_line)
       end
     end)
   end,
