@@ -204,10 +204,6 @@ vim.keymap.set("n", "<leader><up>", function()
   vim.cmd("silent! cprev")
 end, { desc = "Previous quickfix item" })
 
--- https://vi.stackexchange.com/questions/18151/bind-visual-mode-i-and-a-to-always-use-visual-block-mode-before-inserting?noredirect=1&lq=1
-vim.cmd([[ vnoremap <expr> I mode()=~? '<C-v>' ? 'I' : '<c-v>$o_I' ]])
-vim.cmd([[ vnoremap <expr> A mode()=~? '<C-v>' ? 'A' : '<c-v>$A' ]])
-
 vim.keymap.set({ "n" }, "<leader>cy", function()
   require("my-nvim-micro-plugins.main").comment_line()
 end, { desc = "Comment line", silent = true })
