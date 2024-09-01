@@ -2,6 +2,7 @@
 
 ---@type LazySpec
 return {
+
   {
     "mikavilpas/yazi.nvim",
     -- dir = "~/git/yazi.nvim/",
@@ -51,6 +52,20 @@ return {
     end,
   },
   {
+    -- Place code snippets from docs into this monorepo, so that users can
+    -- update more easily via package manager.
+    --
+    -- https://github.com/yazi-rs/plugins
+    "yazi-rs/plugins",
+    name = "yazi-rs-plugins",
+    lazy = true,
+    build = function(plugin)
+      require("yazi.plugin").build_plugin(plugin, {
+        sub_dir = "git.yazi",
+      })
+    end,
+  },
+  {
     "ndtoan96/ouch.yazi",
     lazy = true,
     build = function(plugin)
@@ -64,18 +79,6 @@ return {
     lazy = true,
     build = function(plugin)
       require("yazi.plugin").build_plugin(plugin)
-    end,
-  },
-  {
-    -- Simple lualine-like status line for yazi.
-    -- https://github.com/llanosrocas/yaziline.yazi
-    "yazi-rs/plugins",
-    name = "yazi-rs-plugins",
-    lazy = true,
-    build = function(plugin)
-      require("yazi.plugin").build_plugin(plugin, {
-        sub_dir = "git.yazi",
-      })
     end,
   },
   {
