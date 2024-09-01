@@ -80,5 +80,19 @@ return {
         add_line_multicursors(start_line, end_line)
       end
     end)
+
+    vim.keymap.set({ "v" }, "A", function()
+      local mode = vim.fn.mode()
+      local is_visual_line = mode:sub(1, 1) == "V"
+      local is_visual_block = mode:sub(1, 1) == "\22"
+
+      local start_line, end_line = get_current_visual_selection_line_numbers()
+
+      if is_visual_line then
+        add_line_multicursors(start_line, end_line, "$")
+      elseif is_visual_block then
+        add_line_multicursors(start_line, end_line)
+      end
+    end)
   end,
 }
