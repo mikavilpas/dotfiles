@@ -67,6 +67,18 @@ return {
     end,
   },
   {
+    -- Simple lualine-like status line for yazi.
+    -- https://github.com/llanosrocas/yaziline.yazi
+    "yazi-rs/plugins",
+    name = "yazi-rs-plugins",
+    lazy = true,
+    build = function(plugin)
+      require("yazi.plugin").build_plugin(plugin, {
+        sub_dir = "git.yazi",
+      })
+    end,
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     lazy = true,
     opts = {
