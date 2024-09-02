@@ -17,7 +17,7 @@
 
 [delta]
   features = decorations
-  features = catppuccin-mocha
+  features = catppuccin-macchiato
   tabs = 4
   side-by-side = true
   line-numbers-left-format = ""
