@@ -154,6 +154,7 @@ keymap = [
   # Goto
   { on = ["g", "h"], run = "cd ~", desc = "Go to the home directory" },
   { on = ["g", "p"], run = "cd ~/git/", desc = "Go to projects (~/git)" },
+  { on = ["g", "f"], run = "cd ~/dotfiles/", desc = "Go to ~/dotfiles/" },
   { on = ["g", "c"], run = "cd ~/.config", desc = "Go to the config directory" },
   { on = ["g", "d"], run = "cd ~/Downloads", desc = "Go to the downloads directory" },
   { on = ["g", "t"], run = "cd /tmp", desc = "Go to the temporary directory" },
