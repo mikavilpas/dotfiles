@@ -19,6 +19,9 @@
   features = decorations
   features = catppuccin-mocha
   tabs = 4
+  side-by-side = true
+  line-numbers-left-format = ""
+  line-numbers-right-format = "│ "
 
 [delta "interactive"]
   keep-plus-minus-markers = false
