@@ -20,6 +20,13 @@ customCommands:
     # want to reduce the repetition in the commit messages
     command:
       "git commit --amend --no-verify --message '{{.SelectedLocalCommit.Name}}'"
+  - key:
+      # backspace does not work, tracked in
+      # https://github.com/jesseduffield/lazygit/issues/2953
+      # https://github.com/jesseduffield/lazygit/issues/3847
+      "I"
+    context: global
+    command: "git stash-keep"
 
 keybinding:
   universal:
