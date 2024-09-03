@@ -1,7 +1,14 @@
+---@module "lazy"
+---@module "rip-substitute"
+
 ---@type LazySpec
 return {
   "chrisgrieser/nvim-rip-substitute",
   cmd = "RipSubstitute",
+  ---@type ripSubstituteConfig
+  opts = {
+    prefill = { startInReplaceLineIfPrefill = true },
+  },
   keys = {
     {
       "<leader>r",

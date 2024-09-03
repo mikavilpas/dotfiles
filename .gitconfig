@@ -17,8 +17,11 @@
 
 [delta]
   features = decorations
-  features = catppuccin-mocha
+  features = catppuccin-macchiato
   tabs = 4
+  side-by-side = true
+  line-numbers-left-format = ""
+  line-numbers-right-format = "│ "
 
 [delta "interactive"]
   keep-plus-minus-markers = false
@@ -44,6 +47,11 @@
   lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
   lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
   lg = lg1
+
+  ; How to stash changes while keeping the changes in the working directory? (Git)
+  ; https://stackoverflow.com/a/60557208/1336788
+  stash-keep = "!f() { git stash store --message \"$(date +'%Y-%m-%d %H:%M:%S')\" \"$1\"; }; f $(git stash create)"
+
 
 [commit]
 	verbose = true

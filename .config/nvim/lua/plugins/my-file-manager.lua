@@ -2,6 +2,7 @@
 
 ---@type LazySpec
 return {
+
   {
     "mikavilpas/yazi.nvim",
     -- dir = "~/git/yazi.nvim/",
@@ -51,6 +52,17 @@ return {
     end,
   },
   {
+    -- https://github.com/yazi-rs/plugins
+    "yazi-rs/plugins",
+    name = "yazi-rs-plugins",
+    lazy = true,
+    build = function(plugin)
+      require("yazi.plugin").build_plugin(plugin, {
+        sub_dir = "git.yazi",
+      })
+    end,
+  },
+  {
     "ndtoan96/ouch.yazi",
     lazy = true,
     build = function(plugin)
@@ -68,11 +80,21 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
-    lazy = true,
     opts = {
+      -- ../../../../../.local/share/nvim/lazy/neo-tree.nvim/lua/neo-tree/defaults.lua
+      sources = {
+        "filesystem",
+      },
+      mappings = {
+        ["<cr>"] = { "open", config = { expand_nested_files = true } }, -- expand nested file takes precedence
+      },
       filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+        },
         hijack_netrw_behavior = "disabled",
       },
+      follow_current_file = { enabled = true },
     },
   },
 }

@@ -1,4 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+# https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 
 services:
   "gitlab.baronatechnologies.fi": "gitlab:gitlab.baronatechnologies.fi"
@@ -20,6 +21,13 @@ customCommands:
     # want to reduce the repetition in the commit messages
     command:
       "git commit --amend --no-verify --message '{{.SelectedLocalCommit.Name}}'"
+  - key:
+      # backspace does not work, tracked in
+      # https://github.com/jesseduffield/lazygit/issues/2953
+      # https://github.com/jesseduffield/lazygit/issues/3847
+      "I"
+    context: global
+    command: "git stash-keep"
 
 keybinding:
   universal:
@@ -53,8 +61,11 @@ notARepository: "quit"
 # https://github.com/catppuccin/lazygit/blob/main/themes-mergable/macchiato/pink.yml
 gui:
   commitHashLength: 0
+  skipRewordInEditorWarning: true
   nerdFontsVersion: "3"
-  scrollHeight: 15
+  scrollHeight: 10
+  mainPanelSplitMode: vertical
+  showDivergenceFromBaseBranch: arrowAndNumber
   theme:
     activeBorderColor:
       - "#f5bde6"
@@ -80,6 +91,4 @@ git:
   parseEmoji: true
   paging:
     colorArg: always
-    pager:
-      whenDark.sh delta --paging=never --syntax-theme zenburn || delta
-      --paging=never --syntax-theme light
+    pager: delta --paging=never
