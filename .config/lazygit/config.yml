@@ -87,6 +87,4 @@ git:
   parseEmoji: true
   paging:
     colorArg: always
-    pager:
-      whenDark.sh delta --paging=never --syntax-theme zenburn || delta
-      --paging=never --syntax-theme light
+    pager: delta --paging=never
