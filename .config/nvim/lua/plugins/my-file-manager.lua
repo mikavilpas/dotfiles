@@ -52,9 +52,6 @@ return {
     end,
   },
   {
-    -- Place code snippets from docs into this monorepo, so that users can
-    -- update more easily via package manager.
-    --
     -- https://github.com/yazi-rs/plugins
     "yazi-rs/plugins",
     name = "yazi-rs-plugins",
