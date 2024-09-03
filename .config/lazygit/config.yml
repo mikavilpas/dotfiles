@@ -1,4 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+# https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 
 services:
   "gitlab.baronatechnologies.fi": "gitlab:gitlab.baronatechnologies.fi"
@@ -60,8 +61,11 @@ notARepository: "quit"
 # https://github.com/catppuccin/lazygit/blob/main/themes-mergable/macchiato/pink.yml
 gui:
   commitHashLength: 0
+  skipRewordInEditorWarning: true
   nerdFontsVersion: "3"
-  scrollHeight: 15
+  scrollHeight: 10
+  mainPanelSplitMode: vertical
+  showDivergenceFromBaseBranch: arrowAndNumber
   theme:
     activeBorderColor:
       - "#f5bde6"
