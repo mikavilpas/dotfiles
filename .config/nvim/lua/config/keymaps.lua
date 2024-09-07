@@ -111,7 +111,7 @@ vim.api.nvim_set_keymap("n", "+", "g,", { noremap = true })
 -- based mapping section from ThePrimeagen
 
 -- joins lines without moving the cursor
-vim.keymap.set("n", "J", "mzJ`z", { desc = "Join line" })
+vim.keymap.set("n", "J", "m9J`9", { desc = "Join line" })
 
 -- move screen up and down but keep the cursor in place (less disorienting)
 vim.keymap.set("n", "<C-u>", function()
