@@ -137,6 +137,7 @@ eval "$(starship init zsh)"
 
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+alias n="nvim"
 alias dc="docker compose"
 function w() {
   watchexec --timings --project-origin . $@
