@@ -45,8 +45,6 @@ vim.keymap.set("n", "<left>", function()
   vim.api.nvim_win_close(win, true)
 end, { desc = "Close leftmost window" })
 
-local Terminal = require("toggleterm.terminal").Terminal
-
 -- open lazygit history for the current file
 vim.keymap.set("n", "<leader>gl", function()
   local absolutePath = vim.api.nvim_buf_get_name(0)
@@ -56,6 +54,7 @@ end, { desc = "lazygit file commits" })
 -- open lazygit in the current git directory
 ---@param cmd? string
 local function openLazyGit(cmd)
+  local Terminal = require("toggleterm.terminal").Terminal
   local lazygit = Terminal:new({
     cmd = cmd or "lazygit",
     dir = "git_dir",
@@ -80,7 +79,6 @@ local function openLazyGit(cmd)
       vim.keymap.set({ "t" }, "<C-j>", function()
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "n", true)
       end, { buffer = term.bufnr })
-      vim.cmd("startinsert")
     end,
     on_close = function()
       vim.cmd("checktime")
@@ -89,7 +87,6 @@ local function openLazyGit(cmd)
 
   lazygit:open()
 end
--- vim.keymap.set("n", "<leader>gg", openLazyGit, { desc = "lazygit" })
 vim.keymap.set("n", "<right>", openLazyGit, { desc = "lazygit" })
 
 -- expose the openLazyGit function so it can be used in other files
