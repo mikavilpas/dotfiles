@@ -55,6 +55,10 @@ end, { desc = "lazygit file commits" })
 ---@param cmd? string
 local function openLazyGit(cmd)
   vim.notify_once(" ")
+  vim.schedule(function()
+    require("noice").cmd("dismiss")
+  end)
+
   local Terminal = require("toggleterm.terminal").Terminal
   local lazygit = Terminal:new({
     cmd = cmd or "lazygit",
