@@ -65,7 +65,10 @@ local function openLazyGit(cmd)
     dir = "git_dir",
     direction = "float",
     close_on_exit = true,
+    ---@type vim.api.keyset.win_config
     float_opts = {
+      width = math.ceil(vim.o.columns * 0.95),
+      height = math.ceil(vim.o.lines * 0.95),
       -- lazygit itself already has a border
       border = "none",
     },
