@@ -23,6 +23,7 @@
   "faster.nvim": { "branch": "main", "commit": "e85c5bdff0cd1e17cbee855ae23c25e7b8e597cb" },
   "flatten.nvim": { "branch": "main", "commit": "e420e531d2ab24aebcf7b3c9fca28e6c5c34964d" },
   "friendly-snippets": { "branch": "main", "commit": "00ebcaa159e817150bd83bfe2d51fa3b3377d5c4" },
+  "garbage-day.nvim": { "branch": "main", "commit": "4a1160bfffb2f499fb55a54333f29d160ab3c8a1" },
   "gitlinker.nvim": { "branch": "master", "commit": "542f51784f20107ef9ecdadc47825204837efed5" },
   "gitsigns.nvim": { "branch": "main", "commit": "1ef74b546732f185d0f806860fa5404df7614f28" },
   "grug-far.nvim": { "branch": "main", "commit": "76d86580f71bd2f07d4264c782ab8d1c12302e13" },

@@ -99,4 +99,15 @@ return {
       }
     end,
   },
+
+  {
+    "zeioth/garbage-day.nvim",
+    -- https://github.com/Zeioth/garbage-day.nvim
+    dependencies = "neovim/nvim-lspconfig",
+    event = "VeryLazy",
+    -- ../../../../../.local/share/nvim/lazy/garbage-day.nvim/lua/garbage-day/config.lua
+    opts = {
+      -- your options here
+    },
+  },
 }
