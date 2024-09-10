@@ -3,6 +3,12 @@
 -- Add any additional keymaps here
 --
 
+vim.api.nvim_create_autocmd("FileType", {
+  -- always open help buffers in a vertical split
+  pattern = { "help", "man" },
+  command = "wincmd L",
+})
+
 vim.keymap.set({ "t" }, "<esc><esc>", "<Nop>")
 vim.keymap.set({ "n" }, "<leader>w", "<Nop>")
 
