@@ -1,4 +1,5 @@
 ---@module "render-markdown"
+---@module "lazy"
 
 ---@type LazySpec
 
