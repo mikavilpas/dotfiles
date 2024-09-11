@@ -80,8 +80,6 @@ local function openLazyGit(args, options)
     style = "minimal",
     esc_esc = false,
     ctrl_hjkl = false,
-    ---@diagnostic disable-next-line: assign-type-mismatch
-    backdrop = 101,
   })
 
   vim.api.nvim_create_autocmd({ "WinLeave" }, {
