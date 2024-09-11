@@ -54,52 +54,50 @@ end, { desc = "Close leftmost window" })
 -- open lazygit history for the current file
 vim.keymap.set("n", "<leader>gl", function()
   local absolutePath = vim.api.nvim_buf_get_name(0)
-  openLazyGit("lazygit --filter " .. absolutePath)
+  openLazyGit({ "--filter ", absolutePath })
 end, { desc = "lazygit file commits" })
 
+---@type lazyvim.util.terminal | nil
+_G.lastLazyGit = nil
+
 -- open lazygit in the current git directory
----@param cmd? string
-local function openLazyGit(cmd)
+---@param args? string[]
+---@param options? {cwd?: string}
+local function openLazyGit(args, options)
+  local cmd = vim.list_extend({ "lazygit" }, args or {})
+  options = options or {}
+
   vim.notify_once(" ")
   vim.schedule(function()
     require("noice").cmd("dismiss")
   end)
 
-  local Terminal = require("toggleterm.terminal").Terminal
-  local lazygit = Terminal:new({
-    cmd = cmd or "lazygit",
-    dir = "git_dir",
-    direction = "float",
-    close_on_exit = true,
-    ---@type vim.api.keyset.win_config
-    float_opts = {
-      width = math.ceil(vim.o.columns * 0.95),
-      height = math.ceil(vim.o.lines * 0.95),
-      -- lazygit itself already has a border
-      border = "none",
-    },
-    on_open = function(term)
-      -- these are added by LazyVim and they prevent moving commits up and down in lazygit
-      -- https://github.com/LazyVim/LazyVim/blob/91126b9896bebcea9a21bce43be4e613e7607164/lua/lazyvim/config/keymaps.lua#L150
-      vim.keymap.set({ "t" }, "<C-k>", function()
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-k>", true, false, true), "n", true)
-      end, { buffer = term.bufnr })
+  local terminal = require("lazyvim.util.terminal")
+  local lazygit = terminal.open(cmd, {
+    cwd = require("my-nvim-micro-plugins.main").find_project_root(),
+    size = { width = 0.95, height = 0.98 },
+    border = "none",
+    style = "minimal",
+    esc_esc = false,
+    ctrl_hjkl = false,
+    ---@diagnostic disable-next-line: assign-type-mismatch
+    backdrop = 101,
+  })
 
-      -- which-key v3 pops up when I press esc by default, causing esc to not work. Work around it.
-      vim.keymap.set({ "t" }, "<esc>", function()
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "n", true)
-      end, { buffer = term.bufnr })
-
-      vim.keymap.set({ "t" }, "<C-j>", function()
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "n", true)
-      end, { buffer = term.bufnr })
-    end,
-    on_close = function()
-      vim.cmd("checktime")
+  vim.api.nvim_create_autocmd({ "WinLeave" }, {
+    buffer = lazygit.buf,
+    callback = function()
+      lazygit:hide()
     end,
   })
 
-  lazygit:open()
+  lazygit:on_key("<right>", function()
+    -- NOTE: this prevents using the key in lazygit, but is very performant
+    lazygit:hide()
+  end, "hide", { "i", "t" })
+
+  _G.lastLazyGit = lazygit
+  return lazygit
 end
 vim.keymap.set("n", "<right>", openLazyGit, { desc = "lazygit" })
 
