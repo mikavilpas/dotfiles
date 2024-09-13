@@ -81,7 +81,7 @@ local function openLazyGit(args, options)
     esc_esc = false,
     ctrl_hjkl = false,
   })
-  vim.api.nvim_buf_set_var(lazygit.buf, "vim.b.minicursorword_disable", true)
+  vim.api.nvim_buf_set_var(lazygit.buf, "minicursorword_disable", true)
 
   vim.api.nvim_create_autocmd({ "WinLeave" }, {
     buffer = lazygit.buf,
