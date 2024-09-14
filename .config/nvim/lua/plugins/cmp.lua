@@ -110,7 +110,6 @@ return {
   {
     -- https://github.com/lukas-reineke/cmp-rg
     "lukas-reineke/cmp-rg",
-    event = { "InsertEnter" },
     keys = {
       {
         -- https://github.com/lukas-reineke/cmp-rg/issues/46#issuecomment-1345672195
