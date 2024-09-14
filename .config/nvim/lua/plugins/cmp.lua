@@ -44,6 +44,25 @@ return {
   },
 
   {
+    "amarakon/nvim-cmp-buffer-lines",
+    keys = {
+      {
+        -- complete with lines from the current buffer - allows narrowing down
+        -- the completion list by typing more
+        "<c-l>", -- mnemonic: "line"
+        mode = { "i" },
+        function()
+          require("cmp").complete({
+            config = {
+              sources = { { name = "buffer-lines" } },
+            },
+          })
+        end,
+      },
+    },
+  },
+
+  {
     -- https://github.com/hrsh7th/cmp-cmdline
     "hrsh7th/cmp-cmdline",
     dependencies = {
