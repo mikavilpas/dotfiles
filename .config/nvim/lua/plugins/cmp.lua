@@ -20,25 +20,18 @@ return {
         },
         window = {
           completion = cmp.config.window.bordered({
+            -- use all available space
+            max_height = 0,
             winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
           }),
           documentation = cmp.config.window.bordered({
+            -- use all available space
+            max_height = 0,
             winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
           }),
         },
       }
-      local final_options = vim.tbl_deep_extend("keep", new_options, {
-        window = {
-          completion = {
-            -- use all available space
-            max_height = 0,
-          },
-          documentation = {
-            -- use all available space
-            max_height = 0,
-          },
-        },
-      }, opts)
+      local final_options = vim.tbl_deep_extend("keep", new_options, opts)
       return final_options
     end,
   },
