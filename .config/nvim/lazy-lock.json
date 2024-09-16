@@ -45,6 +45,7 @@
   "mini.indentscope": { "branch": "main", "commit": "da9af64649e114aa79480c238fd23f6524bc0903" },
   "mini.pairs": { "branch": "main", "commit": "e543c760edc5e746e5b6cbd02c066c17ead3ef16" },
   "move.nvim": { "branch": "main", "commit": "cccbd4ea9049ca5f99f025ffaddb7392359c7d6a" },
+  "multicursor.nvim": { "branch": "main", "commit": "fc9e6a0e681ec1063b5d9b1f87048b86b971283d" },
   "multiple-cursors.nvim": { "branch": "main", "commit": "2f5e786c43aa9c0fc34b295cfcc9bfbacef8e926" },
   "my-nvim-micro-plugins.nvim": { "branch": "main", "commit": "e075ff43b322112c3e3608e9a79e7694d6bc41d7" },
   "neo-tree.nvim": { "branch": "main", "commit": "0774fa2085c62a147fcc7b56f0ac37053cc80217" },

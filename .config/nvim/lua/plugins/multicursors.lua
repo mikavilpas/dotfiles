@@ -1,50 +1,44 @@
 ---@module "lazy"
-
+---
 ---@type LazySpec
 return {
-  "brenton-leighton/multiple-cursors.nvim",
-  version = "*", -- Use the latest tagged version
-  opts = {}, -- This causes the plugin setup function to be called
+  "jake-stewart/multicursor.nvim",
+  config = function()
+    local mc = require("multicursor-nvim")
 
-  keys = {
-    {
-      "I", -- mnemonic: "line"
-      mode = { "v" },
-      function()
-        require("my-nvim-micro-plugins.multicursors").add_multicursors_at_line_starts()
-      end,
-    },
-    {
-      "A", -- mnemonic: "line"
-      mode = { "v" },
-      function()
-        require("my-nvim-micro-plugins.multicursors").add_multicursors_at_line_ends()
-      end,
-    },
+    mc.setup()
 
-    -- { "<S-j>", "<Cmd>MultipleCursorsAddDown<CR>", mode = { "n", "x" }, desc = "Add cursor and move down" },
-    -- { "<S-k>", "<Cmd>MultipleCursorsAddUp<CR>", mode = { "n", "x" }, desc = "Add cursor and move up" },
-    --
-    -- { "<C-Up>", "<Cmd>MultipleCursorsAddUp<CR>", mode = { "n", "i", "x" }, desc = "Add cursor and move up" },
-    -- { "<C-Down>", "<Cmd>MultipleCursorsAddDown<CR>", mode = { "n", "i", "x" }, desc = "Add cursor and move down" },
+    -- use MultiCursorCursor and MultiCursorVisual to customize
+    -- additional cursors appearance
+    vim.cmd.hi("link", "MultiCursorCursor", "Cursor")
+    vim.cmd.hi("link", "MultiCursorVisual", "Visual")
 
-    -- { "<C-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>", mode = { "n", "i" }, desc = "Add or remove cursor" },
-    -- { "<Leader>a", "<Cmd>MultipleCursorsAddMatches<CR>", mode = { "n", "x" }, desc = "Add cursors to cword" },
-    -- {
-    --   "<Leader>A",
-    --   "<Cmd>MultipleCursorsAddMatchesV<CR>",
-    --   mode = { "n", "x" },
-    --   desc = "Add cursors to cword in previous area",
-    -- },
-    --
-    -- {
-    --   "<Leader>d",
-    --   "<Cmd>MultipleCursorsAddJumpNextMatch<CR>",
-    --   mode = { "n", "x" },
-    --   desc = "Add cursor and jump to next cword",
-    -- },
-    -- { "<Leader>D", "<Cmd>MultipleCursorsJumpNextMatch<CR>", mode = { "n", "x" }, desc = "Jump to next cword" },
-    --
-    -- { "<Leader>l", "<Cmd>MultipleCursorsLock<CR>", mode = { "n", "x" }, desc = "Lock virtual cursors" },
-  },
+    vim.keymap.set("n", "<leader>mc", function()
+      if mc.hasCursors() then
+        mc.clearCursors()
+      end
+    end, { desc = "clear all cursors" })
+
+    vim.keymap.set({ "n", "v" }, "<leader>ma", function()
+      mc.addCursor("*")
+    end, { desc = "add a cursor and jump to the next word under cursor" })
+
+    -- jump to the next word under cursor but do not add a cursor
+    vim.keymap.set({ "n", "v" }, "<leader>ms", function()
+      mc.skipCursor("*")
+    end, { desc = "skip and jump to the next word under cursor" })
+
+    vim.keymap.set({ "n", "v" }, "<leader>mj", mc.nextCursor, { desc = "jump to previous cursor" })
+    vim.keymap.set({ "n", "v" }, "<right>mk", mc.prevCursor, { desc = "jump to next cursor" })
+    vim.keymap.set({ "n", "v" }, "<leader>mx", mc.deleteCursor, { desc = "delete cursor" })
+    vim.keymap.set({ "n", "v" }, "<leader>mA", mc.alignCursors, { desc = "align cursors" })
+
+    vim.keymap.set({ "v" }, "I", function()
+      require("my-nvim-micro-plugins.multicursors").add_multicursors_at_line_starts()
+    end)
+
+    vim.keymap.set({ "v" }, "A", function()
+      require("my-nvim-micro-plugins.multicursors").add_multicursors_at_line_ends()
+    end)
+  end,
 }
