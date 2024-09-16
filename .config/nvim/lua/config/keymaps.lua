@@ -54,7 +54,7 @@ end, { desc = "Close leftmost window" })
 -- open lazygit history for the current file
 vim.keymap.set("n", "<leader>gl", function()
   local absolutePath = vim.api.nvim_buf_get_name(0)
-  openLazyGit({ "--filter ", absolutePath })
+  openLazyGit({ "--filter", absolutePath })
 end, { desc = "lazygit file commits" })
 
 ---@type lazyvim.util.terminal | nil
