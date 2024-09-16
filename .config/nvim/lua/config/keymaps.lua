@@ -69,7 +69,7 @@ local function openLazyGit(args, options)
   local terminal = require("lazyvim.util.terminal")
   local lazygit = terminal.open(cmd, {
     cwd = require("my-nvim-micro-plugins.main").find_project_root(),
-    size = { width = 0.95, height = 0.98 },
+    size = { width = 0.95, height = 0.97 },
     border = "none",
     style = "minimal",
     esc_esc = false,
