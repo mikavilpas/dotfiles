@@ -51,12 +51,6 @@ vim.keymap.set("n", "<left>", function()
   vim.api.nvim_win_close(win, true)
 end, { desc = "Close leftmost window" })
 
--- open lazygit history for the current file
-vim.keymap.set("n", "<leader>gl", function()
-  local absolutePath = vim.api.nvim_buf_get_name(0)
-  openLazyGit({ "--filter", absolutePath })
-end, { desc = "lazygit file commits" })
-
 ---@type lazyvim.util.terminal | nil
 _G.lastLazyGit = nil
 
@@ -100,8 +94,11 @@ local function openLazyGit(args, options)
 end
 vim.keymap.set("n", "<right>", openLazyGit, { desc = "lazygit" })
 
--- expose the openLazyGit function so it can be used in other files
-_G.openLazyGit = openLazyGit
+vim.keymap.set("n", "<leader>gl", function()
+  -- open lazygit history for the current file
+  local absolutePath = vim.api.nvim_buf_get_name(0)
+  openLazyGit({ "--filter", absolutePath })
+end, { desc = "lazygit file commits" })
 
 -- disable esc j and esc k moving lines accidentally
 -- https://github.com/LazyVim/LazyVim/discussions/658
