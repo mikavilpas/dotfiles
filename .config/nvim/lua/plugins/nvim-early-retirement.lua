@@ -6,5 +6,5 @@ return {
     retirementAgeMins = 5,
   },
   config = true,
-  event = "VeryLazy",
+  event = "UiEnter",
 }

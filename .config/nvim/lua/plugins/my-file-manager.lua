@@ -1,3 +1,4 @@
+---@module "lazy"
 ---@module "yazi"
 
 ---@type LazySpec
@@ -6,7 +7,7 @@ return {
   {
     "mikavilpas/yazi.nvim",
     -- dir = "~/git/yazi.nvim/",
-    event = "VeryLazy",
+    event = "UiEnter",
     keys = {
       { "<up>", "<cmd>Yazi<cr>", desc = "Open yazi" },
       { "<s-up>", "<cmd>Yazi cwd<cr>", desc = "Open yazi in cwd" },
