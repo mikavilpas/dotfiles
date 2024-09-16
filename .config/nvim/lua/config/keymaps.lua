@@ -3,6 +3,12 @@
 -- Add any additional keymaps here
 --
 
+vim.api.nvim_create_autocmd("FileType", {
+  -- always open help buffers in a vertical split
+  pattern = { "help", "man" },
+  command = "wincmd L",
+})
+
 vim.keymap.set({ "t" }, "<esc><esc>", "<Nop>")
 vim.keymap.set({ "n" }, "<leader>w", "<Nop>")
 
@@ -45,55 +51,54 @@ vim.keymap.set("n", "<left>", function()
   vim.api.nvim_win_close(win, true)
 end, { desc = "Close leftmost window" })
 
-local Terminal = require("toggleterm.terminal").Terminal
-
--- open lazygit history for the current file
-vim.keymap.set("n", "<leader>gl", function()
-  local absolutePath = vim.api.nvim_buf_get_name(0)
-  openLazyGit("lazygit --filter " .. absolutePath)
-end, { desc = "lazygit file commits" })
+---@type lazyvim.util.terminal | nil
+_G.lastLazyGit = nil
 
 -- open lazygit in the current git directory
----@param cmd? string
-local function openLazyGit(cmd)
-  local lazygit = Terminal:new({
-    cmd = cmd or "lazygit",
-    dir = "git_dir",
-    direction = "float",
-    close_on_exit = true,
-    float_opts = {
-      -- lazygit itself already has a border
-      border = "none",
-    },
-    on_open = function(term)
-      -- these are added by LazyVim and they prevent moving commits up and down in lazygit
-      -- https://github.com/LazyVim/LazyVim/blob/91126b9896bebcea9a21bce43be4e613e7607164/lua/lazyvim/config/keymaps.lua#L150
-      vim.keymap.set({ "t" }, "<C-k>", function()
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-k>", true, false, true), "n", true)
-      end, { buffer = term.bufnr })
+---@param args? string[]
+---@param options? {cwd?: string}
+local function openLazyGit(args, options)
+  local cmd = vim.list_extend({ "lazygit" }, args or {})
+  options = options or {}
 
-      -- which-key v3 pops up when I press esc by default, causing esc to not work. Work around it.
-      vim.keymap.set({ "t" }, "<esc>", function()
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "n", true)
-      end, { buffer = term.bufnr })
+  vim.notify_once(" ")
+  vim.schedule(function()
+    require("noice").cmd("dismiss")
+  end)
 
-      vim.keymap.set({ "t" }, "<C-j>", function()
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-j>", true, false, true), "n", true)
-      end, { buffer = term.bufnr })
-      vim.cmd("startinsert")
-    end,
-    on_close = function()
-      vim.cmd("checktime")
+  local terminal = require("lazyvim.util.terminal")
+  local lazygit = terminal.open(cmd, {
+    cwd = require("my-nvim-micro-plugins.main").find_project_root(),
+    size = { width = 0.95, height = 0.97 },
+    border = "none",
+    style = "minimal",
+    esc_esc = false,
+    ctrl_hjkl = false,
+  })
+  vim.api.nvim_buf_set_var(lazygit.buf, "minicursorword_disable", true)
+
+  vim.api.nvim_create_autocmd({ "WinLeave" }, {
+    buffer = lazygit.buf,
+    callback = function()
+      lazygit:hide()
     end,
   })
 
-  lazygit:open()
+  lazygit:on_key("<right>", function()
+    -- NOTE: this prevents using the key in lazygit, but is very performant
+    lazygit:hide()
+  end, "hide", { "i", "t" })
+
+  _G.lastLazyGit = lazygit
+  return lazygit
 end
--- vim.keymap.set("n", "<leader>gg", openLazyGit, { desc = "lazygit" })
 vim.keymap.set("n", "<right>", openLazyGit, { desc = "lazygit" })
 
--- expose the openLazyGit function so it can be used in other files
-_G.openLazyGit = openLazyGit
+vim.keymap.set("n", "<leader>gl", function()
+  -- open lazygit history for the current file
+  local absolutePath = vim.api.nvim_buf_get_name(0)
+  openLazyGit({ "--filter", absolutePath })
+end, { desc = "lazygit file commits" })
 
 -- disable esc j and esc k moving lines accidentally
 -- https://github.com/LazyVim/LazyVim/discussions/658
@@ -111,7 +116,7 @@ vim.api.nvim_set_keymap("n", "+", "g,", { noremap = true })
 -- based mapping section from ThePrimeagen
 
 -- joins lines without moving the cursor
-vim.keymap.set("n", "J", "mzJ`z", { desc = "Join line" })
+vim.keymap.set("n", "J", "m9J`9", { desc = "Join line" })
 
 -- move screen up and down but keep the cursor in place (less disorienting)
 vim.keymap.set("n", "<C-u>", function()

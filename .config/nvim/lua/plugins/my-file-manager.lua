@@ -1,12 +1,12 @@
+---@module "lazy"
 ---@module "yazi"
 
 ---@type LazySpec
 return {
-
   {
     "mikavilpas/yazi.nvim",
     -- dir = "~/git/yazi.nvim/",
-    event = "VeryLazy",
+    event = "UiEnter",
     keys = {
       { "<up>", "<cmd>Yazi<cr>", desc = "Open yazi" },
       { "<s-up>", "<cmd>Yazi cwd<cr>", desc = "Open yazi in cwd" },
@@ -18,6 +18,10 @@ return {
       use_yazi_client_id_flag = true,
       open_multiple_tabs = true,
       open_for_directories = true,
+      floating_window_scaling_factor = {
+        width = 0.95,
+        height = 0.98,
+      },
       -- log_level = vim.log.levels.DEBUG,
       integrations = {
         grep_in_directory = function(directory)

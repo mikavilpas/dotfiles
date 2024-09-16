@@ -20,27 +20,39 @@ return {
         },
         window = {
           completion = cmp.config.window.bordered({
+            -- use all available space
+            max_height = 0,
             winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
           }),
           documentation = cmp.config.window.bordered({
+            -- use all available space
+            max_height = 0,
             winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
           }),
         },
       }
-      local final_options = vim.tbl_deep_extend("keep", new_options, {
-        window = {
-          completion = {
-            -- use all available space
-            max_height = 0,
-          },
-          documentation = {
-            -- use all available space
-            max_height = 0,
-          },
-        },
-      }, opts)
+      local final_options = vim.tbl_deep_extend("keep", new_options, opts)
       return final_options
     end,
+  },
+
+  {
+    "amarakon/nvim-cmp-buffer-lines",
+    keys = {
+      {
+        -- complete with lines from the current buffer - allows narrowing down
+        -- the completion list by typing more
+        "<c-l>", -- mnemonic: "line"
+        mode = { "i" },
+        function()
+          require("cmp").complete({
+            config = {
+              sources = { { name = "buffer-lines" } },
+            },
+          })
+        end,
+      },
+    },
   },
 
   {
@@ -110,7 +122,6 @@ return {
   {
     -- https://github.com/lukas-reineke/cmp-rg
     "lukas-reineke/cmp-rg",
-    event = { "InsertEnter" },
     keys = {
       {
         -- https://github.com/lukas-reineke/cmp-rg/issues/46#issuecomment-1345672195

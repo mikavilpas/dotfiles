@@ -1,3 +1,4 @@
+---@module "lazy"
 ---@module "fastaction"
 
 -- https://www.lazyvim.org/plugins/lsp
@@ -54,6 +55,7 @@ return {
       handler_opts = { border = "rounded" },
     },
     config = function(_, opts)
+      -- ../../../../../.local/share/nvim/lazy/lsp_signature.nvim/lua/lsp_signature/init.lua
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
           local bufnr = args.buf

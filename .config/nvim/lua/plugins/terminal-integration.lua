@@ -28,16 +28,4 @@ return {
       },
     },
   },
-
-  {
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    ---@type ToggleTermConfig
-    ---@diagnostic disable-next-line: missing-fields
-    opts = {
-      float_opts = {
-        border = "curved",
-      },
-    },
-  },
 }

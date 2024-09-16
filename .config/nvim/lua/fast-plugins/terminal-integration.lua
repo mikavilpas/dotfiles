@@ -1,3 +1,4 @@
+---@module "lazy"
 ---@module "flatten"
 
 ---@type LazySpec

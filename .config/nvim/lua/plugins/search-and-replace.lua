@@ -8,6 +8,9 @@ return {
   ---@type ripSubstituteConfig
   opts = {
     prefill = { startInReplaceLineIfPrefill = true },
+    regexOptions = {
+      startWithFixedStringsOn = true,
+    },
   },
   keys = {
     {
