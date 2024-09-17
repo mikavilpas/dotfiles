@@ -20,7 +20,7 @@ return {
       open_for_directories = true,
       floating_window_scaling_factor = {
         width = 0.95,
-        height = 0.98,
+        height = 0.95,
       },
       -- log_level = vim.log.levels.DEBUG,
       integrations = {
