@@ -7,7 +7,10 @@ return {
   cmd = "RipSubstitute",
   ---@type ripSubstituteConfig
   opts = {
-    prefill = { startInReplaceLineIfPrefill = true },
+    prefill = {
+      startInReplaceLineIfPrefill = true,
+      alsoPrefillReplaceLine = true,
+    },
     regexOptions = {
       startWithFixedStringsOn = true,
     },
