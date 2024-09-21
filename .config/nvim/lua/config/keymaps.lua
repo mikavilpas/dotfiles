@@ -56,7 +56,7 @@ _G.lastLazyGit = nil
 
 -- open lazygit in the current git directory
 ---@param args? string[]
----@param options? {cwd?: string}
+---@param options? {retry_count?: number, lazy_term_opts?: LazyTermOpts}
 local function openLazyGit(args, options)
   local cmd = vim.list_extend({ "lazygit" }, args or {})
   options = options or {}
@@ -66,21 +66,45 @@ local function openLazyGit(args, options)
     require("noice").cmd("dismiss")
   end)
 
+  local cwd = require("my-nvim-micro-plugins.main").find_project_root()
   local terminal = require("lazyvim.util.terminal")
-  local lazygit = terminal.open(cmd, {
-    cwd = require("my-nvim-micro-plugins.main").find_project_root(),
-    size = { width = 0.95, height = 0.97 },
-    border = "none",
-    style = "minimal",
-    esc_esc = false,
-    ctrl_hjkl = false,
-  })
+  local lazygit = terminal.open(
+    cmd,
+    vim.tbl_deep_extend("force", {
+      esc_esc = false,
+      border = "none",
+      ctrl_hjkl = false,
+      backdrop = 100, -- 100 disables, I guess?
+      style = "minimal",
+      cwd = cwd,
+      size = { width = 0.95, height = 0.97 },
+    } --[[@as LazyTermOpts]], options.lazy_term_opts or {})
+  )
   vim.api.nvim_buf_set_var(lazygit.buf, "minicursorword_disable", true)
 
   vim.api.nvim_create_autocmd({ "WinLeave" }, {
     buffer = lazygit.buf,
+    once = true,
     callback = function()
       lazygit:hide()
+      local tries_remaining = (options.retry_count or 0) < 2
+      if not tries_remaining then
+        vim.notify("Unable to warm up the next lazygit", vim.log.levels.INFO)
+        return
+      end
+
+      if lazygit:buf_valid() then
+        return -- nothing to do
+      end
+
+      vim.schedule(function()
+        -- warm up the next instance
+        local newLazyGit = openLazyGit(args, {
+          try_count = (options.retry_count or 0) + 1,
+          lazy_term_opts = {},
+        })
+        newLazyGit:hide()
+      end)
     end,
   })
 
