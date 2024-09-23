@@ -4,7 +4,7 @@
 ---@type LazySpec
 
 return {
-  "MeanderingProgrammer/markdown.nvim",
+  "MeanderingProgrammer/render-markdown.nvim",
   ft = function(_, ft)
     vim.list_extend(ft, { "gitcommit" })
   end,
