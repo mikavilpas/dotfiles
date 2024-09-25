@@ -1,3 +1,6 @@
+---@module "lazy"
+---@module "noice"
+---
 ---@type LazySpec
 return {
   -- 💥 Highly experimental plugin that completely replaces the UI for
@@ -37,6 +40,8 @@ return {
       -- Disable "file_path" AMOUNT_OF_LINESL, AMOUNT_OF_BYTESB message
       -- https://github.com/KoalaVim/KoalaVim/blob/e4649e74a1838e6a4a1a55a72e58280064bb909c/lua/KoalaVim/misc/noice_routes.lua#L6
       { filter = { event = "msg_show", kind = "", find = '"[%w%p]+" %d+L, %d+B' }, opts = { skip = true } },
+
+      { filter = { event = "msg_show", find = "Hop 1 char:" }, opts = { skip = true } },
     },
   },
 }
