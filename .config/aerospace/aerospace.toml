@@ -51,11 +51,11 @@ gaps.outer.right = 0
 
 [workspace-to-monitor-force-assignment]
 # Can find these out using `aerospace list-monitors`
-1 = 'DELL U3421WE'
+1 = ['DELL U3421WE', "DELL P2720DC"]
 2 = 'main'
-4 = 'DELL U3421WE'
+4 = ['DELL U3421WE', "DELL P2720DC"]
 5 = 'main'
-7 = 'DELL U3421WE'
+7 = ['DELL U3421WE', "DELL P2720DC"]
 8 = 'main'
 
 # 'main' binding mode declaration
