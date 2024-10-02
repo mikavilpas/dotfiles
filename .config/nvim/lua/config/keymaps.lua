@@ -3,6 +3,13 @@
 -- Add any additional keymaps here
 --
 
+do
+  local colors = require("catppuccin.palettes.macchiato")
+  local darken = require("catppuccin.utils.colors").darken
+  local bg = darken(colors.mauve, 0.5)
+  vim.api.nvim_set_hl(0, "Visual", { bg = bg })
+end
+
 vim.api.nvim_create_autocmd("FileType", {
   -- always open help buffers in a vertical split
   pattern = { "help", "man" },
