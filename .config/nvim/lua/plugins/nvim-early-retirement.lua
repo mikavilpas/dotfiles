@@ -1,3 +1,4 @@
+---@module "lazy"
 ---@type LazySpec
 return {
   -- https://github.com/chrisgrieser/nvim-early-retirement/blob/main/lua/early-retirement.lua

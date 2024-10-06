@@ -1,3 +1,4 @@
+---@module "lazy"
 ---@type LazySpec
 return {
   { "petertriho/cmp-git", enabled = false },

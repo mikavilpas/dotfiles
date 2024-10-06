@@ -1,5 +1,6 @@
 ---@module "catppuccin"
 
+---@module "lazy"
 ---@type LazySpec
 return {
   {

@@ -1,3 +1,4 @@
+---@module "lazy"
 ---@type LazySpec
 return {
   -- provides the :TSC command to type check the current project

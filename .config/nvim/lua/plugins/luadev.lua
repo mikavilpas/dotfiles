@@ -1,3 +1,4 @@
+---@module "lazy"
 ---@type LazySpec
 return {
   { -- optional completion source for require statements and module annotations
