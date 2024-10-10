@@ -4,6 +4,12 @@ source ~/dotfiles/.wezterm.sh
 export PATH=$HOME/bin:$HOME/go/bin/:/usr/local/bin:$PATH:$HOME/Library/Android/sdk/platform-tools
 export PATH=$PATH:$HOME/.luarocks/bin:
 
+# https://github.com/casey/just?tab=readme-ov-file#shell-completion-scripts
+# Init Homebrew, which adds environment variables
+eval "$(brew shellenv)"
+
+fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
+
 export LANG=fi_FI.UTF-8
 export LC_ALL=fi_FI.UTF-8
 
