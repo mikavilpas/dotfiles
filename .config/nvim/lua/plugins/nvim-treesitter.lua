@@ -14,6 +14,7 @@ return {
       "html",
       "javascript",
       "json",
+      "just",
       "lua",
       "make",
       "markdown",
