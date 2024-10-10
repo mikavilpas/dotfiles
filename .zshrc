@@ -100,7 +100,7 @@ ZSH_THEME="robbyrussell"
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z
 # https://github.com/agkozak/zsh-z
-plugins=(git httpie npm z)
+plugins=(git httpie npm z docker docker-compose)
 
 # User configuration
 
