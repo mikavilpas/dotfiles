@@ -13,9 +13,10 @@ $git_status\
 [](fg:peach bg:mauve)\
 $nodejs\
 $rust\
-[](fg:mauve bg:green)\
+[](fg:mauve bg:teal)\
+$aws\
 $status\
-[](fg:green bg:blue)\
+[](fg:teal bg:blue)\
 $time\
 $cmd_duration\
 [ ](fg:blue)\
@@ -73,6 +74,13 @@ disabled = false
 [character]
 format = "$symbol "
 success_symbol = "\\$"
+
+[aws]
+format = '[$symbol$profile ]($style)'
+style = 'fg:crust bg:green'
+symbol = ' 󰸏 '
+# [aws.profile_aliases]
+# Enterprise_Naming_Scheme-voidstars = 'void**'
 
 # palettes should be the last thing in this configuration file
 [palettes.catppuccin_macchiato]
