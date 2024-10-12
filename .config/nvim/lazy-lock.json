@@ -45,7 +45,7 @@
   "mini.pairs": { "branch": "main", "commit": "7e834c5937d95364cc1740e20d673afe2d034cdb" },
   "move.nvim": { "branch": "main", "commit": "cccbd4ea9049ca5f99f025ffaddb7392359c7d6a" },
   "multicursor.nvim": { "branch": "main", "commit": "e2831091b3b514c882de7d599bfbe0d7b99bc73f" },
-  "my-nvim-micro-plugins.nvim": { "branch": "main", "commit": "d1dd67b0ceabeee435ee9b06ca09814f866de750" },
+  "my-nvim-micro-plugins.nvim": { "branch": "main", "commit": "91038010cf19fcb84f815fd17c922e875367ef9f" },
   "neo-tree.nvim": { "branch": "main", "commit": "a77af2e764c5ed4038d27d1c463fa49cd4794e07" },
   "neoconf.nvim": { "branch": "main", "commit": "3a3ae3858ffe11abbd9dc24617cb81ae232a7df0" },
   "noice.nvim": { "branch": "main", "commit": "df448c649ef6bc5a6a633a44f2ad0ed8d4442499" },
