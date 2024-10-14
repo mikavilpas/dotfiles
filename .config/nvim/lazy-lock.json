@@ -45,7 +45,7 @@
   "mini.pairs": { "branch": "main", "commit": "7e834c5937d95364cc1740e20d673afe2d034cdb" },
   "move.nvim": { "branch": "main", "commit": "cccbd4ea9049ca5f99f025ffaddb7392359c7d6a" },
   "multicursor.nvim": { "branch": "main", "commit": "c5d4a994c8ffc0eb5be6a1d88c10c62ddb8192a7" },
-  "my-nvim-micro-plugins.nvim": { "branch": "main", "commit": "40d813bc2d6a7cf94cdb497b6b0461b7a8f5fe78" },
+  "my-nvim-micro-plugins.nvim": { "branch": "main", "commit": "1e22de5bf54ad467911b3ffed3ac9452f6a87e3f" },
   "neo-tree.nvim": { "branch": "main", "commit": "a77af2e764c5ed4038d27d1c463fa49cd4794e07" },
   "neoconf.nvim": { "branch": "main", "commit": "3a3ae3858ffe11abbd9dc24617cb81ae232a7df0" },
   "noice.nvim": { "branch": "main", "commit": "df448c649ef6bc5a6a633a44f2ad0ed8d4442499" },
@@ -102,7 +102,7 @@
   "which-key.nvim": { "branch": "main", "commit": "8badb359f7ab8711e2575ef75dfe6fbbd87e4821" },
   "yazi-flavor-catppuccin-macchiato": { "branch": "main", "commit": "b081fa9768ebd24a71375f85748c26e6a6c7ef44" },
   "yazi-rs-plugins": { "branch": "main", "commit": "e01bc1690a5ba38f72fa25f6382abe7db9aa4708" },
-  "yazi.nvim": { "branch": "main", "commit": "bff42c2ead02675d66e31799d2f3edaba29a4c79" },
+  "yazi.nvim": { "branch": "main", "commit": "519940019913a5e742e2dd2f04712d9ff8869a10" },
   "yaziline.yazi": { "branch": "master", "commit": "5886330df6fdb5f7f8658276dccce9a585e83404" },
   "zen-mode.nvim": { "branch": "main", "commit": "29b292bdc58b76a6c8f294c961a8bf92c5a6ebd6" }
 }
