@@ -147,7 +147,7 @@ alias n="nvim"
 alias dc="docker compose"
 function w() {
   # https://github.com/watchexec/watchexec/issues/716
-  watchexec --timings --no-process-group --project-origin . $@
+  watchexec --on-busy-update=restart --timings --no-process-group --project-origin . $@
 }
 
 # A modern, maintained replacement for ls
