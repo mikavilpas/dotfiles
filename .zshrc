@@ -50,7 +50,7 @@ ZSH_THEME="robbyrussell"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
-zstyle ':omz:update' mode disabled  # disable automatic updates
+zstyle ':omz:update' mode disabled # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
@@ -96,7 +96,6 @@ zstyle ':omz:update' mode disabled  # disable automatic updates
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z
 # https://github.com/agkozak/zsh-z
@@ -167,7 +166,6 @@ klm() {
   (cd /Users/mikavilpas/git/jelpp/jelpp-env && fnm use && npm run klm "$@")
 }
 
-
 #source ~/bin/aws-profile.zsh
 # fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
 
@@ -197,19 +195,19 @@ alias lg="lazygit"
 
 function my_git_grep_history() {
   needle=$1
-  git log -S "$1" --oneline --color=always |\
+  git log -S "$1" --oneline --color=always |
     fzf --multi --ansi --preview="git show --color=always {1} | bat --style=numbers,changes --color=always"
 }
 
 # yazi integration (terminal file manager)
 # https://yazi-rs.github.io/docs/quick-start
 function yy() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
+  local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
 }
 
 alias y="yy"
@@ -238,5 +236,7 @@ eval "$(atuin init zsh)"
 
 # fnm (🚀 Fast and simple Node.js version manager, built in Rust)
 # https://github.com/Schniz/fnm
-eval "`fnm env --use-on-cd --version-file-strategy=recursive`"
+eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
 alias nvm="fnm"
+
+# vim: set filetype=sh :
