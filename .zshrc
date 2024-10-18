@@ -145,7 +145,14 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 alias n="nvim"
 alias dc="docker compose"
+
 function w() {
+  # https://github.com/watchexec/watchexec/issues/716
+  watchexec --timings --no-process-group --project-origin . $@
+}
+
+function ww() {
+  # like `w`, but restart running command on file changes
   # https://github.com/watchexec/watchexec/issues/716
   watchexec --on-busy-update=restart --timings --no-process-group --project-origin . $@
 }
