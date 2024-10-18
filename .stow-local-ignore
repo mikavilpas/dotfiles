@@ -12,3 +12,5 @@ package-lock.json
 assets
 readme.md
 taplo.toml
+
+# vim: set filetype=gitignore :

@@ -1,3 +1,5 @@
 .git
 .oh-my-zsh/
 node_modules
+
+# vim: set filetype=gitignore :
