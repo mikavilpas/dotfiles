@@ -1,3 +1,4 @@
+---@module "lazy"
 ---@type LazySpec
 return {
   {
@@ -65,7 +66,13 @@ return {
     opts = {
       defaults = {
         layout_strategy = "horizontal",
-        layout_config = { prompt_position = "top" },
+        layout_config = {
+          horizontal = {
+            width = 0.9,
+            preview_width = 0.5,
+          },
+          prompt_position = "top",
+        },
         sorting_strategy = "ascending",
         winblend = 0,
         path_display = {

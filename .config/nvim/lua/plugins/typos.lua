@@ -8,6 +8,7 @@
 --
 -- https://github.com/crate-ci/typos?tab=readme-ov-file
 -- https://github.com/tekumara/typos-lsp
+---@module "lazy"
 ---@type LazySpec
 return {
   {

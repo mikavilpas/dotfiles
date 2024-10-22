@@ -4,6 +4,12 @@ source ~/dotfiles/.wezterm.sh
 export PATH=$HOME/bin:$HOME/go/bin/:/usr/local/bin:$PATH:$HOME/Library/Android/sdk/platform-tools
 export PATH=$PATH:$HOME/.luarocks/bin:
 
+# https://github.com/casey/just?tab=readme-ov-file#shell-completion-scripts
+# Init Homebrew, which adds environment variables
+eval "$(brew shellenv)"
+
+fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
+
 export LANG=fi_FI.UTF-8
 export LC_ALL=fi_FI.UTF-8
 
@@ -44,7 +50,7 @@ ZSH_THEME="robbyrussell"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
+zstyle ':omz:update' mode disabled # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
@@ -91,10 +97,9 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z
 # https://github.com/agkozak/zsh-z
-plugins=(git httpie npm z)
+plugins=(git httpie npm z docker docker-compose)
 
 # User configuration
 
@@ -139,9 +144,16 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 alias n="nvim"
 alias dc="docker compose"
+
 function w() {
   # https://github.com/watchexec/watchexec/issues/716
   watchexec --timings --no-process-group --project-origin . $@
+}
+
+function ww() {
+  # like `w`, but restart running command on file changes
+  # https://github.com/watchexec/watchexec/issues/716
+  watchexec --on-busy-update=restart --timings --no-process-group --project-origin . $@
 }
 
 # A modern, maintained replacement for ls
@@ -153,7 +165,6 @@ alias l="eza --oneline --all --long --no-user --icons=auto --no-permissions --ti
 klm() {
   (cd /Users/mikavilpas/git/jelpp/jelpp-env && fnm use && npm run klm "$@")
 }
-
 
 #source ~/bin/aws-profile.zsh
 # fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
@@ -184,19 +195,19 @@ alias lg="lazygit"
 
 function my_git_grep_history() {
   needle=$1
-  git log -S "$1" --oneline --color=always |\
+  git log -S "$1" --oneline --color=always |
     fzf --multi --ansi --preview="git show --color=always {1} | bat --style=numbers,changes --color=always"
 }
 
 # yazi integration (terminal file manager)
 # https://yazi-rs.github.io/docs/quick-start
 function yy() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
+  local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
 }
 
 alias y="yy"
@@ -225,5 +236,7 @@ eval "$(atuin init zsh)"
 
 # fnm (🚀 Fast and simple Node.js version manager, built in Rust)
 # https://github.com/Schniz/fnm
-eval "`fnm env --use-on-cd --version-file-strategy=recursive`"
+eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
 alias nvm="fnm"
+
+# vim: set filetype=sh :

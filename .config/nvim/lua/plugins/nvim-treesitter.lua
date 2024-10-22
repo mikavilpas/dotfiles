@@ -1,3 +1,4 @@
+---@module "lazy"
 ---@type LazySpec
 return {
   -- NOTE the defaults for LazyVim are here https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/treesitter.lua
@@ -13,6 +14,7 @@ return {
       "html",
       "javascript",
       "json",
+      "just",
       "lua",
       "make",
       "markdown",

@@ -1,4 +1,5 @@
 -- https://github.com/folke/zen-mode.nvim
+---@module "lazy"
 ---@type LazySpec
 return {
   "folke/zen-mode.nvim",

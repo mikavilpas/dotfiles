@@ -1,6 +1,12 @@
+---@module "lazy"
 ---@type LazySpec
 return {
-  { "petertriho/cmp-git", enabled = false },
+  {
+    -- added by
+    -- https://github.com/LazyVim/LazyVim/blob/13a4a84e3485a36e64055365665a45dc82b6bf71/lua/lazyvim/plugins/extras/lang/git.lua
+    "petertriho/cmp-git",
+    enabled = false,
+  },
   {
     "hrsh7th/nvim-cmp",
     ---@param opts cmp.ConfigSchema
