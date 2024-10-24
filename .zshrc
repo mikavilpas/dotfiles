@@ -248,4 +248,19 @@ eval "$(atuin init zsh)"
 eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
 alias nvm="fnm"
 
+prepend_text_to_last_command() {
+  # Get the previous command
+  local last_command=$(fc -ln -1)
+
+  # Insert the new command on the command line
+  BUFFER="ww $last_command"
+  # move the cursor to the start of the line
+  CURSOR=0
+}
+
+# Tell Zsh to create a widget from the function
+zle -N prepend_text_to_last_command
+# Bind to a key combination, e.g., Ctrl + p
+bindkey '^P' prepend_text_to_last_command
+
 # vim: set filetype=sh :
