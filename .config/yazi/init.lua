@@ -11,13 +11,5 @@ require("session"):setup({
 
 require("yaziline"):setup()
 
-THEME.git_added_sign = ""
-THEME.git_modified_sign = ""
-THEME.git_ignored_sign = ""
-THEME.git_deleted_sign = ""
-THEME.git_untracked_sign = ""
--- TODO what is this?
--- THEME.git_updated_sign = ""
-
 -- https://github.com/yazi-rs/plugins/tree/main/git.yazi
 require("git"):setup({})
