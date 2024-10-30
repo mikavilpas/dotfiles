@@ -65,7 +65,7 @@
   "nvim-rip-substitute": { "branch": "main", "commit": "b4234eb8b83135ffa3f49d58102d9b4e2e55e1c8" },
   "nvim-snippets": { "branch": "main", "commit": "56b4052f71220144689caaa2e5b66222ba5661eb" },
   "nvim-surround": { "branch": "main", "commit": "dca2e998ff26681ee422b92c6ed39b3d2908d8a9" },
-  "nvim-treesitter": { "branch": "master", "commit": "39016abc99853c3e9d70f1bec7e2fa661b9a81bf" },
+  "nvim-treesitter": { "branch": "master", "commit": "f26b5fb2edcf3700ea36637935566cab6f845f10" },
   "nvim-treesitter-context": { "branch": "master", "commit": "f1b728501ef263d1cf344263c675d7d146a15239" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "3e450cd85243da99dc23ebbf14f9c70e9a0c26a4" },
   "nvim-ts-autotag": { "branch": "main", "commit": "e239a560f338be31337e7abc3ee42515daf23f5e" },
