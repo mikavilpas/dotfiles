@@ -74,6 +74,8 @@ return {
           -- mantle = "#1e2030",
           -- crust = "#181926",
           return {
+            -- ../../../../../.local/share/nvim/lazy/catppuccin/lua/catppuccin/groups/integrations/telescope.lua
+            TelescopeMatching = { fg = colors.base, bg = colors.mauve, style = { "bold" } },
             TelescopePreviewLine = { fg = colors.base, bg = colors.mauve, style = { "bold" } },
             HopNextKey = { fg = colors.peach, bg = colors.none, style = { "bold" } },
             -- Swap these two for the default macchiato colors
