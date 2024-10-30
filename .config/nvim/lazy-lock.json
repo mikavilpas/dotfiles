@@ -17,6 +17,7 @@
   "copilot.lua": { "branch": "master", "commit": "f8d8d872bb319f640d5177dad5fbf01f7a16d7d0" },
   "crates.nvim": { "branch": "main", "commit": "8bf8358ee326d5d8c11dcd7ac0bcc9ff97dbc785" },
   "dashboard-nvim": { "branch": "master", "commit": "d2c5a4d1341f5ca1ed2ecb4ecfcff2bc8ea18b14" },
+  "debugprint.nvim": { "branch": "main", "commit": "982ef9a01aa54ee085a546e4ec8b18125245c1b6" },
   "dressing.nvim": { "branch": "master", "commit": "1b7921eecc65af1baf8ac1dc06f0794934cbcfb2" },
   "easyjump.yazi": { "branch": "master", "commit": "3e5b627cfb91423c557234d40c699b2b65ae5cd5" },
   "fastaction.nvim": { "branch": "main", "commit": "77ae921e6fa6a8e2705768fa89b89b0e45840b94" },
