@@ -6,6 +6,7 @@ return {
   "https://github.com/andrewferrier/debugprint.nvim",
   ---@type DebugprintGlobalOptions
   opts = {
+    print_tag = "🤔 DEBUGPRINT",
     keymaps = {
       normal = {
         plain_below = "g?p",
