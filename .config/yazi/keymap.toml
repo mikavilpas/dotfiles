@@ -17,6 +17,13 @@ desc = "easyjump"
 on = ["<Right>"]
 run = "shell lazygit --block --confirm"
 
+# https://yazi-rs.github.io/docs/tips/#cd-to-git-root
+[[manager.prepend_keymap]]
+on = ["g", "r"]
+run = '''
+	shell 'ya pub dds-cd --str "$(git rev-parse --show-toplevel)"' --confirm
+'''
+
 [manager]
 
 keymap = [
