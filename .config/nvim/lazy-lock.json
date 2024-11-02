@@ -74,7 +74,7 @@
   "persistence.nvim": { "branch": "main", "commit": "f6aad7dde7fcf54148ccfc5f622c6d5badd0cc3d" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
   "render-markdown.nvim": { "branch": "main", "commit": "fc05fb7c56795f191b6800799a2ec6ea325ba715" },
-  "rustaceanvim": { "branch": "master", "commit": "7405d2d84ce96e460d548cf7e8def332ac6e19f0" },
+  "rustaceanvim": { "branch": "master", "commit": "42c4b0f385aca9175d429936a7690f1ff3ed41ad" },
   "sqlite.lua": { "branch": "master", "commit": "d0ffd703b56d090d213b497ed4eb840495f14a11" },
   "starship.yazi": { "branch": "main", "commit": "77a65f5a367f833ad5e6687261494044006de9c3" },
   "tailwindcss-colorizer-cmp.nvim": { "branch": "main", "commit": "3d3cd95e4a4135c250faf83dd5ed61b8e5502b86" },
