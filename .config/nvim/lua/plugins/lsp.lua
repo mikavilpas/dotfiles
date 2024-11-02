@@ -23,11 +23,7 @@ return {
     --
     "neovim/nvim-lspconfig",
 
-    opts = {
-      inlay_hints = { enabled = false },
-    },
-
-    init = function()
+    opts = function(self, opts)
       -- configure keymaps here
       -- https://www.lazyvim.org/plugins/lsp#%EF%B8%8F-customizing-lsp-keymaps
       -- local keys = require("lazyvim.plugins.lsp.keymaps").get()
@@ -37,6 +33,23 @@ return {
       -- keys[#keys + 1] = { "K", false }
       -- -- add a keymap
       -- keys[#keys + 1] = { "H", "<cmd>echo 'hello'<cr>" }
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+
+      keys[#keys + 1] = {
+        -- make sure that goto definition and other lsp actions use the same split
+        -- https://stackoverflow.com/questions/78842602/go-to-definition-in-current-window-if-split-windows-for-the-same-buffer#comment139062034_78842602
+        -- https://www.lazyvim.org/extras/editor/fzf#nvim-lspconfig
+        "gd",
+        function()
+          vim.notify("Goto Definition", vim.log.levels.INFO)
+          -- disable reuse_win to prevent the window from being reused
+          require("telescope.builtin").lsp_definitions({ reuse_win = false })
+        end,
+      }
+
+      opts = opts or {}
+      opts.inlay_hints = { enabled = false }
+      return opts
     end,
   },
 

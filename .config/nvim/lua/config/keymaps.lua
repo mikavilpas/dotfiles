@@ -47,39 +47,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   desc = "Disable New Line Comment",
 })
 
-do
-  -- make sure that goto definition and other lsp actions use the same split
-  -- https://stackoverflow.com/questions/78842602/go-to-definition-in-current-window-if-split-windows-for-the-same-buffer#comment139062034_78842602
-  -- https://www.lazyvim.org/extras/editor/fzf#nvim-lspconfig
-  local Keys = require("lazyvim.plugins.lsp.keymaps").get()
-  vim.list_extend(Keys, {
-    {
-      "gd",
-      function()
-        -- disable reuse_win to prevent the window from being reused
-        require("telescope.builtin").lsp_definitions({ reuse_win = false })
-      end,
-      desc = "Goto Definition",
-      has = "definition",
-    },
-    { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References", nowait = true },
-    {
-      "gI",
-      function()
-        require("telescope.builtin").lsp_implementations({ reuse_win = false })
-      end,
-      desc = "Goto Implementation",
-    },
-    {
-      "gy",
-      function()
-        require("telescope.builtin").lsp_type_definitions({ reuse_win = false })
-      end,
-      desc = "Goto T[y]pe Definition",
-    },
-  })
-end
-
 vim.keymap.set("n", "<leader>gd", function()
   require("telescope.builtin").lsp_definitions({ jump_type = "vsplit" })
 end, { desc = "Goto definition in vsplit" })
