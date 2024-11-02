@@ -1,6 +1,7 @@
 ---@diagnostic disable: undefined-global
 -- Starship prompt plugin for yazi
 -- https://github.com/Rolv-Apneseth/starship.yazi
+-- ./plugins/starship.yazi/
 require("starship"):setup()
 
 -- This plugin provides cross-instance yank ability, which means you can yank
@@ -9,7 +10,9 @@ require("session"):setup({
 	sync_yanked = true,
 })
 
+-- ./plugins/yaziline.yazi/
 -- require("yaziline"):setup()
 
 -- https://github.com/yazi-rs/plugins/tree/main/git.yazi
+-- ./plugins/git.yazi/
 require("git"):setup({})
