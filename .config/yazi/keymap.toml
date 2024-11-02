@@ -75,7 +75,7 @@ keymap = [
   { on = ["G"], run = "arrow 99999999", desc = "Move cursor to the bottom" },
 
   # Selection
-  { on = ["<Space>"], run = ["toggle --state=none"], desc = "Toggle the current selection state" },
+  { on = ["<Space>"], run = ["toggle"], desc = "Toggle the current selection state" },
   { on = ["v"], run = "visual_mode", desc = "Enter visual mode (selection mode)" },
   { on = ["V"], run = "visual_mode --unset", desc = "Enter visual mode (unset mode)" },
   { on = ["<C-a>"], run = "toggle_all --state=true", desc = "Select all files" },
