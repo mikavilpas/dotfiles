@@ -37,6 +37,7 @@ return {
         mason = true,
         grug_far = true,
         cmp = true,
+        blink_cmp = true,
         noice = true,
         gitsigns = true,
         treesitter_context = true,
