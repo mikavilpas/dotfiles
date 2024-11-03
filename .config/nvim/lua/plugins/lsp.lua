@@ -41,7 +41,6 @@ return {
         -- https://www.lazyvim.org/extras/editor/fzf#nvim-lspconfig
         "gd",
         function()
-          vim.notify("Goto Definition", vim.log.levels.INFO)
           -- disable reuse_win to prevent the window from being reused
           require("telescope.builtin").lsp_definitions({ reuse_win = false })
         end,
