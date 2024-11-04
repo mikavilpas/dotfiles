@@ -9,7 +9,7 @@ return {
     {
       -- ../../../../../.local/share/nvim/lazy/blink-cmp-rg.nvim/lua/blink-cmp-rg/init.lua
       "mikavilpas/blink-cmp-rg.nvim",
-      dir = "~/git/blink-cmp-rg.nvim/",
+      -- dir = "~/git/blink-cmp-rg.nvim/",
     },
   },
   ---@module 'blink.cmp'
