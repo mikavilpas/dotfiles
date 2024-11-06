@@ -8,8 +8,8 @@ return {
     "rafamadriz/friendly-snippets",
     {
       -- ../../../../../.local/share/nvim/lazy/blink-cmp-rg.nvim/lua/blink-cmp-rg/init.lua
-      "mikavilpas/blink-cmp-rg.nvim",
-      -- dir = "~/git/blink-cmp-rg.nvim/",
+      "mikavilpas/blink-ripgrep.nvim",
+      -- dir = "~/git/blink-ripgrep.nvim/",
     },
   },
   ---@module 'blink.cmp'
@@ -33,7 +33,7 @@ return {
           score_offset = 99,
         },
         ripgrep = {
-          module = "blink-cmp-rg",
+          module = "blink-ripgrep",
           name = "Ripgrep",
           ---@type blink-cmp-rg.Options
           opts = {
