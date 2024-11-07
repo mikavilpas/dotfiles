@@ -9,6 +9,7 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
+    enabled = false,
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
@@ -64,6 +65,7 @@ return {
   {
     -- https://github.com/hrsh7th/cmp-cmdline
     "hrsh7th/cmp-cmdline",
+    enabled = false,
     dependencies = {
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-buffer",
@@ -128,6 +130,7 @@ return {
   {
     -- https://github.com/lukas-reineke/cmp-rg
     "lukas-reineke/cmp-rg",
+    enabled = false,
     keys = {
       {
         -- https://github.com/lukas-reineke/cmp-rg/issues/46#issuecomment-1345672195

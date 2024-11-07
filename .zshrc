@@ -130,6 +130,15 @@ export VISUAL="nvr --remote-wait"
 # If you want the command to follow symbolic links and don't want it to exclude
 # hidden files, use the following command:
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+
+# https://github.com/catppuccin/fzf?tab=readme-ov-file#usage
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+--color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+--color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
+--color=selected-bg:#494d64 \
+--multi"
+
 # needs to be the last command, otherwise ctrl+r doesn*t work
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -238,5 +247,20 @@ eval "$(atuin init zsh)"
 # https://github.com/Schniz/fnm
 eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
 alias nvm="fnm"
+
+prepend_text_to_last_command() {
+  # Get the previous command
+  local last_command=$(fc -ln -1)
+
+  # Insert the new command on the command line
+  BUFFER="ww $last_command"
+  # move the cursor to the start of the line
+  CURSOR=0
+}
+
+# Tell Zsh to create a widget from the function
+zle -N prepend_text_to_last_command
+# Bind to a key combination, e.g., Ctrl + p
+bindkey '^P' prepend_text_to_last_command
 
 # vim: set filetype=sh :

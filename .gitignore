@@ -9,3 +9,9 @@
 node_modules
 .config/bat/themes/catppuccin-bat
 .oh-my-zsh
+
+# typescript projects create these files to store state in order to optimize
+# what needs to be rebuilt and what is already built.
+#
+# Ignoring this also makes `watchexec` not restart when they change.
+tsconfig.tsbuildinfo

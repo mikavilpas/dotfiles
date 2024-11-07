@@ -1,13 +1,14 @@
 ---@module "lazy"
 ---@type LazySpec
 return {
-  { -- optional completion source for require statements and module annotations
-    "hrsh7th/nvim-cmp",
+  { "LuaCATS/luassert", name = "luassert-types", lazy = true },
+  { "LuaCATS/busted", name = "busted-types", lazy = true },
+  {
+    "folke/lazydev.nvim",
     opts = function(_, opts)
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, {
-        name = "lazydev",
-        group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+      vim.list_extend(opts.library, {
+        { path = "luassert-types/library", words = { "assert" } },
+        { path = "busted-types/library", words = { "describe" } },
       })
     end,
   },

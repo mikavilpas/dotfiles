@@ -50,6 +50,8 @@ config.send_composed_key_when_left_alt_is_pressed = false
 -- https://wezfurlong.org/wezterm/config/keys.html#leader-key
 config.leader = { key = "a", mods = "SUPER", timeout_milliseconds = 1000 }
 
+config.scrollback_lines = 5000
+
 local act = wezterm.action
 config.keys = {
 	-- Clears the scrollback and viewport leaving the prompt line the new first line.

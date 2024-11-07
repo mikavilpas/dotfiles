@@ -18,7 +18,7 @@ return {
 
       -- general / web development
       "prettier",
-      "tailwindcss-language-server",
+      -- "tailwindcss-language-server",
       "yaml-language-server",
     },
   },
