@@ -1,5 +1,4 @@
 ---@module "lazy"
----@module "blink-cmp-rg"
 ---@type LazySpec
 return {
   -- ../../../../../.local/share/nvim/lazy/blink.cmp/lua/blink/cmp/init.lua
@@ -35,7 +34,8 @@ return {
         ripgrep = {
           module = "blink-ripgrep",
           name = "Ripgrep",
-          ---@type blink-cmp-rg.Options
+          ---@module "blink-ripgrep"
+          ---@type blink-ripgrep.Options
           opts = {
             get_command = function(_, prefix)
               local root = require("my-nvim-micro-plugins.main").find_project_root()
