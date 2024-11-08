@@ -2,6 +2,7 @@
 ---@type LazySpec
 return {
   -- ../../../../../.local/share/nvim/lazy/blink.cmp/lua/blink/cmp/init.lua
+  -- ../../../../../.local/share/nvim/lazy/LazyVim/lua/lazyvim/plugins/extras/coding/blink.lua
   "saghen/blink.cmp",
   dependencies = {
     "rafamadriz/friendly-snippets",
