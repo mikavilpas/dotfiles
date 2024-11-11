@@ -40,7 +40,8 @@ vim.api.nvim_create_autocmd("BufDelete", {
     local lastLazyGit = _G.lastLazyGit
     assert(lastLazyGit, "lastLazyGit is not set, so cannot reopen it. This is a bug 🐛.")
 
-    lastLazyGit:show()
-    vim.cmd("startinsert")
+    vim.schedule(function()
+      lastLazyGit:show()
+    end)
   end,
 })

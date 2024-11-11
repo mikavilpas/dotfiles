@@ -62,35 +62,31 @@ vim.keymap.set("n", "<left>", function()
   vim.api.nvim_win_close(win, true)
 end, { desc = "Close leftmost window" })
 
----@type lazyvim.util.terminal | nil
+---@type snacks.win | nil
 _G.lastLazyGit = nil
 
 -- open lazygit in the current git directory
+---@module "snacks.terminal"
 ---@param args? string[]
----@param options? {retry_count?: number, lazy_term_opts?: LazyTermOpts}
+---@param options? {retry_count?: number, term_opts?: snacks.terminal.Opts}
 local function openLazyGit(args, options)
   local cmd = vim.list_extend({ "lazygit" }, args or {})
   options = options or {}
 
-  vim.notify_once(" ")
-  vim.schedule(function()
-    require("noice").cmd("dismiss")
-  end)
-
   local cwd = require("my-nvim-micro-plugins.main").find_project_root()
-  local terminal = require("lazyvim.util.terminal")
-  local lazygit = terminal.open(
-    cmd,
-    vim.tbl_deep_extend("force", {
-      esc_esc = false,
+  local terminal = require("snacks.terminal")
+  ---@type snacks.terminal.Opts
+  local default_opts = {
+    cwd = cwd,
+    win = {
+      backdrop = false,
       border = "none",
-      ctrl_hjkl = false,
-      backdrop = 100, -- 100 disables, I guess?
+      width = 0.95,
+      height = 0.97,
       style = "minimal",
-      cwd = cwd,
-      size = { width = 0.95, height = 0.97 },
-    } --[[@as LazyTermOpts]], options.lazy_term_opts or {})
-  )
+    },
+  }
+  local lazygit = terminal.toggle(cmd, vim.tbl_deep_extend("force", default_opts, options.term_opts or {}))
   vim.api.nvim_buf_set_var(lazygit.buf, "minicursorword_disable", true)
 
   vim.api.nvim_create_autocmd({ "WinLeave" }, {
@@ -112,17 +108,17 @@ local function openLazyGit(args, options)
         -- warm up the next instance
         local newLazyGit = openLazyGit(args, {
           try_count = (options.retry_count or 0) + 1,
-          lazy_term_opts = {},
+          term_opts = {},
         })
         newLazyGit:hide()
       end)
     end,
   })
 
-  lazygit:on_key("<right>", function()
+  vim.keymap.set({ "t" }, "<right>", function()
     -- NOTE: this prevents using the key in lazygit, but is very performant
     lazygit:hide()
-  end, "hide", { "i", "t" })
+  end, { buffer = lazygit.buf })
 
   _G.lastLazyGit = lazygit
   return lazygit
