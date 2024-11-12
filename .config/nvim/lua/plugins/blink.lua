@@ -4,6 +4,9 @@ return {
   -- ../../../../../.local/share/nvim/lazy/blink.cmp/lua/blink/cmp/init.lua
   -- ../../../../../.local/share/nvim/lazy/LazyVim/lua/lazyvim/plugins/extras/coding/blink.lua
   "saghen/blink.cmp",
+  version = false,
+  dir = "~/git/blink.cmp/",
+  build = "cargo build --release",
   dependencies = {
     "rafamadriz/friendly-snippets",
     {
@@ -12,6 +15,7 @@ return {
       -- dir = "~/git/blink-ripgrep.nvim/",
     },
   },
+
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
@@ -53,6 +57,11 @@ return {
             end,
           },
         },
+      },
+    },
+    fuzzy = {
+      prebuilt_binaries = {
+        download = false,
       },
     },
     windows = {
