@@ -2,11 +2,10 @@
 ---@module "lazy"
 
 ---@type LazySpec
-
 return {
   "MeanderingProgrammer/render-markdown.nvim",
   ft = function(_, ft)
-    vim.list_extend(ft, { "gitcommit" })
+    return vim.list_extend(ft, { "gitcommit" })
   end,
   ---@param opts render.md.Config
   opts = function(_, opts)
@@ -15,6 +14,6 @@ return {
     vim.list_extend(opts.file_types, { "gitcommit" })
     require("luasnip").filetype_extend("gitcommit", { "markdown" })
 
-    return {}
+    return opts
   end,
 }
