@@ -42,4 +42,8 @@ return {
     cmd = { "Tardis" },
     config = true,
   },
+  {
+    "mikavilpas/tsugit.nvim",
+    -- dir = "~/git/tsugit.nvim/",
+  },
 }
