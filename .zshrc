@@ -112,7 +112,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 export EDITOR='nvim'
-export VISUAL="nvr --remote-wait"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
