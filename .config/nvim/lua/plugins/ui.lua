@@ -1,4 +1,5 @@
 ---@module "lazy"
+---@module "snacks"
 ---@type LazySpec
 return {
   {
@@ -9,5 +10,17 @@ return {
     -- https://github.com/blob42/dressing.nvim
     "stevearc/dressing.nvim",
     opts = { input = { insert_only = false } },
+  },
+  {
+    -- 🍿 A collection of small QoL plugins for Neovim
+    -- https://github.com/folke/snacks.nvim
+    "folke/snacks.nvim",
+    ---@type snacks.Config
+    opts = {
+      notifier = {
+        -- position notifications at the bottom, rather than at the top
+        top_down = false,
+      },
+    },
   },
 }
