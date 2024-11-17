@@ -31,9 +31,11 @@ return {
       },
       providers = {
         path = {
+          name = "path",
           score_offset = 100,
         },
         lsp = {
+          name = "lsp",
           score_offset = 99,
         },
         ripgrep = {
