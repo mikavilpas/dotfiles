@@ -3,12 +3,6 @@
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
 [[manager.prepend_keymap]]
-on = "<C-p>"
-run = '''
-  shell 'qlmanage -p "$@"' --confirm
-'''
-
-[[manager.prepend_keymap]]
 on = ["i"]
 run = "plugin easyjump"
 desc = "easyjump"
