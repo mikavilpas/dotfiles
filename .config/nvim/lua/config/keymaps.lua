@@ -62,16 +62,6 @@ vim.keymap.set("n", "<left>", function()
   vim.api.nvim_win_close(win, true)
 end, { desc = "Close leftmost window" })
 
-vim.keymap.set("n", "<right>", function()
-  require("tsugit").toggle()
-end, { desc = "lazygit" })
-
-vim.keymap.set("n", "<leader>gl", function()
-  -- open lazygit history for the current file
-  local absolutePath = vim.api.nvim_buf_get_name(0)
-  openLazyGit({ "--filter", absolutePath })
-end, { desc = "lazygit file commits" })
-
 -- disable esc j and esc k moving lines accidentally
 -- https://github.com/LazyVim/LazyVim/discussions/658
 vim.keymap.set("n", "<A-k>", "<esc>k", { desc = "Move up" })

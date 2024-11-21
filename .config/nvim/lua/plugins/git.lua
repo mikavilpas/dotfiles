@@ -44,6 +44,24 @@ return {
   },
   {
     "mikavilpas/tsugit.nvim",
-    -- dir = "~/git/tsugit.nvim/",
+    keys = {
+      {
+        "<right>",
+        function()
+          require("tsugit").toggle()
+        end,
+        { silent = true, desc = "toggle lazygit" },
+      },
+      {
+        "<leader>gl",
+        function()
+          -- open lazygit history for the current file
+          local absolutePath = vim.api.nvim_buf_get_name(0)
+          require("tsugit").toggle_for_file(absolutePath)
+        end,
+        { silent = true, desc = "lazygit file commits" },
+      },
+    },
+    opts = {},
   },
 }
