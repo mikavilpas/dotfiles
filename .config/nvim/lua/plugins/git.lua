@@ -44,6 +44,7 @@ return {
   },
   {
     "mikavilpas/tsugit.nvim",
+    -- dir = "~/git/tsugit.nvim/",
     keys = {
       {
         "<right>",
