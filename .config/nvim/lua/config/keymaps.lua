@@ -19,6 +19,13 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.keymap.set({ "t" }, "<esc><esc>", "<Nop>")
 vim.keymap.set({ "n" }, "<leader>w", "<Nop>")
 
+vim.keymap.set({ "v" }, "ä", function()
+  -- both c-space (from LazyVim) and a are used for treesitter incremental
+  -- selection. It's faster to hit these alternate keys in quick succession.
+  -- This way I can quickly select a large node.
+  require("nvim-treesitter.incremental_selection").node_incremental()
+end, { desc = "Increment selection" })
+
 vim.keymap.set({ "n" }, "<C-k>", function()
   require("lsp_signature").toggle_float_win()
 end, { silent = true, noremap = true, desc = "toggle signature" })
