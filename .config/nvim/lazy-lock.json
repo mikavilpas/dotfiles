@@ -70,6 +70,7 @@
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
   "render-markdown.nvim": { "branch": "main", "commit": "e1879e0ea3d5cee295b48335fc90e76ae8a63081" },
   "rustaceanvim": { "branch": "master", "commit": "6e742b9fc6a37e46181879f6c32cecfa8cd2cebf" },
+  "smear-cursor.nvim": { "branch": "main", "commit": "1435c8e10a76ca0195ed0e26271bdd8e6ad571ea" },
   "snacks.nvim": { "branch": "main", "commit": "7564a30cad803c01f8ecc15683a280d2f0e9bdb7" },
   "sqlite.lua": { "branch": "master", "commit": "d0ffd703b56d090d213b497ed4eb840495f14a11" },
   "starship.yazi": { "branch": "main", "commit": "77a65f5a367f833ad5e6687261494044006de9c3" },
