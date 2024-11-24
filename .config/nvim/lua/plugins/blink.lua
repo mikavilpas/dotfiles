@@ -43,21 +43,7 @@ return {
           name = "Ripgrep",
           ---@module "blink-ripgrep"
           ---@type blink-ripgrep.Options
-          opts = {
-            get_command = function(_, prefix)
-              local root = require("my-nvim-micro-plugins.main").find_project_root()
-              return {
-                "rg",
-                "--no-config",
-                "--json",
-                "--word-regexp",
-                "--ignore-case",
-                "--",
-                prefix .. "[\\w_-]+",
-                root or vim.fn.getcwd(),
-              }
-            end,
-          },
+          opts = {},
         },
       },
     },
