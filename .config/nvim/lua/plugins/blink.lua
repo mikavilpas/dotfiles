@@ -10,7 +10,7 @@ return {
   dependencies = {
     "rafamadriz/friendly-snippets",
     {
-      -- ../../../../../.local/share/nvim/lazy/blink-cmp-rg.nvim/lua/blink-cmp-rg/init.lua
+      -- ~/.local/share/nvim/lazy/blink-ripgrep.nvim/lua/blink-ripgrep/init.lua
       "mikavilpas/blink-ripgrep.nvim",
       -- dir = "~/git/blink-ripgrep.nvim/",
     },
