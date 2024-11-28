@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -32,11 +33,15 @@ return {
       providers = {
         path = {
           name = "path",
-          score_offset = 100,
+          score_offset = 999,
         },
         lsp = {
           name = "lsp",
           score_offset = 99,
+        },
+        buffer = {
+          name = "buffer",
+          score_offset = 9,
         },
         ripgrep = {
           module = "blink-ripgrep",
@@ -52,8 +57,14 @@ return {
         download = false,
       },
     },
-    windows = {
-      autocomplete = {
+    completion = {
+      documentation = {
+        window = {
+          desired_min_height = 30,
+        },
+        auto_show = true,
+      },
+      menu = {
         max_height = 25,
       },
     },
