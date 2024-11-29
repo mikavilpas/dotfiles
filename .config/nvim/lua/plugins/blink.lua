@@ -61,6 +61,7 @@ return {
       documentation = {
         window = {
           desired_min_height = 30,
+          max_width = 120,
         },
         auto_show = true,
       },
