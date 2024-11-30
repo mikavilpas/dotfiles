@@ -24,6 +24,19 @@ return {
       },
     },
   },
+
+  {
+    -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-operators.md
+    "echasnovski/mini.operators",
+    version = "*",
+    opts = {
+      exchange = {
+        -- mnemonic: l for "last"
+        prefix = "gl",
+      },
+    },
+  },
+
   {
     "echasnovski/mini.ai",
     opts = {
