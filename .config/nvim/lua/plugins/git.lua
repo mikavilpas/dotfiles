@@ -6,6 +6,13 @@ return {
     -- https://github.com/aaronhallaert/advanced-git-search.nvim
     "aaronhallaert/advanced-git-search.nvim",
     cmd = { "AdvancedGitSearch" },
+    keys = {
+      {
+        "<leader><right>",
+        "<cmd>AdvancedGitSearch<cr>",
+        { silent = true, desc = "AdvancedGitSearch" },
+      },
+    },
     config = function()
       -- optional: setup telescope before loading the extension
       require("telescope").setup({
