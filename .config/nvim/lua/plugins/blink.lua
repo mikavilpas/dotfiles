@@ -69,6 +69,9 @@ return {
         auto_show = true,
       },
       menu = {
+        draw = {
+          treesitter = true,
+        },
         max_height = 25,
       },
     },
