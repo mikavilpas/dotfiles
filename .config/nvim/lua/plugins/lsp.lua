@@ -53,39 +53,6 @@ return {
   },
 
   {
-    -- LSP signature hint as you type
-    -- https://github.com/ray-x/lsp_signature.nvim
-    "ray-x/lsp_signature.nvim",
-    event = "LspAttach",
-    opts = {
-      -- https://github.com/ray-x/lsp_signature.nvim?tab=readme-ov-file#full-configuration-with-default-values
-      bind = true, -- This is mandatory, otherwise border config won't get registered.
-      max_height = 999,
-      doc_lines = 999,
-      hi_parameter = "@text.note",
-      hint_prefix = "🤔 ",
-      handler_opts = { border = "rounded" },
-    },
-    config = function(_, opts)
-      -- ../../../../../.local/share/nvim/lazy/lsp_signature.nvim/lua/lsp_signature/init.lua
-      vim.api.nvim_create_autocmd("LspAttach", {
-        callback = function(args)
-          local bufnr = args.buf
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-          if not client then
-            vim.notify("LSP client not found: " .. args.data.client_id, "error")
-            return
-          end
-          if vim.tbl_contains({ "null-ls" }, client.name) then -- blacklist lsp
-            return
-          end
-          require("lsp_signature").on_attach(opts, bufnr)
-        end,
-      })
-    end,
-  },
-
-  {
     -- Efficiency plugin designed to optimize code actions in Neovim
     -- https://github.com/Chaitanyabsprip/fastaction.nvim
     "Chaitanyabsprip/fastaction.nvim",
