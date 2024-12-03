@@ -19,6 +19,13 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.keymap.set({ "t" }, "<esc><esc>", "<Nop>")
 vim.keymap.set({ "n" }, "<leader>w", "<Nop>")
 
+vim.keymap.set({ "v" }, "ä", function()
+  -- both c-space (from LazyVim) and a are used for treesitter incremental
+  -- selection. It's faster to hit these alternate keys in quick succession.
+  -- This way I can quickly select a large node.
+  require("nvim-treesitter.incremental_selection").node_incremental()
+end, { desc = "Increment selection" })
+
 vim.keymap.set({ "n" }, "<C-k>", function()
   require("lsp_signature").toggle_float_win()
 end, { silent = true, noremap = true, desc = "toggle signature" })
@@ -61,79 +68,6 @@ vim.keymap.set("n", "<left>", function()
   local win = windows[1]
   vim.api.nvim_win_close(win, true)
 end, { desc = "Close leftmost window" })
-
----@type lazyvim.util.terminal | nil
-_G.lastLazyGit = nil
-
--- open lazygit in the current git directory
----@param args? string[]
----@param options? {retry_count?: number, lazy_term_opts?: LazyTermOpts}
-local function openLazyGit(args, options)
-  local cmd = vim.list_extend({ "lazygit" }, args or {})
-  options = options or {}
-
-  vim.notify_once(" ")
-  vim.schedule(function()
-    require("noice").cmd("dismiss")
-  end)
-
-  local cwd = require("my-nvim-micro-plugins.main").find_project_root()
-  local terminal = require("lazyvim.util.terminal")
-  local lazygit = terminal.open(
-    cmd,
-    vim.tbl_deep_extend("force", {
-      esc_esc = false,
-      border = "none",
-      ctrl_hjkl = false,
-      backdrop = 100, -- 100 disables, I guess?
-      style = "minimal",
-      cwd = cwd,
-      size = { width = 0.95, height = 0.97 },
-    } --[[@as LazyTermOpts]], options.lazy_term_opts or {})
-  )
-  vim.api.nvim_buf_set_var(lazygit.buf, "minicursorword_disable", true)
-
-  vim.api.nvim_create_autocmd({ "WinLeave" }, {
-    buffer = lazygit.buf,
-    once = true,
-    callback = function()
-      lazygit:hide()
-      local tries_remaining = (options.retry_count or 0) < 2
-      if not tries_remaining then
-        vim.notify("Unable to warm up the next lazygit", vim.log.levels.INFO)
-        return
-      end
-
-      if lazygit:buf_valid() then
-        return -- nothing to do
-      end
-
-      vim.schedule(function()
-        -- warm up the next instance
-        local newLazyGit = openLazyGit(args, {
-          try_count = (options.retry_count or 0) + 1,
-          lazy_term_opts = {},
-        })
-        newLazyGit:hide()
-      end)
-    end,
-  })
-
-  lazygit:on_key("<right>", function()
-    -- NOTE: this prevents using the key in lazygit, but is very performant
-    lazygit:hide()
-  end, "hide", { "i", "t" })
-
-  _G.lastLazyGit = lazygit
-  return lazygit
-end
-vim.keymap.set("n", "<right>", openLazyGit, { desc = "lazygit" })
-
-vim.keymap.set("n", "<leader>gl", function()
-  -- open lazygit history for the current file
-  local absolutePath = vim.api.nvim_buf_get_name(0)
-  openLazyGit({ "--filter", absolutePath })
-end, { desc = "lazygit file commits" })
 
 -- disable esc j and esc k moving lines accidentally
 -- https://github.com/LazyVim/LazyVim/discussions/658

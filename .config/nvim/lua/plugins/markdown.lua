@@ -2,19 +2,18 @@
 ---@module "lazy"
 
 ---@type LazySpec
-
 return {
   "MeanderingProgrammer/render-markdown.nvim",
-  ft = function(_, ft)
-    vim.list_extend(ft, { "gitcommit" })
+  ft = function(_, formats)
+    return vim.list_extend(formats, { "gitcommit" })
   end,
-  ---@param opts render.md.Config
-  opts = function(_, opts)
+  ---@type render.md.Config
+  ---@diagnostic disable-next-line: missing-fields
+  opts = {
+    file_types = { "gitcommit", "markdown" },
+  },
+  config = function()
     -- https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/141
-    opts.file_types = opts.file_types or {}
-    vim.list_extend(opts.file_types, { "gitcommit" })
     require("luasnip").filetype_extend("gitcommit", { "markdown" })
-
-    return {}
   end,
 }

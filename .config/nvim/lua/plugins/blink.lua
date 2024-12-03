@@ -1,20 +1,28 @@
+---@diagnostic disable: missing-fields
 ---@module "lazy"
----@module "blink-cmp-rg"
 ---@type LazySpec
 return {
   -- ../../../../../.local/share/nvim/lazy/blink.cmp/lua/blink/cmp/init.lua
+  -- ../../../../../.local/share/nvim/lazy/LazyVim/lua/lazyvim/plugins/extras/coding/blink.lua
   "saghen/blink.cmp",
+  version = false,
+  -- dir = "~/git/blink.cmp/",
+  build = "cargo build --release",
   dependencies = {
     "rafamadriz/friendly-snippets",
     {
-      -- ../../../../../.local/share/nvim/lazy/blink-cmp-rg.nvim/lua/blink-cmp-rg/init.lua
+      -- ~/.local/share/nvim/lazy/blink-ripgrep.nvim/lua/blink-ripgrep/init.lua
       "mikavilpas/blink-ripgrep.nvim",
       -- dir = "~/git/blink-ripgrep.nvim/",
     },
   },
+
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
+    signature = {
+      enabled = true,
+    },
     sources = {
       completion = {
         enabled_providers = {
@@ -27,35 +35,43 @@ return {
       },
       providers = {
         path = {
-          score_offset = 100,
+          name = "path",
+          score_offset = 999,
         },
         lsp = {
+          name = "lsp",
           score_offset = 99,
+        },
+        buffer = {
+          name = "buffer",
+          score_offset = 9,
         },
         ripgrep = {
           module = "blink-ripgrep",
           name = "Ripgrep",
-          ---@type blink-cmp-rg.Options
-          opts = {
-            get_command = function(_, prefix)
-              local root = require("my-nvim-micro-plugins.main").find_project_root()
-              return {
-                "rg",
-                "--no-config",
-                "--json",
-                "--word-regexp",
-                "--ignore-case",
-                "--",
-                prefix .. "[\\w_-]+",
-                root or vim.fn.getcwd(),
-              }
-            end,
-          },
+          ---@module "blink-ripgrep"
+          ---@type blink-ripgrep.Options
+          opts = {},
         },
       },
     },
-    windows = {
-      autocomplete = {
+    fuzzy = {
+      prebuilt_binaries = {
+        download = false,
+      },
+    },
+    completion = {
+      documentation = {
+        window = {
+          desired_min_height = 30,
+          max_width = 120,
+        },
+        auto_show = true,
+      },
+      menu = {
+        draw = {
+          treesitter = true,
+        },
         max_height = 25,
       },
     },

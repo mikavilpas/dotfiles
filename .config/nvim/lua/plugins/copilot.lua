@@ -3,6 +3,7 @@
 return {
   {
     "zbirenbaum/copilot.lua",
+    -- ../../../../../.local/share/nvim/lazy/copilot.lua/lua/copilot/config.lua
     cmd = "Copilot",
     build = ":Copilot auth",
     event = "InsertEnter",

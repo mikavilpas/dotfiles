@@ -6,6 +6,13 @@ return {
     -- https://github.com/aaronhallaert/advanced-git-search.nvim
     "aaronhallaert/advanced-git-search.nvim",
     cmd = { "AdvancedGitSearch" },
+    keys = {
+      {
+        "<leader><right>",
+        "<cmd>AdvancedGitSearch<cr>",
+        { silent = true, desc = "AdvancedGitSearch" },
+      },
+    },
     config = function()
       -- optional: setup telescope before loading the extension
       require("telescope").setup({
@@ -41,5 +48,28 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = { "Tardis" },
     config = true,
+  },
+  {
+    "mikavilpas/tsugit.nvim",
+    -- dir = "~/git/tsugit.nvim/",
+    keys = {
+      {
+        "<right>",
+        function()
+          require("tsugit").toggle()
+        end,
+        { silent = true, desc = "toggle lazygit" },
+      },
+      {
+        "<leader>gl",
+        function()
+          -- open lazygit history for the current file
+          local absolutePath = vim.api.nvim_buf_get_name(0)
+          require("tsugit").toggle_for_file(absolutePath)
+        end,
+        { silent = true, desc = "lazygit file commits" },
+      },
+    },
+    opts = {},
   },
 }

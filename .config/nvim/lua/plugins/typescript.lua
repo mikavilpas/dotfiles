@@ -1,17 +1,7 @@
 ---@module "lazy"
 ---@type LazySpec
 return {
-  "nvim-lua/plenary.nvim",
   "neovim/nvim-lspconfig",
-
-  {
-    "rcarriga/nvim-notify",
-    opts = {
-      -- position notifications at the bottom, rather than at the top
-      -- https://github.com/folke/noice.nvim/discussions/469#discussioncomment-9570150
-      top_down = false,
-    },
-  },
 
   {
     -- Neovim plugin to automatic change normal string to template string
