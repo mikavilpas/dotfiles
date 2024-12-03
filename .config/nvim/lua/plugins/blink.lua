@@ -13,13 +13,28 @@ return {
     {
       -- ~/.local/share/nvim/lazy/blink-ripgrep.nvim/lua/blink-ripgrep/init.lua
       "mikavilpas/blink-ripgrep.nvim",
-      -- dir = "~/git/blink-ripgrep.nvim/",
+      dir = "~/git/blink-ripgrep.nvim/",
     },
   },
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
+    snippets = {
+      -- https://github.com/Saghen/blink.cmp?tab=readme-ov-file#luasnip
+      expand = function(snippet)
+        require("luasnip").lsp_expand(snippet)
+      end,
+      active = function(filter)
+        if filter and filter.direction then
+          return require("luasnip").jumpable(filter.direction)
+        end
+        return require("luasnip").in_snippet()
+      end,
+      jump = function(direction)
+        require("luasnip").jump(direction)
+      end,
+    },
     signature = {
       enabled = true,
     },
@@ -29,6 +44,7 @@ return {
           "lsp",
           "path",
           "snippets",
+          "luasnip",
           "buffer",
           "ripgrep",
         },
