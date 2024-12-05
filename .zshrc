@@ -4,6 +4,9 @@ source ~/dotfiles/.wezterm.sh
 export PATH=$HOME/bin:$HOME/go/bin/:/usr/local/bin:$PATH:$HOME/Library/Android/sdk/platform-tools
 export PATH=$PATH:$HOME/.luarocks/bin:
 
+# https://typicode.github.io/husky/how-to.html#for-multiple-commands
+export HUSKY=0
+
 # https://github.com/casey/just?tab=readme-ov-file#shell-completion-scripts
 # Init Homebrew, which adds environment variables
 eval "$(brew shellenv)"
