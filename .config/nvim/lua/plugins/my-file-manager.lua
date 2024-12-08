@@ -28,6 +28,9 @@ return {
           require("my-nvim-micro-plugins.main").my_live_grep({ cwd = directory })
         end,
       },
+      future_features = {
+        ya_emit_reveal = true,
+      },
     },
   },
   {
