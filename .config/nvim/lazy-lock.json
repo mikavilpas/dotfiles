@@ -52,7 +52,7 @@
   "nvim-colorizer.lua": { "branch": "master", "commit": "a065833f35a3a7cc3ef137ac88b5381da2ba302e" },
   "nvim-early-retirement": { "branch": "main", "commit": "793bc848f71947f004c88c9fbc5604d55d4dddcc" },
   "nvim-lint": { "branch": "master", "commit": "6b46370d02cd001509a765591a3ffc481b538794" },
-  "nvim-lspconfig": { "branch": "master", "commit": "47f236c058f0511702286a21ba53bbf42abbd8a8" },
+  "nvim-lspconfig": { "branch": "master", "commit": "fc16fd4f9c5d72b45db0f45ee275db3a9a30481a" },
   "nvim-navic": { "branch": "master", "commit": "8649f694d3e76ee10c19255dece6411c29206a54" },
   "nvim-neoclip.lua": { "branch": "main", "commit": "32e05f2d23dc5b6a284a688c0535a83d1bfc633f" },
   "nvim-rip-substitute": { "branch": "main", "commit": "afa6d8d2dd426eba90d0cd1c6cef6d6b88c5d8f5" },
@@ -98,6 +98,6 @@
   "which-key.nvim": { "branch": "main", "commit": "9b365a6428a9633e3eeb34dbef1b791511c54f70" },
   "yazi-flavor-catppuccin-macchiato": { "branch": "main", "commit": "8458d2534ffec60254a6a8784ca20cbda3e631b8" },
   "yazi-rs-plugins": { "branch": "main", "commit": "ec97f8847feeb0307d240e7dc0f11d2d41ebd99d" },
-  "yazi.nvim": { "branch": "main", "commit": "14ba86dbfa97361428ef2413f0cb207e968cc58e" },
+  "yazi.nvim": { "branch": "main", "commit": "a084a008c1479b9e50259995fe0192714d641c44" },
   "yaziline.yazi": { "branch": "master", "commit": "5886330df6fdb5f7f8658276dccce9a585e83404" }
 }
