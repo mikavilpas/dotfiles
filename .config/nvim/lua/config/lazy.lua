@@ -30,6 +30,7 @@ if os.getenv("NVIM") == nil then
     -- lsp symbol navigation for lualine. This shows where in the code structure
     -- you are - within functions, classes, etc - in the statusline.
     { import = "lazyvim.plugins.extras.editor.navic" },
+    { import = "lazyvim.plugins.extras.ui.smear-cursor" },
 
     { import = "lazyvim.plugins.extras.linting.eslint" },
     { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
