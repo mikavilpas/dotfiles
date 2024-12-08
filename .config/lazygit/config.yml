@@ -86,6 +86,7 @@ gui:
       - "#cad3f5"
     searchingActiveBorderColor:
       - "#eed49f"
+  showNumstatInFilesView: true
 
 git:
   parseEmoji: true
