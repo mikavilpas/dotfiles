@@ -104,25 +104,9 @@ end, { desc = "Move screen down" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "Move to next match" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Move to previous match" })
 
-local function at_eol()
-  local herecol = vim.fn.col(".")
-  local endcol = vim.fn.col("$")
-
-  return herecol == (endcol - 1)
-end
-
 -- replace whatever is visually selected with the next pasted text, without overwriting the clipboard
--- NOTE: prime uses "<leader>p" but I use that for something else
 vim.keymap.set("x", "p", function()
-  local current_column = vim.fn.col(".")
-  vim.cmd('normal! "_d')
-  if at_eol() then
-    vim.cmd("normal! p")
-  else
-    vim.cmd("normal! P")
-  end
-
-  vim.cmd("normal! " .. current_column .. "|")
+  require("mini.operators").replace("visual")
 end)
 
 -- paste and stay in the same column
