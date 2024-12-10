@@ -170,6 +170,13 @@ vim.keymap.set("n", "<leader>fyd", function()
   vim.fn.setreg("+", vim.fn.expand("%:h"))
 end, { desc = "Copy directory to clipboard" })
 
+vim.keymap.set("n", "(", function()
+  require("snacks.words").jump(-1, true)
+end, { desc = "Jump to previous thing" })
+vim.keymap.set("n", ")", function()
+  require("snacks.words").jump(1, true)
+end, { desc = "Jump to previous thing" })
+
 vim.keymap.set("v", "<leader>ä", function()
   local selection = require("my-nvim-micro-plugins.main").get_visual()
   vim.cmd("= " .. selection)
