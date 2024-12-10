@@ -86,7 +86,8 @@ return {
             -- HopNextKey2 = { bg = colors.none, fg = colors.teal, style = { "bold", "italic" } },
             HopNextKey1 = { bg = colors.none, fg = colors.teal, style = { "bold" } },
             HopNextKey2 = { bg = colors.none, fg = colors.subtext0, style = { "italic" } },
-            CopilotSuggestion = { fg = colors.surface2, bg = colors.none },
+
+            CopilotSuggestion = { fg = colors.lavender, bg = colors.none },
           }
         end,
       },
