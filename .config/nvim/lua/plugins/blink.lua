@@ -65,6 +65,7 @@ return {
         ripgrep = {
           module = "blink-ripgrep",
           name = "Ripgrep",
+          score_offset = -999,
           ---@module "blink-ripgrep"
           ---@type blink-ripgrep.Options
           opts = {},
