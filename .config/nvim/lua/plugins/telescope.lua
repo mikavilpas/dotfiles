@@ -5,32 +5,6 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-
-      -- https://github.com/debugloop/telescope-undo.nvim
-      --
-      -- Usage:
-      -- <leader>sc (search commands), then Telescope undo
-      "debugloop/telescope-undo.nvim",
-
-      {
-        -- https://github.com/smartpde/telescope-recent-files
-        -- Telescope extension for Neovim to pick a recent file
-        "smartpde/telescope-recent-files",
-        keys = {
-          {
-            "<leader>fr",
-            mode = { "n", "v" },
-            function()
-              local telescope = require("telescope")
-              telescope.load_extension("recent_files")
-              telescope.extensions.recent_files.pick({
-                only_cwd = true,
-              })
-            end,
-            desc = "search recent_files (cwd)",
-          },
-        },
-      },
     },
     keys = {
       -- prevent conflicts with hop
@@ -94,29 +68,6 @@ return {
           },
         },
       },
-
-      extensions = {
-        undo = {
-          side_by_side = true,
-          layout_strategy = "vertical",
-          layout_config = {
-            preview_height = 0.8,
-          },
-
-          mappings = {
-            n = {
-              ["<cr>"] = function(bufnr)
-                return require("telescope-undo.actions").restore(bufnr)
-              end,
-            },
-            i = {
-              ["<cr>"] = function(bufnr)
-                return require("telescope-undo.actions").restore(bufnr)
-              end,
-            },
-          },
-        },
-      },
     },
 
     config = function(_, opts)
@@ -125,7 +76,6 @@ return {
       -- defaults, as well as each extension).
       local telescope = require("telescope")
       telescope.setup(opts)
-      telescope.load_extension("undo")
     end,
   },
 
