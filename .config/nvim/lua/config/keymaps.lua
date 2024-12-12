@@ -26,10 +26,6 @@ vim.keymap.set({ "v" }, "ä", function()
   require("nvim-treesitter.incremental_selection").node_incremental()
 end, { desc = "Increment selection" })
 
-vim.keymap.set({ "n" }, "<C-k>", function()
-  require("lsp_signature").toggle_float_win()
-end, { silent = true, noremap = true, desc = "toggle signature" })
-
 vim.keymap.set({ "n" }, "<leader>br", function()
   -- Reopen the current buffer/file to fix LSP warnings being out of sync. For
   -- some reason this seems to fix it.
