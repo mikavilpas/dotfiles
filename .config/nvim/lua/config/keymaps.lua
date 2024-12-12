@@ -35,7 +35,7 @@ vim.keymap.set({ "n" }, "<leader>br", function()
     scroll = vim.fn.winsaveview(),
   }
   -- save changes and reopen the file
-  require("lazyvim.util.ui").bufremove(state.buffer)
+  require("snacks.bufdelete").delete({ buf = state.buffer })
 
   vim.cmd("edit " .. state.file)
   vim.fn.winrestview(state.scroll)
