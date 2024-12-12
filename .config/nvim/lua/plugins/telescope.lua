@@ -169,6 +169,26 @@ return {
   },
 
   {
+    -- FZF sorter for telescope written in c
+    -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+    config = function()
+      require("telescope").setup({
+        extensions = {
+          fzf = {
+            override_generic_sorter = true,
+            -- use natecraddock/telescope-zf-native.nvim for files
+            override_file_sorter = false,
+            case_mode = "smart_case",
+          },
+        },
+      })
+      require("telescope").load_extension("fzf")
+    end,
+  },
+
+  {
     -- native telescope bindings to zf for sorting results.
     -- In short, zf is a filepath fuzzy finder. It is designed for better
     -- matching on filepaths than fzf or fzy. Matches on filenames are
