@@ -1,3 +1,6 @@
+-- until blink is published https://www.lazyvim.org/extras/coding/blink#options
+vim.g.lazyvim_blink_main = true
+
 ---@diagnostic disable: missing-fields
 ---@module "lazy"
 ---@type LazySpec
@@ -39,15 +42,13 @@ return {
       enabled = true,
     },
     sources = {
-      completion = {
-        enabled_providers = {
-          "lsp",
-          "path",
-          "snippets",
-          "luasnip",
-          "buffer",
-          "ripgrep",
-        },
+      default = {
+        "lsp",
+        "path",
+        "snippets",
+        "luasnip",
+        "buffer",
+        "ripgrep",
       },
       providers = {
         path = {
