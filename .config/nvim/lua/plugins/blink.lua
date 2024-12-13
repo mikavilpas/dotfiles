@@ -20,78 +20,85 @@ return {
     },
   },
 
-  ---@module 'blink.cmp'
-  ---@type blink.cmp.Config
-  opts = {
-    snippets = {
-      -- https://github.com/Saghen/blink.cmp?tab=readme-ov-file#luasnip
-      expand = function(snippet)
-        require("luasnip").lsp_expand(snippet)
-      end,
-      active = function(filter)
-        if filter and filter.direction then
-          return require("luasnip").jumpable(filter.direction)
-        end
-        return require("luasnip").in_snippet()
-      end,
-      jump = function(direction)
-        require("luasnip").jump(direction)
-      end,
-    },
-    signature = {
-      enabled = true,
-    },
-    sources = {
-      default = {
-        "lsp",
-        "path",
-        "snippets",
-        "luasnip",
-        "buffer",
-        "ripgrep",
+  config = function(_, opts)
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    local my_opts = {
+      snippets = {
+        -- https://github.com/Saghen/blink.cmp?tab=readme-ov-file#luasnip
+        expand = function(snippet)
+          require("luasnip").lsp_expand(snippet)
+        end,
+        active = function(filter)
+          if filter and filter.direction then
+            return require("luasnip").jumpable(filter.direction)
+          end
+          return require("luasnip").in_snippet()
+        end,
+        jump = function(direction)
+          require("luasnip").jump(direction)
+        end,
       },
-      providers = {
-        path = {
-          name = "path",
-          score_offset = 999,
+      signature = {
+        enabled = true,
+      },
+      sources = {
+        default = {
+          "lsp",
+          "path",
+          "snippets",
+          "luasnip",
+          "buffer",
+          "ripgrep",
         },
-        lsp = {
-          name = "lsp",
-          score_offset = 99,
-        },
-        buffer = {
-          name = "buffer",
-          score_offset = 9,
-        },
-        ripgrep = {
-          module = "blink-ripgrep",
-          name = "Ripgrep",
-          score_offset = -999,
-          ---@module "blink-ripgrep"
-          ---@type blink-ripgrep.Options
-          opts = {},
+        providers = {
+          path = {
+            name = "path",
+            score_offset = 999,
+          },
+          lsp = {
+            name = "lsp",
+            score_offset = 99,
+          },
+          buffer = {
+            name = "buffer",
+            score_offset = 9,
+          },
+          ripgrep = {
+            module = "blink-ripgrep",
+            name = "Ripgrep",
+            score_offset = -999,
+            ---@module "blink-ripgrep"
+            ---@type blink-ripgrep.Options
+            opts = {},
+          },
         },
       },
-    },
-    fuzzy = {
-      prebuilt_binaries = {
-        download = false,
-      },
-    },
-    completion = {
-      documentation = {
-        window = {
-          desired_min_height = 30,
-          max_width = 120,
+      fuzzy = {
+        prebuilt_binaries = {
+          download = false,
         },
-        auto_show = true,
       },
-      menu = {
-        draw = {
-          treesitter = true,
+      completion = {
+        documentation = {
+          window = {
+            desired_min_height = 30,
+            max_width = 120,
+          },
+          auto_show = true,
         },
-        max_height = 25,
+        menu = {
+          draw = {
+            treesitter = true,
+          },
+          max_height = 25,
+        },
       },
-    },
-  },
+    }
+    opts = vim.tbl_deep_extend("force", opts, my_opts)
+
+    -- workaround LazyVim not supporting the latest schema yet
+    opts.sources.compat = nil
+    require("blink.cmp").setup(opts)
+  end,
 }
