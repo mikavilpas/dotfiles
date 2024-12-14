@@ -17,6 +17,9 @@ return {
     "folke/snacks.nvim",
     ---@type snacks.Config
     opts = {
+      scope = {
+        edge = false,
+      },
       notifier = {
         -- position notifications at the bottom, rather than at the top
         top_down = false,

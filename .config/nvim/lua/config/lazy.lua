@@ -19,6 +19,7 @@ if os.getenv("NVIM") == nil then
     { import = "lazyvim.plugins.extras.lang.markdown" },
     { import = "lazyvim.plugins.extras.lang.yaml" },
     { import = "lazyvim.plugins.extras.coding.blink" },
+    { import = "lazyvim.plugins.extras.editor.telescope" },
     { import = "lazyvim.plugins.extras.lang.rust" },
     { import = "lazyvim.plugins.extras.lang.toml" },
     -- { import = "lazyvim.plugins.extras.lang.tailwind" },
@@ -33,7 +34,6 @@ if os.getenv("NVIM") == nil then
     { import = "lazyvim.plugins.extras.ui.smear-cursor" },
 
     { import = "lazyvim.plugins.extras.linting.eslint" },
-    { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
     { import = "lazyvim.plugins.extras.ui.treesitter-context", opts = {
       max_lines = 0,
     } },
