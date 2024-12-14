@@ -12,6 +12,9 @@ vim.o.pumheight = 0 -- take as much space as needed
 vim.o.timeoutlen = 100
 vim.o.ttimeoutlen = 10
 
+vim.g.snacks_animate = false
+vim.g.snacks_scroll = false
+
 -- disable pop up menu transparency
 vim.opt.pumblend = 0
 
