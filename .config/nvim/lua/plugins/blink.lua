@@ -51,6 +51,9 @@ return {
           "buffer",
           "ripgrep",
         },
+        cmdline = {
+          -- disable cmdline completion for now
+        },
         providers = {
           path = {
             name = "path",
@@ -89,7 +92,7 @@ return {
         },
         menu = {
           draw = {
-            treesitter = true,
+            treesitter = { "lsp" },
           },
           max_height = 25,
         },
