@@ -22,7 +22,7 @@ return {
     },
 
     {
-      "<leader><leader>",
+      "<leader><space>",
       mode = { "n", "x", "o" },
       function()
         local hop = require("hop")
