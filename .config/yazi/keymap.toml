@@ -15,7 +15,7 @@ run = "shell lazygit --block --confirm"
 [[manager.prepend_keymap]]
 on = ["g", "r"]
 run = '''
-	shell 'ya pub dds-cd --str "${NVIM_CWD:-$(git rev-parse --show-toplevel 2>/dev/null)}"' --confirm
+	shell 'ya emit cd "${NVIM_CWD:-$(git rev-parse --show-toplevel 2>/dev/null)}"'
 '''
 
 [manager]
