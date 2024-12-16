@@ -154,12 +154,14 @@ end, { desc = "Copy relative path to clipboard" })
 -- full path
 vim.keymap.set("n", "<leader>fyp", function()
   vim.fn.setreg("+", vim.fn.expand("%:p"))
+  vim.notify("Copied full file path to the clipboard", vim.log.levels.INFO)
 end, { desc = "Copy full path to clipboard" })
 
 -- just filename
 vim.keymap.set("n", "<leader>fyf", function()
   vim.fn.setreg("+", vim.fn.expand("%:t"))
-end, { desc = "Copy filename to clipboard" })
+  vim.notify("Copied " .. vim.fn.expand("%:t") .. " to clipboard", vim.log.levels.INFO)
+end, { desc = "Copy filename to the clipboard" })
 
 -- directory of the current file
 vim.keymap.set("n", "<leader>fyd", function()
