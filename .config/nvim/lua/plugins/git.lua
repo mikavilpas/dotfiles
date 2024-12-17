@@ -60,16 +60,25 @@ return {
         end,
         { silent = true, desc = "toggle lazygit" },
       },
-      {
-        "<leader>gl",
-        function()
-          -- open lazygit history for the current file
-          local absolutePath = vim.api.nvim_buf_get_name(0)
-          require("tsugit").toggle_for_file(absolutePath)
-        end,
-        { silent = true, desc = "lazygit file commits" },
-      },
     },
     opts = {},
+  },
+  {
+    -- Single tabpage interface for easily cycling through diffs for all
+    -- modified files for any git rev.
+    -- https://github.com/sindrets/diffview.nvim
+    "sindrets/diffview.nvim",
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewFileHistory",
+    },
+    keys = {
+      {
+        "<leader>gl",
+        mode = { "n" },
+        ":DiffviewFileHistory %<cr>",
+        { silent = true, desc = "Diffview file history" },
+      },
+    },
   },
 }
