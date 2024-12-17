@@ -42,7 +42,7 @@ style = "fg:crust bg:peach"
 format = '[[($all_status$ahead_behind )](fg:crust bg:peach)]($style)'
 
 [nodejs]
-symbol = ""
+symbol = "󰎙"
 style = "fg:crust bg:mauve"
 format = '[[ $symbol ($version) ](fg:crust bg:mauve)]($style)'
 
