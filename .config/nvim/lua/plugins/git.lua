@@ -76,8 +76,8 @@ return {
       {
         "<leader>gl",
         mode = { "n" },
-        ":DiffviewFileHistory %<cr>",
-        { silent = true, desc = "Diffview file history" },
+        "<cmd>DiffviewFileHistory %<cr>",
+        { desc = "Diffview file history" },
       },
     },
   },
