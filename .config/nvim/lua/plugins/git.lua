@@ -9,6 +9,7 @@ return {
     keys = {
       {
         "<leader><right>",
+        mode = { "n", "v" },
         "<cmd>AdvancedGitSearch<cr>",
         { silent = true, desc = "AdvancedGitSearch" },
       },
