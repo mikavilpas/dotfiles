@@ -46,7 +46,7 @@ return {
         default = {
           "lsp",
           "path",
-          "snippets",
+          -- "snippets",
           "luasnip",
           "buffer",
           "ripgrep",
