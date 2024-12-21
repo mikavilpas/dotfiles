@@ -28,6 +28,15 @@ customCommands:
       "I"
     context: global
     command: "git stash-keep"
+  - key: "E"
+    description: "Add empty commit"
+    context: files
+    command: 'git commit --allow-empty -m "empty commit"'
+    loadingText: "Committing empty commit..."
+    prompts:
+      - type: input
+        title: Empty commit message
+        initialValue: "(empty commit)"
 
 keybinding:
   universal:
