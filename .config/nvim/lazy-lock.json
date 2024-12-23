@@ -1,7 +1,7 @@
 {
   "LazyVim": { "branch": "main", "commit": "d0c366e4d861b848bdc710696d5311dca2c6d540" },
   "LuaSnip": { "branch": "master", "commit": "33b06d72d220aa56a7ce80a0dd6f06c70cd82b9d" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "af3f82cd4972520e6ac04c48ed3eed473660efca" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "e6085187d6c5bde220ebbf38c963a2fda77dfbb4" },
   "advanced-git-search.nvim": { "branch": "main", "commit": "69a41a3351d89e8be597fe5682265d8c99b8b12c" },
   "blink-ripgrep.nvim": { "branch": "main", "commit": "8a47d404a359c70c796cb0979ddde4c788fd44e5" },
   "blink.cmp": { "branch": "main", "commit": "f93af0f486ada13e8c34f42c911788b9232b811f" },
