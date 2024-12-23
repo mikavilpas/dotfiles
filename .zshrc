@@ -3,6 +3,7 @@ source ~/dotfiles/.wezterm.sh
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/go/bin/:/usr/local/bin:$PATH:$HOME/Library/Android/sdk/platform-tools
 export PATH=$PATH:$HOME/.luarocks/bin:
+export PATH=/Users/mikavilpas/.local/share/bob/nvim-bin:$PATH
 
 # https://typicode.github.io/husky/how-to.html#for-multiple-commands
 export HUSKY=0
