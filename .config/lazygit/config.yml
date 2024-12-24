@@ -37,6 +37,10 @@ customCommands:
       - type: input
         title: Empty commit message
         initialValue: "(empty commit)"
+  - key: "<c-b>"
+    context: localBranches
+    description: "Backup branch"
+    command: git backup-branch
 
 keybinding:
   universal:
