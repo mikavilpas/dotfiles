@@ -3,7 +3,8 @@
 "$schema" = "https://yazi-rs.github.io/schemas/theme.json"
 
 [flavor]
-use = "catppuccin-macchiato"
+dark = "catppuccin-macchiato"
+light = "catppuccin-macchiato"
 
 [manager]
 cwd = { fg = "#8bd5ca" }
