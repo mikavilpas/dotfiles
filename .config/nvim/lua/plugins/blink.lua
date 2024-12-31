@@ -55,18 +55,9 @@ return {
           -- disable cmdline completion for now
         },
         providers = {
-          path = {
-            name = "path",
-            score_offset = 999,
-          },
-          lsp = {
-            name = "lsp",
-            score_offset = 99,
-          },
-          buffer = {
-            name = "buffer",
-            score_offset = 9,
-          },
+          path = { score_offset = 999 },
+          lsp = { score_offset = 99 },
+          buffer = { score_offset = 9 },
           ripgrep = {
             module = "blink-ripgrep",
             name = "Ripgrep",
