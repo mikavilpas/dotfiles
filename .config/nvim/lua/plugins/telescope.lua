@@ -20,20 +20,10 @@ return {
       {
         "<leader>/",
         mode = { "n", "v" },
-        function(...)
-          require("my-nvim-micro-plugins.main").my_live_grep(...)
+        function()
+          require("my-nvim-micro-plugins.main").my_live_grep({})
         end,
         desc = "search project 🤞🏻",
-      },
-      {
-        "<leader>fR",
-        mode = { "n", "v" },
-        function()
-          require("telescope").extensions.recent_files.pick({
-            only_cwd = false,
-          })
-        end,
-        desc = "search recent_files (global)",
       },
     },
 
