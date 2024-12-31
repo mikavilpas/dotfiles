@@ -74,6 +74,14 @@ return {
             ---@module "blink-ripgrep"
             ---@type blink-ripgrep.Options
             opts = {},
+            transform_items = function(_, items)
+              for _, item in ipairs(items) do
+                item.labelDetails = {
+                  description = "(rg)",
+                }
+              end
+              return items
+            end,
           },
         },
       },
