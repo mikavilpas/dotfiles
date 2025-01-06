@@ -117,7 +117,20 @@ return {
   },
 
   {
+    -- native telescope bindings to zf for sorting results
+    "natecraddock/telescope-zf-native.nvim",
+    config = function()
+      require("telescope").load_extension("zf-native")
+    end,
+  },
+
+  {
     "mikavilpas/nucleo.nvim",
+    -- for now I like using telescope-zf-native. My telescope shows the
+    -- filename_first and the path last, which is not well supported in the
+    -- nucleo algorithm. It's more intuitive to use the zf algorithm because it
+    -- prioritizes file names.
+    enabled = false,
     -- https://github.com/mikavilpas/nucleo.nvim
     build = "cargo build --release",
     config = true,
