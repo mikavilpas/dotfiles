@@ -1,10 +1,10 @@
 {
   "LazyVim": { "branch": "main", "commit": "d1529f650fdd89cb620258bdeca5ed7b558420c7" },
   "LuaSnip": { "branch": "master", "commit": "c9b9a22904c97d0eb69ccb9bab76037838326817" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "438f4f1f1fb890980cb23002597f99c9579834bd" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "d315a1a99279764f10a4bf175c40d39630212de1" },
   "advanced-git-search.nvim": { "branch": "main", "commit": "69a41a3351d89e8be597fe5682265d8c99b8b12c" },
-  "blink-ripgrep.nvim": { "branch": "main", "commit": "8de4ccb9b1d527f7da71df22d73e71ce8b4468be" },
-  "blink.cmp": { "branch": "main", "commit": "a993bd8977f5e7087e4f5b03fa2ce7c3358debf1" },
+  "blink-ripgrep.nvim": { "branch": "main", "commit": "f707cce87f491404b9909fe56d513222af681c38" },
+  "blink.cmp": { "branch": "main", "commit": "80945db7a988f8eb5233bb1e4b409bb20177c7ac" },
   "bufferline.nvim": { "branch": "main", "commit": "9f0826ae6adfd836a23bf8a4910e3c07450211f4" },
   "busted-types": { "branch": "main", "commit": "5ed85d0e016a5eb5eca097aa52905eedf1b180f1" },
   "catppuccin": { "branch": "main", "commit": "f67b886d65a029f12ffa298701fb8f1efd89295d" },
