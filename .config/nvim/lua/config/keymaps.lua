@@ -145,11 +145,21 @@ vim.keymap.set({ "v" }, "<leader>cy", function()
   vim.cmd("normal " .. current_column .. "|")
 end, { desc = "Comment line", silent = true })
 
--- Copy the current buffer path to the clipboard
--- https://stackoverflow.com/a/17096082/1336788
 vim.keymap.set("n", "<leader>fyr", function()
-  vim.fn.setreg("+", vim.fn.expand("%"))
-end, { desc = "Copy relative path to clipboard" })
+  local thisfile = vim.fn.expand("%:p")
+  assert(thisfile, "Error getting the file path. Maybe this file is not saved yet?")
+
+  local result = vim.system({ "git", "ls-files", "--full-name", thisfile }):wait(2000)
+  assert(result)
+  assert(result.stdout)
+  assert(type(result.stdout) == "string")
+  assert(#result.stdout > 0)
+
+  local filepath = vim.split(result.stdout, "\n")[1]
+  vim.notify("Copied " .. filepath, vim.log.levels.INFO)
+
+  vim.fn.setreg("+", filepath)
+end, { desc = "Copy git relative path to clipboard" })
 
 -- full path
 vim.keymap.set("n", "<leader>fyp", function()
