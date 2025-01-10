@@ -18,6 +18,14 @@ run = '''
 	shell 'ya emit cd "${NVIM_CWD:-$(git rev-parse --show-toplevel 2>/dev/null)}"'
 '''
 
+# copy the relative path to the current file/selected files in the current git repo
+# (remove the last newline)
+[[manager.prepend_keymap]]
+on = ["c", "r"]
+run = '''
+  shell 'git ls-files --full-name $@ | perl -pe "chomp if eof" | pbcopy'
+'''
+
 [manager]
 
 keymap = [
