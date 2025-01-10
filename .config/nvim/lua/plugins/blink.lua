@@ -51,7 +51,11 @@ return {
             score_offset = -999,
             ---@module "blink-ripgrep"
             ---@type blink-ripgrep.Options
-            opts = {},
+            opts = {
+              future_features = {
+                kill_previous_searches = true,
+              },
+            },
             transform_items = function(_, items)
               for _, item in ipairs(items) do
                 item.labelDetails = {
