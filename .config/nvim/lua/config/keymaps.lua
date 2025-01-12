@@ -37,8 +37,10 @@ vim.keymap.set({ "n" }, "<leader>br", function()
   -- save changes and reopen the file
   require("snacks.bufdelete").delete({ buf = state.buffer })
 
-  vim.cmd("edit " .. state.file)
-  vim.fn.winrestview(state.scroll)
+  vim.schedule(function()
+    vim.cmd("edit " .. state.file)
+    vim.fn.winrestview(state.scroll)
+  end)
 end, { desc = "Reopen buffer" })
 
 vim.keymap.set({ "v" }, "s", "<Plug>(nvim-surround-visual)")
