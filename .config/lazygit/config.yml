@@ -100,6 +100,11 @@ gui:
     searchingActiveBorderColor:
       - "#eed49f"
   showNumstatInFilesView: true
+  branchColorPatterns:
+    # my "git backup-branch" branches should show up in a darker color
+    ".+?--backup-\\d{8}": "#6e738d"
+    main: "#f5bde6"
+    master: "#f5bde6"
 
 git:
   parseEmoji: true
