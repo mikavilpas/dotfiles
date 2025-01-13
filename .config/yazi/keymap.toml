@@ -26,6 +26,12 @@ run = '''
   shell 'git ls-files --full-name $@ | perl -pe "chomp if eof" | pbcopy'
 '''
 
+[[manager.prepend_keymap]]
+on = ["c", "i"] # copy inside
+run = '''
+  shell 'cat $@ | pbcopy'
+'''
+
 [manager]
 
 keymap = [
