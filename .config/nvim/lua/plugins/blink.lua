@@ -1,3 +1,6 @@
+-- until blink is published https://www.lazyvim.org/extras/coding/blink#options
+vim.g.lazyvim_blink_main = true
+
 ---@diagnostic disable: missing-fields
 ---@module "lazy"
 ---@type LazySpec
@@ -17,63 +20,78 @@ return {
     },
   },
 
-  ---@module 'blink.cmp'
-  ---@type blink.cmp.Config
-  opts = {
-    signature = {
-      enabled = true,
-    },
-    sources = {
-      completion = {
-        enabled_providers = {
+  config = function(_, opts)
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    local my_opts = {
+      signature = {
+        enabled = true,
+      },
+      snippets = {
+        preset = "luasnip",
+      },
+      sources = {
+        default = {
           "lsp",
           "path",
           "snippets",
           "buffer",
           "ripgrep",
         },
+        cmdline = {
+          -- disable cmdline completion for now
+        },
+        providers = {
+          path = { score_offset = 999 },
+          lsp = { score_offset = 99 },
+          buffer = { score_offset = 9 },
+          ripgrep = {
+            module = "blink-ripgrep",
+            name = "Ripgrep",
+            score_offset = -999,
+            ---@module "blink-ripgrep"
+            ---@type blink-ripgrep.Options
+            opts = {
+              future_features = {
+                kill_previous_searches = true,
+              },
+            },
+            transform_items = function(_, items)
+              for _, item in ipairs(items) do
+                item.labelDetails = {
+                  description = "(rg)",
+                }
+              end
+              return items
+            end,
+          },
+        },
       },
-      providers = {
-        path = {
-          name = "path",
-          score_offset = 999,
-        },
-        lsp = {
-          name = "lsp",
-          score_offset = 99,
-        },
-        buffer = {
-          name = "buffer",
-          score_offset = 9,
-        },
-        ripgrep = {
-          module = "blink-ripgrep",
-          name = "Ripgrep",
-          ---@module "blink-ripgrep"
-          ---@type blink-ripgrep.Options
-          opts = {},
+      fuzzy = {
+        prebuilt_binaries = {
+          download = false,
         },
       },
-    },
-    fuzzy = {
-      prebuilt_binaries = {
-        download = false,
-      },
-    },
-    completion = {
-      documentation = {
-        window = {
-          desired_min_height = 30,
-          max_width = 120,
+      completion = {
+        documentation = {
+          window = {
+            desired_min_height = 30,
+            max_width = 120,
+          },
+          auto_show = true,
         },
-        auto_show = true,
-      },
-      menu = {
-        draw = {
-          treesitter = true,
+        menu = {
+          draw = {
+            treesitter = { "lsp" },
+          },
+          max_height = 25,
         },
-        max_height = 25,
       },
-    },
-  },
+    }
+    opts = vim.tbl_deep_extend("force", opts, my_opts)
+
+    -- workaround LazyVim not supporting the latest schema yet
+    opts.sources.compat = nil
+    require("blink.cmp").setup(opts)
+  end,
 }

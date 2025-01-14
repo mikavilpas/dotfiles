@@ -3,6 +3,10 @@ source ~/dotfiles/.wezterm.sh
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/go/bin/:/usr/local/bin:$PATH:$HOME/Library/Android/sdk/platform-tools
 export PATH=$PATH:$HOME/.luarocks/bin:
+export PATH=/Users/mikavilpas/.local/share/bob/nvim-bin:$PATH
+
+# https://typicode.github.io/husky/how-to.html#for-multiple-commands
+export HUSKY=0
 
 # https://github.com/casey/just?tab=readme-ov-file#shell-completion-scripts
 # Init Homebrew, which adds environment variables
@@ -10,8 +14,8 @@ eval "$(brew shellenv)"
 
 fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
 
-export LANG=fi_FI.UTF-8
-export LC_ALL=fi_FI.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"

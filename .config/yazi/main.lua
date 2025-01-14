@@ -11,7 +11,7 @@ require("session"):setup({
 })
 
 -- ./plugins/yaziline.yazi/
--- require("yaziline"):setup()
+require("yaziline"):setup()
 
 -- https://github.com/yazi-rs/plugins/tree/main/git.yazi
 -- ./plugins/git.yazi/

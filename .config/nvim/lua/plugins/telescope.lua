@@ -5,32 +5,6 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-
-      -- https://github.com/debugloop/telescope-undo.nvim
-      --
-      -- Usage:
-      -- <leader>sc (search commands), then Telescope undo
-      "debugloop/telescope-undo.nvim",
-
-      {
-        -- https://github.com/smartpde/telescope-recent-files
-        -- Telescope extension for Neovim to pick a recent file
-        "smartpde/telescope-recent-files",
-        keys = {
-          {
-            "<leader>fr",
-            mode = { "n", "v" },
-            function()
-              local telescope = require("telescope")
-              telescope.load_extension("recent_files")
-              telescope.extensions.recent_files.pick({
-                only_cwd = true,
-              })
-            end,
-            desc = "search recent_files (cwd)",
-          },
-        },
-      },
     },
     keys = {
       -- prevent conflicts with hop
@@ -46,20 +20,10 @@ return {
       {
         "<leader>/",
         mode = { "n", "v" },
-        function(...)
-          require("my-nvim-micro-plugins.main").my_live_grep(...)
+        function()
+          require("my-nvim-micro-plugins.main").my_live_grep({})
         end,
         desc = "search project 🤞🏻",
-      },
-      {
-        "<leader>fR",
-        mode = { "n", "v" },
-        function()
-          require("telescope").extensions.recent_files.pick({
-            only_cwd = false,
-          })
-        end,
-        desc = "search recent_files (global)",
       },
     },
 
@@ -94,29 +58,6 @@ return {
           },
         },
       },
-
-      extensions = {
-        undo = {
-          side_by_side = true,
-          layout_strategy = "vertical",
-          layout_config = {
-            preview_height = 0.8,
-          },
-
-          mappings = {
-            n = {
-              ["<cr>"] = function(bufnr)
-                return require("telescope-undo.actions").restore(bufnr)
-              end,
-            },
-            i = {
-              ["<cr>"] = function(bufnr)
-                return require("telescope-undo.actions").restore(bufnr)
-              end,
-            },
-          },
-        },
-      },
     },
 
     config = function(_, opts)
@@ -125,7 +66,6 @@ return {
       -- defaults, as well as each extension).
       local telescope = require("telescope")
       telescope.setup(opts)
-      telescope.load_extension("undo")
     end,
   },
 
@@ -169,48 +109,32 @@ return {
   },
 
   {
-    -- native telescope bindings to zf for sorting results.
-    -- In short, zf is a filepath fuzzy finder. It is designed for better
-    -- matching on filepaths than fzf or fzy. Matches on filenames are
-    -- prioritized, and the strict path matching feature helps narrow down
-    -- directory trees with precision. See the zf repo for full details.
-    -- https://github.com/natecraddock/telescope-zf-native.nvim
+    -- FZF sorter for telescope written in c
+    -- this gets enabled by LazyVim's telescope extra
+    -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
+    "nvim-telescope/telescope-fzf-native.nvim",
+    enabled = false,
+  },
+
+  {
+    -- native telescope bindings to zf for sorting results
     "natecraddock/telescope-zf-native.nvim",
     config = function()
-      require("telescope").setup({
-        extensions = {
-          ["zf-native"] = {
-            -- options for sorting file-like items
-            file = {
-              -- override default telescope file sorter
-              enable = true,
-              -- highlight matching text in results
-              highlight_results = true,
-              -- enable zf filename match priority
-              match_filename = true,
-              -- optional function to define a sort order when the query is empty
-              initial_sort = nil,
-              -- set to false to enable case sensitive matching
-              smart_case = true,
-            },
-
-            -- options for sorting all other items
-            generic = {
-              -- override default telescope generic item sorter
-              enable = true,
-              -- highlight matching text in results
-              highlight_results = true,
-              -- disable zf filename match priority
-              match_filename = false,
-              -- optional function to define a sort order when the query is empty
-              initial_sort = nil,
-              -- set to false to enable case sensitive matching
-              smart_case = true,
-            },
-          },
-        },
-      })
       require("telescope").load_extension("zf-native")
     end,
+  },
+
+  {
+    "mikavilpas/nucleo.nvim",
+    -- for now I like using telescope-zf-native. My telescope shows the
+    -- filename_first and the path last, which is not well supported in the
+    -- nucleo algorithm. It's more intuitive to use the zf algorithm because it
+    -- prioritizes file names.
+    enabled = false,
+    -- https://github.com/mikavilpas/nucleo.nvim
+    build = "cargo build --release",
+    config = true,
+    -- it sets itself as the default sorter for telescope's find_files (file
+    -- picker)
   },
 }

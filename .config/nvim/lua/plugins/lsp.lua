@@ -72,7 +72,7 @@ return {
       keys[#keys + 1] = {
         "<leader>ca",
         function()
-          require("fastaction").range_code_action()
+          require("fastaction").code_action()
         end,
         mode = { "v" },
       }

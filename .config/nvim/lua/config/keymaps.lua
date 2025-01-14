@@ -26,10 +26,6 @@ vim.keymap.set({ "v" }, "ä", function()
   require("nvim-treesitter.incremental_selection").node_incremental()
 end, { desc = "Increment selection" })
 
-vim.keymap.set({ "n" }, "<C-k>", function()
-  require("lsp_signature").toggle_float_win()
-end, { silent = true, noremap = true, desc = "toggle signature" })
-
 vim.keymap.set({ "n" }, "<leader>br", function()
   -- Reopen the current buffer/file to fix LSP warnings being out of sync. For
   -- some reason this seems to fix it.
@@ -39,10 +35,12 @@ vim.keymap.set({ "n" }, "<leader>br", function()
     scroll = vim.fn.winsaveview(),
   }
   -- save changes and reopen the file
-  require("lazyvim.util.ui").bufremove(state.buffer)
+  require("snacks.bufdelete").delete({ buf = state.buffer })
 
-  vim.cmd("edit " .. state.file)
-  vim.fn.winrestview(state.scroll)
+  vim.schedule(function()
+    vim.cmd("edit " .. state.file)
+    vim.fn.winrestview(state.scroll)
+  end)
 end, { desc = "Reopen buffer" })
 
 vim.keymap.set({ "v" }, "s", "<Plug>(nvim-surround-visual)")
@@ -104,25 +102,9 @@ end, { desc = "Move screen down" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "Move to next match" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Move to previous match" })
 
-local function at_eol()
-  local herecol = vim.fn.col(".")
-  local endcol = vim.fn.col("$")
-
-  return herecol == (endcol - 1)
-end
-
 -- replace whatever is visually selected with the next pasted text, without overwriting the clipboard
--- NOTE: prime uses "<leader>p" but I use that for something else
 vim.keymap.set("x", "p", function()
-  local current_column = vim.fn.col(".")
-  vim.cmd('normal! "_d')
-  if at_eol() then
-    vim.cmd("normal! p")
-  else
-    vim.cmd("normal! P")
-  end
-
-  vim.cmd("normal! " .. current_column .. "|")
+  require("mini.operators").replace("visual")
 end)
 
 -- paste and stay in the same column
@@ -165,26 +147,45 @@ vim.keymap.set({ "v" }, "<leader>cy", function()
   vim.cmd("normal " .. current_column .. "|")
 end, { desc = "Comment line", silent = true })
 
--- Copy the current buffer path to the clipboard
--- https://stackoverflow.com/a/17096082/1336788
 vim.keymap.set("n", "<leader>fyr", function()
-  vim.fn.setreg("+", vim.fn.expand("%"))
-end, { desc = "Copy relative path to clipboard" })
+  local thisfile = vim.fn.expand("%:p")
+  assert(thisfile, "Error getting the file path. Maybe this file is not saved yet?")
+
+  local result = vim.system({ "git", "ls-files", "--full-name", thisfile }):wait(2000)
+  assert(result)
+  assert(result.stdout)
+  assert(type(result.stdout) == "string")
+  assert(#result.stdout > 0)
+
+  local filepath = vim.split(result.stdout, "\n")[1]
+  vim.notify("Copied " .. filepath, vim.log.levels.INFO)
+
+  vim.fn.setreg("+", filepath)
+end, { desc = "Copy git relative path to clipboard" })
 
 -- full path
 vim.keymap.set("n", "<leader>fyp", function()
   vim.fn.setreg("+", vim.fn.expand("%:p"))
+  vim.notify("Copied full file path to the clipboard", vim.log.levels.INFO)
 end, { desc = "Copy full path to clipboard" })
 
 -- just filename
 vim.keymap.set("n", "<leader>fyf", function()
   vim.fn.setreg("+", vim.fn.expand("%:t"))
-end, { desc = "Copy filename to clipboard" })
+  vim.notify("Copied " .. vim.fn.expand("%:t") .. " to clipboard", vim.log.levels.INFO)
+end, { desc = "Copy filename to the clipboard" })
 
 -- directory of the current file
 vim.keymap.set("n", "<leader>fyd", function()
   vim.fn.setreg("+", vim.fn.expand("%:h"))
 end, { desc = "Copy directory to clipboard" })
+
+vim.keymap.set("n", "(", function()
+  require("snacks.words").jump(-1, true)
+end, { desc = "Jump to previous thing" })
+vim.keymap.set("n", ")", function()
+  require("snacks.words").jump(1, true)
+end, { desc = "Jump to previous thing" })
 
 vim.keymap.set("v", "<leader>ä", function()
   local selection = require("my-nvim-micro-plugins.main").get_visual()
@@ -196,4 +197,4 @@ end, { desc = "Evaluate visual selection as lua" })
 -- https://www.reddit.com/r/neovim/comments/13y3thq/comment/jmm7tut/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 vim.keymap.set("v", "y", "ygv<esc>")
 
-vim.keymap.set("n", "<backspace>", ":wa<cr>", { desc = "Save all files", silent = true })
+vim.keymap.set("n", "<backspace>", "<cmd>wa<cr>", { desc = "Save all files", silent = true })

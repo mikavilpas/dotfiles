@@ -9,7 +9,13 @@ return {
     event = "InsertEnter",
     opts = {
       -- https://github.com/zbirenbaum/copilot.lua?tab=readme-ov-file#setup-and-configuration
-      suggestion = { enabled = true, auto_trigger = true },
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        keymap = {
+          accept_word = "<c-l>",
+        },
+      },
       debounce = 300, --ms
       filetypes = {
         markdown = true,

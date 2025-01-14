@@ -17,7 +17,15 @@ end
 --
 --
 
-config.font = wezterm.font("DejaVuSansMono NF")
+-- You can download the newest version of this font (it gets updates) with:
+--
+-- brew install font-dejavu-sans-mono-nerd-font
+--
+-- See all system fonts with:
+--
+-- wezterm ls-fonts --list-system
+
+config.font = wezterm.font("DejaVuSansM Nerd Font Propo")
 config.font_size = 19
 config.freetype_load_target = "Light"
 

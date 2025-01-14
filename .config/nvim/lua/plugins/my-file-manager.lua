@@ -14,8 +14,6 @@ return {
     },
     ---@type YaziConfig
     opts = {
-      use_ya_for_events_reading = true,
-      use_yazi_client_id_flag = true,
       open_multiple_tabs = true,
       open_for_directories = true,
       floating_window_scaling_factor = {
@@ -27,6 +25,10 @@ return {
         grep_in_directory = function(directory)
           require("my-nvim-micro-plugins.main").my_live_grep({ cwd = directory })
         end,
+      },
+      future_features = {
+        ya_emit_reveal = true,
+        ya_emit_open = true,
       },
     },
   },

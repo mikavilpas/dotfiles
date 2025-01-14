@@ -28,6 +28,19 @@ customCommands:
       "I"
     context: global
     command: "git stash-keep"
+  - key: "E"
+    description: "Add empty commit"
+    context: files
+    command: 'git commit --allow-empty -m "empty commit"'
+    loadingText: "Committing empty commit..."
+    prompts:
+      - type: input
+        title: Empty commit message
+        initialValue: "(empty commit)"
+  - key: "b"
+    context: localBranches
+    description: "Backup branch"
+    command: git backup-branch
 
 keybinding:
   universal:
@@ -86,6 +99,12 @@ gui:
       - "#cad3f5"
     searchingActiveBorderColor:
       - "#eed49f"
+  showNumstatInFilesView: true
+  branchColorPatterns:
+    # my "git backup-branch" branches should show up in a darker color
+    ".+?--backup-\\d{8}": "#6e738d"
+    "main$": "#a6da95"
+    "master$": "#a6da95"
 
 git:
   parseEmoji: true

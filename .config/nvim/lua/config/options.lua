@@ -12,6 +12,9 @@ vim.o.pumheight = 0 -- take as much space as needed
 vim.o.timeoutlen = 100
 vim.o.ttimeoutlen = 10
 
+vim.g.snacks_animate = false
+vim.g.snacks_scroll = false
+
 -- disable pop up menu transparency
 vim.opt.pumblend = 0
 
@@ -21,3 +24,8 @@ vim.g.maplocalleader = " "
 -- This is enabled by default. To disable, add the below to your `options.lua`:
 -- https://github.com/LazyVim/LazyVim/commit/7d0dbc6dedc2d6cb4c3bc77fa296dc07ce5927c9
 vim.g.lazygit_config = false
+
+-- In case you don't want to use `:LazyExtras`,
+-- then you need to set the option below.
+-- https://www.lazyvim.org/extras/editor/telescope
+vim.g.lazyvim_picker = "telescope"
