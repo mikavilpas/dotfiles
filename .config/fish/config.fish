@@ -12,6 +12,8 @@ fish_add_path $HOME/.local/share/bob/nvim-bin:$PATH
 fish_add_path ~/.cargo/bin
 
 if status is-interactive
+    fish_vi_key_bindings
+
     # Commands to run in interactive sessions can go here
     atuin init fish | source
     starship init fish | source
