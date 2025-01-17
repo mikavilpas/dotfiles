@@ -71,4 +71,12 @@ if status is-interactive
 
         end
     end
+
+    function klm
+        cd /Users/mikavilpas/git/jelpp/jelpp-env
+        fnm use
+        npm run klm $argv
+        cd -
+        fnm use
+    end
 end
