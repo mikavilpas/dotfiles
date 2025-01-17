@@ -27,6 +27,9 @@ if status is-interactive
     alias dc="docker compose"
     alias lg="lazygit"
 
+    # https://github.com/catppuccin/fish
+    fish_config theme choose "Catppuccin Macchiato"
+
     # A modern, maintained replacement for ls
     # https://github.com/eza-community/eza
     alias l="eza --oneline --all --long --no-user --icons=auto --no-permissions --time-style=long-iso"
