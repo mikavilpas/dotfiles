@@ -34,7 +34,7 @@ if status is-interactive
 
     # A modern, maintained replacement for ls
     # https://github.com/eza-community/eza
-    alias l="eza --oneline --all --long --no-user --icons=auto --no-permissions --time-style=long-iso"
+    abbr --add -- l "eza --oneline --all --long --no-user --icons=auto --no-permissions --time-style=long-iso"
 
     function y
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
