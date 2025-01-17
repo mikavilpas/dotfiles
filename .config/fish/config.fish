@@ -26,6 +26,7 @@ if status is-interactive
     alias j="zi"
     alias dc="docker compose"
     alias lg="lazygit"
+    abbr -a -- - 'cd -'
 
     # https://github.com/catppuccin/fish
     fish_config theme choose "Catppuccin Macchiato"
