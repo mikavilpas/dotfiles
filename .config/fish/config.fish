@@ -22,10 +22,10 @@ if status is-interactive
     starship init fish | source
     zoxide init fish | source
 
-    alias n="nvim"
-    alias j="zi"
-    alias dc="docker compose"
-    alias lg="lazygit"
+    abbr --add -- n nvim
+    abbr --add -- j zi
+    abbr --add -- dc "docker compose"
+    abbr --add -- lg lazygit
     abbr --add -- - 'cd -'
     abbr --add -- ... 'cd ../../'
 
