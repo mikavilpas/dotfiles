@@ -1,6 +1,10 @@
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
 
+# using this verison currently
+# aerospace CLI client version: 0.13.4-Beta ae7340ab50f654546dc5523fd7fa5c81faa3d313
+# AeroSpace.app server version: 0.13.4-Beta ae7340ab50f654546dc5523fd7fa5c81faa3d313
+
 # Feel free to omit keys that you don't use in your config.
 # If the key is absent in your config the default value is taken from this config
 
