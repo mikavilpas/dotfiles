@@ -28,6 +28,7 @@ if status is-interactive
     abbr --add -- lg lazygit
     abbr --add -- - 'cd -'
     abbr --add -- ... 'cd ../../'
+    abbr --add -- top btm
 
     # https://github.com/catppuccin/fish
     fish_config theme choose "Catppuccin Macchiato"
