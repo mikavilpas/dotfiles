@@ -198,3 +198,4 @@ end, { desc = "Evaluate visual selection as lua" })
 vim.keymap.set("v", "y", "ygv<esc>")
 
 vim.keymap.set("n", "<backspace>", "<cmd>wa<cr>", { desc = "Save all files", silent = true })
+vim.keymap.set({ "n", "v" }, "<up>", "<cmd>Yazi<cr>", { desc = "Open yazi" })
