@@ -90,7 +90,7 @@ return {
           draw = {
             treesitter = { "lsp" },
           },
-          max_height = 25,
+          max_height = 30,
         },
       },
     }
