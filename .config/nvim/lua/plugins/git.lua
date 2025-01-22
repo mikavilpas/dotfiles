@@ -58,6 +58,31 @@ return {
     },
     opts = {},
   },
+
+  {
+    -- Git integration for buffers
+    -- https://github.com/lewis6991/gitsigns.nvim
+    "lewis6991/gitsigns.nvim",
+    keys = {
+      {
+        "<tab>",
+        mode = { "n" },
+        function()
+          require("gitsigns").nav_hunk("next", { target = "all", navigation_message = false })
+        end,
+        { silent = true, desc = "next hunk" },
+      },
+      {
+        "<s-tab>",
+        mode = { "n" },
+        function()
+          require("gitsigns").nav_hunk("prev", { target = "all", navigation_message = false })
+        end,
+        { silent = true, desc = "prev hunk" },
+      },
+    },
+  },
+
   {
     -- Single tabpage interface for easily cycling through diffs for all
     -- modified files for any git rev.
