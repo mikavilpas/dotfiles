@@ -45,12 +45,6 @@ return {
   },
 
   {
-    "fredeeb/tardis.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    cmd = { "Tardis" },
-    config = true,
-  },
-  {
     "mikavilpas/tsugit.nvim",
     -- dir = "~/git/tsugit.nvim/",
     keys = {
