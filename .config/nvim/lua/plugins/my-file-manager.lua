@@ -5,7 +5,7 @@
 return {
   {
     "mikavilpas/yazi.nvim",
-    dir = "~/git/yazi.nvim/",
+    -- dir = "~/git/yazi.nvim/",
     event = "UiEnter",
     keys = {
       { "<up>", "<cmd>Yazi<cr>", desc = "Open yazi" },
