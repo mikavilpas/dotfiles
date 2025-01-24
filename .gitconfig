@@ -6,6 +6,20 @@
   pager = delta
   ; commentChar = ";"
 
+  # disable using git hooks completely.
+  # - sometimes other developers add hooks that are slow. Sometimes it's me.
+  # - some implementations of git hooks do not work at all when legacy projects
+  #   with hooks are included as submodules
+  # - some hook implementations don't work at all when rebasing
+  # - git gui/tui wrappers don't make it clear when hooks are running
+  # - I like creating many commits quickly and squashing them later. Hooks
+  #   prevent this workflow.
+  # - good projects should put important checks in CI pipelines/tests anyway,
+  #   so the benefit is questionable
+  # - many hooks can also be disabled with the `--no-verify` flag, so they are
+  #   not reliable
+  hooksPath = /dev/null
+
 [diff]
   colorMoved = default
 
