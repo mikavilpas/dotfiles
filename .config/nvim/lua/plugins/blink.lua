@@ -42,7 +42,13 @@ return {
           -- disable cmdline completion for now
         },
         providers = {
-          path = { score_offset = 999 },
+          path = {
+            score_offset = 999,
+            ---@type blink.cmp.PathOpts
+            opts = {
+              show_hidden_files_by_default = true,
+            },
+          },
           lsp = { score_offset = 99 },
           buffer = { score_offset = 9 },
           ripgrep = {
@@ -84,7 +90,7 @@ return {
           draw = {
             treesitter = { "lsp" },
           },
-          max_height = 25,
+          max_height = 30,
         },
       },
     }

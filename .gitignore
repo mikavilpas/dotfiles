@@ -15,3 +15,4 @@ node_modules
 #
 # Ignoring this also makes `watchexec` not restart when they change.
 tsconfig.tsbuildinfo
+.config/atuin/atuin-receipt.json

@@ -102,7 +102,7 @@ gui:
   showNumstatInFilesView: true
   branchColorPatterns:
     # my "git backup-branch" branches should show up in a darker color
-    ".+?--backup-\\d{8}": "#6e738d"
+    ".+?--backup": "#6e738d"
     "main$": "#a6da95"
     "master$": "#a6da95"
 

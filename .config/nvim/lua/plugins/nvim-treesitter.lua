@@ -11,6 +11,7 @@ return {
     ensure_installed = {
       "bash",
       "css",
+      "fish",
       "html",
       "javascript",
       "json",

@@ -9,6 +9,7 @@ local config = {}
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
+config.default_prog = { "/opt/homebrew/bin/fish", "-l" }
 
 -- This is where you actually apply your config choices
 
