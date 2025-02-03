@@ -1,5 +1,14 @@
 # https://github.com/etrigan63/Catppuccin-starship/blob/main/user_starship.toml
 
+# when displaying the nodejs version in the prompt, the initial call to node is
+# slow. The subsequent calls are fast, so give the command a bit more time in
+# the beginning.
+#
+# Using Node v22.13.0
+# [WARN] - (starship::utils): Executing command "/Users/mikavilpas/.local/state/fnm_multishells/6152_1738395379087/bin/node" timed out.
+# [WARN] - (starship::utils): You can set command_timeout in your config to a higher value to allow longer-running commands to keep executing.
+command_timeout = 3000
+
 palette = "catppuccin_mocha"
 format = """
 [](blue)\
