@@ -1,6 +1,6 @@
 {
   "extras": [
-
+    "lazyvim.plugins.extras.lang.docker"
   ],
   "news": {
     "NEWS.md": "10960"
