@@ -24,6 +24,17 @@ return {
         -- position notifications at the bottom, rather than at the top
         top_down = false,
       },
+
+      picker = {
+        win = {
+          input = {
+            keys = {
+              -- my-nvim-micro-plugins defines this
+              ["<C-y>"] = { "my_copy_relative_path", mode = { "n", "i" } },
+            },
+          },
+        },
+      },
     },
   },
 }
