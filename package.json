@@ -6,6 +6,12 @@
   },
   "devDependencies": {
     "@umbrelladocs/linkspector": "0.3.8",
+    "prettier-plugin-toml": "2.0.1",
     "prettier": "3.2.5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "puppeteer"
+    ]
   }
 }
