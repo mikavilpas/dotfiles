@@ -11,12 +11,15 @@ return {
     end
 
     -- "find" replacement with a well-designed command-line interface
+    -- https://github.com/sharkdp/fd
     check("fd")
 
     -- fzf - a command-line fuzzy finder
+    -- https://github.com/fuzzy-finder/fzf
     check("fzf")
 
     -- zf - a commandline fuzzy finder that prioritizes matches on filenames
+    -- https://github.com/natecraddock/zf
     check("zf")
 
     -- utility for printing the resolved path of a file, used for e.g. relative
@@ -24,24 +27,31 @@ return {
     check("grealpath")
 
     -- jq - a lightweight and flexible command-line JSON processor
+    -- https://github.com/jqlang/jq
     check("jq")
 
     -- lazygit - simple terminal UI for git commands
+    -- https://github.com/jesseduffield/lazygit
     check("lazygit")
 
     -- a markdown terminal slideshow tool
+    -- https://github.com/mfontanini/presenterm
     check("presenterm")
 
     -- ripgrep - recursively searches directories for a regex pattern
+    -- https://github.com/BurntSushi/ripgrep
     check("rg")
 
     -- a smarter cd command
+    -- https://github.com/ajeetdsouza/zoxide
     check("zoxide")
 
     -- 🦀 Painless compression and decompression in the terminal
+    -- https://github.com/ouch-org/ouch
     check("ouch")
 
     -- 🦀 Source code spell checker
+    -- https://github.com/crate-ci/typos
     check("typos")
 
     -- 🦀 Atuin replaces your existing shell history with a SQLite database,
