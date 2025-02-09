@@ -60,8 +60,8 @@ if status is-interactive
     complete --command ww --wraps watchexec
 
     function battail
-        set file $1
-        set needle $2
+        set file $argv[1]
+        set needle $argv[2]
         # https://github.com/sharkdp/bat?tab=readme-ov-file#tail--f
         if [ -z "$needle" ]
             tail -F $file | bat --style="plain" --color=always --paging=never --language log
