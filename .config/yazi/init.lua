@@ -10,9 +10,6 @@ require("session"):setup({
 	sync_yanked = true,
 })
 
--- ./plugins/yaziline.yazi/
-require("yaziline"):setup()
-
 -- https://github.com/yazi-rs/plugins/tree/main/git.yazi
 -- ./plugins/git.yazi/
 require("git"):setup({})
