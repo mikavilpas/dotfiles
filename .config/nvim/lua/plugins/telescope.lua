@@ -6,27 +6,6 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    keys = {
-      -- prevent conflicts with hop
-      { "<leader><leader>", false },
-      {
-        "<down>",
-        mode = { "n", "v" },
-        function()
-          require("my-nvim-micro-plugins.main").my_find_file_in_project()
-        end,
-        { desc = "Find files (including in git submodules)" },
-      },
-      {
-        "<leader>/",
-        mode = { "n", "v" },
-        function()
-          require("my-nvim-micro-plugins.main").my_live_grep({})
-        end,
-        desc = "search project 🤞🏻",
-      },
-    },
-
     opts = {
       defaults = {
         layout_strategy = "horizontal",
@@ -42,19 +21,6 @@ return {
         path_display = {
           filename_first = {
             reverse_directories = false,
-          },
-        },
-
-        mappings = {
-          n = {
-            ["<C-y>"] = function(...)
-              require("my-nvim-micro-plugins.main").my_copy_relative_path(...)
-            end,
-          },
-          i = {
-            ["<C-y>"] = function(...)
-              require("my-nvim-micro-plugins.main").my_copy_relative_path(...)
-            end,
           },
         },
       },
