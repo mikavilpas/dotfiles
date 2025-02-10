@@ -54,6 +54,10 @@ return {
     -- https://github.com/crate-ci/typos
     check("typos")
 
+    -- Intuitive find & replace CLI (sed alternative)
+    -- https://github.com/chmln/sd
+    check("sd")
+
     -- 🦀 Atuin replaces your existing shell history with a SQLite database,
     -- and records additional context for your commands. Additionally, it
     -- provides optional and fully encrypted synchronisation of your history
