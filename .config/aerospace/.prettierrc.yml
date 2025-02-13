@@ -1,4 +1,0 @@
-tabWidth: 2
-proseWrap: always
-plugins:
-  - "prettier-plugin-toml"

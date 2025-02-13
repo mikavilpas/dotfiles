@@ -22,9 +22,8 @@ return {
       },
       -- log_level = vim.log.levels.DEBUG,
       integrations = {
-        grep_in_directory = function(directory)
-          require("my-nvim-micro-plugins.main").my_live_grep({ cwd = directory })
-        end,
+        grep_in_directory = "snacks.picker",
+        grep_in_selected_files = "snacks.picker",
       },
       future_features = {
         process_events_live = true,
@@ -69,15 +68,6 @@ return {
   },
   {
     "ndtoan96/ouch.yazi",
-    lazy = true,
-    build = function(plugin)
-      require("yazi.plugin").build_plugin(plugin)
-    end,
-  },
-  {
-    -- Simple lualine-like status line for yazi.
-    -- https://github.com/llanosrocas/yaziline.yazi
-    "llanosrocas/yaziline.yazi",
     lazy = true,
     build = function(plugin)
       require("yazi.plugin").build_plugin(plugin)

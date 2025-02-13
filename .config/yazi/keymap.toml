@@ -79,8 +79,8 @@ keymap = [
   { on = ["<Left>"], run = "noop" },
   { on = ["<Right>"], run = "noop" },
 
-  { on = ["g", "g"], run = "arrow -99999999", desc = "Move cursor to the top" },
-  { on = ["G"], run = "arrow 99999999", desc = "Move cursor to the bottom" },
+  { on = ["g", "g"], run = "arrow top", desc = "Move cursor to the top" },
+  { on = ["G"], run = "arrow bot", desc = "Move cursor to the bottom" },
 
   # Selection
   { on = ["<Space>"], run = ["toggle"], desc = "Toggle the current selection state" },
