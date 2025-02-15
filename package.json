@@ -2,6 +2,7 @@
   "private": true,
   "description": "",
   "scripts": {
+    "prettier": "prettier --check .",
     "linkspector": "linkspector check"
   },
   "devDependencies": {

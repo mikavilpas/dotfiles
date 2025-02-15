@@ -1,0 +1,10 @@
+name: Linting
+
+on: [push, pull_request]
+
+jobs:
+  markdownlint:
+    name: markdownlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: DavidAnson/markdownlint-cli2-action@v19.1.0
