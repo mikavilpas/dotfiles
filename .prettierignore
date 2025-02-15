@@ -1,4 +1,5 @@
 .config/nvim/lazy-lock.json
 .config/nvim/lazyvim.json
+.config/yazi/keymap.toml
 
 # vim: set filetype=gitignore :
