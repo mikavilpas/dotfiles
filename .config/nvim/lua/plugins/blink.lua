@@ -38,9 +38,9 @@ return {
           "buffer",
           "ripgrep",
         },
-        cmdline = {
-          -- disable cmdline completion for now
-        },
+        -- cmdline = {
+        --   -- disable cmdline completion for now
+        -- },
         providers = {
           path = {
             score_offset = 999,
