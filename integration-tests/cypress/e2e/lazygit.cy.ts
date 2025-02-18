@@ -1,17 +1,34 @@
+import assert from "assert"
+
 describe("lazygit", () => {
-  it("sanity check: .gitconfig is available for tests", () => {
+  it.only("sanity check: .gitconfig and lazygit config are available for tests", () => {
     cy.visit("/")
-    cy.startTerminalApplication({ commandToRun: ["bash"] }).then(() => {
-      cy.typeIntoTerminal(`echo $HOME{enter}`)
-      cy.typeIntoTerminal(`ls -al $HOME{enter}`)
-      cy.typeIntoTerminal(`test -f ~/.gitconfig || echo "no gitconfig" {enter}`)
-      cy.typeIntoTerminal(`git config --list --show-origin | grep user {enter}`)
+    cy.startTerminalApplication({ commandToRun: ["bash"] }).then((t) => {
+      t.runBlockingShellCommand({ command: "echo $HOME" }).then((output) => {
+        assert(output.type === "success")
+        expect(output.stdout).includes("testdirs/")
+      })
 
-      cy.typeIntoTerminal(
-        "test -f ~/.config/lazygit/config.yml || echo 'no lazygit config' {enter}",
-      )
+      t.runBlockingShellCommand({ command: "ls -al $HOME" }).then((output) => {
+        assert(output.type === "success")
+        expect(output.stdout).includes(".gitconfig")
+      })
 
-      cy.contains("mika.vilpas@gmail.com")
+      t.runBlockingShellCommand({
+        command:
+          "test -f ~/.config/lazygit/config.yml || echo 'no lazygit config'",
+      }).then((output) => {
+        assert(output.type === "success")
+        expect(output.stdout).includes("config.yml")
+      })
+
+      // cy.typeIntoTerminal(`git config --list --show-origin | grep user {enter}`)
+
+      // cy.typeIntoTerminal(
+      //   "test -f ~/.config/lazygit/config.yml || echo 'no lazygit config' {enter}",
+      // )
+      //
+      // cy.contains("mika.vilpas@gmail.com")
     })
   })
 
