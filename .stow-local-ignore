@@ -12,5 +12,8 @@ package-lock.json
 assets
 readme.md
 taplo.toml
+integration-tests
+eslint.config.mjs
+pnpm-workspace.yaml
 
 # vim: set filetype=gitignore :
