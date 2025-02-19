@@ -30,6 +30,11 @@ jobs:
           echo "List files in ~/.config"
           ls -la ~/.config/
 
+      - name: Install delta
+        run: |
+          wget https://github.com/dandavison/delta/releases/download/0.18.1/git-delta_0.18.1_amd64.deb
+          sudo dpkg -i git-delta_0.18.1_amd64.deb
+
       - name: Install lazygit
         run: |
           # https://github.com/jesseduffield/lazygit?tab=readme-ov-file#ubuntu
