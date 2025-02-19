@@ -15,8 +15,7 @@ describe("lazygit", () => {
       })
 
       t.runBlockingShellCommand({
-        command:
-          "test -f ~/.config/lazygit/config.yml || echo 'no lazygit config'",
+        command: "test -f ~/.config/lazygit/config.yml",
       }).then((output) => {
         assert(output.type === "success")
       })
