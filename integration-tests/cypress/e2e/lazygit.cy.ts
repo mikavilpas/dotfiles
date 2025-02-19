@@ -1,7 +1,7 @@
 import assert from "assert"
 
 describe("lazygit", () => {
-  it.only("sanity check: .gitconfig and lazygit config are available for tests", () => {
+  it("sanity check: .gitconfig and lazygit config are available for tests", () => {
     cy.visit("/")
     cy.startTerminalApplication({ commandToRun: ["bash"] }).then((t) => {
       t.runBlockingShellCommand({ command: "echo $HOME" }).then((output) => {
@@ -20,13 +20,12 @@ describe("lazygit", () => {
         assert(output.type === "success")
       })
 
-      // cy.typeIntoTerminal(`git config --list --show-origin | grep user {enter}`)
-
-      // cy.typeIntoTerminal(
-      //   "test -f ~/.config/lazygit/config.yml || echo 'no lazygit config' {enter}",
-      // )
-      //
-      // cy.contains("mika.vilpas@gmail.com")
+      t.runBlockingShellCommand({
+        command: `git config --list --show-origin`,
+      }).then((output) => {
+        assert(output.type === "success")
+        expect(output.stdout).includes(".gitconfig")
+      })
     })
   })
 
