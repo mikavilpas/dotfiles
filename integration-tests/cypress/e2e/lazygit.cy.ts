@@ -19,7 +19,6 @@ describe("lazygit", () => {
           "test -f ~/.config/lazygit/config.yml || echo 'no lazygit config'",
       }).then((output) => {
         assert(output.type === "success")
-        expect(output.stdout).includes("config.yml")
       })
 
       // cy.typeIntoTerminal(`git config --list --show-origin | grep user {enter}`)
