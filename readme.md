@@ -62,6 +62,11 @@ reminder.
 :checkhealth
 ```
 
+#### Continuous integration
+
+I have an end-to-end testing setup in [integration-tests](./integration-tests).
+It uses <https://github.com/mikavilpas/tui-sandbox> to run the tests.
+
 ### Formatting
 
 Here is how the files in this repository are formatted. Since I am the only
