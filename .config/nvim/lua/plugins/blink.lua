@@ -60,6 +60,9 @@ return {
             opts = {
               future_features = {
                 kill_previous_searches = true,
+                toggles = {
+                  on_off = "<leader>tg",
+                },
               },
             },
             transform_items = function(_, items)
