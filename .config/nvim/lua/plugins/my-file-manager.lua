@@ -25,9 +25,6 @@ return {
         grep_in_directory = "snacks.picker",
         grep_in_selected_files = "snacks.picker",
       },
-      future_features = {
-        process_events_live = true,
-      },
     },
   },
   {
