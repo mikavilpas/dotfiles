@@ -41,6 +41,10 @@ customCommands:
     context: localBranches
     description: "Backup branch"
     command: git backup-branch
+  - key: "Y"
+    context: localBranches
+    description: "Summarize branch commits for a PR"
+    command: "git summarize-branch '{{.SelectedLocalBranch.Name}}' | pbcopy"
 
 keybinding:
   universal:
