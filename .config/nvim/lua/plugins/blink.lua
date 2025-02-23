@@ -59,7 +59,7 @@ return {
             ---@type blink-ripgrep.Options
             opts = {
               future_features = {
-                kill_previous_searches = true,
+                backend = "gitgrep",
                 toggles = {
                   on_off = "<leader>tg",
                 },
