@@ -18,7 +18,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 # change the default config directory on osx from ~/Library/Application Support/
 export XDG_CONFIG_HOME="$HOME/.config"
 
@@ -107,7 +107,7 @@ plugins=(git httpie npm z docker docker-compose)
 
 # User configuration
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
