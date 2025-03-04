@@ -17,7 +17,7 @@
   "devDependencies": {
     "@eslint/js": "9.21.0",
     "@tui-sandbox/library": "9.5.1",
-    "@types/node": "22.13.8",
+    "@types/node": "22.13.9",
     "@types/tinycolor2": "1.4.6",
     "concurrently": "9.1.2",
     "eslint": "9.21.0",
@@ -26,6 +26,6 @@
     "tinycolor2": "1.6.0",
     "type-fest": "4.36.0",
     "typescript": "5.8.2",
-    "typescript-eslint": "8.25.0"
+    "typescript-eslint": "8.26.0"
   }
 }
