@@ -12,6 +12,10 @@ return {
   opts = {
     file_types = { "gitcommit", "markdown" },
     ---@diagnostic disable-next-line: missing-fields
+    completions = {
+      lsp = { enabled = true },
+    },
+    ---@diagnostic disable-next-line: missing-fields
     latex = {
       enabled = false,
     },
