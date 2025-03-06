@@ -29,7 +29,10 @@ ueberzug_offset = [0, 0, 0, 0]
 edit = [
   #
   { run = '${EDITOR:=vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-  { run = 'code "%*"', orphan = true, for = "windows" },
+]
+nvim_guard = [
+  # When NVIM_CWD is not set, allow opening the file
+  { run = '[ -z "${NVIM_CWD}" ] || nvim "$@"', block = true },
 ]
 open = [
   #
@@ -53,4 +56,10 @@ play = [
   { run = 'mpv "$@"', orphan = true, for = "unix" },
   { run = 'mpv "%1"', orphan = true, for = "windows" },
   { run = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show media info", for = "unix" },
+]
+
+[open]
+prepend_rules = [
+  # Make sure .mov files are never opened with yazi.nvim
+  { name = "*.mov", use = "nvim_guard" },
 ]
