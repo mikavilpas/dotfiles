@@ -36,7 +36,7 @@ return {
       },
     },
 
-    ---@type snacks.Config
+    ---@type snacks.Config | {}
     opts = {
       scope = {
         edge = false,

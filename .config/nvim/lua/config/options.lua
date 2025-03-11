@@ -29,3 +29,4 @@ vim.g.lazygit_config = false
 -- then you need to set the option below.
 -- https://www.lazyvim.org/extras/editor/telescope
 vim.g.lazyvim_picker = "snacks"
+vim.opt.foldopen = "jump" -- don't open folds when I navigate with { and }

@@ -38,9 +38,9 @@ return {
           "buffer",
           "ripgrep",
         },
-        cmdline = {
-          -- disable cmdline completion for now
-        },
+        -- cmdline = {
+        --   -- disable cmdline completion for now
+        -- },
         providers = {
           path = {
             score_offset = 999,
@@ -59,7 +59,12 @@ return {
             ---@type blink-ripgrep.Options
             opts = {
               future_features = {
-                kill_previous_searches = true,
+                backend = {
+                  use = "gitgrep",
+                },
+                toggles = {
+                  on_off = "<leader>tg",
+                },
               },
             },
             transform_items = function(_, items)

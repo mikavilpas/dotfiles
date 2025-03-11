@@ -68,6 +68,7 @@
 
   ; quickly create a backup of the current branch
   backup-branch = !git branch $(git rev-parse --abbrev-ref HEAD)--backup-$(date +%Y%m%d%H%M%S)
+  summarize-branch = "!f() { git log --pretty=format:'# %s%n%n%b' $(git merge-base origin/main "$branch").."$branch"; }; branch="${1:-HEAD}"; f $branch"
 
 [commit]
 	verbose = true

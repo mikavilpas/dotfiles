@@ -25,10 +25,11 @@ return {
         grep_in_directory = "snacks.picker",
         grep_in_selected_files = "snacks.picker",
       },
-      future_features = {
-        process_events_live = true,
-      },
     },
+    init = function()
+      -- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
+      vim.g.loaded_netrwPlugin = 1
+    end,
   },
   {
     name = "easyjump.yazi",

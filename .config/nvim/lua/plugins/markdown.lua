@@ -11,6 +11,14 @@ return {
   ---@diagnostic disable-next-line: missing-fields
   opts = {
     file_types = { "gitcommit", "markdown" },
+    ---@diagnostic disable-next-line: missing-fields
+    completions = {
+      lsp = { enabled = true },
+    },
+    ---@diagnostic disable-next-line: missing-fields
+    latex = {
+      enabled = false,
+    },
   },
   config = function()
     -- https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/141

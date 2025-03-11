@@ -1,4 +1,6 @@
-printWidth: 80
+---
 proseWrap: always
+semi: false
 plugins:
-  - "prettier-plugin-toml"
+  - prettier-plugin-organize-imports
+  - prettier-plugin-packagejson

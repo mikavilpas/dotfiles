@@ -1,0 +1,74 @@
+---
+name: Run tests
+on:
+  pull_request: ~
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Run tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        neovim_version: ["nightly"]
+
+    steps:
+      - uses: actions/checkout@v4.2.2
+
+      - name: Install GNU stow and setup the dotfiles
+        run: |
+          sudo apt-get install stow tree
+          pwd
+          ls -la
+          echo "Installing dotfiles to HOME $HOME"
+          stow --verbose 2 . --target=$HOME
+          echo "Installed dotfiles to HOME $HOME"
+          echo "List files in HOME"
+          ls -la ~/
+          echo "List files in ~/.config"
+          ls -la ~/.config/
+
+      - name: Install delta
+        run: |
+          wget https://github.com/dandavison/delta/releases/download/0.18.1/git-delta_0.18.1_amd64.deb
+          sudo dpkg -i git-delta_0.18.1_amd64.deb
+
+      - name: Install lazygit
+        run: |
+          # https://github.com/jesseduffield/lazygit?tab=readme-ov-file#ubuntu
+          # https://api.github.com/repos/jesseduffield/lazygit/releases/latest
+          LAZYGIT_VERSION="https://github.com/jesseduffield/lazygit/releases/download/v0.46.0/lazygit_0.46.0_Linux_x86_64.tar.gz"
+          curl -Lo lazygit.tar.gz $LAZYGIT_VERSION
+          tar xf lazygit.tar.gz lazygit
+          sudo install lazygit -D -t /usr/local/bin/
+          echo "Installed lazygit version ${LAZYGIT_VERSION}"
+          echo "lazygit version $(lazygit --version)"
+          echo "lazygit path $(which lazygit)"
+
+      # https://github.com/cypress-io/github-action?tab=readme-ov-file#pnpm-workspaces
+      - uses: pnpm/action-setup@v4.1.0
+      - uses: actions/setup-node@v4.2.0
+        with:
+          node-version-file: .nvmrc
+          cache: "pnpm"
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/Cypress
+          key: my-cache-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+      - run: pnpm install
+
+      # need to work around https://github.com/cypress-io/github-action/issues/1246
+      - run: pnpm --filter integration-tests exec cypress install
+      - run: pnpm cy:run
+
+      - uses: actions/upload-artifact@v4.6.1
+        # add the line below to store screenshots only on failures
+        # if: failure()
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: integration-tests/cypress/screenshots
+          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`

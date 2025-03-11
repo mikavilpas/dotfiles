@@ -209,6 +209,6 @@ vim.keymap.set("n", "<backspace>", function()
     vim.cmd("EslintFixAll")
   end)
 
-  vim.cmd("wall")
+  vim.cmd("silent! wall")
 end, { desc = "Save all files", silent = true })
 vim.keymap.set({ "n", "v" }, "<up>", "<cmd>Yazi<cr>", { desc = "Open yazi" })
