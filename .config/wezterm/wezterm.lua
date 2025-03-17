@@ -111,9 +111,11 @@ config.keys = {
 			patterns = {
 				-- test cases:
 				--
+				-- /Users/mikavilpas/project/file.test.ts',
 				-- /Users/mikavilpas/project/file.test.ts:38:5',
 				-- /Users/mikavilpas/@project/file.test.ts:38:5',
 				-- file:///Users/mikavilpas/project/node_modules/@vitest/runner/dist/index.js:563:22',
+				"(?:file://)?[\\w\\._/@-]+\\.\\w+",
 				"(?:file://)?[\\w\\._/@-]+\\.\\w+:\\d+:\\d+",
 			},
 			action = wezterm.action.CopyTo("ClipboardAndPrimarySelection"),
