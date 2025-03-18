@@ -17,3 +17,5 @@ node_modules
 tsconfig.tsbuildinfo
 .config/atuin/atuin-receipt.json
 integration-tests/test-environment/testdirs/
+scripts/target
+scripts/.bacon-locations

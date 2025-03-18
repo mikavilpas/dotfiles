@@ -103,6 +103,25 @@ config.keys = {
 			end),
 		}),
 	},
+	{
+		key = "y",
+		mods = "LEADER",
+		action = wezterm.action.QuickSelectArgs({
+			label = "copy file path",
+			patterns = {
+				-- test cases:
+				--
+				-- src/api/api-client-integration.test.ts:56:15
+				-- /Users/mikavilpas/project/file.test.ts',
+				-- /Users/mikavilpas/project/file.test.ts:38:5',
+				-- /Users/mikavilpas/@project/file.test.ts:38:5',
+				-- file:///Users/mikavilpas/project/node_modules/@vitest/runner/dist/index.js:563:22',
+				"(?:file://)?[\\w\\._/@-]+\\.\\w+:\\d+:\\d+",
+				"(?:file://)?[\\w\\._/@-]+\\.\\w+",
+			},
+			action = wezterm.action.CopyTo("ClipboardAndPrimarySelection"),
+		}),
+	},
 }
 
 -- integration with nvim and zen-mode

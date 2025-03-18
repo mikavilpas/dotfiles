@@ -3,6 +3,17 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 
+# https://github.com/yazi-rs/plugins/tree/main/git.yazi#setup
+[[plugin.prepend_fetchers]]
+id = "git"
+name = "*"
+run = "git"
+
+[[plugin.prepend_fetchers]]
+id = "git"
+name = "*/"
+run = "git"
+
 [manager]
 ratio = [2, 2, 4]
 sort_by = "alphabetical"
