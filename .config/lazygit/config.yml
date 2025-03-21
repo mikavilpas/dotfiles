@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+# https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Command_Keybindings.md#placeholder-values
 
 services:
   "gitlab.baronatechnologies.fi": "gitlab:gitlab.baronatechnologies.fi"
@@ -38,6 +39,14 @@ customCommands:
     context: localBranches
     description: "Summarize branch commits for a PR"
     command: "git summarize-branch '{{.SelectedLocalBranch.Name}}' | pbcopy"
+  - key: "Y"
+    context: reflogCommits,commits,subCommits
+    description: "Summarize selected commits for a PR"
+    subprocess: true
+    command:
+      "~/dotfiles/scripts/target/release/mika summary
+      --from={{.SelectedCommitRange.To}} --to={{.SelectedCommitRange.From}}^ |
+      pbcopy"
 
 keybinding:
   universal:
