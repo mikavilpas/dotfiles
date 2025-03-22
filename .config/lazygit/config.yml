@@ -42,7 +42,6 @@ customCommands:
   - key: "Y"
     context: reflogCommits,commits,subCommits
     description: "Summarize selected commits for a PR"
-    subprocess: true
     command:
       "~/dotfiles/scripts/target/release/mika summary
       --from={{.SelectedCommitRange.To}} --to={{.SelectedCommitRange.From}}^ |
