@@ -116,8 +116,9 @@ config.keys = {
 				-- /Users/mikavilpas/project/file.test.ts:38:5',
 				-- /Users/mikavilpas/@project/file.test.ts:38:5',
 				-- file:///Users/mikavilpas/project/node_modules/@vitest/runner/dist/index.js:563:22',
-				"(?:file://)?[\\w\\._/@-]+\\.\\w+:\\d+:\\d+",
-				"(?:file://)?[\\w\\._/@-]+\\.\\w+",
+				-- /Users/mikavilpas/git/blink-ripgrep.nvim/integration-tests/test-environment
+				"(?:file://)?[\\w\\._/@-]+:\\d+:\\d+",
+				"(?:file://)?[\\w\\._/@-]+",
 			},
 			action = wezterm.action.CopyTo("ClipboardAndPrimarySelection"),
 		}),
