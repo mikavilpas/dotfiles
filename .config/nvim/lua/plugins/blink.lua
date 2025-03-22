@@ -60,7 +60,7 @@ return {
             opts = {
               future_features = {
                 backend = {
-                  use = "gitgrep",
+                  use = "gitgrep-or-ripgrep",
                 },
                 toggles = {
                   on_off = "<leader>tg",
