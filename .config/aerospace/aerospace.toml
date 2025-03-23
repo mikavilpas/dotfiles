@@ -2,8 +2,7 @@
 # After that, you can edit ~/.aerospace.toml to your liking
 
 # using this version currently
-# aerospace CLI client version: 0.13.4-Beta ae7340ab50f654546dc5523fd7fa5c81faa3d313
-# AeroSpace.app server version: 0.13.4-Beta ae7340ab50f654546dc5523fd7fa5c81faa3d313
+# https://github.com/nikitabobko/AeroSpace/releases/tag/v0.13.4-Beta
 
 # Feel free to omit keys that you don't use in your config.
 # If the key is absent in your config the default value is taken from this config
@@ -153,60 +152,15 @@ ctrl-shift-alt-9 = ['workspace 7', 'workspace 8', 'workspace 9']
 # alt-z = 'workspace Z'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands.html#move-node-to-workspace
-cmd-ctrl-shift-alt-1 = [
-  'move-node-to-workspace 1',
-  'workspace 2',
-  'workspace 3',
-  'workspace 1',
-]
-cmd-ctrl-shift-alt-2 = [
-  'move-node-to-workspace 2',
-  'workspace 1',
-  'workspace 3',
-  'workspace 2',
-]
-cmd-ctrl-shift-alt-3 = [
-  'move-node-to-workspace 3',
-  'workspace 1',
-  "workspace 2",
-  'workspace 3',
-]
-cmd-ctrl-shift-alt-4 = [
-  'move-node-to-workspace 4',
-  'workspace 5',
-  'workspace 6',
-  'workspace 4',
-]
-cmd-ctrl-shift-alt-5 = [
-  'move-node-to-workspace 5',
-  'workspace 4',
-  'workspace 6',
-  'workspace 5',
-]
-cmd-ctrl-shift-alt-6 = [
-  'move-node-to-workspace 6',
-  'workspace 4',
-  'workspace 5',
-  'workspace 6',
-]
-cmd-ctrl-shift-alt-7 = [
-  'move-node-to-workspace 7',
-  'workspace 8',
-  'workspace 9',
-  'workspace 7',
-]
-cmd-ctrl-shift-alt-8 = [
-  'move-node-to-workspace 8',
-  'workspace 7',
-  'workspace 9',
-  'workspace 8',
-]
-cmd-ctrl-shift-alt-9 = [
-  'move-node-to-workspace 9',
-  'workspace 7',
-  'workspace 8',
-  'workspace 9',
-]
+cmd-ctrl-shift-alt-1 = ['move-node-to-workspace 1', 'workspace 2', 'workspace 3', 'workspace 1']
+cmd-ctrl-shift-alt-2 = ['move-node-to-workspace 2', 'workspace 1', 'workspace 3', 'workspace 2']
+cmd-ctrl-shift-alt-3 = ['move-node-to-workspace 3', 'workspace 1', "workspace 2", 'workspace 3']
+cmd-ctrl-shift-alt-4 = ['move-node-to-workspace 4', 'workspace 5', 'workspace 6', 'workspace 4']
+cmd-ctrl-shift-alt-5 = ['move-node-to-workspace 5', 'workspace 4', 'workspace 6', 'workspace 5']
+cmd-ctrl-shift-alt-6 = ['move-node-to-workspace 6', 'workspace 4', 'workspace 5', 'workspace 6']
+cmd-ctrl-shift-alt-7 = ['move-node-to-workspace 7', 'workspace 8', 'workspace 9', 'workspace 7']
+cmd-ctrl-shift-alt-8 = ['move-node-to-workspace 8', 'workspace 7', 'workspace 9', 'workspace 8']
+cmd-ctrl-shift-alt-9 = ['move-node-to-workspace 9', 'workspace 7', 'workspace 8', 'workspace 9']
 cmd-ctrl-shift-alt-0 = ['move-node-to-workspace 0', 'workspace 0']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands.html#workspace-back-and-forth
