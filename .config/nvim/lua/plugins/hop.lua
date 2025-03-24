@@ -16,7 +16,7 @@ return {
       function()
         local hop = require("hop")
         ---@diagnostic disable-next-line: missing-fields
-        hop.hint_lines_skip_whitespace({})
+        hop.hint_lines({})
       end,
       desc = "Hop to line",
     },
