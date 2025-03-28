@@ -11,8 +11,12 @@ pub fn main() {
     let cli = Cli::parse();
     match cli.command {
         Commands::Summary { from, to } => {
-            print_commit_messages_between_commits(&repo, &from, &to)
+            let lines = print_commit_messages_between_commits(&repo, &from, &to)
                 .unwrap_or_else(|e| panic!("failed to format commit messages: {}", e));
+
+            for l in lines {
+                println!("{}", l);
+            }
         }
     }
 }
@@ -21,7 +25,7 @@ fn print_commit_messages_between_commits(
     repo: &Repository,
     start_ref: &str,
     end_ref: &str,
-) -> Result<(), git2::Error> {
+) -> Result<Vec<String>, git2::Error> {
     let start = repo.revparse_single(start_ref)?;
     let end = repo.revparse_single(end_ref)?;
     // TODO if start and end are switched, all commits are printed
@@ -41,6 +45,8 @@ fn print_commit_messages_between_commits(
                 commit
             });
 
+    let mut result_lines = Vec::new();
+
     for commit in commits_between {
         let first_line = commit
             .summary()
@@ -48,13 +54,14 @@ fn print_commit_messages_between_commits(
         let body = commit.body().unwrap_or("");
 
         // format as markdown
-        println!("# {}", first_line);
-        println!();
+        result_lines.push(format!("# {}", first_line));
+        result_lines.push("".to_string());
+
         if !body.is_empty() {
-            println!("{}", body);
+            result_lines.push(body.to_string());
         }
-        println!();
+        result_lines.push("".to_string());
     }
 
-    Ok(())
+    Ok(result_lines)
 }
