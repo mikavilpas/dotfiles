@@ -65,3 +65,68 @@ fn print_commit_messages_between_commits(
 
     Ok(result_lines)
 }
+
+#[cfg(test)]
+mod test {
+    use git2::Error;
+
+    use super::*;
+
+    #[test]
+    fn test_print_commit_messages_between_commits() -> Result<(), Box<dyn std::error::Error>> {
+        // create a temporary test repo with a few commits
+        let tmpdir = tempfile::tempdir()?;
+
+        let repo = Repository::init(tmpdir.path())?;
+        create_commits(&repo)?;
+
+        let (a, b) = {
+            let mut revwalk = repo.revwalk()?;
+            revwalk.push_head()?;
+
+            let first = revwalk.next().unwrap()?;
+            let second = revwalk.next().unwrap()?;
+
+            (first, second)
+        };
+        assert_eq!(a, repo.head()?.target().unwrap());
+
+        let result_lines =
+            print_commit_messages_between_commits(&repo, &a.to_string(), &(b.to_string() + "^"))?;
+
+        assert_eq!(result_lines, vec![
+            "# feat: commit 1",
+            "",
+            "",
+            "# feat: commit 0",
+            "",
+            "",
+        ]);
+
+        Ok(())
+    }
+
+    fn create_commits(repo: &Repository) -> Result<(), Error> {
+        let sig = repo.signature()?;
+        let tree = {
+            let tree_id = {
+                let mut index = repo.index()?;
+                index.write_tree()?
+            };
+            repo.find_tree(tree_id)?
+        };
+
+        let mut previous =
+            repo.commit(Some("HEAD"), &sig, &sig, "chore: initial commit", &tree, &[
+            ])?;
+        for i in 0..2 {
+            let message = format!("feat: commit {}", i);
+            let previous_commit = repo.find_commit(previous)?;
+            previous = repo.commit(Some("HEAD"), &sig, &sig, &message, &tree, &[
+                &previous_commit,
+            ])?;
+        }
+
+        Ok(())
+    }
+}
