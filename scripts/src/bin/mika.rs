@@ -78,6 +78,8 @@ mod test {
         let tmpdir = tempfile::tempdir()?;
 
         let repo = Repository::init(tmpdir.path())?;
+        repo.config()?.set_str("user.name", "test")?;
+        repo.config()?.set_str("user.email", "test@example.com")?;
         create_commits(&repo)?;
 
         let (a, b) = {
