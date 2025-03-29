@@ -1,5 +1,5 @@
 ---
-name: Run tests
+name: Run cypress tests
 on:
   pull_request: ~
   push:

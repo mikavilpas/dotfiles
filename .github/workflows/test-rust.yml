@@ -1,0 +1,37 @@
+# based on https://github.com/sxyazi/yazi/blob/1a2a18e333de4d92bd83028c808cc9d388b84b60/.github/workflows/test.yml?plain=1#L1
+name: Run rust tests
+
+on:
+  pull_request: ~
+  push:
+    branches:
+      - main
+
+env:
+  SCCACHE_GHA_ENABLED: true
+  RUSTC_WRAPPER: sccache
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Rust toolchain
+        run: rustup toolchain install nightly --profile minimal
+        working-directory: scripts
+
+      - name: Setup sccache
+        uses: mozilla-actions/sccache-action@v0.0.6
+
+      - name: Build
+        run: cargo build --verbose
+        working-directory: scripts
+
+      - name: Test
+        run: cargo test --workspace --verbose
+        working-directory: scripts
