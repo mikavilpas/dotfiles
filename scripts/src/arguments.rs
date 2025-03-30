@@ -19,4 +19,11 @@ pub enum Commands {
         #[arg(long)]
         to: String,
     },
+
+    /// Summarize the commits on the given branch, before any other local branch is reached.
+    BranchSummary {
+        /// The branch to summarize
+        #[arg(long)]
+        branch: String,
+    },
 }
