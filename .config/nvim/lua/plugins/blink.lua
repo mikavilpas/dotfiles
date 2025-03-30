@@ -88,6 +88,8 @@ return {
           window = {
             desired_min_height = 30,
             max_width = 120,
+            max_height = 999,
+            border = "rounded",
           },
           auto_show = true,
         },
