@@ -15,11 +15,10 @@ fn test_print_commit_messages_between_commits() -> Result<(), Box<dyn std::error
     let lines = get_commit_messages_between_commits(&repo.repo, "HEAD", "HEAD~2")?;
 
     assert_eq!(lines, vec![
+        //
         "# feat: commit 1",
         "",
-        "",
         "# feat: commit 0",
-        "",
         "",
     ]);
 
@@ -27,7 +26,7 @@ fn test_print_commit_messages_between_commits() -> Result<(), Box<dyn std::error
 }
 
 #[test]
-fn test_get_commit_messages_between_branches() -> Result<(), Box<dyn std::error::Error>> {
+fn test_get_commit_messages_on_branch() -> Result<(), Box<dyn std::error::Error>> {
     let context = TestRepoBuilder::new()?;
     context.commit("initial commit")?;
     context.commit("feat: main commit 1")?;
@@ -44,12 +43,9 @@ fn test_get_commit_messages_between_branches() -> Result<(), Box<dyn std::error:
     assert_eq!(lines, vec![
         "# feat: feature commit 3",
         "",
-        "",
         "# feat: feature commit 2",
         "",
-        "",
         "# feat: feature commit 1",
-        "",
         "",
     ]);
 

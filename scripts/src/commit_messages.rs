@@ -88,6 +88,7 @@ fn commit_as_markdown(result_lines: &mut Vec<String>, commit: git2::Commit<'_>) 
 
     if !body.is_empty() {
         result_lines.push(body.to_string());
+        // TODO remove duplicate empty lines
+        result_lines.push("".to_string());
     }
-    result_lines.push("".to_string());
 }
