@@ -7,7 +7,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export HUSKY=0
 
 fish_add_path $HOME/bin
-fish_add_path $HOME/dotfiles/scripts/target/release/
 fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/go/bin/
 fish_add_path /Users/mikavilpas/.local/share/bob/nvim-bin
