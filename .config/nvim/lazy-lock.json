@@ -4,7 +4,7 @@
   "SchemaStore.nvim": { "branch": "main", "commit": "e659e0c6ca06727ed898aaaeea3850f528898684" },
   "advanced-git-search.nvim": { "branch": "main", "commit": "69a41a3351d89e8be597fe5682265d8c99b8b12c" },
   "blink-ripgrep.nvim": { "branch": "main", "commit": "d4af981745ea67b2c29bcd25f9843dbeedc580ed" },
-  "blink.cmp": { "branch": "main", "commit": "d6b41c145d50be5205fbc669eacd2c52c94d0169" },
+  "blink.cmp": { "branch": "main", "commit": "6fe420a3d122ff0d613ea2fc4f70cff2eb16e69e" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
   "busted-types": { "branch": "main", "commit": "5ed85d0e016a5eb5eca097aa52905eedf1b180f1" },
   "catppuccin": { "branch": "main", "commit": "5b5e3aef9ad7af84f463d17b5479f06b87d5c429" },
