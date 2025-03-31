@@ -1,0 +1,1 @@
+/Users/mikavilpas/dotfiles/scripts/completions/mika.fish
