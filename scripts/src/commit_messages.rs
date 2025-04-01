@@ -1,94 +1,90 @@
-use git2::{BranchType, Error, Repository};
+use std::collections::HashSet;
+
+use anyhow::{Context, Result};
+use gix::{Commit, Repository};
 
 pub fn get_commit_messages_between_commits(
     repo: &Repository,
     start_ref: &str,
     end_ref: &str,
-) -> Result<Vec<String>, git2::Error> {
-    let start = repo.revparse_single(start_ref)?;
-    let end = repo.revparse_single(end_ref)?;
-    // TODO if start and end are switched, all commits are printed
+) -> Result<Vec<String>, Box<dyn std::error::Error>> {
+    let start = repo.rev_parse_single(start_ref)?;
+    let end = repo.rev_parse_single(end_ref)?;
 
-    let mut revwalk = repo.revwalk()?;
-    revwalk.push(start.id())?;
-
-    let commits_between =
-        revwalk
-            .take_while(|commit| *commit != Ok(end.id()))
-            .map(|commit_result| {
-                let commit_id =
-                    commit_result.unwrap_or_else(|e| panic!("failed to get commit: {}", e));
-                let commit = repo
-                    .find_commit(commit_id)
-                    .unwrap_or_else(|_| panic!("failed to find commit {}", commit_id));
-                commit
-            });
-
+    // TODO test that the start commit is used, as opposed to using the head_commit
+    let mut revwalk = repo.find_commit(start)?.ancestors().all()?;
     let mut result_lines = Vec::new();
 
-    for commit in commits_between {
-        commit_as_markdown(&mut result_lines, commit);
+    while let Some(commit) = revwalk.next().transpose()? {
+        if commit.id == end {
+            break;
+        }
+        let commit = repo.find_commit(commit.id)?;
+        commit_as_markdown(&mut result_lines, &commit)?;
     }
 
     Ok(result_lines)
 }
 
-/// Return the messages of the commits on the given branch
 pub fn get_commit_messages_on_branch(
     repo: &Repository,
     branch: &str,
-) -> Result<Vec<String>, git2::Error> {
-    let start = repo.find_branch(branch, git2::BranchType::Local)?;
+) -> anyhow::Result<Vec<String>, anyhow::Error> {
+    let start_commit = repo
+        .try_find_reference(&format!("refs/heads/{}", branch))
+        .with_context(|| format!("Failed to find reference for branch '{}'", branch))?
+        .expect("Failed to get reference")
+        .peel_to_commit()
+        .context("failed to peel_to_commit")?;
 
-    let branch_heads: Vec<git2::Oid> = repo
-        .branches(Some(BranchType::Local))?
-        .filter_map(|branch_result| {
-            if let Ok((branch, _)) = branch_result {
-                // ignore this branch
-                let oid = branch.get().target()?;
-                if oid == start.get().target()? {
-                    None
-                } else {
-                    Some(oid)
-                }
-            } else {
-                None
+    let branch_heads: HashSet<_> = repo
+        .references()
+        .context("failed to get references")?
+        .local_branches()
+        .context("failed to get local branches")?
+        .try_fold(HashSet::new(), |mut set, branch_ref| -> anyhow::Result<_> {
+            let branch = branch_ref.expect("Failed to get branch reference");
+            let commit = repo
+                .find_commit(branch.id())
+                .context("failed to find commit")?;
+            if commit.id != start_commit.id() {
+                set.insert(commit.id);
             }
-        })
-        .collect::<Vec<_>>();
 
-    let mut revwalk = repo.revwalk()?;
-    revwalk.push(start.get().peel_to_commit()?.id())?;
+            Ok(set)
+        })?;
 
-    let lines: Result<Vec<String>, Error> = revwalk
-        .take_while(|commit| {
-            if let Ok(commit_id) = commit {
-                !branch_heads.contains(commit_id)
-            } else {
-                false
-            }
-        })
-        .try_fold(Vec::new(), |mut results, c| {
-            commit_as_markdown(&mut results, repo.find_commit(c?).unwrap());
-            Ok(results)
-        });
+    let mut results = Vec::new();
 
-    lines
+    // TODO use the builtin revwalk filter
+    let mut revwalk = start_commit.ancestors().all()?;
+    while let Some(commit) = revwalk.next().transpose()? {
+        if branch_heads.contains(&commit.id) {
+            break;
+        }
+        let commit = repo
+            .find_commit(commit.id)
+            .context(format!("failed to find the commit {}", commit.id))?;
+        commit_as_markdown(&mut results, &commit)?;
+    }
+
+    Ok(results)
 }
 
-fn commit_as_markdown(result_lines: &mut Vec<String>, commit: git2::Commit<'_>) {
-    let first_line = commit
-        .summary()
-        .unwrap_or_else(|| panic!("failed to get summary for commit {}", commit.id()));
-    let body = commit.body().unwrap_or("");
+fn commit_as_markdown(
+    result_lines: &mut Vec<String>,
+    commit: &Commit<'_>,
+) -> Result<(), gix::object::commit::Error> {
+    let first_line = commit.message()?.summary();
+    let body = commit.message()?.body();
 
-    // format as markdown
     result_lines.push(format!("# {}", first_line));
     result_lines.push("".to_string());
 
-    if !body.is_empty() {
-        result_lines.push(body.to_string());
-        // TODO remove duplicate empty lines
+    if let Some(body_text) = body {
+        result_lines.push(body_text.to_string());
         result_lines.push("".to_string());
     }
+
+    Ok(())
 }

@@ -1,5 +1,4 @@
 use clap::Parser;
-use git2::Repository;
 use scripts::{
     arguments::{Cli, Commands},
     commit_messages::{get_commit_messages_between_commits, get_commit_messages_on_branch},
@@ -7,7 +6,7 @@ use scripts::{
 
 pub fn main() {
     let cwd = std::env::current_dir().expect("failed to get current directory");
-    let repo = match Repository::discover(cwd) {
+    let repo = match gix::discover(cwd) {
         Ok(repo) => repo,
         Err(e) => panic!("failed to open: {}", e),
     };

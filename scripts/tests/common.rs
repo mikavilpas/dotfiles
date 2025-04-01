@@ -1,4 +1,4 @@
-use git2::Repository;
+use gix::Repository;
 use std::{
     path::{Path, PathBuf},
     process,
@@ -14,9 +14,13 @@ impl TestRepoBuilder {
     pub fn new() -> Result<TestRepoBuilder, Box<dyn std::error::Error>> {
         let tmpdir = tempdir()?;
 
-        let repo = Repository::init(tmpdir.path())?;
-        repo.config()?.set_str("user.name", "test")?;
-        repo.config()?.set_str("user.email", "test@example.com")?;
+        let repo = gix::init(tmpdir.path())?;
+        run_git(tmpdir.path(), &["config", "user.name", "test"])?;
+        run_git(tmpdir.path(), &[
+            "config",
+            "user.email",
+            "test.user@example.com",
+        ])?;
 
         Ok(Self {
             path: tmpdir.into_path(),
