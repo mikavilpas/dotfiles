@@ -21,3 +21,13 @@ updates:
 
     schedule:
       interval: "daily"
+
+  - package-ecosystem: "cargo"
+    directory: "scripts/" # Location of your Cargo.toml
+    schedule:
+      interval: "weekly" # Options: daily, weekly, monthly
+    open-pull-requests-limit: 10
+    reviewers:
+      - mikavilpas
+    assignees:
+      - mikavilpas
