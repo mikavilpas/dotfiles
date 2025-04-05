@@ -29,8 +29,8 @@
 # Set 'enabled' to true to have bacon always export locations
 # This is equivalent to always adding -e to bacon commands
 # but can still be cancelled on specific launches with -E
-[export]
-enabled = true
+[exports.locations]
+auto = true
 path = ".bacon-locations"
 line_format = "{kind} {path}:{line}:{column} {message}"
 
