@@ -21,7 +21,8 @@ export const MyTestDirectorySchema = z.object({
     }),
     ".gitconfig": z.object({
       name: z.literal(".gitconfig"),
-      type: z.literal("file"),
+      type: z.literal("file-symlink"),
+      target: z.literal("../../.gitconfig"),
     }),
   }),
 })

@@ -139,3 +139,7 @@ git:
   paging:
     colorArg: always
     pager: delta --paging=never
+
+# useful for e2e tests. They don't have a separate configuration right now, so
+# this needs to be specified here.
+disableStartupPopups: true
