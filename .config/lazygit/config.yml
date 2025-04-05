@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+# https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Command_Keybindings.md#placeholder-values
 
 services:
   "gitlab.baronatechnologies.fi": "gitlab:gitlab.baronatechnologies.fi"
@@ -37,7 +38,37 @@ customCommands:
   - key: "Y"
     context: localBranches
     description: "Summarize branch commits for a PR"
-    command: "git summarize-branch '{{.SelectedLocalBranch.Name}}' | pbcopy"
+    command:
+      "~/dotfiles/scripts/target/release/mika branch-summary --branch
+      '{{.SelectedLocalBranch.Name}}' | pbcopy"
+  - key: "Y"
+    context: reflogCommits,commits,subCommits
+    description: "Summarize selected commits for a PR"
+    command:
+      "~/dotfiles/scripts/target/release/mika summary
+      --from={{.SelectedCommitRange.To}} --to={{.SelectedCommitRange.From}}^ |
+      pbcopy"
+  - key: "w"
+    prompts:
+      - type: "input"
+        title: "Commit with --no-verify"
+        initialValue: "WIP"
+    command: git commit -m "{{index .PromptResponses 0}}" --no-verify
+    context: "files"
+    subprocess: false
+  - key: X
+    description: "Copy/paste commits across repos"
+    commandMenu:
+      - key: c
+        command:
+          "git format-patch --stdout
+          {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
+        context: commits, subCommits
+        description: "Copy selected commits to clipboard"
+      - key: v
+        command: "pbpaste | git am"
+        context: "commits"
+        description: "Paste selected commits from clipboard"
 
 keybinding:
   universal:
@@ -108,3 +139,7 @@ git:
   paging:
     colorArg: always
     pager: delta --paging=never
+
+# useful for e2e tests. They don't have a separate configuration right now, so
+# this needs to be specified here.
+disableStartupPopups: true

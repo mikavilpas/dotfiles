@@ -53,8 +53,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 vim.keymap.set("n", "<leader>gd", function()
-  require("telescope.builtin").lsp_definitions({ jump_type = "vsplit" })
-end, { desc = "Goto definition in vsplit" })
+  require("snacks.picker").lsp_definitions({
+    actions = { confirm = "edit_vsplit" },
+  })
+end, { desc = "Goto definition vsplit 👉🏻" })
 
 vim.keymap.set("n", "<leader>xl", function()
   vim.cmd("luafile %")
@@ -212,3 +214,20 @@ vim.keymap.set("n", "<backspace>", function()
   vim.cmd("silent! wall")
 end, { desc = "Save all files", silent = true })
 vim.keymap.set({ "n", "v" }, "<up>", "<cmd>Yazi<cr>", { desc = "Open yazi" })
+
+vim.keymap.set("n", "'", function()
+  vim.lsp.buf.code_action({
+    apply = true,
+    filter = function(action)
+      local match = action.title:find("Update import") ~= nil or action.title:find("Add import") ~= nil
+      local correct_kind = action.kind == "quickfix"
+
+      local ok = match and correct_kind
+      if ok then
+        vim.notify("👍🏻: " .. action.title, vim.log.levels.INFO)
+        vim.lsp.util.apply_workspace_edit(action.edit, "utf-8")
+      end
+      return ok
+    end,
+  })
+end)

@@ -9,7 +9,7 @@
   # disable using git hooks completely.
   # - sometimes other developers add hooks that are slow. Sometimes it's me.
   # - some implementations of git hooks do not work at all when legacy projects
-  #   with hooks are included as submodules
+  #   when hooks are included from submodules or parent repositories
   # - some hook implementations don't work at all when rebasing
   # - git gui/tui wrappers don't make it clear when hooks are running
   # - I like creating many commits quickly and squashing them later. Hooks
@@ -17,7 +17,7 @@
   # - good projects should put important checks in CI pipelines/tests anyway,
   #   so the benefit is questionable
   # - many hooks can also be disabled with the `--no-verify` flag, so they are
-  #   not reliable
+  #   not a reliable way to enforce checks
   hooksPath = /dev/null
 
 [diff]
@@ -68,7 +68,6 @@
 
   ; quickly create a backup of the current branch
   backup-branch = !git branch $(git rev-parse --abbrev-ref HEAD)--backup-$(date +%Y%m%d%H%M%S)
-  summarize-branch = "!f() { git log --pretty=format:'# %s%n%n%b' $(git merge-base origin/main "$branch").."$branch"; }; branch="${1:-HEAD}"; f $branch"
 
 [commit]
 	verbose = true

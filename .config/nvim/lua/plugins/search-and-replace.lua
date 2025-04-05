@@ -1,11 +1,11 @@
 ---@module "lazy"
----@module "rip-substitute"
+---@module "rip-substitute.config"
 
 ---@type LazySpec
 return {
   "chrisgrieser/nvim-rip-substitute",
   cmd = "RipSubstitute",
-  ---@type ripSubstituteConfig
+  ---@type RipSubstitute.Config | {}
   opts = {
     prefill = {
       startInReplaceLineIfPrefill = true,
@@ -13,6 +13,9 @@ return {
     },
     regexOptions = {
       startWithFixedStringsOn = true,
+    },
+    editingBehavior = {
+      autoCaptureGroups = true,
     },
   },
   keys = {
