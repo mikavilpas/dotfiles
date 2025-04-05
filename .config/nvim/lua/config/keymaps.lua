@@ -53,8 +53,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 vim.keymap.set("n", "<leader>gd", function()
-  require("telescope.builtin").lsp_definitions({ jump_type = "vsplit" })
-end, { desc = "Goto definition in vsplit" })
+  require("snacks.picker").lsp_definitions({
+    actions = { confirm = "edit_vsplit" },
+  })
+end, { desc = "Goto definition vsplit 👉🏻" })
 
 vim.keymap.set("n", "<leader>xl", function()
   vim.cmd("luafile %")
