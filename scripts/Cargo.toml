@@ -5,7 +5,7 @@ edition = "2024"
 
 [dependencies]
 clap = { version = "4.5.34", features = ["derive"] }
-gix = "0.70.0"
+gix = "0.71.0"
 anyhow = "1.0.97"
 
 [dev-dependencies]
