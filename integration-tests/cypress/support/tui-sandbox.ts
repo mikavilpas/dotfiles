@@ -7,9 +7,9 @@ import type {
   GenericTerminalBrowserApi,
 } from "@tui-sandbox/library/dist/src/browser/neovim-client"
 import type {
-  BlockingCommandClientInput,
   ExCommandClientInput,
   LuaCodeClientInput,
+  PollLuaCodeClientInput,
 } from "@tui-sandbox/library/dist/src/server/server"
 import type {
   BlockingShellCommandOutput,
@@ -18,6 +18,7 @@ import type {
   StartNeovimGenericArguments,
   TestDirectory,
 } from "@tui-sandbox/library/dist/src/server/types"
+import type { BlockingCommandClientInput } from "@tui-sandbox/library/src/server/blockingCommandInputSchema"
 import type { StartTerminalGenericArguments } from "@tui-sandbox/library/src/server/terminal/TerminalTestApplication"
 import type { OverrideProperties } from "type-fest"
 import type {
@@ -33,7 +34,7 @@ export type TerminalTestApplicationContext = {
   /** Runs a shell command in a blocking manner, waiting for the command to
    * finish before returning. Requires the terminal to be running. */
   runBlockingShellCommand(
-    input: BlockingCommandClientInput,
+    input: MyBlockingCommandClientInput,
   ): Cypress.Chainable<BlockingShellCommandOutput>
 
   /** The test directory, providing type-safe access to its file and directory structure */
@@ -49,12 +50,24 @@ export type NeovimContext = {
   /** Runs a shell command in a blocking manner, waiting for the command to
    * finish before returning. Requires neovim to be running. */
   runBlockingShellCommand(
-    input: BlockingCommandClientInput,
+    input: MyBlockingCommandClientInput,
   ): Cypress.Chainable<BlockingShellCommandOutput>
 
   /** Runs a shell command in a blocking manner, waiting for the command to
    * finish before returning. Requires neovim to be running. */
   runLuaCode(input: LuaCodeClientInput): Cypress.Chainable<RunLuaCodeOutput>
+
+  /**
+   * Like runLuaCode, but waits until the given code (maybe using lua's return
+   * assert()) does not raise an error, and returns the first successful result.
+   *
+   * Useful for waiting until Neovim's internal state has changed in a way that
+   * means the test can continue executing. This can avoid timing issues that are
+   * otherwise hard to catch.
+   */
+  waitForLuaCode(
+    input: PollLuaCodeClientInput,
+  ): Cypress.Chainable<RunLuaCodeOutput>
 
   /** Run an ex command in neovim.
    * @example "echo expand('%:.')" current file, relative to the cwd
@@ -69,7 +82,7 @@ export type NeovimContext = {
 
 /** Arguments for starting the neovim server. They are built based on your test
  * environment in a type safe manner. */
-type MyStartNeovimServerArguments = OverrideProperties<
+export type MyStartNeovimServerArguments = OverrideProperties<
   StartNeovimGenericArguments,
   {
     filename?:
@@ -95,6 +108,7 @@ Cypress.Commands.add(
         nvim_runBlockingShellCommand: underlyingNeovim.runBlockingShellCommand,
         nvim_runExCommand: underlyingNeovim.runExCommand,
         nvim_runLuaCode: underlyingNeovim.runLuaCode,
+        nvim_waitForLuaCode: underlyingNeovim.waitForLuaCode,
       })
 
       const api: NeovimContext = {
@@ -107,6 +121,9 @@ Cypress.Commands.add(
         runLuaCode(input) {
           return cy.nvim_runLuaCode(input)
         },
+        waitForLuaCode(input) {
+          return cy.nvim_waitForLuaCode(input)
+        },
         typeIntoTerminal(text, options) {
           cy.typeIntoTerminal(text, options)
         },
@@ -118,12 +135,32 @@ Cypress.Commands.add(
   },
 )
 
+Cypress.Commands.add("nvim_isRunning", () => {
+  return cy.window().then(async (_) => {
+    return !!testNeovim
+  })
+})
+
 Cypress.Commands.add(
   "startTerminalApplication",
   (args: StartTerminalGenericArguments) => {
     cy.window().then(async (win) => {
-      const api: GenericTerminalBrowserApi =
+      const terminal: GenericTerminalBrowserApi =
         await win.startTerminalApplication(args)
+
+      Cypress.Commands.addAll({
+        terminal_runBlockingShellCommand: terminal.runBlockingShellCommand,
+      })
+
+      const api: TerminalTestApplicationContext = {
+        dir: terminal.dir as TestDirectory<MyTestDirectory>,
+        runBlockingShellCommand(input) {
+          return cy.terminal_runBlockingShellCommand(input)
+        },
+        typeIntoTerminal(text, options) {
+          cy.typeIntoTerminal(text, options)
+        },
+      }
 
       return api
     })
@@ -148,6 +185,11 @@ before(function () {
   cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
 })
 
+export type MyBlockingCommandClientInput = OverrideProperties<
+  BlockingCommandClientInput,
+  { cwdRelative?: MyTestDirectoryFile | undefined }
+>
+
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -166,10 +208,13 @@ declare global {
       /** Runs a shell command in a blocking manner, waiting for the command to
        * finish before returning. Requires neovim to be running. */
       nvim_runBlockingShellCommand(
-        input: BlockingCommandClientInput,
+        input: MyBlockingCommandClientInput,
       ): Chainable<BlockingShellCommandOutput>
 
       nvim_runLuaCode(input: LuaCodeClientInput): Chainable<RunLuaCodeOutput>
+      nvim_waitForLuaCode(
+        input: PollLuaCodeClientInput,
+      ): Chainable<RunLuaCodeOutput>
 
       /** Run an ex command in neovim.
        * @example "echo expand('%:.')" current file, relative to the cwd
@@ -177,6 +222,14 @@ declare global {
       nvim_runExCommand(
         input: ExCommandClientInput,
       ): Chainable<RunExCommandOutput>
+
+      /** Returns true if neovim is running. Useful to conditionally run
+       * afterEach actions based on whether it's running. */
+      nvim_isRunning(): Chainable<boolean>
+
+      terminal_runBlockingShellCommand(
+        input: MyBlockingCommandClientInput,
+      ): Chainable<BlockingShellCommandOutput>
     }
   }
 }
