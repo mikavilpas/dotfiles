@@ -56,6 +56,19 @@ customCommands:
     command: git commit -m "{{index .PromptResponses 0}}" --no-verify
     context: "files"
     subprocess: false
+  - key: X
+    description: "Copy/paste commits across repos"
+    commandMenu:
+      - key: c
+        command:
+          "git format-patch --stdout
+          {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
+        context: commits, subCommits
+        description: "Copy selected commits to clipboard"
+      - key: v
+        command: "pbpaste | git am"
+        context: "commits"
+        description: "Paste selected commits from clipboard"
 
 keybinding:
   universal:
