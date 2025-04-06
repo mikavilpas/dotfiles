@@ -29,7 +29,7 @@ pub enum Commands {
         branch: String,
     },
 
-    /// Get a path to a project file, relative to the project root
+    /// Get a path to repo files, relative to the git repo root. The files don't need to exist.
     Path {
         /// One or more files to get paths for, either absolute or relative to the current directory
         #[arg(
