@@ -49,6 +49,21 @@ stow --verbose 2 . --simulate
 stow --verbose 2 .
 ```
 
+### Dependency management
+
+Many of the packages I use have some kind of custom depenencies:
+
+- neovim plugins are managed using [lazy.nvim](https://lazy.folke.io/)
+- yazi plugins are managed using lazy.nvim as well. The approach is explained in
+  detail in yazi.nvim's
+  [plugin-management.md](https://github.com/mikavilpas/yazi.nvim/blob/main/documentation/plugin-management.md).
+  The config is available [here](.config/nvim/lua/plugins/my-file-manager.lua),
+  but the short version is that it uses lazy.nvim to download and update the
+  depenencies, and then creates symlinks whenever they are installed/updated.
+- plugins for other applications are also managed with the same approach to keep
+  things simple. An example can be seen
+  [here](.config/nvim/lua/plugins/dotfiles.lua).
+
 ### Testing
 
 Instead of managing an installation script, I have a test that I can run in
