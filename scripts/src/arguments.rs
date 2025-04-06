@@ -26,4 +26,7 @@ pub enum Commands {
         #[arg(long)]
         branch: String,
     },
+
+    /// Update the description of a pull request
+    UpdatePullRequestDescription {},
 }

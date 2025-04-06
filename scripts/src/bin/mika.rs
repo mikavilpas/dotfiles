@@ -28,5 +28,8 @@ pub fn main() {
                 println!("{}", l);
             }
         }
+        Commands::UpdatePullRequestDescription {} => {
+            //
+        }
     }
 }
