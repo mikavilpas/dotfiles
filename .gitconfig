@@ -27,7 +27,7 @@
   diffFilter = delta --color-only --features=interactive
 
 [include]
-  path = ~/dotfiles/.config/lazygit/delta-colors.gitconfig
+  path = ~/dotfiles/.config/delta/catppuccin-delta/catppuccin.gitconfig
 
 [delta]
   features = decorations
