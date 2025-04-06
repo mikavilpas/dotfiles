@@ -41,13 +41,4 @@ return {
   --     "<space>t",
   --     cmd = "BaconList",
   --   },
-
-  {
-    -- workaround for this issue:
-    -- bug: rust extra has lost the ability to go to definition inside dependency files
-    -- https://github.com/LazyVim/LazyVim/issues/5910
-    "mrcjkb/rustaceanvim",
-    -- this commit still works
-    commit = "1fcb9912df57c2f9dfa9e6b2b1c98816bd8108cd",
-  },
 }
