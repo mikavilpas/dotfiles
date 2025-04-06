@@ -67,6 +67,9 @@ reminder.
 I have an end-to-end testing setup in [integration-tests](./integration-tests).
 It uses <https://github.com/mikavilpas/tui-sandbox> to run the tests.
 
+Lately I have been experimenting with implementing common development
+[scripts](./scripts) in rust. These are also e2e tested with Github Actions.
+
 ### Formatting
 
 Here is how the files in this repository are formatted. Since I am the only
