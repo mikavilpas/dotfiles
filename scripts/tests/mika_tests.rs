@@ -1,6 +1,7 @@
 use common::TestRepoBuilder;
 use scripts::commit_messages::{
     get_commit_messages_between_commits, get_commit_messages_on_branch,
+    get_commit_messages_on_current_branch,
 };
 
 mod common;
@@ -40,14 +41,40 @@ fn test_get_commit_messages_on_branch() -> Result<(), Box<dyn std::error::Error>
 
     let lines = get_commit_messages_on_branch(&context.repo, "feature")?;
 
-    assert_eq!(lines, vec![
-        "# feat: feature commit 3",
-        "",
-        "# feat: feature commit 2",
-        "",
-        "# feat: feature commit 1",
-        "",
-    ]);
+    assert_eq!(
+        lines,
+        vec![
+            "# feat: feature commit 3",
+            "",
+            "# feat: feature commit 2",
+            "",
+            "# feat: feature commit 1",
+            "",
+        ]
+    );
+
+    Ok(())
+}
+
+#[test]
+fn test_get_commit_messages_on_current_branch() -> Result<(), Box<dyn std::error::Error>> {
+    let context = TestRepoBuilder::new()?;
+    context.commit("initial commit")?;
+
+    context.checkout("feature")?;
+
+    context.commit("feat: feature commit 1")?;
+
+    let lines = get_commit_messages_on_current_branch(&context.repo)?;
+
+    assert_eq!(
+        lines,
+        vec![
+            //
+            "# feat: feature commit 1",
+            "",
+        ]
+    );
 
     Ok(())
 }

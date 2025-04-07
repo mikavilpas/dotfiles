@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 
-use anyhow::{Context, Result};
-use gix::{Commit, Repository};
+use anyhow::{Context, Result, bail};
+use gix::{Commit, Repository, bstr::ByteSlice};
 
 pub fn get_commit_messages_between_commits(
     repo: &Repository,
@@ -26,9 +26,23 @@ pub fn get_commit_messages_between_commits(
     Ok(result_lines)
 }
 
-pub fn get_commit_messages_on_branch(
+pub fn get_commit_messages_on_current_branch(
     repo: &Repository,
-    branch: &str,
+) -> anyhow::Result<Vec<String>, anyhow::Error> {
+    let current_branch = repo.head().context("failed to get current branch")?;
+    match current_branch.kind {
+        gix::head::Kind::Symbolic(reference) => {
+            let name = reference.name.shorten().to_str_lossy();
+            get_commit_messages_on_branch(repo, &name)
+                .with_context(|| format!("failed to get commit messages on branch {}", name))
+        }
+        _ => bail!("current HEAD is not a symbolic reference"),
+    }
+}
+
+pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
+    repo: &Repository,
+    branch: S,
 ) -> anyhow::Result<Vec<String>, anyhow::Error> {
     let start_commit = repo
         .try_find_reference(&format!("refs/heads/{}", branch))
