@@ -8,6 +8,9 @@
 default_job = "check"
 env.CARGO_TERM_COLOR = "always"
 
+[exports.locations]
+path = "../.bacon-locations"
+
 [jobs.check]
 command = ["cargo", "check"]
 need_stdout = false
