@@ -87,6 +87,6 @@
   "vim-rhubarb": { "branch": "master", "commit": "386daa2e9d98e23e27ad089afcbe5c5a903e488d" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
   "yazi-flavor-catppuccin-macchiato": { "branch": "main", "commit": "68326b4ca4b5b66da3d4a4cce3050e5e950aade5" },
-  "yazi-rs-plugins": { "branch": "main", "commit": "273019910c1111a388dd20e057606016f4bd0d17" },
+  "yazi-rs-plugins": { "branch": "main", "commit": "a1738e8088366ba73b33da5f45010796fb33221e" },
   "yazi.nvim": { "branch": "main", "commit": "dd59edc7a6af25b8daf497388621260ce9b5306c" }
 }

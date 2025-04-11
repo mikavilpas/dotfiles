@@ -32,6 +32,12 @@ run = '''
   shell 'cat $@ | pbcopy'
 '''
 
+# keymap.toml
+[[manager.prepend_keymap]]
+on = ["g", "<right>"]
+run = "plugin vcs-files"
+desc = "Show Git file changes"
+
 [manager]
 
 keymap = [

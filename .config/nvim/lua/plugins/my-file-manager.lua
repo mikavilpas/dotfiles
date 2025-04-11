@@ -51,9 +51,7 @@ return {
     name = "yazi-flavor-catppuccin-macchiato",
     lazy = true,
     build = function(spec)
-      require("yazi.plugin").build_flavor(spec, {
-        sub_dir = "catppuccin-macchiato.yazi",
-      })
+      require("yazi.plugin").build_flavor(spec, { sub_dir = "catppuccin-macchiato.yazi" })
     end,
   },
   {
@@ -62,9 +60,8 @@ return {
     name = "yazi-rs-plugins",
     lazy = true,
     build = function(plugin)
-      require("yazi.plugin").build_plugin(plugin, {
-        sub_dir = "git.yazi",
-      })
+      require("yazi.plugin").build_plugin(plugin, { sub_dir = "git.yazi" })
+      require("yazi.plugin").build_plugin(plugin, { sub_dir = "vcs-files.yazi" })
     end,
   },
   {
