@@ -70,12 +70,8 @@ pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
 
     let mut results = Vec::new();
 
-    // TODO use the builtin revwalk filter
-    let mut revwalk = start_commit.ancestors().all()?;
+    let mut revwalk = start_commit.ancestors().with_boundary(branch_heads).all()?;
     while let Some(commit) = revwalk.next().transpose()? {
-        if branch_heads.contains(&commit.id) {
-            break;
-        }
         let commit = repo
             .find_commit(commit.id)
             .context(format!("failed to find the commit {}", commit.id))?;
