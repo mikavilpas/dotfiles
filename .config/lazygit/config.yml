@@ -48,14 +48,6 @@ customCommands:
       "~/dotfiles/scripts/target/release/mika summary
       --from={{.SelectedCommitRange.To}} --to={{.SelectedCommitRange.From}}^ |
       pbcopy"
-  - key: "w"
-    prompts:
-      - type: "input"
-        title: "Commit with --no-verify"
-        initialValue: "WIP"
-    command: git commit -m "{{index .PromptResponses 0}}" --no-verify
-    context: "files"
-    subprocess: false
   - key: X
     description: "Copy/paste commits across repos"
     commandMenu:
