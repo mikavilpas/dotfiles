@@ -1,12 +1,9 @@
 use gix::Repository;
-use std::{
-    path::{Path, PathBuf},
-    process,
-};
-use tempfile::tempdir;
+use std::{path::Path, process};
+use tempfile::{TempDir, tempdir};
 
 pub struct TestRepoBuilder {
-    pub path: PathBuf,
+    dir: TempDir,
     pub repo: Repository,
 }
 
@@ -16,28 +13,24 @@ impl TestRepoBuilder {
 
         let repo = gix::init(tmpdir.path())?;
         run_git(tmpdir.path(), &["config", "user.name", "test"])?;
-        run_git(tmpdir.path(), &[
-            "config",
-            "user.email",
-            "test.user@example.com",
-        ])?;
+        run_git(
+            tmpdir.path(),
+            &["config", "user.email", "test.user@example.com"],
+        )?;
 
-        Ok(Self {
-            path: tmpdir.into_path(),
-            repo,
-        })
+        Ok(Self { dir: tmpdir, repo })
     }
 
     pub fn commit(&self, message: &str) -> Result<(), Box<dyn std::error::Error>> {
         run_git(
-            self.path.as_path(),
+            self.dir.path(),
             ["commit", "--allow-empty", "-m", message].as_ref(),
         )?;
         Ok(())
     }
 
     pub fn checkout(&self, branch: &str) -> Result<(), Box<dyn std::error::Error>> {
-        run_git(self.path.as_path(), ["checkout", "-b", branch].as_ref())?;
+        run_git(self.dir.path(), ["checkout", "-b", branch].as_ref())?;
         Ok(())
     }
 }
