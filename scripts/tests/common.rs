@@ -1,37 +1,51 @@
+use anyhow::Result;
 use gix::Repository;
-use std::{path::Path, process};
+use std::{
+    path::{Path, PathBuf},
+    process,
+};
 use tempfile::{TempDir, tempdir};
 
 pub struct TestRepoBuilder {
-    dir: TempDir,
+    tmpdir: TempDir,
     pub repo: Repository,
 }
 
 impl TestRepoBuilder {
-    pub fn new() -> Result<TestRepoBuilder, Box<dyn std::error::Error>> {
+    pub fn new() -> Result<TestRepoBuilder> {
         let tmpdir = tempdir()?;
+        let dir = tmpdir.path().to_path_buf();
 
-        let repo = gix::init(tmpdir.path())?;
-        run_git(tmpdir.path(), &["config", "user.name", "test"])?;
-        run_git(
-            tmpdir.path(),
-            &["config", "user.email", "test.user@example.com"],
-        )?;
+        let repo = gix::init(&dir)?;
 
-        Ok(Self { dir: tmpdir, repo })
+        run_git(&dir, &["config", "user.name", "test"])?;
+        run_git(&dir, &["config", "user.email", "test.user@example.com"])?;
+
+        Ok(Self { tmpdir, repo })
     }
 
-    pub fn commit(&self, message: &str) -> Result<(), Box<dyn std::error::Error>> {
+    pub fn commit(&self, message: &str) -> Result<()> {
         run_git(
-            self.dir.path(),
+            self.path(),
             ["commit", "--allow-empty", "-m", message].as_ref(),
         )?;
         Ok(())
     }
 
-    pub fn checkout(&self, branch: &str) -> Result<(), Box<dyn std::error::Error>> {
-        run_git(self.dir.path(), ["checkout", "-b", branch].as_ref())?;
+    pub fn checkout(&self, branch: &str) -> Result<()> {
+        run_git(self.path(), ["checkout", "-b", branch].as_ref())?;
         Ok(())
+    }
+
+    pub fn create_file(&self, file: &Path) -> Result<PathBuf> {
+        let file_path = self.path().join(file);
+        std::fs::create_dir_all(file_path.parent().unwrap())?;
+        std::fs::write(&file_path, "test")?;
+        Ok(file_path)
+    }
+
+    pub fn path(&self) -> &std::path::Path {
+        self.tmpdir.path()
     }
 }
 

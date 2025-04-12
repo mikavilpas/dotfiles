@@ -2,6 +2,7 @@ use clap::Parser;
 use scripts::{
     arguments::{Cli, Commands},
     commit_messages::{get_commit_messages_between_commits, get_commit_messages_on_branch},
+    project::path_to_project_file,
 };
 
 pub fn main() {
@@ -27,6 +28,19 @@ pub fn main() {
             for l in lines {
                 println!("{}", l);
             }
+        }
+        Commands::Path { file } => {
+            let cwd = std::env::current_dir().expect("failed to get current directory");
+            let path = {
+                if file.is_absolute() {
+                    file
+                } else {
+                    cwd.join(file)
+                }
+            };
+            let target_file = path_to_project_file(&cwd, &path)
+                .unwrap_or_else(|e| panic!("failed to get project file: {}", e));
+            println!("{}", target_file);
         }
     }
 }
