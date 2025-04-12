@@ -72,6 +72,11 @@ return {
       },
 
       picker = {
+        formatters = {
+          file = {
+            truncate = 100,
+          },
+        },
         sources = {
           autocmds = { layout = my_layout },
           buffers = { layout = my_layout },
