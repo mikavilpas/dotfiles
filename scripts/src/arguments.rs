@@ -1,3 +1,5 @@
+use std::path::PathBuf;
+
 use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
@@ -25,5 +27,12 @@ pub enum Commands {
         /// The branch to summarize
         #[arg(long)]
         branch: String,
+    },
+
+    /// Get a path to a project file, relative to the project root
+    Path {
+        /// The file to get the path for, either absolute or relative to the current directory
+        #[arg(value_name = "FILE", value_hint = clap::ValueHint::AnyPath)]
+        file: PathBuf,
     },
 }
