@@ -14,7 +14,10 @@ fish_add_path $HOME/.luarocks/bin
 fish_add_path $HOME/.local/share/bob/nvim-bin:$PATH
 fish_add_path ~/.cargo/bin
 
-if status is-interactive
+# skip everything in CI because initialization will fail if all the required
+# applications are not installed. They take a long time to install, and I don't
+# have e2e tests for them anyway.
+if status is-interactive && test -z "$CI"
     fish_vi_key_bindings
 
     # Commands to run in interactive sessions can go here
