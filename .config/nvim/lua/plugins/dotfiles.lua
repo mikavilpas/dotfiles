@@ -43,4 +43,15 @@ return {
       require("yazi.plugin").symlink(self, vim.fn.expand("~/dotfiles/.config/delta/catppuccin-delta"))
     end,
   },
+  {
+    "https://github.com/catppuccin/fish",
+    name = "catppuccin-fish",
+    lazy = true,
+    build = function(self)
+      symlink(
+        vim.fs.normalize(vim.fs.joinpath(self.dir, "themes", "Catppuccin Macchiato.theme")),
+        vim.fn.expand("~/.config/fish/themes/Catppuccin Macchiato.theme")
+      )
+    end,
+  },
 }
