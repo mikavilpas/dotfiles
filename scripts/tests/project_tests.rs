@@ -1,10 +1,8 @@
 use std::path::Path;
 
 use anyhow::Result;
-use common::TestRepoBuilder;
 use scripts::project::path_to_project_file;
-
-mod common;
+use test_utils::common::TestRepoBuilder;
 
 #[test]
 fn test_path_to_project_file_returns_file() -> Result<()> {

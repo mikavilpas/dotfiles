@@ -1,10 +1,8 @@
-use common::TestRepoBuilder;
 use scripts::commit_messages::{
     get_commit_messages_between_commits, get_commit_messages_on_branch,
     get_commit_messages_on_current_branch,
 };
-
-mod common;
+use test_utils::common::TestRepoBuilder;
 
 #[test]
 fn test_print_commit_messages_between_commits() -> Result<(), Box<dyn std::error::Error>> {
@@ -15,13 +13,16 @@ fn test_print_commit_messages_between_commits() -> Result<(), Box<dyn std::error
 
     let lines = get_commit_messages_between_commits(&repo.repo, "HEAD", "HEAD~2")?;
 
-    assert_eq!(lines, vec![
-        //
-        "# feat: commit 1",
-        "",
-        "# feat: commit 0",
-        "",
-    ]);
+    assert_eq!(
+        lines,
+        vec![
+            //
+            "# feat: commit 1",
+            "",
+            "# feat: commit 0",
+            "",
+        ]
+    );
 
     Ok(())
 }

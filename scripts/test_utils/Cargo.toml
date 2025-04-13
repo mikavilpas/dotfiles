@@ -1,0 +1,10 @@
+[package]
+name = "test_utils"
+description = "Test utilities to make e2e/integration testing easier"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+gix = "0.71.0"
+anyhow = "1.0.97"
+tempfile = "3.19.1"
