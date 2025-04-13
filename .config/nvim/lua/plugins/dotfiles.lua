@@ -1,3 +1,16 @@
+local function symlink(source, target)
+  local existing_stat = vim.uv.fs_lstat(target)
+  if existing_stat and existing_stat.type == "link" then
+    -- try to remove the symlink as we will soon create a new one
+    vim.uv.fs_unlink(target)
+  end
+
+  local success, error = vim.uv.fs_symlink(source, target)
+  if not success then
+    vim.notify("Failed to create symlink: " .. error, vim.log.levels.ERROR)
+  end
+end
+
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -12,19 +25,6 @@ return {
       -- themes/Catppuccin Latte.tmTheme
       -- themes/Catppuccin Macchiato.tmTheme
       -- themes/Catppuccin Mocha.tmTheme
-
-      local function symlink(source, target)
-        local existing_stat = vim.uv.fs_lstat(target)
-        if existing_stat and existing_stat.type == "link" then
-          -- try to remove the symlink as we will soon create a new one
-          vim.uv.fs_unlink(target)
-        end
-
-        local success, error = vim.uv.fs_symlink(source, target)
-        if not success then
-          vim.notify("Failed to create symlink: " .. error, vim.log.levels.ERROR)
-        end
-      end
 
       symlink(
         vim.fs.normalize(vim.fs.joinpath(self.dir, "themes", "Catppuccin Macchiato.tmTheme")),
