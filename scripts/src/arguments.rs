@@ -31,8 +31,12 @@ pub enum Commands {
 
     /// Get a path to a project file, relative to the project root
     Path {
-        /// The file to get the path for, either absolute or relative to the current directory
-        #[arg(value_name = "FILE", value_hint = clap::ValueHint::AnyPath)]
-        file: PathBuf,
+        /// One or more files to get paths for, either absolute or relative to the current directory
+        #[arg(
+        value_name = "FILE",
+        value_hint = clap::ValueHint::AnyPath,
+        num_args = 1..,
+    )]
+        files: Vec<PathBuf>,
     },
 }

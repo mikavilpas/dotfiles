@@ -29,18 +29,20 @@ pub fn main() {
                 println!("{}", l);
             }
         }
-        Commands::Path { file } => {
+        Commands::Path { files } => {
             let cwd = std::env::current_dir().expect("failed to get current directory");
-            let path = {
-                if file.is_absolute() {
-                    file
-                } else {
-                    cwd.join(file)
-                }
-            };
-            let target_file = path_to_project_file(&cwd, &path)
-                .unwrap_or_else(|e| panic!("failed to get project file: {}", e));
-            println!("{}", target_file);
+            for file in files {
+                let path = {
+                    if file.is_absolute() {
+                        file
+                    } else {
+                        cwd.join(file)
+                    }
+                };
+                let target_file = path_to_project_file(&cwd, &path)
+                    .unwrap_or_else(|e| panic!("failed to get project file: {}", e));
+                println!("{}", target_file);
+            }
         }
     }
 }
