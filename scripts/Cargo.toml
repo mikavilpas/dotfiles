@@ -6,7 +6,7 @@ edition = "2024"
 [dependencies]
 clap = { version = "4.5.35", features = ["derive"] }
 gix = "0.71.0"
-anyhow = "1.0.97"
+anyhow = "1.0.98"
 test_utils = { path = "./test_utils" }
 
 [build-dependencies]
