@@ -58,11 +58,11 @@ importers:
         specifier: 9.24.0
         version: 9.24.0
       '@tui-sandbox/library':
-        specifier: 10.2.0
-        version: 10.2.0(cypress@14.3.0)(prettier@3.5.3)(type-fest@4.39.1)(typescript@5.8.3)
+        specifier: 10.2.1
+        version: 10.2.1(cypress@14.3.0)(prettier@3.5.3)(type-fest@4.39.1)(typescript@5.8.3)
       '@types/node':
-        specifier: 22.14.0
-        version: 22.14.0
+        specifier: 22.14.1
+        version: 22.14.1
       '@types/tinycolor2':
         specifier: 1.4.6
         version: 1.4.6
@@ -387,19 +387,19 @@ packages:
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
 
-  '@trpc/client@11.0.2':
-    resolution: {integrity: sha512-GlPEedbMTerkUfAJBsrwU6dg8N65lt3LBwrCoqR3MTZ64lRU/DQqyLjzpz5nRkEN0x4S2JmX0hASV9vc2KlSHA==}
+  '@trpc/client@11.1.0':
+    resolution: {integrity: sha512-Q3pL4p7AddxI/ZJTEFo1utKSdasDFjZPECIPsKDkthEt52k530JkYVltTdLkYFKrNWXKKBo8MN7NwchelczoRw==}
     peerDependencies:
-      '@trpc/server': 11.0.2
+      '@trpc/server': 11.1.0
       typescript: '>=5.7.2'
 
-  '@trpc/server@11.0.2':
-    resolution: {integrity: sha512-PIcm8UWFyE0AnIYjxsyc1zfVa6X10m9Opm1SJ2ou9Vu8dlXO6rMtmafLUXJsMeQk/3ecxObFtEiZIX8TvB3eCg==}
+  '@trpc/server@11.1.0':
+    resolution: {integrity: sha512-uAJ7ikejeujVkf53XFJ/0W8nr7bDjul+Szk5Rsepq97Hb/WS1RkRXdyX4KqAyCE9b1vDFCJVJwSxiIZdRtbTZQ==}
     peerDependencies:
       typescript: '>=5.7.2'
 
-  '@tui-sandbox/library@10.2.0':
-    resolution: {integrity: sha512-7VkSKM/46eLstF8pmEJM6Wz8UusqwXehh+WUWSYYZgg4FKLyIoZ3AO3zsYX/tih8DfwgQRXBjlzzHeuthEFXHA==}
+  '@tui-sandbox/library@10.2.1':
+    resolution: {integrity: sha512-Qk/E/538S+eIhEkF3QMcCsTJt3Z4Drfj5gHOpvoO7gl9G5uedYYkG24aSZY/3zU2mY8DIv2zvG/XKRxaKXEAPw==}
     hasBin: true
     peerDependencies:
       cypress: ^13 || ^14
@@ -422,8 +422,8 @@ packages:
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
-  '@types/node@22.14.0':
-    resolution: {integrity: sha512-Kmpl+z84ILoG+3T/zQFyAJsU6EPTmOCj8/2+83fSN6djd6I4o7uOuGIH6vq3PrjY5BGitSbFuMN18j3iknubbA==}
+  '@types/node@22.14.1':
+    resolution: {integrity: sha512-u0HuPQwe/dHrItgHHpmw3N2fYCR6x4ivMNbPHRkBVP4CvN+kiRrKHWk3i8tXiO/joPwXLMYvF9TTF0eqgHIuOw==}
 
   '@types/sinonjs__fake-timers@8.1.1':
     resolution: {integrity: sha512-0kSuKjAS0TrGLJ0M/+8MaFkGsQhZpB6pxOmvS3K8FYI72K//YmdfoW9X2qPsAKh1mkwxGD5zib9s1FIFed6E8g==}
@@ -506,6 +506,9 @@ packages:
 
   '@xterm/xterm@5.5.0':
     resolution: {integrity: sha512-hqJHYaQb5OptNunnyAnkHyM8aCjZ1MEIDTQu1iIbbTD/xops91NB5yq1ZK/dC2JDbVWtF23zUtl9JE2NqwT87A==}
+
+  '@zod/core@0.4.6':
+    resolution: {integrity: sha512-0IeEldTobOdkoJPyINVQgOHlgCWbpozSsDjdcd2+VcxKvf8T+SYLDVk7NKt0XJx3C0ImNXAXh3V3yIw46NJyQA==}
 
   accepts@2.0.0:
     resolution: {integrity: sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng==}
@@ -813,8 +816,8 @@ packages:
     resolution: {integrity: sha512-D76uU73ulSXrD1UXF4KE2TMxVVwhsnCgfAyTg9k8P6KGZjlXKrOLe4dJQKI3Bxi5wjesZoFXJWElNWBjPZMbhg==}
     engines: {node: '>=6.6.0'}
 
-  cookie@0.7.1:
-    resolution: {integrity: sha512-6DnInpx7SJ2AK3+CTUE/ZM0vWTUboZCegxhC2xiIydHR9jNuTAASBrfEpHhiGOZw/nX51bHt6YQl8jsGo4y/0w==}
+  cookie@0.7.2:
+    resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
     engines: {node: '>= 0.6'}
 
   core-js@3.41.0:
@@ -2399,6 +2402,9 @@ packages:
   zod@3.24.2:
     resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
 
+  zod@4.0.0-beta.20250412T085909:
+    resolution: {integrity: sha512-W4OjoCnF5XTuljw4X6Hh3Inp45Ug7mmCWzWfFPv+RZcSIAGz7OPqBKOEDtLjfnJAvoxvY3vO0SkxH1zr0Md/Ag==}
+
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
@@ -2649,20 +2655,20 @@ snapshots:
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
-  '@trpc/client@11.0.2(@trpc/server@11.0.2(typescript@5.8.3))(typescript@5.8.3)':
+  '@trpc/client@11.1.0(@trpc/server@11.1.0(typescript@5.8.3))(typescript@5.8.3)':
     dependencies:
-      '@trpc/server': 11.0.2(typescript@5.8.3)
+      '@trpc/server': 11.1.0(typescript@5.8.3)
       typescript: 5.8.3
 
-  '@trpc/server@11.0.2(typescript@5.8.3)':
+  '@trpc/server@11.1.0(typescript@5.8.3)':
     dependencies:
       typescript: 5.8.3
 
-  '@tui-sandbox/library@10.2.0(cypress@14.3.0)(prettier@3.5.3)(type-fest@4.39.1)(typescript@5.8.3)':
+  '@tui-sandbox/library@10.2.1(cypress@14.3.0)(prettier@3.5.3)(type-fest@4.39.1)(typescript@5.8.3)':
     dependencies:
       '@catppuccin/palette': 1.7.1
-      '@trpc/client': 11.0.2(@trpc/server@11.0.2(typescript@5.8.3))(typescript@5.8.3)
-      '@trpc/server': 11.0.2(typescript@5.8.3)
+      '@trpc/client': 11.1.0(@trpc/server@11.1.0(typescript@5.8.3))(typescript@5.8.3)
+      '@trpc/server': 11.1.0(typescript@5.8.3)
       '@xterm/addon-attach': 0.11.0(@xterm/xterm@5.5.0)
       '@xterm/addon-fit': 0.10.0(@xterm/xterm@5.5.0)
       '@xterm/xterm': 5.5.0
@@ -2679,7 +2685,7 @@ snapshots:
       type-fest: 4.39.1
       typescript: 5.8.3
       winston: 3.17.0
-      zod: 3.24.2
+      zod: 4.0.0-beta.20250412T085909
     transitivePeerDependencies:
       - supports-color
 
@@ -2697,7 +2703,7 @@ snapshots:
 
   '@types/ms@2.1.0': {}
 
-  '@types/node@22.14.0':
+  '@types/node@22.14.1':
     dependencies:
       undici-types: 6.21.0
 
@@ -2713,7 +2719,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 22.14.0
+      '@types/node': 22.14.1
     optional: true
 
   '@typescript-eslint/eslint-plugin@8.29.1(@typescript-eslint/parser@8.29.1(eslint@9.24.0)(typescript@5.8.3))(eslint@9.24.0)(typescript@5.8.3)':
@@ -2825,6 +2831,8 @@ snapshots:
       '@xterm/xterm': 5.5.0
 
   '@xterm/xterm@5.5.0': {}
+
+  '@zod/core@0.4.6': {}
 
   accepts@2.0.0:
     dependencies:
@@ -3107,7 +3115,7 @@ snapshots:
 
   cookie-signature@1.2.2: {}
 
-  cookie@0.7.1: {}
+  cookie@0.7.2: {}
 
   core-js@3.41.0: {}
 
@@ -3436,7 +3444,7 @@ snapshots:
       body-parser: 2.2.0
       content-disposition: 1.0.0
       content-type: 1.0.5
-      cookie: 0.7.1
+      cookie: 0.7.2
       cookie-signature: 1.2.2
       debug: 4.4.0(supports-color@8.1.1)
       encodeurl: 2.0.0
@@ -5005,5 +5013,9 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   zod@3.24.2: {}
+
+  zod@4.0.0-beta.20250412T085909:
+    dependencies:
+      '@zod/core': 0.4.6
 
   zwitch@2.0.4: {}
