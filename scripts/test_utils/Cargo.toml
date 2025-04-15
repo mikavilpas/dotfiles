@@ -5,6 +5,6 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-gix = "0.71.0"
-anyhow = "1.0.97"
+gix = { workspace = true }
+anyhow = { workspace = true }
 tempfile = "3.19.1"
