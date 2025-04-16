@@ -38,7 +38,7 @@ jobs:
         uses: mozilla-actions/sccache-action@v0.0.9
 
       - name: Build
-        run: cargo install --locked --path .
+        run: cargo install --locked --path scripts/
         working-directory: scripts
 
       - name: Install GNU stow and setup the dotfiles

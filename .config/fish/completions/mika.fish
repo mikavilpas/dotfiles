@@ -1,1 +1,1 @@
-../../../scripts/completions/mika.fish
+../../../scripts/scripts/completions/mika.fish
