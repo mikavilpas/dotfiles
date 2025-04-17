@@ -54,4 +54,15 @@ return {
       )
     end,
   },
+  {
+    "https://github.com/ruiiiijiiiiang/atuin",
+    name = "catppuccin-atuin",
+    lazy = true,
+    build = function(self)
+      require("yazi.plugin").symlink({
+        name = "catppuccin-atuin",
+        dir = vim.fs.joinpath(self.dir, "themes/macchiato"),
+      }, vim.fn.expand("~/dotfiles/.config/atuin/themes"))
+    end,
+  },
 }
