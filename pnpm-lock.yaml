@@ -45,8 +45,8 @@ importers:
         specifier: 1.7.1
         version: 1.7.1
       cypress:
-        specifier: 14.3.0
-        version: 14.3.0
+        specifier: 14.3.1
+        version: 14.3.1
       wait-on:
         specifier: 8.0.3
         version: 8.0.3
@@ -59,7 +59,7 @@ importers:
         version: 9.24.0
       '@tui-sandbox/library':
         specifier: 10.2.1
-        version: 10.2.1(cypress@14.3.0)(prettier@3.5.3)(type-fest@4.40.0)(typescript@5.8.3)
+        version: 10.2.1(cypress@14.3.1)(prettier@3.5.3)(type-fest@4.40.0)(typescript@5.8.3)
       '@types/node':
         specifier: 22.14.1
         version: 22.14.1
@@ -849,8 +849,8 @@ packages:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
 
-  cypress@14.3.0:
-    resolution: {integrity: sha512-rRfPl9Z0/CczuYybBEoLbDVuT1OGkhYaJ0+urRCshgiDRz6QnoA0KQIQnPx7MJ3zy+VCsbUU1pV74n+6cbJEdg==}
+  cypress@14.3.1:
+    resolution: {integrity: sha512-/2q06qvHMK3PNiadnRW1Je0lJ43gAFPQJUAK2zIxjr22kugtWxVQznTBLVu1AvRH+RP3oWZhCdWqiEi+0NuqCg==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
 
@@ -2194,11 +2194,11 @@ packages:
     resolution: {integrity: sha512-qkf4trmKSIiMTs/E63cxH+ojC2unam7rJ0WrauAzpT3ECNTxGRMlaXxVbfxMUC/w0LaYk6jQ4y/nGR9uBO3tww==}
     engines: {node: '>=12.0.0'}
 
-  tldts-core@6.1.85:
-    resolution: {integrity: sha512-DTjUVvxckL1fIoPSb3KE7ISNtkWSawZdpfxGxwiIrZoO6EbHVDXXUIlIuWympPaeS+BLGyggozX/HTMsRAdsoA==}
+  tldts-core@6.1.86:
+    resolution: {integrity: sha512-Je6p7pkk+KMzMv2XXKmAE3McmolOQFdxkKw0R8EYNr7sELW46JqnNeTX8ybPiQgvg1ymCoF8LXs5fzFaZvJPTA==}
 
-  tldts@6.1.85:
-    resolution: {integrity: sha512-gBdZ1RjCSevRPFix/hpaUWeak2/RNUZB4/8frF1r5uYMHjFptkiT0JXIebWvgI/0ZHXvxaUDDJshiA0j6GdL3w==}
+  tldts@6.1.86:
+    resolution: {integrity: sha512-WMi/OQ2axVTf/ykqCQgXiIct+mSQDFdH2fkwhPwgEwvJ1kSzZRiinb0zF2Xb8u4+OqPChmyI6MEu4EezNJz+FQ==}
     hasBin: true
 
   tmp@0.2.3:
@@ -2675,7 +2675,7 @@ snapshots:
     dependencies:
       typescript: 5.8.3
 
-  '@tui-sandbox/library@10.2.1(cypress@14.3.0)(prettier@3.5.3)(type-fest@4.40.0)(typescript@5.8.3)':
+  '@tui-sandbox/library@10.2.1(cypress@14.3.1)(prettier@3.5.3)(type-fest@4.40.0)(typescript@5.8.3)':
     dependencies:
       '@catppuccin/palette': 1.7.1
       '@trpc/client': 11.1.0(@trpc/server@11.1.0(typescript@5.8.3))(typescript@5.8.3)
@@ -2686,7 +2686,7 @@ snapshots:
       command-exists: 1.2.9
       core-js: 3.41.0
       cors: 2.8.5
-      cypress: 14.3.0
+      cypress: 14.3.1
       dree: 5.1.5
       express: 5.1.0
       neovim: 5.3.0
@@ -3152,7 +3152,7 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  cypress@14.3.0:
+  cypress@14.3.1:
     dependencies:
       '@cypress/request': 3.0.8
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
@@ -4796,11 +4796,11 @@ snapshots:
       fdir: 6.4.3(picomatch@4.0.2)
       picomatch: 4.0.2
 
-  tldts-core@6.1.85: {}
+  tldts-core@6.1.86: {}
 
-  tldts@6.1.85:
+  tldts@6.1.86:
     dependencies:
-      tldts-core: 6.1.85
+      tldts-core: 6.1.86
 
   tmp@0.2.3: {}
 
@@ -4812,7 +4812,7 @@ snapshots:
 
   tough-cookie@5.1.2:
     dependencies:
-      tldts: 6.1.85
+      tldts: 6.1.86
 
   tree-kill@1.2.2: {}
 
