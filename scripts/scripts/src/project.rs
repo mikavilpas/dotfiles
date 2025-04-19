@@ -41,10 +41,17 @@ pub fn path_to_project_file(cwd: &Path, file: &Path) -> Result<String> {
             joined_absolute.display()
         )
     })?;
-    Ok(joined_relative
+
+    let path = joined_relative
         .to_str()
         .ok_or_else(|| anyhow!("Path contains invalid UTF-8: {}", joined_relative.display()))?
-        .to_string())
+        .to_string();
+
+    Ok(if path.is_empty() {
+        ".".to_string()
+    } else {
+        path
+    })
 }
 
 fn resolve_file(cwd: &Path, file: &Path) -> std::path::PathBuf {

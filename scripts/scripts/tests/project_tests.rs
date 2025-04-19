@@ -18,6 +18,18 @@ fn test_path_to_project_file_returns_file() -> Result<()> {
 }
 
 #[test]
+fn test_path_to_project_file_returns_dot() -> Result<()> {
+    let repo = TestRepoBuilder::new()?;
+
+    let file = Path::new(".");
+
+    let result = path_to_project_file(repo.path(), file)?;
+    assert_eq!(result, ".");
+
+    Ok(())
+}
+
+#[test]
 fn test_path_to_project_file_returns_file_in_dir() -> Result<()> {
     let repo = TestRepoBuilder::new()?;
 
