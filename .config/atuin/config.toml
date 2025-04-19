@@ -3,22 +3,10 @@
 ## windows: %USERPROFILE%/.local/share/atuin/history.db
 # db_path = "~/.history.db"
 
-[theme]
+
 # ~/dotfiles/.config/atuin/themes
-# name = "catppuccin-macchiato-blue"
-# name = "catppuccin-macchiato-flamingo"
-name = "catppuccin-macchiato-green"
-# name = "catppuccin-macchiato-lavender"
-# name = "catppuccin-macchiato-maroon"
-# name = "catppuccin-macchiato-mauve"
-# name = "catppuccin-macchiato-peach"
-# name = "catppuccin-macchiato-pink"
-# name = "catppuccin-macchiato-red"
-# name = "catppuccin-macchiato-rosewater"
-# name = "catppuccin-macchiato-sapphire"
-# name = "catppuccin-macchiato-sky"
-# name = "catppuccin-macchiato-teal"
-# name = "catppuccin-macchiato-yellow"
+[theme]
+name = "mika"
 
 ## where to store your encryption key, default is your system data directory
 ## linux/mac: ~/.local/share/atuin/key

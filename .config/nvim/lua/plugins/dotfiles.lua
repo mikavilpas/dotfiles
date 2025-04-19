@@ -55,14 +55,19 @@ return {
     end,
   },
   {
-    "https://github.com/ruiiiijiiiiang/atuin",
+    "https://github.com/catppuccin/atuin",
     name = "catppuccin-atuin",
     lazy = true,
     build = function(self)
-      require("yazi.plugin").symlink({
-        name = "catppuccin-atuin",
-        dir = vim.fs.joinpath(self.dir, "themes/macchiato"),
-      }, vim.fn.expand("~/dotfiles/.config/atuin/themes"))
+      local source_themes_path = vim.fs.joinpath(self.dir, "themes/macchiato")
+
+      local target_themes_path = vim.fn.expand("~/dotfiles/.config/atuin/themes")
+      local files = vim.fn.glob(source_themes_path .. "/*", true, true)
+      for _, file in ipairs(files) do
+        local filename = vim.fs.basename(file)
+        local target = vim.fs.joinpath(target_themes_path, filename)
+        symlink(file, target)
+      end
     end,
   },
 }
