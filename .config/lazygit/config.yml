@@ -123,6 +123,8 @@ gui:
     ".+?--backup": "#6e738d"
     "main$": "#a6da95"
     "master$": "#a6da95"
+  authorColors:
+    "Mika Vilpas": "#8aadf4"
 
 git:
   parseEmoji: true
