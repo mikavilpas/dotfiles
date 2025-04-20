@@ -32,6 +32,10 @@ run = '''
   shell 'cat $@ | pbcopy'
 '''
 
+[[manager.prepend_keymap]]
+on = "<tab>"
+run = """shell "ya pub-to 0 NvimCycleBuffer""""
+
 # keymap.toml
 [[manager.prepend_keymap]]
 on = ["g", "<right>"]

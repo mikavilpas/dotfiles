@@ -16,6 +16,9 @@ return {
     opts = {
       open_multiple_tabs = true,
       open_for_directories = true,
+      keymaps = {
+        cycle_open_buffers = false,
+      },
       floating_window_scaling_factor = {
         width = 0.95,
         height = 0.95,
