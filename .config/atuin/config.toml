@@ -4,10 +4,6 @@
 # db_path = "~/.history.db"
 
 
-# ~/dotfiles/.config/atuin/themes
-[theme]
-name = "mika"
-
 ## where to store your encryption key, default is your system data directory
 ## linux/mac: ~/.local/share/atuin/key
 ## windows: %USERPROFILE%/.local/share/atuin/key
@@ -144,3 +140,7 @@ enter_accept = true
 # 
 # Set commands that should be totally stripped and ignored from stats
 #common_prefix = ["sudo"]
+
+# ~/dotfiles/.config/atuin/themes
+[theme]
+name = "mika"
