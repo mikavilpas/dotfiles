@@ -13,6 +13,7 @@ fish_add_path /Users/mikavilpas/.local/share/bob/nvim-bin
 fish_add_path $HOME/.luarocks/bin
 fish_add_path $HOME/.local/share/bob/nvim-bin:$PATH
 fish_add_path ~/.cargo/bin
+fish_add_path $HOME/.local/share/nvim/mason/bin
 
 # skip everything in CI because initialization will fail if all the required
 # applications are not installed. They take a long time to install, and I don't
