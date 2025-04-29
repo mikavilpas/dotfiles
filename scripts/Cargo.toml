@@ -1,16 +1,7 @@
-[package]
-name = "scripts"
-version = "0.1.0"
-edition = "2024"
+[workspace]
+members = ["scripts/", "test_utils/"]
+resolver = "3"
 
-[dependencies]
-clap = { version = "4.5.35", features = ["derive"] }
+[workspace.dependencies]
+anyhow = "1.0.98"
 gix = "0.71.0"
-anyhow = "1.0.97"
-
-[dev-dependencies]
-tempfile = "3.19.1"
-
-[build-dependencies]
-clap = { version = "4.5.35", features = ["derive"] }
-clap_complete = { version = "4.5.47" }

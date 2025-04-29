@@ -20,3 +20,7 @@ integration-tests/test-environment/testdirs/
 scripts/target
 scripts/.bacon-locations
 integration-tests/cypress/screenshots/lazygit.cy.ts
+.bacon-locations
+integration-tests/test-environment/.repro/data
+scripts/test_utils/target
+scripts/scripts/test_utils/target

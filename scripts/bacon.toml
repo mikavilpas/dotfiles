@@ -8,6 +8,9 @@
 default_job = "check"
 env.CARGO_TERM_COLOR = "always"
 
+[exports.locations]
+path = "../.bacon-locations"
+
 [jobs.check]
 command = ["cargo", "check"]
 need_stdout = false
@@ -116,3 +119,4 @@ allow_warnings = true
 c = "job:clippy-all"    # comment this to have 'c' run clippy on only the default target
 b = "job:build"
 r = "job:build-release"
+t = "job:nextest"

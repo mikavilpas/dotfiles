@@ -39,23 +39,13 @@ customCommands:
     context: localBranches
     description: "Summarize branch commits for a PR"
     command:
-      "~/dotfiles/scripts/target/release/mika branch-summary --branch
-      '{{.SelectedLocalBranch.Name}}' | pbcopy"
+      "mika branch-summary --branch '{{.SelectedLocalBranch.Name}}' | pbcopy"
   - key: "Y"
     context: reflogCommits,commits,subCommits
     description: "Summarize selected commits for a PR"
     command:
-      "~/dotfiles/scripts/target/release/mika summary
-      --from={{.SelectedCommitRange.To}} --to={{.SelectedCommitRange.From}}^ |
-      pbcopy"
-  - key: "w"
-    prompts:
-      - type: "input"
-        title: "Commit with --no-verify"
-        initialValue: "WIP"
-    command: git commit -m "{{index .PromptResponses 0}}" --no-verify
-    context: "files"
-    subprocess: false
+      "mika summary --from={{.SelectedCommitRange.To}}
+      --to={{.SelectedCommitRange.From}}^ | pbcopy"
   - key: X
     description: "Copy/paste commits across repos"
     commandMenu:

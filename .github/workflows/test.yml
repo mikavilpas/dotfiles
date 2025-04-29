@@ -6,6 +6,11 @@ on:
     branches:
       - main
 
+env:
+  SCCACHE_GHA_ENABLED: true
+  RUSTC_WRAPPER: sccache
+  CARGO_TERM_COLOR: always
+
 jobs:
   build:
     name: Run tests
@@ -16,6 +21,25 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4.2.2
+
+      - name: Install the fish shell
+        run: |
+          sudo apt-add-repository ppa:fish-shell/release-4
+          sudo apt update
+          sudo apt install fish
+          echo "Installed fish version $(fish --version)"
+
+      # install the "mika" terminal application from source
+      - name: Setup Rust toolchain
+        run: rustup toolchain install nightly --profile minimal
+        working-directory: scripts
+
+      - name: Setup sccache
+        uses: mozilla-actions/sccache-action@v0.0.9
+
+      - name: Build
+        run: cargo install --locked --path scripts/
+        working-directory: scripts
 
       - name: Install GNU stow and setup the dotfiles
         run: |
@@ -49,7 +73,7 @@ jobs:
 
       # https://github.com/cypress-io/github-action?tab=readme-ov-file#pnpm-workspaces
       - uses: pnpm/action-setup@v4.1.0
-      - uses: actions/setup-node@v4.3.0
+      - uses: actions/setup-node@v4.4.0
         with:
           node-version-file: .nvmrc
           cache: "pnpm"

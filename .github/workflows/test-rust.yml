@@ -29,9 +29,13 @@ jobs:
         uses: mozilla-actions/sccache-action@v0.0.9
 
       - name: Build
-        run: cargo build --verbose
+        run: cargo build --workspace --verbose
         working-directory: scripts
 
+      - uses: taiki-e/install-action@nextest
+        # https://nexte.st/docs/installation/pre-built-binaries/
+        name: Install cargo-nextest
+
       - name: Test
-        run: cargo test --workspace --verbose
+        run: cargo nextest run --workspace --verbose --all-features
         working-directory: scripts

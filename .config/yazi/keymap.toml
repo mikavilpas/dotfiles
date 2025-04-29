@@ -23,7 +23,7 @@ run = '''
 [[manager.prepend_keymap]]
 on = ["c", "r"]
 run = '''
-  shell 'git ls-files --full-name $@ | perl -pe "chomp if eof" | pbcopy'
+  shell 'mika path $@ | perl -pe "chomp if eof" | pbcopy'
 '''
 
 [[manager.prepend_keymap]]
@@ -31,6 +31,12 @@ on = ["c", "i"] # copy inside
 run = '''
   shell 'cat $@ | pbcopy'
 '''
+
+# keymap.toml
+[[manager.prepend_keymap]]
+on = ["g", "<right>"]
+run = "plugin vcs-files"
+desc = "Show Git file changes"
 
 [manager]
 

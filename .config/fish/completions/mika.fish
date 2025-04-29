@@ -1,1 +1,1 @@
-/Users/mikavilpas/dotfiles/scripts/completions/mika.fish
+../../../scripts/scripts/completions/mika.fish

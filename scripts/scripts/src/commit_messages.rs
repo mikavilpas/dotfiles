@@ -28,7 +28,7 @@ pub fn get_commit_messages_between_commits(
 
 pub fn get_commit_messages_on_current_branch(
     repo: &Repository,
-) -> anyhow::Result<Vec<String>, anyhow::Error> {
+) -> anyhow::Result<Vec<String>> {
     let current_branch = repo.head().context("failed to get current branch")?;
     match current_branch.kind {
         gix::head::Kind::Symbolic(reference) => {
@@ -43,7 +43,7 @@ pub fn get_commit_messages_on_current_branch(
 pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
     repo: &Repository,
     branch: S,
-) -> anyhow::Result<Vec<String>, anyhow::Error> {
+) -> anyhow::Result<Vec<String>> {
     let start_commit = repo
         .try_find_reference(&format!("refs/heads/{}", branch))
         .with_context(|| format!("Failed to find reference for branch '{}'", branch))?
@@ -70,12 +70,8 @@ pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
 
     let mut results = Vec::new();
 
-    // TODO use the builtin revwalk filter
-    let mut revwalk = start_commit.ancestors().all()?;
+    let mut revwalk = start_commit.ancestors().with_boundary(branch_heads).all()?;
     while let Some(commit) = revwalk.next().transpose()? {
-        if branch_heads.contains(&commit.id) {
-            break;
-        }
         let commit = repo
             .find_commit(commit.id)
             .context(format!("failed to find the commit {}", commit.id))?;
