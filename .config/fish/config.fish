@@ -74,6 +74,10 @@ if status is-interactive && test -z "$CI"
         end
     end
 
+    # pipe to this guy to colorize the output stream! 🪄
+    # ya sub cd,hover | batrs
+    abbr -a batrs 'bat --paging=never --language=rs --decorations=never'
+
     function klm
         cd /Users/mikavilpas/git/jelpp/jelpp-env
         fnm use
