@@ -58,12 +58,12 @@ return {
             ---@module "blink-ripgrep"
             ---@type blink-ripgrep.Options
             opts = {
+              toggles = {
+                on_off = "<leader>tg",
+              },
               future_features = {
                 backend = {
                   use = "gitgrep-or-ripgrep",
-                },
-                toggles = {
-                  on_off = "<leader>tg",
                 },
               },
             },
