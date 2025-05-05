@@ -50,9 +50,6 @@ importers:
       wait-on:
         specifier: 8.0.3
         version: 8.0.3
-      zod:
-        specifier: 3.24.4
-        version: 3.24.4
     devDependencies:
       '@eslint/js':
         specifier: 9.26.0
