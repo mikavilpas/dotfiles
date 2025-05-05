@@ -140,8 +140,9 @@ return {
         win = {
           input = {
             keys = {
-              -- my-nvim-micro-plugins defines this
-              ["<C-y>"] = { "my_copy_relative_path", mode = { "n", "i" } },
+              -- yazi.nvim defines this
+              -- https://github.com/mikavilpas/yazi.nvim/blob/main/documentation/copy-relative-path-to-files.md
+              ["<C-y>"] = { "yazi_copy_relative_path", mode = { "n", "i" } },
             },
           },
         },
