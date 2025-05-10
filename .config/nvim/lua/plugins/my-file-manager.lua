@@ -37,7 +37,7 @@ return {
   },
   {
     name = "easyjump.yazi",
-    url = "https://gitee.com/DreamMaoMao/easyjump.yazi.git",
+    url = "https://github.com/DreamMaoMao/easyjump.yazi",
     lazy = true,
     build = function(plugin)
       require("yazi.plugin").build_plugin(plugin)
