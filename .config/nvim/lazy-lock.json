@@ -88,7 +88,7 @@
   "vim-indent-object": { "branch": "master", "commit": "8ab36d5ec2a3a60468437a95e142ce994df598c6" },
   "vim-rhubarb": { "branch": "master", "commit": "386daa2e9d98e23e27ad089afcbe5c5a903e488d" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
-  "yazi-flavor-catppuccin-macchiato": { "branch": "main", "commit": "68326b4ca4b5b66da3d4a4cce3050e5e950aade5" },
+  "yazi-flavor-catppuccin-macchiato": { "branch": "main", "commit": "02f3fc64b78223c1005672e105f6d0e97c0db79e" },
   "yazi-rs-plugins": { "branch": "main", "commit": "864a0210d9ba1e8eb925160c2e2a25342031d8d3" },
-  "yazi.nvim": { "branch": "main", "commit": "bab15dad9952b6a67e9d63615561ba08797b84bf" }
+  "yazi.nvim": { "branch": "main", "commit": "3fdffe5cc18f6946e0904e1d0257abefc31c0473" }
 }
