@@ -94,3 +94,18 @@ maintainer, most use the editor's "format on save" functionality.
 | -------- | ----------------------------------------- | ----------------------- |
 | Markdown | [prettier](https://prettier.io/)          |                         |
 | TOML     | [taplo](https://github.com/tamasfe/taplo) | Run with `taplo format` |
+
+### Git
+
+I use [lazygit](https://github.com/jesseduffield/lazygit) and the
+[tsugit.nvim](https://github.com/mikavilpas/tsugit.nvim) plugin to use git.
+
+Some features that I like:
+
+- an AI (in my case, Github Copilot) helps me write commit messages in Neovim
+  when using tsugit.nvim
+- I set up [conform.nvim](https://github.com/stevearc/conform.nvim) to use
+  [prettierd](https://github.com/fsouza/prettierd) to format my gitcommit
+  messages using markdown syntax. See my
+  [conform.nvim configuration](.config/nvim/lua/plugins/formatting.lua) for
+  details on how I did it.
