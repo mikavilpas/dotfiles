@@ -59,6 +59,8 @@ return {
             -- provide the filename to the formatter so that it picks the
             -- markdown language
             "commit.md",
+            "--print-width=80",
+            "--prose-wrap=always",
           },
         },
       },
