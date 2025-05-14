@@ -79,3 +79,47 @@ fn test_get_commit_messages_on_current_branch() -> Result<(), Box<dyn std::error
 
     Ok(())
 }
+
+#[test]
+fn test_include_codeblock_at_end() -> Result<(), Box<dyn std::error::Error>> {
+    let context = TestRepoBuilder::new()?;
+    context.commit("initial commit")?;
+
+    context.checkout("feature")?;
+
+    context.commit(
+        &[
+            "feat: update openapi from 1.4.3 to 1.4.5",
+            "",
+            "I verified that the test environment api does accept `phoneNumber` to be",
+            "`undefined` by doing the following.",
+            "",
+            "```ts",
+            "const response = await Service.patchApiData({",
+            "  path: { id: 100 },",
+            "})",
+            "```",
+        ]
+        .join("\n"),
+    )?;
+
+    let lines = get_commit_messages_on_current_branch(&context.repo)?;
+
+    assert_eq!(
+        lines,
+        vec![
+            "# feat: update openapi from 1.4.3 to 1.4.5",
+            "",
+            "I verified that the test environment api does accept `phoneNumber` to be",
+            "`undefined` by doing the following.",
+            "",
+            "```ts",
+            "const response = await Service.patchApiData({",
+            "  path: { id: 100 },",
+            "})",
+            "```"
+        ],
+    );
+
+    Ok(())
+}

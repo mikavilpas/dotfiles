@@ -85,15 +85,17 @@ fn commit_as_markdown(
     result_lines: &mut Vec<String>,
     commit: &Commit<'_>,
 ) -> Result<(), gix::object::commit::Error> {
-    let first_line = commit.message()?.summary();
-    let body = commit.message()?.body();
+    let message = commit.message_raw_sloppy().to_string();
+    let mut lines = message.lines();
+    if let Some(first_line) = lines.next() {
+        result_lines.push(format!("# {}", first_line));
 
-    result_lines.push(format!("# {}", first_line));
-    result_lines.push("".to_string());
+        let next = lines.next().unwrap_or("");
+        result_lines.push(next.to_string());
 
-    if let Some(body_text) = body {
-        result_lines.push(body_text.to_string());
-        result_lines.push("".to_string());
+        lines.for_each(|line| {
+            result_lines.push(line.to_string());
+        });
     }
 
     Ok(())
