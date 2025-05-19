@@ -11,10 +11,10 @@ return {
       ls.add_snippets("gitcommit", {
         s("issue", {
           t({
-            "**Issue**:",
+            "**Issue:**",
             "",
             "",
-            "**Solution**:",
+            "**Solution:**",
             "",
             "",
           }),
