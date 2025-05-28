@@ -37,7 +37,15 @@ fn test_get_commit_messages_on_branch() -> Result<(), Box<dyn std::error::Error>
     context.checkout("feature")?;
 
     context.commit("feat: feature commit 1")?;
-    context.commit("feat: feature commit 2")?;
+    context.commit(
+        &[
+            "feat: feature commit 2",
+            "",
+            "This commit is on the feature branch.",
+        ]
+        .join("\n")
+        .to_string(),
+    )?;
     context.commit("feat: feature commit 3")?;
 
     let lines = get_commit_messages_on_branch(&context.repo, "feature")?;
@@ -48,6 +56,8 @@ fn test_get_commit_messages_on_branch() -> Result<(), Box<dyn std::error::Error>
             "# feat: feature commit 3",
             "",
             "# feat: feature commit 2",
+            "",
+            "This commit is on the feature branch.",
             "",
             "# feat: feature commit 1",
             "",
@@ -117,7 +127,8 @@ fn test_include_codeblock_at_end() -> Result<(), Box<dyn std::error::Error>> {
             "const response = await Service.patchApiData({",
             "  path: { id: 100 },",
             "})",
-            "```"
+            "```",
+            ""
         ],
     );
 
