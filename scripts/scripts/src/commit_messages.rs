@@ -21,6 +21,7 @@ pub fn get_commit_messages_between_commits(
         }
         let commit = repo.find_commit(commit.id)?;
         commit_as_markdown(&mut result_lines, &commit)?;
+        result_lines.push("".to_string()); // Add an empty line between commits
     }
 
     Ok(result_lines)
@@ -76,6 +77,7 @@ pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
             .find_commit(commit.id)
             .context(format!("failed to find the commit {}", commit.id))?;
         commit_as_markdown(&mut results, &commit)?;
+        results.push("".to_string()); // Add an empty line between commits
     }
 
     Ok(results)
@@ -89,9 +91,6 @@ fn commit_as_markdown(
     let mut lines = message.lines();
     if let Some(first_line) = lines.next() {
         result_lines.push(format!("# {}", first_line));
-
-        let next = lines.next().unwrap_or("");
-        result_lines.push(next.to_string());
 
         lines.for_each(|line| {
             result_lines.push(line.to_string());
