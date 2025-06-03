@@ -52,6 +52,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
   desc = "Disable New Line Comment",
 })
 
+vim.keymap.set("n", "<leader>qr", function()
+  vim.cmd("restart")
+end, { desc = ":restart" })
+
 vim.keymap.set("n", "<leader>gd", function()
   require("snacks.picker").lsp_definitions({
     actions = { confirm = "edit_vsplit" },
