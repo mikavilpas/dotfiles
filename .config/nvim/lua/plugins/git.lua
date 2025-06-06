@@ -35,6 +35,18 @@ return {
         "tpope/vim-fugitive",
         cmd = { "Git" },
         lazy = true,
+        dependencies = {
+          {
+            "https://github.com/shumphrey/fugitive-gitlab.vim",
+            ---@diagnostic disable-next-line: unused-local
+            config = function(self, opts)
+              vim.g.fugitive_gitlab_domains = {
+                ["gitlab.com"] = "https://gitlab.com",
+                ["gitlab.baronatechnologies.fi"] = "https://gitlab.baronatechnologies.fi",
+              }
+            end,
+          },
+        },
       },
       -- to open commits in browser with fugitive
       "tpope/vim-rhubarb",
