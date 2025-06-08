@@ -42,6 +42,9 @@ return {
         --   -- disable cmdline completion for now
         -- },
         providers = {
+          snippets = {
+            score_offset = -999,
+          },
           path = {
             score_offset = 999,
             ---@type blink.cmp.PathOpts
@@ -54,7 +57,7 @@ return {
           ripgrep = {
             module = "blink-ripgrep",
             name = "Ripgrep",
-            score_offset = -999,
+            score_offset = -888,
             ---@module "blink-ripgrep"
             ---@type blink-ripgrep.Options
             opts = {
