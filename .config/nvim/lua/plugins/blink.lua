@@ -53,7 +53,7 @@ return {
             },
           },
           lsp = { score_offset = 99 },
-          buffer = { score_offset = 9 },
+          buffer = { score_offset = 0 },
           ripgrep = {
             module = "blink-ripgrep",
             name = "Ripgrep",
