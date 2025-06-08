@@ -42,22 +42,20 @@ return {
         --   -- disable cmdline completion for now
         -- },
         providers = {
-          snippets = {
-            score_offset = -999,
-          },
+          snippets = {},
           path = {
-            score_offset = 999,
+            score_offset = 9,
             ---@type blink.cmp.PathOpts
             opts = {
               show_hidden_files_by_default = true,
             },
           },
-          lsp = { score_offset = 99 },
+          lsp = { score_offset = 8 },
           buffer = { score_offset = 0 },
           ripgrep = {
             module = "blink-ripgrep",
             name = "Ripgrep",
-            score_offset = -888,
+            score_offset = -8,
             ---@module "blink-ripgrep"
             ---@type blink-ripgrep.Options
             opts = {
