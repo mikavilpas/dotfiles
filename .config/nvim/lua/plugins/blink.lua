@@ -63,6 +63,7 @@ return {
             opts = {
               toggles = {
                 on_off = "<leader>tg",
+                debug = "<leader>td",
               },
               future_features = {
                 backend = {
