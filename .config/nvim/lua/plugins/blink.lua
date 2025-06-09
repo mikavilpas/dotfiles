@@ -52,7 +52,24 @@ return {
           snippets = {
             score_offset = -100,
           },
-          lsp = { score_offset = 8 },
+          lsp = {
+            score_offset = 8,
+            transform_items = function(_, items)
+              for _, item in ipairs(items) do
+                if item.client_name == "typescript-tools" then
+                  -- when the completion adds an import, show the source
+                  -- https://github.com/Saghen/blink.cmp/issues/1870#issuecomment-2956622232
+                  local source = vim.tbl_get(item, "data", "entryNames", 1, "source")
+                  if source then
+                    item.labelDetails = item.labelDetails or {}
+                    item.labelDetails.description = source
+                  end
+                end
+              end
+
+              return items
+            end,
+          },
           buffer = { score_offset = 5 },
           ripgrep = {
             module = "blink-ripgrep",
