@@ -42,7 +42,6 @@ return {
         --   -- disable cmdline completion for now
         -- },
         providers = {
-          snippets = {},
           path = {
             score_offset = 9,
             ---@type blink.cmp.PathOpts
