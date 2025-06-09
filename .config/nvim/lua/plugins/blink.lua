@@ -49,6 +49,9 @@ return {
               show_hidden_files_by_default = true,
             },
           },
+          snippets = {
+            score_offset = -100,
+          },
           lsp = { score_offset = 8 },
           buffer = { score_offset = 5 },
           ripgrep = {
@@ -79,6 +82,12 @@ return {
         },
       },
       fuzzy = {
+        implementation = "rust",
+        sorts = {
+          "exact",
+          "score",
+          "sort_text",
+        },
         prebuilt_binaries = {
           download = false,
         },
