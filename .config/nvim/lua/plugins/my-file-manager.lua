@@ -6,7 +6,6 @@ return {
   {
     "mikavilpas/yazi.nvim",
     -- dir = "~/git/yazi.nvim/",
-    event = "UiEnter",
     keys = {
       { "<up>", "<cmd>Yazi<cr>", desc = "Open yazi" },
       { "<s-up>", "<cmd>Yazi cwd<cr>", desc = "Open yazi in cwd" },
@@ -16,6 +15,9 @@ return {
     opts = {
       open_multiple_tabs = true,
       open_for_directories = true,
+      keymaps = {
+        cycle_open_buffers = false,
+      },
       floating_window_scaling_factor = {
         width = 0.95,
         height = 0.95,
@@ -24,6 +26,7 @@ return {
       integrations = {
         grep_in_directory = "snacks.picker",
         grep_in_selected_files = "snacks.picker",
+        picker_add_copy_relative_path_action = "snacks.picker",
       },
     },
     init = function()
@@ -33,7 +36,7 @@ return {
   },
   {
     name = "easyjump.yazi",
-    url = "https://gitee.com/DreamMaoMao/easyjump.yazi.git",
+    url = "https://github.com/DreamMaoMao/easyjump.yazi",
     lazy = true,
     build = function(plugin)
       require("yazi.plugin").build_plugin(plugin)

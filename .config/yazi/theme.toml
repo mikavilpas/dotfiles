@@ -6,7 +6,7 @@
 dark = "catppuccin-macchiato"
 light = "catppuccin-macchiato"
 
-[manager]
+[mgr]
 cwd = { fg = "#8bd5ca" }
 hovered = { fg = "#24273a", bg = "#8aadf4" }
 preview_hovered = { underline = true }

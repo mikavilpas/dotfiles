@@ -2,24 +2,27 @@
 ---@type LazySpec
 -- add any tools you want to have installed below
 return {
-  "williamboman/mason.nvim",
-  opts = {
-    ensure_installed = {
-      -- lua
-      "stylua",
-      "selene",
+  { "mason-org/mason-lspconfig.nvim" },
+  {
+    "mason-org/mason.nvim",
+    opts = {
+      ensure_installed = {
+        -- lua
+        "stylua",
+        "selene",
 
-      -- shell
-      "shellcheck",
-      "shfmt",
+        -- shell
+        "shellcheck",
+        "shfmt",
 
-      -- markdown
-      "marksman",
+        -- markdown
+        "marksman",
 
-      -- general / web development
-      "prettier",
-      -- "tailwindcss-language-server",
-      "yaml-language-server",
+        -- general / web development
+        "prettier",
+        -- "tailwindcss-language-server",
+        "yaml-language-server",
+      },
     },
   },
 }

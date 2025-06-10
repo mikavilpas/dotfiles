@@ -9,7 +9,7 @@ return {
   -- ../../../../../.local/share/nvim/lazy/LazyVim/lua/lazyvim/plugins/extras/coding/blink.lua
   "saghen/blink.cmp",
   version = false,
-  -- dir = "~/git/blink.cmp/",
+  dir = "~/git/blink.cmp/",
   build = "cargo build --release",
   dependencies = {
     "rafamadriz/friendly-snippets",
@@ -43,27 +43,48 @@ return {
         -- },
         providers = {
           path = {
-            score_offset = 999,
+            score_offset = 9,
             ---@type blink.cmp.PathOpts
             opts = {
               show_hidden_files_by_default = true,
             },
           },
-          lsp = { score_offset = 99 },
-          buffer = { score_offset = 9 },
+          snippets = {
+            score_offset = -100,
+          },
+          lsp = {
+            score_offset = 8,
+            transform_items = function(_, items)
+              for _, item in ipairs(items) do
+                if item.client_name == "typescript-tools" then
+                  -- when the completion adds an import, show the source
+                  -- https://github.com/Saghen/blink.cmp/issues/1870#issuecomment-2956622232
+                  local source = vim.tbl_get(item, "data", "entryNames", 1, "source")
+                  if source then
+                    item.labelDetails = item.labelDetails or {}
+                    item.labelDetails.description = source
+                  end
+                end
+              end
+
+              return items
+            end,
+          },
+          buffer = { score_offset = 5 },
           ripgrep = {
             module = "blink-ripgrep",
             name = "Ripgrep",
-            score_offset = -999,
+            score_offset = -8,
             ---@module "blink-ripgrep"
             ---@type blink-ripgrep.Options
             opts = {
+              toggles = {
+                on_off = "<leader>tg",
+                debug = "<leader>td",
+              },
               future_features = {
                 backend = {
                   use = "gitgrep-or-ripgrep",
-                },
-                toggles = {
-                  on_off = "<leader>tg",
                 },
               },
             },
@@ -79,6 +100,12 @@ return {
         },
       },
       fuzzy = {
+        implementation = "rust",
+        sorts = {
+          "exact",
+          "score",
+          "sort_text",
+        },
         prebuilt_binaries = {
           download = false,
         },

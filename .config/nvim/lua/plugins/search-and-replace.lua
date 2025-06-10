@@ -7,6 +7,9 @@ return {
   cmd = "RipSubstitute",
   ---@type RipSubstitute.Config | {}
   opts = {
+    popupWin = {
+      disableCompletions = false,
+    },
     prefill = {
       startInReplaceLineIfPrefill = true,
       alsoPrefillReplaceLine = true,

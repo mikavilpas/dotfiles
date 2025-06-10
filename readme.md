@@ -51,7 +51,7 @@ stow --verbose 2 .
 
 ### Dependency management
 
-Many of the packages I use have some kind of custom depenencies:
+Many of the packages I use have some kind of custom dependencies:
 
 - neovim plugins are managed using [lazy.nvim](https://lazy.folke.io/)
 - yazi plugins are managed using lazy.nvim as well. The approach is explained in
@@ -59,7 +59,7 @@ Many of the packages I use have some kind of custom depenencies:
   [plugin-management.md](https://github.com/mikavilpas/yazi.nvim/blob/main/documentation/plugin-management.md).
   The config is available [here](.config/nvim/lua/plugins/my-file-manager.lua),
   but the short version is that it uses lazy.nvim to download and update the
-  depenencies, and then creates symlinks whenever they are installed/updated.
+  dependencies, and then creates symlinks whenever they are installed/updated.
 - plugins for other applications are also managed with the same approach to keep
   things simple. An example can be seen
   [here](.config/nvim/lua/plugins/dotfiles.lua).
@@ -94,3 +94,18 @@ maintainer, most use the editor's "format on save" functionality.
 | -------- | ----------------------------------------- | ----------------------- |
 | Markdown | [prettier](https://prettier.io/)          |                         |
 | TOML     | [taplo](https://github.com/tamasfe/taplo) | Run with `taplo format` |
+
+### Git
+
+I use [lazygit](https://github.com/jesseduffield/lazygit) and the
+[tsugit.nvim](https://github.com/mikavilpas/tsugit.nvim) plugin to use git.
+
+Some features that I like:
+
+- an AI (in my case, Github Copilot) helps me write commit messages in Neovim
+  when using tsugit.nvim
+- I set up [conform.nvim](https://github.com/stevearc/conform.nvim) to use
+  [prettierd](https://github.com/fsouza/prettierd) to format my gitcommit
+  messages using markdown syntax. See my
+  [conform.nvim configuration](.config/nvim/lua/plugins/formatting.lua) for
+  details on how I did it.

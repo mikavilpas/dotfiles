@@ -7,7 +7,7 @@
 ---@type LazySpec
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = function(_, opts)
       table.insert(opts.ensure_installed, "prettierd")
     end,
@@ -47,6 +47,22 @@ return {
         -- currently prettier-plugin-toml is not configurable, and I don't like
         -- the default formatting
         -- ["toml"] = { "prettier" },
+
+        -- format git commit messages on save with prettier
+        ["gitcommit"] = { "my_gitcommit" },
+      },
+      formatters = {
+        my_gitcommit = {
+          command = "prettierd",
+          inherit = false,
+          args = {
+            -- provide the filename to the formatter so that it picks the
+            -- markdown language
+            "commit.md",
+            "--print-width=72",
+            "--prose-wrap=always",
+          },
+        },
       },
     },
   },

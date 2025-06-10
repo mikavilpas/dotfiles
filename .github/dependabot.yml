@@ -31,3 +31,7 @@ updates:
       - mikavilpas
     assignees:
       - mikavilpas
+    groups:
+      all-dependencies:
+        patterns:
+          - "*"

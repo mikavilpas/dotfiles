@@ -52,6 +52,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
   desc = "Disable New Line Comment",
 })
 
+vim.keymap.set("n", "<leader>qr", function()
+  vim.cmd("restart")
+end, { desc = ":restart" })
+
 vim.keymap.set("n", "<leader>gd", function()
   require("snacks.picker").lsp_definitions({
     actions = { confirm = "edit_vsplit" },
@@ -181,7 +185,7 @@ end, { desc = "Copy full path to clipboard" })
 -- just filename
 vim.keymap.set("n", "<leader>fyf", function()
   vim.fn.setreg("+", vim.fn.expand("%:t"))
-  vim.notify("Copied " .. vim.fn.expand("%:t") .. " to clipboard", vim.log.levels.INFO)
+  vim.notify("Copied " .. vim.fn.expand("%:t") .. " to the clipboard", vim.log.levels.INFO)
 end, { desc = "Copy filename to the clipboard" })
 
 -- directory of the current file

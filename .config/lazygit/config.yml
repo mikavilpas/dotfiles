@@ -4,22 +4,20 @@
 
 services:
   "gitlab.baronatechnologies.fi": "gitlab:gitlab.baronatechnologies.fi"
-
 customCommands:
   - key: "-"
     context: global
     description: Show branch graph
     command: git lg # custom git alias
-    subprocess: true
+    output: terminal
   - key: "<c-a>"
     context: "global"
     description: "Save everything as WIP"
     command: "git commit --all --no-verify --message 'WIP: work in progress'"
-  - key:
-      # backspace does not work, tracked in
-      # https://github.com/jesseduffield/lazygit/issues/2953
-      # https://github.com/jesseduffield/lazygit/issues/3847
-      "I"
+  - key: "I"
+    # backspace does not work, tracked in
+    # https://github.com/jesseduffield/lazygit/issues/2953
+    # https://github.com/jesseduffield/lazygit/issues/3847
     context: global
     command: "git stash-keep"
   - key: "E"
@@ -59,7 +57,6 @@ customCommands:
         command: "pbpaste | git am"
         context: "commits"
         description: "Paste selected commits from clipboard"
-
 keybinding:
   universal:
     edit: e
@@ -69,7 +66,6 @@ keybinding:
     commitChanges: C # using the interactive commit dialog
     commitChangesWithEditor: c # using neovim
     toggleTreeView: f
-
 os:
   # I usually use lazygit embedded in nvim. For this, I use
   # https://github.com/willothy/flatten.nvim to simplify the setup without the
@@ -78,17 +74,13 @@ os:
   edit: "nvim {{filename}}"
   editAtLine: "nvim +{{line}} {{filename}}"
   editAtLineAndWait: "nvim +{{line}} {{filename}}"
-
   # Create pull request command opens a URL with incorrect escaping #3064
   # https://github.com/jesseduffield/lazygit/issues/3064
   openLink:
     open -n "$(echo {{link}} | sed 's/%3E/>/g' | sed 's/%2F/\//g' | sed
     s/%27/\'/g )"
-
 promptToReturnFromSubprocess: false
-
 notARepository: "quit"
-
 # https://github.com/catppuccin/lazygit/blob/main/themes-mergable/macchiato/pink.yml
 gui:
   commitHashLength: 0
@@ -123,13 +115,13 @@ gui:
     ".+?--backup": "#6e738d"
     "main$": "#a6da95"
     "master$": "#a6da95"
-
+  authorColors:
+    "Mika Vilpas": "#8aadf4"
 git:
   parseEmoji: true
   paging:
     colorArg: always
     pager: delta --paging=never
-
 # useful for e2e tests. They don't have a separate configuration right now, so
 # this needs to be specified here.
 disableStartupPopups: true

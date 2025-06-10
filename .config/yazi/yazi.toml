@@ -14,7 +14,7 @@ id = "git"
 name = "*/"
 run = "git"
 
-[manager]
+[mgr]
 ratio = [2, 2, 4]
 sort_by = "alphabetical"
 sort_sensitive = false

@@ -37,7 +37,15 @@ fn test_get_commit_messages_on_branch() -> Result<(), Box<dyn std::error::Error>
     context.checkout("feature")?;
 
     context.commit("feat: feature commit 1")?;
-    context.commit("feat: feature commit 2")?;
+    context.commit(
+        &[
+            "feat: feature commit 2",
+            "",
+            "This commit is on the feature branch.",
+        ]
+        .join("\n")
+        .to_string(),
+    )?;
     context.commit("feat: feature commit 3")?;
 
     let lines = get_commit_messages_on_branch(&context.repo, "feature")?;
@@ -48,6 +56,8 @@ fn test_get_commit_messages_on_branch() -> Result<(), Box<dyn std::error::Error>
             "# feat: feature commit 3",
             "",
             "# feat: feature commit 2",
+            "",
+            "This commit is on the feature branch.",
             "",
             "# feat: feature commit 1",
             "",
@@ -75,6 +85,51 @@ fn test_get_commit_messages_on_current_branch() -> Result<(), Box<dyn std::error
             "# feat: feature commit 1",
             "",
         ]
+    );
+
+    Ok(())
+}
+
+#[test]
+fn test_include_codeblock_at_end() -> Result<(), Box<dyn std::error::Error>> {
+    let context = TestRepoBuilder::new()?;
+    context.commit("initial commit")?;
+
+    context.checkout("feature")?;
+
+    context.commit(
+        &[
+            "feat: update openapi from 1.4.3 to 1.4.5",
+            "",
+            "I verified that the test environment api does accept `phoneNumber` to be",
+            "`undefined` by doing the following.",
+            "",
+            "```ts",
+            "const response = await Service.patchApiData({",
+            "  path: { id: 100 },",
+            "})",
+            "```",
+        ]
+        .join("\n"),
+    )?;
+
+    let lines = get_commit_messages_on_current_branch(&context.repo)?;
+
+    assert_eq!(
+        lines,
+        vec![
+            "# feat: update openapi from 1.4.3 to 1.4.5",
+            "",
+            "I verified that the test environment api does accept `phoneNumber` to be",
+            "`undefined` by doing the following.",
+            "",
+            "```ts",
+            "const response = await Service.patchApiData({",
+            "  path: { id: 100 },",
+            "})",
+            "```",
+            ""
+        ],
     );
 
     Ok(())

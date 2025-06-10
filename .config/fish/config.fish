@@ -13,6 +13,7 @@ fish_add_path /Users/mikavilpas/.local/share/bob/nvim-bin
 fish_add_path $HOME/.luarocks/bin
 fish_add_path $HOME/.local/share/bob/nvim-bin:$PATH
 fish_add_path ~/.cargo/bin
+fish_add_path $HOME/.local/share/nvim/mason/bin
 
 # skip everything in CI because initialization will fail if all the required
 # applications are not installed. They take a long time to install, and I don't
@@ -72,6 +73,10 @@ if status is-interactive && test -z "$CI"
             tail -F $file | rg --line-buffered "$needle" | bat --style="plain" --paging=never --language log
         end
     end
+
+    # pipe to this guy to colorize the output stream! 🪄
+    # ya sub cd,hover | batrs
+    abbr -a batrs 'bat --paging=never --language=rs --decorations=never'
 
     function klm
         cd /Users/mikavilpas/git/jelpp/jelpp-env
