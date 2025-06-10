@@ -1,10 +1,8 @@
-use anyhow::Context;
 use clap::Parser;
 use scripts::{
     arguments::{Cli, Commands},
     commit_messages::{get_commit_messages_between_commits, get_commit_messages_on_branch},
     project::path_to_project_file,
-    pull_request::github,
 };
 
 pub fn main() {
@@ -45,14 +43,6 @@ pub fn main() {
                     .unwrap_or_else(|e| panic!("failed to get project file: {}", e));
                 println!("{}", target_file);
             }
-        }
-        Commands::UpdatePr {} => {
-            // TODO make sure the gh cli is installed
-            let client = github::GithubClient::new(repo);
-            client
-                .edit_pr_interactive()
-                .context("failed to edit pr")
-                .expect("failed to edit pr");
         }
     }
 }

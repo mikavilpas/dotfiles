@@ -39,7 +39,4 @@ pub enum Commands {
     )]
         files: Vec<PathBuf>,
     },
-
-    /// Update the description of a pull request on the current branch
-    UpdatePr {},
 }

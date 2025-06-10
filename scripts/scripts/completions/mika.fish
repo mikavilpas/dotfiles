@@ -29,7 +29,6 @@ complete -c mika -n "__fish_mika_needs_command" -s V -l version -d 'Print versio
 complete -c mika -n "__fish_mika_needs_command" -f -a "summary" -d 'Summarize commits in markdown format, for quick PR descriptions'
 complete -c mika -n "__fish_mika_needs_command" -f -a "branch-summary" -d 'Summarize the commits on the given branch, before any other local branch is reached'
 complete -c mika -n "__fish_mika_needs_command" -f -a "path" -d 'Get a path to repo files, relative to the git repo root. The files don\'t need to exist'
-complete -c mika -n "__fish_mika_needs_command" -f -a "update-pr" -d 'Update the description of a pull request on the current branch'
 complete -c mika -n "__fish_mika_needs_command" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
 complete -c mika -n "__fish_mika_using_subcommand summary" -l from -d 'The start ref, e.g. HEAD in (HEAD..main)' -r
 complete -c mika -n "__fish_mika_using_subcommand summary" -l to -d 'The end ref, e.g. main in (HEAD..main)' -r
@@ -37,9 +36,7 @@ complete -c mika -n "__fish_mika_using_subcommand summary" -s h -l help -d 'Prin
 complete -c mika -n "__fish_mika_using_subcommand branch-summary" -l branch -d 'The branch to summarize' -r
 complete -c mika -n "__fish_mika_using_subcommand branch-summary" -s h -l help -d 'Print help'
 complete -c mika -n "__fish_mika_using_subcommand path" -s h -l help -d 'Print help'
-complete -c mika -n "__fish_mika_using_subcommand update-pr" -s h -l help -d 'Print help'
-complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary path update-pr help" -f -a "summary" -d 'Summarize commits in markdown format, for quick PR descriptions'
-complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary path update-pr help" -f -a "branch-summary" -d 'Summarize the commits on the given branch, before any other local branch is reached'
-complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary path update-pr help" -f -a "path" -d 'Get a path to repo files, relative to the git repo root. The files don\'t need to exist'
-complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary path update-pr help" -f -a "update-pr" -d 'Update the description of a pull request on the current branch'
-complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary path update-pr help" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
+complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary path help" -f -a "summary" -d 'Summarize commits in markdown format, for quick PR descriptions'
+complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary path help" -f -a "branch-summary" -d 'Summarize the commits on the given branch, before any other local branch is reached'
+complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary path help" -f -a "path" -d 'Get a path to repo files, relative to the git repo root. The files don\'t need to exist'
+complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary path help" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
