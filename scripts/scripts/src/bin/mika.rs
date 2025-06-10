@@ -1,7 +1,10 @@
 use clap::Parser;
 use scripts::{
     arguments::{Cli, Commands},
-    commit_messages::{get_commit_messages_between_commits, get_commit_messages_on_branch},
+    commit_messages::{
+        format_patch_with_instructions, get_commit_messages_between_commits,
+        get_commit_messages_on_branch,
+    },
     project::path_to_project_file,
 };
 
@@ -27,6 +30,34 @@ pub fn main() {
 
             for l in lines {
                 println!("{}", l);
+            }
+        }
+        Commands::SharePatch {
+            commit,
+            with_instructions,
+        } => {
+            let lines = format_patch_with_instructions(&repo, &commit)
+                .unwrap_or_else(|e| panic!("failed to format patch: {}", e));
+
+            if with_instructions {
+                [
+                    "",
+                    "<details><summary>Click to expand</summary>",
+                    "",
+                    "> note: you can copy the diff and then apply it with `pbpaste | git apply`",
+                    "",
+                    "```diff",
+                    &lines,
+                    "```",
+                    "",
+                    "</details>",
+                ]
+                .iter()
+                .for_each(|line| {
+                    println!("{}", line);
+                });
+            } else {
+                println!("{}", lines);
             }
         }
         Commands::Path { files } => {
