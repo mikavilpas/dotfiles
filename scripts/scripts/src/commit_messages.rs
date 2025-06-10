@@ -1,4 +1,7 @@
-use std::collections::HashSet;
+use std::{
+    collections::HashSet,
+    process::{self, Stdio},
+};
 
 use anyhow::{Context, Result, bail};
 use gix::{Commit, Repository, bstr::ByteSlice};
@@ -98,4 +101,27 @@ fn commit_as_markdown(
     }
 
     Ok(())
+}
+
+pub fn format_patch_with_instructions(repo: &Repository, commit_or_range: &str) -> Result<String> {
+    let mut command = process::Command::new("git");
+    let result = command
+        .current_dir(repo.path())
+        .args(["show", commit_or_range])
+        .stdout(Stdio::piped());
+
+    let output = match result.output() {
+        Err(e) => {
+            bail!("failed to run git show: {}", e);
+        }
+        Ok(output) => {
+            if !output.status.success() {
+                bail!("git show failed with status: {}", output.status);
+            }
+            String::from_utf8(output.stdout)
+                .map_err(|e| anyhow::anyhow!("failed to convert output to string: {}", e))?
+        }
+    };
+
+    Ok(output)
 }

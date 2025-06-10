@@ -1,6 +1,8 @@
+use std::path::Path;
+
 use scripts::commit_messages::{
-    get_commit_messages_between_commits, get_commit_messages_on_branch,
-    get_commit_messages_on_current_branch,
+    format_patch_with_instructions, get_commit_messages_between_commits,
+    get_commit_messages_on_branch, get_commit_messages_on_current_branch,
 };
 use test_utils::common::TestRepoBuilder;
 
@@ -130,6 +132,34 @@ fn test_include_codeblock_at_end() -> Result<(), Box<dyn std::error::Error>> {
             "```",
             ""
         ],
+    );
+
+    Ok(())
+}
+
+#[test]
+fn test_format_patch_with_instructions() -> Result<(), Box<dyn std::error::Error>> {
+    let context = TestRepoBuilder::new()?;
+
+    // create a commit and then store it as a patch
+    context.commit("initial commit")?;
+    context.checkout("feature")?;
+    context.create_file(&context.path().join("README.md"))?;
+    context.stage(Path::new("README.md"))?;
+    context.commit("docs: add readme")?;
+
+    // act
+    let patch = format_patch_with_instructions(&context.repo, "HEAD")?;
+
+    // assert
+    context.switch("main")?;
+    context.apply_patch(&patch)?;
+
+    // the readme file should now exist in the main branch
+    let readme_path = context.path().join("README.md");
+    assert!(
+        readme_path.exists(),
+        "README.md should exist after applying patch"
     );
 
     Ok(())

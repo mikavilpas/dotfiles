@@ -29,6 +29,17 @@ pub enum Commands {
         branch: String,
     },
 
+    SharePatch {
+        /// The commit (or range) to share, defaults to the current HEAD
+        #[arg(long, default_value = "HEAD")]
+        commit: String,
+
+        /// Whether to include instructions for applying the patch. So that code reviewers can
+        /// easily apply the patch even if they don't know how to use the related git commands.
+        #[arg(long, default_value_t = true)]
+        with_instructions: bool,
+    },
+
     /// Get a path to repo files, relative to the git repo root. The files don't need to exist.
     Path {
         /// One or more files to get paths for, either absolute or relative to the current directory
