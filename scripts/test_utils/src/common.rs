@@ -32,8 +32,21 @@ impl TestRepoBuilder {
         Ok(())
     }
 
+    /// Create a new branch and switch to it
     pub fn checkout(&self, branch: &str) -> Result<()> {
         run_git(self.path(), ["checkout", "-b", branch].as_ref())?;
+        Ok(())
+    }
+
+    pub fn stage(&self, file: &Path) -> Result<()> {
+        let file_path = self.path().join(file);
+        run_git(self.path(), ["add", file_path.to_str().unwrap()].as_ref())?;
+        Ok(())
+    }
+
+    /// Switch to an existing branch
+    pub fn switch(&self, branch: &str) -> Result<()> {
+        run_git(self.path(), ["switch", branch].as_ref())?;
         Ok(())
     }
 
@@ -46,6 +59,21 @@ impl TestRepoBuilder {
 
     pub fn path(&self) -> &std::path::Path {
         self.tmpdir.path()
+    }
+
+    pub fn apply_patch(&self, patch: &str) -> Result<()> {
+        let patch_file = self.create_file(Path::new("patch.diff"))?;
+        std::fs::write(&patch_file, patch)?;
+        run_git(
+            self.path(),
+            ["apply", patch_file.to_str().unwrap()].as_ref(),
+        )?;
+        process::Command::new("git")
+            .current_dir(self.path())
+            .args(["log", "--oneline"])
+            .status()
+            .map_err(|e| panic!("failed to run git: {}", e))?;
+        Ok(())
     }
 }
 

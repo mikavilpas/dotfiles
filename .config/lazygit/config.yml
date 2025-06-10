@@ -57,6 +57,11 @@ customCommands:
         command: "pbpaste | git am"
         context: "commits"
         description: "Paste selected commits from clipboard"
+      - key: s
+        command:
+          "mika share-patch --with-instructions --commit
+          {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
+        description: "Share selected commits as a patch with instructions"
 keybinding:
   universal:
     edit: e
