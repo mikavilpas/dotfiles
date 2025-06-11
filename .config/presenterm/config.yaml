@@ -7,7 +7,7 @@ defaults:
   image_protocol: iterm2
 transition:
   # how long the transition should last.
-  duration_millis: 200
+  duration_millis: 100
 
   # how many frames should be rendered during the transition
   frames: 60
