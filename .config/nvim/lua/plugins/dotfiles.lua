@@ -26,10 +26,16 @@ return {
       -- themes/Catppuccin Macchiato.tmTheme
       -- themes/Catppuccin Mocha.tmTheme
 
-      symlink(
-        vim.fs.normalize(vim.fs.joinpath(self.dir, "themes", "Catppuccin Macchiato.tmTheme")),
-        vim.fn.expand("~/dotfiles/.config/bat/themes/Catppuccin Macchiato.tmTheme")
-      )
+      local function link_theme(theme_name)
+        symlink(
+          vim.fs.normalize(vim.fs.joinpath(self.dir, "themes", theme_name .. ".tmTheme")),
+          vim.fn.expand("~/dotfiles/.config/bat/themes/" .. theme_name .. ".tmTheme")
+        )
+      end
+      link_theme("Catppuccin Frappe")
+      link_theme("Catppuccin Latte")
+      link_theme("Catppuccin Mocha")
+      link_theme("Catppuccin Macchiato")
 
       vim.system({ "bat", "cache", "--build" }, { text = true })
     end,
