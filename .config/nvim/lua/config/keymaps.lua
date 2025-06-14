@@ -234,7 +234,6 @@ vim.keymap.set("n", "'", function()
       if ok then
         found = true
         vim.notify("👍🏻: " .. action.title, vim.log.levels.INFO)
-        -- vim.lsp.util.apply_workspace_edit(action.edit, "utf-8")
       end
       return ok
     end,
