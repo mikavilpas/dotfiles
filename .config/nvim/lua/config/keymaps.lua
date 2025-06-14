@@ -220,16 +220,21 @@ end, { desc = "Save all files", silent = true })
 vim.keymap.set({ "n", "v" }, "<up>", "<cmd>Yazi<cr>", { desc = "Open yazi" })
 
 vim.keymap.set("n", "'", function()
+  local found = false
   vim.lsp.buf.code_action({
     apply = true,
     filter = function(action)
+      if found then
+        return false
+      end
       local match = action.title:find("Update import") ~= nil or action.title:find("Add import") ~= nil
       local correct_kind = action.kind == "quickfix"
 
       local ok = match and correct_kind
       if ok then
+        found = true
         vim.notify("👍🏻: " .. action.title, vim.log.levels.INFO)
-        vim.lsp.util.apply_workspace_edit(action.edit, "utf-8")
+        -- vim.lsp.util.apply_workspace_edit(action.edit, "utf-8")
       end
       return ok
     end,
