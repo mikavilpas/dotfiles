@@ -26,6 +26,7 @@ describe("mika terminal application (personal application)", () => {
       cy.contains("branch-summary")
       cy.contains("summary")
       cy.contains("path")
+      cy.contains("share-patch")
     })
   })
 })

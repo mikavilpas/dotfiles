@@ -28,7 +28,7 @@ complete -c mika -n "__fish_mika_needs_command" -s h -l help -d 'Print help'
 complete -c mika -n "__fish_mika_needs_command" -s V -l version -d 'Print version'
 complete -c mika -n "__fish_mika_needs_command" -f -a "summary" -d 'Summarize commits in markdown format, for quick PR descriptions'
 complete -c mika -n "__fish_mika_needs_command" -f -a "branch-summary" -d 'Summarize the commits on the given branch, before any other local branch is reached'
-complete -c mika -n "__fish_mika_needs_command" -f -a "share-patch"
+complete -c mika -n "__fish_mika_needs_command" -f -a "share-patch" -d 'Share a patch in a PR for the given commit, or the current HEAD if not specified'
 complete -c mika -n "__fish_mika_needs_command" -f -a "path" -d 'Get a path to repo files, relative to the git repo root. The files don\'t need to exist'
 complete -c mika -n "__fish_mika_needs_command" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
 complete -c mika -n "__fish_mika_using_subcommand summary" -l from -d 'The start ref, e.g. HEAD in (HEAD..main)' -r
@@ -42,6 +42,6 @@ complete -c mika -n "__fish_mika_using_subcommand share-patch" -s h -l help -d '
 complete -c mika -n "__fish_mika_using_subcommand path" -s h -l help -d 'Print help'
 complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path help" -f -a "summary" -d 'Summarize commits in markdown format, for quick PR descriptions'
 complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path help" -f -a "branch-summary" -d 'Summarize the commits on the given branch, before any other local branch is reached'
-complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path help" -f -a "share-patch"
+complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path help" -f -a "share-patch" -d 'Share a patch in a PR for the given commit, or the current HEAD if not specified'
 complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path help" -f -a "path" -d 'Get a path to repo files, relative to the git repo root. The files don\'t need to exist'
 complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path help" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'

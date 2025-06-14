@@ -29,6 +29,7 @@ pub enum Commands {
         branch: String,
     },
 
+    /// Share a patch in a PR for the given commit, or the current HEAD if not specified.
     SharePatch {
         /// The commit (or range) to share, defaults to the current HEAD
         #[arg(long, default_value = "HEAD")]
