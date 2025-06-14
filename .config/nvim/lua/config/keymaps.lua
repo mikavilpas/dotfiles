@@ -198,7 +198,7 @@ vim.keymap.set("n", "(", function()
 end, { desc = "Jump to previous thing" })
 vim.keymap.set("n", ")", function()
   require("snacks.words").jump(1, true)
-end, { desc = "Jump to previous thing" })
+end, { desc = "Jump to next thing" })
 
 vim.keymap.set("v", "<leader>ä", function()
   local selection = require("my-nvim-micro-plugins.main").get_visual()
