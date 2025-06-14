@@ -45,7 +45,7 @@ customCommands:
       "mika summary --from={{.SelectedCommitRange.To}}
       --to={{.SelectedCommitRange.From}}^ | pbcopy"
   - key: X
-    description: "Copy/paste commits across repos"
+    description: Custom commands
     commandMenu:
       - key: c
         command:
