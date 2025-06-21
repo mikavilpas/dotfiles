@@ -154,10 +154,8 @@ return {
     "smear-cursor.nvim",
     -- https://github.com/sphamba/smear-cursor.nvim
     opts = {
-      stiffness = 0.8,
-      trailing_stiffness = 0.5,
-      distance_stop_animating = 0.5,
-      time_interval = 20, -- ms
+      smear_insert_mode = false,
+      never_draw_over_target = true,
     },
   },
 }
