@@ -71,6 +71,14 @@ vim.keymap.set("n", "<left>", function()
   local windows = vim.api.nvim_tabpage_list_wins(0)
   local win = windows[1]
   vim.api.nvim_win_close(win, true)
+
+  local visible_buffers = vim.api.nvim_list_bufs()
+  for _, buf in ipairs(visible_buffers) do
+    if vim.api.nvim_get_option_value("filetype", { buf = buf }) == "snacks_dashboard" then
+      -- close it
+      require("snacks.bufdelete").delete(buf)
+    end
+  end
 end, { desc = "Close leftmost window" })
 
 -- disable esc j and esc k moving lines accidentally
