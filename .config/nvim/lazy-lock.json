@@ -12,7 +12,7 @@
   "catppuccin-delta": { "branch": "main", "commit": "313b3ac74c44c0f5264b974bf8bc0cec0e3382f9" },
   "catppuccin-fish": { "branch": "main", "commit": "6a85af2ff722ad0f9fbc8424ea0a5c454661dfed" },
   "conform.nvim": { "branch": "master", "commit": "8132ec733eed3bf415b97b76797ca41b59f51d7d" },
-  "copilot.lua": { "branch": "master", "commit": "c1bb86abbed1a52a11ab3944ef00c8410520543d" },
+  "copilot.lua": { "branch": "master", "commit": "46f4b7d026cba9497159dcd3e6aa61a185cb1c48" },
   "crates.nvim": { "branch": "main", "commit": "5d8b1bef686db0fabe5f1bb593744b617e8f1405" },
   "debugprint.nvim": { "branch": "main", "commit": "f76ceeebb2a73bb38b333b18e0f63fa56025f966" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
