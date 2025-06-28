@@ -3,7 +3,7 @@
   "LuaSnip": { "branch": "master", "commit": "eda5be8f0ce9816278671f0b578cdbb8b762c701" },
   "SchemaStore.nvim": { "branch": "main", "commit": "e4f80f37cd11ed58a6e914cc30850749f021b6a7" },
   "advanced-git-search.nvim": { "branch": "main", "commit": "69a41a3351d89e8be597fe5682265d8c99b8b12c" },
-  "blink-ripgrep.nvim": { "branch": "main", "commit": "9f968385bbed53b5996723ae28ca509eb1d4381e" },
+  "blink-ripgrep.nvim": { "branch": "main", "commit": "62813b90863744642f14d9945f602835a726e517" },
   "blink.cmp": { "branch": "main", "commit": "e84b7d936eb8de042a5fc7c8dabef609dd8e2386" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
   "busted-types": { "branch": "main", "commit": "5ed85d0e016a5eb5eca097aa52905eedf1b180f1" },
@@ -90,6 +90,6 @@
   "vim-rhubarb": { "branch": "master", "commit": "5496d7c94581c4c9ad7430357449bb57fc59f501" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
   "yazi-flavor-catppuccin-macchiato": { "branch": "main", "commit": "d04a298a8d4ada755816cb1a8cfb74dd46ef7124" },
-  "yazi-rs-plugins": { "branch": "main", "commit": "7c174cc0ae1e07876218868e5e0917308201c081" },
-  "yazi.nvim": { "branch": "main", "commit": "267f5fe500d239b7cc3e36187fa03e0eea9d866e" }
+  "yazi-rs-plugins": { "branch": "main", "commit": "2ad42fa7065b4885ff058280b4ab4309c11a5755" },
+  "yazi.nvim": { "branch": "main", "commit": "8e215f4148baf85f7dd2063252401131b40995f7" }
 }
