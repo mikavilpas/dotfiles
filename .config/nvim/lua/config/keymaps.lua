@@ -138,9 +138,21 @@ end, { desc = "Previous diagnostic" })
 
 -- the same thing for quickfix lists
 vim.keymap.set("n", "<leader><down>", function()
+  local trouble = require("trouble")
+  if trouble.is_open() then
+    vim.cmd("Trouble quickfix next")
+    vim.cmd("Trouble quickfix jump")
+    return
+  end
   vim.cmd("silent! cnext")
 end, { desc = "Next quickfix item" })
 vim.keymap.set("n", "<leader><up>", function()
+  local trouble = require("trouble")
+  if trouble.is_open() then
+    vim.cmd("Trouble quickfix prev")
+    vim.cmd("Trouble quickfix jump")
+    return
+  end
   vim.cmd("silent! cprev")
 end, { desc = "Previous quickfix item" })
 
@@ -247,3 +259,84 @@ vim.keymap.set("n", "'", function()
     end,
   })
 end)
+
+do
+  ---@param pane number
+  function LoadWeztermOutputIntoQuickfix(pane)
+    -- Load wezterm output into quickfix
+    local wezterm_output = vim.fn.system("wezterm cli get-text --pane-id " .. pane)
+    local lines = vim.split(wezterm_output, "\n")
+    local items = {}
+    for _, line in ipairs(lines) do
+      if line ~= "" then
+        -- TODO need to adjust the regex
+        local filename, lnum = string.match(line, "([^:]+):?(%d*)")
+        lnum = tonumber(lnum) or 1
+        if vim.fn.filereadable(filename) == 1 then
+          table.insert(items, {
+            filename = filename,
+            lnum = lnum,
+            col = 1,
+            text = line,
+          })
+        else
+          -- vim.notify("File not found: " .. filename, vim.log.levels.WARN)
+        end
+      end
+    end
+    if #items == 0 then
+      vim.notify("No valid items found in wezterm output " .. wezterm_output, vim.log.levels.WARN)
+      return
+    end
+
+    -- vim.fn.setqflist(items, "r")
+    vim.fn.setqflist({}, " ", {
+      title = "Wezterm Output",
+      items = items,
+    })
+    vim.cmd("Trouble quickfix last")
+    vim.cmd("Trouble quickfix jump")
+  end
+
+  do
+    ---@type number|nil
+    local last_pane = nil
+
+    ---@param on_selected fun(pane_id: number)
+    function ChooseWeztermPane(on_selected)
+      -- select pane
+      local wezterm_output = vim.fn.system("wezterm cli list")
+      if vim.v.shell_error ~= 0 then
+        vim.notify("Failed to get wezterm output", vim.log.levels.ERROR)
+        return
+      end
+
+      require("snacks.picker").select(vim.split(wezterm_output, "\n"), nil, function(item)
+        ---@cast item string
+        --       WINID TABID PANEID WORKSPACE SIZE    TITLE                                CWD
+        -- item="   41   192    205 default   148x108 w pnpm eslint --fix ~/g/tui-sandbox file://br-g4kn2711j0/Users/mikavilpas/git/tui-sandbox               "
+        local words = vim.split(item, "%s+")
+        local pane_id = tonumber(words[4])
+        assert(pane_id, "Failed to parse wezterm output as number: " .. item)
+        on_selected(pane_id)
+      end)
+    end
+    vim.keymap.set("n", "<leader>an", function()
+      if last_pane then
+        LoadWeztermOutputIntoQuickfix(last_pane)
+      else
+        ChooseWeztermPane(function(pane_id)
+          last_pane = tonumber(pane_id)
+          LoadWeztermOutputIntoQuickfix(pane_id)
+        end)
+      end
+    end, { desc = "Load wezterm output into quickfix" })
+
+    vim.keymap.set("n", "<leader>aN", function()
+      ChooseWeztermPane(function(pane_id)
+        last_pane = tonumber(pane_id)
+        LoadWeztermOutputIntoQuickfix(pane_id)
+      end)
+    end, { desc = "Load wezterm output from new pane" })
+  end
+end
