@@ -289,8 +289,8 @@ do
       return
     end
 
-    -- vim.fn.setqflist(items, "r")
-    vim.fn.setqflist({}, " ", {
+    vim.cmd("Trouble quickfix close")
+    vim.fn.setqflist({}, "r", {
       title = "Wezterm Output",
       items = items,
     })
