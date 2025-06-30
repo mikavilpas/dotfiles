@@ -78,7 +78,7 @@ return {
     keys = {
       {
         "<tab>",
-        mode = { "n" },
+        mode = { "n", "v" },
         function()
           require("gitsigns").nav_hunk("next", { target = "all", navigation_message = false })
         end,
@@ -86,7 +86,7 @@ return {
       },
       {
         "<s-tab>",
-        mode = { "n" },
+        mode = { "n", "v" },
         function()
           require("gitsigns").nav_hunk("prev", { target = "all", navigation_message = false })
         end,
