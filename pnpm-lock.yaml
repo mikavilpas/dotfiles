@@ -33,8 +33,8 @@ importers:
         specifier: 2.5.18
         version: 2.5.18(prettier@3.6.2)
       prettier-plugin-toml:
-        specifier: 2.0.5
-        version: 2.0.5(prettier@3.6.2)
+        specifier: 2.0.6
+        version: 2.0.6(prettier@3.6.2)
       typescript-eslint:
         specifier: 8.36.0
         version: 8.36.0(eslint@9.30.1)(typescript@5.8.3)
@@ -56,10 +56,10 @@ importers:
         version: 9.30.1
       '@tui-sandbox/library':
         specifier: 11.0.2
-        version: 11.0.2(cypress@14.5.1)(prettier@3.6.2)(type-fest@4.41.0)(typescript@5.8.3)(zod@4.0.2)
+        version: 11.0.2(cypress@14.5.1)(prettier@3.6.2)(type-fest@4.41.0)(typescript@5.8.3)(zod@4.0.5)
       '@types/node':
-        specifier: 24.0.12
-        version: 24.0.12
+        specifier: 24.0.13
+        version: 24.0.13
       '@types/tinycolor2':
         specifier: 1.4.6
         version: 1.4.6
@@ -88,8 +88,8 @@ importers:
         specifier: 8.36.0
         version: 8.36.0(eslint@9.30.1)(typescript@5.8.3)
       zod:
-        specifier: 4.0.2
-        version: 4.0.2
+        specifier: 4.0.5
+        version: 4.0.5
 
 packages:
 
@@ -434,8 +434,8 @@ packages:
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
-  '@types/node@24.0.12':
-    resolution: {integrity: sha512-LtOrbvDf5ndC9Xi+4QZjVL0woFymF/xSTKZKPgrrl7H7XoeDvnD+E2IclKVDyaK9UM756W/3BXqSU+JEHopA9g==}
+  '@types/node@24.0.13':
+    resolution: {integrity: sha512-Qm9OYVOFHFYg3wJoTSrz80hoec5Lia/dPp84do3X7dZvLikQvM1YpmvTBEdIr/e+U8HTkFjLHLnl78K/qjf+jQ==}
 
   '@types/sinonjs__fake-timers@8.1.1':
     resolution: {integrity: sha512-0kSuKjAS0TrGLJ0M/+8MaFkGsQhZpB6pxOmvS3K8FYI72K//YmdfoW9X2qPsAKh1mkwxGD5zib9s1FIFed6E8g==}
@@ -1902,8 +1902,8 @@ packages:
       prettier:
         optional: true
 
-  prettier-plugin-toml@2.0.5:
-    resolution: {integrity: sha512-WjXXKQyY4TdXWHU1v73UJxK/oDLSppf+b9KrSVl2kC4ZOr9CIVPKTQ/JxttgbYMaH8r3ihw7WYhMpI1EFa1obg==}
+  prettier-plugin-toml@2.0.6:
+    resolution: {integrity: sha512-12N/wBuHa9jd/KVy9pRP20NMKxQfQLMseQCt66lIbLaPLItvGUcSIryE1eZZMJ7loSws6Ig3M2Elc2EreNh76w==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       prettier: ^3.0.3
@@ -2430,8 +2430,8 @@ packages:
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
-  zod@4.0.2:
-    resolution: {integrity: sha512-X2niJNY54MGam4L6Kj0AxeedeDIi/E5QFW0On2faSX5J4/pfLk1tW+cRMIMoojnCavn/u5W/kX17e1CSGnKMxA==}
+  zod@4.0.5:
+    resolution: {integrity: sha512-/5UuuRPStvHXu7RS+gmvRf4NXrNxpSllGwDnCBcJZtQsKrviYXm54yDGV2KYNLT5kq0lHGcl7lqWJLgSaG+tgA==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -2698,7 +2698,7 @@ snapshots:
     dependencies:
       typescript: 5.8.3
 
-  '@tui-sandbox/library@11.0.2(cypress@14.5.1)(prettier@3.6.2)(type-fest@4.41.0)(typescript@5.8.3)(zod@4.0.2)':
+  '@tui-sandbox/library@11.0.2(cypress@14.5.1)(prettier@3.6.2)(type-fest@4.41.0)(typescript@5.8.3)(zod@4.0.5)':
     dependencies:
       '@catppuccin/palette': 1.7.1
       '@trpc/client': 11.4.3(@trpc/server@11.4.3(typescript@5.8.3))(typescript@5.8.3)
@@ -2718,7 +2718,7 @@ snapshots:
       type-fest: 4.41.0
       typescript: 5.8.3
       winston: 3.17.0
-      zod: 4.0.2
+      zod: 4.0.5
     transitivePeerDependencies:
       - supports-color
 
@@ -2736,7 +2736,7 @@ snapshots:
 
   '@types/ms@2.1.0': {}
 
-  '@types/node@24.0.12':
+  '@types/node@24.0.13':
     dependencies:
       undici-types: 7.8.0
 
@@ -2752,7 +2752,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 24.0.12
+      '@types/node': 24.0.13
     optional: true
 
   '@typescript-eslint/eslint-plugin@8.36.0(@typescript-eslint/parser@8.36.0(eslint@9.30.1)(typescript@5.8.3))(eslint@9.30.1)(typescript@5.8.3)':
@@ -4449,7 +4449,7 @@ snapshots:
     optionalDependencies:
       prettier: 3.6.2
 
-  prettier-plugin-toml@2.0.5(prettier@3.6.2):
+  prettier-plugin-toml@2.0.6(prettier@3.6.2):
     dependencies:
       '@taplo/lib': 0.5.0
       prettier: 3.6.2
@@ -5069,6 +5069,6 @@ snapshots:
 
   zod@3.25.76: {}
 
-  zod@4.0.2: {}
+  zod@4.0.5: {}
 
   zwitch@2.0.4: {}
