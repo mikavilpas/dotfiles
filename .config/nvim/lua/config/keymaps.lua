@@ -70,6 +70,7 @@ end, { desc = "Reload file" })
 vim.keymap.set("n", "<left>", function()
   local windows = vim.api.nvim_tabpage_list_wins(0)
   local win = windows[1]
+  assert(win, "No windows found in the current tabpage")
   vim.api.nvim_win_close(win, true)
 
   local visible_buffers = vim.api.nvim_list_bufs()
@@ -182,10 +183,10 @@ end, { desc = "Comment line", silent = true })
 
 vim.keymap.set("n", "<leader>fyr", function()
   local thisfile = vim.fn.expand("%:p")
-  assert(thisfile, "Error getting the file path. Maybe this file is not saved yet?")
+  assert(thisfile ~= "", "Error getting the file path. Maybe this file is not saved yet?")
 
   local result = vim.system({ "git", "ls-files", "--full-name", thisfile }):wait(2000)
-  assert(result)
+  assert(result.code == 0, "Error getting git relative path: " .. result.stderr)
   assert(result.stdout)
   assert(type(result.stdout) == "string")
   assert(#result.stdout > 0)
@@ -271,6 +272,8 @@ do
       if line ~= "" then
         -- TODO need to adjust the regex
         local filename, lnum = string.match(line, "([^:]+):?(%d*)")
+        assert(filename, "Failed to parse wezterm output: " .. line)
+        ---@diagnostic disable-next-line: assign-type-mismatch
         lnum = tonumber(lnum) or 1
         if vim.fn.filereadable(filename) == 1 then
           table.insert(items, {

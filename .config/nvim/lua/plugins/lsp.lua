@@ -23,6 +23,7 @@ return {
     --
     "neovim/nvim-lspconfig",
 
+    ---@param opts PluginLspOpts
     opts = function(self, opts)
       -- configure keymaps here
       -- https://www.lazyvim.org/plugins/lsp#%EF%B8%8F-customizing-lsp-keymaps
@@ -48,6 +49,9 @@ return {
 
       opts = opts or {}
       opts.inlay_hints = { enabled = false }
+
+      -- disable the lua_ls server, we use the emmylua_ls server instead
+      opts.servers.lua_ls = false
       return opts
     end,
   },
