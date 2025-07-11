@@ -12,18 +12,6 @@ return {
         { path = vim.env.VIMRUNTIME, words = { "vim" } },
       })
 
-      ---@diagnostic disable-next-line: param-type-not-match
-      vim.lsp.config("emmylua_ls", {
-        settings = {
-          inlayHints = {
-            enable = true,
-            paramHint = true,
-            indexHint = true,
-            localHint = true,
-            overrideHint = true,
-          },
-        },
-      })
       vim.lsp.enable("emmylua_ls")
     end,
   },
