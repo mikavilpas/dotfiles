@@ -6,7 +6,6 @@ return {
   { "Bilal2453/luvit-meta", name = "luvit-types", lazy = true },
   {
     "https://github.com/FelipeLema/lazydev.nvim",
-    dir = "/Users/mikavilpas/.local/share/nvim/lazy/lazydev.nvim",
     opts = function(_, opts)
       vim.list_extend(opts.library, {
         { path = "luassert-types/library", words = { "assert" } },
@@ -15,6 +14,12 @@ return {
         { path = vim.env.VIMRUNTIME, words = { "vim" } },
       })
 
+      require("lazydev").setup()
+
+      vim.lsp.config("emmylua_ls", {
+        -- when developing the tool
+        -- cmd = { "/Users/mikavilpas/git/emmylua-analyzer-rust/target/debug/emmylua_ls" },
+      })
       vim.lsp.enable("emmylua_ls")
     end,
   },
