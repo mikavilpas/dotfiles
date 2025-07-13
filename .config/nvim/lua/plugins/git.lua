@@ -15,21 +15,11 @@ return {
       },
     },
     config = function()
-      -- optional: setup telescope before loading the extension
-      require("telescope").setup({
-        -- move this to the place where you call the telescope setup function
-        extensions = {
-          advanced_git_search = {
-            -- See Config
-          },
-        },
-      })
-
-      require("telescope").load_extension("advanced_git_search")
+      require("advanced_git_search.snacks").setup({})
     end,
     dependencies = {
+      "folke/snacks.nvim",
 
-      "nvim-telescope/telescope.nvim",
       -- to show diff splits and open commits in browser
       {
         "tpope/vim-fugitive",
