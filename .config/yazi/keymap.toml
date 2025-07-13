@@ -35,6 +35,13 @@ shell 'cat $@ | pbcopy'
 '''
 
 [[mgr.prepend_keymap]]
+on = ["c", "v"] # convert video
+desc = "Convert video to mp4 using ffmpeg"
+run = '''
+shell --block "ffmpeg -i $1 -c:v libx264 -c:a aac output.mp4"
+'''
+
+[[mgr.prepend_keymap]]
 on = "<tab>"
 run = """shell "ya pub-to 0 NvimCycleBuffer""""
 
