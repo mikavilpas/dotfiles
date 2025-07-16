@@ -58,7 +58,15 @@ return {
         { silent = true, desc = "toggle lazygit" },
       },
     },
-    opts = {},
+    ---@type tsugit.UserConfig
+    opts = {
+      debug = true,
+      integrations = {
+        conform = {
+          formatter = "prettierd",
+        },
+      },
+    },
   },
 
   {

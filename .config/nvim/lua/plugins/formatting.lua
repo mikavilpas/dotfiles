@@ -13,17 +13,7 @@ return {
     end,
   },
   {
-    "nvimtools/none-ls.nvim",
-    optional = true,
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, nls.builtins.formatting.prettierd)
-    end,
-  },
-  {
     "stevearc/conform.nvim",
-    optional = true,
     ---@type conform.FormatOpts
     opts = {
       undojoin = true,
@@ -47,22 +37,6 @@ return {
         -- currently prettier-plugin-toml is not configurable, and I don't like
         -- the default formatting
         -- ["toml"] = { "prettier" },
-
-        -- format git commit messages on save with prettier
-        ["gitcommit"] = { "my_gitcommit" },
-      },
-      formatters = {
-        my_gitcommit = {
-          command = "prettierd",
-          inherit = false,
-          args = {
-            -- provide the filename to the formatter so that it picks the
-            -- markdown language
-            "commit.md",
-            "--print-width=72",
-            "--prose-wrap=always",
-          },
-        },
       },
     },
   },
