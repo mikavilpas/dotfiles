@@ -82,10 +82,8 @@ return {
                 on_off = "<leader>tg",
                 debug = "<leader>td",
               },
-              future_features = {
-                backend = {
-                  use = "gitgrep-or-ripgrep",
-                },
+              backend = {
+                use = "gitgrep-or-ripgrep",
               },
             },
             transform_items = function(_, items)
