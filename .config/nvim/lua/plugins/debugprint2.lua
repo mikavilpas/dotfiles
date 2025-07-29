@@ -4,7 +4,7 @@
 ---@type LazySpec
 return {
   "https://github.com/andrewferrier/debugprint.nvim",
-  ---@type DebugprintGlobalOptions
+  ---@type debugprint.GlobalOptions
   opts = {
     print_tag = "🤔 DEBUGPRINT",
     keymaps = {
