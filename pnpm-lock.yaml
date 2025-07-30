@@ -56,7 +56,7 @@ importers:
         version: 9.32.0
       '@tui-sandbox/library':
         specifier: 11.2.0
-        version: 11.2.0(cypress@14.5.3)(prettier@3.6.2)(type-fest@4.41.0)(typescript@5.8.3)(zod@4.0.11)
+        version: 11.2.0(cypress@14.5.3)(prettier@3.6.2)(type-fest@4.41.0)(typescript@5.8.3)(zod@4.0.13)
       '@types/node':
         specifier: 24.1.0
         version: 24.1.0
@@ -88,8 +88,8 @@ importers:
         specifier: 8.38.0
         version: 8.38.0(eslint@9.32.0)(typescript@5.8.3)
       zod:
-        specifier: 4.0.11
-        version: 4.0.11
+        specifier: 4.0.13
+        version: 4.0.13
 
 packages:
 
@@ -2427,8 +2427,8 @@ packages:
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
-  zod@4.0.11:
-    resolution: {integrity: sha512-LVrgstTaQJek72n6ZGxhAhH/Q24PhGx4lIAcgBmjtvjRq0qYjiH9U0o3hfuC2vfExsnpoHElc4XOJjMKQjUQxg==}
+  zod@4.0.13:
+    resolution: {integrity: sha512-jv+zRxuZQxTrFHzxZ46ezL2FtnE+M4HIJHJEwLsZ7UjrXHltdG6HrxvqM0twoVCWxJiYf8WqKjAcjztegpkB+Q==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -2691,7 +2691,7 @@ snapshots:
     dependencies:
       typescript: 5.8.3
 
-  '@tui-sandbox/library@11.2.0(cypress@14.5.3)(prettier@3.6.2)(type-fest@4.41.0)(typescript@5.8.3)(zod@4.0.11)':
+  '@tui-sandbox/library@11.2.0(cypress@14.5.3)(prettier@3.6.2)(type-fest@4.41.0)(typescript@5.8.3)(zod@4.0.13)':
     dependencies:
       '@catppuccin/palette': 1.7.1
       '@trpc/client': 11.4.3(@trpc/server@11.4.3(typescript@5.8.3))(typescript@5.8.3)
@@ -2711,7 +2711,7 @@ snapshots:
       type-fest: 4.41.0
       typescript: 5.8.3
       winston: 3.17.0
-      zod: 4.0.11
+      zod: 4.0.13
     transitivePeerDependencies:
       - supports-color
 
@@ -5062,6 +5062,6 @@ snapshots:
 
   zod@3.25.76: {}
 
-  zod@4.0.11: {}
+  zod@4.0.13: {}
 
   zwitch@2.0.4: {}
