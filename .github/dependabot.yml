@@ -27,8 +27,6 @@ updates:
     schedule:
       interval: "weekly" # Options: daily, weekly, monthly
     open-pull-requests-limit: 10
-    reviewers:
-      - mikavilpas
     assignees:
       - mikavilpas
     groups:
