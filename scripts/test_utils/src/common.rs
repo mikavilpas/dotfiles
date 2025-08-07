@@ -72,7 +72,7 @@ impl TestRepoBuilder {
             .current_dir(self.path())
             .args(["log", "--oneline"])
             .status()
-            .map_err(|e| panic!("failed to run git: {}", e))?;
+            .map_err(|e| panic!("failed to run git: {e}"))?;
         Ok(())
     }
 }
@@ -84,5 +84,5 @@ fn run_git(working_dir: &Path, args: &[&str]) -> std::io::Result<process::ExitSt
         .current_dir(working_dir)
         .args(args)
         .status()
-        .map_err(|e| panic!("failed to run git: {}", e))
+        .map_err(|e| panic!("failed to run git: {e}"))
 }
