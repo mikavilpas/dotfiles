@@ -38,7 +38,7 @@ pub fn get_commit_messages_on_current_branch(
         gix::head::Kind::Symbolic(reference) => {
             let name = reference.name.shorten().to_str_lossy();
             get_commit_messages_on_branch(repo, &name)
-                .with_context(|| format!("failed to get commit messages on branch {}", name))
+                .with_context(|| format!("failed to get commit messages on branch {name}"))
         }
         _ => bail!("current HEAD is not a symbolic reference"),
     }
@@ -49,8 +49,8 @@ pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
     branch: S,
 ) -> anyhow::Result<Vec<String>, anyhow::Error> {
     let start_commit = repo
-        .try_find_reference(&format!("refs/heads/{}", branch))
-        .with_context(|| format!("Failed to find reference for branch '{}'", branch))?
+        .try_find_reference(&format!("refs/heads/{branch}"))
+        .with_context(|| format!("Failed to find reference for branch '{branch}'"))?
         .expect("Failed to get reference")
         .peel_to_commit()
         .context("failed to peel_to_commit")?;
@@ -93,7 +93,7 @@ fn commit_as_markdown(
     let message = commit.message_raw_sloppy().to_string();
     let mut lines = message.lines();
     if let Some(first_line) = lines.next() {
-        result_lines.push(format!("# {}", first_line));
+        result_lines.push(format!("# {first_line}"));
 
         lines.for_each(|line| {
             result_lines.push(line.to_string());
