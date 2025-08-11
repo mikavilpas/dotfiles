@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-clap = { version = "4.5.42", features = ["derive"] }
+clap = { version = "4.5.43", features = ["derive"] }
 gix = { workspace = true }
 anyhow = { workspace = true }
 
@@ -12,5 +12,5 @@ anyhow = { workspace = true }
 test_utils = { path = "../test_utils" }
 
 [build-dependencies]
-clap = { version = "4.5.42", features = ["derive"] }
-clap_complete = { version = "4.5.55" }
+clap = { version = "4.5.43", features = ["derive"] }
+clap_complete = { version = "4.5.56" }
