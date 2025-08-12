@@ -60,7 +60,7 @@ return {
     },
     ---@type tsugit.UserConfig
     opts = {
-      debug = true,
+      -- debug = true,
       integrations = {
         conform = {
           formatter = "prettierd",
