@@ -20,7 +20,7 @@ jobs:
         neovim_version: ["nightly"]
 
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v5
 
       - name: Install the fish shell
         run: |
