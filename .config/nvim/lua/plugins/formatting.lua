@@ -29,6 +29,7 @@ return {
         ["html"] = { "prettierd" },
         ["json"] = { "prettierd" },
         ["jsonc"] = { "prettierd" },
+        ["json5"] = { "prettierd" },
         ["yaml"] = { "prettierd" },
         ["markdown"] = { "prettierd" },
         ["markdown.mdx"] = { "prettierd" },
