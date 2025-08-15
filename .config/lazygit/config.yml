@@ -62,6 +62,14 @@ customCommands:
           "mika share-patch --with-instructions --commit
           {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
         description: "Share selected commits as a patch with instructions"
+      - key: u
+        description: "Update merge request description"
+        context: localBranches
+        output: terminal
+        command:
+          'glab mr update --description "$(mika branch-summary --branch
+          {{.SelectedLocalBranch.Name}})"'
+
 keybinding:
   universal:
     edit: e
