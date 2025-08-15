@@ -66,9 +66,16 @@ customCommands:
         description: "Update merge request description"
         context: localBranches
         output: terminal
-        command:
-          'glab mr update --description "$(mika branch-summary --branch
-          {{.SelectedLocalBranch.Name}})"'
+        command: |
+          #!/bin/bash
+          SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
+          glab mr update --description="$SUMMARY"
+
+          echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
+          echo $SUMMARY | bat --language=markdown --color=always
+          echo ""
+          echo "Press any key to exit."
+          read
 
 keybinding:
   universal:
