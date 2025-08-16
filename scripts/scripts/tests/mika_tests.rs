@@ -1,9 +1,7 @@
 use std::path::Path;
 
 use assert_cmd::Command;
-use scripts::commit_messages::{
-    format_patch_with_instructions, get_commit_messages_on_current_branch,
-};
+use scripts::commit_messages::get_commit_messages_on_current_branch;
 use test_utils::common::TestRepoBuilder;
 
 #[test]
@@ -18,6 +16,7 @@ fn test_summary() -> Result<(), Box<dyn std::error::Error>> {
         .current_dir(repo.path())
         .args(["summary", "--from", "HEAD", "--to", "HEAD~2"])
         .assert();
+
     assert.success().stdout(
         [
             //
@@ -158,9 +157,18 @@ fn test_format_patch_with_instructions() -> Result<(), Box<dyn std::error::Error
     context.commit("docs: add readme")?;
 
     // act
-    let patch = format_patch_with_instructions(&context.repo, "HEAD")?;
+    let mut cmd = Command::cargo_bin("mika")?;
+    let assert = cmd
+        .current_dir(context.repo.path())
+        .args(["share-patch", "--commit", "HEAD"])
+        .assert();
 
     // assert
+    let stdout = assert.success().get_output().stdout.clone();
+    let patch = str::from_utf8(&stdout)
+        .expect("failed to convert stdout to string")
+        .to_string();
+
     context.switch("main")?;
     context.apply_patch(&patch)?;
 
