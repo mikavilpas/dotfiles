@@ -3,7 +3,7 @@ use scripts::{
     arguments::{Cli, Commands},
     commit_messages::{
         format_patch_with_instructions, get_commit_messages_between_commits,
-        get_commit_messages_on_branch,
+        get_commit_messages_on_branch, get_current_branch_name,
     },
     project::path_to_project_file,
 };
@@ -25,6 +25,11 @@ pub fn main() {
             }
         }
         Commands::BranchSummary { branch } => {
+            let branch = branch.unwrap_or_else(|| {
+                get_current_branch_name(&repo)
+                    .unwrap_or_else(|e| panic!("failed to get current branch name: {e}"))
+            });
+
             let lines = get_commit_messages_on_branch(&repo, &branch)
                 .unwrap_or_else(|e| panic!("failed to format commit messages: {e}"));
 
