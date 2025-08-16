@@ -2,8 +2,7 @@ use std::path::Path;
 
 use assert_cmd::Command;
 use scripts::commit_messages::{
-    format_patch_with_instructions, get_commit_messages_on_branch,
-    get_commit_messages_on_current_branch,
+    format_patch_with_instructions, get_commit_messages_on_current_branch,
 };
 use test_utils::common::TestRepoBuilder;
 
@@ -35,7 +34,7 @@ fn test_summary() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[test]
-fn test_get_commit_messages_on_branch() -> Result<(), Box<dyn std::error::Error>> {
+fn test_branch_summary() -> Result<(), Box<dyn std::error::Error>> {
     let context = TestRepoBuilder::new()?;
     context.commit("initial commit")?;
     context.commit("feat: main commit 1")?;
@@ -55,11 +54,14 @@ fn test_get_commit_messages_on_branch() -> Result<(), Box<dyn std::error::Error>
     )?;
     context.commit("feat: feature commit 3")?;
 
-    let lines = get_commit_messages_on_branch(&context.repo, "feature")?;
+    let mut cmd = Command::cargo_bin("mika")?;
+    let assert = cmd
+        .current_dir(context.path())
+        .args(["branch-summary", "--branch", "feature"])
+        .assert();
 
-    assert_eq!(
-        lines,
-        vec![
+    assert.success().stdout(
+        [
             "# feat: feature commit 3",
             "",
             "# feat: feature commit 2",
@@ -68,7 +70,9 @@ fn test_get_commit_messages_on_branch() -> Result<(), Box<dyn std::error::Error>
             "",
             "# feat: feature commit 1",
             "",
+            "",
         ]
+        .join("\n"),
     );
 
     Ok(())
