@@ -22,11 +22,11 @@ pub enum Commands {
         to: String,
     },
 
-    /// Summarize the commits on the given branch, before any other local branch is reached.
+    /// Summarize the commits on the given branch, before any other local branch is reached. Defaults to the current branch.
     BranchSummary {
         /// The branch to summarize
         #[arg(long)]
-        branch: String,
+        branch: Option<String>,
     },
 
     /// Share a patch in a PR for the given commit, or the current HEAD if not specified.
