@@ -3,5 +3,5 @@ members = ["scripts/", "test_utils/"]
 resolver = "3"
 
 [workspace.dependencies]
-anyhow = "1.0.98"
+anyhow = "1.0.99"
 gix = "0.71.0"
