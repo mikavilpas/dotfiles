@@ -15,21 +15,11 @@ return {
       },
     },
     config = function()
-      -- optional: setup telescope before loading the extension
-      require("telescope").setup({
-        -- move this to the place where you call the telescope setup function
-        extensions = {
-          advanced_git_search = {
-            -- See Config
-          },
-        },
-      })
-
-      require("telescope").load_extension("advanced_git_search")
+      require("advanced_git_search.snacks").setup({})
     end,
     dependencies = {
+      "folke/snacks.nvim",
 
-      "nvim-telescope/telescope.nvim",
       -- to show diff splits and open commits in browser
       {
         "tpope/vim-fugitive",
@@ -68,7 +58,15 @@ return {
         { silent = true, desc = "toggle lazygit" },
       },
     },
-    opts = {},
+    ---@type tsugit.UserConfig
+    opts = {
+      -- debug = true,
+      integrations = {
+        conform = {
+          formatter = "prettierd",
+        },
+      },
+    },
   },
 
   {
@@ -78,7 +76,7 @@ return {
     keys = {
       {
         "<tab>",
-        mode = { "n" },
+        mode = { "n", "v" },
         function()
           require("gitsigns").nav_hunk("next", { target = "all", navigation_message = false })
         end,
@@ -86,7 +84,7 @@ return {
       },
       {
         "<s-tab>",
-        mode = { "n" },
+        mode = { "n", "v" },
         function()
           require("gitsigns").nav_hunk("prev", { target = "all", navigation_message = false })
         end,

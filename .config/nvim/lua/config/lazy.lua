@@ -21,13 +21,11 @@ if os.getenv("NVIM") == nil then
     { import = "lazyvim.plugins.extras.coding.blink" },
     { import = "lazyvim.plugins.extras.editor.telescope" },
     { import = "lazyvim.plugins.extras.lang.rust" },
-    { import = "lazyvim.plugins.extras.lang.go" },
     { import = "lazyvim.plugins.extras.lang.toml" },
     -- { import = "lazyvim.plugins.extras.lang.tailwind" },
     { import = "lazyvim.plugins.extras.lang.git" },
 
     { import = "lazyvim.plugins.extras.coding.luasnip" },
-    { import = "lazyvim.plugins.extras.lsp.neoconf" },
 
     -- lsp symbol navigation for lualine. This shows where in the code structure
     -- you are - within functions, classes, etc - in the statusline.
@@ -85,24 +83,6 @@ require("lazy").setup(plugin_spec, {
     },
   },
 })
-
-if vim.g.neovide then
-  vim.g.neovide_scroll_animation_length = 0.1
-  -- required to disable this to enable using {"!@$ keys on osx (probably has
-  -- something to do with alt gr / option)
-  vim.g.neovide_input_macos_alt_is_meta = false
-
-  -- enable some shortcuts with with cmd+v
-  vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
-  vim.keymap.set("v", "<D-c>", '"+y') -- Copy
-
-  vim.g.neovide_input_ime = true
-
-  -- vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
-  -- vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
-  -- vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
-  -- vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
-end
 
 -- 📆 User Events
 -- https://github.com/folke/lazy.nvim?tab=readme-ov-file#-user-events

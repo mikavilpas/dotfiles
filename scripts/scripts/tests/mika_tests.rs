@@ -1,36 +1,39 @@
 use std::path::Path;
 
-use scripts::commit_messages::{
-    format_patch_with_instructions, get_commit_messages_between_commits,
-    get_commit_messages_on_branch, get_commit_messages_on_current_branch,
-};
+use assert_cmd::Command;
+use scripts::commit_messages::get_commit_messages_on_current_branch;
 use test_utils::common::TestRepoBuilder;
 
 #[test]
-fn test_print_commit_messages_between_commits() -> Result<(), Box<dyn std::error::Error>> {
+fn test_summary() -> Result<(), Box<dyn std::error::Error>> {
     let repo = TestRepoBuilder::new()?;
     repo.commit("initial commit")?;
     repo.commit("feat: commit 0")?;
     repo.commit("feat: commit 1")?;
 
-    let lines = get_commit_messages_between_commits(&repo.repo, "HEAD", "HEAD~2")?;
+    let mut cmd = Command::cargo_bin("mika")?;
+    let assert = cmd
+        .current_dir(repo.path())
+        .args(["summary", "--from", "HEAD", "--to", "HEAD~2"])
+        .assert();
 
-    assert_eq!(
-        lines,
-        vec![
+    assert.success().stdout(
+        [
             //
             "# feat: commit 1",
             "",
             "# feat: commit 0",
             "",
+            "",
         ]
+        .join("\n"),
     );
 
     Ok(())
 }
 
 #[test]
-fn test_get_commit_messages_on_branch() -> Result<(), Box<dyn std::error::Error>> {
+fn test_branch_summary() -> Result<(), Box<dyn std::error::Error>> {
     let context = TestRepoBuilder::new()?;
     context.commit("initial commit")?;
     context.commit("feat: main commit 1")?;
@@ -50,11 +53,14 @@ fn test_get_commit_messages_on_branch() -> Result<(), Box<dyn std::error::Error>
     )?;
     context.commit("feat: feature commit 3")?;
 
-    let lines = get_commit_messages_on_branch(&context.repo, "feature")?;
+    let mut cmd = Command::cargo_bin("mika")?;
+    let assert = cmd
+        .current_dir(context.path())
+        .args(["branch-summary", "--branch", "feature"])
+        .assert();
 
-    assert_eq!(
-        lines,
-        vec![
+    assert.success().stdout(
+        [
             "# feat: feature commit 3",
             "",
             "# feat: feature commit 2",
@@ -63,7 +69,9 @@ fn test_get_commit_messages_on_branch() -> Result<(), Box<dyn std::error::Error>
             "",
             "# feat: feature commit 1",
             "",
+            "",
         ]
+        .join("\n"),
     );
 
     Ok(())
@@ -149,9 +157,18 @@ fn test_format_patch_with_instructions() -> Result<(), Box<dyn std::error::Error
     context.commit("docs: add readme")?;
 
     // act
-    let patch = format_patch_with_instructions(&context.repo, "HEAD")?;
+    let mut cmd = Command::cargo_bin("mika")?;
+    let assert = cmd
+        .current_dir(context.repo.path())
+        .args(["share-patch", "--commit", "HEAD"])
+        .assert();
 
     // assert
+    let stdout = assert.success().get_output().stdout.clone();
+    let patch = str::from_utf8(&stdout)
+        .expect("failed to convert stdout to string")
+        .to_string();
+
     context.switch("main")?;
     context.apply_patch(&patch)?;
 

@@ -52,4 +52,26 @@ describe("lazygit", () => {
 
     cy.contains("main--backup-")
   })
+
+  it("displays custom commands in the commits pane", () => {
+    cy.visit("/")
+    cy.startTerminalApplication({ commandToRun: ["bash"] })
+    cy.typeIntoTerminal("mkdir myrepo && cd myrepo{enter}")
+    cy.typeIntoTerminal("git init{enter}")
+    cy.typeIntoTerminal("touch README.md{enter}")
+    cy.typeIntoTerminal("git add .{enter}")
+    cy.typeIntoTerminal('git commit -m "initial commit"{enter}')
+    cy.typeIntoTerminal("lazygit{enter}")
+
+    cy.contains("Donate")
+
+    // enter the commits pane and wait for the commit to be selected
+    cy.typeIntoTerminal("4")
+    cy.contains("added: README.md") // in the commit details
+
+    cy.typeIntoTerminal("X")
+    cy.contains("Copy selected commits to clipboard")
+    cy.contains("Paste selected commits from clipboard")
+    cy.contains("Share selected commits as a patch with instructions")
+  })
 })

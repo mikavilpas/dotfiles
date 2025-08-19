@@ -2,7 +2,8 @@
 # After that, you can edit ~/.aerospace.toml to your liking
 
 # using this version currently
-# https://github.com/nikitabobko/AeroSpace/releases/tag/v0.13.4-Beta
+# https://github.com/nikitabobko/AeroSpace/releases/tag/v0.18.5-Beta
+# aerospace CLI client version: 0.18.5-Beta 4213dfd9d958dbfe3f801e07d7d5af53303baa75
 
 # Feel free to omit keys that you don't use in your config.
 # If the key is absent in your config the default value is taken from this config

@@ -45,7 +45,7 @@ customCommands:
       "mika summary --from={{.SelectedCommitRange.To}}
       --to={{.SelectedCommitRange.From}}^ | pbcopy"
   - key: X
-    description: "Copy/paste commits across repos"
+    description: Custom commands
     commandMenu:
       - key: c
         command:
@@ -62,6 +62,21 @@ customCommands:
           "mika share-patch --with-instructions --commit
           {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
         description: "Share selected commits as a patch with instructions"
+      - key: u
+        description: "Update merge request description"
+        context: localBranches
+        output: terminal
+        command: |
+          #!/bin/bash
+          SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
+          glab mr update --description="$SUMMARY"
+
+          echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
+          echo $SUMMARY | bat --language=markdown --color=always
+          echo ""
+          echo "Press any key to exit."
+          read
+
 keybinding:
   universal:
     edit: e
@@ -127,6 +142,8 @@ git:
   paging:
     colorArg: always
     pager: delta --paging=never
+  ignoreWhitespaceInDiffView: true
+
 # useful for e2e tests. They don't have a separate configuration right now, so
 # this needs to be specified here.
 disableStartupPopups: true

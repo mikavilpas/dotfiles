@@ -4,7 +4,7 @@ use std::{
 };
 
 use anyhow::{Context, Result, bail};
-use gix::{Commit, Repository, bstr::ByteSlice};
+use gix::{Commit, Repository};
 
 pub fn get_commit_messages_between_commits(
     repo: &Repository,
@@ -32,16 +32,24 @@ pub fn get_commit_messages_between_commits(
 
 pub fn get_commit_messages_on_current_branch(
     repo: &Repository,
-) -> anyhow::Result<Vec<String>> {
-    let current_branch = repo.head().context("failed to get current branch")?;
-    match current_branch.kind {
-        gix::head::Kind::Symbolic(reference) => {
-            let name = reference.name.shorten().to_str_lossy();
-            get_commit_messages_on_branch(repo, &name)
-                .with_context(|| format!("failed to get commit messages on branch {}", name))
-        }
+) -> anyhow::Result<Vec<String>, anyhow::Error> {
+    let current_branch = get_current_branch_name(repo)?;
+    get_commit_messages_on_branch(repo, &current_branch)
+        .with_context(|| format!("failed to get commit messages on branch {current_branch}"))
+}
+
+pub fn get_current_branch_name(repo: &Repository) -> anyhow::Result<String> {
+    let head = repo.head().with_context(|| {
+        format!(
+            "failed to get current branch for repo {}",
+            repo.path().display()
+        )
+    })?;
+    let a = match head.kind {
+        gix::head::Kind::Symbolic(reference) => reference.name.shorten().to_string(),
         _ => bail!("current HEAD is not a symbolic reference"),
-    }
+    };
+    Ok(a)
 }
 
 pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
@@ -49,11 +57,11 @@ pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
     branch: S,
 ) -> anyhow::Result<Vec<String>> {
     let start_commit = repo
-        .try_find_reference(&format!("refs/heads/{}", branch))
-        .with_context(|| format!("Failed to find reference for branch '{}'", branch))?
+        .try_find_reference(&format!("refs/heads/{branch}"))
+        .with_context(|| format!("Failed to find reference for branch '{branch}'"))?
         .expect("Failed to get reference")
         .peel_to_commit()
-        .context("failed to peel_to_commit")?;
+        .with_context(|| format!("failed to peel_to_commit branch {branch}"))?;
 
     let branch_heads: HashSet<_> = repo
         .references()
@@ -64,7 +72,7 @@ pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
             let branch = branch_ref.expect("Failed to get branch reference");
             let commit = repo
                 .find_commit(branch.id())
-                .context("failed to find commit")?;
+                .with_context(|| format!("failed to find commit for branch {}", branch.id()))?;
             if commit.id != start_commit.id() {
                 set.insert(commit.id);
             }
@@ -78,7 +86,7 @@ pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
     while let Some(commit) = revwalk.next().transpose()? {
         let commit = repo
             .find_commit(commit.id)
-            .context(format!("failed to find the commit {}", commit.id))?;
+            .with_context(|| format!("failed to find the commit {}", commit.id))?;
         commit_as_markdown(&mut results, &commit)?;
         results.push("".to_string()); // Add an empty line between commits
     }
@@ -93,7 +101,7 @@ fn commit_as_markdown(
     let message = commit.message_raw_sloppy().to_string();
     let mut lines = message.lines();
     if let Some(first_line) = lines.next() {
-        result_lines.push(format!("# {}", first_line));
+        result_lines.push(format!("# {first_line}"));
 
         lines.for_each(|line| {
             result_lines.push(line.to_string());

@@ -7,9 +7,9 @@ jobs:
     # https://github.com/UmbrellaDocs/action-linkspector/issues/32
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v5
       - name: Run linkspector
-        uses: umbrelladocs/action-linkspector@v1.3.4
+        uses: umbrelladocs/action-linkspector@v1.3.7
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review

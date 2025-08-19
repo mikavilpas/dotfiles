@@ -149,4 +149,13 @@ return {
       },
     },
   },
+
+  {
+    "smear-cursor.nvim",
+    -- https://github.com/sphamba/smear-cursor.nvim
+    opts = {
+      smear_insert_mode = false,
+      never_draw_over_target = true,
+    },
+  },
 }

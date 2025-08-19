@@ -21,15 +21,24 @@ run = '''
 # copy the relative path to the current file/selected files in the current git repo
 # (remove the last newline)
 [[mgr.prepend_keymap]]
+desc = "Copy git repo relative path to the clipboard"
 on = ["c", "r"]
 run = '''
   shell 'mika path $@ | perl -pe "chomp if eof" | pbcopy'
 '''
 
 [[mgr.prepend_keymap]]
+desc = "Copy contents to the clipboard"
 on = ["c", "i"] # copy inside
 run = '''
-  shell 'cat $@ | pbcopy'
+shell 'cat $@ | pbcopy'
+'''
+
+[[mgr.prepend_keymap]]
+on = ["c", "v"] # convert video
+desc = "Convert video to mp4 using ffmpeg"
+run = '''
+shell --block "ffmpeg -i $1 -c:v libx264 -c:a aac output.mp4"
 '''
 
 [[mgr.prepend_keymap]]

@@ -7,6 +7,11 @@ I use this repository to
 - explain and share ideas with others
 - share the configuration between my machines
 - keep track of the changes I make to my configuration
+- run end-to-end tests in Github Actions
+  - Microsoft (owner of Github) graciously offers this for free for public
+    repositories (sources:
+    [2019 announcement](https://github.blog/news-insights/product-news/github-actions-now-supports-ci-cd/),
+    ["The use of these runners on public repositories is free and unlimited"](https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/choose-the-runner-for-a-job#standard-github-hosted-runners-for-public-repositories))
 
 ## Keyboard
 

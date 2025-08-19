@@ -9,7 +9,7 @@ return {
   -- ../../../../../.local/share/nvim/lazy/LazyVim/lua/lazyvim/plugins/extras/coding/blink.lua
   "saghen/blink.cmp",
   version = false,
-  dir = "~/git/blink.cmp/",
+  -- dir = "~/git/blink.cmp/",
   build = "cargo build --release",
   dependencies = {
     "rafamadriz/friendly-snippets",
@@ -82,10 +82,8 @@ return {
                 on_off = "<leader>tg",
                 debug = "<leader>td",
               },
-              future_features = {
-                backend = {
-                  use = "gitgrep-or-ripgrep",
-                },
+              backend = {
+                use = "gitgrep-or-ripgrep",
               },
             },
             transform_items = function(_, items)
