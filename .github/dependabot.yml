@@ -33,3 +33,8 @@ updates:
       all-dependencies:
         patterns:
           - "*"
+
+  - package-ecosystem: "rust-toolchain"
+    directory: "/scripts/"
+    schedule:
+      interval: "weekly"
