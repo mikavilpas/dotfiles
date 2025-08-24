@@ -18,7 +18,7 @@
   "debugprint.nvim": { "branch": "main", "commit": "2f28d5b0773b350c69587d236d1db475985fac58" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "dressing.nvim": { "branch": "master", "commit": "2d7c2db2507fa3c4956142ee607431ddb2828639" },
-  "easyjump.yazi": { "branch": "master", "commit": "6606fb1d56eea4c99809c056fd701e58890655be" },
+  "easyjump.yazi": { "branch": "main", "commit": "8827c6886c918d0543d190d71ccb851bdb3c3f75" },
   "fastaction.nvim": { "branch": "main", "commit": "9bf0c368565023914c120562473dc5a5c179ee8c" },
   "faster.nvim": { "branch": "main", "commit": "9fe4717d8c8c0a6aa306bd3b4f5fac5707eca334" },
   "flatten.nvim": { "branch": "main", "commit": "72527798e75b5e34757491947c2cb853ce21dc0e" },
