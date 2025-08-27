@@ -76,6 +76,20 @@ customCommands:
           echo ""
           echo "Press any key to exit."
           read
+      - key: g
+        description: "Update pull request body"
+        context: localBranches
+        output: terminal
+        command: |
+          #!/bin/bash
+          SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
+          gh pr edit --body="$SUMMARY"
+
+          echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
+          echo $SUMMARY | bat --language=markdown --color=always
+          echo ""
+          echo "Press any key to exit."
+          read
 
 keybinding:
   universal:
