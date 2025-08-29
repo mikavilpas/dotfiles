@@ -4,6 +4,8 @@
 -- ./plugins/starship.yazi/
 require("starship"):setup()
 
+require("easyjump"):setup()
+
 -- This plugin provides cross-instance yank ability, which means you can yank
 -- files in one instance, and then paste them in another instance.
 require("session"):setup({
