@@ -1,2 +1,3 @@
 [tools]
+atuin = "18.8.0"
 starship = "1.23.0"
