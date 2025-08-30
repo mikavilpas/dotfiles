@@ -59,7 +59,8 @@ stow --verbose 2 .
 Many of the packages I use have some kind of custom dependencies:
 
 - neovim plugins are managed using [lazy.nvim](https://lazy.folke.io/)
-- yazi plugins are managed using lazy.nvim as well. The approach is explained in
+- my terminal file manager is [yazi](https://github.com/sxyazi/yazi/). Its
+  plugins are managed using lazy.nvim as well. The approach is explained in
   detail in yazi.nvim's
   [plugin-management.md](https://github.com/mikavilpas/yazi.nvim/blob/main/documentation/plugin-management.md).
   The config is available [here](.config/nvim/lua/plugins/my-file-manager.lua),
