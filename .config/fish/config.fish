@@ -20,6 +20,7 @@ fish_add_path $HOME/.local/share/nvim/mason/bin
 # have e2e tests for them anyway.
 if status is-interactive && test -z "$CI"
     fish_vi_key_bindings
+    mise activate fish | source
 
     # Commands to run in interactive sessions can go here
     atuin init fish | source
