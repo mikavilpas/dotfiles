@@ -16,6 +16,7 @@ return {
     {
       -- ~/.local/share/nvim/lazy/blink-ripgrep.nvim/lua/blink-ripgrep/init.lua
       "mikavilpas/blink-ripgrep.nvim",
+      version = "*",
       -- dir = "~/git/blink-ripgrep.nvim/",
     },
   },

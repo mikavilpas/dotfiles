@@ -5,6 +5,7 @@
 return {
   {
     "mikavilpas/yazi.nvim",
+    version = "*",
     -- dir = "~/git/yazi.nvim/",
     event = "UiEnter",
     keys = {
