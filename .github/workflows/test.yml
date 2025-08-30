@@ -22,6 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      # TODO once the tests can use tools installed with mise, this can be removed
       - name: Install the fish shell
         run: |
           sudo apt-add-repository ppa:fish-shell/release-4
