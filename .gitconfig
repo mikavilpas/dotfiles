@@ -75,3 +75,5 @@
 	defaultBranch = main
 [push]
 	default = upstream
+[fetch]
+	prune = true
