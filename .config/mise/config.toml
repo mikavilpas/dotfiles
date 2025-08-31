@@ -2,4 +2,14 @@ settings.idiomatic_version_file_enable_tools = ["node"]
 
 [tools]
 atuin = "18.8.0"
+delta = "0.18.2"
+fd = "10.3.0"
+github-cli = "2.78.0"
+glab = "1.67.0"
+hyperfine = "1.19.0"
+jq = "1.8.1"
+lazydocker = "0.24.1"
+rg = "14.1.1"
 starship = "1.23.0"
+watchexec = "2.3.2"
+zoxide = "0.9.8"
