@@ -1,4 +1,4 @@
-settings.idiomatic_version_file_enable_tools = ["node"]
+settings.disable_tools = ["node"]
 
 [tools]
 atuin = "18.8.0"
