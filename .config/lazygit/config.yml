@@ -69,7 +69,7 @@ customCommands:
         command: |
           #!/bin/bash
           SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
-          glab mr update --description="$SUMMARY"
+          glab mr update --description="$SUMMARY" --assignee="@me"
 
           echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
           echo $SUMMARY | bat --language=markdown --color=always
