@@ -25,6 +25,20 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     local my_opts = {
+      keymap = {
+        ["<C-f>"] = {
+          function(cmp)
+            return cmp.select_next({ jump_by = "source_id" })
+          end,
+          "select_next",
+        },
+        ["<C-b>"] = {
+          function(cmp)
+            return cmp.select_prev({ jump_by = "source_id" })
+          end,
+          "select_prev",
+        },
+      },
       signature = {
         enabled = true,
       },
