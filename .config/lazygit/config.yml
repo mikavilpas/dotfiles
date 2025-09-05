@@ -69,6 +69,7 @@ customCommands:
         command: |
           #!/bin/bash
           SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
+          set -e
           glab mr update --description="$SUMMARY" --assignee="@me"
 
           echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
@@ -82,6 +83,7 @@ customCommands:
         output: terminal
         command: |
           #!/bin/bash
+          set -e
           SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
           gh pr edit --body="$SUMMARY"
 
