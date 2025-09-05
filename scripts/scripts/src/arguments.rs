@@ -37,6 +37,7 @@ pub enum Commands {
 
         /// Whether to include instructions for applying the patch. So that code reviewers can
         /// easily apply the patch even if they don't know how to use the related git commands.
+        /// Defaults to true.
         #[arg(long, default_value_t = true)]
         with_instructions: bool,
     },
