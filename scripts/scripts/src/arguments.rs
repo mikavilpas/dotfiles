@@ -22,7 +22,8 @@ pub enum Commands {
         to: String,
     },
 
-    /// Summarize the commits on the given branch, before any other local branch is reached. Defaults to the current branch.
+    /// Summarize the commits on the given branch, before any other local branch is reached.
+    /// Defaults to the current branch.
     BranchSummary {
         /// The branch to summarize
         #[arg(long)]
@@ -44,7 +45,8 @@ pub enum Commands {
 
     /// Get a path to repo files, relative to the git repo root. The files don't need to exist.
     Path {
-        /// One or more files to get paths for, either absolute or relative to the current directory
+        /// One or more files to get paths for, either absolute or relative to the current
+        /// directory
         #[arg(
         value_name = "FILE",
         value_hint = clap::ValueHint::AnyPath,
