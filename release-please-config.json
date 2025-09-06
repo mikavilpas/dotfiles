@@ -1,8 +1,7 @@
 {
   "packages": {
     "./scripts/": {
-      "changelog-path": "./scripts/CHANGELOG.md",
-      "release-type": "rust"
+      "changelog-path": "./scripts/CHANGELOG.md"
     }
   },
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
