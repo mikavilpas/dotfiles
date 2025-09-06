@@ -1,7 +1,7 @@
 {
   "packages": {
-    "./scripts/": {
-      "changelog-path": "./scripts/CHANGELOG.md",
+    "scripts": {
+      "changelog-path": "scripts/CHANGELOG.md",
       "release-type": "rust"
     }
   },
