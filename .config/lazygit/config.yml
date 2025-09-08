@@ -85,7 +85,7 @@ customCommands:
           #!/bin/bash
           set -e
           SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
-          gh pr edit --body="$SUMMARY"
+          gh pr edit --body="$SUMMARY" --add-assignee="@me"
 
           echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
           echo $SUMMARY | bat --language=markdown --color=always
