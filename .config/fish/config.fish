@@ -26,6 +26,7 @@ if status is-interactive && test -z "$CI"
     atuin init fish | source
     starship init fish | source
     zoxide init fish | source
+    fzf --fish | source
 
     abbr --add -- n nvim
     abbr --add -- j zi

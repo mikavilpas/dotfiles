@@ -4,6 +4,7 @@ settings.disable_tools = ["node"]
 atuin = "18.8.0"
 delta = "0.18.2"
 fd = "10.3.0"
+fzf = "0.65.2"
 github-cli = "2.78.0"
 glab = "1.68.0"
 hyperfine = "1.19.0"
