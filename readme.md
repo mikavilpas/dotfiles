@@ -58,6 +58,9 @@ stow --verbose 2 .
 
 Many of the packages I use have some kind of custom dependencies:
 
+- many tools are installed using [mise](https://mise.jdx.dev)(see
+  [.config/mise/config.toml](.config/mise/config.toml)) and automatically
+  updated using [renovate](https://docs.renovatebot.com/)
 - neovim plugins are managed using [lazy.nvim](https://lazy.folke.io/)
 - my terminal file manager is [yazi](https://github.com/sxyazi/yazi/). Its
   plugins are managed using lazy.nvim as well. The approach is explained in
