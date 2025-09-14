@@ -1,17 +1,19 @@
 settings.disable_tools = ["node"]
 
+# Pick tools that renovate can manage updates for. See:
+# https://docs.renovatebot.com/modules/manager/mise/
 [tools]
-atuin = "18.8.0"
-delta = "0.18.2"
-fd = "10.3.0"
-fzf = "0.65.2"
-github-cli = "2.79.0"
-glab = "1.68.0"
-hyperfine = "1.19.0"
-jq = "1.8.1"
-lazydocker = "0.24.1"
-rg = "14.1.1"
-starship = "1.23.0"
-watchexec = "2.3.2"
-zoxide = "0.9.8"
+"ubi:BurntSushi/ripgrep" = { version = "14.1.1", exe = "rg" }
+"ubi:ajeetdsouza/zoxide" = "0.9.8"
 "ubi:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
+"ubi:atuinsh/atuin" = { version = "18.8.0", matching_regex = ".tar.gz$" }
+"ubi:dandavison/delta" = "0.18.2"
+"ubi:gitlab-org/cli" = { version = "1.68.0", provider = "gitlab", exe = "glab" }
+"ubi:jesseduffield/lazydocker" = "0.24.1"
+"ubi:junegunn/fzf" = "0.65.2"
+"ubi:sharkdp/fd" = "10.3.0"
+"ubi:sharkdp/hyperfine" = "1.19.0"
+"ubi:starship/starship" = "1.23.0"
+"ubi:watchexec/watchexec" = "2.3.2"
+github-cli = "2.79.0"
+jq = "1.8.1"
