@@ -4,6 +4,7 @@ settings.disable_tools = ["node"]
 # https://docs.renovatebot.com/modules/manager/mise/
 [tools]
 "ubi:BurntSushi/ripgrep" = { version = "14.1.1", exe = "rg" }
+"ubi:JohnnyMorganz/stylua" = "2.2.0"
 "ubi:ajeetdsouza/zoxide" = "0.9.8"
 "ubi:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "ubi:atuinsh/atuin" = { version = "18.8.0", matching_regex = ".tar.gz$" }
