@@ -11,7 +11,7 @@ settings.disable_tools = ["node"]
 "ubi:atuinsh/atuin" = { version = "18.8.0", matching_regex = ".tar.gz$" }
 "ubi:chmln/sd" = "1.0.0"
 "ubi:dandavison/delta" = "0.18.2"
-"ubi:eza-community/eza" = "0.23.0"
+"ubi:eza-community/eza" = "0.23.3"
 "ubi:gitlab-org/cli" = { version = "1.71.2", provider = "gitlab", exe = "glab" }
 "ubi:jesseduffield/lazydocker" = "0.24.1"
 "ubi:junegunn/fzf" = "0.65.2"
