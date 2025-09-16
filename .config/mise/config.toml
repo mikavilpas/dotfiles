@@ -8,6 +8,7 @@ settings.cargo.binstall = true
 "cargo:eza" = "0.23.3"
 "ubi:BurntSushi/ripgrep" = { version = "14.1.1", exe = "rg" }
 "ubi:JohnnyMorganz/stylua" = "2.2.0"
+"ubi:aaronriekenberg/rust-parallel" = "1.18.1"
 "ubi:ajeetdsouza/zoxide" = "0.9.8"
 "ubi:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "ubi:atuinsh/atuin" = { version = "18.8.0", matching_regex = ".tar.gz$" }
