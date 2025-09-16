@@ -30,8 +30,6 @@ jobs:
           sudo apt install fish
           echo "Installed fish version $(fish --version)"
 
-      - uses: jdx/mise-action@v3.2.0
-
       # install the "mika" terminal application from source
       - name: Setup Rust toolchain
         run: rustup toolchain install nightly --profile minimal
@@ -39,6 +37,10 @@ jobs:
 
       - name: Setup sccache
         uses: mozilla-actions/sccache-action@v0.0.9
+
+      # cargo-binstall is used by mise to greatly speed up Rust installations
+      - uses: cargo-bins/cargo-binstall@v1.15.5
+      - uses: jdx/mise-action@v3.2.0
 
       - name: Build
         run: cargo install --locked --path scripts/
