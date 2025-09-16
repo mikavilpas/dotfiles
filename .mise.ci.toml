@@ -1,1 +1,1 @@
-settings.disable_tools = ["node", "delta", "fd"]
+settings.disable_tools = ["node", "delta", "fd", "bat"]
