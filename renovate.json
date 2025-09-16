@@ -1,5 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "automerge": true,
-  "extends": ["config:best-practices", "group:allNonMajor"]
+  "extends": ["config:best-practices", "group:allNonMajor"],
+  "packageRules": [
+    {
+      "matchPackageNames": ["gitlab-org/cli"],
+      "datasource": "gitlab-releases",
+      "registryUrls": ["https://gitlab.com"]
+    }
+  ]
 }
