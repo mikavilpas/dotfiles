@@ -74,6 +74,10 @@ jobs:
           echo "lazygit version $(lazygit --version)"
           echo "lazygit path $(which lazygit)"
 
+      - name: Test that delta works
+        run: |
+          git --no-pager diff HEAD~1 | delta
+
       # https://github.com/cypress-io/github-action?tab=readme-ov-file#pnpm-workspaces
       - uses: pnpm/action-setup@v4.1.0
       - uses: actions/setup-node@v5.0.0
