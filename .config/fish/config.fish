@@ -35,6 +35,7 @@ if status is-interactive && test -z "$CI"
     abbr --add -- - 'cd -'
     abbr --add -- ... 'cd ../../'
     abbr --add -- top btm
+    abbr --add -- parallel rust-parallel
 
     # https://github.com/catppuccin/fish
     fish_config theme choose "Catppuccin Macchiato"
