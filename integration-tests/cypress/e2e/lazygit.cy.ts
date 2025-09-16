@@ -74,7 +74,10 @@ describe("lazygit", () => {
 
     // enter the commits pane and wait for the commit to be selected
     cy.typeIntoTerminal("4")
-    cy.contains("added: README.md") // in the commit details
+    textIsVisibleWithBackgroundColor(
+      "initial commit",
+      rgbify(flavors.macchiato.colors.crust.rgb),
+    )
 
     cy.typeIntoTerminal("X")
     cy.contains("Copy selected commits to clipboard")
