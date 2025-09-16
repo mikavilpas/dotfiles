@@ -5,8 +5,7 @@
   "packageRules": [
     {
       "matchPackageNames": ["gitlab-org/cli"],
-      "datasource": "gitlab-releases",
-      "registryUrls": ["https://gitlab.com"]
+      "overrideDatasource": "gitlab-releases"
     }
   ]
 }
