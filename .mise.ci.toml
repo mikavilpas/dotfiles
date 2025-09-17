@@ -1,1 +1,4 @@
 settings.disable_tools = ["node", "delta"]
+
+[tools]
+"ubi:jesseduffield/lazygit" = "0.55.0"
