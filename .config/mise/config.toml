@@ -27,3 +27,4 @@ settings.cargo.binstall = true
 
 github-cli = "2.79.0"
 jq = "1.8.1"
+actionlint = "1.7.7"
