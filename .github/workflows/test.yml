@@ -52,7 +52,7 @@ jobs:
           pwd
           ls -la
           echo "Installing dotfiles to HOME $HOME"
-          stow --verbose 2 . --target=$HOME
+          stow --verbose 2 . --target="$HOME"
           echo "Installed dotfiles to HOME $HOME"
           echo "List files in HOME"
           ls -la ~/
