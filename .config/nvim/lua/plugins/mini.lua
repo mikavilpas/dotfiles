@@ -1,33 +1,9 @@
 ---@module "lazy"
 ---@type LazySpec
 return {
-  -- {
-  --   "echasnovski/mini.indentscope",
-  --   -- https://github.com/echasnovski/mini.indentscope
-  --   opts = {
-  --     -- Module mappings. Use `''` (empty string) to disable one.
-  --     mappings = {
-  --       -- Textobjects
-  --       object_scope = "",
-  --       object_scope_with_border = "",
-  --
-  --       -- Motions (jump to respective border line; if not present - body line)
-  --       goto_top = "",
-  --       goto_bottom = "",
-  --     },
-  --     draw = {
-  --       delay = 300,
-  --       animation = function()
-  --         -- this is the implementation from the plugin
-  --         return 0
-  --       end,
-  --     },
-  --   },
-  -- },
-
   {
     -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-operators.md
-    "echasnovski/mini.operators",
+    "nvim-mini/mini.operators",
     version = "*",
     opts = {
       exchange = {
@@ -38,7 +14,7 @@ return {
   },
 
   {
-    "echasnovski/mini.ai",
+    "nvim-mini/mini.ai",
     opts = {
       custom_textobjects = {
         i = "",
@@ -56,5 +32,5 @@ return {
     "michaeljsmith/vim-indent-object",
     event = "BufRead",
   },
-  { "echasnovski/mini.cursorword", config = true },
+  { "nvim-mini/mini.cursorword", config = true },
 }
