@@ -39,8 +39,7 @@ return {
   },
 
   {
-    "daliusd/incr.nvim",
-    dir = "~/git/incr.nvim/",
+    "mikavilpas/incr.nvim",
     opts = {
       incr_key = "<C-space>",
       decr_key = "<backspace>",
