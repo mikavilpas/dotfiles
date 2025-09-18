@@ -24,6 +24,7 @@ if status is-interactive && test -z "$CI"
 
     # Commands to run in interactive sessions can go here
     atuin init fish | source
+    bind -M insert up _atuin_bind_up
     starship init fish | source
     zoxide init fish | source
     fzf --fish | source
