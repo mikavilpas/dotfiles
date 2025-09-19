@@ -12,7 +12,7 @@
     "tui": "pnpm --filter ./integration-tests/ exec tui"
   },
   "devDependencies": {
-    "@eslint/js": "9.35.0",
+    "@eslint/js": "9.36.0",
     "@umbrelladocs/linkspector": "0.4.7",
     "eslint": "9.35.0",
     "eslint-config-prettier": "10.1.8",
