@@ -6,12 +6,12 @@ on: [push, pull_request]
 jobs:
   markdownlint:
     name: markdownlint
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: DavidAnson/markdownlint-cli2-action@v20.0.0
 
   actionlint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
       - name: actionlint
