@@ -11,7 +11,7 @@
   "dependencies": {
     "@catppuccin/palette": "1.7.1",
     "cypress": "15.2.0",
-    "wait-on": "9.0.0"
+    "wait-on": "9.0.1"
   },
   "devDependencies": {
     "@eslint/js": "9.36.0",
@@ -27,6 +27,6 @@
     "type-fest": "5.0.1",
     "typescript": "5.9.2",
     "typescript-eslint": "8.44.0",
-    "zod": "4.1.10"
+    "zod": "4.1.11"
   }
 }
