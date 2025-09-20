@@ -93,5 +93,5 @@
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
   "yazi-flavor-catppuccin-macchiato": { "branch": "main", "commit": "4296a380570399e3c36aec054f37aa48f35cf6b1" },
   "yazi-rs-plugins": { "branch": "main", "commit": "d1c8baab86100afb708694d22b13901b9f9baf00" },
-  "yazi.nvim": { "branch": "main", "commit": "f182fb57f5ec1a5f2fefe8dcc09a0779608fe564" }
+  "yazi.nvim": { "branch": "main", "commit": "3f81faf0cf838acb312f0f0d75ac1a8ac69166ed" }
 }
