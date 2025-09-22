@@ -1,6 +1,7 @@
 vim.filetype.add({
   pattern = {
     [".*/%.github/workflows/.*%.ya?ml"] = "yaml.ghaction",
+    [".env.*"] = "sh.dotenv",
   },
 })
 
@@ -10,6 +11,7 @@ return {
     opts = {
       linters_by_ft = {
         ghaction = { "actionlint" },
+        ["sh.dotenv"] = { "dotenv_linter" },
       },
     },
   },
