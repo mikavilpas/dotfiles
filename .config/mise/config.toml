@@ -22,7 +22,7 @@ settings.cargo.binstall = true
 "ubi:sharkdp/fd" = "10.3.0"
 "ubi:sharkdp/hyperfine" = "1.19.0"
 "ubi:starship/starship" = "1.23.0"
-"ubi:tree-sitter/tree-sitter" = "0.25.9"
+"ubi:tree-sitter/tree-sitter" = "0.25.10"
 "ubi:watchexec/watchexec" = "2.3.2"
 
 github-cli = "2.79.0"
