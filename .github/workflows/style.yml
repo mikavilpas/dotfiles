@@ -33,6 +33,6 @@ jobs:
       - uses: JohnnyMorganz/stylua-action@v4.1.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          version: v2.0.2
+          version: latest
           # CLI arguments
           args: --color always --check .
