@@ -43,6 +43,9 @@ jobs:
           sudo apt install fish
           echo "Installed fish version $(fish --version)"
 
+      - name: Setup the mold linker
+        uses: rui314/setup-mold@v1
+
       # install the "mika" terminal application from source
       - name: Setup Rust toolchain
         run: rustup toolchain install nightly --profile minimal
