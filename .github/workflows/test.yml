@@ -21,7 +21,7 @@ jobs:
         neovim_version: ["nightly"]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
 
       - name: Install GNU stow and setup the dotfiles
         run: |
@@ -44,7 +44,7 @@ jobs:
           echo "Installed fish version $(fish --version)"
 
       - name: Setup the mold linker
-        uses: rui314/setup-mold@v1
+        uses: rui314/setup-mold@725a8794d15fc7563f59595bd9556495c0564878 # v1
 
       # install the "mika" terminal application from source
       - name: Setup Rust toolchain
@@ -52,11 +52,11 @@ jobs:
         working-directory: scripts
 
       - name: Setup sccache
-        uses: mozilla-actions/sccache-action@v0.0.9
+        uses: mozilla-actions/sccache-action@7d986dd989559c6ecdb630a3fd2557667be217ad # v0.0.9
 
       # cargo-binstall is used by mise to greatly speed up Rust installations
       - uses: cargo-bins/cargo-binstall@38e8f5e4c386b611d51e8aa997b9a06a3c8eb67a # v1.15.6
-      - uses: jdx/mise-action@v3.2.0
+      - uses: jdx/mise-action@5ac50f778e26fac95da98d50503682459e86d566 # v3.2.0
 
       - name: Build
         run: cargo install --locked --path scripts/
@@ -80,12 +80,12 @@ jobs:
           echo "lazygit path $(which lazygit)"
 
       # https://github.com/cypress-io/github-action?tab=readme-ov-file#pnpm-workspaces
-      - uses: pnpm/action-setup@v4.1.0
-      - uses: actions/setup-node@v5.0.0
+      - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
           node-version-file: .nvmrc
           cache: "pnpm"
-      - uses: actions/cache@v4
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: |
             ~/.cache/Cypress
@@ -96,7 +96,7 @@ jobs:
       - run: pnpm --filter integration-tests exec cypress install
       - run: pnpm tui run
 
-      - uses: actions/upload-artifact@v4.6.2
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         # add the line below to store screenshots only on failures
         # if: failure()
         if: failure()
