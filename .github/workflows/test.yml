@@ -27,6 +27,22 @@ jobs:
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
 
+      # cargo-binstall is used by mise to greatly speed up Rust installations
+      - uses: cargo-bins/cargo-binstall@38e8f5e4c386b611d51e8aa997b9a06a3c8eb67a # v1.15.6
+      - uses: jdx/mise-action@5ac50f778e26fac95da98d50503682459e86d566 # v3.2.0
+
+      - name: Install delta
+        run: mise use "delta@${{ env.DELTA_VERSION }}"
+
+      - name: Install lazygit
+        run: |
+          # https://github.com/jesseduffield/lazygit?tab=readme-ov-file#ubuntu
+          # https://api.github.com/repos/jesseduffield/lazygit/releases/latest
+          mise use "lazygit@${{ env.LAZYGIT_VERSION }}"
+          echo "Installed lazygit version ${LAZYGIT_VERSION}"
+          echo "lazygit version $(lazygit --version)"
+          echo "lazygit path $(which lazygit)"
+
       - name: Install GNU stow and setup the dotfiles
         run: |
           sudo apt-get install stow tree
@@ -58,25 +74,9 @@ jobs:
       - name: Setup sccache
         uses: mozilla-actions/sccache-action@7d986dd989559c6ecdb630a3fd2557667be217ad # v0.0.9
 
-      # cargo-binstall is used by mise to greatly speed up Rust installations
-      - uses: cargo-bins/cargo-binstall@38e8f5e4c386b611d51e8aa997b9a06a3c8eb67a # v1.15.6
-      - uses: jdx/mise-action@5ac50f778e26fac95da98d50503682459e86d566 # v3.2.0
-
       - name: Build
         run: cargo install --locked --path scripts/
         working-directory: scripts
-
-      - name: Install delta
-        run: mise install "delta@${{ env.DELTA_VERSION }}"
-
-      - name: Install lazygit
-        run: |
-          # https://github.com/jesseduffield/lazygit?tab=readme-ov-file#ubuntu
-          # https://api.github.com/repos/jesseduffield/lazygit/releases/latest
-          mise install "lazygit@${{ env.LAZYGIT_VERSION }}"
-          echo "Installed lazygit version ${LAZYGIT_VERSION}"
-          echo "lazygit version $(lazygit --version)"
-          echo "lazygit path $(which lazygit)"
 
       # https://github.com/cypress-io/github-action?tab=readme-ov-file#pnpm-workspaces
       - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
