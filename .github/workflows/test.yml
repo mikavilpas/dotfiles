@@ -11,6 +11,10 @@ env:
   RUSTC_WRAPPER: sccache
   CARGO_TERM_COLOR: always
   MISE_ENV: ci
+  # renovate: datasource=github-releases depName=dandavison/delta
+  DELTA_VERSION: "0.18.1"
+  # renovate: datasource=github-releases depName=jesseduffield/lazygit
+  LAZYGIT_VERSION: "0.54.2"
 
 jobs:
   build:
@@ -63,18 +67,13 @@ jobs:
         working-directory: scripts
 
       - name: Install delta
-        run: |
-          wget https://github.com/dandavison/delta/releases/download/0.18.1/git-delta_0.18.1_amd64.deb
-          sudo dpkg -i git-delta_0.18.1_amd64.deb
+        run: mise install "delta@${{ env.DELTA_VERSION }}"
 
       - name: Install lazygit
         run: |
           # https://github.com/jesseduffield/lazygit?tab=readme-ov-file#ubuntu
           # https://api.github.com/repos/jesseduffield/lazygit/releases/latest
-          LAZYGIT_VERSION="https://github.com/jesseduffield/lazygit/releases/download/v0.54.2/lazygit_0.54.2_Linux_x86_64.tar.gz"
-          curl -Lo lazygit.tar.gz $LAZYGIT_VERSION
-          tar xf lazygit.tar.gz lazygit
-          sudo install lazygit -D -t /usr/local/bin/
+          mise install "lazygit@${{ env.LAZYGIT_VERSION }}"
           echo "Installed lazygit version ${LAZYGIT_VERSION}"
           echo "lazygit version $(lazygit --version)"
           echo "lazygit path $(which lazygit)"
