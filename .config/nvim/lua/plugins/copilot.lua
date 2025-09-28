@@ -40,4 +40,13 @@ return {
       end)
     end,
   },
+
+  {
+    "folke/sidekick.nvim",
+    keys = {
+      -- https://www.lazyvim.org/extras/ai/sidekick
+      { "<tab>", false },
+      { "ä", LazyVim.cmp.map({ "ai_nes" }, "<tab>"), mode = { "n" }, expr = true },
+    },
+  },
 }
