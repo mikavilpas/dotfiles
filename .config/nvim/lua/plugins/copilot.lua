@@ -52,7 +52,7 @@ return {
           -- vim.lsp.inline_completion.select({ count = 1 })
           LazyVim.cmp.actions.ai_accept()
 
-          -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, true, true), "n", true)
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, true, true), "n", true)
         end,
       }
     end,
