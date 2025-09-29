@@ -3,6 +3,7 @@
 return {
   {
     "zbirenbaum/copilot.lua",
+    enabled = false,
     -- ../../../../../.local/share/nvim/lazy/copilot.lua/lua/copilot/config.lua
     cmd = "Copilot",
     build = ":Copilot auth",
@@ -38,6 +39,22 @@ return {
       vim.keymap.set("i", "<S-right>", function()
         require("copilot.suggestion").accept()
       end)
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = function()
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      keys[#keys + 1] = {
+        "<S-right>",
+        mode = { "i" },
+        function()
+          -- vim.lsp.inline_completion.select({ count = 1 })
+          LazyVim.cmp.actions.ai_accept()
+
+          -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, true, true), "n", true)
+        end,
+      }
     end,
   },
 
