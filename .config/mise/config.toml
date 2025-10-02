@@ -25,7 +25,7 @@ settings.cargo.binstall = true
 "ubi:tree-sitter/tree-sitter" = "0.25.10"
 "ubi:watchexec/watchexec" = "2.3.2"
 
-github-cli = "2.80.0"
+github-cli = "2.81.0"
 jq = "1.8.1"
 actionlint = "1.7.7"
 dotenv-linter = "3.3.0"
