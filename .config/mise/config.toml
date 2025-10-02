@@ -1,4 +1,3 @@
-settings.disable_tools = ["node"]
 settings.cargo.binstall = true
 
 # Pick tools that renovate can manage updates for. See:
