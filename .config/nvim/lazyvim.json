@@ -1,7 +1,5 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.ai.copilot-native",
-    "lazyvim.plugins.extras.ai.sidekick",
     "lazyvim.plugins.extras.lang.docker"
   ],
   "install_version": 7,
