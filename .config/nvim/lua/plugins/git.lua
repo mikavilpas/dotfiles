@@ -58,6 +58,14 @@ return {
         end,
         { silent = true, desc = "toggle lazygit" },
       },
+      {
+        "<leader>gl",
+        function()
+          local current_file = vim.fn.expand("%")
+          require("tsugit").toggle_for_file(current_file)
+        end,
+        { silent = true, desc = "lazygit current_file" },
+      },
     },
     ---@type tsugit.UserConfig
     opts = {
@@ -90,25 +98,6 @@ return {
           require("gitsigns").nav_hunk("prev", { target = "all", navigation_message = false })
         end,
         { silent = true, desc = "prev hunk" },
-      },
-    },
-  },
-
-  {
-    -- Single tabpage interface for easily cycling through diffs for all
-    -- modified files for any git rev.
-    -- https://github.com/sindrets/diffview.nvim
-    "sindrets/diffview.nvim",
-    cmd = {
-      "DiffviewOpen",
-      "DiffviewFileHistory",
-    },
-    keys = {
-      {
-        "<leader>gl",
-        mode = { "n" },
-        "<cmd>DiffviewFileHistory %<cr>",
-        { desc = "Diffview file history" },
       },
     },
   },
