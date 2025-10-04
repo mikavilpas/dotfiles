@@ -62,7 +62,7 @@ return {
         "<leader>gl",
         function()
           local current_file = vim.fn.expand("%")
-          require("tsugit").toggle_for_file(current_file)
+          require("tsugit").toggle_for_file(current_file, {}, { "--screen-mode", "normal" })
         end,
         { silent = true, desc = "lazygit current_file" },
       },
