@@ -14,7 +14,7 @@ settings.cargo.binstall = true
 "ubi:cargo-bins/cargo-binstall" = "1.15.6"
 "ubi:chmln/sd" = "1.0.0"
 "ubi:dandavison/delta" = "0.18.2"
-"ubi:gitlab-org/cli" = { version = "1.72.0", provider = "gitlab", exe = "glab" }
+"ubi:gitlab-org/cli" = { version = "1.73.0", provider = "gitlab", exe = "glab" }
 "ubi:jesseduffield/lazydocker" = "0.24.1"
 "ubi:junegunn/fzf" = "0.65.2"
 "ubi:sharkdp/bat" = "0.25.0"
