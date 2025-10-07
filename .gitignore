@@ -24,3 +24,4 @@ integration-tests/cypress/screenshots/lazygit.cy.ts
 integration-tests/test-environment/.repro/data
 scripts/test_utils/target
 scripts/scripts/test_utils/target
+.mise.local.toml
