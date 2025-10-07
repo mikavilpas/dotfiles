@@ -43,7 +43,7 @@ shell --block "ffmpeg -i $1 -c:v libx264 -c:a aac output.mp4"
 
 [[mgr.prepend_keymap]]
 on = "<tab>"
-run = """shell "ya pub-to 0 NvimCycleBuffer""""
+run = """shell "ya pub-to 0 nvim-cycle-buffer""""
 
 # keymap.toml
 [[mgr.prepend_keymap]]

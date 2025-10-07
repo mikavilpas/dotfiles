@@ -5,6 +5,7 @@
 return {
   {
     "mikavilpas/yazi.nvim",
+    version = "*",
     -- dir = "~/git/yazi.nvim/",
     event = "UiEnter",
     keys = {
@@ -37,10 +38,10 @@ return {
   },
   {
     name = "easyjump.yazi",
-    url = "https://github.com/DreamMaoMao/easyjump.yazi",
+    url = "https://github.com/mikavilpas/easyjump.yazi",
     lazy = true,
     build = function(plugin)
-      require("yazi.plugin").build_plugin(plugin)
+      require("yazi.plugin").build_plugin(plugin, { sub_dir = "easyjump.yazi" })
     end,
   },
   {

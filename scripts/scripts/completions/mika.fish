@@ -37,7 +37,7 @@ complete -c mika -n "__fish_mika_using_subcommand summary" -s h -l help -d 'Prin
 complete -c mika -n "__fish_mika_using_subcommand branch-summary" -l branch -d 'The branch to summarize' -r
 complete -c mika -n "__fish_mika_using_subcommand branch-summary" -s h -l help -d 'Print help'
 complete -c mika -n "__fish_mika_using_subcommand share-patch" -l commit -d 'The commit (or range) to share, defaults to the current HEAD' -r
-complete -c mika -n "__fish_mika_using_subcommand share-patch" -l with-instructions -d 'Whether to include instructions for applying the patch. So that code reviewers can easily apply the patch even if they don\'t know how to use the related git commands'
+complete -c mika -n "__fish_mika_using_subcommand share-patch" -l with-instructions -d 'Whether to include instructions for applying the patch. So that code reviewers can easily apply the patch even if they don\'t know how to use the related git commands. Defaults to true'
 complete -c mika -n "__fish_mika_using_subcommand share-patch" -s h -l help -d 'Print help'
 complete -c mika -n "__fish_mika_using_subcommand path" -s h -l help -d 'Print help'
 complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path help" -f -a "summary" -d 'Summarize commits in markdown format, for quick PR descriptions'

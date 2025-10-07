@@ -172,6 +172,12 @@ function ww() {
 # https://github.com/eza-community/eza
 alias l="eza --oneline --all --long --no-user --icons=auto --no-permissions --time-style=long-iso"
 
+# jelpp-env stuff
+# alias klm="cd /Users/mikavilpas/git/jelpp/jelpp-env; npm run klm --"
+klm() {
+  (cd /Users/mikavilpas/git/jelpp/jelpp-env && fnm use && npm run klm "$@")
+}
+
 #source ~/bin/aws-profile.zsh
 # fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
 

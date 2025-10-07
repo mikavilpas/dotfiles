@@ -1,3 +1,6 @@
+import { flavors } from "@catppuccin/palette"
+import { rgbify } from "@tui-sandbox/library/dist/src/client/color-utilities"
+import { textIsVisibleWithBackgroundColor } from "@tui-sandbox/library/dist/src/client/cypress-assertions"
 import assert from "assert"
 
 describe("lazygit", () => {
@@ -42,8 +45,12 @@ describe("lazygit", () => {
     cy.contains("Donate")
 
     // enter the branch pane and wait for the branch to be selected
+
     cy.typeIntoTerminal("3")
-    cy.contains("Author:")
+    textIsVisibleWithBackgroundColor(
+      "main",
+      rgbify(flavors.macchiato.colors.crust.rgb),
+    )
 
     // create a backup branch
     cy.typeIntoTerminal("?")
@@ -67,7 +74,10 @@ describe("lazygit", () => {
 
     // enter the commits pane and wait for the commit to be selected
     cy.typeIntoTerminal("4")
-    cy.contains("added: README.md") // in the commit details
+    textIsVisibleWithBackgroundColor(
+      "initial commit",
+      rgbify(flavors.macchiato.colors.crust.rgb),
+    )
 
     cy.typeIntoTerminal("X")
     cy.contains("Copy selected commits to clipboard")

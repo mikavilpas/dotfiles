@@ -10,17 +10,31 @@ env:
   SCCACHE_GHA_ENABLED: true
   RUSTC_WRAPPER: sccache
   CARGO_TERM_COLOR: always
+  MISE_ENV: ci
 
 jobs:
   build:
     name: Run tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         neovim_version: ["nightly"]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+
+      - name: Install GNU stow and setup the dotfiles
+        run: |
+          sudo apt-get install stow tree
+          pwd
+          ls -la
+          echo "Installing dotfiles to HOME $HOME"
+          stow --verbose 2 . --target="$HOME"
+          echo "Installed dotfiles to HOME $HOME"
+          echo "List files in HOME"
+          ls -la ~/
+          echo "List files in ~/.config"
+          ls -la ~/.config/
 
       - name: Install the fish shell
         run: |
@@ -29,30 +43,24 @@ jobs:
           sudo apt install fish
           echo "Installed fish version $(fish --version)"
 
+      - name: Setup the mold linker
+        uses: rui314/setup-mold@725a8794d15fc7563f59595bd9556495c0564878 # v1
+
       # install the "mika" terminal application from source
       - name: Setup Rust toolchain
         run: rustup toolchain install nightly --profile minimal
         working-directory: scripts
 
       - name: Setup sccache
-        uses: mozilla-actions/sccache-action@v0.0.9
+        uses: mozilla-actions/sccache-action@7d986dd989559c6ecdb630a3fd2557667be217ad # v0.0.9
+
+      # cargo-binstall is used by mise to greatly speed up Rust installations
+      - uses: cargo-bins/cargo-binstall@38e8f5e4c386b611d51e8aa997b9a06a3c8eb67a # v1.15.6
+      - uses: jdx/mise-action@e3d7b8d67a7958d1207f6ed871e83b1ea780e7b0 # v3.3.1
 
       - name: Build
         run: cargo install --locked --path scripts/
         working-directory: scripts
-
-      - name: Install GNU stow and setup the dotfiles
-        run: |
-          sudo apt-get install stow tree
-          pwd
-          ls -la
-          echo "Installing dotfiles to HOME $HOME"
-          stow --verbose 2 . --target=$HOME
-          echo "Installed dotfiles to HOME $HOME"
-          echo "List files in HOME"
-          ls -la ~/
-          echo "List files in ~/.config"
-          ls -la ~/.config/
 
       - name: Install delta
         run: |
@@ -63,7 +71,7 @@ jobs:
         run: |
           # https://github.com/jesseduffield/lazygit?tab=readme-ov-file#ubuntu
           # https://api.github.com/repos/jesseduffield/lazygit/releases/latest
-          LAZYGIT_VERSION="https://github.com/jesseduffield/lazygit/releases/download/v0.48.0/lazygit_0.48.0_Linux_x86_64.tar.gz"
+          LAZYGIT_VERSION="https://github.com/jesseduffield/lazygit/releases/download/v0.54.2/lazygit_0.54.2_Linux_x86_64.tar.gz"
           curl -Lo lazygit.tar.gz $LAZYGIT_VERSION
           tar xf lazygit.tar.gz lazygit
           sudo install lazygit -D -t /usr/local/bin/
@@ -72,12 +80,12 @@ jobs:
           echo "lazygit path $(which lazygit)"
 
       # https://github.com/cypress-io/github-action?tab=readme-ov-file#pnpm-workspaces
-      - uses: pnpm/action-setup@v4.1.0
-      - uses: actions/setup-node@v4.4.0
+      - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
           node-version-file: .nvmrc
           cache: "pnpm"
-      - uses: actions/cache@v4
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: |
             ~/.cache/Cypress
@@ -88,7 +96,7 @@ jobs:
       - run: pnpm --filter integration-tests exec cypress install
       - run: pnpm tui run
 
-      - uses: actions/upload-artifact@v4.6.2
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         # add the line below to store screenshots only on failures
         # if: failure()
         if: failure()
@@ -97,20 +105,3 @@ jobs:
           path: integration-tests/cypress/screenshots
           if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
 
-  automerge:
-    needs: build
-    name: Automerge Dependabot PRs
-    runs-on: ubuntu-latest
-    permissions:
-      # NOTE: no special token needs to be generated if these permissions are
-      # used. However, "Workflow permissions > Allow GitHub Actions to create
-      # and approve pull requests" needs to be enabled under
-      # github.com/user/repo/settings/actions
-      # https://github.com/fastify/github-action-merge-dependabot/issues/359
-      pull-requests: write
-      contents: write
-    steps:
-      - uses: fastify/github-action-merge-dependabot@v3.11.1
-        with:
-          # https://github.com/fastify/github-action-merge-dependabot?tab=readme-ov-file
-          github-token: ${{ secrets.GITHUB_TOKEN }}

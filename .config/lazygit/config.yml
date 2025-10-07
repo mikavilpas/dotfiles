@@ -53,15 +53,18 @@ customCommands:
           {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
         context: commits, subCommits
         description: "Copy selected commits to clipboard"
+
       - key: v
         command: "pbpaste | git am"
         context: "commits"
         description: "Paste selected commits from clipboard"
+
       - key: s
         command:
           "mika share-patch --with-instructions --commit
           {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
         description: "Share selected commits as a patch with instructions"
+
       - key: u
         description: "Update merge request description"
         context: localBranches
@@ -69,7 +72,24 @@ customCommands:
         command: |
           #!/bin/bash
           SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
-          glab mr update --description="$SUMMARY"
+          set -e
+          glab mr update --description="$SUMMARY" --assignee="@me"
+
+          echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
+          echo $SUMMARY | bat --language=markdown --color=always
+          echo ""
+          echo "Press any key to exit."
+          read
+
+      - key: g
+        description: "Update pull request body"
+        context: localBranches
+        output: terminal
+        command: |
+          #!/bin/bash
+          set -e
+          SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
+          gh pr edit --body="$SUMMARY" --add-assignee="@me"
 
           echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
           echo $SUMMARY | bat --language=markdown --color=always

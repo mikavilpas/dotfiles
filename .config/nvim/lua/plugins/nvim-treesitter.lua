@@ -36,16 +36,14 @@ return {
         enable = true,
       },
     },
+  },
 
-    ---@param opts TSConfig
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-
-      -- Custom filetype detection for .css files
-      -- vim.cmd([[
-      --     autocmd BufRead,BufNewFile *.css set filetype=scss
-      -- ]])
-    end,
+  {
+    "mikavilpas/incr.nvim",
+    opts = {
+      incr_key = "<C-space>",
+      decr_key = "<backspace>",
+    },
   },
 
   {

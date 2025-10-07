@@ -20,11 +20,13 @@ fish_add_path $HOME/.local/share/nvim/mason/bin
 # have e2e tests for them anyway.
 if status is-interactive && test -z "$CI"
     fish_vi_key_bindings
+    mise activate fish | source
 
     # Commands to run in interactive sessions can go here
     atuin init fish | source
     starship init fish | source
     zoxide init fish | source
+    fzf --fish | source
 
     abbr --add -- n nvim
     abbr --add -- j zi
@@ -33,6 +35,7 @@ if status is-interactive && test -z "$CI"
     abbr --add -- - 'cd -'
     abbr --add -- ... 'cd ../../'
     abbr --add -- top btm
+    abbr --add -- parallel rust-parallel
 
     # https://github.com/catppuccin/fish
     fish_config theme choose "Catppuccin Macchiato"
@@ -77,4 +80,12 @@ if status is-interactive && test -z "$CI"
     # pipe to this guy to colorize the output stream! 🪄
     # ya sub cd,hover | batrs
     abbr -a batrs 'bat --paging=never --language=rs --decorations=never'
+
+    function klm
+        cd /Users/mikavilpas/git/jelpp/jelpp-env
+        fnm use
+        npm run klm $argv
+        cd -
+        fnm use
+    end
 end

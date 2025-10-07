@@ -37,3 +37,4 @@ export type MyTestDirectory = MyTestDirectoryContentsSchemaType["contents"]
 
 export const testDirectoryFiles = z.enum([".config", ".gitconfig", "."])
 export type MyTestDirectoryFile = z.infer<typeof testDirectoryFiles>
+export type MyNeovimAppName = "nvim"
