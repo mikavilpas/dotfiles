@@ -30,12 +30,14 @@
   path = ~/dotfiles/.config/delta/catppuccin-delta/catppuccin.gitconfig
 
 [delta]
+  ; https://github.com/dandavison/delta
   features = decorations
   features = catppuccin-macchiato
   tabs = 4
   side-by-side = true
   line-numbers-left-format = ""
   line-numbers-right-format = "│ "
+  hyperlinks = true
 
 [delta "interactive"]
   keep-plus-minus-markers = false
