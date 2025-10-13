@@ -1,7 +1,24 @@
 ---@module "lazy"
 ---@type LazySpec
 return {
-  "neovim/nvim-lspconfig",
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      ---@type table<string, vim.lsp.Config>
+      servers = {
+        eslint = {
+          settings = {
+            -- Fix https://github.com/un-ts/eslint-plugin-import-x starting
+            -- resolution from an incorrect folder. This might make it so that
+            -- the project needs to be configured with an eslint config file in
+            -- the workspace root.
+            workingDirectories = { mode = "location" },
+            workingDirectory = { mode = "location" },
+          },
+        },
+      },
+    },
+  },
 
   {
     -- Neovim plugin to automatic change normal string to template string
