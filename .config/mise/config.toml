@@ -5,7 +5,7 @@ settings.cargo.binstall = true
 [tools]
 
 "cargo:eza" = "0.23.3"
-"ubi:BurntSushi/ripgrep" = { version = "14.1.1", exe = "rg" }
+"ubi:BurntSushi/ripgrep" = { version = "15.0.0", exe = "rg" }
 "ubi:JohnnyMorganz/stylua" = "2.3.0"
 "ubi:aaronriekenberg/rust-parallel" = "1.18.1"
 "ubi:ajeetdsouza/zoxide" = "0.9.8"
