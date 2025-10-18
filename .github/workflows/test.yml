@@ -10,7 +10,6 @@ env:
   SCCACHE_GHA_ENABLED: true
   RUSTC_WRAPPER: sccache
   CARGO_TERM_COLOR: always
-  MISE_ENV: ci
   # renovate: datasource=github-releases depName=jesseduffield/lazygit
   LAZYGIT_VERSION: v0.55.1
 
@@ -55,10 +54,6 @@ jobs:
 
       - name: Setup sccache
         uses: mozilla-actions/sccache-action@7d986dd989559c6ecdb630a3fd2557667be217ad # v0.0.9
-
-      # cargo-binstall is used by mise to greatly speed up Rust installations
-      - uses: cargo-bins/cargo-binstall@a66119fbb1c952daba62640c2609111fe0803621 # v1.15.7
-      - uses: jdx/mise-action@e3d7b8d67a7958d1207f6ed871e83b1ea780e7b0 # v3.3.1
 
       - name: Install tools with UBI
         shell: bash
