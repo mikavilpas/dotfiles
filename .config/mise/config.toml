@@ -29,6 +29,7 @@ jq = "1.8.1"
 actionlint = "1.7.8"
 dotenv-linter = "4.0.0"
 ubi = "0.8.1"
+yq = "4.48.1"
 
 
 [tools."ubi:ducaale/xh"]
