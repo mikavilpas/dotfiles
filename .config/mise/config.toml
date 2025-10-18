@@ -28,6 +28,7 @@ github-cli = "2.82.0"
 jq = "1.8.1"
 actionlint = "1.7.8"
 dotenv-linter = "3.3.0"
+ubi = "0.8.1"
 
 
 [tools."ubi:ducaale/xh"]
