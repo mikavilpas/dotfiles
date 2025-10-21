@@ -51,31 +51,4 @@ return {
       return opts
     end,
   },
-
-  {
-    -- Efficiency plugin designed to optimize code actions in Neovim
-    -- https://github.com/Chaitanyabsprip/fastaction.nvim
-    "Chaitanyabsprip/fastaction.nvim",
-    event = "LspAttach",
-    ---@type FastActionConfig
-    opts = {},
-    config = function(_, opts)
-      require("fastaction").setup(opts)
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      keys[#keys + 1] = {
-        "<leader>ca",
-        function()
-          require("fastaction").code_action()
-        end,
-        mode = { "n" },
-      }
-      keys[#keys + 1] = {
-        "<leader>ca",
-        function()
-          require("fastaction").code_action()
-        end,
-        mode = { "v" },
-      }
-    end,
-  },
 }
