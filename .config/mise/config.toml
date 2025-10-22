@@ -10,7 +10,7 @@ settings.cargo.binstall = true
 "ubi:aaronriekenberg/rust-parallel" = "1.18.1"
 "ubi:ajeetdsouza/zoxide" = "0.9.8"
 "ubi:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
-"ubi:atuinsh/atuin" = { version = "18.9.0", matching_regex = ".tar.gz$" }
+"ubi:atuinsh/atuin" = { version = "18.10.0", matching_regex = ".tar.gz$" }
 "ubi:cargo-bins/cargo-binstall" = "1.15.7"
 "ubi:chmln/sd" = "1.0.0"
 "ubi:dandavison/delta" = "0.18.2"
@@ -24,7 +24,7 @@ settings.cargo.binstall = true
 "ubi:tree-sitter/tree-sitter" = "0.25.10"
 "ubi:watchexec/watchexec" = "2.3.2"
 
-github-cli = "2.82.0"
+github-cli = "2.82.1"
 jq = "1.8.1"
 actionlint = "1.7.8"
 dotenv-linter = "4.0.0"
