@@ -4,4 +4,4 @@ resolver = "3"
 
 [workspace.dependencies]
 anyhow = "1.0.99"
-gix = "0.73.0"
+gix = "0.74.0"
