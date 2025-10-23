@@ -165,8 +165,7 @@ vim.keymap.set({ "v" }, "<leader>cy", function()
   -- do nothing unless we are in visual line mode
   local mode = vim.api.nvim_get_mode().mode
   if mode ~= "V" then
-    vim.notify("Visual line mode required", vim.log.levels.ERROR)
-    return
+    vim.cmd("normal V")
   end
 
   local current_column = vim.fn.virtcol(".")
