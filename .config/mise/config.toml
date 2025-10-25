@@ -20,7 +20,7 @@ settings.cargo.binstall = true
 "ubi:sharkdp/bat" = "0.26.0"
 "ubi:sharkdp/fd" = "10.3.0"
 "ubi:sharkdp/hyperfine" = "1.19.0"
-"ubi:starship/starship" = "1.23.0"
+"ubi:starship/starship" = "1.24.0"
 "ubi:tree-sitter/tree-sitter" = "0.25.10"
 "ubi:watchexec/watchexec" = "2.3.2"
 
