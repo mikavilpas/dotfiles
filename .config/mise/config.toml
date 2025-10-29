@@ -29,9 +29,14 @@ jq = "1.8.1"
 actionlint = "1.7.8"
 dotenv-linter = "4.0.0"
 ubi = "0.8.1"
-yq = "4.48.1"
 "aqua:fish-shell/fish-shell" = "4.1.2"
 
+[tools.yq]
+version = "4.48.1"
+postinstall = """
+mkdir -p ~/.config/fish/completions
+mise exec -- yq completion fish > ~/.config/fish/completions/yq.fish
+"""
 
 [tools."ubi:ducaale/xh"]
 version = "0.25.0"
