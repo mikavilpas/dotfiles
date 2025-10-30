@@ -33,11 +33,24 @@ jobs:
         run: cargo build --workspace --verbose
         working-directory: scripts
 
-      - uses: taiki-e/install-action@41ef8c65f4034ff24ab1cc2cef52f3000bcf9523 # v2
-        # https://nexte.st/docs/installation/pre-built-binaries/
-        name: Install cargo-nextest
-        with:
-          tool: cargo-nextest
+      - name: Install tools with UBI
+        shell: bash
+        run: |
+          mkdir -p "$HOME/.local/bin"
+          # make the tools available for subsequent steps
+          echo "$(pwd)/bin" >> "$GITHUB_PATH"
+          curl --silent --location \
+              https://raw.githubusercontent.com/houseabsolute/ubi/master/bootstrap/bootstrap-ubi.sh |
+              TARGET="$HOME/.local/bin" sh
+
+          ubi --project mikefarah/yq
+
+          VERSION=$(yq '.tools."aqua:nextest-rs/nextest/cargo-nextest"' .config/mise/config.toml)
+          ubi --project nextest-rs/nextest --exe cargo-nextest --tag "cargo-nextest-$VERSION"
+
+          ls -alR bin
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Test
         run: cargo nextest run --workspace --verbose --all-features
