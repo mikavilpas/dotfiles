@@ -65,7 +65,7 @@ jobs:
               https://raw.githubusercontent.com/houseabsolute/ubi/master/bootstrap/bootstrap-ubi.sh |
               TARGET="$HOME/.local/bin" sh
 
-          VERSION=$(yq '.tools.yq' .config/mise/config.toml)
+          VERSION=$(yq '.tools.yq.version' .config/mise/config.toml)
           ubi --project mikefarah/yq --tag "v$VERSION"
 
           VERSION=$(yq '.tools."ubi:dandavison/delta"' .config/mise/config.toml)
