@@ -6,6 +6,7 @@ return {
     opts = {
       ---@type table<string, vim.lsp.Config>
       servers = {
+        oxlint = {}, -- enable
         eslint = {
           settings = {
             -- Fix https://github.com/un-ts/eslint-plugin-import-x starting
