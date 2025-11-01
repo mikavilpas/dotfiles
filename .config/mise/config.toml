@@ -6,7 +6,7 @@ settings.cargo.binstall = true
 
 "cargo:eza" = "0.23.3"
 "ubi:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
-"ubi:JohnnyMorganz/stylua" = "2.3.0"
+"ubi:JohnnyMorganz/stylua" = "2.3.1"
 "ubi:aaronriekenberg/rust-parallel" = "1.18.1"
 "ubi:ajeetdsouza/zoxide" = "0.9.8"
 "ubi:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
