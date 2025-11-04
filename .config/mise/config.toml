@@ -14,7 +14,7 @@ settings.cargo.binstall = true
 "ubi:cargo-bins/cargo-binstall" = "1.15.10"
 "ubi:chmln/sd" = "1.0.0"
 "ubi:dandavison/delta" = "0.18.2"
-"ubi:gitlab-org/cli" = { version = "1.75.0", provider = "gitlab", exe = "glab" }
+"ubi:gitlab-org/cli" = { version = "1.76.1", provider = "gitlab", exe = "glab" }
 "ubi:jesseduffield/lazydocker" = "0.24.1"
 "ubi:junegunn/fzf" = "0.66.1"
 "ubi:sharkdp/bat" = "0.26.0"
@@ -24,7 +24,7 @@ settings.cargo.binstall = true
 "ubi:tree-sitter/tree-sitter" = "0.25.10"
 "ubi:watchexec/watchexec" = "2.3.2"
 
-github-cli = "2.82.1"
+github-cli = "2.83.0"
 jq = "1.8.1"
 actionlint = "1.7.8"
 dotenv-linter = "4.0.0"
