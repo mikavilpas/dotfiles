@@ -24,12 +24,18 @@ settings.cargo.binstall = true
 "ubi:tree-sitter/tree-sitter" = "0.25.10"
 "ubi:watchexec/watchexec" = "2.3.2"
 
-github-cli = "2.83.0"
 jq = "1.8.1"
 actionlint = "1.7.8"
 dotenv-linter = "4.0.0"
 ubi = "0.8.1"
 "aqua:fish-shell/fish-shell" = "4.1.2"
+
+[tools.github-cli]
+version = "2.83.0"
+postinstall = """
+mkdir -p ~/.config/fish/completions
+mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
+"""
 
 [tools.yq]
 version = "4.48.1"
