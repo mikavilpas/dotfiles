@@ -5,6 +5,7 @@
   "advanced-git-search.nvim": { "branch": "main", "commit": "e6d0fa39c7b058b4f3019912c3e26f854c4e36af" },
   "blink-ripgrep.nvim": { "branch": "main", "commit": "7186af99b582dfac86ec4a39a51c0be8508b1bb8" },
   "blink.cmp": { "branch": "main", "commit": "40380e711b616a28affb0f4086a2f7de2f2a556b" },
+  "blink.indent": { "branch": "main", "commit": "6455b045d1ac55594dbaceecd1ea3ae31fcd1c0a" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
   "busted-types": { "branch": "main", "commit": "5ed85d0e016a5eb5eca097aa52905eedf1b180f1" },
   "catppuccin": { "branch": "main", "commit": "234fc048de931a0e42ebcad675bf6559d75e23df" },
