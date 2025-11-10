@@ -90,7 +90,7 @@ return {
             CopilotSuggestion = { fg = colors.surface2, bg = colors.none },
             SnacksPickerPickWin = { bg = colors.peach, fg = "#000000" },
             BlinkCmpGhostText = { fg = colors.rosewater, bg = colors.none },
-            MyIndentScope = { fg = colors.text },
+            MyIndentScope = { fg = colors.overlay1 },
           }
         end,
       },

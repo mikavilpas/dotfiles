@@ -42,10 +42,9 @@ return {
     --- @module 'blink.indent'
     --- @type blink.indent.Config
     opts = {
-      static = {
-        highlights = { "MyIndent" },
-      },
+      static = { enabled = false },
       scope = {
+        char = "▏",
         highlights = { "MyIndentScope" },
       },
     },
