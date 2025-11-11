@@ -17,13 +17,13 @@
     "eslint": "9.39.1",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-no-only-tests": "3.3.0",
-    "eslint-plugin-oxlint": "1.26.0",
-    "oxlint": "1.27.0",
+    "eslint-plugin-oxlint": "1.28.0",
+    "oxlint": "1.28.0",
     "oxlint-tsgolint": "0.5.1",
     "prettier": "3.6.2",
     "prettier-plugin-organize-imports": "4.3.0",
     "prettier-plugin-packagejson": "2.5.19",
-    "typescript-eslint": "8.46.3"
+    "typescript-eslint": "8.46.4"
   },
   "packageManager": "pnpm@10.21.0+sha512.da3337267e400fdd3d479a6c68079ac6db01d8ca4f67572083e722775a796788a7a9956613749e000fac20d424b594f7a791a5f4e2e13581c5ef947f26968a40",
   "pnpm": {
