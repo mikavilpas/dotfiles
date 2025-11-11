@@ -50,6 +50,8 @@ return {
       mappings = {
         object_scope = "",
         object_scope_with_border = "",
+        goto_top = "ö",
+        goto_bottom = "ä",
       },
     },
   },
