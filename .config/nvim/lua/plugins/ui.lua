@@ -47,6 +47,10 @@ return {
         char = "▏",
         highlights = { "MyIndentScope" },
       },
+      mappings = {
+        object_scope = "",
+        object_scope_with_border = "",
+      },
     },
   },
 
