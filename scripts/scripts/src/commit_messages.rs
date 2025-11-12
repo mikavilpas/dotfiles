@@ -23,7 +23,7 @@ pub fn get_commit_messages_between_commits(
             break;
         }
         let commit = repo.find_commit(commit.id)?;
-        commit_as_markdown(&mut result_lines, &commit)?;
+        commit_as_markdown(&mut result_lines, &commit);
         result_lines.push("".to_string()); // Add an empty line between commits
     }
 
@@ -87,17 +87,14 @@ pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
         let commit = repo
             .find_commit(commit.id)
             .with_context(|| format!("failed to find the commit {}", commit.id))?;
-        commit_as_markdown(&mut results, &commit)?;
+        commit_as_markdown(&mut results, &commit);
         results.push("".to_string()); // Add an empty line between commits
     }
 
     Ok(results)
 }
 
-fn commit_as_markdown(
-    result_lines: &mut Vec<String>,
-    commit: &Commit<'_>,
-) -> Result<(), gix::object::commit::Error> {
+fn commit_as_markdown(result_lines: &mut Vec<String>, commit: &Commit<'_>) {
     let message = commit.message_raw_sloppy().to_string();
     let mut lines = message.lines();
     if let Some(first_line) = lines.next() {
@@ -107,8 +104,6 @@ fn commit_as_markdown(
             result_lines.push(line.to_string());
         });
     }
-
-    Ok(())
 }
 
 pub fn format_patch_with_instructions(repo: &Repository, commit_or_range: &str) -> Result<String> {
@@ -120,14 +115,14 @@ pub fn format_patch_with_instructions(repo: &Repository, commit_or_range: &str) 
 
     let output = match result.output() {
         Err(e) => {
-            bail!("failed to run git show: {}", e);
+            bail!("failed to run git show: {e}");
         }
         Ok(output) => {
             if !output.status.success() {
                 bail!("git show failed with status: {}", output.status);
             }
             String::from_utf8(output.stdout)
-                .map_err(|e| anyhow::anyhow!("failed to convert output to string: {}", e))?
+                .map_err(|e| anyhow::anyhow!("failed to convert output to string: {e}"))?
         }
     };
 

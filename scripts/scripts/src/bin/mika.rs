@@ -45,7 +45,7 @@ pub fn main() {
                 .unwrap_or_else(|e| panic!("failed to format patch: {e}"));
 
             if with_instructions {
-                [
+                for line in [
                     "",
                     "<details><summary>Click to expand</summary>",
                     "",
@@ -56,11 +56,9 @@ pub fn main() {
                     "```",
                     "",
                     "</details>",
-                ]
-                .iter()
-                .for_each(|line| {
+                ] {
                     println!("{line}");
-                });
+                }
             } else {
                 println!("{lines}");
             }
