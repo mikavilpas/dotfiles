@@ -1,10 +1,7 @@
-use std::{
-    collections::HashSet,
-    process::{self, Stdio},
-};
-
 use anyhow::{Context, Result, bail};
 use gix::{Commit, Repository};
+use std::process::{self, Stdio};
+mod stack_branch;
 
 pub fn get_commit_messages_between_commits(
     repo: &Repository,
@@ -56,33 +53,8 @@ pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
     repo: &Repository,
     branch: S,
 ) -> anyhow::Result<Vec<String>, anyhow::Error> {
-    let start_commit = repo
-        .try_find_reference(&format!("refs/heads/{branch}"))
-        .with_context(|| format!("Failed to find reference for branch '{branch}'"))?
-        .expect("Failed to get reference")
-        .peel_to_commit()
-        .with_context(|| format!("failed to peel_to_commit branch {branch}"))?;
-
-    let branch_heads: HashSet<_> = repo
-        .references()
-        .context("failed to get references")?
-        .local_branches()
-        .context("failed to get local branches")?
-        .try_fold(HashSet::new(), |mut set, branch_ref| -> anyhow::Result<_> {
-            let branch = branch_ref.expect("Failed to get branch reference");
-            let commit = repo
-                .find_commit(branch.id())
-                .with_context(|| format!("failed to find commit for branch {}", branch.id()))?;
-            if commit.id != start_commit.id() {
-                set.insert(commit.id);
-            }
-
-            Ok(set)
-        })?;
-
     let mut results = Vec::new();
-
-    let mut revwalk = start_commit.ancestors().with_boundary(branch_heads).all()?;
+    let mut revwalk = stack_branch::stack_branch_iterator(repo, branch)?;
     while let Some(commit) = revwalk.next().transpose()? {
         let commit = repo
             .find_commit(commit.id)
