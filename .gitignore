@@ -26,3 +26,4 @@ scripts/test_utils/target
 scripts/scripts/test_utils/target
 .mise.local.toml
 .oxlintrc.json.bak
+integration-tests/cypress/screenshots/
