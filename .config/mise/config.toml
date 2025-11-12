@@ -4,6 +4,7 @@ settings.cargo.binstall = true
 # https://docs.renovatebot.com/modules/manager/mise/
 [tools]
 
+"cargo:bacon" = "3.19.0"
 "cargo:eza" = "0.23.3"
 "ubi:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
 "ubi:JohnnyMorganz/stylua" = "2.3.1"
