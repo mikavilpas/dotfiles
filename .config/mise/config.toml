@@ -29,10 +29,10 @@ jq = "1.8.1"
 actionlint = "1.7.8"
 dotenv-linter = "4.0.0"
 ubi = "0.8.1"
-"aqua:fish-shell/fish-shell" = "4.2.0"
+"aqua:fish-shell/fish-shell" = "4.2.1"
 
 [tools.github-cli]
-version = "2.83.0"
+version = "2.83.1"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
