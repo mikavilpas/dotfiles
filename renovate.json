@@ -1,12 +1,26 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "automerge": true,
-  "extends": ["config:best-practices", "group:allNonMajor"],
+  "extends": [
+    "config:best-practices",
+    "group:allNonMajor",
+    "github>Turbo87/renovate-config//rust/updateToolchain"
+  ],
   "commitBodyTable": true,
   "packageRules": [
     {
       "matchPackageNames": ["gitlab-org/cli"],
       "overrideDatasource": "gitlab-releases"
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "datasourceTemplate": "github-releases",
+      "managerFilePatterns": [".github/workflows/*.yml"],
+      "matchStrings": [
+        "#\\s*renovate:\\s*datasource=github-releases\\s+depName=(?<depName>\\S+)\\s*[\\r\\n]+[^:]+:\\s*(?<currentValue>\\S+)"
+      ]
     }
   ]
 }

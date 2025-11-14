@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use assert_cmd::Command;
+use assert_cmd::cargo;
 use scripts::commit_messages::get_commit_messages_on_current_branch;
 use test_utils::common::TestRepoBuilder;
 
@@ -11,7 +11,7 @@ fn test_summary() -> Result<(), Box<dyn std::error::Error>> {
     repo.commit("feat: commit 0")?;
     repo.commit("feat: commit 1")?;
 
-    let mut cmd = Command::cargo_bin("mika")?;
+    let mut cmd = cargo::cargo_bin_cmd!("mika");
     let assert = cmd
         .current_dir(repo.path())
         .args(["summary", "--from", "HEAD", "--to", "HEAD~2"])
@@ -53,7 +53,7 @@ fn test_branch_summary() -> Result<(), Box<dyn std::error::Error>> {
     )?;
     context.commit("feat: feature commit 3")?;
 
-    let mut cmd = Command::cargo_bin("mika")?;
+    let mut cmd = cargo::cargo_bin_cmd!("mika");
     let assert = cmd
         .current_dir(context.path())
         .args(["branch-summary", "--branch", "feature"])
@@ -157,7 +157,7 @@ fn test_format_patch_with_instructions() -> Result<(), Box<dyn std::error::Error
     context.commit("docs: add readme")?;
 
     // act
-    let mut cmd = Command::cargo_bin("mika")?;
+    let mut cmd = cargo::cargo_bin_cmd!("mika");
     let assert = cmd
         .current_dir(context.repo.path())
         .args(["share-patch", "--commit", "HEAD"])

@@ -161,6 +161,19 @@ vim.keymap.set({ "n" }, "<leader>cy", function()
   require("my-nvim-micro-plugins.main").comment_line()
 end, { desc = "Comment line", silent = true })
 
+vim.keymap.set({ "v" }, "<f8>", function()
+  local current_line = vim.fn.line(".")
+  local current_column = vim.fn.virtcol(".")
+
+  vim.cmd("'<,'>sort")
+  -- exit visual mode
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, true, true), "n", true)
+
+  -- restore cursor position
+  vim.cmd("normal! " .. current_line .. "G")
+  vim.cmd("normal! " .. current_column .. "|")
+end, { desc = ":sort", silent = true })
+
 vim.keymap.set({ "v" }, "<leader>cy", function()
   -- do nothing unless we are in visual line mode
   local mode = vim.api.nvim_get_mode().mode

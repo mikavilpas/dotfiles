@@ -1,10 +1,12 @@
+// @ts-check
+import eslint from "@eslint/js"
 import eslintConfigPrettier from "eslint-config-prettier"
 import noOnlyTests from "eslint-plugin-no-only-tests"
-
-import eslint from "@eslint/js"
+import oxlint from "eslint-plugin-oxlint"
+import { defineConfig } from "eslint/config"
 import tseslint from "typescript-eslint"
 
-export default tseslint.config(
+export default defineConfig(
   {
     ignores: [
       "**/vite.config.js",
@@ -89,6 +91,7 @@ export default tseslint.config(
     },
   },
 
+  ...oxlint.configs["flat/recommended"], // oxlint should be the last one
   // should be the last item
   eslintConfigPrettier,
 )

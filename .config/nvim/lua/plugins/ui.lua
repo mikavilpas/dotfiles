@@ -36,6 +36,26 @@ return {
     "stevearc/dressing.nvim",
     opts = { input = { insert_only = false } },
   },
+
+  {
+    "https://github.com/saghen/blink.indent",
+    --- @module 'blink.indent'
+    --- @type blink.indent.Config
+    opts = {
+      static = { enabled = false },
+      scope = {
+        char = "▏",
+        highlights = { "MyIndentScope" },
+      },
+      mappings = {
+        object_scope = "",
+        object_scope_with_border = "",
+        goto_top = "ö",
+        goto_bottom = "ä",
+      },
+    },
+  },
+
   {
     -- 🍿 A collection of small QoL plugins for Neovim
     -- https://github.com/folke/snacks.nvim
@@ -64,7 +84,11 @@ return {
     ---@type snacks.Config | {}
     opts = {
       scope = {
-        edge = false,
+        enabled = false,
+        -- edge = false,
+      },
+      indent = {
+        enabled = false,
       },
       notifier = {
         -- position notifications at the bottom, rather than at the top

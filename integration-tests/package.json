@@ -5,28 +5,27 @@
   "type": "module",
   "scripts": {
     "cy:run": "concurrently --success command-cypress --kill-others --names 'app,cypress' --prefix-colors 'blue,yellow' 'pnpm tui start'  'wait-on --timeout 60000 http://127.0.0.1:3000 && npx cypress run'",
-    "dev": "concurrently --kill-others --names 'app,cypress' --prefix-colors 'blue,yellow' 'pnpm tui start'  'pnpm cypress open --e2e --browser=electron'",
-    "eslint": "eslint --max-warnings=0 ."
+    "dev": "concurrently --kill-others --names 'app,cypress' --prefix-colors 'blue,yellow' 'pnpm tui start'  'pnpm cypress open --e2e --browser=electron'"
   },
   "dependencies": {
     "@catppuccin/palette": "1.7.1",
-    "cypress": "15.3.0",
-    "wait-on": "9.0.1"
+    "cypress": "15.6.0",
+    "wait-on": "9.0.3"
   },
   "devDependencies": {
-    "@eslint/js": "9.37.0",
-    "@tui-sandbox/library": "11.8.6",
-    "@types/node": "24.7.0",
+    "@eslint/js": "9.39.1",
+    "@tui-sandbox/library": "11.11.0",
+    "@types/node": "24.10.1",
     "@types/tinycolor2": "1.4.6",
     "assert": "2.1.0",
     "concurrently": "9.2.1",
-    "eslint": "9.37.0",
+    "eslint": "9.39.1",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-no-only-tests": "3.3.0",
     "tinycolor2": "1.6.0",
-    "type-fest": "5.0.1",
+    "type-fest": "5.2.0",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.46.0",
+    "typescript-eslint": "8.46.4",
     "zod": "4.1.12"
   }
 }

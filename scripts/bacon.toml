@@ -30,6 +30,10 @@ command = ["cargo", "build", "--release"]
 command = ["cargo", "clippy"]
 need_stdout = false
 
+[jobs.pedantic]
+command = ["cargo", "clippy", "--", "-W", "clippy::pedantic"]
+need_stdout = false
+
 # Run clippy on all targets
 # To disable some lints, you may change the job this way:
 #    [jobs.clippy-all]

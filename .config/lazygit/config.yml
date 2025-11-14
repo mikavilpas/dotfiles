@@ -53,18 +53,15 @@ customCommands:
           {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
         context: commits, subCommits
         description: "Copy selected commits to clipboard"
-
       - key: v
         command: "pbpaste | git am"
         context: "commits"
         description: "Paste selected commits from clipboard"
-
       - key: s
         command:
           "mika share-patch --with-instructions --commit
           {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
         description: "Share selected commits as a patch with instructions"
-
       - key: u
         description: "Update merge request description"
         context: localBranches
@@ -80,7 +77,6 @@ customCommands:
           echo ""
           echo "Press any key to exit."
           read
-
       - key: g
         description: "Update pull request body"
         context: localBranches
@@ -96,7 +92,6 @@ customCommands:
           echo ""
           echo "Press any key to exit."
           read
-
 keybinding:
   universal:
     edit: e
@@ -159,11 +154,10 @@ gui:
     "Mika Vilpas": "#8aadf4"
 git:
   parseEmoji: true
-  paging:
-    colorArg: always
-    pager: delta --paging=never
+  pagers:
+    - colorArg: always
+      pager: delta --paging=never
   ignoreWhitespaceInDiffView: true
-
 # useful for e2e tests. They don't have a separate configuration right now, so
 # this needs to be specified here.
 disableStartupPopups: true

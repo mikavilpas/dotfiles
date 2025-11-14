@@ -8,16 +8,16 @@
 
   # disable using git hooks completely.
   # - sometimes other developers add hooks that are slow. Sometimes it's me.
-  # - some implementations of git hooks do not work at all when legacy projects
+  # - some implementations of git hooks do not work at all in legacy projects
   #   when hooks are included from submodules or parent repositories
   # - some hook implementations don't work at all when rebasing
   # - git gui/tui wrappers don't make it clear when hooks are running
   # - I like creating many commits quickly and squashing them later. Hooks
   #   prevent this workflow.
-  # - good projects should put important checks in CI pipelines/tests anyway,
-  #   so the benefit is questionable
   # - many hooks can also be disabled with the `--no-verify` flag, so they are
   #   not a reliable way to enforce checks
+  # - good projects should put important checks in CI pipelines/tests anyway,
+  #   so the benefit is questionable
   hooksPath = /dev/null
 
 [diff]
@@ -30,12 +30,14 @@
   path = ~/dotfiles/.config/delta/catppuccin-delta/catppuccin.gitconfig
 
 [delta]
+  ; https://github.com/dandavison/delta
   features = decorations
   features = catppuccin-macchiato
   tabs = 4
   side-by-side = true
   line-numbers-left-format = ""
   line-numbers-right-format = "│ "
+  hyperlinks = true
 
 [delta "interactive"]
   keep-plus-minus-markers = false

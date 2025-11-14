@@ -23,7 +23,7 @@ return {
     --
     "neovim/nvim-lspconfig",
 
-    opts = function(self, opts)
+    opts = function(_, opts)
       -- configure keymaps here
       -- https://www.lazyvim.org/plugins/lsp#%EF%B8%8F-customizing-lsp-keymaps
       -- local keys = require("lazyvim.plugins.lsp.keymaps").get()
@@ -33,49 +33,10 @@ return {
       -- keys[#keys + 1] = { "K", false }
       -- -- add a keymap
       -- keys[#keys + 1] = { "H", "<cmd>echo 'hello'<cr>" }
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-
-      keys[#keys + 1] = {
-        -- make sure that goto definition and other lsp actions use the same split
-        -- https://stackoverflow.com/questions/78842602/go-to-definition-in-current-window-if-split-windows-for-the-same-buffer#comment139062034_78842602
-        -- https://www.lazyvim.org/extras/editor/fzf#nvim-lspconfig
-        "gd",
-        function()
-          -- disable reuse_win to prevent the window from being reused
-          require("telescope.builtin").lsp_definitions({ reuse_win = false })
-        end,
-      }
 
       opts = opts or {}
       opts.inlay_hints = { enabled = false }
       return opts
-    end,
-  },
-
-  {
-    -- Efficiency plugin designed to optimize code actions in Neovim
-    -- https://github.com/Chaitanyabsprip/fastaction.nvim
-    "Chaitanyabsprip/fastaction.nvim",
-    event = "LspAttach",
-    ---@type FastActionConfig
-    opts = {},
-    config = function(_, opts)
-      require("fastaction").setup(opts)
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      keys[#keys + 1] = {
-        "<leader>ca",
-        function()
-          require("fastaction").code_action()
-        end,
-        mode = { "n" },
-      }
-      keys[#keys + 1] = {
-        "<leader>ca",
-        function()
-          require("fastaction").code_action()
-        end,
-        mode = { "v" },
-      }
     end,
   },
 }

@@ -1,10 +1,11 @@
-use std::{
-    collections::HashSet,
-    process::{self, Stdio},
-};
-
 use anyhow::{Context, Result, bail};
-use gix::{Commit, Repository};
+use gix::Commit;
+use gix::Repository;
+use std::process::{self, Stdio};
+
+use crate::commit_messages::my_commit::MyCommit;
+mod my_commit;
+mod stack_branch;
 
 pub fn get_commit_messages_between_commits(
     repo: &Repository,
@@ -23,7 +24,8 @@ pub fn get_commit_messages_between_commits(
             break;
         }
         let commit = repo.find_commit(commit.id)?;
-        commit_as_markdown(&mut result_lines, &commit)?;
+        let commit = create_commit(&commit)?;
+        commit_as_markdown(&mut result_lines, commit);
         result_lines.push("".to_string()); // Add an empty line between commits
     }
 
@@ -55,60 +57,47 @@ pub fn get_current_branch_name(repo: &Repository) -> anyhow::Result<String> {
 pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
     repo: &Repository,
     branch: S,
-) -> anyhow::Result<Vec<String>> {
-    let start_commit = repo
-        .try_find_reference(&format!("refs/heads/{branch}"))
-        .with_context(|| format!("Failed to find reference for branch '{branch}'"))?
-        .expect("Failed to get reference")
-        .peel_to_commit()
-        .with_context(|| format!("failed to peel_to_commit branch {branch}"))?;
-
-    let branch_heads: HashSet<_> = repo
-        .references()
-        .context("failed to get references")?
-        .local_branches()
-        .context("failed to get local branches")?
-        .try_fold(HashSet::new(), |mut set, branch_ref| -> anyhow::Result<_> {
-            let branch = branch_ref.expect("Failed to get branch reference");
-            let commit = repo
-                .find_commit(branch.id())
-                .with_context(|| format!("failed to find commit for branch {}", branch.id()))?;
-            if commit.id != start_commit.id() {
-                set.insert(commit.id);
-            }
-
-            Ok(set)
-        })?;
-
+) -> anyhow::Result<Vec<String>, anyhow::Error> {
     let mut results = Vec::new();
-
-    let mut revwalk = start_commit.ancestors().with_boundary(branch_heads).all()?;
+    let mut revwalk = stack_branch::stack_branch_iterator(repo, branch)?.peekable();
     while let Some(commit) = revwalk.next().transpose()? {
         let commit = repo
             .find_commit(commit.id)
             .with_context(|| format!("failed to find the commit {}", commit.id))?;
-        commit_as_markdown(&mut results, &commit)?;
-        results.push("".to_string()); // Add an empty line between commits
-    }
+        let commit = create_commit(&commit)?;
 
+        commit_as_markdown(&mut results, commit);
+
+        if revwalk.peek().is_some() {
+            results.push("".to_string()); // Add an empty line between commits
+        }
+    }
+    results.push("".to_string());
     Ok(results)
 }
 
-fn commit_as_markdown(
-    result_lines: &mut Vec<String>,
-    commit: &Commit<'_>,
-) -> Result<(), gix::object::commit::Error> {
+fn create_commit(commit: &Commit<'_>) -> anyhow::Result<MyCommit> {
     let message = commit.message_raw_sloppy().to_string();
     let mut lines = message.lines();
-    if let Some(first_line) = lines.next() {
-        result_lines.push(format!("# {first_line}"));
+    let first_line = lines
+        .next()
+        .ok_or_else(|| anyhow::anyhow!("commit message is empty"))?;
+    let body = lines
+        .skip_while(|l| l.trim().is_empty())
+        .collect::<Vec<&str>>()
+        .join("\n");
+    Ok(MyCommit::new(first_line.to_string(), body))
+}
 
-        lines.for_each(|line| {
+fn commit_as_markdown(result_lines: &mut Vec<String>, commit: MyCommit) {
+    result_lines.push(format!("# {}", commit.subject));
+
+    if let Some(body) = &commit.body {
+        result_lines.push("".to_string());
+        body.split("\n").for_each(|line| {
             result_lines.push(line.to_string());
         });
     }
-
-    Ok(())
 }
 
 pub fn format_patch_with_instructions(repo: &Repository, commit_or_range: &str) -> Result<String> {
@@ -120,14 +109,14 @@ pub fn format_patch_with_instructions(repo: &Repository, commit_or_range: &str) 
 
     let output = match result.output() {
         Err(e) => {
-            bail!("failed to run git show: {}", e);
+            bail!("failed to run git show: {e}");
         }
         Ok(output) => {
             if !output.status.success() {
                 bail!("git show failed with status: {}", output.status);
             }
             String::from_utf8(output.stdout)
-                .map_err(|e| anyhow::anyhow!("failed to convert output to string: {}", e))?
+                .map_err(|e| anyhow::anyhow!("failed to convert output to string: {e}"))?
         }
     };
 

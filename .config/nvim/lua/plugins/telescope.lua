@@ -2,12 +2,14 @@
 ---@type LazySpec
 return {
   {
+    "nvim-lua/plenary.nvim",
+    lazy = true,
+  },
+  {
     "nvim-telescope/telescope.nvim",
     -- right now, only use this to support plugins that depend on telescope
     lazy = true,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
+    dependencies = {},
     opts = {
       defaults = {
         layout_strategy = "horizontal",
@@ -40,6 +42,7 @@ return {
   {
     -- https://github.com/AckslD/nvim-neoclip.lua
     "AckslD/nvim-neoclip.lua",
+    lazy = true,
     dependencies = { "kkharji/sqlite.lua" },
     event = "BufReadPost",
     keys = {
@@ -48,6 +51,7 @@ return {
         "<leader>p",
         function()
           --
+          require("telescope").load_extension("neoclip")
           require("telescope").extensions.neoclip.default({})
         end,
         { desc = "Paste with telescope (neoclip)" },
@@ -57,9 +61,5 @@ return {
       default_register = { "+" },
       enable_persistent_history = true,
     },
-    config = function(_, opts)
-      require("neoclip").setup(opts)
-      require("telescope").load_extension("neoclip")
-    end,
   },
 }

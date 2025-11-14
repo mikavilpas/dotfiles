@@ -4,31 +4,46 @@ settings.cargo.binstall = true
 # https://docs.renovatebot.com/modules/manager/mise/
 [tools]
 
+"cargo:bacon" = "3.19.0"
 "cargo:eza" = "0.23.3"
-"ubi:BurntSushi/ripgrep" = { version = "14.1.1", exe = "rg" }
-"ubi:JohnnyMorganz/stylua" = "2.3.0"
+"ubi:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
+"ubi:JohnnyMorganz/stylua" = "2.3.1"
 "ubi:aaronriekenberg/rust-parallel" = "1.18.1"
 "ubi:ajeetdsouza/zoxide" = "0.9.8"
 "ubi:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
-"ubi:atuinsh/atuin" = { version = "18.8.0", matching_regex = ".tar.gz$" }
-"ubi:cargo-bins/cargo-binstall" = "1.15.6"
+"ubi:atuinsh/atuin" = { version = "18.10.0", matching_regex = ".tar.gz$" }
+"ubi:cargo-bins/cargo-binstall" = "1.15.11"
 "ubi:chmln/sd" = "1.0.0"
 "ubi:dandavison/delta" = "0.18.2"
-"ubi:gitlab-org/cli" = { version = "1.73.0", provider = "gitlab", exe = "glab" }
+"ubi:gitlab-org/cli" = { version = "1.77.0", provider = "gitlab", exe = "glab" }
 "ubi:jesseduffield/lazydocker" = "0.24.1"
-"ubi:junegunn/fzf" = "0.65.2"
-"ubi:sharkdp/bat" = "0.25.0"
+"ubi:junegunn/fzf" = "0.66.1"
+"ubi:sharkdp/bat" = "0.26.0"
 "ubi:sharkdp/fd" = "10.3.0"
 "ubi:sharkdp/hyperfine" = "1.19.0"
-"ubi:starship/starship" = "1.23.0"
+"ubi:starship/starship" = "1.24.0"
 "ubi:tree-sitter/tree-sitter" = "0.25.10"
 "ubi:watchexec/watchexec" = "2.3.2"
 
-github-cli = "2.81.0"
 jq = "1.8.1"
-actionlint = "1.7.7"
-dotenv-linter = "3.3.0"
+actionlint = "1.7.8"
+dotenv-linter = "4.0.0"
+ubi = "0.8.1"
+"aqua:fish-shell/fish-shell" = "4.2.1"
 
+[tools.github-cli]
+version = "2.83.1"
+postinstall = """
+mkdir -p ~/.config/fish/completions
+mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
+"""
+
+[tools.yq]
+version = "4.48.1"
+postinstall = """
+mkdir -p ~/.config/fish/completions
+mise exec -- yq completion fish > ~/.config/fish/completions/yq.fish
+"""
 
 [tools."ubi:ducaale/xh"]
 version = "0.25.0"
