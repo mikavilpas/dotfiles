@@ -3,8 +3,10 @@ use gix::Commit;
 use gix::Repository;
 use std::process::{self, Stdio};
 
+use crate::commit_messages::fixup_commits::commits_with_fixups_on_branch;
 use crate::commit_messages::my_commit::MyCommit;
-mod my_commit;
+pub mod fixup_commits;
+pub mod my_commit;
 mod stack_branch;
 
 pub fn get_commit_messages_between_commits(
@@ -25,7 +27,7 @@ pub fn get_commit_messages_between_commits(
         }
         let commit = repo.find_commit(commit.id)?;
         let commit = create_commit(&commit)?;
-        commit_as_markdown(&mut result_lines, commit);
+        commit_as_markdown(&mut result_lines, &commit);
         result_lines.push("".to_string()); // Add an empty line between commits
     }
 
@@ -59,19 +61,16 @@ pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
     branch: S,
 ) -> anyhow::Result<Vec<String>, anyhow::Error> {
     let mut results = Vec::new();
-    let mut revwalk = stack_branch::stack_branch_iterator(repo, branch)?.peekable();
-    while let Some(commit) = revwalk.next().transpose()? {
-        let commit = repo
-            .find_commit(commit.id)
-            .with_context(|| format!("failed to find the commit {}", commit.id))?;
-        let commit = create_commit(&commit)?;
-
+    let commits = commits_with_fixups_on_branch(repo, branch)?;
+    let mut commits_iter = commits.iter().rev().peekable();
+    while let Some(commit) = commits_iter.next() {
         commit_as_markdown(&mut results, commit);
 
-        if revwalk.peek().is_some() {
+        if commits_iter.peek().is_some() {
             results.push("".to_string()); // Add an empty line between commits
         }
     }
+
     results.push("".to_string());
     Ok(results)
 }
@@ -89,7 +88,7 @@ fn create_commit(commit: &Commit<'_>) -> anyhow::Result<MyCommit> {
     Ok(MyCommit::new(first_line.to_string(), body))
 }
 
-fn commit_as_markdown(result_lines: &mut Vec<String>, commit: MyCommit) {
+fn commit_as_markdown(result_lines: &mut Vec<String>, commit: &MyCommit) {
     result_lines.push(format!("# {}", commit.subject));
 
     if let Some(body) = &commit.body {
@@ -97,6 +96,24 @@ fn commit_as_markdown(result_lines: &mut Vec<String>, commit: MyCommit) {
         body.split("\n").for_each(|line| {
             result_lines.push(line.to_string());
         });
+    }
+
+    // render fixups
+    if !commit.fixups.is_empty() {
+        result_lines.push("".to_string());
+        result_lines.push("**Fixups:**".to_string());
+        for fixup in commit.fixups.iter() {
+            let mut fixup_lines = vec![];
+            commit_as_markdown(&mut fixup_lines, fixup);
+            if let Some(l) = fixup_lines.first() {
+                // make it into a list item
+                result_lines.push(format!("  - > {}", l));
+            }
+            for l in fixup_lines[1..].iter() {
+                // indent the rest
+                result_lines.push(format!("    > {}", l));
+            }
+        }
     }
 }
 
