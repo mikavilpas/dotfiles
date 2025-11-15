@@ -261,7 +261,10 @@ vim.keymap.set("n", "'", function()
       if found then
         return false
       end
-      local match = action.title:find("Update import") ~= nil or action.title:find("Add import") ~= nil
+      local match = action.title:find("Update import") ~= nil
+        or action.title:find("Add import") ~= nil
+        -- rust-analyzer import action
+        or action.title:find("Import `")
       local correct_kind = action.kind == "quickfix"
 
       local ok = match and correct_kind
