@@ -17,11 +17,11 @@ settings.cargo.binstall = true
 "ubi:dandavison/delta" = "0.18.2"
 "ubi:gitlab-org/cli" = { version = "1.77.0", provider = "gitlab", exe = "glab" }
 "ubi:jesseduffield/lazydocker" = "0.24.2"
-"ubi:junegunn/fzf" = "0.66.1"
+"ubi:junegunn/fzf" = "0.67.0"
 "ubi:sharkdp/bat" = "0.26.0"
 "ubi:sharkdp/fd" = "10.3.0"
 "ubi:sharkdp/hyperfine" = "1.19.0"
-"ubi:starship/starship" = "1.24.0"
+"ubi:starship/starship" = "1.24.1"
 "ubi:tree-sitter/tree-sitter" = "0.25.10"
 "ubi:watchexec/watchexec" = "2.3.2"
 
