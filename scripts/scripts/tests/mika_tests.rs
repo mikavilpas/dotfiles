@@ -1,7 +1,10 @@
-use std::path::Path;
-
 use assert_cmd::cargo;
-use scripts::commit_messages::get_commit_messages_on_current_branch;
+use pretty_assertions::assert_eq;
+use scripts::commit_messages::{
+    fixup_commits::commits_with_fixups_on_branch, get_commit_messages_on_current_branch,
+    my_commit::MyCommit,
+};
+use std::path::Path;
 use test_utils::common::TestRepoBuilder;
 
 #[test]
@@ -52,6 +55,16 @@ fn test_branch_summary() -> Result<(), Box<dyn std::error::Error>> {
         .to_string(),
     )?;
     context.commit("feat: feature commit 3")?;
+    context.commit("fixup! feat: feature commit 1")?;
+    context.commit(
+        &[
+            "fixup! feat: feature commit 1",
+            "",
+            "Address a review comment suggesting a refactoring.",
+        ]
+        .join("\n")
+        .to_string(),
+    )?;
 
     let mut cmd = cargo::cargo_bin_cmd!("mika");
     let assert = cmd
@@ -59,7 +72,11 @@ fn test_branch_summary() -> Result<(), Box<dyn std::error::Error>> {
         .args(["branch-summary", "--branch", "feature"])
         .assert();
 
-    assert.success().stdout(
+    // convert to a vec of strings
+    let stdout = String::from_utf8(assert.get_output().stdout.clone())
+        .expect("failed to convert stdout to string");
+    assert_eq!(
+        stdout,
         [
             "# feat: feature commit 3",
             "",
@@ -68,6 +85,12 @@ fn test_branch_summary() -> Result<(), Box<dyn std::error::Error>> {
             "This commit is on the feature branch.",
             "",
             "# feat: feature commit 1",
+            "",
+            "**Fixups:**",
+            "  - > # fixup! feat: feature commit 1",
+            "    > ",
+            "    > Address a review comment suggesting a refactoring.",
+            "  - > # fixup! feat: feature commit 1",
             "",
             "",
         ]
@@ -177,6 +200,84 @@ fn test_format_patch_with_instructions() -> Result<(), Box<dyn std::error::Error
     assert!(
         readme_path.exists(),
         "README.md should exist after applying patch"
+    );
+
+    Ok(())
+}
+
+#[test]
+fn test_fixups_are_grouped_over_another_commit() -> Result<(), Box<dyn std::error::Error>> {
+    let repo = TestRepoBuilder::new()?;
+
+    repo.commit("feat: my-feature")?;
+    repo.commit("fixup! feat: my-feature")?;
+    repo.commit("feat: another-feature")?;
+    repo.commit("fixup! feat: my-feature")?;
+    repo.commit("fixup! feat: another-feature")?;
+
+    // act
+    let result = commits_with_fixups_on_branch(&repo.repo, "main")?;
+
+    // assert
+    assert_eq!(
+        result,
+        [
+            MyCommit {
+                subject: "feat: my-feature".to_string(),
+                body: None,
+                fixups: vec![
+                    MyCommit {
+                        subject: "fixup! feat: my-feature".to_string(),
+                        body: None,
+                        fixups: Vec::new(),
+                    },
+                    MyCommit {
+                        subject: "fixup! feat: my-feature".to_string(),
+                        body: None,
+                        fixups: Vec::new(),
+                    },
+                ],
+            },
+            MyCommit {
+                subject: "feat: another-feature".to_string(),
+                body: None,
+                fixups: vec![MyCommit {
+                    subject: "fixup! feat: another-feature".to_string(),
+                    body: None,
+                    fixups: Vec::new(),
+                },],
+            }
+        ]
+    );
+
+    Ok(())
+}
+
+#[test]
+fn test_fixups_are_grouped_and_orphans_are_kept() -> Result<(), Box<dyn std::error::Error>> {
+    let repo = TestRepoBuilder::new()?;
+
+    repo.commit("fixup! feat: my-feature")?;
+    repo.commit("feat: another-feature")?;
+
+    // act
+    let result = commits_with_fixups_on_branch(&repo.repo, "main")?;
+
+    // assert
+    assert_eq!(
+        result,
+        [
+            MyCommit {
+                subject: "fixup! feat: my-feature".to_string(),
+                body: None,
+                fixups: Vec::new(),
+            },
+            MyCommit {
+                subject: "feat: another-feature".to_string(),
+                body: None,
+                fixups: vec![],
+            }
+        ]
     );
 
     Ok(())

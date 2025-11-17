@@ -11,6 +11,7 @@ anyhow = { workspace = true }
 [dev-dependencies]
 test_utils = { path = "../test_utils" }
 assert_cmd = "=2.1.1"
+pretty_assertions = "1.4.1"
 
 [build-dependencies]
 clap = { version = "4.5.47", features = ["derive"] }
