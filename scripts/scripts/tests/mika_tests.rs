@@ -87,10 +87,10 @@ fn test_branch_summary() -> Result<(), Box<dyn std::error::Error>> {
             "# feat: feature commit 1",
             "",
             "**Fixups:**",
-            "  - > # fixup! feat: feature commit 1",
+            "  - > ### fixup! feat: feature commit 1",
             "    > ",
             "    > Address a review comment suggesting a refactoring.",
-            "  - > # fixup! feat: feature commit 1",
+            "  - > ### fixup! feat: feature commit 1",
             "",
             "",
         ]
