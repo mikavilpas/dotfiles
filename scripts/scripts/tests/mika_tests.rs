@@ -72,7 +72,6 @@ fn test_branch_summary() -> Result<(), Box<dyn std::error::Error>> {
         .args(["branch-summary", "--branch", "feature"])
         .assert();
 
-    // convert to a vec of strings
     let stdout = String::from_utf8(assert.get_output().stdout.clone())
         .expect("failed to convert stdout to string");
     assert_eq!(
