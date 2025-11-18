@@ -6,6 +6,7 @@ pub struct MyCommit {
 }
 
 impl MyCommit {
+    #[must_use]
     pub fn new(subject: String, body: String) -> Self {
         Self {
             subject,
@@ -14,10 +15,12 @@ impl MyCommit {
         }
     }
 
+    #[must_use]
     pub fn is_fixup(&self) -> bool {
         self.subject.starts_with("fixup! ")
     }
 
+    #[must_use]
     pub fn normalized_subject(&self) -> &str {
         self.subject.trim_start_matches("fixup! ").trim()
     }

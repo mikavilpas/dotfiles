@@ -1,4 +1,4 @@
-use anyhow::{Context, Result, bail};
+use anyhow::{bail, Context, Result};
 use gix::Commit;
 use gix::Repository;
 use std::process::{self, Stdio};

@@ -30,7 +30,7 @@ pub fn commits_with_fixups_on_branch<S: AsRef<str> + std::fmt::Display>(
                 None => {
                     // put the commit back if no base commit is found. It's been taken out and we
                     // don't want to lose it.
-                    eprintln!("warn: no base commit found for fixup at index {}", i);
+                    eprintln!("warn: no base commit found for fixup at index {i}");
                     commits[i].replace(commit);
                 }
                 Some(base_commit_index) => {
@@ -99,8 +99,8 @@ mod tests {
     }
 
     #[test]
-    fn test_find_base_commit_index_for_fixup_picks_first_base_commit()
-    -> anyhow::Result<(), anyhow::Error> {
+    fn test_find_base_commit_index_for_fixup_picks_first_base_commit(
+    ) -> anyhow::Result<(), anyhow::Error> {
         let wrong_commit = create_test_commit("feat: add feature");
         let mut right_commit = create_test_commit("feat: add feature");
         right_commit
