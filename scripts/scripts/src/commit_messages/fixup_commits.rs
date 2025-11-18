@@ -41,8 +41,6 @@ pub fn commits_with_fixups_on_branch<S: AsRef<str> + std::fmt::Display>(
                     commits[base_commit_index].replace(base_commit);
                 }
             }
-        } else {
-            eprintln!("commit at index {} is not a fixup", i);
         }
     }
 
