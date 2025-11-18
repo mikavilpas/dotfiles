@@ -31,7 +31,7 @@ pub fn commit_as_markdown(
         if !commit.is_fixup() {
             result_lines.push("".to_string());
         }
-        body.split("\n").for_each(|line| {
+        body.split('\n').for_each(|line| {
             result_lines.push(line.to_string());
         });
     }
@@ -49,7 +49,7 @@ pub fn commit_as_markdown(
 
         let indent = " ".repeat(options.indent_level.get() * 2);
 
-        for fixup in commit.fixups.iter() {
+        for fixup in &commit.fixups {
             let mut fixup_lines = vec![];
             commit_as_markdown(&mut fixup_lines, fixup, &fixup_options);
 
