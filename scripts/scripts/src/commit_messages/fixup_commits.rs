@@ -1,5 +1,8 @@
 use super::create_commit;
-use crate::commit_messages::{my_commit::MyCommit, stack_branch};
+use crate::commit_messages::{
+    my_commit::MyCommit,
+    stack_branch::{self, commit_range_iterator},
+};
 use anyhow::Context;
 use gix::Repository;
 
@@ -7,8 +10,8 @@ pub fn commits_with_fixups_on_branch<S: AsRef<str> + std::fmt::Display>(
     repo: &Repository,
     branch: S,
 ) -> anyhow::Result<Vec<MyCommit>> {
-    // Collect commits
-    let mut commits: Vec<Option<MyCommit>> = {
+    // Collect the commits on this branch
+    let commits: Vec<Option<MyCommit>> = {
         let mut revwalk = stack_branch::stack_branch_iterator(repo, branch)?.peekable();
         let mut result = Vec::new();
         while let Some(commit) = revwalk.next().transpose()? {
@@ -22,6 +25,35 @@ pub fn commits_with_fixups_on_branch<S: AsRef<str> + std::fmt::Display>(
         result
     };
 
+    combine_fixups_with_commits(commits)
+}
+
+pub fn commits_with_fixups<S: AsRef<str> + std::fmt::Display>(
+    repo: &Repository,
+    start_ref: S,
+    end_ref: S,
+) -> anyhow::Result<Vec<MyCommit>> {
+    // Collect the commits on this branch
+    let mut result = Vec::new();
+    let commits: Vec<Option<MyCommit>> = {
+        let mut revwalk = commit_range_iterator(repo, start_ref, end_ref)?;
+        while let Some(commit) = revwalk.next().transpose()? {
+            let commit = repo
+                .find_commit(commit.id)
+                .with_context(|| format!("failed to find the commit {}", commit.id))?;
+            let commit = create_commit(&commit)?;
+            result.push(Some(commit));
+        }
+        result.reverse();
+        result
+    };
+
+    combine_fixups_with_commits(commits)
+}
+
+fn combine_fixups_with_commits(
+    mut commits: Vec<Option<MyCommit>>,
+) -> Result<Vec<MyCommit>, anyhow::Error> {
     let len = commits.len();
     for i in (0..len).rev() {
         // Split so `slot` and `before` are disjoint mutable slices

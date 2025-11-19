@@ -1,8 +1,9 @@
-use anyhow::{bail, Context, Result};
+use anyhow::{Context, Result, bail};
 use gix::Commit;
 use gix::Repository;
 use std::process::{self, Stdio};
 
+use crate::commit_messages::fixup_commits::commits_with_fixups;
 use crate::commit_messages::fixup_commits::commits_with_fixups_on_branch;
 use crate::commit_messages::markdown::commit_as_markdown;
 use crate::commit_messages::my_commit::MyCommit;
@@ -15,26 +16,10 @@ pub fn get_commit_messages_between_commits(
     repo: &Repository,
     start_ref: &str,
     end_ref: &str,
-) -> Result<Vec<String>, Box<dyn std::error::Error>> {
-    let start = repo.rev_parse_single(start_ref)?;
-    let end = repo.rev_parse_single(end_ref)?;
+) -> std::result::Result<Vec<String>, anyhow::Error> {
+    let commits = commits_with_fixups(repo, start_ref, end_ref)?;
 
-    // TODO test that the start commit is used, as opposed to using the head_commit
-    let mut revwalk = repo.find_commit(start)?.ancestors().all()?;
-    let mut result_lines = Vec::new();
-
-    let markdown_options = markdown::MarkdownOptions::default();
-    while let Some(commit) = revwalk.next().transpose()? {
-        if commit.id == end {
-            break;
-        }
-        let commit = repo.find_commit(commit.id)?;
-        let commit = create_commit(&commit)?;
-        commit_as_markdown(&mut result_lines, &commit, &markdown_options);
-        result_lines.push("".to_string()); // Add an empty line between commits
-    }
-
-    Ok(result_lines)
+    render_commits(commits)
 }
 
 pub fn get_commit_messages_on_current_branch(
@@ -63,8 +48,12 @@ pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
     repo: &Repository,
     branch: S,
 ) -> anyhow::Result<Vec<String>, anyhow::Error> {
-    let mut results = Vec::new();
     let commits = commits_with_fixups_on_branch(repo, branch)?;
+    render_commits(commits)
+}
+
+fn render_commits(commits: Vec<MyCommit>) -> std::result::Result<Vec<String>, anyhow::Error> {
+    let mut results = Vec::new();
     let mut commits_iter = commits.iter().rev().peekable();
     while let Some(commit) = commits_iter.next() {
         commit_as_markdown(&mut results, commit, &markdown::MarkdownOptions::default());

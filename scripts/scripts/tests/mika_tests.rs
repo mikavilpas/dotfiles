@@ -11,21 +11,49 @@ use test_utils::common::TestRepoBuilder;
 fn test_summary() -> Result<(), Box<dyn std::error::Error>> {
     let repo = TestRepoBuilder::new()?;
     repo.commit("initial commit")?;
-    repo.commit("feat: commit 0")?;
-    repo.commit("feat: commit 1")?;
+
+    let include_commits = [
+        "feat: commit 0",
+        "feat: commit 1",
+        "fixup! feat: commit 0\n\nA fixup commit message.",
+        "fixup! feat: commit 1\n\nAddress a review comment about formatting.",
+        "fixup! feat: commit 0\n\nFix remaining bugs.",
+    ];
+    let ignore_commits = ["feat: commit 2"]; // should be ignored in the summary
+    for msg in include_commits.iter().chain(ignore_commits.iter()) {
+        repo.commit(msg)?;
+    }
 
     let mut cmd = cargo::cargo_bin_cmd!("mika");
     let assert = cmd
         .current_dir(repo.path())
-        .args(["summary", "--from", "HEAD", "--to", "HEAD~2"])
+        .args([
+            // to keep the test maintainable, we specify the range of commits to include
+            // dynamically based on the number of commits we created above.
+            "summary",
+            "--from",
+            &format!("HEAD~{}", ignore_commits.len()),
+            "--to",
+            &format!("HEAD~{}", ignore_commits.len() + include_commits.len()),
+        ])
         .assert();
 
-    assert.success().stdout(
+    let output = String::from_utf8(assert.get_output().stdout.clone())
+        .expect("failed to convert stdout to string");
+    assert_eq!(
+        output,
         [
             //
             "# feat: commit 1",
             "",
+            "**Fixups:**",
+            "  - Address a review comment about formatting.",
+            "",
             "# feat: commit 0",
+            "",
+            "**Fixups:**",
+            "  - Fix remaining bugs.",
+            "  - A fixup commit message.",
             "",
             "",
         ]
