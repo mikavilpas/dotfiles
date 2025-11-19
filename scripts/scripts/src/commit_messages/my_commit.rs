@@ -21,6 +21,11 @@ impl MyCommit {
     }
 
     #[must_use]
+    pub fn is_fixup_for(&self, other: &MyCommit) -> bool {
+        self.is_fixup() && self.normalized_subject() == other.subject
+    }
+
+    #[must_use]
     pub fn normalized_subject(&self) -> &str {
         self.subject.trim_start_matches("fixup! ").trim()
     }
