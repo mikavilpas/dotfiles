@@ -4,7 +4,7 @@ use std::{
     path::{Path, PathBuf},
     process,
 };
-use tempfile::{tempdir, TempDir};
+use tempfile::{TempDir, tempdir};
 
 pub struct TestRepoBuilder {
     tmpdir: TempDir,
