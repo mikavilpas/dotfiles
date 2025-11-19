@@ -38,6 +38,7 @@ fn test_summary() -> Result<(), Box<dyn std::error::Error>> {
 #[test]
 fn test_branch_summary() -> Result<(), Box<dyn std::error::Error>> {
     let context = TestRepoBuilder::new()?;
+    // create some commits on a different branch. These should not appear in the summary.
     context.commit("initial commit")?;
     context.commit("feat: main commit 1")?;
     context.commit("feat: main commit 2")?;
