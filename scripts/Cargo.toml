@@ -2,6 +2,12 @@
 members = ["scripts/", "test_utils/"]
 resolver = "3"
 
+[profile.release]
+opt-level = "z"
+lto = true
+strip = true
+codegen-units = 1
+
 [workspace.dependencies]
-anyhow = "1.0.99"
-gix = "0.74.0"
+anyhow = { version = "1.0.99", default-features = false }
+gix = { version = "0.74.0", default-features = false, features = ["revision"] }
