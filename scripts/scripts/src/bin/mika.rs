@@ -49,7 +49,7 @@ pub fn main() {
                     "",
                     "<details><summary>Click to expand</summary>",
                     "",
-                    "> note: you can copy the diff and then apply it with `pbpaste | git apply`",
+                    "> note: you can copy the diff and then apply it with `pbpaste | git apply --3way`",
                     "",
                     "```diff",
                     &lines,
