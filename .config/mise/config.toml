@@ -26,7 +26,7 @@ settings.cargo.binstall = true
 "ubi:watchexec/watchexec" = "2.3.2"
 
 jq = "1.8.1"
-actionlint = "1.7.8"
+actionlint = "1.7.9"
 dotenv-linter = "4.0.0"
 ubi = "0.8.1"
 "aqua:fish-shell/fish-shell" = "4.2.1"
