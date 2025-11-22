@@ -5,7 +5,6 @@ return {
     -- Search your git history by commit message, content and author in Neovim
     -- https://github.com/aaronhallaert/advanced-git-search.nvim
     "aaronhallaert/advanced-git-search.nvim",
-    cmd = { "AdvancedGitSearch" },
     keys = {
       {
         "<leader><right>",
@@ -14,12 +13,23 @@ return {
         { silent = true, desc = "AdvancedGitSearch" },
       },
     },
+    cmd = { "AdvancedGitSearch" },
     config = function()
-      require("advanced_git_search.snacks").setup({})
+      -- optional: setup telescope before loading the extension
+      require("telescope").setup({
+        -- move this to the place where you call the telescope setup function
+        extensions = {
+          advanced_git_search = {
+            -- See Config
+          },
+        },
+      })
+
+      require("telescope").load_extension("advanced_git_search")
     end,
     dependencies = {
-      "folke/snacks.nvim",
 
+      "nvim-telescope/telescope.nvim",
       -- to show diff splits and open commits in browser
       {
         "tpope/vim-fugitive",
