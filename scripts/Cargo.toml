@@ -10,4 +10,4 @@ codegen-units = 1
 
 [workspace.dependencies]
 anyhow = { version = "1.0.99", default-features = false }
-gix = { version = "0.74.0", default-features = false, features = ["revision"] }
+gix = { version = "0.75.0", default-features = false, features = ["revision"] }
