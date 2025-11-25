@@ -54,9 +54,9 @@ pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
 
 fn render_commits(commits: Vec<MyCommit>) -> std::result::Result<Vec<String>, anyhow::Error> {
     let mut results = Vec::new();
-    let mut commits_iter = commits.iter().rev().peekable();
+    let mut commits_iter = commits.into_iter().rev().peekable();
     while let Some(commit) = commits_iter.next() {
-        commit_as_markdown(&mut results, commit, &markdown::MarkdownOptions::default());
+        commit_as_markdown(&mut results, commit);
 
         if commits_iter.peek().is_some() {
             results.push("".to_string()); // Add an empty line between commits

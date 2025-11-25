@@ -2,7 +2,7 @@
 pub struct MyCommit {
     pub subject: String,
     pub body: Option<String>,
-    pub fixups: Vec<MyCommit>,
+    pub fixups: Vec<FixupCommit>,
 }
 
 impl MyCommit {
@@ -28,5 +28,19 @@ impl MyCommit {
     #[must_use]
     pub fn normalized_subject(&self) -> &str {
         self.subject.trim_start_matches("fixup! ").trim()
+    }
+}
+
+#[derive(Debug, Eq, PartialEq)]
+pub struct FixupCommit {
+    pub subject: String,
+    pub body: Option<String>,
+}
+impl From<MyCommit> for FixupCommit {
+    fn from(fixup: MyCommit) -> Self {
+        FixupCommit {
+            subject: fixup.subject,
+            body: fixup.body,
+        }
     }
 }

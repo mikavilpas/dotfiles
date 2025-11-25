@@ -1,8 +1,9 @@
 use assert_cmd::cargo;
 use pretty_assertions::assert_eq;
 use scripts::commit_messages::{
-    fixup_commits::commits_with_fixups_on_branch, get_commit_messages_on_current_branch,
-    my_commit::MyCommit,
+    fixup_commits::commits_with_fixups_on_branch,
+    get_commit_messages_on_current_branch,
+    my_commit::{FixupCommit, MyCommit},
 };
 use std::path::Path;
 use test_utils::common::TestRepoBuilder;
@@ -94,6 +95,9 @@ fn test_branch_summary() -> Result<(), Box<dyn std::error::Error>> {
         .join("\n")
         .to_string(),
     )?;
+    // add an orphan fixup commit that has no associated commit. It should be rendered as a normal
+    // commit.
+    context.commit("fixup! feat: orphan fixup commit")?;
 
     let mut cmd = cargo::cargo_bin_cmd!("mika");
     let assert = cmd
@@ -106,6 +110,8 @@ fn test_branch_summary() -> Result<(), Box<dyn std::error::Error>> {
     assert_eq!(
         stdout,
         [
+            "# fixup! feat: orphan fixup commit",
+            "",
             "# feat: feature commit 3",
             "",
             "# feat: feature commit 2",
@@ -251,25 +257,22 @@ fn test_fixups_are_grouped_over_another_commit() -> Result<(), Box<dyn std::erro
                 subject: "feat: my-feature".to_string(),
                 body: None,
                 fixups: vec![
-                    MyCommit {
+                    FixupCommit {
                         subject: "fixup! feat: my-feature".to_string(),
                         body: None,
-                        fixups: Vec::new(),
                     },
-                    MyCommit {
+                    FixupCommit {
                         subject: "fixup! feat: my-feature".to_string(),
                         body: None,
-                        fixups: Vec::new(),
                     },
                 ],
             },
             MyCommit {
                 subject: "feat: another-feature".to_string(),
                 body: None,
-                fixups: vec![MyCommit {
+                fixups: vec![FixupCommit {
                     subject: "fixup! feat: another-feature".to_string(),
                     body: None,
-                    fixups: Vec::new(),
                 },],
             }
         ]

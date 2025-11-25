@@ -85,7 +85,7 @@ fn combine_fixups_with_commits(
             }
             Some(base_slot) => {
                 let mut base_commit = base_slot.take().expect("base commit must exist");
-                base_commit.fixups.push(commit);
+                base_commit.fixups.push(commit.into());
                 *base_slot = Some(base_commit);
             }
         }
