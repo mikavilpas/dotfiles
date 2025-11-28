@@ -33,6 +33,11 @@ customCommands:
     context: localBranches
     description: "Backup branch"
     command: git backup-branch
+  - key: "<c-r>"
+    context: commits
+    description: "Reword the commit with verbose=false"
+    output: terminal
+    command: "git -c commit.verbose=false commit --allow-empty --amend --only"
   - key: "Y"
     context: localBranches
     description: "Summarize branch commits for a PR"
