@@ -67,17 +67,36 @@ fn render_commits(commits: Vec<MyCommit>) -> std::result::Result<Vec<String>, an
     Ok(results)
 }
 
-fn create_commit(commit: &Commit<'_>) -> anyhow::Result<MyCommit> {
+enum CreateCommitResult {
+    Commit(MyCommit),
+
+    /// This commit type (e.g. `squash!`, `amend!`, `reword!`) adds no useful information to the
+    /// commit history, and should be skipped.
+    NotUseful,
+}
+
+fn create_commit(commit: &Commit<'_>) -> anyhow::Result<CreateCommitResult> {
     let message = commit.message_raw_sloppy().to_string();
     let mut lines = message.lines();
     let first_line = lines
         .next()
         .ok_or_else(|| anyhow::anyhow!("commit message is empty"))?;
+
+    if first_line.starts_with("squash! ")
+        || first_line.starts_with("amend! ")
+        || first_line.starts_with("reword! ")
+    {
+        return Ok(CreateCommitResult::NotUseful);
+    }
+
     let body = lines
         .skip_while(|l| l.trim().is_empty())
         .collect::<Vec<&str>>()
         .join("\n");
-    Ok(MyCommit::new(first_line.to_string(), body))
+    Ok(CreateCommitResult::Commit(MyCommit::new(
+        first_line.to_string(),
+        body,
+    )))
 }
 
 pub fn format_patch_with_instructions(repo: &Repository, commit_or_range: &str) -> Result<String> {

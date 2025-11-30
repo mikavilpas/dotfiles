@@ -246,6 +246,11 @@ fn test_fixups_are_grouped_over_another_commit() -> Result<(), Box<dyn std::erro
     repo.commit("fixup! feat: my-feature")?;
     repo.commit("fixup! feat: another-feature")?;
 
+    // these should be ignored as they are not useful in the report
+    repo.commit("squash! feat: another-feature")?;
+    repo.commit("amend! feat: another-feature")?;
+    repo.commit("reword! feat: another-feature")?;
+
     // act
     let result = commits_with_fixups_on_branch(&repo.repo, "main")?;
 
