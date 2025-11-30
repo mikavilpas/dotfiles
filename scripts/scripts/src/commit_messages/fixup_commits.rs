@@ -1,5 +1,6 @@
 use super::create_commit;
 use crate::commit_messages::{
+    CreateCommitResult,
     my_commit::MyCommit,
     stack_branch::{self, commit_range_iterator},
 };
@@ -18,8 +19,9 @@ pub fn commits_with_fixups_on_branch<S: AsRef<str> + std::fmt::Display>(
             let commit = repo
                 .find_commit(commit.id)
                 .with_context(|| format!("failed to find the commit {}", commit.id))?;
-            let commit = create_commit(&commit)?;
-            result.push(Some(commit));
+            if let CreateCommitResult::Commit(my_commit) = create_commit(&commit)? {
+                result.push(Some(my_commit))
+            }
         }
         result.reverse();
         result
@@ -41,8 +43,10 @@ pub fn commits_with_fixups<S: AsRef<str> + std::fmt::Display>(
             let commit = repo
                 .find_commit(commit.id)
                 .with_context(|| format!("failed to find the commit {}", commit.id))?;
-            let commit = create_commit(&commit)?;
-            result.push(Some(commit));
+
+            if let CreateCommitResult::Commit(my_commit) = create_commit(&commit)? {
+                result.push(Some(my_commit))
+            }
         }
         result.reverse();
         result
