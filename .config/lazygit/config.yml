@@ -74,12 +74,13 @@ customCommands:
         command: |
           #!/bin/bash
           SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
+          echo $SUMMARY | bat --language=markdown --color=always
+          echo ""
+
           set -e
           glab mr update --description="$SUMMARY" --assignee="@me"
 
           echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
-          echo $SUMMARY | bat --language=markdown --color=always
-          echo ""
           echo "Press any key to exit."
           read
       - key: g
@@ -90,11 +91,12 @@ customCommands:
           #!/bin/bash
           set -e
           SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
+          echo $SUMMARY | bat --language=markdown --color=always
+          echo ""
+
           gh pr edit --body="$SUMMARY" --add-assignee="@me"
 
           echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
-          echo $SUMMARY | bat --language=markdown --color=always
-          echo ""
           echo "Press any key to exit."
           read
 keybinding:
