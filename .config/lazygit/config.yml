@@ -74,7 +74,7 @@ customCommands:
         command: |
           #!/bin/bash
           SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
-          echo $SUMMARY | bat --language=markdown --color=always
+          echo $SUMMARY | bat --language=markdown --color=always --paging=never
           echo ""
 
           set -e
@@ -91,7 +91,7 @@ customCommands:
           #!/bin/bash
           set -e
           SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
-          echo $SUMMARY | bat --language=markdown --color=always
+          echo $SUMMARY | bat --language=markdown --color=always --paging=never
           echo ""
 
           gh pr edit --body="$SUMMARY" --add-assignee="@me"
