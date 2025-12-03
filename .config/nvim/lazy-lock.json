@@ -13,6 +13,7 @@
   "catppuccin-bat": { "branch": "main", "commit": "6810349b28055dce54076712fc05fc68da4b8ec0" },
   "catppuccin-delta": { "branch": "main", "commit": "74b47a345638a2f19b3e5bdb9d7e4984066f9ac7" },
   "catppuccin-fish": { "branch": "main", "commit": "af622a6e247806f6260c00c6d261aa22680e5201" },
+  "claude-code.nvim": { "branch": "main", "commit": "c9a31e51069977edaad9560473b5d031fcc5d38b" },
   "conform.nvim": { "branch": "master", "commit": "ffe26e8df8115c9665d24231f8a49fadb2d611ce" },
   "copilot.lua": { "branch": "master", "commit": "881f99b827d65b41f522eecc21b112cf518028ac" },
   "crates.nvim": { "branch": "main", "commit": "ac9fa498a9edb96dc3056724ff69d5f40b898453" },
