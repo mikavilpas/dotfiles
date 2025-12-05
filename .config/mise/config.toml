@@ -12,10 +12,10 @@ settings.cargo.binstall = true
 "ubi:ajeetdsouza/zoxide" = "0.9.8"
 "ubi:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "ubi:atuinsh/atuin" = { version = "18.10.0", matching_regex = ".tar.gz$" }
-"ubi:cargo-bins/cargo-binstall" = "1.16.2"
+"ubi:cargo-bins/cargo-binstall" = "1.16.3"
 "ubi:chmln/sd" = "1.0.0"
 "ubi:dandavison/delta" = "0.18.2"
-"ubi:gitlab-org/cli" = { version = "1.78.3", provider = "gitlab", exe = "glab" }
+"ubi:gitlab-org/cli" = { version = "1.79.0", provider = "gitlab", exe = "glab" }
 "ubi:jesseduffield/lazydocker" = "0.24.2"
 "ubi:junegunn/fzf" = "0.67.0"
 "ubi:sharkdp/bat" = "0.26.1"
