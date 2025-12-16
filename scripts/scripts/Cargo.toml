@@ -7,11 +7,14 @@ edition = "2024"
 clap = { version = "4.5.47", features = ["std", "derive"], default-features = false }
 gix = { workspace = true }
 anyhow = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
 
 [dev-dependencies]
 test_utils = { path = "../test_utils" }
 assert_cmd = "=2.1.1"
 pretty_assertions = "=1.4.1"
+tempfile = "3"
 
 [build-dependencies]
 clap = { version = "4.5.47", features = ["derive"] }
