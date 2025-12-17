@@ -383,12 +383,13 @@ fn test_mrs_summary_branches_format() {
     let stdout = String::from_utf8(assert.success().get_output().stdout.clone())
         .expect("failed to convert stdout to string");
 
+    // OSC 8 hyperlink format: \x1b]8;;URL\x1b\\TEXT\x1b]8;;\x1b\\
     assert_eq!(
         stdout,
         [
-            "- `feature-base` feat: base feature",
-            "  - `feature-child` **Draft:** child feature",
-            "- `feature-another` feat: another root",
+            "- `\x1b]8;;https://gitlab.example.com/acme/webapp/-/merge_requests/101\x1b\\feature-base\x1b]8;;\x1b\\` feat: base feature",
+            "  - `\x1b]8;;https://gitlab.example.com/acme/webapp/-/merge_requests/102\x1b\\feature-child\x1b]8;;\x1b\\` **Draft:** child feature",
+            "- `\x1b]8;;https://gitlab.example.com/acme/webapp/-/merge_requests/103\x1b\\feature-another\x1b]8;;\x1b\\` feat: another root",
             "",
         ]
         .join("\n")
@@ -412,11 +413,12 @@ fn test_mrs_summary_branches_format_from_stdin() {
     let stdout = String::from_utf8(assert.success().get_output().stdout.clone())
         .expect("failed to convert stdout to string");
 
+    // OSC 8 hyperlink format: \x1b]8;;URL\x1b\\TEXT\x1b]8;;\x1b\\
     assert_eq!(
         stdout,
         [
-            "- `branch-first` feat: first",
-            "  - `branch-second` feat: second",
+            "- `\x1b]8;;https://gitlab.example.com/acme/webapp/-/merge_requests/101\x1b\\branch-first\x1b]8;;\x1b\\` feat: first",
+            "  - `\x1b]8;;https://gitlab.example.com/acme/webapp/-/merge_requests/102\x1b\\branch-second\x1b]8;;\x1b\\` feat: second",
             "",
         ]
         .join("\n")
