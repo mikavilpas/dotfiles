@@ -84,4 +84,8 @@ if status is-interactive && test -z "$CI"
     # pipe to this guy to colorize the output stream! 🪄
     # ya sub cd,hover | batrs
     abbr -a batrs 'bat --paging=never --language=rs --decorations=never'
+
+    function mrs # "merge requests"
+        glab mr list --author=@me --output=json | mika mrs-summary - --format=branches | glow --width=0
+    end
 end
