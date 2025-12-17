@@ -13,6 +13,7 @@ settings.cargo.binstall = true
 "ubi:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "ubi:atuinsh/atuin" = { version = "18.10.0", matching_regex = ".tar.gz$" }
 "ubi:cargo-bins/cargo-binstall" = "1.16.4"
+"ubi:charmbracelet/glow" = "2.1.1"
 "ubi:chmln/sd" = "1.0.0"
 "ubi:dandavison/delta" = "0.18.2"
 "ubi:gitlab-org/cli" = { version = "1.79.0", provider = "gitlab", exe = "glab" }
