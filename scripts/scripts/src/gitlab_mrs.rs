@@ -46,8 +46,18 @@ struct MrNode {
     children: Vec<usize>,
 }
 
+/// Output format for MR summary
+#[derive(Debug, Clone, Copy, Default)]
+pub enum OutputFormat {
+    /// Show MRs with links to GitLab
+    #[default]
+    Links,
+    /// Show branch names instead of links
+    Branches,
+}
+
 /// Build a tree structure from MRs based on source/target branch relationships
-pub fn format_mrs_as_markdown(mrs: Vec<MergeRequest>) -> String {
+pub fn format_mrs_as_markdown(mrs: Vec<MergeRequest>, format: OutputFormat) -> String {
     if mrs.is_empty() {
         return "No open merge requests.".to_string();
     }
@@ -97,13 +107,19 @@ pub fn format_mrs_as_markdown(mrs: Vec<MergeRequest>) -> String {
     let mut output = String::from("");
 
     for &root_idx in &sorted_roots {
-        format_mr_tree(&nodes, root_idx, 0, &mut output);
+        format_mr_tree(&nodes, root_idx, 0, format, &mut output);
     }
 
     output.trim_end().to_string()
 }
 
-fn format_mr_tree(nodes: &[MrNode], idx: usize, depth: usize, output: &mut String) {
+fn format_mr_tree(
+    nodes: &[MrNode],
+    idx: usize,
+    depth: usize,
+    format: OutputFormat,
+    output: &mut String,
+) {
     let Some(node) = nodes.get(idx) else {
         return;
     };
@@ -112,8 +128,7 @@ fn format_mr_tree(nodes: &[MrNode], idx: usize, depth: usize, output: &mut Strin
     // Indentation
     let indent = "  ".repeat(depth);
 
-    // Format: - [!430](url) title
-    // Add **Draft:** prefix if draft
+    // Add **Draft:** prefix if draft, cleaning up the title
     let title_display = if mr.draft {
         // Remove "Draft: " prefix from title if present (GitLab often includes it)
         let clean_title = mr
@@ -127,17 +142,24 @@ fn format_mr_tree(nodes: &[MrNode], idx: usize, depth: usize, output: &mut Strin
         mr.title.clone()
     };
 
-    output.push_str(&format!(
-        "{}- [!{}]({}) {}\n",
-        indent, mr.iid, mr.web_url, title_display
-    ));
+    match format {
+        OutputFormat::Links => {
+            output.push_str(&format!(
+                "{}- [!{}]({}) {}\n",
+                indent, mr.iid, mr.web_url, title_display
+            ));
+        }
+        OutputFormat::Branches => {
+            output.push_str(&format!("{}- `{}` {}\n", indent, mr.source_branch, title_display));
+        }
+    }
 
     // Sort children by iid ascending and recurse
     let mut sorted_children = node.children.clone();
     sorted_children.sort_by_key(|&i| nodes.get(i).map(|n| n.mr.iid).unwrap_or(0));
 
     for &child_idx in &sorted_children {
-        format_mr_tree(nodes, child_idx, depth + 1, output);
+        format_mr_tree(nodes, child_idx, depth + 1, format, output);
     }
 }
 
@@ -193,7 +215,7 @@ mod tests {
             draft: false,
         }];
 
-        let output = format_mrs_as_markdown(mrs);
+        let output = format_mrs_as_markdown(mrs, OutputFormat::Links);
         assert!(output.contains("[!101]"));
         assert!(output.contains("feat: add dark mode support"));
     }
@@ -209,7 +231,7 @@ mod tests {
             draft: true,
         }];
 
-        let output = format_mrs_as_markdown(mrs);
+        let output = format_mrs_as_markdown(mrs, OutputFormat::Links);
         assert!(output.contains("**Draft:** experimental caching layer"));
     }
 
@@ -235,9 +257,38 @@ mod tests {
             },
         ];
 
-        let output = format_mrs_as_markdown(mrs);
+        let output = format_mrs_as_markdown(mrs, OutputFormat::Links);
         // 102 should be indented under 101
         assert!(output.contains("- [!101]"));
         assert!(output.contains("  - [!102]"));
+    }
+
+    #[test]
+    fn test_format_branches() {
+        let mrs = vec![
+            MergeRequest {
+                iid: 101,
+                title: "feat: base feature".to_string(),
+                web_url: "https://gitlab.example.com/acme/webapp/-/merge_requests/101".to_string(),
+                source_branch: "feature-101".to_string(),
+                target_branch: "main".to_string(),
+                draft: false,
+            },
+            MergeRequest {
+                iid: 102,
+                title: "Draft: dependent feature".to_string(),
+                web_url: "https://gitlab.example.com/acme/webapp/-/merge_requests/102".to_string(),
+                source_branch: "feature-102".to_string(),
+                target_branch: "feature-101".to_string(),
+                draft: true,
+            },
+        ];
+
+        let output = format_mrs_as_markdown(mrs, OutputFormat::Branches);
+        assert!(output.contains("- `feature-101` feat: base feature"));
+        assert!(output.contains("  - `feature-102` **Draft:** dependent feature"));
+        // Should not contain links
+        assert!(!output.contains("[!"));
+        assert!(!output.contains("https://"));
     }
 }
