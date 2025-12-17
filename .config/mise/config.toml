@@ -59,7 +59,7 @@ mise exec -- yq completion fish > ~/.config/fish/completions/yq.fish
 """
 
 [tools."ubi:ducaale/xh"]
-version = "0.25.0"
+version = "0.25.3"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- xh --generate complete-fish > ~/.config/fish/completions/xh.fish
