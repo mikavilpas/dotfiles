@@ -5,6 +5,7 @@ use scripts::{
         format_patch_with_instructions, get_commit_messages_between_commits,
         get_commit_messages_on_branch, get_current_branch_name,
     },
+    gitlab_mrs::{format_mrs_as_markdown, parse_mrs_from_file, parse_mrs_from_stdin},
     project::path_to_project_file,
 };
 
@@ -77,6 +78,21 @@ pub fn main() {
                     .unwrap_or_else(|e| panic!("failed to get project file: {e}"));
                 println!("{target_file}");
             }
+        }
+        Commands::MrsSummary { file } => {
+            let mrs = if file.as_os_str() == "-" {
+                parse_mrs_from_stdin().unwrap_or_else(|e| panic!("failed to parse MRs: {e}"))
+            } else {
+                let cwd = std::env::current_dir().expect("failed to get current directory");
+                let path = if file.is_absolute() {
+                    file
+                } else {
+                    cwd.join(file)
+                };
+                parse_mrs_from_file(&path).unwrap_or_else(|e| panic!("failed to parse MRs: {e}"))
+            };
+            let output = format_mrs_as_markdown(mrs);
+            println!("{output}");
         }
     }
 }

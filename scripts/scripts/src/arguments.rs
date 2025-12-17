@@ -54,4 +54,11 @@ pub enum Commands {
     )]
         files: Vec<PathBuf>,
     },
+
+    /// Display a markdown summary of GitLab merge requests from a JSON file
+    MrsSummary {
+        /// Path to the JSON file containing GitLab MRs (from GitLab API), or "-" to read from stdin
+        #[arg(value_name = "FILE", value_hint = clap::ValueHint::FilePath)]
+        file: PathBuf,
+    },
 }
