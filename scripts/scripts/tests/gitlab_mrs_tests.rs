@@ -347,3 +347,78 @@ fn test_mrs_summary_from_stdin() {
         .join("\n")
     );
 }
+
+#[test]
+fn test_mrs_summary_branches_format() {
+    let mrs = vec![
+        create_mr(
+            101,
+            "feat: base feature",
+            "feature-base",
+            "main",
+            false,
+        ),
+        create_mr(
+            102,
+            "Draft: child feature",
+            "feature-child",
+            "feature-base",
+            true,
+        ),
+        create_mr(
+            103,
+            "feat: another root",
+            "feature-another",
+            "main",
+            false,
+        ),
+    ];
+    let file = create_mrs_json(&mrs);
+
+    let mut cmd = cargo::cargo_bin_cmd!("mika");
+    let assert = cmd
+        .args(["mrs-summary", file.path().to_str().unwrap(), "--format=branches"])
+        .assert();
+
+    let stdout = String::from_utf8(assert.success().get_output().stdout.clone())
+        .expect("failed to convert stdout to string");
+
+    assert_eq!(
+        stdout,
+        [
+            "- `feature-base` feat: base feature",
+            "  - `feature-child` **Draft:** child feature",
+            "- `feature-another` feat: another root",
+            "",
+        ]
+        .join("\n")
+    );
+}
+
+#[test]
+fn test_mrs_summary_branches_format_from_stdin() {
+    let mrs = vec![
+        create_mr(101, "feat: first", "branch-first", "main", false),
+        create_mr(102, "feat: second", "branch-second", "branch-first", false),
+    ];
+    let json = serde_json::to_string(&mrs).expect("failed to serialize MRs");
+
+    let mut cmd = cargo::cargo_bin_cmd!("mika");
+    let assert = cmd
+        .args(["mrs-summary", "-", "--format=branches"])
+        .write_stdin(json)
+        .assert();
+
+    let stdout = String::from_utf8(assert.success().get_output().stdout.clone())
+        .expect("failed to convert stdout to string");
+
+    assert_eq!(
+        stdout,
+        [
+            "- `branch-first` feat: first",
+            "  - `branch-second` feat: second",
+            "",
+        ]
+        .join("\n")
+    );
+}

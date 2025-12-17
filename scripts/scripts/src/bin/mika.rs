@@ -1,11 +1,11 @@
 use clap::Parser;
 use scripts::{
-    arguments::{Cli, Commands},
+    arguments::{Cli, Commands, MrsFormat},
     commit_messages::{
         format_patch_with_instructions, get_commit_messages_between_commits,
         get_commit_messages_on_branch, get_current_branch_name,
     },
-    gitlab_mrs::{format_mrs_as_markdown, parse_mrs_from_file, parse_mrs_from_stdin},
+    gitlab_mrs::{format_mrs_as_markdown, parse_mrs_from_file, parse_mrs_from_stdin, OutputFormat},
     project::path_to_project_file,
 };
 
@@ -79,7 +79,7 @@ pub fn main() {
                 println!("{target_file}");
             }
         }
-        Commands::MrsSummary { file } => {
+        Commands::MrsSummary { file, format } => {
             let mrs = if file.as_os_str() == "-" {
                 parse_mrs_from_stdin().unwrap_or_else(|e| panic!("failed to parse MRs: {e}"))
             } else {
@@ -91,7 +91,11 @@ pub fn main() {
                 };
                 parse_mrs_from_file(&path).unwrap_or_else(|e| panic!("failed to parse MRs: {e}"))
             };
-            let output = format_mrs_as_markdown(mrs);
+            let output_format = match format {
+                MrsFormat::Links => OutputFormat::Links,
+                MrsFormat::Branches => OutputFormat::Branches,
+            };
+            let output = format_mrs_as_markdown(mrs, output_format);
             println!("{output}");
         }
     }
