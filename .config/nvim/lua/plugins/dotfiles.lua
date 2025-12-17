@@ -42,6 +42,29 @@ return {
   },
 
   {
+    "catppuccin/glamour",
+    name = "catppuccin-glamour",
+    lazy = true,
+    build = function(self)
+      local target_dir = vim.fn.expand("~/dotfiles/.config/glow/themes")
+      vim.fn.mkdir(target_dir, "p")
+
+      -- themes/catppuccin-frappe.json
+      -- themes/catppuccin-latte.json
+      -- themes/catppuccin-macchiato.json
+      -- themes/catppuccin-mocha.json
+      local function link_theme(flavor)
+        local filename = "catppuccin-" .. flavor .. ".json"
+        symlink(vim.fs.normalize(vim.fs.joinpath(self.dir, "themes", filename)), vim.fs.joinpath(target_dir, filename))
+      end
+      link_theme("frappe")
+      link_theme("latte")
+      link_theme("mocha")
+      link_theme("macchiato")
+    end,
+  },
+
+  {
     "catppuccin/delta",
     name = "catppuccin-delta",
     lazy = true,
