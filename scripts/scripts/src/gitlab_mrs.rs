@@ -150,7 +150,14 @@ fn format_mr_tree(
             ));
         }
         OutputFormat::Branches => {
-            output.push_str(&format!("{}- `{}` {}\n", indent, mr.source_branch, title_display));
+            // Use OSC 8 hyperlink escape sequence for clickable links in modern terminals
+            // Format: \x1b]8;;URL\x1b\\TEXT\x1b]8;;\x1b\\
+            //
+            // https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda
+            output.push_str(&format!(
+                "{}- `\x1b]8;;{}\x1b\\{}\x1b]8;;\x1b\\` {}\n",
+                indent, mr.web_url, mr.source_branch, title_display
+            ));
         }
     }
 
@@ -285,10 +292,12 @@ mod tests {
         ];
 
         let output = format_mrs_as_markdown(mrs, OutputFormat::Branches);
-        assert!(output.contains("- `feature-101` feat: base feature"));
-        assert!(output.contains("  - `feature-102` **Draft:** dependent feature"));
-        // Should not contain links
+        // Contains branch names with OSC 8 hyperlinks
+        assert!(output.contains("feature-101"));
+        assert!(output.contains("feat: base feature"));
+        assert!(output.contains("feature-102"));
+        assert!(output.contains("**Draft:** dependent feature"));
+        // Should not contain markdown-style links
         assert!(!output.contains("[!"));
-        assert!(!output.contains("https://"));
     }
 }
