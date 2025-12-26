@@ -21,7 +21,7 @@ run = '''
 # copy the relative path to the current file/selected files in the current git repo
 # (remove the last newline)
 [[mgr.prepend_keymap]]
-desc = "Copy git repo relative path to the clipboard"
+desc = "Copy git repo relative path(s) to the clipboard"
 on = ["c", "r"]
 run = '''
   shell 'mika path $@ | perl -pe "chomp if eof" | pbcopy'
