@@ -6,24 +6,22 @@ import type {
   BrowserTerminalSettings,
   GenericNeovimBrowserApi,
   GenericTerminalBrowserApi,
-} from "@tui-sandbox/library/dist/src/browser/neovim-client"
+} from "@tui-sandbox/library/browser/neovim-client.js"
+import type { MyNeovimConfigModification } from "@tui-sandbox/library/client"
 import type {
   AllKeys,
+  BlockingCommandClientInput,
   BlockingShellCommandOutput,
-  RunExCommandOutput,
-  RunLuaCodeOutput,
-  StartNeovimGenericArguments,
-  TestDirectory,
-} from "@tui-sandbox/library/dist/src/server/types"
-import type { MyNeovimConfigModification } from "@tui-sandbox/library/src/client/MyNeovimConfigModification"
-import type {
   ExCommandClientInput,
   LuaCodeClientInput,
   PollLuaCodeClientInput,
+  RunExCommandOutput,
+  RunLuaCodeOutput,
   RunLuaFileClientInput,
-} from "@tui-sandbox/library/src/server/applications/neovim/neovimRouter"
-import type { StartTerminalGenericArguments } from "@tui-sandbox/library/src/server/applications/terminal/TerminalTestApplication"
-import type { BlockingCommandClientInput } from "@tui-sandbox/library/src/server/blockingCommandInputSchema"
+  StartNeovimGenericArguments,
+  StartTerminalGenericArguments,
+  TestDirectory,
+} from "@tui-sandbox/library/server"
 import type { OverrideProperties } from "type-fest"
 import type {
   MyNeovimAppName,
@@ -44,6 +42,12 @@ export type TerminalTestApplicationContext = {
 
   /** The test directory, providing type-safe access to its file and directory structure */
   dir: TestDirectory<MyTestDirectory>
+
+  /** Access to the clipboard of the terminal */
+  clipboard: {
+    system(): Cypress.Chainable<string>
+    primary(): Cypress.Chainable<string>
+  }
 }
 
 /** The api that can be used in tests after a Neovim instance has been started. */
@@ -90,6 +94,12 @@ export type NeovimContext = {
 
   /** The test directory, providing type-safe access to its file and directory structure */
   dir: TestDirectory<MyTestDirectory>
+
+  /** Access to the clipboard of the terminal */
+  clipboard: {
+    system(): Cypress.Chainable<string>
+    primary(): Cypress.Chainable<string>
+  }
 }
 
 /** Arguments for starting the neovim server. They are built based on your test
@@ -150,6 +160,15 @@ Cypress.Commands.add(
           cy.typeIntoTerminal(text, options)
         },
         dir: underlyingNeovim.dir as TestDirectory<MyTestDirectory>,
+
+        clipboard: {
+          primary() {
+            return cy.then(() => underlyingNeovim.clipboard.primary())
+          },
+          system() {
+            return cy.then(() => underlyingNeovim.clipboard.system())
+          },
+        },
       }
 
       return api
@@ -189,6 +208,14 @@ Cypress.Commands.add(
         },
         typeIntoTerminal(text, options) {
           cy.typeIntoTerminal(text, options)
+        },
+        clipboard: {
+          primary() {
+            return cy.then(() => terminal.clipboard.primary())
+          },
+          system() {
+            return cy.then(() => terminal.clipboard.system())
+          },
         },
       }
 
