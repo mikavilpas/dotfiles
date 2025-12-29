@@ -90,8 +90,6 @@ customCommands:
           fi
 
           echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
-          echo "Press any key to exit."
-          read
       - key: g
         description: "Update pull request body"
         context: localBranches
@@ -106,8 +104,6 @@ customCommands:
           gh pr edit --body="$SUMMARY" --add-assignee="@me"
 
           echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
-          echo "Press any key to exit."
-          read
 keybinding:
   universal:
     edit: e
