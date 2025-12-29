@@ -6,7 +6,7 @@ settings.cargo.binstall = true
 
 "cargo:bacon" = "3.19.0"
 "cargo:eza" = "0.23.3"
-"cargo:rumdl" = "0.0.205"
+"cargo:rumdl" = "0.0.206"
 "ubi:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
 "ubi:JohnnyMorganz/stylua" = "2.3.1"
 "ubi:aaronriekenberg/rust-parallel" = "1.20.0"
