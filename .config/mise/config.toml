@@ -6,7 +6,7 @@ settings.cargo.binstall = true
 
 "cargo:bacon" = "3.19.0"
 "cargo:eza" = "0.23.3"
-"cargo:rumdl" = "0.0.206"
+"cargo:rumdl" = "0.0.207"
 "ubi:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
 "ubi:JohnnyMorganz/stylua" = "2.3.1"
 "ubi:aaronriekenberg/rust-parallel" = "1.20.0"
@@ -23,7 +23,7 @@ settings.cargo.binstall = true
 "ubi:sharkdp/bat" = "0.26.1"
 "ubi:sharkdp/fd" = "10.3.0"
 "ubi:sharkdp/hyperfine" = "1.20.0"
-"ubi:starship/starship" = "1.24.1"
+"ubi:starship/starship" = "1.24.2"
 "ubi:tree-sitter/tree-sitter" = "0.26.3"
 "ubi:watchexec/watchexec" = "2.3.2"
 
