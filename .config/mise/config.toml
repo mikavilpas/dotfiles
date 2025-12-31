@@ -4,9 +4,12 @@ settings.cargo.binstall = true
 # https://docs.renovatebot.com/modules/manager/mise/
 [tools]
 
+"aqua:fish-shell/fish-shell" = "4.3.2"
 "cargo:bacon" = "3.19.0"
 "cargo:eza" = "0.23.3"
+"cargo:presenterm" = "0.15.1"
 "cargo:rumdl" = "0.0.207"
+"npm:@anthropic-ai/claude-code" = "2.0.76"
 "ubi:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
 "ubi:JohnnyMorganz/stylua" = "2.3.1"
 "ubi:aaronriekenberg/rust-parallel" = "1.20.0"
@@ -26,14 +29,10 @@ settings.cargo.binstall = true
 "ubi:starship/starship" = "1.24.2"
 "ubi:tree-sitter/tree-sitter" = "0.26.3"
 "ubi:watchexec/watchexec" = "2.3.2"
-
-jq = "1.8.1"
 actionlint = "1.7.10"
 dotenv-linter = "4.0.0"
+jq = "1.8.1"
 ubi = "0.8.1"
-"aqua:fish-shell/fish-shell" = "4.3.2"
-"npm:@anthropic-ai/claude-code" = "2.0.76"
-"cargo:presenterm" = "0.15.1"
 
 [tools.github-cli]
 version = "2.83.2"
