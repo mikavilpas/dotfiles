@@ -39,6 +39,7 @@ return {
   {
     name = "easyjump.yazi",
     url = "https://github.com/mikavilpas/easyjump.yazi",
+    version = "*",
     lazy = true,
     build = function(plugin)
       require("yazi.plugin").build_plugin(plugin, { sub_dir = "easyjump.yazi" })
