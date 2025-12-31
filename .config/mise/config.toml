@@ -32,19 +32,7 @@ actionlint = "1.7.10"
 dotenv-linter = "4.0.0"
 ubi = "0.8.1"
 "aqua:fish-shell/fish-shell" = "4.3.2"
-claude-code = { version = "2.0.57", bin = "claude", platforms = """
-[linux-arm64]
-url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/{version}/linux-arm64/claude"
-
-[linux-x64]
-url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/{version}/linux-x64/claude"
-
-[macos-arm64]
-url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/{version}/darwin-arm64/claude"
-
-[macos-x64]
-url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/{version}/darwin-x64/claude"
-""", version_list_url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/stable" }
+"npm:@anthropic-ai/claude-code" = "2.0.76"
 "cargo:presenterm" = "0.15.1"
 
 [tools.github-cli]
