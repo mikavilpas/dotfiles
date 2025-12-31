@@ -23,7 +23,7 @@ settings.cargo.binstall = true
 "ubi:gitlab-org/cli" = { version = "1.80.4", provider = "gitlab", exe = "glab" }
 "ubi:jesseduffield/lazydocker" = "0.24.3"
 "ubi:junegunn/fzf" = "0.67.0"
-"ubi:pranshuparmar/witr" = "0.1.4"
+"ubi:pranshuparmar/witr" = "0.1.5"
 "ubi:sharkdp/bat" = "0.26.1"
 "ubi:sharkdp/fd" = "10.3.0"
 "ubi:sharkdp/hyperfine" = "1.20.0"
