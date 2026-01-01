@@ -14,23 +14,35 @@ return {
   },
   {
     "mason-org/mason.nvim",
-    opts = {
-      ensure_installed = {
-        -- lua
-        "stylua",
-        "selene",
+    -- opts = {
+    --   ensure_installed = {
+    --     -- lua
+    --     "stylua",
+    --     "selene",
+    --
+    --     -- shell
+    --     "shellcheck",
+    --     "shfmt",
+    --
+    --     -- markdown
+    --     "marksman",
+    --
+    --     -- general / web development
+    --     "prettier",
+    --     -- "tailwindcss-language-server",
+    --   },
+    -- },
+    opts = function(_, opts)
+      -- remove hadolint from the ensure_installed list. It gets added by
+      -- LazyVim's docker extension but I manage it with mise
+      for i, tool in ipairs(opts.ensure_installed) do
+        if tool == "hadolint" then
+          table.remove(opts.ensure_installed, i)
+          break
+        end
+      end
 
-        -- shell
-        "shellcheck",
-        "shfmt",
-
-        -- markdown
-        "marksman",
-
-        -- general / web development
-        "prettier",
-        -- "tailwindcss-language-server",
-      },
-    },
+      return opts
+    end,
   },
 }
