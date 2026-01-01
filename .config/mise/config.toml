@@ -27,6 +27,7 @@ settings.cargo.binstall = true
 "ubi:hadolint/hadolint" = "2.14.0"
 "ubi:jesseduffield/lazydocker" = "0.24.3"
 "ubi:junegunn/fzf" = "0.67.0"
+"ubi:mvdan/sh" = "3.12.0"                                                        # for shfmt
 "ubi:pranshuparmar/witr" = "0.1.5"
 "ubi:sharkdp/bat" = "0.26.1"
 "ubi:sharkdp/fd" = "10.3.0"

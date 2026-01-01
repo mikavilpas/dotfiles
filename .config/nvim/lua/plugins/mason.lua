@@ -33,14 +33,10 @@ return {
     --   },
     -- },
     opts = function(_, opts)
-      -- remove hadolint from the ensure_installed list. It gets added by
-      -- LazyVim's docker extension but I manage it with mise
-      for i, tool in ipairs(opts.ensure_installed) do
-        if tool == "hadolint" then
-          table.remove(opts.ensure_installed, i)
-          break
-        end
-      end
+      -- remove tools from the ensure_installed list as I manage them with mise
+      opts.ensure_installed = vim.tbl_filter(function(tool)
+        return tool ~= "hadolint" and tool ~= "shfmt"
+      end, opts.ensure_installed)
 
       return opts
     end,
