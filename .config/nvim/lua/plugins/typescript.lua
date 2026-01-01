@@ -6,7 +6,10 @@ return {
     opts = {
       ---@type table<string, vim.lsp.Config>
       servers = {
-        oxlint = {}, -- enable
+        oxlint = {
+          cmd = { "oxlint", "--lsp" },
+          mason = false,
+        },
         tsgo = {
           on_attach = function(client, bufnr)
             require("twoslash-queries").attach(client, bufnr)
