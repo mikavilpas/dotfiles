@@ -12,7 +12,7 @@
   "catppuccin-atuin": { "branch": "main", "commit": "abfab12de743aa73cf20ac3fa61e450c4d96380c" },
   "catppuccin-bat": { "branch": "main", "commit": "6810349b28055dce54076712fc05fc68da4b8ec0" },
   "catppuccin-delta": { "branch": "main", "commit": "74b47a345638a2f19b3e5bdb9d7e4984066f9ac7" },
-  "catppuccin-fish": { "branch": "main", "commit": "af622a6e247806f6260c00c6d261aa22680e5201" },
+  "catppuccin-fish": { "branch": "main", "commit": "2c7edbb1ef5640cb4ef387647a53327149e51e80" },
   "catppuccin-glamour": { "branch": "main", "commit": "00c97fa3823d272d9d041d5d872ae6335555a776" },
   "conform.nvim": { "branch": "master", "commit": "8314f4c9e205e7f30b62147069729f9a1227d8bf" },
   "copilot.lua": { "branch": "master", "commit": "e78d1ffebdf6ccb6fd8be4e6898030c1cf5f9b64" },
