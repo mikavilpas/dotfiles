@@ -32,11 +32,13 @@ settings.cargo.binstall = true
 "ubi:sharkdp/fd" = "10.3.0"
 "ubi:sharkdp/hyperfine" = "1.20.0"
 "ubi:starship/starship" = "1.24.2"
+"ubi:tekumara/typos-lsp" = "0.1.46"
 "ubi:tree-sitter/tree-sitter" = "0.26.3"
 "ubi:watchexec/watchexec" = "2.3.2"
 actionlint = "1.7.10"
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
+typos = "1.41.0"
 ubi = "0.8.1"
 
 [tools.github-cli]
