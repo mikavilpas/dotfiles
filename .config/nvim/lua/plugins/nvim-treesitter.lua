@@ -40,6 +40,7 @@ return {
 
   {
     "mikavilpas/incr.nvim",
+    version = "*",
     opts = {
       incr_key = "<C-space>",
       decr_key = "<backspace>",
