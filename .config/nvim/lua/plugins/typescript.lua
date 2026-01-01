@@ -7,7 +7,21 @@ return {
       ---@type table<string, vim.lsp.Config>
       servers = {
         oxlint = {
+          -- opt in to early changes from this PR, these can be removed when it
+          -- gets merged
+          -- https://github.com/neovim/nvim-lspconfig/pull/4242
           cmd = { "oxlint", "--lsp" },
+          on_attach = function(client, bufnr)
+            vim.api.nvim_buf_create_user_command(bufnr, "LspOxlintFixAll", function()
+              client:exec_cmd({
+                title = "Apply Oxlint automatic fixes",
+                command = "oxc.fixAll",
+                arguments = { { uri = vim.uri_from_bufnr(bufnr) } },
+              })
+            end, {
+              desc = "Apply Oxlint automatic fixes",
+            })
+          end,
           mason = false,
         },
         tsgo = {

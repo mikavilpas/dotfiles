@@ -250,7 +250,10 @@ vim.keymap.set("v", "y", "ygv<esc>")
 
 vim.keymap.set("n", "<backspace>", function()
   pcall(function()
-    vim.cmd("EslintFixAll")
+    vim.cmd("LspOxlintFixAll")
+  end)
+  pcall(function()
+    vim.cmd("LspEslintFixAll")
   end)
 
   vim.cmd("silent! wall")
