@@ -12,6 +12,7 @@ settings.cargo.binstall = true
 "npm:@anthropic-ai/claude-code" = "2.0.76"
 "npm:@typescript/native-preview" = "7.0.0-dev.20251229.1"
 "npm:oxlint" = "1.36.0"
+"npm:yaml-language-server" = "1.19.2"
 "ubi:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
 "ubi:JohnnyMorganz/stylua" = "2.3.1"
 "ubi:aaronriekenberg/rust-parallel" = "1.20.0"
