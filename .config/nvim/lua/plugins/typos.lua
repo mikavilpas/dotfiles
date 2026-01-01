@@ -28,6 +28,7 @@ return {
             "markdown",
             "toml",
             "text", -- txt
+            "dockerfile",
           },
 
           init_options = {
