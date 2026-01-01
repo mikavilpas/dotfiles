@@ -11,6 +11,10 @@ return {
           on_attach = function(client, bufnr)
             require("twoslash-queries").attach(client, bufnr)
           end,
+
+          -- this is installed with mise, so don't install another one via mason
+          -- https://www.lazyvim.org/plugins/lsp#nvim-lspconfig
+          mason = false,
         },
         eslint = {
           settings = {
