@@ -18,6 +18,7 @@ settings.cargo.binstall = true
 "ubi:aaronriekenberg/rust-parallel" = "1.20.0"
 "ubi:ajeetdsouza/zoxide" = "0.9.8"
 "ubi:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
+"ubi:ast-grep/ast-grep" = "0.40.3"
 "ubi:atuinsh/atuin" = { version = "18.10.0", matching_regex = ".tar.gz$" }
 "ubi:cargo-bins/cargo-binstall" = "1.16.6"
 "ubi:charmbracelet/glow" = "2.1.1"
