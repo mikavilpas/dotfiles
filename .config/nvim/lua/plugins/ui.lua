@@ -50,8 +50,31 @@ return {
       mappings = {
         object_scope = "",
         object_scope_with_border = "",
-        goto_top = "ö",
-        goto_bottom = "ä",
+      },
+    },
+    keys = {
+      {
+        "ö",
+        mode = { "n", "v" },
+        function()
+          require("blink.indent.motion").operator("top", true)()
+        end,
+        desc = "Go to top of indent scope",
+      },
+      {
+        "ä",
+        mode = { "n", "v" },
+        function()
+          if require("incr") then
+            -- both c-space (from LazyVim) and a are used for treesitter incremental
+            -- selection. It's faster to hit these alternate keys in quick succession.
+            -- This way I can quickly select a large node.
+            require("incr").increment_selection()
+          else
+            require("blink.indent.motion").operator("bottom", true)()
+          end
+        end,
+        desc = "Go to bottom of indent scope",
       },
     },
   },
