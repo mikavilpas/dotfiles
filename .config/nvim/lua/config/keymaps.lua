@@ -19,6 +19,17 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.keymap.set({ "t" }, "<esc><esc>", "<Nop>")
 vim.keymap.set({ "n" }, "<leader>w", "<Nop>")
 
+vim.keymap.set({ "v" }, "ä", function()
+  if require("incr").is_active() then
+    -- both c-space (from LazyVim) and a are used for treesitter incremental
+    -- selection. It's faster to hit these alternate keys in quick succession.
+    -- This way I can quickly select a large node.
+    require("incr").increment_selection()
+  else
+    require("blink.indent.motion").operator("bottom", true)()
+  end
+end, { desc = "Increment selection" })
+
 vim.keymap.set({ "n" }, "<leader>br", function()
   -- Reopen the current buffer/file to fix LSP warnings being out of sync. For
   -- some reason this seems to fix it.
