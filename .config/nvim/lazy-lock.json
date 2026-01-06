@@ -48,7 +48,7 @@
   "move.nvim": { "branch": "main", "commit": "599b14047b82e92874b9a408e4df228b965c3a1d" },
   "multicursor.nvim": { "branch": "main", "commit": "c982cc8375f062e9f98e96a408e0f7ad0c80d4db" },
   "my-nvim-micro-plugins.nvim": { "branch": "main", "commit": "71a03698c89fa1078cd736ab68c715a69723f17a" },
-  "neo-tree.nvim": { "branch": "main", "commit": "38c8e49bf6731a27eb612834ec88c606532b7fea" },
+  "neo-tree.nvim": { "branch": "main", "commit": "6ba0ef540a8dc92f9533433a3f10d414014676aa" },
   "noice.nvim": { "branch": "main", "commit": "7bfd942445fb63089b59f97ca487d605e715f155" },
   "nui.nvim": { "branch": "main", "commit": "de740991c12411b663994b2860f1a4fd0937c130" },
   "nvim-bacon": { "branch": "main", "commit": "c9cef8ac576800b6b813ad16be692d141262a4c3" },
@@ -92,6 +92,6 @@
   "wezterm-types": { "branch": "main", "commit": "c4af8d45dae25bb19bc73d05e85dca19258956f6" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
   "yazi-flavor-catppuccin-macchiato": { "branch": "main", "commit": "4a1802a5add0f867b08d5890780c10dd1f051c36" },
-  "yazi-rs-plugins": { "branch": "main", "commit": "03cdd4b5b15341b3c0d0f4c850d633fadd05a45f" },
-  "yazi.nvim": { "branch": "main", "commit": "d666962582840f889161109cf970d311c7a447d0" }
+  "yazi-rs-plugins": { "branch": "main", "commit": "4e5590280db0de5f130bf377e9c32a202110f575" },
+  "yazi.nvim": { "branch": "main", "commit": "ba8aa934dcb932efb5c9b3f869470baaedaad068" }
 }
