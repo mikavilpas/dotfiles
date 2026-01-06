@@ -11,7 +11,7 @@ env:
   RUSTC_WRAPPER: sccache
   CARGO_TERM_COLOR: always
   # renovate: datasource=github-releases depName=jesseduffield/lazygit
-  LAZYGIT_VERSION: v0.57.0
+  LAZYGIT_VERSION: v0.58.0
 
 jobs:
   build:
