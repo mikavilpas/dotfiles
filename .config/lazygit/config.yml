@@ -158,8 +158,11 @@ gui:
       - "#eed49f"
   showNumstatInFilesView: true
   branchColorPatterns:
+    # https://catppuccin.com/palette/
+
     # my "git backup-branch" branches should show up in a darker color
     ".+?--backup": "#6e738d"
+    "renovate/.+": "#cba6f7" # catppuccin-mocha-mauve
     "main$": "#a6da95"
     "master$": "#a6da95"
   authorColors:
