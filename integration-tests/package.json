@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@catppuccin/palette": "1.7.1",
-    "cypress": "15.8.1",
+    "cypress": "15.8.2",
     "wait-on": "9.0.3"
   },
   "devDependencies": {
