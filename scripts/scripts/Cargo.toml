@@ -12,7 +12,7 @@ serde_json = { workspace = true }
 
 [dev-dependencies]
 test_utils = { path = "../test_utils" }
-assert_cmd = "=2.1.1"
+assert_cmd = "=2.1.2"
 pretty_assertions = "=1.4.1"
 tempfile = "=3.24.0"
 
