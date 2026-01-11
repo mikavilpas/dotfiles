@@ -10,7 +10,7 @@ settings.cargo.binstall = true
 "cargo:eza" = "0.23.3"
 "cargo:presenterm" = "0.15.1"
 "npm:@anthropic-ai/claude-code" = "2.1.1"
-"npm:@typescript/native-preview" = "7.0.0-dev.20260107.1"
+"npm:@typescript/native-preview" = "7.0.0-dev.20260108.1"
 "npm:oxlint" = "1.38.0"
 "npm:yaml-language-server" = "1.19.2"
 "ubi:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
