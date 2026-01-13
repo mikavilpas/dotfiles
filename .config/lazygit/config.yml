@@ -79,16 +79,6 @@ customCommands:
           echo $SUMMARY | bat --language=markdown --color=always --paging=never
           echo ""
 
-          # Check if MR is currently a draft before updating
-          IS_DRAFT=$(glab mr view --output json | jq -r '.draft')
-          if [ "$IS_DRAFT" = "false" ]; then
-            echo "Marking merge request as ready... 🟢"
-            glab mr update --description="$SUMMARY" --assignee="@me" --ready
-          else
-            echo "Merge request is still a draft. Updating description only... 🟡"
-            glab mr update --description="$SUMMARY" --assignee="@me"
-          fi
-
           echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
       - key: g
         description: "Update pull request body"
