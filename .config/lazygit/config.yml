@@ -79,6 +79,8 @@ customCommands:
           echo $SUMMARY | bat --language=markdown --color=always --paging=never
           echo ""
 
+          glab mr update --description="$SUMMARY" --assignee="@me" --ready
+
           echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
       - key: g
         description: "Update pull request body"
