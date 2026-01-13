@@ -9,7 +9,7 @@ settings.cargo.binstall = true
 "cargo:cargo-nextest" = "0.9.117"
 "cargo:eza" = "0.23.3"
 "cargo:presenterm" = "0.15.1"
-"npm:@anthropic-ai/claude-code" = "2.1.2"
+"npm:@anthropic-ai/claude-code" = "2.1.3"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260109.1"
 "npm:oxlint" = "1.38.0"
 "npm:yaml-language-server" = "1.19.2"
@@ -20,7 +20,7 @@ settings.cargo.binstall = true
 "ubi:ajeetdsouza/zoxide" = "0.9.8"
 "ubi:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "ubi:ast-grep/ast-grep" = "0.40.5"
-"ubi:atuinsh/atuin" = { version = "18.10.0", matching_regex = ".tar.gz$" }
+"ubi:atuinsh/atuin" = { version = "18.11.0", matching_regex = ".tar.gz$" }
 "ubi:cargo-bins/cargo-binstall" = "1.16.6"
 "ubi:charmbracelet/glow" = "2.1.1"
 "ubi:chmln/sd" = "1.0.0"
