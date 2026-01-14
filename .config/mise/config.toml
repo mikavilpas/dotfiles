@@ -9,7 +9,7 @@ settings.cargo.binstall = true
 "cargo:cargo-nextest" = "0.9.117"
 "cargo:eza" = "0.23.3"
 "cargo:presenterm" = "0.15.1"
-"npm:@anthropic-ai/claude-code" = "2.1.4"
+"npm:@anthropic-ai/claude-code" = "2.1.5"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260111.1"
 "npm:oxlint" = "1.38.0"
 "npm:yaml-language-server" = "1.19.2"
@@ -29,7 +29,7 @@ settings.cargo.binstall = true
 "ubi:jesseduffield/lazydocker" = "0.24.3"
 "ubi:junegunn/fzf" = "0.67.0"
 "ubi:ouch-org/ouch" = "0.6.1"
-"ubi:pranshuparmar/witr" = "0.2.3"
+"ubi:pranshuparmar/witr" = "0.2.4"
 "ubi:rvben/rumdl" = "0.0.217"
 "ubi:sharkdp/bat" = "0.26.1"
 "ubi:sharkdp/fd" = "10.3.0"
@@ -56,7 +56,7 @@ glab completion -s fish > ~/.config/fish/completions/glab.fish
 """
 
 [tools.github-cli]
-version = "2.83.2"
+version = "2.85.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
