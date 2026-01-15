@@ -15,7 +15,7 @@
   "catppuccin-fish": { "branch": "main", "commit": "521560ce2075ca757473816aa31914215332bac9" },
   "catppuccin-glamour": { "branch": "main", "commit": "00c97fa3823d272d9d041d5d872ae6335555a776" },
   "conform.nvim": { "branch": "master", "commit": "238f542a118984a88124fc915d5b981680418707" },
-  "copilot.lua": { "branch": "master", "commit": "5ace9ecd0db9a7a6c14064e4ce4ede5b800325f3" },
+  "copilot.lua": { "branch": "master", "commit": "9688ca7ad7583c659979591d006e5ff0b0b0da07" },
   "crates.nvim": { "branch": "main", "commit": "ac9fa498a9edb96dc3056724ff69d5f40b898453" },
   "debugprint.nvim": { "branch": "main", "commit": "1f5de64ac5d0d0ca20a1a535e1ab2fe2c7d4359f" },
   "dressing.nvim": { "branch": "master", "commit": "2d7c2db2507fa3c4956142ee607431ddb2828639" },
