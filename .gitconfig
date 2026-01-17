@@ -79,3 +79,5 @@
 	default = upstream
 [fetch]
 	prune = true
+[wt]
+	basedir = ~/git/worktrees/{gitroot}
