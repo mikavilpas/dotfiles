@@ -10,7 +10,7 @@ settings.cargo.binstall = true
 "cargo:eza" = "0.23.3"
 "cargo:presenterm" = "0.15.1"
 "npm:@anthropic-ai/claude-code" = "2.1.7"
-"npm:@typescript/native-preview" = "7.0.0-dev.20260113.1"
+"npm:@typescript/native-preview" = "7.0.0-dev.20260114.1"
 "npm:oxlint" = "1.39.0"
 "npm:yaml-language-server" = "1.19.2"
 "ubi:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
@@ -26,7 +26,7 @@ settings.cargo.binstall = true
 "ubi:chmln/sd" = "1.0.0"
 "ubi:dandavison/delta" = "0.18.2"
 "ubi:hadolint/hadolint" = "2.14.0"
-"ubi:jesseduffield/lazydocker" = "0.24.3"
+"ubi:jesseduffield/lazydocker" = "0.24.4"
 "ubi:junegunn/fzf" = "0.67.0"
 "ubi:ouch-org/ouch" = "0.6.1"
 "ubi:pranshuparmar/witr" = "0.2.5"
