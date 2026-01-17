@@ -169,13 +169,22 @@ vim.keymap.set({ "v" }, "<f8>", function()
   local current_line = vim.fn.line(".")
   local current_column = vim.fn.virtcol(".")
 
-  vim.cmd("'<,'>sort")
-  -- exit visual mode
+  -- Get the current visual selection range directly (works on first selection)
+  local start_line = vim.fn.line("v")
+  local end_line = vim.fn.line(".")
+  if start_line > end_line then
+    start_line, end_line = end_line, start_line
+  end
+
+  -- exit visual mode first, then sort the range
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, true, true), "n", true)
 
-  -- restore cursor position
-  vim.cmd("normal! " .. current_line .. "G")
-  vim.cmd("normal! " .. current_column .. "|")
+  vim.schedule(function()
+    vim.cmd(start_line .. "," .. end_line .. "sort")
+    -- restore cursor position
+    vim.cmd("normal! " .. current_line .. "G")
+    vim.cmd("normal! " .. current_column .. "|")
+  end)
 end, { desc = ":sort", silent = true })
 
 vim.keymap.set({ "v" }, "<leader>cy", function()
