@@ -11,6 +11,7 @@ desc = "easyjump"
 on = ["<Right>"]
 run = "shell lazygit --block --confirm"
 
+# When yazi is opened within neovim, go to neovim's cwd. Otherwise fallback to
 # https://yazi-rs.github.io/docs/tips/#cd-to-git-root
 [[mgr.prepend_keymap]]
 on = ["g", "r"]
