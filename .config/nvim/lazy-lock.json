@@ -61,7 +61,7 @@
   "nvim-neoclip.lua": { "branch": "main", "commit": "831a97c7697736411a05ff8b91e8798ea4c2d6fb" },
   "nvim-rip-substitute": { "branch": "main", "commit": "af69702b1e6881b0330d22d3a62989e320d4d6d1" },
   "nvim-surround": { "branch": "main", "commit": "1098d7b3c34adcfa7feb3289ee434529abd4afd1" },
-  "nvim-treesitter": { "branch": "main", "commit": "d9a5fb8484374e8ed5d88dd9e0475a760c168d6a" },
+  "nvim-treesitter": { "branch": "main", "commit": "b9933f0e1386c7b63fe131d9979d9c2613da551a" },
   "nvim-treesitter-context": { "branch": "master", "commit": "64dd4cf3f6fd0ab17622c5ce15c91fc539c3f24a" },
   "nvim-treesitter-textobjects": { "branch": "main", "commit": "4d55f63252e04c5212daed958e4e940915ff16ce" },
   "nvim-ts-autotag": { "branch": "main", "commit": "c4ca798ab95b316a768d51eaaaee48f64a4a46bc" },
