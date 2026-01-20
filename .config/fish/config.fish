@@ -67,8 +67,10 @@ if status is-interactive && test -z "$CI"
     # like `w`, but restart running command instantly on file changes
     function ww
         # like `w`, but restart running command on file changes
-        # https://github.com/watchexec/watchexec/issues/716
-        watchexec --on-busy-update=restart --timings --no-process-group --project-origin . $argv
+        # set the root of the git repository exactly to make sure watchexec is
+        # able to match the ignore rules as expected
+        set root (git rev-parse --show-toplevel 2>/dev/null)
+        watchexec --on-busy-update=restart --timings --no-process-group --project-origin "$root" $argv
     end
     complete --command ww --wraps watchexec
 
