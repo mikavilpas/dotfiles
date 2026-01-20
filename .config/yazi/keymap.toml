@@ -202,6 +202,7 @@ keymap = [
   { on = ["g", "d"], run = "cd ~/Desktop/", desc = "Go to the Desktop directory" },
   { on = ["g", "t"], run = "cd /tmp", desc = "Go to the temporary directory" },
   { on = ["g", "l"], run = "cd ~/.local", desc = "Go to ~/.local" },
+  { on = ["g", "w"], run = "cd ~/git/worktrees/", desc = "Go to ~/git/worktrees" },
   { on = ["g", "<Space>"], run = "cd --interactive", desc = "Go to a directory interactively" },
 
   # Help
