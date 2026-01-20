@@ -45,6 +45,7 @@ if status is-interactive && test -z "$CI"
     # https://github.com/eza-community/eza
     abbr --add -- l "eza --oneline --all --long --no-user --icons=auto --no-permissions --time-style=long-iso"
 
+    # open yazi, and cd to the directory it was closed in
     function y
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
         yazi $argv --cwd-file="$tmp"
@@ -54,6 +55,7 @@ if status is-interactive && test -z "$CI"
         rm -f -- "$tmp"
     end
 
+    # run the given command when files change in the current git repository
     function w
         # set the root of the git repository exactly to make sure watchexec is
         # able to match the ignore rules as expected
@@ -62,6 +64,7 @@ if status is-interactive && test -z "$CI"
     end
     complete --command w --wraps watchexec
 
+    # like `w`, but restart running command instantly on file changes
     function ww
         # like `w`, but restart running command on file changes
         # https://github.com/watchexec/watchexec/issues/716
@@ -84,6 +87,7 @@ if status is-interactive && test -z "$CI"
     # ya sub cd,hover | batrs
     abbr -a batrs 'bat --paging=never --language=rs --decorations=never'
 
+    # show gitlab merge requests in a tree
     function mrs # "merge requests"
         glab mr list --author=@me --output=json | mika mrs-summary - --format=branches | glow --width=0
     end
