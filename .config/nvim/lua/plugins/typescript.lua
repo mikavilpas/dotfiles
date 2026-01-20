@@ -87,4 +87,17 @@ return {
       require("twoslash-queries").setup(opts)
     end,
   },
+
+  {
+    "https://github.com/vuki656/package-info.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    event = { "BufRead package.json" },
+    cond = function()
+      local function has(mgr)
+        return vim.fn.executable(mgr) == 1
+      end
+      return has("npm") or has("yarn") or has("pnpm")
+    end,
+    opts = {},
+  },
 }
