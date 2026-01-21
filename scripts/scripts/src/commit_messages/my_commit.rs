@@ -44,3 +44,12 @@ impl From<MyCommit> for FixupCommit {
         }
     }
 }
+
+impl FixupCommit {
+    pub fn is_empty_or_whitespace(&self) -> bool {
+        match &self.body {
+            Some(body) => body.trim().is_empty(),
+            None => true,
+        }
+    }
+}
