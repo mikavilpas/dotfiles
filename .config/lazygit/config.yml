@@ -157,6 +157,7 @@ gui:
     "renovate/.+": "#cba6f7" # catppuccin-mocha-mauve
     "main$": "#a6da95"
     "master$": "#a6da95"
+    "wip-.+": "#7dc4e4" # catppuccin-macchiato-sapphire
   authorColors:
     "Mika Vilpas": "#8aadf4"
 git:
