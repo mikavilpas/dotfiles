@@ -12,13 +12,15 @@ pub fn commit_as_markdown(result_lines: &mut Vec<String>, commit: MyCommit) {
         });
     }
 
-    // render fixups
-    if !commit.fixups.is_empty() {
+    // render fixups only if there are any that have a body
+    let has_fixup_bodies = commit.fixups.iter().any(|f| !f.is_empty_or_whitespace());
+    if has_fixup_bodies {
         result_lines.push("".to_string());
         result_lines.push("**Fixups:**".to_string());
 
         for mut fixup in commit.fixups {
-            if let Some(mut body_lines) = fixup.body.as_mut().map(|b| b.split('\n'))
+            if (!fixup.is_empty_or_whitespace())
+                && let Some(mut body_lines) = fixup.body.as_mut().map(|b| b.split('\n'))
                 && let Some(first_line) = body_lines.next()
             {
                 // make it into a list item
@@ -79,6 +81,41 @@ mod tests {
             .iter()
             .map(|s| s.to_string())
             .collect::<Vec<String>>()
+        );
+    }
+
+    #[test]
+    fn test_empty_fixups_are_ignored() {
+        let commit = MyCommit {
+            subject: "feat: my-feature".to_string(),
+            body: Some(["This is the body of the commit."].join("\n")),
+            fixups: vec![
+                FixupCommit {
+                    subject: "fixup! feat: my-feature".to_string(),
+                    body: None,
+                },
+                FixupCommit {
+                    // empty body
+                    subject: "fixup! feat: my-feature".to_string(),
+                    body: Some("".to_string()),
+                },
+                FixupCommit {
+                    // whitespace body
+                    subject: "fixup! feat: my-feature".to_string(),
+                    body: Some(" ".to_string()),
+                },
+            ],
+        };
+
+        let mut result_lines = vec![];
+        commit_as_markdown(&mut result_lines, commit);
+
+        assert_eq!(
+            result_lines,
+            ["# feat: my-feature", "", "This is the body of the commit.",]
+                .iter()
+                .map(|s| s.to_string())
+                .collect::<Vec<String>>()
         );
     }
 }
