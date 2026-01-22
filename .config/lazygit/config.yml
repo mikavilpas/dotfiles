@@ -67,35 +67,23 @@ customCommands:
           "mika share-patch --with-instructions --commit
           {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
         description: "Share selected commits as a patch with instructions"
-      - key: u
-        description: "Update merge request description"
-        context: localBranches
-        output: terminal
-        command: |
-          #!/bin/bash
-          set -e
+  - key: "="
+    description: "Update MR/PR description"
+    context: localBranches
+    output: log
+    command: |
+      #!/bin/bash
+      set -euo pipefail
 
-          SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
-          echo $SUMMARY | bat --language=markdown --color=always --paging=never
-          echo ""
+      BRANCH="{{.SelectedLocalBranch.Name}}"
+      SUMMARY="$(mika branch-summary --branch "$BRANCH")"
+      REMOTE_URL="$(git remote get-url origin)"
 
-          glab mr update --description="$SUMMARY" --assignee="@me" --ready
-
-          echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
-      - key: g
-        description: "Update pull request body"
-        context: localBranches
-        output: terminal
-        command: |
-          #!/bin/bash
-          set -e
-          SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
-          echo $SUMMARY | bat --language=markdown --color=always --paging=never
-          echo ""
-
-          gh pr edit --body="$SUMMARY" --add-assignee="@me"
-
-          echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
+      if [[ "$REMOTE_URL" == *"github"* ]]; then
+        gh pr edit "$BRANCH" --body="$SUMMARY" --add-assignee="@me"
+      else
+        glab mr update "$BRANCH" --description="$SUMMARY" --assignee="@me" --ready
+      fi
 keybinding:
   universal:
     edit: e
