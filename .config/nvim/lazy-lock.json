@@ -56,7 +56,7 @@
   "nvim-colorizer.lua": { "branch": "master", "commit": "a065833f35a3a7cc3ef137ac88b5381da2ba302e" },
   "nvim-early-retirement": { "branch": "main", "commit": "79ea1568df53986e0d9f4d36fd542933a34b2e61" },
   "nvim-lint": { "branch": "master", "commit": "ca6ea12daf0a4d92dc24c5c9ae22a1f0418ade37" },
-  "nvim-lspconfig": { "branch": "master", "commit": "dec357ee48ff7e2e5b76898fd7c67b61a627d3ac" },
+  "nvim-lspconfig": { "branch": "master", "commit": "419b082102fa813739588dd82e19a8b6b2442855" },
   "nvim-navic": { "branch": "master", "commit": "f5eba192f39b453675d115351808bd51276d9de5" },
   "nvim-neoclip.lua": { "branch": "main", "commit": "831a97c7697736411a05ff8b91e8798ea4c2d6fb" },
   "nvim-rip-substitute": { "branch": "main", "commit": "af69702b1e6881b0330d22d3a62989e320d4d6d1" },
