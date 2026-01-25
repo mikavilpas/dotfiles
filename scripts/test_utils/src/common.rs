@@ -32,8 +32,9 @@ impl TestRepoBuilder {
         Ok(())
     }
 
-    /// Create a new branch and switch to it
-    pub fn checkout(&self, branch: &str) -> Result<()> {
+    /// Create a new branch and switch to it:
+    /// `git checkout -b <branch>`
+    pub fn checkout_b(&self, branch: &str) -> Result<()> {
         run_git(self.path(), ["checkout", "-b", branch].as_ref())?;
         Ok(())
     }

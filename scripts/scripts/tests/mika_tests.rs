@@ -72,7 +72,7 @@ fn test_branch_summary() -> Result<(), Box<dyn std::error::Error>> {
     context.commit("feat: main commit 1")?;
     context.commit("feat: main commit 2")?;
 
-    context.checkout("feature")?;
+    context.checkout_b("feature")?;
 
     context.commit("feat: feature commit 1")?;
     context.commit(
@@ -136,7 +136,7 @@ fn test_get_commit_messages_on_current_branch() -> Result<(), Box<dyn std::error
     let context = TestRepoBuilder::new()?;
     context.commit("initial commit")?;
 
-    context.checkout("feature")?;
+    context.checkout_b("feature")?;
 
     context.commit("feat: feature commit 1")?;
 
@@ -159,7 +159,7 @@ fn test_include_codeblock_at_end() -> Result<(), Box<dyn std::error::Error>> {
     let context = TestRepoBuilder::new()?;
     context.commit("initial commit")?;
 
-    context.checkout("feature")?;
+    context.checkout_b("feature")?;
 
     context.commit(
         &[
@@ -205,7 +205,7 @@ fn test_format_patch_with_instructions() -> Result<(), Box<dyn std::error::Error
 
     // create a commit and then store it as a patch
     context.commit("initial commit")?;
-    context.checkout("feature")?;
+    context.checkout_b("feature")?;
     context.create_file(&context.path().join("README.md"))?;
     context.stage(Path::new("README.md"))?;
     context.commit("docs: add readme")?;
