@@ -1,6 +1,6 @@
 use assert_cmd::cargo;
 use pretty_assertions::assert_eq;
-use scripts::gitlab_mrs::MergeRequest;
+use scripts::gitlab::gitlab_mrs::MergeRequest;
 use std::io::Write;
 use tempfile::NamedTempFile;
 
@@ -212,10 +212,13 @@ fn test_mrs_summary_empty() {
         .args(["mrs-summary", file.path().to_str().unwrap()])
         .assert();
 
-    let stdout = String::from_utf8(assert.success().get_output().stdout.clone())
+    let stderr = String::from_utf8(assert.failure().get_output().stderr.clone())
         .expect("failed to convert stdout to string");
 
-    assert_eq!(stdout, ["No open merge requests.", ""].join("\n"));
+    assert_eq!(
+        stderr,
+        ["failed to format MRs: No open merge requests.", ""].join("\n")
+    );
 }
 
 #[test]
@@ -329,10 +332,7 @@ fn test_mrs_summary_from_stdin() {
     let json = serde_json::to_string(&mrs).expect("failed to serialize MRs");
 
     let mut cmd = cargo::cargo_bin_cmd!("mika");
-    let assert = cmd
-        .args(["mrs-summary", "-"])
-        .write_stdin(json)
-        .assert();
+    let assert = cmd.args(["mrs-summary", "-"]).write_stdin(json).assert();
 
     let stdout = String::from_utf8(assert.success().get_output().stdout.clone())
         .expect("failed to convert stdout to string");
@@ -351,13 +351,7 @@ fn test_mrs_summary_from_stdin() {
 #[test]
 fn test_mrs_summary_branches_format() {
     let mrs = vec![
-        create_mr(
-            101,
-            "feat: base feature",
-            "feature-base",
-            "main",
-            false,
-        ),
+        create_mr(101, "feat: base feature", "feature-base", "main", false),
         create_mr(
             102,
             "Draft: child feature",
@@ -365,19 +359,17 @@ fn test_mrs_summary_branches_format() {
             "feature-base",
             true,
         ),
-        create_mr(
-            103,
-            "feat: another root",
-            "feature-another",
-            "main",
-            false,
-        ),
+        create_mr(103, "feat: another root", "feature-another", "main", false),
     ];
     let file = create_mrs_json(&mrs);
 
     let mut cmd = cargo::cargo_bin_cmd!("mika");
     let assert = cmd
-        .args(["mrs-summary", file.path().to_str().unwrap(), "--format=branches"])
+        .args([
+            "mrs-summary",
+            file.path().to_str().unwrap(),
+            "--format=branches",
+        ])
         .assert();
 
     let stdout = String::from_utf8(assert.success().get_output().stdout.clone())

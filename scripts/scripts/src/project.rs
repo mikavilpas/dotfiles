@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use anyhow::{anyhow, Context, Result};
+use anyhow::{Context, Result, anyhow};
 
 pub fn path_to_project_file(cwd: &Path, file: &Path) -> Result<String> {
     let target_file = resolve_file(cwd, file);

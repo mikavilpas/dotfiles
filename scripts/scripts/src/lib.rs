@@ -2,5 +2,5 @@
 
 pub mod arguments;
 pub mod commit_messages;
-pub mod gitlab_mrs;
+pub mod gitlab;
 pub mod project;

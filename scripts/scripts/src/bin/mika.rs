@@ -1,11 +1,15 @@
 use clap::{CommandFactory, Parser};
+use std::process::exit;
+
 use scripts::{
     arguments::{Cli, Commands, MrsFormat},
     commit_messages::{
         format_patch_with_instructions, get_commit_messages_between_commits,
         get_commit_messages_on_branch, get_current_branch_name,
     },
-    gitlab_mrs::{OutputFormat, format_mrs_as_markdown, parse_mrs_from_file, parse_mrs_from_stdin},
+    gitlab::gitlab_mrs::{
+        OutputFormat, format_mrs_as_markdown, mr_stack, parse_gitlab_mrs_from_file_or_stdin,
+    },
     project::path_to_project_file,
 };
 
@@ -92,23 +96,29 @@ pub fn main() {
             }
         }
         Commands::MrsSummary { file, format } => {
-            let mrs = if file.as_os_str() == "-" {
-                parse_mrs_from_stdin().unwrap_or_else(|e| panic!("failed to parse MRs: {e}"))
-            } else {
-                let cwd = std::env::current_dir().expect("failed to get current directory");
-                let path = if file.is_absolute() {
-                    file
-                } else {
-                    cwd.join(file)
-                };
-                parse_mrs_from_file(&path).unwrap_or_else(|e| panic!("failed to parse MRs: {e}"))
-            };
+            let mrs = parse_gitlab_mrs_from_file_or_stdin(file);
             let output_format = match format {
                 MrsFormat::Links => OutputFormat::Links,
                 MrsFormat::Branches => OutputFormat::Branches,
             };
-            let output = format_mrs_as_markdown(mrs, output_format);
-            println!("{output}");
+            match format_mrs_as_markdown(mrs, output_format) {
+                Ok(output) => println!("{output}"),
+                Err(e) => {
+                    eprintln!("failed to format MRs: {e}");
+                    exit(1);
+                }
+            };
+        }
+
+        Commands::MrStackSummary { file, branch } => {
+            let mrs = parse_gitlab_mrs_from_file_or_stdin(file);
+            match mr_stack::format_mr_stack_as_markdown(mrs, branch.as_str()) {
+                Ok(output) => println!("{output}"),
+                Err(error) => {
+                    eprintln!("failed to format MR stack: {error}");
+                    exit(1);
+                }
+            };
         }
     }
 }
