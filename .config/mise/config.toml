@@ -1,4 +1,5 @@
 settings.cargo.binstall = true
+settings.experimental = true
 
 # Pick tools that renovate can manage updates for. See:
 # https://docs.renovatebot.com/modules/manager/mise/
