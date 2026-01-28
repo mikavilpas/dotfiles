@@ -84,14 +84,14 @@ customCommands:
       else
         # Wait for GitLab to process the push (up to 30s)
         LOCAL_SHA="$(git rev-parse "$BRANCH")"
-        for i in {1..15}; do
-          REMOTE_SHA="$(glab api projects/:id/repository/branches/"$BRANCH" 2>/dev/null | jq -r '.commit.id // empty')"
-          [[ "$REMOTE_SHA" == "$LOCAL_SHA" ]] && break
-          echo "Waiting for GitLab to process push... ($i/15)"
-          sleep 2
-        done
 
         glab mr update "$BRANCH" --description="$SUMMARY" --assignee="@me" --ready
+
+        # GitLab may auto-draft if it sees fixup! commits, so mark ready a few more times
+        for i in {1..5}; do
+          sleep 2
+          glab mr update "$BRANCH" --ready
+        done
       fi
 keybinding:
   universal:
