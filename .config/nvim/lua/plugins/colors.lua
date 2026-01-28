@@ -16,7 +16,7 @@ return {
       -- colorscheme = "solarized-osaka",
       -- colorscheme = "catppuccin-latte",
       -- colorscheme = "catppuccin-frappe",
-      colorscheme = "catppuccin",
+      colorscheme = "catppuccin-macchiato",
       -- colorscheme = "catppuccin-mocha",
     },
   },
