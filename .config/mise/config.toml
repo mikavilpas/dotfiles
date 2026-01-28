@@ -14,6 +14,7 @@ settings.experimental = true
 "npm:@typescript/native-preview" = "7.0.0-dev.20260124.1"
 "npm:oxlint" = "1.41.0"
 "npm:yaml-language-server" = "1.19.2"
+"pipx:awslabs.cloudwatch-mcp-server" = "0.0.18"
 "ubi:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
 "ubi:JohnnyMorganz/stylua" = "2.3.1"
 "ubi:MordechaiHadad/bob" = "4.1.6"
@@ -47,7 +48,6 @@ shfmt = "3.12.0"
 typos = "1.42.3"
 ubi = "0.8.1"
 uv = "0.9.27"
-"pipx:awslabs.cloudwatch-mcp-server" = "0.0.18"
 
 
 [tools."ubi:gitlab-org/cli"]
