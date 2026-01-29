@@ -33,7 +33,7 @@ settings.experimental = true
 "ubi:k1LoW/git-wt" = "0.16.1"
 "ubi:ouch-org/ouch" = "0.6.1"
 "ubi:pranshuparmar/witr" = "0.2.6"
-"ubi:rvben/rumdl" = "0.1.5"
+"ubi:rvben/rumdl" = "0.1.6"
 "ubi:sharkdp/bat" = "0.26.1"
 "ubi:sharkdp/fd" = "10.3.0"
 "ubi:sharkdp/hyperfine" = "1.20.0"
@@ -47,7 +47,7 @@ jq = "1.8.1"
 shfmt = "3.12.0"
 typos = "1.42.3"
 ubi = "0.8.1"
-uv = "0.9.27"
+uv = "0.9.28"
 
 
 [tools."ubi:gitlab-org/cli"]
