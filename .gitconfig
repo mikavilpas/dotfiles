@@ -68,8 +68,8 @@
   ; https://stackoverflow.com/a/60557208/1336788
   stash-keep = "!f() { git stash store --message \"$(date +'%Y-%m-%d %H:%M:%S')\" \"$1\"; }; f $(git stash create)"
 
-  ; quickly create a backup of the current branch
-  backup-branch = !git branch $(git rev-parse --abbrev-ref HEAD)--backup-$(date +%Y%m%d%H%M%S)
+  ; quickly create a backup of the current branch (accepts optional branch name)
+  backup-branch = "!f() { branch=\"${1:-$(git rev-parse --abbrev-ref HEAD)}\"; git branch \"${branch}--backup-$(date +%Y%m%d%H%M%S)\"; }; f"
 
 [commit]
 	verbose = true

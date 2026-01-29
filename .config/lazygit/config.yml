@@ -32,7 +32,7 @@ customCommands:
   - key: "b"
     context: localBranches
     description: "Backup branch"
-    command: git backup-branch
+    command: git backup-branch {{.SelectedLocalBranch.Name}}
   - key: "<c-r>"
     context: commits
     description: "Reword the commit with verbose=false"
