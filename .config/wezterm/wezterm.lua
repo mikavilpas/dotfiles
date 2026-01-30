@@ -8,11 +8,11 @@ local config = {}
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
 if wezterm.config_builder then
-	config = wezterm.config_builder()
+  config = wezterm.config_builder()
 end
 config.default_prog = {
-	"/Users/mikavilpas/.local/share/mise/installs/aqua-fish-shell-fish-shell/latest/fish.pkg/Payload/usr/local/bin/fish",
-	"-l",
+  "/Users/mikavilpas/.local/share/mise/installs/aqua-fish-shell-fish-shell/latest/fish.pkg/Payload/usr/local/bin/fish",
+  "-l",
 }
 
 -- This is where you actually apply your config choices
@@ -40,13 +40,13 @@ config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
 
 config.visual_bell = {
-	fade_in_function = "EaseIn",
-	fade_in_duration_ms = 150,
-	fade_out_function = "EaseOut",
-	fade_out_duration_ms = 150,
+  fade_in_function = "EaseIn",
+  fade_in_duration_ms = 150,
+  fade_out_function = "EaseOut",
+  fade_out_duration_ms = 150,
 }
 config.colors = {
-	visual_bell = "#303030",
+  visual_bell = "#303030",
 }
 
 -- config.color_scheme = "Tokyo Night"
@@ -67,90 +67,94 @@ config.scrollback_lines = 5000
 
 local act = wezterm.action
 config.keys = {
-	-- Clears the scrollback and viewport leaving the prompt line the new first line.
-	{
-		key = "k",
-		mods = "SUPER",
-		action = act.ClearScrollback("ScrollbackAndViewport"),
-	},
-	{
-		key = "+",
-		mods = "SUPER",
-		action = act.IncreaseFontSize,
-	},
+  -- Clears the scrollback and viewport leaving the prompt line the new first line.
+  {
+    key = "k",
+    mods = "SUPER",
+    action = act.ClearScrollback("ScrollbackAndViewport"),
+  },
+  {
+    key = "+",
+    mods = "SUPER",
+    action = act.IncreaseFontSize,
+  },
 
-	-- https://wezfurlong.org/wezterm/scrollback.html#enabledisable-scrollbar
-	{ key = "f", mods = "SUPER", action = act.Search({ CaseInSensitiveString = "" }) },
+  -- https://wezfurlong.org/wezterm/scrollback.html#enabledisable-scrollbar
+  {
+    key = "f",
+    mods = "SUPER",
+    action = act.Search({ CaseInSensitiveString = "" }),
+  },
 
-	{ key = "UpArrow", mods = "SUPER", action = act.ScrollToPrompt(-1) },
-	{ key = "DownArrow", mods = "SUPER", action = act.ScrollToPrompt(1) },
+  { key = "UpArrow", mods = "SUPER", action = act.ScrollToPrompt(-1) },
+  { key = "DownArrow", mods = "SUPER", action = act.ScrollToPrompt(1) },
 
-	{
-		key = "P",
-		mods = "SUPER|SHIFT",
-		action = wezterm.action.ActivateCommandPalette,
-	},
-	{
-		-- Open URL with <leader>o
-		key = "o",
-		mods = "LEADER",
-		action = wezterm.action.QuickSelectArgs({
-			label = "open url",
-			patterns = {
-				"https?://\\S+",
-			},
-			action = wezterm.action_callback(function(window, pane)
-				local url = window:get_selection_text_for_pane(pane)
-				wezterm.log_info("opening: " .. url)
-				-- -n opens in a new window
-				wezterm.open_with(url)
-			end),
-		}),
-	},
-	{
-		key = "y",
-		mods = "LEADER",
-		action = wezterm.action.QuickSelectArgs({
-			label = "copy file path",
-			patterns = {
-				-- test cases:
-				--
-				-- src/api/api-client-integration.test.ts:56:15
-				-- /Users/mikavilpas/project/file.test.ts',
-				-- /Users/mikavilpas/project/file.test.ts:38:5',
-				-- /Users/mikavilpas/@project/file.test.ts:38:5',
-				-- file:///Users/mikavilpas/project/node_modules/@vitest/runner/dist/index.js:563:22',
-				-- /Users/mikavilpas/git/blink-ripgrep.nvim/integration-tests/test-environment
-				"(?:file://)?[\\w\\._/@-]+:\\d+:\\d+",
-				"(?:file://)?[\\w\\._/@-]+",
-			},
-			action = wezterm.action.CopyTo("ClipboardAndPrimarySelection"),
-		}),
-	},
-	{
-		key = "Y",
-		mods = "LEADER",
-		action = wezterm.action.QuickSelectArgs({
-			label = "copy mode at identifier",
-			patterns = {
-				"(?:file://)?[\\w\\._/@-]+:\\d+:\\d+",
-				"(?:file://)?[\\w\\._/@-]+",
-			},
-			action = wezterm.action_callback(function(window, pane)
-				local text = window:get_selection_text_for_pane(pane)
-				window:perform_action(act.ActivateCopyMode, pane)
-				window:perform_action(act.Search({ CaseSensitiveString = text }), pane)
-			end),
-		}),
-	},
+  {
+    key = "P",
+    mods = "SUPER|SHIFT",
+    action = wezterm.action.ActivateCommandPalette,
+  },
+  {
+    -- Open URL with <leader>o
+    key = "o",
+    mods = "LEADER",
+    action = wezterm.action.QuickSelectArgs({
+      label = "open url",
+      patterns = {
+        "https?://\\S+",
+      },
+      action = wezterm.action_callback(function(window, pane)
+        local url = window:get_selection_text_for_pane(pane)
+        wezterm.log_info("opening: " .. url)
+        -- -n opens in a new window
+        wezterm.open_with(url)
+      end),
+    }),
+  },
+  {
+    key = "y",
+    mods = "LEADER",
+    action = wezterm.action.QuickSelectArgs({
+      label = "copy file path",
+      patterns = {
+        -- test cases:
+        --
+        -- src/api/api-client-integration.test.ts:56:15
+        -- /Users/mikavilpas/project/file.test.ts',
+        -- /Users/mikavilpas/project/file.test.ts:38:5',
+        -- /Users/mikavilpas/@project/file.test.ts:38:5',
+        -- file:///Users/mikavilpas/project/node_modules/@vitest/runner/dist/index.js:563:22',
+        -- /Users/mikavilpas/git/blink-ripgrep.nvim/integration-tests/test-environment
+        "(?:file://)?[\\w\\._/@-]+:\\d+:\\d+",
+        "(?:file://)?[\\w\\._/@-]+",
+      },
+      action = wezterm.action.CopyTo("ClipboardAndPrimarySelection"),
+    }),
+  },
+  {
+    key = "Y",
+    mods = "LEADER",
+    action = wezterm.action.QuickSelectArgs({
+      label = "copy mode at identifier",
+      patterns = {
+        "(?:file://)?[\\w\\._/@-]+:\\d+:\\d+",
+        "(?:file://)?[\\w\\._/@-]+",
+      },
+      action = wezterm.action_callback(function(window, pane)
+        local text = window:get_selection_text_for_pane(pane)
+        window:perform_action(act.ActivateCopyMode, pane)
+        window:perform_action(act.Search({ CaseSensitiveString = text }), pane)
+      end),
+    }),
+  },
 }
 
 config.mouse_bindings = {
-	{
-		event = { Down = { streak = 3, button = "Left" } },
-		action = wezterm.action.SelectTextAtMouseCursor("SemanticZone"),
-		mods = "NONE",
-	},
+  {
+    event = { Down = { streak = 3, button = "Left" } },
+    action = wezterm.action.SelectTextAtMouseCursor("SemanticZone"),
+    mods = "NONE",
+  },
 }
 
 -- and finally, return the configuration to wezterm
