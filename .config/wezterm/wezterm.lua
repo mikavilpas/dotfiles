@@ -127,6 +127,22 @@ config.keys = {
 			action = wezterm.action.CopyTo("ClipboardAndPrimarySelection"),
 		}),
 	},
+	{
+		key = "Y",
+		mods = "LEADER",
+		action = wezterm.action.QuickSelectArgs({
+			label = "copy mode at identifier",
+			patterns = {
+				"(?:file://)?[\\w\\._/@-]+:\\d+:\\d+",
+				"(?:file://)?[\\w\\._/@-]+",
+			},
+			action = wezterm.action_callback(function(window, pane)
+				local text = window:get_selection_text_for_pane(pane)
+				window:perform_action(act.ActivateCopyMode, pane)
+				window:perform_action(act.Search({ CaseSensitiveString = text }), pane)
+			end),
+		}),
+	},
 }
 
 -- integration with nvim and zen-mode
