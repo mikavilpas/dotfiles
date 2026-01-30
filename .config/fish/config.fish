@@ -5,6 +5,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # https://typicode.github.io/husky/how-to.html#for-multiple-commands
 export HUSKY=0
+export EDITOR=nvim
 
 fish_add_path $HOME/bin
 fish_add_path /opt/homebrew/bin
