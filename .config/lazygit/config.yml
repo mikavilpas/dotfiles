@@ -33,7 +33,7 @@ customCommands:
     context: localBranches
     description: "Backup branch"
     command: git backup-branch {{.SelectedLocalBranch.Name}}
-  - key: "A"
+  - key: "<f8>"
     context: localBranches
     description:
       "Autosquash only this branch (preserves fixups in branches above)"
