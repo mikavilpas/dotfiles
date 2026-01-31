@@ -33,6 +33,14 @@ customCommands:
     context: localBranches
     description: "Backup branch"
     command: git backup-branch {{.SelectedLocalBranch.Name}}
+  - key: "A"
+    context: localBranches
+    description:
+      "Autosquash only this branch (preserves fixups in branches above)"
+    loadingText: "Autosquashing {{.SelectedLocalBranch.Name}}..."
+    # See git-autosquash-branch.sh for documentation
+    command:
+      ~/.config/lazygit/git-autosquash-branch.sh "{{.SelectedLocalBranch.Name}}"
   - key: "<c-r>"
     context: commits
     description: "Reword the commit with verbose=false"
