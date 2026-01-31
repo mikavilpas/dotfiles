@@ -10,8 +10,8 @@ settings.experimental = true
 "cargo:cargo-nextest" = "0.9.117"
 "cargo:eza" = "0.23.3"
 "cargo:presenterm" = "0.15.1"
-"npm:@anthropic-ai/claude-code" = "2.1.21"
-"npm:@typescript/native-preview" = "7.0.0-dev.20260127.1"
+"npm:@anthropic-ai/claude-code" = "2.1.22"
+"npm:@typescript/native-preview" = "7.0.0-dev.20260128.1"
 "npm:oxlint" = "1.42.0"
 "npm:yaml-language-server" = "1.19.2"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.18"
@@ -19,7 +19,7 @@ settings.experimental = true
 "ubi:JohnnyMorganz/stylua" = "2.3.1"
 "ubi:MordechaiHadad/bob" = "4.1.6"
 "ubi:aaronriekenberg/rust-parallel" = "1.21.0"
-"ubi:ajeetdsouza/zoxide" = "0.9.8"
+"ubi:ajeetdsouza/zoxide" = "0.9.9"
 "ubi:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "ubi:ast-grep/ast-grep" = "0.40.5"
 "ubi:atuinsh/atuin" = { version = "18.11.0", matching_regex = ".tar.gz$" }
