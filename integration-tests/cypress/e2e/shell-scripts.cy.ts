@@ -309,19 +309,13 @@ describe("shell scripts", () => {
           git checkout -b branch1
           echo "a" > a.txt && git add . && git commit -m "commit A"
         `
-        term.runBlockingShellCommand({ command: setup }).then((output) => {
-          assert(output.type === "success")
-        })
+        term.runBlockingShellCommand({ command: setup })
 
         // Should succeed even with no fixups
-        term
-          .runBlockingShellCommand({
-            command:
-              "cd myrepo && ~/.config/lazygit/git-autosquash-branch.sh branch1",
-          })
-          .then((output) => {
-            assert(output.type === "success")
-          })
+        term.runBlockingShellCommand({
+          command:
+            "cd myrepo && ~/.config/lazygit/git-autosquash-branch.sh branch1",
+        })
 
         // Branch should still have the same commit
         term
