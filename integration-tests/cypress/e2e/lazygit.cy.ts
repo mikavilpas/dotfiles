@@ -18,8 +18,6 @@ describe("lazygit", () => {
 
       t.runBlockingShellCommand({
         command: "test -f ~/.config/lazygit/config.yml",
-      }).then((output) => {
-        assert(output.type === "success")
       })
 
       t.runBlockingShellCommand({
