@@ -5,7 +5,7 @@ settings.experimental = true
 # https://docs.renovatebot.com/modules/manager/mise/
 [tools]
 
-"aqua:fish-shell/fish-shell" = "4.3.3"
+"aqua:fish-shell/fish-shell" = "4.4.0"
 "cargo:bacon" = "3.19.0"
 "cargo:cargo-nextest" = "0.9.117"
 "cargo:eza" = "0.23.3"
