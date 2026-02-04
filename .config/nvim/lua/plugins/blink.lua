@@ -1,5 +1,5 @@
 -- until blink is published https://www.lazyvim.org/extras/coding/blink#options
-vim.g.lazyvim_blink_main = true
+-- vim.g.lazyvim_blink_main = true
 
 ---@diagnostic disable: missing-fields
 ---@module "lazy"
@@ -8,9 +8,10 @@ return {
   -- ../../../../../.local/share/nvim/lazy/blink.cmp/lua/blink/cmp/init.lua
   -- ../../../../../.local/share/nvim/lazy/LazyVim/lua/lazyvim/plugins/extras/coding/blink.lua
   "saghen/blink.cmp",
-  version = false,
+  -- version = false,
+  version = "*",
   -- dir = "~/git/blink.cmp/",
-  build = "cargo build --release",
+  -- build = "cargo build --release",
   dependencies = {
     "rafamadriz/friendly-snippets",
     {
@@ -120,7 +121,7 @@ return {
           "sort_text",
         },
         prebuilt_binaries = {
-          download = false,
+          download = true,
         },
       },
       completion = {
