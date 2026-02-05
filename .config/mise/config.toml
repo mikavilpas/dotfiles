@@ -12,7 +12,7 @@ settings.experimental = true
 "cargo:presenterm" = "0.15.1"
 "npm:@anthropic-ai/claude-code" = "2.1.29"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260202.1"
-"npm:oxlint" = "1.42.0"
+"npm:oxlint" = "1.43.0"
 "npm:yaml-language-server" = "1.19.2"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.19"
 "ubi:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
@@ -33,7 +33,7 @@ settings.experimental = true
 "ubi:k1LoW/git-wt" = "0.18.0"
 "ubi:ouch-org/ouch" = "0.6.1"
 "ubi:pranshuparmar/witr" = "0.2.6"
-"ubi:rvben/rumdl" = "0.1.12"
+"ubi:rvben/rumdl" = "0.1.13"
 "ubi:sharkdp/bat" = "0.26.1"
 "ubi:sharkdp/fd" = "10.3.0"
 "ubi:sharkdp/hyperfine" = "1.20.0"
