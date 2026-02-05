@@ -14,7 +14,7 @@ settings.experimental = true
 "npm:@typescript/native-preview" = "7.0.0-dev.20260201.1"
 "npm:oxlint" = "1.42.0"
 "npm:yaml-language-server" = "1.19.2"
-"pipx:awslabs.cloudwatch-mcp-server" = "0.0.18"
+"pipx:awslabs.cloudwatch-mcp-server" = "0.0.19"
 "ubi:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
 "ubi:JohnnyMorganz/stylua" = "2.3.1"
 "ubi:MordechaiHadad/bob" = "4.1.6"
