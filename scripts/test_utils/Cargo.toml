@@ -7,4 +7,4 @@ edition = "2024"
 [dependencies]
 gix = { workspace = true }
 anyhow = { workspace = true }
-tempfile = "=3.24.0"
+tempfile = "=3.25.0"
