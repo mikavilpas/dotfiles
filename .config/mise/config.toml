@@ -22,7 +22,7 @@ settings.experimental = true
 "ubi:ajeetdsouza/zoxide" = "0.9.9"
 "ubi:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "ubi:ast-grep/ast-grep" = "0.40.5"
-"ubi:atuinsh/atuin" = { version = "18.11.0", matching_regex = ".tar.gz$" }
+"ubi:atuinsh/atuin" = { version = "18.12.0", matching_regex = ".tar.gz$" }
 "ubi:cargo-bins/cargo-binstall" = "1.17.4"
 "ubi:charmbracelet/glow" = "2.1.1"
 "ubi:chmln/sd" = "1.0.0"
@@ -33,7 +33,7 @@ settings.experimental = true
 "ubi:k1LoW/git-wt" = "0.20.0"
 "ubi:ouch-org/ouch" = "0.6.1"
 "ubi:pranshuparmar/witr" = "0.2.7"
-"ubi:rvben/rumdl" = "0.1.16"
+"ubi:rvben/rumdl" = "0.1.17"
 "ubi:sharkdp/bat" = "0.26.1"
 "ubi:sharkdp/fd" = "10.3.0"
 "ubi:sharkdp/hyperfine" = "1.20.0"
