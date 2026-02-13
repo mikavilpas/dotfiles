@@ -12,7 +12,7 @@ settings.experimental = true
 "cargo:presenterm" = "0.15.1"
 "npm:@anthropic-ai/claude-code" = "2.1.38"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260210.1"
-"npm:oxlint" = "1.43.0"
+"npm:oxlint" = "1.46.0"
 "npm:yaml-language-server" = "1.19.2"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.19"
 "ubi:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
@@ -23,7 +23,7 @@ settings.experimental = true
 "ubi:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "ubi:ast-grep/ast-grep" = "0.40.5"
 "ubi:atuinsh/atuin" = { version = "18.12.1", matching_regex = ".tar.gz$" }
-"ubi:cargo-bins/cargo-binstall" = "1.17.4"
+"ubi:cargo-bins/cargo-binstall" = "1.17.5"
 "ubi:charmbracelet/glow" = "2.1.1"
 "ubi:chmln/sd" = "1.0.0"
 "ubi:dandavison/delta" = "0.18.2"
