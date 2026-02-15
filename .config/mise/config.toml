@@ -12,7 +12,7 @@ settings.experimental = true
 "cargo:presenterm" = "0.15.1"
 "npm:@anthropic-ai/claude-code" = "2.1.40"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260212.1"
-"npm:oxlint" = "1.46.0"
+"npm:oxlint" = "1.47.0"
 "npm:yaml-language-server" = "1.19.2"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.19"
 "ubi:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
@@ -51,7 +51,7 @@ uv = "0.10.2"
 
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.85.1"
+version = "1.85.2"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
