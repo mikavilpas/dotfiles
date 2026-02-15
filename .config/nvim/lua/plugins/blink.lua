@@ -8,10 +8,11 @@ return {
   -- ../../../../../.local/share/nvim/lazy/blink.cmp/lua/blink/cmp/init.lua
   -- ../../../../../.local/share/nvim/lazy/LazyVim/lua/lazyvim/plugins/extras/coding/blink.lua
   "saghen/blink.cmp",
-  -- version = false,
-  version = "*",
+  version = false,
+  branch = "fix/visual-artifacts",
+  -- version = "*",
   -- dir = "~/git/blink.cmp/",
-  -- build = "cargo build --release",
+  build = "cargo build --release",
   dependencies = {
     "rafamadriz/friendly-snippets",
     {
