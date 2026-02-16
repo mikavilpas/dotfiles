@@ -74,7 +74,7 @@ mkdir -p ~/.config/fish/completions
 mise exec -- yq completion fish > ~/.config/fish/completions/yq.fish
 """
 
-[tools."ubi:ducaale/xh"]
+[tools."github:ducaale/xh"]
 version = "0.25.3"
 postinstall = """
 mkdir -p ~/.config/fish/completions
