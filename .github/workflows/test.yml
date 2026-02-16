@@ -68,7 +68,7 @@ jobs:
           VERSION=$(yq '.tools.yq.version' .config/mise/config.toml)
           ubi --project mikefarah/yq --tag "v$VERSION"
 
-          VERSION=$(yq '.tools."ubi:dandavison/delta"' .config/mise/config.toml)
+          VERSION=$(yq '.tools."github:dandavison/delta"' .config/mise/config.toml)
           ubi --project dandavison/delta --tag "$VERSION"
           ubi --project jesseduffield/lazygit --tag "${LAZYGIT_VERSION}"
 
