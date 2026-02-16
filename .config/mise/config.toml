@@ -9,7 +9,7 @@ settings.experimental = true
 "aqua:fish-shell/fish-shell" = "4.4.0"
 "aqua:mfontanini/presenterm" = "0.16.0"
 "aqua:ouch-org/ouch" = "0.6.1"
-"cargo:bacon" = "3.19.0"
+"cargo:bacon" = "3.22.0"
 "cargo:cargo-nextest" = "0.9.117"
 "cargo:eza" = "0.23.3"
 "github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
