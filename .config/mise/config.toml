@@ -5,19 +5,15 @@ settings.experimental = true
 # https://docs.renovatebot.com/modules/manager/mise/
 [tools]
 
+"aqua:MordechaiHadad/bob" = "4.1.6"
 "aqua:fish-shell/fish-shell" = "4.4.0"
+"aqua:mfontanini/presenterm" = "0.16.0"
+"aqua:ouch-org/ouch" = "0.6.1"
 "cargo:bacon" = "3.19.0"
 "cargo:cargo-nextest" = "0.9.117"
 "cargo:eza" = "0.23.3"
-"github:mfontanini/presenterm" = "0.16.0"
-"npm:@anthropic-ai/claude-code" = "2.1.41"
-"npm:@typescript/native-preview" = "7.0.0-dev.20260212.1"
-"npm:oxlint" = "1.47.0"
-"npm:yaml-language-server" = "1.19.2"
-"pipx:awslabs.cloudwatch-mcp-server" = "0.0.19"
 "github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
 "github:JohnnyMorganz/stylua" = "2.3.1"
-"github:MordechaiHadad/bob" = "4.1.6"
 "github:aaronriekenberg/rust-parallel" = "1.21.0"
 "github:ajeetdsouza/zoxide" = "0.9.9"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
@@ -31,7 +27,6 @@ settings.experimental = true
 "github:jesseduffield/lazydocker" = "0.24.4"
 "github:junegunn/fzf" = "0.67.0"
 "github:k1LoW/git-wt" = "0.22.0"
-"github:ouch-org/ouch" = "0.6.1"
 "github:pranshuparmar/witr" = "0.2.7"
 "github:rvben/rumdl" = "0.1.21"
 "github:sharkdp/bat" = "0.26.1"
@@ -41,6 +36,11 @@ settings.experimental = true
 "github:tekumara/typos-lsp" = "0.1.48"
 "github:tree-sitter/tree-sitter" = "0.26.5"
 "github:watchexec/watchexec" = "2.3.3"
+"npm:@anthropic-ai/claude-code" = "2.1.41"
+"npm:@typescript/native-preview" = "7.0.0-dev.20260212.1"
+"npm:oxlint" = "1.47.0"
+"npm:yaml-language-server" = "1.19.2"
+"pipx:awslabs.cloudwatch-mcp-server" = "0.0.19"
 actionlint = "1.7.11"
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
@@ -50,7 +50,7 @@ ubi = "0.8.1"
 uv = "0.10.2"
 
 
-[tools."github:gitlab-org/cli"]
+[tools."ubi:gitlab-org/cli"]
 version = "1.85.2"
 provider = "gitlab"
 exe = "glab"
@@ -73,7 +73,7 @@ mkdir -p ~/.config/fish/completions
 mise exec -- yq completion fish > ~/.config/fish/completions/yq.fish
 """
 
-[tools."github:ducaale/xh"]
+[tools."ubi:ducaale/xh"]
 version = "0.25.3"
 postinstall = """
 mkdir -p ~/.config/fish/completions
