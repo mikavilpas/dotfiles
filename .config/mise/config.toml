@@ -15,32 +15,32 @@ settings.experimental = true
 "npm:oxlint" = "1.47.0"
 "npm:yaml-language-server" = "1.19.2"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.19"
-"ubi:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
-"ubi:JohnnyMorganz/stylua" = "2.3.1"
-"ubi:MordechaiHadad/bob" = "4.1.6"
-"ubi:aaronriekenberg/rust-parallel" = "1.21.0"
-"ubi:ajeetdsouza/zoxide" = "0.9.9"
-"ubi:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
-"ubi:ast-grep/ast-grep" = "0.40.5"
-"ubi:atuinsh/atuin" = { version = "18.12.1", matching_regex = ".tar.gz$" }
-"ubi:cargo-bins/cargo-binstall" = "1.17.5"
-"ubi:charmbracelet/glow" = "2.1.1"
-"ubi:chmln/sd" = "1.0.0"
-"ubi:dandavison/delta" = "0.18.2"
-"ubi:hadolint/hadolint" = "2.14.0"
-"ubi:jesseduffield/lazydocker" = "0.24.4"
-"ubi:junegunn/fzf" = "0.67.0"
-"ubi:k1LoW/git-wt" = "0.22.0"
-"ubi:ouch-org/ouch" = "0.6.1"
-"ubi:pranshuparmar/witr" = "0.2.7"
-"ubi:rvben/rumdl" = "0.1.21"
-"ubi:sharkdp/bat" = "0.26.1"
-"ubi:sharkdp/fd" = "10.3.0"
-"ubi:sharkdp/hyperfine" = "1.20.0"
-"ubi:starship/starship" = "1.24.2"
-"ubi:tekumara/typos-lsp" = "0.1.48"
-"ubi:tree-sitter/tree-sitter" = "0.26.5"
-"ubi:watchexec/watchexec" = "2.3.3"
+"github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
+"github:JohnnyMorganz/stylua" = "2.3.1"
+"github:MordechaiHadad/bob" = "4.1.6"
+"github:aaronriekenberg/rust-parallel" = "1.21.0"
+"github:ajeetdsouza/zoxide" = "0.9.9"
+"github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
+"github:ast-grep/ast-grep" = "0.40.5"
+"github:atuinsh/atuin" = { version = "18.12.1", matching_regex = ".tar.gz$" }
+"github:cargo-bins/cargo-binstall" = "1.17.5"
+"github:charmbracelet/glow" = "2.1.1"
+"github:chmln/sd" = "1.0.0"
+"github:dandavison/delta" = "0.18.2"
+"github:hadolint/hadolint" = "2.14.0"
+"github:jesseduffield/lazydocker" = "0.24.4"
+"github:junegunn/fzf" = "0.67.0"
+"github:k1LoW/git-wt" = "0.22.0"
+"github:ouch-org/ouch" = "0.6.1"
+"github:pranshuparmar/witr" = "0.2.7"
+"github:rvben/rumdl" = "0.1.21"
+"github:sharkdp/bat" = "0.26.1"
+"github:sharkdp/fd" = "10.3.0"
+"github:sharkdp/hyperfine" = "1.20.0"
+"github:starship/starship" = "1.24.2"
+"github:tekumara/typos-lsp" = "0.1.48"
+"github:tree-sitter/tree-sitter" = "0.26.5"
+"github:watchexec/watchexec" = "2.3.3"
 actionlint = "1.7.11"
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
@@ -50,7 +50,7 @@ ubi = "0.8.1"
 uv = "0.10.2"
 
 
-[tools."ubi:gitlab-org/cli"]
+[tools."github:gitlab-org/cli"]
 version = "1.85.2"
 provider = "gitlab"
 exe = "glab"
@@ -73,7 +73,7 @@ mkdir -p ~/.config/fish/completions
 mise exec -- yq completion fish > ~/.config/fish/completions/yq.fish
 """
 
-[tools."ubi:ducaale/xh"]
+[tools."github:ducaale/xh"]
 version = "0.25.3"
 postinstall = """
 mkdir -p ~/.config/fish/completions
