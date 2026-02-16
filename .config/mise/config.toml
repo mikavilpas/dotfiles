@@ -28,7 +28,7 @@ settings.experimental = true
 "github:junegunn/fzf" = "0.67.0"
 "github:k1LoW/git-wt" = "0.22.0"
 "github:pranshuparmar/witr" = "0.2.7"
-"github:rvben/rumdl" = "0.1.21"
+"github:rvben/rumdl" = "0.1.22"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.3.0"
 "github:sharkdp/hyperfine" = "1.20.0"
@@ -48,7 +48,7 @@ jq = "1.8.1"
 shfmt = "3.12.0"
 typos = "1.43.4"
 ubi = "0.8.1"
-uv = "0.10.2"
+uv = "0.10.3"
 
 
 [tools."ubi:gitlab-org/cli"]
