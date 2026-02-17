@@ -6,7 +6,7 @@ settings.experimental = true
 [tools]
 
 "aqua:MordechaiHadad/bob" = "4.1.6"
-"aqua:fish-shell/fish-shell" = "4.4.0"
+"aqua:fish-shell/fish-shell" = "4.5.0"
 "aqua:mfontanini/presenterm" = "0.16.0"
 "aqua:ouch-org/ouch" = "0.6.1"
 "cargo:bacon" = "3.22.0"
