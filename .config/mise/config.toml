@@ -5,13 +5,17 @@ settings.experimental = true
 # https://docs.renovatebot.com/modules/manager/mise/
 [tools]
 
+# renovate: datasource=crate depName=bacon
+"cargo:bacon" = "3.22.0"
+# renovate: datasource=crate depName=cargo-nextest
+"cargo:cargo-nextest" = "0.9.117"
+# renovate: datasource=crate depName=eza
+"cargo:eza" = "0.23.3"
+
 "aqua:MordechaiHadad/bob" = "4.1.6"
 "aqua:fish-shell/fish-shell" = "4.5.0"
 "aqua:mfontanini/presenterm" = "0.16.0"
 "aqua:ouch-org/ouch" = "0.6.1"
-"cargo:bacon" = "3.22.0"
-"cargo:cargo-nextest" = "0.9.117"
-"cargo:eza" = "0.23.3"
 "github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
 "github:JohnnyMorganz/stylua" = "2.3.1"
 "github:aaronriekenberg/rust-parallel" = "1.21.0"
