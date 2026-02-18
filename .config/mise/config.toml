@@ -53,11 +53,11 @@ shfmt = "3.12.0"
 typos = "1.43.5"
 ubi = "0.8.1"
 uv = "0.10.4"
-aws-cli = { version = "2.33.24", symlink_bins = "true" }
+aws-cli = { version = "2.33.25", symlink_bins = "true" }
 
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.85.3"
+version = "1.86.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
@@ -66,7 +66,7 @@ glab completion -s fish > ~/.config/fish/completions/glab.fish
 """
 
 [tools.github-cli]
-version = "2.86.0"
+version = "2.87.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
