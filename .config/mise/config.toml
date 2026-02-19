@@ -40,10 +40,10 @@ settings.experimental = true
 "github:tekumara/typos-lsp" = "0.1.48"
 "github:tree-sitter/tree-sitter" = "0.26.5"
 "github:watchexec/watchexec" = "2.3.3"
-"npm:@anthropic-ai/claude-code" = "2.1.42"
+"npm:@anthropic-ai/claude-code" = "2.1.44"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260216.1"
 "npm:oxlint" = "1.48.0"
-"npm:oxlint-tsgolint" = "0.13.0"
+"npm:oxlint-tsgolint" = "0.14.0"
 "npm:yaml-language-server" = "1.19.2"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.19"
 actionlint = "1.7.11"
@@ -53,7 +53,7 @@ shfmt = "3.12.0"
 typos = "1.43.5"
 ubi = "0.8.1"
 uv = "0.10.4"
-aws-cli = { version = "2.33.25", symlink_bins = "true" }
+aws-cli = { version = "2.33.26", symlink_bins = "true" }
 
 
 [tools."ubi:gitlab-org/cli"]
