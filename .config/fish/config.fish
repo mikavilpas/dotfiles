@@ -3,6 +3,7 @@
 set -g fish_greeting ''
 export XDG_CONFIG_HOME="$HOME/.config"
 export SKIM_DEFAULT_COMMAND="fd"
+export SKIM_DEFAULT_OPTIONS="--height=40% --reverse"
 export SKIM_CTRL_T_COMMAND="fd"
 export SKIM_ALT_C_COMMAND="fd --type directory"
 
@@ -35,7 +36,12 @@ if status is-interactive && test -z "$CI"
     skim_key_bindings # activate sk key bindings like ctrl-t and alt-c
 
     abbr --add -- n nvim
-    abbr --add -- j zi
+    # interactive zoxide with skim (replaces `zi` which requires fzf)
+    function j
+        set result (zoxide query --list --score | sk --no-sort --no-multi)
+        and set dir (string replace --regex '^\s*[0-9.]+ ' '' $result)
+        and cd $dir
+    end
     abbr --add -- dc "docker compose"
     abbr --add -- lg lazygit
     abbr --add -- - 'cd -'
