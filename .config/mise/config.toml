@@ -14,7 +14,7 @@ settings.experimental = true
 
 "aqua:MordechaiHadad/bob" = "4.1.6"
 "aqua:fish-shell/fish-shell" = "4.5.0"
-"aqua:mfontanini/presenterm" = "0.16.0"
+"aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.6.1"
 "github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
 "github:JohnnyMorganz/stylua" = "2.3.1"
@@ -29,8 +29,8 @@ settings.experimental = true
 "github:dandavison/delta" = "0.18.2"
 "github:hadolint/hadolint" = "2.14.0"
 "github:jesseduffield/lazydocker" = "0.24.4"
-"github:junegunn/fzf" = "0.67.0"
-"github:k1LoW/git-wt" = "0.24.0"
+"github:junegunn/fzf" = "0.68.0"
+"github:k1LoW/git-wt" = "0.25.0"
 "github:pranshuparmar/witr" = "0.2.7"
 "github:rvben/rumdl" = "0.1.23"
 "github:sharkdp/bat" = "0.26.1"
