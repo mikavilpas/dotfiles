@@ -55,6 +55,12 @@ typos = "1.43.5"
 ubi = "0.8.1"
 uv = "0.10.4"
 
+[tools."github:skim-rs/skim"]
+version = "3.4.0"
+postinstall = """
+mkdir -p ~/.config/fish/completions
+sk --shell fish > ~/.config/fish/completions/sk.fish
+"""
 
 [tools."ubi:gitlab-org/cli"]
 version = "1.86.0"

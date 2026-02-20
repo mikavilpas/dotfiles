@@ -2,6 +2,9 @@
 
 set -g fish_greeting ''
 export XDG_CONFIG_HOME="$HOME/.config"
+export SKIM_DEFAULT_COMMAND="fd"
+export SKIM_CTRL_T_COMMAND="fd"
+export SKIM_ALT_C_COMMAND="fd --type directory"
 
 # https://typicode.github.io/husky/how-to.html#for-multiple-commands
 export HUSKY=0
@@ -28,7 +31,8 @@ if status is-interactive && test -z "$CI"
     atuin init fish | source
     starship init fish | source
     zoxide init fish | source
-    fzf --fish | source
+    sk --shell-bindings --shell fish | source
+    skim_key_bindings # activate sk key bindings like ctrl-t and alt-c
 
     abbr --add -- n nvim
     abbr --add -- j zi
