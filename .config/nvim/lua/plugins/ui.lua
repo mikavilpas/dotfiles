@@ -86,6 +86,10 @@ return {
       },
 
       picker = {
+        matcher = {
+          frecency = true,
+          sort_empty = true,
+        },
         formatters = {
           file = {
             truncate = 100,
