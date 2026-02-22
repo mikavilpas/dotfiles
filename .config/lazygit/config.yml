@@ -88,6 +88,7 @@ customCommands:
       REMOTE_URL="$(git remote get-url origin)"
 
       if [[ "$REMOTE_URL" == *"github"* ]]; then
+        SUMMARY="$(echo "$SUMMARY" | prettier --no-config --parser markdown --prose-wrap never)"
         gh pr edit "$BRANCH" --body="$SUMMARY" --add-assignee="@me"
       else
         # Wait for GitLab to process the push (up to 30s)
