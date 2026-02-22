@@ -1,11 +1,11 @@
-use clap::Parser;
+use clap::{CommandFactory, Parser};
 use scripts::{
     arguments::{Cli, Commands, MrsFormat},
     commit_messages::{
         format_patch_with_instructions, get_commit_messages_between_commits,
         get_commit_messages_on_branch, get_current_branch_name,
     },
-    gitlab_mrs::{format_mrs_as_markdown, parse_mrs_from_file, parse_mrs_from_stdin, OutputFormat},
+    gitlab_mrs::{OutputFormat, format_mrs_as_markdown, parse_mrs_from_file, parse_mrs_from_stdin},
     project::path_to_project_file,
 };
 
@@ -15,7 +15,19 @@ pub fn main() {
         Ok(repo) => repo,
         Err(e) => panic!("failed to open: {e}"),
     };
-    let cli = Cli::parse();
+    let cli = match Cli::try_parse() {
+        Ok(cli) => cli,
+        Err(e) => match e.kind() {
+            clap::error::ErrorKind::DisplayHelp | clap::error::ErrorKind::DisplayVersion => {
+                e.exit();
+            }
+            _ => {
+                Cli::command().print_help().unwrap();
+                println!();
+                std::process::exit(0);
+            }
+        },
+    };
     match cli.command {
         Commands::Summary { from, to } => {
             let lines = get_commit_messages_between_commits(&repo, &from, &to)

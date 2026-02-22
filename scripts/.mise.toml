@@ -1,0 +1,2 @@
+[tools]
+"github:mitsuhiko/insta" = { version = "1.46.3", exe = "cargo-insta" }
