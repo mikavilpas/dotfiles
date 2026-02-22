@@ -335,3 +335,44 @@ fn test_fixups_are_grouped_and_orphans_are_kept() -> Result<(), Box<dyn std::err
 
     Ok(())
 }
+
+#[test]
+fn mr_stack_summary_can_process_test_data() -> Result<(), Box<dyn std::error::Error>> {
+    let context = TestRepoBuilder::new()?;
+    context.checkout_b("feature-a")?;
+    context.checkout_b("feature-b")?;
+    context.checkout_b("feature-c")?;
+
+    let file = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../test_utils/src/stack-three.json");
+
+    let mut cmd = cargo::cargo_bin_cmd!("mika");
+    let assert = cmd
+        .current_dir(context.path())
+        .args([
+            "mr-stack-summary",
+            file.to_str().unwrap(),
+            "--branch",
+            "feature-a",
+        ])
+        .assert();
+
+    let stderr = String::from_utf8(assert.get_output().stderr.clone())
+        .expect("failed to convert stderr to string");
+    assert!(stderr.is_empty(), "expected no errors, got: {stderr}");
+
+    let output = String::from_utf8(assert.get_output().stdout.clone())
+        .expect("failed to convert stdout to string");
+    assert_eq!(
+        output,
+        [
+            "- **[!101](https://gitlab.example.com/my-group/my-project/-/merge_requests/101) Set up authentication module** 👈🏻",
+            "  - [!102](https://gitlab.example.com/my-group/my-project/-/merge_requests/102) Implement user profile page",
+            "    - [!103](https://gitlab.example.com/my-group/my-project/-/merge_requests/103) Add input validation to user form",
+            "",
+        ]
+        .join("\n")
+    );
+
+    Ok(())
+}

@@ -1,10 +1,12 @@
-use std::collections::HashMap;
 use std::fs;
 use std::io::{self, Read};
 use std::path::Path;
 
-use anyhow::{Context, Result};
+use anyhow::{Context, Result, bail};
 use serde::{Deserialize, Serialize};
+
+pub mod mr_stack;
+mod mr_tree;
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct MergeRequest {
@@ -15,6 +17,20 @@ pub struct MergeRequest {
     pub target_branch: String,
     #[serde(default)]
     pub draft: bool,
+}
+
+pub fn parse_gitlab_mrs_from_file_or_stdin(file: std::path::PathBuf) -> Vec<MergeRequest> {
+    if file.as_os_str() == "-" {
+        parse_mrs_from_stdin().unwrap_or_else(|e| panic!("failed to parse MRs: {e}"))
+    } else {
+        let cwd = std::env::current_dir().expect("failed to get current directory");
+        let path = if file.is_absolute() {
+            file
+        } else {
+            cwd.join(file)
+        };
+        parse_mrs_from_file(&path).unwrap_or_else(|e| panic!("failed to parse MRs: {e}"))
+    }
 }
 
 /// Parse MRs from a JSON file (GitLab API format)
@@ -41,9 +57,9 @@ pub fn parse_mrs_from_str(content: &str) -> Result<Vec<MergeRequest>> {
 
 /// A node in the MR tree
 #[derive(Debug)]
-struct MrNode {
+pub struct MrNode {
     mr: MergeRequest,
-    children: Vec<usize>,
+    children: Vec<mr_tree::MrNodeIndex>,
 }
 
 /// Output format for MR summary
@@ -56,71 +72,31 @@ pub enum OutputFormat {
     Branches,
 }
 
-/// Build a tree structure from MRs based on source/target branch relationships
-pub fn format_mrs_as_markdown(mrs: Vec<MergeRequest>, format: OutputFormat) -> String {
-    if mrs.is_empty() {
-        return "No open merge requests.".to_string();
-    }
-
-    // Build a map from source_branch -> MR index
-    let mut source_to_idx: HashMap<&str, usize> = HashMap::new();
-    for (idx, mr) in mrs.iter().enumerate() {
-        source_to_idx.insert(&mr.source_branch, idx);
-    }
-
-    // Build adjacency: for each MR, find children (MRs whose target_branch == this MR's source_branch)
-    let mut nodes: Vec<MrNode> = mrs
-        .iter()
-        .cloned()
-        .map(|mr| MrNode {
-            mr,
-            children: vec![],
-        })
-        .collect();
-
-    // Build parent->children relationships
-    let mut has_parent = vec![false; mrs.len()];
-    for (child_idx, mr) in mrs.iter().enumerate() {
-        if let Some(&parent_idx) = source_to_idx.get(mr.target_branch.as_str()) {
-            if let Some(parent_node) = nodes.get_mut(parent_idx) {
-                parent_node.children.push(child_idx);
-            }
-            if let Some(flag) = has_parent.get_mut(child_idx) {
-                *flag = true;
-            }
-        }
-    }
-
-    // Find root nodes (MRs without a parent in the set)
-    let roots: Vec<usize> = has_parent
-        .iter()
-        .enumerate()
-        .filter(|(_, has_parent)| !**has_parent)
-        .map(|(i, _)| i)
-        .collect();
-
-    // Sort roots by iid ascending
-    let mut sorted_roots = roots;
-    sorted_roots.sort_by_key(|&i| nodes.get(i).map(|n| n.mr.iid).unwrap_or(0));
+/// Build a markdown tree structure from MRs
+pub fn format_mrs_as_markdown(mrs: Vec<MergeRequest>, format: OutputFormat) -> Result<String> {
+    let mr_tree = match mr_tree::treeify_mrs(mrs)? {
+        mr_tree::TreeifyResult::Ok(mr_tree) => mr_tree,
+        mr_tree::TreeifyResult::NoOpenMergeRequests => bail!("No open merge requests."),
+    };
 
     // Generate markdown
     let mut output = String::from("");
 
-    for &root_idx in &sorted_roots {
-        format_mr_tree(&nodes, root_idx, 0, format, &mut output);
+    for &root_idx in &mr_tree.root_indices {
+        format_mr_tree(&mr_tree, root_idx, 0, format, &mut output);
     }
 
-    output.trim_end().to_string()
+    Ok(output.trim_end().to_string())
 }
 
 fn format_mr_tree(
-    nodes: &[MrNode],
-    idx: usize,
+    tree: &mr_tree::MrTree,
+    idx: mr_tree::MrNodeIndex,
     depth: usize,
     format: OutputFormat,
     output: &mut String,
 ) {
-    let Some(node) = nodes.get(idx) else {
+    let Some(node) = tree.get(idx) else {
         return;
     };
     let mr = &node.mr;
@@ -163,10 +139,10 @@ fn format_mr_tree(
 
     // Sort children by iid ascending and recurse
     let mut sorted_children = node.children.clone();
-    sorted_children.sort_by_key(|&i| nodes.get(i).map(|n| n.mr.iid).unwrap_or(0));
+    sorted_children.sort_by_key(|&i| tree.get(i).map(|n| n.mr.iid).unwrap_or(0));
 
     for &child_idx in &sorted_children {
-        format_mr_tree(nodes, child_idx, depth + 1, format, output);
+        format_mr_tree(tree, child_idx, depth + 1, format, output);
     }
 }
 
@@ -212,7 +188,7 @@ mod tests {
     }
 
     #[test]
-    fn test_format_single_mr() {
+    fn test_format_single_mr() -> Result<(), Box<dyn std::error::Error>> {
         let mrs = vec![MergeRequest {
             iid: 101,
             title: "feat: add dark mode support".to_string(),
@@ -222,13 +198,14 @@ mod tests {
             draft: false,
         }];
 
-        let output = format_mrs_as_markdown(mrs, OutputFormat::Links);
+        let output = format_mrs_as_markdown(mrs, OutputFormat::Links)?;
         assert!(output.contains("[!101]"));
         assert!(output.contains("feat: add dark mode support"));
+        Ok(())
     }
 
     #[test]
-    fn test_format_draft_mr() {
+    fn test_format_draft_mr() -> Result<(), Box<dyn std::error::Error>> {
         let mrs = vec![MergeRequest {
             iid: 102,
             title: "Draft: experimental caching layer".to_string(),
@@ -238,12 +215,13 @@ mod tests {
             draft: true,
         }];
 
-        let output = format_mrs_as_markdown(mrs, OutputFormat::Links);
+        let output = format_mrs_as_markdown(mrs, OutputFormat::Links)?;
         assert!(output.contains("**Draft:** experimental caching layer"));
+        Ok(())
     }
 
     #[test]
-    fn test_format_nested_mrs() {
+    fn test_format_nested_mrs() -> Result<(), Box<dyn std::error::Error>> {
         // Create a chain: MR 101 -> MR 102 (102's target = 101's source)
         let mrs = vec![
             MergeRequest {
@@ -264,14 +242,15 @@ mod tests {
             },
         ];
 
-        let output = format_mrs_as_markdown(mrs, OutputFormat::Links);
+        let output = format_mrs_as_markdown(mrs, OutputFormat::Links)?;
         // 102 should be indented under 101
         assert!(output.contains("- [!101]"));
         assert!(output.contains("  - [!102]"));
+        Ok(())
     }
 
     #[test]
-    fn test_format_branches() {
+    fn test_format_branches() -> Result<(), Box<dyn std::error::Error>> {
         let mrs = vec![
             MergeRequest {
                 iid: 101,
@@ -291,7 +270,7 @@ mod tests {
             },
         ];
 
-        let output = format_mrs_as_markdown(mrs, OutputFormat::Branches);
+        let output = format_mrs_as_markdown(mrs, OutputFormat::Branches)?;
         // Contains branch names with OSC 8 hyperlinks
         assert!(output.contains("feature-101"));
         assert!(output.contains("feat: base feature"));
@@ -299,5 +278,6 @@ mod tests {
         assert!(output.contains("**Draft:** dependent feature"));
         // Should not contain markdown-style links
         assert!(!output.contains("[!"));
+        Ok(())
     }
 }

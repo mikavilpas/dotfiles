@@ -31,6 +31,7 @@ complete -c mika -n "__fish_mika_needs_command" -f -a "branch-summary" -d 'Summa
 complete -c mika -n "__fish_mika_needs_command" -f -a "share-patch" -d 'Share a patch in a PR for the given commit, or the current HEAD if not specified'
 complete -c mika -n "__fish_mika_needs_command" -f -a "path" -d 'Get a path to repo files, relative to the git repo root. The files don\'t need to exist'
 complete -c mika -n "__fish_mika_needs_command" -f -a "mrs-summary" -d 'Display a markdown summary of GitLab merge requests from a JSON file'
+complete -c mika -n "__fish_mika_needs_command" -f -a "mr-stack-summary" -d 'Generate a markdown summary of the current branch as part of the stack of MRs'
 complete -c mika -n "__fish_mika_needs_command" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
 complete -c mika -n "__fish_mika_using_subcommand summary" -l from -d 'The start ref, e.g. HEAD in (HEAD..main)' -r
 complete -c mika -n "__fish_mika_using_subcommand summary" -l to -d 'The end ref, e.g. main in (HEAD..main)' -r
@@ -44,9 +45,12 @@ complete -c mika -n "__fish_mika_using_subcommand path" -s h -l help -d 'Print h
 complete -c mika -n "__fish_mika_using_subcommand mrs-summary" -l format -d 'Output format' -r -f -a "links\t'Show MRs with links to GitLab'
 branches\t'Show branch names instead of links'"
 complete -c mika -n "__fish_mika_using_subcommand mrs-summary" -s h -l help -d 'Print help (see more with \'--help\')'
-complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path mrs-summary help" -f -a "summary" -d 'Summarize commits in markdown format, for quick PR descriptions'
-complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path mrs-summary help" -f -a "branch-summary" -d 'Summarize the commits on the given branch, before any other local branch is reached. Defaults to the current branch'
-complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path mrs-summary help" -f -a "share-patch" -d 'Share a patch in a PR for the given commit, or the current HEAD if not specified'
-complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path mrs-summary help" -f -a "path" -d 'Get a path to repo files, relative to the git repo root. The files don\'t need to exist'
-complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path mrs-summary help" -f -a "mrs-summary" -d 'Display a markdown summary of GitLab merge requests from a JSON file'
-complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path mrs-summary help" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
+complete -c mika -n "__fish_mika_using_subcommand mr-stack-summary" -l branch -d 'The current branch name' -r
+complete -c mika -n "__fish_mika_using_subcommand mr-stack-summary" -s h -l help -d 'Print help'
+complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path mrs-summary mr-stack-summary help" -f -a "summary" -d 'Summarize commits in markdown format, for quick PR descriptions'
+complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path mrs-summary mr-stack-summary help" -f -a "branch-summary" -d 'Summarize the commits on the given branch, before any other local branch is reached. Defaults to the current branch'
+complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path mrs-summary mr-stack-summary help" -f -a "share-patch" -d 'Share a patch in a PR for the given commit, or the current HEAD if not specified'
+complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path mrs-summary mr-stack-summary help" -f -a "path" -d 'Get a path to repo files, relative to the git repo root. The files don\'t need to exist'
+complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path mrs-summary mr-stack-summary help" -f -a "mrs-summary" -d 'Display a markdown summary of GitLab merge requests from a JSON file'
+complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path mrs-summary mr-stack-summary help" -f -a "mr-stack-summary" -d 'Generate a markdown summary of the current branch as part of the stack of MRs'
+complete -c mika -n "__fish_mika_using_subcommand help; and not __fish_seen_subcommand_from summary branch-summary share-patch path mrs-summary mr-stack-summary help" -f -a "help" -d 'Print this message or the help of the given subcommand(s)'
