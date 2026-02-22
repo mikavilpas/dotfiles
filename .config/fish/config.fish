@@ -62,7 +62,7 @@ if status is-interactive && test -z "$CI"
         # set the root of the git repository exactly to make sure watchexec is
         # able to match the ignore rules as expected
         set root (git rev-parse --show-toplevel 2>/dev/null)
-        watchexec --timings --no-process-group --project-origin "$root" $argv
+        watchexec --timings --interactive --no-process-group --project-origin "$root" $argv
     end
     complete --command w --wraps watchexec
 
@@ -72,7 +72,7 @@ if status is-interactive && test -z "$CI"
         # set the root of the git repository exactly to make sure watchexec is
         # able to match the ignore rules as expected
         set root (git rev-parse --show-toplevel 2>/dev/null)
-        watchexec --on-busy-update=restart --timings --no-process-group --project-origin "$root" $argv
+        watchexec --on-busy-update=restart --interactive --timings --no-process-group --project-origin "$root" $argv
     end
     complete --command ww --wraps watchexec
 
