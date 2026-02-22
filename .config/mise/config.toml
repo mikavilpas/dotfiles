@@ -21,7 +21,7 @@ settings.experimental = true
 "github:aaronriekenberg/rust-parallel" = "1.21.0"
 "github:ajeetdsouza/zoxide" = "0.9.9"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
-"github:ast-grep/ast-grep" = "0.40.5"
+"github:ast-grep/ast-grep" = "0.41.0"
 "github:atuinsh/atuin" = { version = "18.12.1", matching_regex = ".tar.gz$" }
 "github:cargo-bins/cargo-binstall" = "1.17.5"
 "github:charmbracelet/glow" = "2.1.1"
