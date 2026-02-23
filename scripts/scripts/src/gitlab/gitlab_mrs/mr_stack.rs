@@ -74,7 +74,7 @@ fn format_mr_stack(
 
     if is_current {
         output.push_str(&format!(
-            "{}- **[!{}]({}) {}** 👈🏻\n",
+            "{}- 👉🏻 **[!{}]({}) {}** 👈🏻\n",
             indent, mr.iid, mr.web_url, title_display
         ));
     } else {
@@ -138,7 +138,7 @@ mod tests {
         assert_eq!(
             output_from_root,
             [
-                "- **[!101](https://gitlab.example.com/acme/webapp/-/merge_requests/101) feat: base feature** 👈🏻",
+                "- 👉🏻 **[!101](https://gitlab.example.com/acme/webapp/-/merge_requests/101) feat: base feature** 👈🏻",
                 "  - [!102](https://gitlab.example.com/acme/webapp/-/merge_requests/102) feat: dependent feature",
                 "    - [!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) **Draft:** fix: bug in dependent feature",
             ].join("\n")
@@ -149,7 +149,7 @@ mod tests {
             output_from_middle,
             [
                 "- [!101](https://gitlab.example.com/acme/webapp/-/merge_requests/101) feat: base feature",
-                "  - **[!102](https://gitlab.example.com/acme/webapp/-/merge_requests/102) feat: dependent feature** 👈🏻",
+                "  - 👉🏻 **[!102](https://gitlab.example.com/acme/webapp/-/merge_requests/102) feat: dependent feature** 👈🏻",
                 "    - [!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) **Draft:** fix: bug in dependent feature",
             ].join("\n")
         );
@@ -160,7 +160,7 @@ mod tests {
             [
                 "- [!101](https://gitlab.example.com/acme/webapp/-/merge_requests/101) feat: base feature",
                 "  - [!102](https://gitlab.example.com/acme/webapp/-/merge_requests/102) feat: dependent feature",
-                "    - **[!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) **Draft:** fix: bug in dependent feature** 👈🏻",
+                "    - 👉🏻 **[!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) **Draft:** fix: bug in dependent feature** 👈🏻",
             ].join("\n")
         );
 
@@ -209,7 +209,7 @@ mod tests {
             format!(
                 "\
 - [!101]({}) feat: base feature
-  - **[!102]({}) feat: add API layer** 👈🏻
+  - 👉🏻 **[!102]({}) feat: add API layer** 👈🏻
     - [!103]({}) feat: add tests for API
   - [!104]({}) feat: docs for base",
                 url(101),
@@ -226,7 +226,7 @@ mod tests {
             format!(
                 "\
 - [!105]({}) chore: CI setup
-  - **[!106]({}) chore: add linting** 👈🏻",
+  - 👉🏻 **[!106]({}) chore: add linting** 👈🏻",
                 url(105),
                 url(106),
             )
@@ -238,7 +238,7 @@ mod tests {
             output,
             format!(
                 "\
-- **[!101]({}) feat: base feature** 👈🏻
+- 👉🏻 **[!101]({}) feat: base feature** 👈🏻
   - [!102]({}) feat: add API layer
     - [!103]({}) feat: add tests for API
   - [!104]({}) feat: docs for base",
