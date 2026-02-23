@@ -68,12 +68,12 @@ fn format_mr_stack(
 
     if is_current {
         output.push_str(&format!(
-            "{}- 👉🏻 **[!{}]({}) {}** 👈🏻\n",
+            "{}- 👉🏻 **[!{}]({})** | {} 👈🏻\n",
             indent, mr.iid, mr.web_url, title_display
         ));
     } else {
         output.push_str(&format!(
-            "{}- [!{}]({}) {}\n",
+            "{}- [!{}]({}) | {}\n",
             indent, mr.iid, mr.web_url, title_display
         ));
     }
@@ -132,9 +132,9 @@ mod tests {
         assert_eq!(
             output_from_root,
             [
-                "- 👉🏻 **[!101](https://gitlab.example.com/acme/webapp/-/merge_requests/101) feat: base feature** 👈🏻",
-                "  - [!102](https://gitlab.example.com/acme/webapp/-/merge_requests/102) feat: dependent feature",
-                "    - [!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) fix: bug in dependent feature",
+                "- 👉🏻 **[!101](https://gitlab.example.com/acme/webapp/-/merge_requests/101)** | feat: base feature 👈🏻",
+                "  - [!102](https://gitlab.example.com/acme/webapp/-/merge_requests/102) | feat: dependent feature",
+                "    - [!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) | fix: bug in dependent feature",
             ].join("\n")
         );
 
@@ -142,9 +142,9 @@ mod tests {
         assert_eq!(
             output_from_middle,
             [
-                "- [!101](https://gitlab.example.com/acme/webapp/-/merge_requests/101) feat: base feature",
-                "  - 👉🏻 **[!102](https://gitlab.example.com/acme/webapp/-/merge_requests/102) feat: dependent feature** 👈🏻",
-                "    - [!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) fix: bug in dependent feature",
+                "- [!101](https://gitlab.example.com/acme/webapp/-/merge_requests/101) | feat: base feature",
+                "  - 👉🏻 **[!102](https://gitlab.example.com/acme/webapp/-/merge_requests/102)** | feat: dependent feature 👈🏻",
+                "    - [!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) | fix: bug in dependent feature",
             ].join("\n")
         );
 
@@ -152,9 +152,9 @@ mod tests {
         assert_eq!(
             output_from_leaf,
             [
-                "- [!101](https://gitlab.example.com/acme/webapp/-/merge_requests/101) feat: base feature",
-                "  - [!102](https://gitlab.example.com/acme/webapp/-/merge_requests/102) feat: dependent feature",
-                "    - 👉🏻 **[!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) fix: bug in dependent feature** 👈🏻",
+                "- [!101](https://gitlab.example.com/acme/webapp/-/merge_requests/101) | feat: base feature",
+                "  - [!102](https://gitlab.example.com/acme/webapp/-/merge_requests/102) | feat: dependent feature",
+                "    - 👉🏻 **[!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103)** | fix: bug in dependent feature 👈🏻",
             ].join("\n")
         );
 
@@ -202,10 +202,10 @@ mod tests {
             output,
             format!(
                 "\
-- [!101]({}) feat: base feature
-  - 👉🏻 **[!102]({}) feat: add API layer** 👈🏻
-    - [!103]({}) feat: add tests for API
-  - [!104]({}) feat: docs for base",
+- [!101]({}) | feat: base feature
+  - 👉🏻 **[!102]({})** | feat: add API layer 👈🏻
+    - [!103]({}) | feat: add tests for API
+  - [!104]({}) | feat: docs for base",
                 url(101),
                 url(102),
                 url(103),
@@ -219,8 +219,8 @@ mod tests {
             output,
             format!(
                 "\
-- [!105]({}) chore: CI setup
-  - 👉🏻 **[!106]({}) chore: add linting** 👈🏻",
+- [!105]({}) | chore: CI setup
+  - 👉🏻 **[!106]({})** | chore: add linting 👈🏻",
                 url(105),
                 url(106),
             )
@@ -232,10 +232,10 @@ mod tests {
             output,
             format!(
                 "\
-- 👉🏻 **[!101]({}) feat: base feature** 👈🏻
-  - [!102]({}) feat: add API layer
-    - [!103]({}) feat: add tests for API
-  - [!104]({}) feat: docs for base",
+- 👉🏻 **[!101]({})** | feat: base feature 👈🏻
+  - [!102]({}) | feat: add API layer
+    - [!103]({}) | feat: add tests for API
+  - [!104]({}) | feat: docs for base",
                 url(101),
                 url(102),
                 url(103),
