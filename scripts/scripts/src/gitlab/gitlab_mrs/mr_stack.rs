@@ -58,19 +58,13 @@ fn format_mr_stack(
     // Indentation
     let indent = "  ".repeat(depth.0);
 
-    // Add **Draft:** prefix if draft, cleaning up the title
-    let title_display = if mr.draft {
-        // Remove "Draft: " prefix from title if present (GitLab often includes it)
-        let clean_title = mr
-            .title
-            .strip_prefix("Draft: ")
-            .or_else(|| mr.title.strip_prefix("Draft:"))
-            .or_else(|| mr.title.strip_prefix("WIP: "))
-            .unwrap_or(&mr.title);
-        format!("**Draft:** {}", clean_title)
-    } else {
-        mr.title.clone()
-    };
+    // Clean up the title by removing any "Draft: " prefix that GitLab adds
+    let title_display = mr
+        .title
+        .strip_prefix("Draft: ")
+        .or_else(|| mr.title.strip_prefix("Draft:"))
+        .or_else(|| mr.title.strip_prefix("WIP: "))
+        .unwrap_or(&mr.title);
 
     if is_current {
         output.push_str(&format!(
@@ -140,7 +134,7 @@ mod tests {
             [
                 "- 👉🏻 **[!101](https://gitlab.example.com/acme/webapp/-/merge_requests/101) feat: base feature** 👈🏻",
                 "  - [!102](https://gitlab.example.com/acme/webapp/-/merge_requests/102) feat: dependent feature",
-                "    - [!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) **Draft:** fix: bug in dependent feature",
+                "    - [!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) fix: bug in dependent feature",
             ].join("\n")
         );
 
@@ -150,7 +144,7 @@ mod tests {
             [
                 "- [!101](https://gitlab.example.com/acme/webapp/-/merge_requests/101) feat: base feature",
                 "  - 👉🏻 **[!102](https://gitlab.example.com/acme/webapp/-/merge_requests/102) feat: dependent feature** 👈🏻",
-                "    - [!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) **Draft:** fix: bug in dependent feature",
+                "    - [!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) fix: bug in dependent feature",
             ].join("\n")
         );
 
@@ -160,7 +154,7 @@ mod tests {
             [
                 "- [!101](https://gitlab.example.com/acme/webapp/-/merge_requests/101) feat: base feature",
                 "  - [!102](https://gitlab.example.com/acme/webapp/-/merge_requests/102) feat: dependent feature",
-                "    - 👉🏻 **[!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) **Draft:** fix: bug in dependent feature** 👈🏻",
+                "    - 👉🏻 **[!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) fix: bug in dependent feature** 👈🏻",
             ].join("\n")
         );
 
