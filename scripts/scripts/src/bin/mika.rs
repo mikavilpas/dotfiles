@@ -1,4 +1,4 @@
-use clap::{CommandFactory, Parser};
+use clap::Parser;
 use std::process::exit;
 
 use scripts::{
@@ -21,16 +21,7 @@ pub fn main() {
     };
     let cli = match Cli::try_parse() {
         Ok(cli) => cli,
-        Err(e) => match e.kind() {
-            clap::error::ErrorKind::DisplayHelp | clap::error::ErrorKind::DisplayVersion => {
-                e.exit();
-            }
-            _ => {
-                Cli::command().print_help().unwrap();
-                println!();
-                std::process::exit(0);
-            }
-        },
+        Err(e) => e.exit(),
     };
     match cli.command {
         Commands::Summary { from, to } => {
