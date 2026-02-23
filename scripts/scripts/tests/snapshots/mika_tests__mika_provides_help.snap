@@ -2,7 +2,7 @@
 source: scripts/tests/mika_tests.rs
 expression: output
 ---
-Usage: 
+Usage: mika <COMMAND>
 
 Commands:
   summary           Summarize commits in markdown format, for quick PR descriptions

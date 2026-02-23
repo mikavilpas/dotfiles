@@ -22,8 +22,18 @@ fn test_mika_provides_help() {
 fn test_mika_provides_help_for_unknown_command() {
     let mut cmd = cargo::cargo_bin_cmd!("mika");
     let assert = cmd.args(["missing_cmd"]).assert();
-    let output = String::from_utf8(assert.success().get_output().stdout.clone())
-        .expect("failed to convert stdout to string");
+    let output = String::from_utf8(assert.failure().get_output().stderr.clone())
+        .expect("failed to convert stderr to string");
+
+    insta::assert_snapshot!(output);
+}
+
+#[test]
+fn test_mika_shows_subcommand_help_for_incorrect_args() {
+    let mut cmd = cargo::cargo_bin_cmd!("mika");
+    let assert = cmd.args(["mr-stack-summary"]).assert();
+    let output = String::from_utf8(assert.failure().get_output().stderr.clone())
+        .expect("failed to convert stderr to string");
 
     insta::assert_snapshot!(output);
 }

@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-clap = { version = "4.5.47", features = ["std", "derive", "help"], default-features = false }
+clap = { version = "4.5.47", features = ["std", "derive", "help", "usage", "error-context", "suggestions"], default-features = false }
 gix = { workspace = true }
 anyhow = { workspace = true }
 serde = { workspace = true }
