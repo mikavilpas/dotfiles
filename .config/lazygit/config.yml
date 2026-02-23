@@ -94,6 +94,12 @@ customCommands:
         # Wait for GitLab to process the push (up to 30s)
         LOCAL_SHA="$(git rev-parse "$BRANCH")"
 
+        # build a summary of the current mr stack
+        STACK_SUMMARY=$(glab mr list --output=json | mika mr-stack-summary - --branch "$BRANCH")
+        SUMMARY="$(printf '%s\n\n---\n\n# Merge request stack\n\n%s' "$SUMMARY" "$STACK_SUMMARY")"
+
+        echo "$SUMMARY"
+
         glab mr update "$BRANCH" --description="$SUMMARY" --assignee="@me" --ready
 
         # GitLab may auto-draft if it sees fixup! commits, so mark ready a few more times
