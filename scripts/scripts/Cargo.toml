@@ -15,7 +15,7 @@ test_utils = { path = "../test_utils" }
 assert_cmd = "=2.1.2"
 insta = "=1.46.3"
 pretty_assertions = "=1.4.1"
-tempfile = "=3.25.0"
+tempfile = "=3.26.0"
 
 [build-dependencies]
 clap = { version = "4.5.47", features = ["derive"] }

@@ -41,7 +41,7 @@ settings.experimental = true
 "github:tree-sitter/tree-sitter" = "0.26.5"
 "github:watchexec/watchexec" = "2.4.1"
 "npm:@anthropic-ai/claude-code" = "2.1.50"
-"npm:@typescript/native-preview" = "7.0.0-dev.20260220.1"
+"npm:@typescript/native-preview" = "7.0.0-dev.20260221.1"
 "npm:oxlint" = "1.49.0"
 "npm:oxlint-tsgolint" = "0.14.2"
 "npm:yaml-language-server" = "1.20.0"
@@ -53,7 +53,7 @@ jq = "1.8.1"
 shfmt = "3.12.0"
 typos = "1.43.5"
 ubi = "0.8.1"
-uv = "0.10.4"
+uv = "0.10.5"
 
 
 [tools."ubi:gitlab-org/cli"]
