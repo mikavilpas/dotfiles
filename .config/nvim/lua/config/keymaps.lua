@@ -332,46 +332,4 @@ do
     vim.cmd("Trouble quickfix last")
     vim.cmd("Trouble quickfix jump")
   end
-
-  do
-    ---@type number|nil
-    local last_pane = nil
-
-    ---@param on_selected fun(pane_id: number)
-    function ChooseWeztermPane(on_selected)
-      -- select pane
-      local wezterm_output = vim.fn.system("wezterm cli list")
-      if vim.v.shell_error ~= 0 then
-        vim.notify("Failed to get wezterm output", vim.log.levels.ERROR)
-        return
-      end
-
-      require("snacks.picker").select(vim.split(wezterm_output, "\n"), nil, function(item)
-        ---@cast item string
-        --       WINID TABID PANEID WORKSPACE SIZE    TITLE                                CWD
-        -- item="   41   192    205 default   148x108 w pnpm eslint --fix ~/g/tui-sandbox file://br-g4kn2711j0/Users/mikavilpas/git/tui-sandbox               "
-        local words = vim.split(item, "%s+")
-        local pane_id = tonumber(words[4])
-        assert(pane_id, "Failed to parse wezterm output as number: " .. item)
-        on_selected(pane_id)
-      end)
-    end
-    vim.keymap.set("n", "<leader>an", function()
-      if last_pane then
-        LoadWeztermOutputIntoQuickfix(last_pane)
-      else
-        ChooseWeztermPane(function(pane_id)
-          last_pane = tonumber(pane_id)
-          LoadWeztermOutputIntoQuickfix(pane_id)
-        end)
-      end
-    end, { desc = "Load wezterm output into quickfix" })
-
-    vim.keymap.set("n", "<leader>aN", function()
-      ChooseWeztermPane(function(pane_id)
-        last_pane = tonumber(pane_id)
-        LoadWeztermOutputIntoQuickfix(pane_id)
-      end)
-    end, { desc = "Load wezterm output from new pane" })
-  end
 end
