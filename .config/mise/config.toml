@@ -32,7 +32,7 @@ settings.experimental = true
 "github:junegunn/fzf" = "0.68.0"
 "github:k1LoW/git-wt" = "0.25.0"
 "github:pranshuparmar/witr" = "0.3.0"
-"github:rvben/rumdl" = "0.1.27"
+"github:rvben/rumdl" = "0.1.28"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.3.0"
 "github:sharkdp/hyperfine" = "1.20.0"
@@ -47,7 +47,7 @@ settings.experimental = true
 "npm:yaml-language-server" = "1.20.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.19"
 actionlint = "1.7.11"
-aws-cli = { version = "2.33.28", symlink_bins = "true" }
+aws-cli = { version = "2.33.29", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 shfmt = "3.12.0"
