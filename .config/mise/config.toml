@@ -42,6 +42,7 @@ settings.experimental = true
 "github:tekumara/typos-lsp" = "0.1.48"
 "github:tree-sitter/tree-sitter" = "0.26.5"
 "github:watchexec/watchexec" = "2.4.3"
+"npm:@fsouza/prettierd" = "0.27.0"
 "npm:@anthropic-ai/claude-code" = "2.1.50"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260222.1"
 "npm:oxlint" = "1.49.0"
