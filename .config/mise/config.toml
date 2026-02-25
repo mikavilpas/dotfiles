@@ -12,6 +12,7 @@ settings.experimental = true
 # renovate: datasource=crate depName=eza
 "cargo:eza" = "0.23.3"
 
+"aqua:ClementTsang/bottom" = "0.12.3"
 "aqua:MordechaiHadad/bob" = "4.1.6"
 "aqua:fish-shell/fish-shell" = "4.5.0"
 "aqua:mfontanini/presenterm" = "0.16.1"
