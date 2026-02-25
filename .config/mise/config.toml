@@ -27,7 +27,7 @@ settings.experimental = true
 "github:atuinsh/atuin" = { version = "18.12.1", matching_regex = ".tar.gz$" }
 "github:cargo-bins/cargo-binstall" = "1.17.5"
 "github:charmbracelet/glow" = "2.1.1"
-"github:chmln/sd" = "1.0.0"
+"github:chmln/sd" = "1.1.0"
 "github:dandavison/delta" = "0.18.2"
 "github:hadolint/hadolint" = "2.14.0"
 "github:jesseduffield/lazydocker" = "0.24.4"
@@ -40,7 +40,7 @@ settings.experimental = true
 "github:sharkdp/hyperfine" = "1.20.0"
 "github:starship/starship" = "1.24.2"
 "github:tekumara/typos-lsp" = "0.1.48"
-"github:tree-sitter/tree-sitter" = "0.26.5"
+"github:tree-sitter/tree-sitter" = "0.26.6"
 "github:watchexec/watchexec" = "2.5.0"
 "npm:@fsouza/prettierd" = "0.27.0"
 "npm:@anthropic-ai/claude-code" = "2.1.50"
@@ -50,7 +50,7 @@ settings.experimental = true
 "npm:yaml-language-server" = "1.20.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.19"
 actionlint = "1.7.11"
-aws-cli = { version = "2.33.29", symlink_bins = "true" }
+aws-cli = { version = "2.33.30", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 shfmt = "3.12.0"
