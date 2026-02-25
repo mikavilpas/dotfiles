@@ -24,6 +24,10 @@ if status is-interactive && test -z "$CI"
     fish_vi_key_bindings
     mise activate fish | source
 
+    # https://github.com/Schniz/fnm?tab=readme-ov-file#fish-shell
+    fnm env --use-on-cd --version-file-strategy=recursive --shell fish | source
+    alias nvm="fnm"
+
     # Commands to run in interactive sessions can go here
     #
     atuin init fish | source

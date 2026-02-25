@@ -16,6 +16,7 @@ settings.experimental = true
 "aqua:fish-shell/fish-shell" = "4.5.0"
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.6.1"
+"aqua:Schniz/fnm" = "1.38.1"
 "github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
 "github:JohnnyMorganz/stylua" = "2.3.1"
 "github:aaronriekenberg/rust-parallel" = "1.21.0"
