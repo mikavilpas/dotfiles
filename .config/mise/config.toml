@@ -11,6 +11,8 @@ settings.experimental = true
 "cargo:cargo-nextest" = "0.9.117"
 # renovate: datasource=crate depName=eza
 "cargo:eza" = "0.23.3"
+# renovate: datasource=crate depName=sccache
+"cargo:sccache" = "0.14.0"
 
 "aqua:ClementTsang/bottom" = "0.12.3"
 "aqua:MordechaiHadad/bob" = "4.1.6"
