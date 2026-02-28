@@ -101,7 +101,9 @@ config.keys = {
     action = wezterm.action.QuickSelectArgs({
       label = "open url",
       patterns = {
-        "https?://\\S+",
+        -- exclude trailing characters that are not part of the URL, such
+        -- as the closing ) in markdown links like [text](url)
+        "https?://\\S+[^)\\]>\"'.,;:!?\\s]",
       },
       action = wezterm.action_callback(function(window, pane)
         local url = window:get_selection_text_for_pane(pane)
