@@ -23,7 +23,7 @@ settings.experimental = true
 "github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
 "github:rtk-ai/rtk" = "0.22.2"
 "github:JohnnyMorganz/stylua" = "2.3.1"
-"github:aaronriekenberg/rust-parallel" = "1.21.0"
+"github:aaronriekenberg/rust-parallel" = "1.22.0"
 "github:ajeetdsouza/zoxide" = "0.9.9"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:ast-grep/ast-grep" = "0.41.0"
@@ -37,7 +37,7 @@ settings.experimental = true
 "github:junegunn/fzf" = "0.68.0"
 "github:k1LoW/git-wt" = "0.25.0"
 "github:pranshuparmar/witr" = "0.3.0"
-"github:rvben/rumdl" = "0.1.32"
+"github:rvben/rumdl" = "0.1.33"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.3.0"
 "github:sharkdp/hyperfine" = "1.20.0"
@@ -46,7 +46,7 @@ settings.experimental = true
 "github:tree-sitter/tree-sitter" = "0.26.6"
 "github:watchexec/watchexec" = "2.5.0"
 "npm:@fsouza/prettierd" = "0.27.0"
-"npm:@anthropic-ai/claude-code" = "2.1.56"
+"npm:@anthropic-ai/claude-code" = "2.1.58"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260225.1"
 "npm:oxlint" = "1.50.0"
 "npm:oxlint-tsgolint" = "0.15.0"
