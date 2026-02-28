@@ -28,7 +28,7 @@ settings.experimental = true
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:ast-grep/ast-grep" = "0.41.0"
 "github:atuinsh/atuin" = { version = "18.12.1", matching_regex = ".tar.gz$" }
-"github:cargo-bins/cargo-binstall" = "1.17.5"
+"github:cargo-bins/cargo-binstall" = "1.17.6"
 "github:charmbracelet/glow" = "2.1.1"
 "github:chmln/sd" = "1.1.0"
 "github:dandavison/delta" = "0.18.2"
@@ -47,7 +47,7 @@ settings.experimental = true
 "github:watchexec/watchexec" = "2.5.0"
 "npm:@fsouza/prettierd" = "0.27.0"
 "npm:@anthropic-ai/claude-code" = "2.1.56"
-"npm:@typescript/native-preview" = "7.0.0-dev.20260224.1"
+"npm:@typescript/native-preview" = "7.0.0-dev.20260225.1"
 "npm:oxlint" = "1.50.0"
 "npm:oxlint-tsgolint" = "0.15.0"
 "npm:yaml-language-server" = "1.20.0"
