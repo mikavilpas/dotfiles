@@ -347,6 +347,36 @@ fn test_fixups_are_grouped_and_orphans_are_kept() -> Result<(), Box<dyn std::err
 }
 
 #[test]
+fn mr_stack_summary_reports_missing_pr_for_branch() -> Result<(), Box<dyn std::error::Error>> {
+    let file =
+        std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../test_utils/src/stack-three.json");
+
+    let mut cmd = cargo::cargo_bin_cmd!("mika");
+    let assert = cmd
+        .args([
+            "mr-stack-summary",
+            file.to_str().unwrap(),
+            // use a branch that is not included in the test data
+            "--branch",
+            "feature-missing-pr",
+        ])
+        .assert();
+
+    let stderr = String::from_utf8(assert.get_output().stderr.clone())
+        .expect("failed to convert stderr to string");
+    assert_eq!(
+        stderr,
+        [
+            "failed to format MR stack: Current branch 'feature-missing-pr' is not the source branch of any open MR.",
+            "",
+        ]
+        .join("\n")
+    );
+
+    Ok(())
+}
+
+#[test]
 fn mr_stack_summary_can_process_test_data() -> Result<(), Box<dyn std::error::Error>> {
     let file =
         std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../test_utils/src/stack-three.json");
