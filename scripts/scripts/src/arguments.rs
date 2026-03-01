@@ -74,7 +74,7 @@ pub enum Commands {
 
         /// The current branch name
         #[arg(long)]
-        branch: String,
+        branch: Option<String>,
     },
 }
 
