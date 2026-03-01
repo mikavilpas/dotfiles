@@ -3,9 +3,8 @@ source: scripts/tests/mika_tests.rs
 expression: output
 ---
 error: the following required arguments were not provided:
-  --branch <BRANCH>
   <FILE>
 
-Usage: mika mr-stack-summary --branch <BRANCH> <FILE>
+Usage: mika mr-stack-summary <FILE>
 
 For more information, try '--help'.

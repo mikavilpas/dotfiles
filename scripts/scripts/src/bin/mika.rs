@@ -103,6 +103,11 @@ pub fn main() {
 
         Commands::MrStackSummary { file, branch } => {
             let mrs = parse_gitlab_mrs_from_file_or_stdin(file);
+            let branch = branch.unwrap_or_else(|| {
+                get_current_branch_name(&repo)
+                    .unwrap_or_else(|e| panic!("failed to get current branch name: {e}"))
+            });
+
             match mr_stack::format_mr_stack_as_markdown(mrs, branch.as_str()) {
                 Ok(output) => println!("{output}"),
                 Err(error) => {
