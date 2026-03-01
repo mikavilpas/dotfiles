@@ -21,7 +21,7 @@ settings.experimental = true
 "aqua:ouch-org/ouch" = "0.6.1"
 "aqua:Schniz/fnm" = "1.38.1"
 "github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
-"github:rtk-ai/rtk" = "0.22.2"
+"github:rtk-ai/rtk" = "0.23.0"
 "github:JohnnyMorganz/stylua" = "2.3.1"
 "github:aaronriekenberg/rust-parallel" = "1.22.0"
 "github:ajeetdsouza/zoxide" = "0.9.9"
@@ -46,7 +46,7 @@ settings.experimental = true
 "github:tree-sitter/tree-sitter" = "0.26.6"
 "github:watchexec/watchexec" = "2.5.0"
 "npm:@fsouza/prettierd" = "0.27.0"
-"npm:@anthropic-ai/claude-code" = "2.1.58"
+"npm:@anthropic-ai/claude-code" = "2.1.59"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260225.1"
 "npm:oxlint" = "1.50.0"
 "npm:oxlint-tsgolint" = "0.15.0"
