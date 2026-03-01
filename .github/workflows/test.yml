@@ -62,7 +62,7 @@ jobs:
           # make the tools available for subsequent steps
           echo "$(pwd)/bin" >> "$GITHUB_PATH"
           curl --silent --location \
-              https://raw.githubusercontent.com/houseabsolute/ubi/master/bootstrap/bootstrap-ubi.sh |
+              "https://raw.githubusercontent.com/houseabsolute/ubi/${UBI_VERSION}/bootstrap/bootstrap-ubi.sh" |
               TARGET="$HOME/.local/bin" sh
 
           VERSION=$(yq '.tools.yq.version' .config/mise/config.toml)
@@ -75,6 +75,8 @@ jobs:
           ls -alR bin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # renovate: datasource=github-releases depName=houseabsolute/ubi
+          UBI_VERSION: v0.8.1
 
       - name: Build
         run: cargo install --locked --path scripts/
