@@ -42,6 +42,7 @@ settings.experimental = true
 "github:sharkdp/fd" = "10.3.0"
 "github:sharkdp/hyperfine" = "1.20.0"
 "github:starship/starship" = "1.24.2"
+"github:houseabsolute/ubi" = "0.8.1"
 "github:tekumara/typos-lsp" = "0.1.50"
 "github:tree-sitter/tree-sitter" = "0.26.6"
 "github:watchexec/watchexec" = "2.5.0"
@@ -58,7 +59,6 @@ dotenv-linter = "4.0.0"
 jq = "1.8.1"
 shfmt = "3.12.0"
 typos = "1.44.0"
-ubi = "0.8.1"
 uv = "0.10.7"
 
 
