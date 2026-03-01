@@ -10,8 +10,6 @@ env:
   SCCACHE_GHA_ENABLED: true
   RUSTC_WRAPPER: sccache
   CARGO_TERM_COLOR: always
-  # renovate: datasource=github-releases depName=jesseduffield/lazygit
-  LAZYGIT_VERSION: v0.59.0
 
 jobs:
   build:
@@ -77,6 +75,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # renovate: datasource=github-releases depName=houseabsolute/ubi
           UBI_VERSION: v0.8.1
+          # renovate: datasource=github-releases depName=jesseduffield/lazygit
+          LAZYGIT_VERSION: v0.59.0
 
       - name: Build
         run: cargo install --locked --path scripts/
