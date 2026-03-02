@@ -75,6 +75,13 @@ customCommands:
           "mika share-patch --with-instructions --commit
           {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
         description: "Share selected commits as a patch with instructions"
+      - key: w
+        command:
+          ~/.config/lazygit/git-create-worktree.sh
+          "{{.SelectedLocalBranch.Name}}"
+        context: localBranches
+        output: terminal
+        description: "Create worktree for the selected branch"
   - key: "="
     description: "Update MR/PR description"
     context: localBranches
