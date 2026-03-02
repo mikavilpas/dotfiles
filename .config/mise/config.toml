@@ -62,7 +62,7 @@ uv = "0.10.7"
 
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.86.0"
+version = "1.87.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
