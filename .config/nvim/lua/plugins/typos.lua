@@ -12,20 +12,12 @@
 ---@type LazySpec
 return {
   {
-    "mason-org/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "typos-lsp",
-      },
-    },
-  },
-
-  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
         ---@type vim.lsp.ClientConfig
         typos_lsp = {
+          mason = false,
           filetypes = {
             "lua",
             "typescript",
@@ -36,6 +28,7 @@ return {
             "markdown",
             "toml",
             "text", -- txt
+            "dockerfile",
           },
 
           init_options = {

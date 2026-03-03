@@ -32,7 +32,20 @@ customCommands:
   - key: "b"
     context: localBranches
     description: "Backup branch"
-    command: git backup-branch
+    command: git backup-branch {{.SelectedLocalBranch.Name}}
+  - key: "<f8>"
+    context: localBranches
+    description:
+      "Autosquash only this branch (preserves fixups in branches above)"
+    loadingText: "Autosquashing {{.SelectedLocalBranch.Name}}..."
+    # See git-autosquash-branch.sh for documentation
+    command:
+      ~/.config/lazygit/git-autosquash-branch.sh "{{.SelectedLocalBranch.Name}}"
+  - key: "<c-r>"
+    context: commits
+    description: "Reword the commit with verbose=false"
+    output: terminal
+    command: "git -c commit.verbose=false commit --allow-empty --amend --only"
   - key: "Y"
     context: localBranches
     description: "Summarize branch commits for a PR"
@@ -62,36 +75,46 @@ customCommands:
           "mika share-patch --with-instructions --commit
           {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
         description: "Share selected commits as a patch with instructions"
-      - key: u
-        description: "Update merge request description"
+      - key: w
+        command:
+          ~/.config/lazygit/git-create-worktree.sh
+          "{{.SelectedLocalBranch.Name}}"
         context: localBranches
         output: terminal
-        command: |
-          #!/bin/bash
-          SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
-          set -e
-          glab mr update --description="$SUMMARY" --assignee="@me"
+        description: "Create worktree for the selected branch"
+  - key: "="
+    description: "Update MR/PR description"
+    context: localBranches
+    output: log
+    command: |
+      #!/bin/bash
+      set -euo pipefail
 
-          echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
-          echo $SUMMARY | bat --language=markdown --color=always
-          echo ""
-          echo "Press any key to exit."
-          read
-      - key: g
-        description: "Update pull request body"
-        context: localBranches
-        output: terminal
-        command: |
-          #!/bin/bash
-          set -e
-          SUMMARY="$(mika branch-summary --branch {{.SelectedLocalBranch.Name}})"
-          gh pr edit --body="$SUMMARY" --add-assignee="@me"
+      BRANCH="{{.SelectedLocalBranch.Name}}"
+      SUMMARY="$(mika branch-summary --branch "$BRANCH")"
+      REMOTE_URL="$(git remote get-url origin)"
 
-          echo "Updated merge request description for branch {{.SelectedLocalBranch.Name}}"
-          echo $SUMMARY | bat --language=markdown --color=always
-          echo ""
-          echo "Press any key to exit."
-          read
+      if [[ "$REMOTE_URL" == *"github"* ]]; then
+        SUMMARY="$(echo "$SUMMARY" | prettier --no-config --parser markdown --prose-wrap never)"
+        gh pr edit "$BRANCH" --body="$SUMMARY" --add-assignee="@me"
+      else
+        # Wait for GitLab to process the push (up to 30s)
+        LOCAL_SHA="$(git rev-parse "$BRANCH")"
+
+        # build a summary of the current mr stack
+        STACK_SUMMARY=$(glab mr list --output=json | mika mr-stack-summary - --branch "$BRANCH")
+        SUMMARY="$(printf '%s\n\n---\n\n# Merge request stack\n\n%s' "$SUMMARY" "$STACK_SUMMARY")"
+
+        echo "$SUMMARY"
+
+        glab mr update "$BRANCH" --description="$SUMMARY" --assignee="@me" --ready
+
+        # GitLab may auto-draft if it sees fixup! commits, so mark ready a few more times
+        for i in {1..5}; do
+          sleep 2
+          glab mr update "$BRANCH" --ready
+        done
+      fi
 keybinding:
   universal:
     edit: e
@@ -146,10 +169,15 @@ gui:
       - "#eed49f"
   showNumstatInFilesView: true
   branchColorPatterns:
+    # https://catppuccin.com/palette/
+
     # my "git backup-branch" branches should show up in a darker color
     ".+?--backup": "#6e738d"
+    "renovate/.+": "#cba6f7" # catppuccin-mocha-mauve
     "main$": "#a6da95"
     "master$": "#a6da95"
+    "wip-.+": "#7dc4e4" # catppuccin-macchiato-sapphire
+    "feature/.+": "#f5e0dc" # catppuccin-mocha-rosewater
   authorColors:
     "Mika Vilpas": "#8aadf4"
 git:

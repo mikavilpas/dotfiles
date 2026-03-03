@@ -1,9 +1,14 @@
 use clap::Parser;
+use std::process::exit;
+
 use scripts::{
-    arguments::{Cli, Commands},
+    arguments::{Cli, Commands, MrsFormat},
     commit_messages::{
         format_patch_with_instructions, get_commit_messages_between_commits,
         get_commit_messages_on_branch, get_current_branch_name,
+    },
+    gitlab::gitlab_mrs::{
+        OutputFormat, format_mrs_as_markdown, mr_stack, parse_gitlab_mrs_from_file_or_stdin,
     },
     project::path_to_project_file,
 };
@@ -14,7 +19,10 @@ pub fn main() {
         Ok(repo) => repo,
         Err(e) => panic!("failed to open: {e}"),
     };
-    let cli = Cli::parse();
+    let cli = match Cli::try_parse() {
+        Ok(cli) => cli,
+        Err(e) => e.exit(),
+    };
     match cli.command {
         Commands::Summary { from, to } => {
             let lines = get_commit_messages_between_commits(&repo, &from, &to)
@@ -49,7 +57,7 @@ pub fn main() {
                     "",
                     "<details><summary>Click to expand</summary>",
                     "",
-                    "> note: you can copy the diff and then apply it with `pbpaste | git apply`",
+                    "> note: you can copy the diff and then apply it with `pbpaste | git apply --3way`",
                     "",
                     "```diff",
                     &lines,
@@ -77,6 +85,36 @@ pub fn main() {
                     .unwrap_or_else(|e| panic!("failed to get project file: {e}"));
                 println!("{target_file}");
             }
+        }
+        Commands::MrsSummary { file, format } => {
+            let mrs = parse_gitlab_mrs_from_file_or_stdin(file);
+            let output_format = match format {
+                MrsFormat::Links => OutputFormat::Links,
+                MrsFormat::Branches => OutputFormat::Branches,
+            };
+            match format_mrs_as_markdown(mrs, output_format) {
+                Ok(output) => println!("{output}"),
+                Err(e) => {
+                    eprintln!("failed to format MRs: {e}");
+                    exit(1);
+                }
+            };
+        }
+
+        Commands::MrStackSummary { file, branch } => {
+            let mrs = parse_gitlab_mrs_from_file_or_stdin(file);
+            let branch = branch.unwrap_or_else(|| {
+                get_current_branch_name(&repo)
+                    .unwrap_or_else(|e| panic!("failed to get current branch name: {e}"))
+            });
+
+            match mr_stack::format_mr_stack_as_markdown(mrs, branch.as_str()) {
+                Ok(output) => println!("{output}"),
+                Err(error) => {
+                    eprintln!("failed to format MR stack: {error}");
+                    exit(1);
+                }
+            };
         }
     }
 }

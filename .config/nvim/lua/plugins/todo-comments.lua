@@ -4,6 +4,7 @@ return {
   "folke/todo-comments.nvim",
   -- ✅ Highlight, list and search todo comments in your projects
   -- https://github.com/folke/todo-comments.nvim
+  commit = "411503d3bedeff88484de572f2509c248e499b38",
   opts = {
     highlight = {
       pattern = { [[.*<(KEYWORDS)\s*]] }, -- pattern or table of patterns, used for highlighting (vim regex)

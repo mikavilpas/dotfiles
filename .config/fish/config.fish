@@ -2,9 +2,11 @@
 
 set -g fish_greeting ''
 export XDG_CONFIG_HOME="$HOME/.config"
+export FZF_DEFAULT_OPTS="--color=fg:#cad3f5,bg:#24273a,hl:#f5a97f:bold,fg+:#cad3f5,bg+:#494d64,hl+:#f5a97f:bold,spinner:#a6da95,info:#c6a0f6,prompt:#8aadf4,pointer:#ed8796,marker:#ee99a0,header:#8bd5ca,border:#6e738d"
 
 # https://typicode.github.io/husky/how-to.html#for-multiple-commands
 export HUSKY=0
+export EDITOR=nvim
 
 fish_add_path $HOME/bin
 fish_add_path /opt/homebrew/bin
@@ -22,12 +24,13 @@ if status is-interactive && test -z "$CI"
     fish_vi_key_bindings
     mise activate fish | source
 
+    # https://github.com/Schniz/fnm?tab=readme-ov-file#fish-shell
+    fnm env --use-on-cd --version-file-strategy=recursive --shell fish | source
+    alias nvm="fnm"
+
     # Commands to run in interactive sessions can go here
     #
-    # atuin has a fish related issue. Need to temporarily work around it.
-    # https://github.com/atuinsh/atuin/issues/2803, https://github.com/atuinsh/atuin/issues/2940
-    # atuin init fish | source
-    atuin init fish | sed "s/-k up/up/g" | source
+    atuin init fish | source
     starship init fish | source
     zoxide init fish | source
     fzf --fish | source
@@ -48,6 +51,7 @@ if status is-interactive && test -z "$CI"
     # https://github.com/eza-community/eza
     abbr --add -- l "eza --oneline --all --long --no-user --icons=auto --no-permissions --time-style=long-iso"
 
+    # open yazi, and cd to the directory it was closed in
     function y
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
         yazi $argv --cwd-file="$tmp"
@@ -57,16 +61,22 @@ if status is-interactive && test -z "$CI"
         rm -f -- "$tmp"
     end
 
+    # run the given command when files change in the current git repository
     function w
-        # https://github.com/watchexec/watchexec/issues/716
-        watchexec --timings --no-process-group --project-origin . $argv
+        # set the root of the git repository exactly to make sure watchexec is
+        # able to match the ignore rules as expected
+        set root (git rev-parse --show-toplevel 2>/dev/null)
+        watchexec --timings --interactive --no-process-group --project-origin "$root" $argv
     end
     complete --command w --wraps watchexec
 
+    # like `w`, but restart running command instantly on file changes
     function ww
         # like `w`, but restart running command on file changes
-        # https://github.com/watchexec/watchexec/issues/716
-        watchexec --on-busy-update=restart --timings --no-process-group --project-origin . $argv
+        # set the root of the git repository exactly to make sure watchexec is
+        # able to match the ignore rules as expected
+        set root (git rev-parse --show-toplevel 2>/dev/null)
+        watchexec --on-busy-update=restart --interactive --timings --no-process-group --project-origin "$root" $argv
     end
     complete --command ww --wraps watchexec
 
@@ -85,11 +95,8 @@ if status is-interactive && test -z "$CI"
     # ya sub cd,hover | batrs
     abbr -a batrs 'bat --paging=never --language=rs --decorations=never'
 
-    function klm
-        cd /Users/mikavilpas/git/jelpp/jelpp-env
-        fnm use
-        npm run klm $argv
-        cd -
-        fnm use
+    # show gitlab merge requests in a tree
+    function mrs # "merge requests"
+        glab mr list --author=@me --output=json | mika mrs-summary - --format=branches | glow --width=0
     end
 end

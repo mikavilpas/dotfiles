@@ -15,7 +15,7 @@ return {
       alsoPrefillReplaceLine = true,
     },
     regexOptions = {
-      startWithFixedStringsOn = true,
+      startWithFixedStrings = true,
     },
     editingBehavior = {
       autoCaptureGroups = true,

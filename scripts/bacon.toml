@@ -9,7 +9,9 @@ default_job = "check"
 env.CARGO_TERM_COLOR = "always"
 
 [exports.locations]
+auto = true
 path = "../.bacon-locations"
+line_format = "{item-idx}: {kind} {path}:{line}:{column} {message}"
 
 [jobs.check]
 command = ["cargo", "check"]

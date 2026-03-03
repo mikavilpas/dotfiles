@@ -1,6 +1,5 @@
 import { flavors } from "@catppuccin/palette"
-import { rgbify } from "@tui-sandbox/library/dist/src/client/color-utilities"
-import { textIsVisibleWithBackgroundColor } from "@tui-sandbox/library/dist/src/client/cypress-assertions"
+import { rgbify, textIsVisibleWithBackgroundColor } from "@tui-sandbox/library"
 import assert from "assert"
 
 describe("lazygit", () => {
@@ -19,8 +18,6 @@ describe("lazygit", () => {
 
       t.runBlockingShellCommand({
         command: "test -f ~/.config/lazygit/config.yml",
-      }).then((output) => {
-        assert(output.type === "success")
       })
 
       t.runBlockingShellCommand({

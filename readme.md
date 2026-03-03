@@ -40,7 +40,7 @@ Here are the basics:
 
 I manage my dotfiles with GNU Stow. It creates symlinks from the repository to
 the home directory. See
-[here](https://dev.to/spacerockmedia/how-i-manage-my-dotfiles-using-gnu-stow-4l59)
+[how-i-manage-my-dotfiles-using-gnu-stow](https://dev.to/spacerockmedia/how-i-manage-my-dotfiles-using-gnu-stow-4l59)
 for an introduction by Shawn McElroy.
 
 This way I can keep the configuration under version control and still have it in
@@ -66,12 +66,13 @@ Many of the packages I use have some kind of custom dependencies:
   plugins are managed using lazy.nvim as well. The approach is explained in
   detail in yazi.nvim's
   [plugin-management.md](https://github.com/mikavilpas/yazi.nvim/blob/main/documentation/plugin-management.md).
-  The config is available [here](.config/nvim/lua/plugins/my-file-manager.lua),
-  but the short version is that it uses lazy.nvim to download and update the
+  The config is available in
+  [my-file-manager.lua](.config/nvim/lua/plugins/my-file-manager.lua), but the
+  short version is that it uses lazy.nvim to download and update the
   dependencies, and then creates symlinks whenever they are installed/updated.
 - plugins for other applications are also managed with the same approach to keep
-  things simple. An example can be seen
-  [here](.config/nvim/lua/plugins/dotfiles.lua).
+  things simple. An example can be seen in
+  [dotfiles.lua](.config/nvim/lua/plugins/dotfiles.lua).
 
 ### Testing
 

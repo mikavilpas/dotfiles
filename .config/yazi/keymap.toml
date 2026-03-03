@@ -11,6 +11,7 @@ desc = "easyjump"
 on = ["<Right>"]
 run = "shell lazygit --block --confirm"
 
+# When yazi is opened within neovim, go to neovim's cwd. Otherwise fallback to
 # https://yazi-rs.github.io/docs/tips/#cd-to-git-root
 [[mgr.prepend_keymap]]
 on = ["g", "r"]
@@ -21,7 +22,7 @@ run = '''
 # copy the relative path to the current file/selected files in the current git repo
 # (remove the last newline)
 [[mgr.prepend_keymap]]
-desc = "Copy git repo relative path to the clipboard"
+desc = "Copy git repo relative path(s) to the clipboard"
 on = ["c", "r"]
 run = '''
   shell 'mika path $@ | perl -pe "chomp if eof" | pbcopy'
@@ -201,6 +202,7 @@ keymap = [
   { on = ["g", "d"], run = "cd ~/Desktop/", desc = "Go to the Desktop directory" },
   { on = ["g", "t"], run = "cd /tmp", desc = "Go to the temporary directory" },
   { on = ["g", "l"], run = "cd ~/.local", desc = "Go to ~/.local" },
+  { on = ["g", "w"], run = "cd ~/git/worktrees/", desc = "Go to ~/git/worktrees" },
   { on = ["g", "<Space>"], run = "cd --interactive", desc = "Go to a directory interactively" },
 
   # Help

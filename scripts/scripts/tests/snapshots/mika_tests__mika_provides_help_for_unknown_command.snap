@@ -1,0 +1,9 @@
+---
+source: scripts/tests/mika_tests.rs
+expression: output
+---
+error: unrecognized subcommand 'missing_cmd'
+
+Usage: mika <COMMAND>
+
+For more information, try '--help'.

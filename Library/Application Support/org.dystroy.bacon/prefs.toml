@@ -32,7 +32,7 @@
 [exports.locations]
 auto = true
 path = ".bacon-locations"
-line_format = "{kind} {path}:{line}:{column} {message}"
+line_format = "{item-idx}: {kind} {path}:{line}:{column} {message}"
 
 # Uncomment and change the key-bindings you want to define
 # (some of those ones are the defaults and are just here

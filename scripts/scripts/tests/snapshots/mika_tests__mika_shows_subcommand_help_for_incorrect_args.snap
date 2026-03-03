@@ -1,0 +1,10 @@
+---
+source: scripts/tests/mika_tests.rs
+expression: output
+---
+error: the following required arguments were not provided:
+  <FILE>
+
+Usage: mika mr-stack-summary <FILE>
+
+For more information, try '--help'.

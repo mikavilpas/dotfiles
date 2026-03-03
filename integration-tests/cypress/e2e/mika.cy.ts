@@ -3,7 +3,12 @@ import assert from "assert"
 describe("mika terminal application (personal application)", () => {
   it("provides tab completions for the commands", () => {
     cy.visit("/")
-    cy.startTerminalApplication({ commandToRun: ["fish"] }).then((t) => {
+    cy.startTerminalApplication({
+      commandToRun: ["fish"],
+      additionalEnvironmentVariables: {
+        MISE_NO_CONFIG: "1", // disable mise config for the test
+      },
+    }).then((t) => {
       // the mika application should have been installed earlier in the build process
       t.runBlockingShellCommand({ command: "which mika" }).then((output) => {
         assert(output.type === "success")
@@ -27,6 +32,14 @@ describe("mika terminal application (personal application)", () => {
       cy.contains("summary")
       cy.contains("path")
       cy.contains("share-patch")
+
+      // check mika mrs-summary
+      cy.contains("mrs-summary")
+      cy.typeIntoTerminal("mrs-summary -{control+i}")
+      cy.contains("--format")
+      cy.typeIntoTerminal("-format {control+i}")
+      cy.contains("branches")
+      cy.contains("links")
     })
   })
 })

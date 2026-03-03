@@ -1,52 +1,91 @@
 settings.cargo.binstall = true
+settings.experimental = true
 
 # Pick tools that renovate can manage updates for. See:
 # https://docs.renovatebot.com/modules/manager/mise/
 [tools]
 
-"cargo:bacon" = "3.19.0"
+# renovate: datasource=crate depName=bacon
+"cargo:bacon" = "3.22.0"
+# renovate: datasource=crate depName=cargo-nextest
+"cargo:cargo-nextest" = "0.9.117"
+# renovate: datasource=crate depName=eza
 "cargo:eza" = "0.23.3"
-"ubi:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
-"ubi:JohnnyMorganz/stylua" = "2.3.1"
-"ubi:aaronriekenberg/rust-parallel" = "1.18.1"
-"ubi:ajeetdsouza/zoxide" = "0.9.8"
-"ubi:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
-"ubi:atuinsh/atuin" = { version = "18.10.0", matching_regex = ".tar.gz$" }
-"ubi:cargo-bins/cargo-binstall" = "1.15.11"
-"ubi:chmln/sd" = "1.0.0"
-"ubi:dandavison/delta" = "0.18.2"
-"ubi:gitlab-org/cli" = { version = "1.77.0", provider = "gitlab", exe = "glab" }
-"ubi:jesseduffield/lazydocker" = "0.24.1"
-"ubi:junegunn/fzf" = "0.66.1"
-"ubi:sharkdp/bat" = "0.26.0"
-"ubi:sharkdp/fd" = "10.3.0"
-"ubi:sharkdp/hyperfine" = "1.19.0"
-"ubi:starship/starship" = "1.24.0"
-"ubi:tree-sitter/tree-sitter" = "0.25.10"
-"ubi:watchexec/watchexec" = "2.3.2"
+# renovate: datasource=crate depName=sccache
+"cargo:sccache" = "0.14.0"
 
-jq = "1.8.1"
-actionlint = "1.7.8"
+"aqua:ClementTsang/bottom" = "0.12.3"
+"aqua:MordechaiHadad/bob" = "4.1.6"
+"aqua:Schniz/fnm" = "1.38.1"
+"aqua:fish-shell/fish-shell" = "4.5.0"
+"aqua:mfontanini/presenterm" = "0.16.1"
+"aqua:ouch-org/ouch" = "0.6.1"
+"github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
+"github:JohnnyMorganz/stylua" = "2.3.1"
+"github:aaronriekenberg/rust-parallel" = "1.22.0"
+"github:ajeetdsouza/zoxide" = "0.9.9"
+"github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
+"github:ast-grep/ast-grep" = "0.41.0"
+"github:atuinsh/atuin" = { version = "18.12.1", matching_regex = ".tar.gz$" }
+"github:cargo-bins/cargo-binstall" = "1.17.6"
+"github:charmbracelet/glow" = "2.1.1"
+"github:chmln/sd" = "1.1.0"
+"github:dandavison/delta" = "0.18.2"
+"github:hadolint/hadolint" = "2.14.0"
+"github:jesseduffield/lazydocker" = "0.24.4"
+"github:junegunn/fzf" = "0.70.0"
+"github:k1LoW/git-wt" = "0.25.0"
+"github:pranshuparmar/witr" = "0.3.0"
+"github:rtk-ai/rtk" = "0.23.0"
+"github:rvben/rumdl" = "0.1.36"
+"github:sharkdp/bat" = "0.26.1"
+"github:sharkdp/fd" = "10.3.0"
+"github:sharkdp/hyperfine" = "1.20.0"
+"github:starship/starship" = "1.24.2"
+"github:tekumara/typos-lsp" = "0.1.50"
+"github:tree-sitter/tree-sitter" = "0.26.6"
+"github:watchexec/watchexec" = "2.5.0"
+"npm:@anthropic-ai/claude-code" = "2.1.63"
+"npm:@fsouza/prettierd" = "0.27.0"
+"npm:@typescript/native-preview" = "7.0.0-dev.20260227.1"
+"npm:oxlint" = "1.50.0"
+"npm:oxlint-tsgolint" = "0.15.0"
+"npm:yaml-language-server" = "1.21.0"
+"pipx:awslabs.cloudwatch-mcp-server" = "0.0.19"
+actionlint = "1.7.11"
+aws-cli = { version = "2.34.0", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
-ubi = "0.8.1"
-"aqua:fish-shell/fish-shell" = "4.2.1"
+jq = "1.8.1"
+shfmt = "3.12.0"
+typos = "1.44.0"
+uv = "0.10.7"
+
+
+[tools."ubi:gitlab-org/cli"]
+version = "1.87.0"
+provider = "gitlab"
+exe = "glab"
+postinstall = """
+mkdir -p ~/.config/fish/completions
+glab completion -s fish > ~/.config/fish/completions/glab.fish
+"""
 
 [tools.github-cli]
-version = "2.83.1"
+version = "2.87.3"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
 """
 
 [tools.yq]
-version = "4.48.1"
+version = "4.52.4"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- yq completion fish > ~/.config/fish/completions/yq.fish
 """
 
-[tools."ubi:ducaale/xh"]
-version = "0.25.0"
+[tools."github:ducaale/xh"]
+version = "0.25.3"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- xh --generate complete-fish > ~/.config/fish/completions/xh.fish

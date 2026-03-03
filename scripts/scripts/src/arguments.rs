@@ -1,6 +1,6 @@
 use std::path::PathBuf;
 
-use clap::{Parser, Subcommand};
+use clap::{Parser, Subcommand, ValueEnum};
 
 #[derive(Parser)]
 #[command(name = "mika", version, about, long_about = None)]
@@ -54,4 +54,35 @@ pub enum Commands {
     )]
         files: Vec<PathBuf>,
     },
+
+    /// Display a markdown summary of GitLab merge requests from a JSON file
+    MrsSummary {
+        /// Path to the JSON file containing GitLab MRs (from GitLab API), or "-" to read from stdin
+        #[arg(value_name = "FILE", value_hint = clap::ValueHint::FilePath)]
+        file: PathBuf,
+
+        /// Output format
+        #[arg(long, default_value = "links")]
+        format: MrsFormat,
+    },
+
+    /// Generate a markdown summary of the current branch as part of the stack of MRs
+    MrStackSummary {
+        /// Path to the JSON file containing GitLab MRs (from GitLab API), or "-" to read from stdin
+        #[arg(value_name = "FILE", value_hint = clap::ValueHint::FilePath)]
+        file: PathBuf,
+
+        /// The current branch name
+        #[arg(long)]
+        branch: Option<String>,
+    },
+}
+
+#[derive(Debug, Clone, Copy, Default, ValueEnum)]
+pub enum MrsFormat {
+    /// Show MRs with links to GitLab
+    #[default]
+    Links,
+    /// Show branch names instead of links
+    Branches,
 }

@@ -12,20 +12,20 @@
     "tui": "pnpm --filter ./integration-tests/ exec tui"
   },
   "devDependencies": {
-    "@eslint/js": "9.39.1",
-    "@umbrelladocs/linkspector": "0.4.7",
-    "eslint": "9.39.1",
+    "@eslint/js": "10.0.1",
+    "@umbrelladocs/linkspector": "0.4.8",
+    "eslint": "10.0.2",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-no-only-tests": "3.3.0",
-    "eslint-plugin-oxlint": "1.28.0",
-    "oxlint": "1.28.0",
-    "oxlint-tsgolint": "0.6.0",
-    "prettier": "3.6.2",
+    "eslint-plugin-oxlint": "1.50.0",
+    "oxlint": "1.50.0",
+    "oxlint-tsgolint": "0.15.0",
+    "prettier": "3.8.1",
     "prettier-plugin-organize-imports": "4.3.0",
-    "prettier-plugin-packagejson": "2.5.19",
-    "typescript-eslint": "8.46.4"
+    "prettier-plugin-packagejson": "3.0.0",
+    "typescript-eslint": "8.56.1"
   },
-  "packageManager": "pnpm@10.22.0+sha512.bf049efe995b28f527fd2b41ae0474ce29186f7edcb3bf545087bd61fbbebb2bf75362d1307fda09c2d288e1e499787ac12d4fcb617a974718a6051f2eee741c",
+  "packageManager": "pnpm@10.30.3+sha512.c961d1e0a2d8e354ecaa5166b822516668b7f44cb5bd95122d590dd81922f606f5473b6d23ec4a5be05e7fcd18e8488d47d978bbe981872f1145d06e9a740017",
   "pnpm": {
     "onlyBuiltDependencies": [
       "core-js",

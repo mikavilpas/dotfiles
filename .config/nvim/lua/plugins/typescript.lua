@@ -6,7 +6,33 @@ return {
     opts = {
       ---@type table<string, vim.lsp.Config>
       servers = {
-        oxlint = {}, -- enable
+        oxlint = {
+          -- opt in to early changes from this PR, these can be removed when it
+          -- gets merged
+          -- https://github.com/neovim/nvim-lspconfig/pull/4242
+          cmd = { "oxlint", "--lsp" },
+          on_attach = function(client, bufnr)
+            vim.api.nvim_buf_create_user_command(bufnr, "LspOxlintFixAll", function()
+              client:exec_cmd({
+                title = "Apply Oxlint automatic fixes",
+                command = "oxc.fixAll",
+                arguments = { { uri = vim.uri_from_bufnr(bufnr) } },
+              })
+            end, {
+              desc = "Apply Oxlint automatic fixes",
+            })
+          end,
+          mason = false,
+        },
+        tsgo = {
+          on_attach = function(client, bufnr)
+            require("twoslash-queries").attach(client, bufnr)
+          end,
+
+          -- this is installed with mise, so don't install another one via mason
+          -- https://www.lazyvim.org/plugins/lsp#nvim-lspconfig
+          mason = false,
+        },
         eslint = {
           settings = {
             -- Fix https://github.com/un-ts/eslint-plugin-import-x starting
@@ -40,56 +66,38 @@ return {
   },
 
   {
-    "pmizio/typescript-tools.nvim",
-    ft = {
-      "typescript",
-      "javascript",
-      "typescriptreact",
-      "javascriptreact",
+    "marilari88/twoslash-queries.nvim",
+    -- Usage
+    -- Write a '//    ^?' placing the sign '^' under the variable to inspected
+    event = "LspAttach",
+    keys = {
+      { "<leader>at", "<cmd>TwoslashQueriesInspect<cr>", desc = "Show typescript type" },
     },
-    dependencies = {
-      {
-        "marilari88/twoslash-queries.nvim",
-        -- Usage
-        -- Write a '//    ^?' placing the sign '^' under the variable to inspected
-        event = "LspAttach",
-        keys = {
-          { "<leader>at", "<cmd>TwoslashQueriesInspect<cr>", desc = "Show typescript type" },
-        },
-        config = function(_, opts)
-          local palette = require("catppuccin.palettes.macchiato")
-          local darken = require("catppuccin.utils.colors").darken
-          vim.api.nvim_set_hl(0, "MikaTwoslashQueries", {
-            fg = palette.base,
-            bg = darken(palette.blue, 0.8),
-          })
-          opts.multi_line = true
-          opts.highlight = "MikaTwoslashQueries"
-          opts.is_enabled = true
+    config = function(_, opts)
+      local palette = require("catppuccin.palettes.macchiato")
+      local darken = require("catppuccin.utils.colors").darken
+      vim.api.nvim_set_hl(0, "MikaTwoslashQueries", {
+        fg = palette.base,
+        bg = darken(palette.blue, 0.8),
+      })
+      opts.multi_line = true
+      opts.highlight = "MikaTwoslashQueries"
+      opts.is_enabled = true
 
-          require("twoslash-queries").setup(opts)
-        end,
-      },
-    },
+      require("twoslash-queries").setup(opts)
+    end,
+  },
 
-    opts = {
-      on_attach = function(client, bufnr)
-        require("twoslash-queries").attach(client, bufnr)
-      end,
-
-      settings = {
-        expose_as_code_action = "all",
-
-        tsserver_file_preferences = {
-          includeInlayParameterNameHints = "all",
-          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
-        },
-      },
-    },
+  {
+    "https://github.com/vuki656/package-info.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    event = { "BufRead package.json" },
+    cond = function()
+      local function has(mgr)
+        return vim.fn.executable(mgr) == 1
+      end
+      return has("npm") or has("yarn") or has("pnpm")
+    end,
+    opts = {},
   },
 }

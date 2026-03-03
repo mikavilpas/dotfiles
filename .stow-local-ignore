@@ -17,5 +17,8 @@ eslint.config.mjs
 pnpm-lock.yaml
 pnpm-workspace.yaml
 scripts
+.bacon-locations
+.mise.ci.toml
+.release-please-manifest.json
 
 # vim: set filetype=gitignore :

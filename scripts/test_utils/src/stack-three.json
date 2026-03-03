@@ -1,0 +1,314 @@
+[
+  {
+    "id": 1003,
+    "iid": 103,
+    "target_branch": "feature-b",
+    "source_branch": "feature-c",
+    "project_id": 42,
+    "title": "Add input validation to user form",
+    "state": "opened",
+    "imported": false,
+    "imported_from": "none",
+    "created_at": "2026-01-07T15:49:00.659Z",
+    "updated_at": "2026-01-22T09:43:06.13Z",
+    "upvotes": 0,
+    "downvotes": 0,
+    "author": {
+      "id": 1,
+      "username": "alice",
+      "name": "Alice Developer",
+      "state": "active",
+      "locked": false,
+      "created_at": null,
+      "avatar_url": "https://example.com/avatars/alice.png",
+      "web_url": "https://gitlab.example.com/alice"
+    },
+    "assignee": {
+      "id": 1,
+      "username": "alice",
+      "name": "Alice Developer",
+      "state": "active",
+      "locked": false,
+      "created_at": null,
+      "avatar_url": "https://example.com/avatars/alice.png",
+      "web_url": "https://gitlab.example.com/alice"
+    },
+    "assignees": [
+      {
+        "id": 1,
+        "username": "alice",
+        "name": "Alice Developer",
+        "state": "active",
+        "locked": false,
+        "created_at": null,
+        "avatar_url": "https://example.com/avatars/alice.png",
+        "web_url": "https://gitlab.example.com/alice"
+      }
+    ],
+    "reviewers": [
+      {
+        "id": 2,
+        "username": "bob",
+        "name": "Bob Reviewer",
+        "state": "active",
+        "locked": false,
+        "created_at": null,
+        "avatar_url": "https://example.com/avatars/bob.png",
+        "web_url": "https://gitlab.example.com/bob"
+      }
+    ],
+    "source_project_id": 42,
+    "target_project_id": 42,
+    "labels": [],
+    "label_details": null,
+    "description": "Add validation for email and phone number fields in the user registration form.",
+    "draft": false,
+    "milestone": null,
+    "merge_when_pipeline_succeeds": false,
+    "detailed_merge_status": "mergeable",
+    "merge_user": null,
+    "merged_at": null,
+    "merge_after": null,
+    "prepared_at": "2026-01-07T15:49:13.158Z",
+    "closed_by": null,
+    "closed_at": null,
+    "sha": "3cf477b2d47ef42cfad9bef54abca8c7845d869d",
+    "merge_commit_sha": "",
+    "squash_commit_sha": "",
+    "user_notes_count": 1,
+    "should_remove_source_branch": false,
+    "force_remove_source_branch": true,
+    "allow_collaboration": false,
+    "allow_maintainer_to_push": false,
+    "web_url": "https://gitlab.example.com/my-group/my-project/-/merge_requests/103",
+    "references": {
+      "short": "!103",
+      "relative": "!103",
+      "full": "my-group/my-project!103"
+    },
+    "discussion_locked": false,
+    "time_stats": {
+      "human_time_estimate": "",
+      "human_total_time_spent": "",
+      "time_estimate": 0,
+      "total_time_spent": 0
+    },
+    "squash": false,
+    "squash_on_merge": false,
+    "task_completion_status": {
+      "count": 0,
+      "completed_count": 0
+    },
+    "has_conflicts": false,
+    "blocking_discussions_resolved": true,
+    "merged_by": null
+  },
+  {
+    "id": 1002,
+    "iid": 102,
+    "target_branch": "feature-a",
+    "source_branch": "feature-b",
+    "project_id": 42,
+    "title": "Implement user profile page",
+    "state": "opened",
+    "imported": false,
+    "imported_from": "none",
+    "created_at": "2025-10-13T13:17:15.135Z",
+    "updated_at": "2026-01-20T06:28:09.131Z",
+    "upvotes": 0,
+    "downvotes": 0,
+    "author": {
+      "id": 1,
+      "username": "alice",
+      "name": "Alice Developer",
+      "state": "active",
+      "locked": false,
+      "created_at": null,
+      "avatar_url": "https://example.com/avatars/alice.png",
+      "web_url": "https://gitlab.example.com/alice"
+    },
+    "assignee": {
+      "id": 1,
+      "username": "alice",
+      "name": "Alice Developer",
+      "state": "active",
+      "locked": false,
+      "created_at": null,
+      "avatar_url": "https://example.com/avatars/alice.png",
+      "web_url": "https://gitlab.example.com/alice"
+    },
+    "assignees": [
+      {
+        "id": 1,
+        "username": "alice",
+        "name": "Alice Developer",
+        "state": "active",
+        "locked": false,
+        "created_at": null,
+        "avatar_url": "https://example.com/avatars/alice.png",
+        "web_url": "https://gitlab.example.com/alice"
+      }
+    ],
+    "reviewers": [
+      {
+        "id": 2,
+        "username": "bob",
+        "name": "Bob Reviewer",
+        "state": "active",
+        "locked": false,
+        "created_at": null,
+        "avatar_url": "https://example.com/avatars/bob.png",
+        "web_url": "https://gitlab.example.com/bob"
+      }
+    ],
+    "source_project_id": 42,
+    "target_project_id": 42,
+    "labels": [],
+    "label_details": null,
+    "description": "Add a user profile page that displays user information and allows editing basic details.",
+    "draft": false,
+    "milestone": null,
+    "merge_when_pipeline_succeeds": false,
+    "detailed_merge_status": "mergeable",
+    "merge_user": null,
+    "merged_at": null,
+    "merge_after": null,
+    "prepared_at": "2025-10-13T13:17:21.115Z",
+    "closed_by": null,
+    "closed_at": null,
+    "sha": "6b1cb02df1d27743a772174a1956c547f01d58f2",
+    "merge_commit_sha": "",
+    "squash_commit_sha": "",
+    "user_notes_count": 1,
+    "should_remove_source_branch": false,
+    "force_remove_source_branch": true,
+    "allow_collaboration": false,
+    "allow_maintainer_to_push": false,
+    "web_url": "https://gitlab.example.com/my-group/my-project/-/merge_requests/102",
+    "references": {
+      "short": "!102",
+      "relative": "!102",
+      "full": "my-group/my-project!102"
+    },
+    "discussion_locked": false,
+    "time_stats": {
+      "human_time_estimate": "",
+      "human_total_time_spent": "",
+      "time_estimate": 0,
+      "total_time_spent": 0
+    },
+    "squash": true,
+    "squash_on_merge": true,
+    "task_completion_status": {
+      "count": 0,
+      "completed_count": 0
+    },
+    "has_conflicts": false,
+    "blocking_discussions_resolved": true,
+    "merged_by": null
+  },
+  {
+    "id": 1001,
+    "iid": 101,
+    "target_branch": "main",
+    "source_branch": "feature-a",
+    "project_id": 42,
+    "title": "Set up authentication module",
+    "state": "opened",
+    "imported": false,
+    "imported_from": "none",
+    "created_at": "2025-09-09T08:40:44.077Z",
+    "updated_at": "2026-01-20T06:29:12.876Z",
+    "upvotes": 0,
+    "downvotes": 0,
+    "author": {
+      "id": 1,
+      "username": "alice",
+      "name": "Alice Developer",
+      "state": "active",
+      "locked": false,
+      "created_at": null,
+      "avatar_url": "https://example.com/avatars/alice.png",
+      "web_url": "https://gitlab.example.com/alice"
+    },
+    "assignee": {
+      "id": 1,
+      "username": "alice",
+      "name": "Alice Developer",
+      "state": "active",
+      "locked": false,
+      "created_at": null,
+      "avatar_url": "https://example.com/avatars/alice.png",
+      "web_url": "https://gitlab.example.com/alice"
+    },
+    "assignees": [
+      {
+        "id": 1,
+        "username": "alice",
+        "name": "Alice Developer",
+        "state": "active",
+        "locked": false,
+        "created_at": null,
+        "avatar_url": "https://example.com/avatars/alice.png",
+        "web_url": "https://gitlab.example.com/alice"
+      }
+    ],
+    "reviewers": [
+      {
+        "id": 2,
+        "username": "bob",
+        "name": "Bob Reviewer",
+        "state": "active",
+        "locked": false,
+        "created_at": null,
+        "avatar_url": "https://example.com/avatars/bob.png",
+        "web_url": "https://gitlab.example.com/bob"
+      }
+    ],
+    "source_project_id": 42,
+    "target_project_id": 42,
+    "labels": [],
+    "label_details": null,
+    "description": "Initial setup of the authentication module with login and logout functionality.",
+    "draft": false,
+    "milestone": null,
+    "merge_when_pipeline_succeeds": false,
+    "detailed_merge_status": "discussions_not_resolved",
+    "merge_user": null,
+    "merged_at": null,
+    "merge_after": null,
+    "prepared_at": "2025-09-09T08:40:54.124Z",
+    "closed_by": null,
+    "closed_at": null,
+    "sha": "23d7e5c754fb676ecee114c7fe68a52f9d429d61",
+    "merge_commit_sha": "",
+    "squash_commit_sha": "",
+    "user_notes_count": 12,
+    "should_remove_source_branch": false,
+    "force_remove_source_branch": true,
+    "allow_collaboration": false,
+    "allow_maintainer_to_push": false,
+    "web_url": "https://gitlab.example.com/my-group/my-project/-/merge_requests/101",
+    "references": {
+      "short": "!101",
+      "relative": "!101",
+      "full": "my-group/my-project!101"
+    },
+    "discussion_locked": false,
+    "time_stats": {
+      "human_time_estimate": "",
+      "human_total_time_spent": "",
+      "time_estimate": 0,
+      "total_time_spent": 0
+    },
+    "squash": true,
+    "squash_on_merge": true,
+    "task_completion_status": {
+      "count": 0,
+      "completed_count": 0
+    },
+    "has_conflicts": false,
+    "blocking_discussions_resolved": false,
+    "merged_by": null
+  }
+]

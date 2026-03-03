@@ -6,12 +6,12 @@
 # https://github.com/yazi-rs/plugins/tree/main/git.yazi#setup
 [[plugin.prepend_fetchers]]
 id = "git"
-name = "*"
+url = "*"
 run = "git"
 
 [[plugin.prepend_fetchers]]
 id = "git"
-name = "*/"
+url = "*/"
 run = "git"
 
 [mgr]

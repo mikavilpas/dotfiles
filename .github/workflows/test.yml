@@ -10,8 +10,6 @@ env:
   SCCACHE_GHA_ENABLED: true
   RUSTC_WRAPPER: sccache
   CARGO_TERM_COLOR: always
-  # renovate: datasource=github-releases depName=jesseduffield/lazygit
-  LAZYGIT_VERSION: v0.56.0
 
 jobs:
   build:
@@ -22,7 +20,7 @@ jobs:
         neovim_version: ["nightly"]
 
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Install GNU stow and setup the dotfiles
         run: |
@@ -62,19 +60,23 @@ jobs:
           # make the tools available for subsequent steps
           echo "$(pwd)/bin" >> "$GITHUB_PATH"
           curl --silent --location \
-              https://raw.githubusercontent.com/houseabsolute/ubi/master/bootstrap/bootstrap-ubi.sh |
+              "https://raw.githubusercontent.com/houseabsolute/ubi/${UBI_VERSION}/bootstrap/bootstrap-ubi.sh" |
               TARGET="$HOME/.local/bin" sh
 
           VERSION=$(yq '.tools.yq.version' .config/mise/config.toml)
           ubi --project mikefarah/yq --tag "v$VERSION"
 
-          VERSION=$(yq '.tools."ubi:dandavison/delta"' .config/mise/config.toml)
+          VERSION=$(yq '.tools."github:dandavison/delta"' .config/mise/config.toml)
           ubi --project dandavison/delta --tag "$VERSION"
           ubi --project jesseduffield/lazygit --tag "${LAZYGIT_VERSION}"
 
           ls -alR bin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # renovate: datasource=github-releases depName=houseabsolute/ubi
+          UBI_VERSION: v0.9.0
+          # renovate: datasource=github-releases depName=jesseduffield/lazygit
+          LAZYGIT_VERSION: v0.59.0
 
       - name: Build
         run: cargo install --locked --path scripts/
@@ -82,11 +84,11 @@ jobs:
 
       # https://github.com/cypress-io/github-action?tab=readme-ov-file#pnpm-workspaces
       - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
-      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
           node-version-file: .nvmrc
           cache: "pnpm"
-      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+      - uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: |
             ~/.cache/Cypress
@@ -97,7 +99,7 @@ jobs:
       - run: pnpm --filter integration-tests exec cypress install
       - run: pnpm tui run
 
-      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         # add the line below to store screenshots only on failures
         # if: failure()
         if: failure()

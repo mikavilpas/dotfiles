@@ -20,10 +20,14 @@ vim.keymap.set({ "t" }, "<esc><esc>", "<Nop>")
 vim.keymap.set({ "n" }, "<leader>w", "<Nop>")
 
 vim.keymap.set({ "v" }, "ä", function()
-  -- both c-space (from LazyVim) and a are used for treesitter incremental
-  -- selection. It's faster to hit these alternate keys in quick succession.
-  -- This way I can quickly select a large node.
-  require("incr").increment_selection()
+  if require("incr").is_active() then
+    -- both c-space (from LazyVim) and a are used for treesitter incremental
+    -- selection. It's faster to hit these alternate keys in quick succession.
+    -- This way I can quickly select a large node.
+    require("incr").increment_selection()
+  else
+    require("blink.indent.motion").operator("bottom", true)()
+  end
 end, { desc = "Increment selection" })
 
 vim.keymap.set({ "n" }, "<leader>br", function()
@@ -165,13 +169,22 @@ vim.keymap.set({ "v" }, "<f8>", function()
   local current_line = vim.fn.line(".")
   local current_column = vim.fn.virtcol(".")
 
-  vim.cmd("'<,'>sort")
-  -- exit visual mode
+  -- Get the current visual selection range directly (works on first selection)
+  local start_line = vim.fn.line("v")
+  local end_line = vim.fn.line(".")
+  if start_line > end_line then
+    start_line, end_line = end_line, start_line
+  end
+
+  -- exit visual mode first, then sort the range
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, true, true), "n", true)
 
-  -- restore cursor position
-  vim.cmd("normal! " .. current_line .. "G")
-  vim.cmd("normal! " .. current_column .. "|")
+  vim.schedule(function()
+    vim.cmd(start_line .. "," .. end_line .. "sort")
+    -- restore cursor position
+    vim.cmd("normal! " .. current_line .. "G")
+    vim.cmd("normal! " .. current_column .. "|")
+  end)
 end, { desc = ":sort", silent = true })
 
 vim.keymap.set({ "v" }, "<leader>cy", function()
@@ -246,7 +259,10 @@ vim.keymap.set("v", "y", "ygv<esc>")
 
 vim.keymap.set("n", "<backspace>", function()
   pcall(function()
-    vim.cmd("EslintFixAll")
+    vim.cmd("LspOxlintFixAll")
+  end)
+  pcall(function()
+    vim.cmd("LspEslintFixAll")
   end)
 
   vim.cmd("silent! wall")
@@ -261,7 +277,10 @@ vim.keymap.set("n", "'", function()
       if found then
         return false
       end
-      local match = action.title:find("Update import") ~= nil or action.title:find("Add import") ~= nil
+      local match = action.title:find("Update import") ~= nil
+        or action.title:find("Add import") ~= nil
+        -- rust-analyzer import action
+        or action.title:find("Import `")
       local correct_kind = action.kind == "quickfix"
 
       local ok = match and correct_kind
@@ -312,47 +331,5 @@ do
     })
     vim.cmd("Trouble quickfix last")
     vim.cmd("Trouble quickfix jump")
-  end
-
-  do
-    ---@type number|nil
-    local last_pane = nil
-
-    ---@param on_selected fun(pane_id: number)
-    function ChooseWeztermPane(on_selected)
-      -- select pane
-      local wezterm_output = vim.fn.system("wezterm cli list")
-      if vim.v.shell_error ~= 0 then
-        vim.notify("Failed to get wezterm output", vim.log.levels.ERROR)
-        return
-      end
-
-      require("snacks.picker").select(vim.split(wezterm_output, "\n"), nil, function(item)
-        ---@cast item string
-        --       WINID TABID PANEID WORKSPACE SIZE    TITLE                                CWD
-        -- item="   41   192    205 default   148x108 w pnpm eslint --fix ~/g/tui-sandbox file://br-g4kn2711j0/Users/mikavilpas/git/tui-sandbox               "
-        local words = vim.split(item, "%s+")
-        local pane_id = tonumber(words[4])
-        assert(pane_id, "Failed to parse wezterm output as number: " .. item)
-        on_selected(pane_id)
-      end)
-    end
-    vim.keymap.set("n", "<leader>an", function()
-      if last_pane then
-        LoadWeztermOutputIntoQuickfix(last_pane)
-      else
-        ChooseWeztermPane(function(pane_id)
-          last_pane = tonumber(pane_id)
-          LoadWeztermOutputIntoQuickfix(pane_id)
-        end)
-      end
-    end, { desc = "Load wezterm output into quickfix" })
-
-    vim.keymap.set("n", "<leader>aN", function()
-      ChooseWeztermPane(function(pane_id)
-        last_pane = tonumber(pane_id)
-        LoadWeztermOutputIntoQuickfix(pane_id)
-      end)
-    end, { desc = "Load wezterm output from new pane" })
   end
 end

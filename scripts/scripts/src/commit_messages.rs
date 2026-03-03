@@ -3,33 +3,23 @@ use gix::Commit;
 use gix::Repository;
 use std::process::{self, Stdio};
 
+use crate::commit_messages::fixup_commits::commits_with_fixups;
+use crate::commit_messages::fixup_commits::commits_with_fixups_on_branch;
+use crate::commit_messages::markdown::commit_as_markdown;
 use crate::commit_messages::my_commit::MyCommit;
-mod my_commit;
+pub mod fixup_commits;
+pub mod markdown;
+pub mod my_commit;
 mod stack_branch;
 
 pub fn get_commit_messages_between_commits(
     repo: &Repository,
     start_ref: &str,
     end_ref: &str,
-) -> Result<Vec<String>, Box<dyn std::error::Error>> {
-    let start = repo.rev_parse_single(start_ref)?;
-    let end = repo.rev_parse_single(end_ref)?;
+) -> std::result::Result<Vec<String>, anyhow::Error> {
+    let commits = commits_with_fixups(repo, start_ref, end_ref)?;
 
-    // TODO test that the start commit is used, as opposed to using the head_commit
-    let mut revwalk = repo.find_commit(start)?.ancestors().all()?;
-    let mut result_lines = Vec::new();
-
-    while let Some(commit) = revwalk.next().transpose()? {
-        if commit.id == end {
-            break;
-        }
-        let commit = repo.find_commit(commit.id)?;
-        let commit = create_commit(&commit)?;
-        commit_as_markdown(&mut result_lines, commit);
-        result_lines.push("".to_string()); // Add an empty line between commits
-    }
-
-    Ok(result_lines)
+    render_commits(commits)
 }
 
 pub fn get_commit_messages_on_current_branch(
@@ -58,46 +48,55 @@ pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
     repo: &Repository,
     branch: S,
 ) -> anyhow::Result<Vec<String>, anyhow::Error> {
-    let mut results = Vec::new();
-    let mut revwalk = stack_branch::stack_branch_iterator(repo, branch)?.peekable();
-    while let Some(commit) = revwalk.next().transpose()? {
-        let commit = repo
-            .find_commit(commit.id)
-            .with_context(|| format!("failed to find the commit {}", commit.id))?;
-        let commit = create_commit(&commit)?;
+    let commits = commits_with_fixups_on_branch(repo, branch)?;
+    render_commits(commits)
+}
 
+fn render_commits(commits: Vec<MyCommit>) -> std::result::Result<Vec<String>, anyhow::Error> {
+    let mut results = Vec::new();
+    let mut commits_iter = commits.into_iter().rev().peekable();
+    while let Some(commit) = commits_iter.next() {
         commit_as_markdown(&mut results, commit);
 
-        if revwalk.peek().is_some() {
+        if commits_iter.peek().is_some() {
             results.push("".to_string()); // Add an empty line between commits
         }
     }
+
     results.push("".to_string());
     Ok(results)
 }
 
-fn create_commit(commit: &Commit<'_>) -> anyhow::Result<MyCommit> {
+enum CreateCommitResult {
+    Commit(MyCommit),
+
+    /// This commit type (e.g. `squash!`, `amend!`, `reword!`) adds no useful information to the
+    /// commit history, and should be skipped.
+    NotUseful,
+}
+
+fn create_commit(commit: &Commit<'_>) -> anyhow::Result<CreateCommitResult> {
     let message = commit.message_raw_sloppy().to_string();
     let mut lines = message.lines();
     let first_line = lines
         .next()
         .ok_or_else(|| anyhow::anyhow!("commit message is empty"))?;
+
+    if first_line.starts_with("squash! ")
+        || first_line.starts_with("amend! ")
+        || first_line.starts_with("reword! ")
+    {
+        return Ok(CreateCommitResult::NotUseful);
+    }
+
     let body = lines
         .skip_while(|l| l.trim().is_empty())
         .collect::<Vec<&str>>()
         .join("\n");
-    Ok(MyCommit::new(first_line.to_string(), body))
-}
-
-fn commit_as_markdown(result_lines: &mut Vec<String>, commit: MyCommit) {
-    result_lines.push(format!("# {}", commit.subject));
-
-    if let Some(body) = &commit.body {
-        result_lines.push("".to_string());
-        body.split("\n").for_each(|line| {
-            result_lines.push(line.to_string());
-        });
-    }
+    Ok(CreateCommitResult::Commit(MyCommit::new(
+        first_line.to_string(),
+        body,
+    )))
 }
 
 pub fn format_patch_with_instructions(repo: &Repository, commit_or_range: &str) -> Result<String> {

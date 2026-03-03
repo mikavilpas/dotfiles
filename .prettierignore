@@ -3,5 +3,6 @@
 .config/yazi/keymap.toml
 pnpm-lock.yaml
 .config/nvim/lua/plugins/.repro
+.rumdl_cache
 
 # vim: set filetype=gitignore :
