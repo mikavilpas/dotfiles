@@ -58,7 +58,7 @@ dotenv-linter = "4.0.0"
 jq = "1.8.1"
 shfmt = "3.12.0"
 typos = "1.44.0"
-uv = "0.10.7"
+uv = "0.10.8"
 
 
 [tools."ubi:gitlab-org/cli"]
