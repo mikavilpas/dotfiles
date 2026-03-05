@@ -36,8 +36,8 @@ settings.experimental = true
 "github:junegunn/fzf" = "0.70.0"
 "github:k1LoW/git-wt" = "0.25.0"
 "github:pranshuparmar/witr" = "0.3.0"
-"github:rtk-ai/rtk" = "0.25.0"
-"github:rvben/rumdl" = "0.1.41"
+"github:rtk-ai/rtk" = "0.26.0"
+"github:rvben/rumdl" = "0.1.42"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.3.0"
 "github:sharkdp/hyperfine" = "1.20.0"
@@ -51,7 +51,7 @@ settings.experimental = true
 "npm:oxlint" = "1.51.0"
 "npm:oxlint-tsgolint" = "0.15.0"
 "npm:yaml-language-server" = "1.21.0"
-"pipx:awslabs.cloudwatch-mcp-server" = "0.0.19"
+"pipx:awslabs.cloudwatch-mcp-server" = "0.0.20"
 actionlint = "1.7.11"
 aws-cli = { version = "2.34.2", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
@@ -62,7 +62,7 @@ uv = "0.10.8"
 
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.88.0"
+version = "1.89.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
