@@ -21,13 +21,13 @@ settings.experimental = true
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.6.1"
 "github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
-"github:JohnnyMorganz/stylua" = "2.3.1"
+"github:JohnnyMorganz/stylua" = "2.4.0"
 "github:aaronriekenberg/rust-parallel" = "1.22.0"
 "github:ajeetdsouza/zoxide" = "0.9.9"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:ast-grep/ast-grep" = "0.41.0"
 "github:atuinsh/atuin" = { version = "18.12.1", matching_regex = ".tar.gz$" }
-"github:cargo-bins/cargo-binstall" = "1.17.6"
+"github:cargo-bins/cargo-binstall" = "1.17.7"
 "github:charmbracelet/glow" = "2.1.1"
 "github:chmln/sd" = "1.1.0"
 "github:dandavison/delta" = "0.18.2"
