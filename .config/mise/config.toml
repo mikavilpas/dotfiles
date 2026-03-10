@@ -35,6 +35,7 @@ settings.experimental = true
 "github:jesseduffield/lazydocker" = "0.24.4"
 "github:junegunn/fzf" = "0.70.0"
 "github:k1LoW/git-wt" = "0.25.0"
+"github:mvdan/sh" = { version = "3.13.0", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.0"
 "github:rtk-ai/rtk" = "0.28.0"
 "github:rvben/rumdl" = "0.1.44"
@@ -56,7 +57,6 @@ actionlint = "1.7.11"
 aws-cli = { version = "2.34.5", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
-shfmt = "3.13.0"
 typos = "1.44.0"
 uv = "0.10.9"
 
