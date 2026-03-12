@@ -37,8 +37,8 @@ settings.experimental = true
 "github:k1LoW/git-wt" = "0.25.0"
 "github:mvdan/sh" = { version = "3.13.0", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.0"
-"github:rtk-ai/rtk" = "0.28.2"
-"github:rvben/rumdl" = "0.1.46"
+"github:rtk-ai/rtk" = "0.29.0"
+"github:rvben/rumdl" = "0.1.47"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
 "github:sharkdp/hyperfine" = "1.20.0"
