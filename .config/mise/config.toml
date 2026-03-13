@@ -26,7 +26,7 @@ settings.experimental = true
 "github:ajeetdsouza/zoxide" = "0.9.9"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:ast-grep/ast-grep" = "0.41.1"
-"github:atuinsh/atuin" = { version = "18.12.1", matching_regex = ".tar.gz$" }
+"github:atuinsh/atuin" = { version = "18.13.2", matching_regex = ".tar.gz$" }
 "github:cargo-bins/cargo-binstall" = "1.17.7"
 "github:charmbracelet/glow" = "2.1.1"
 "github:chmln/sd" = "1.1.0"
@@ -38,7 +38,7 @@ settings.experimental = true
 "github:mvdan/sh" = { version = "3.13.0", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.0"
 "github:rtk-ai/rtk" = "0.29.0"
-"github:rvben/rumdl" = "0.1.47"
+"github:rvben/rumdl" = "0.1.48"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
 "github:sharkdp/hyperfine" = "1.20.0"
@@ -52,13 +52,13 @@ settings.experimental = true
 "npm:oxlint" = "1.52.0"
 "npm:oxlint-tsgolint" = "0.16.0"
 "npm:yaml-language-server" = "1.21.0"
-"pipx:awslabs.cloudwatch-mcp-server" = "0.0.21"
+"pipx:awslabs.cloudwatch-mcp-server" = "0.0.22"
 actionlint = "1.7.11"
-aws-cli = { version = "2.34.8", symlink_bins = "true" }
+aws-cli = { version = "2.34.9", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.44.0"
-uv = "0.10.9"
+uv = "0.10.10"
 
 
 [tools."ubi:gitlab-org/cli"]
