@@ -73,17 +73,6 @@ return {
     end,
   },
   {
-    "https://github.com/catppuccin/fish",
-    name = "catppuccin-fish",
-    lazy = true,
-    build = function(self)
-      symlink(
-        vim.fs.normalize(vim.fs.joinpath(self.dir, "themes", "Catppuccin Macchiato.theme")),
-        vim.fn.expand("~/.config/fish/themes/Catppuccin Macchiato.theme")
-      )
-    end,
-  },
-  {
     "https://github.com/catppuccin/atuin",
     name = "catppuccin-atuin",
     lazy = true,

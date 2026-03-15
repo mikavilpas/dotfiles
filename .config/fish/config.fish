@@ -45,7 +45,7 @@ if status is-interactive && test -z "$CI"
     abbr --add -- parallel rust-parallel
 
     # https://github.com/catppuccin/fish
-    fish_config theme choose "Catppuccin Macchiato"
+    fish_config theme choose catppuccin-macchiato
 
     # A modern, maintained replacement for ls
     # https://github.com/eza-community/eza
