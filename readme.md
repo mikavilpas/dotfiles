@@ -116,6 +116,6 @@ Some features that I like:
   when using tsugit.nvim
 - I set up [conform.nvim](https://github.com/stevearc/conform.nvim) to use
   [prettierd](https://github.com/fsouza/prettierd) to format my gitcommit
-  messages using markdown syntax. See my
-  [conform.nvim configuration](.config/nvim/lua/plugins/formatting.lua) for
-  details on how I did it.
+  messages using markdown syntax. You can see a video of the feature in
+  [this tsugit.nvim PR](https://github.com/mikavilpas/tsugit.nvim/pull/249) for
+  details.
