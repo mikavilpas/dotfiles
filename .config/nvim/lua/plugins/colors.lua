@@ -24,6 +24,7 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    version = "*",
 
     ---@type CatppuccinOptions
     opts = {
