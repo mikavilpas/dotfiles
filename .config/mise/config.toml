@@ -46,7 +46,7 @@ settings.experimental = true
 "github:tekumara/typos-lsp" = "0.1.50"
 "github:tree-sitter/tree-sitter" = "0.26.7"
 "github:watchexec/watchexec" = "2.5.0"
-"npm:@anthropic-ai/claude-code" = "2.1.76"
+"npm:@anthropic-ai/claude-code" = "2.1.77"
 "npm:@fsouza/prettierd" = "0.27.0"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260316.1"
 "npm:oxlint" = "1.56.0"
@@ -58,7 +58,7 @@ aws-cli = { version = "2.34.13", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.44.0"
-uv = "0.10.11"
+uv = "0.10.12"
 
 
 [tools."ubi:gitlab-org/cli"]
