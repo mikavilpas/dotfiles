@@ -99,4 +99,9 @@ if status is-interactive && test -z "$CI"
     function mrs # "merge requests"
         glab mr list --author=@me --output=json | mika mrs-summary - --format=branches | glow --width=0
     end
+
+    # show github pull requests in a tree
+    function prs # "pull requests"
+        gh pr list --author=@me --json number,title,url,headRefName,baseRefName,isDraft | mika prs-summary - --format=branches | glow --width=0
+    end
 end
