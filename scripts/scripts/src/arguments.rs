@@ -76,11 +76,42 @@ pub enum Commands {
         #[arg(long)]
         branch: Option<String>,
     },
+
+    /// Display a markdown summary of GitHub pull requests from a JSON file
+    PrsSummary {
+        /// Path to the JSON file containing GitHub PRs (from `gh pr list --json`), or "-" to read from stdin
+        #[arg(value_name = "FILE", value_hint = clap::ValueHint::FilePath)]
+        file: PathBuf,
+
+        /// Output format
+        #[arg(long, default_value = "links")]
+        format: PrsFormat,
+    },
+
+    /// Generate a markdown summary of the current branch as part of the stack of PRs
+    PrStackSummary {
+        /// Path to the JSON file containing GitHub PRs (from `gh pr list --json`), or "-" to read from stdin
+        #[arg(value_name = "FILE", value_hint = clap::ValueHint::FilePath)]
+        file: PathBuf,
+
+        /// The current branch name
+        #[arg(long)]
+        branch: Option<String>,
+    },
 }
 
 #[derive(Debug, Clone, Copy, Default, ValueEnum)]
 pub enum MrsFormat {
     /// Show MRs with links to GitLab
+    #[default]
+    Links,
+    /// Show branch names instead of links
+    Branches,
+}
+
+#[derive(Debug, Clone, Copy, Default, ValueEnum)]
+pub enum PrsFormat {
+    /// Show PRs with links to GitHub
     #[default]
     Links,
     /// Show branch names instead of links

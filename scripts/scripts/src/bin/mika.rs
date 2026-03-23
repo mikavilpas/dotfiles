@@ -2,10 +2,13 @@ use clap::Parser;
 use std::process::exit;
 
 use scripts::{
-    arguments::{Cli, Commands, MrsFormat},
+    arguments::{Cli, Commands, MrsFormat, PrsFormat},
     commit_messages::{
         format_patch_with_instructions, get_commit_messages_between_commits,
         get_commit_messages_on_branch, get_current_branch_name,
+    },
+    github::github_prs::{
+        self, format_prs_as_markdown, parse_github_prs_from_file_or_stdin,
     },
     gitlab::gitlab_mrs::{
         OutputFormat, format_mrs_as_markdown, mr_stack, parse_gitlab_mrs_from_file_or_stdin,
@@ -112,6 +115,37 @@ pub fn main() {
                 Ok(output) => println!("{output}"),
                 Err(error) => {
                     eprintln!("failed to format MR stack: {error}");
+                    exit(1);
+                }
+            };
+        }
+
+        Commands::PrsSummary { file, format } => {
+            let prs = parse_github_prs_from_file_or_stdin(file);
+            let output_format = match format {
+                PrsFormat::Links => github_prs::OutputFormat::Links,
+                PrsFormat::Branches => github_prs::OutputFormat::Branches,
+            };
+            match format_prs_as_markdown(prs, output_format) {
+                Ok(output) => println!("{output}"),
+                Err(e) => {
+                    eprintln!("failed to format PRs: {e}");
+                    exit(1);
+                }
+            };
+        }
+
+        Commands::PrStackSummary { file, branch } => {
+            let prs = parse_github_prs_from_file_or_stdin(file);
+            let branch = branch.unwrap_or_else(|| {
+                get_current_branch_name(&repo)
+                    .unwrap_or_else(|e| panic!("failed to get current branch name: {e}"))
+            });
+
+            match github_prs::pr_stack::format_pr_stack_as_markdown(prs, branch.as_str()) {
+                Ok(output) => println!("{output}"),
+                Err(error) => {
+                    eprintln!("failed to format PR stack: {error}");
                     exit(1);
                 }
             };
