@@ -4,6 +4,7 @@
 
 services:
   "gitlab.baronatechnologies.fi": "gitlab:gitlab.baronatechnologies.fi"
+  "barona.ghe.com": "github:barona.ghe.com"
 customCommands:
   - key: "-"
     context: global
