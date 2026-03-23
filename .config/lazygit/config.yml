@@ -96,6 +96,8 @@ customCommands:
       REMOTE_URL="$(git remote get-url origin)"
 
       if [[ "$REMOTE_URL" == *"github"* ]]; then
+        STACK_SUMMARY=$(gh pr list --json number,title,headRefName,baseRefName,state,url | mika pr-stack-summary - --branch "$BRANCH")
+        SUMMARY="$(printf '%s\n\n---\n\n# Pull request stack\n\n%s' "$SUMMARY" "$STACK_SUMMARY")"
         SUMMARY="$(echo "$SUMMARY" | prettier --no-config --parser markdown --prose-wrap never)"
         gh pr edit "$BRANCH" --body="$SUMMARY" --add-assignee="@me"
       else
