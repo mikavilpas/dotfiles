@@ -412,6 +412,145 @@ fn mr_stack_summary_can_process_test_data() -> Result<(), Box<dyn std::error::Er
 }
 
 #[test]
+fn pr_stack_summary_reports_missing_pr_for_branch() -> Result<(), Box<dyn std::error::Error>> {
+    let file = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../test_utils/src/gh-pr-stack-three.json");
+
+    let mut cmd = cargo::cargo_bin_cmd!("mika");
+    let assert = cmd
+        .args([
+            "pr-stack-summary",
+            file.to_str().unwrap(),
+            "--branch",
+            "feature-missing-pr",
+        ])
+        .assert();
+
+    let stderr = String::from_utf8(assert.get_output().stderr.clone())
+        .expect("failed to convert stderr to string");
+    assert_eq!(
+        stderr,
+        [
+            "failed to format PR stack: Current branch 'feature-missing-pr' is not the head branch of any open PR.",
+            "",
+        ]
+        .join("\n")
+    );
+
+    Ok(())
+}
+
+#[test]
+fn pr_stack_summary_can_process_test_data() -> Result<(), Box<dyn std::error::Error>> {
+    let file = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../test_utils/src/gh-pr-stack-three.json");
+
+    let mut cmd = cargo::cargo_bin_cmd!("mika");
+    let assert = cmd
+        .args([
+            "pr-stack-summary",
+            file.to_str().unwrap(),
+            "--branch",
+            "feature-a",
+        ])
+        .assert();
+
+    let stderr = String::from_utf8(assert.get_output().stderr.clone())
+        .expect("failed to convert stderr to string");
+    assert!(stderr.is_empty(), "expected no errors, got: {stderr}");
+
+    let output = String::from_utf8(assert.get_output().stdout.clone())
+        .expect("failed to convert stdout to string");
+    assert_eq!(
+        output,
+        [
+            "- 👉🏻 **[#101](https://github.com/acme/webapp/pull/101)** | Set up authentication module 👈🏻",
+            "  - [#102](https://github.com/acme/webapp/pull/102) | Implement user profile page",
+            "    - [#103](https://github.com/acme/webapp/pull/103) | Add input validation to user form",
+            "",
+        ]
+        .join("\n")
+    );
+
+    Ok(())
+}
+
+#[test]
+fn pr_stack_summary_defaults_to_current_branch_if_not_given()
+-> Result<(), Box<dyn std::error::Error>> {
+    let file = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../test_utils/src/gh-pr-stack-three.json");
+
+    let context = TestRepoBuilder::new()?;
+    context.checkout_b("feature-a")?;
+    context.commit("feat: commit on feature-a")?;
+    context.checkout_b("feature-b")?;
+    context.commit("feat: commit on feature-b")?;
+    context.checkout_b("feature-c")?;
+    context.commit("feat: commit on feature-c")?;
+    context.switch("feature-b")?;
+
+    let mut cmd = cargo::cargo_bin_cmd!("mika");
+    let assert = cmd
+        .current_dir(context.path())
+        .args([
+            "pr-stack-summary",
+            file.to_str().unwrap(),
+            // don't include a branch. Should default to the current branch.
+        ])
+        .assert();
+
+    let stderr = String::from_utf8(assert.get_output().stderr.clone())
+        .expect("failed to convert stderr to string");
+    assert!(stderr.is_empty(), "expected no errors, got: {stderr}");
+
+    let output = String::from_utf8(assert.get_output().stdout.clone())
+        .expect("failed to convert stdout to string");
+    assert_eq!(
+        output,
+        [
+            "- [#101](https://github.com/acme/webapp/pull/101) | Set up authentication module",
+            "  - 👉🏻 **[#102](https://github.com/acme/webapp/pull/102)** | Implement user profile page 👈🏻",
+            "    - [#103](https://github.com/acme/webapp/pull/103) | Add input validation to user form",
+            "",
+        ]
+        .join("\n")
+    );
+
+    Ok(())
+}
+
+#[test]
+fn prs_summary_can_process_test_data() -> Result<(), Box<dyn std::error::Error>> {
+    let file = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../test_utils/src/gh-pr-stack-three.json");
+
+    let mut cmd = cargo::cargo_bin_cmd!("mika");
+    let assert = cmd
+        .args(["prs-summary", file.to_str().unwrap()])
+        .assert();
+
+    let stderr = String::from_utf8(assert.get_output().stderr.clone())
+        .expect("failed to convert stderr to string");
+    assert!(stderr.is_empty(), "expected no errors, got: {stderr}");
+
+    let output = String::from_utf8(assert.get_output().stdout.clone())
+        .expect("failed to convert stdout to string");
+    assert_eq!(
+        output,
+        [
+            "- [#101](https://github.com/acme/webapp/pull/101) Set up authentication module",
+            "  - [#102](https://github.com/acme/webapp/pull/102) Implement user profile page",
+            "    - [#103](https://github.com/acme/webapp/pull/103) Add input validation to user form",
+            "",
+        ]
+        .join("\n")
+    );
+
+    Ok(())
+}
+
+#[test]
 fn mr_stack_summary_defaults_to_current_branch_if_not_given()
 -> Result<(), Box<dyn std::error::Error>> {
     let file =
