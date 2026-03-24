@@ -26,7 +26,7 @@ settings.experimental = true
 "github:ajeetdsouza/zoxide" = "0.9.9"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:ast-grep/ast-grep" = "0.42.0"
-"github:atuinsh/atuin" = { version = "18.13.3", matching_regex = ".tar.gz$" }
+"github:atuinsh/atuin" = { version = "18.13.4", matching_regex = ".tar.gz$" }
 "github:cargo-bins/cargo-binstall" = "1.17.8"
 "github:charmbracelet/glow" = "2.1.1"
 "github:chmln/sd" = "1.1.0"
@@ -46,7 +46,7 @@ settings.experimental = true
 "github:tekumara/typos-lsp" = "0.1.50"
 "github:tree-sitter/tree-sitter" = "0.26.7"
 "github:watchexec/watchexec" = "2.5.0"
-"npm:@anthropic-ai/claude-code" = "2.1.80"
+"npm:@anthropic-ai/claude-code" = "2.1.81"
 "npm:@fsouza/prettierd" = "0.27.0"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260320.1"
 "npm:oxlint" = "1.56.0"
@@ -58,7 +58,7 @@ aws-cli = { version = "2.34.15", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.44.0"
-uv = "0.10.12"
+uv = "0.11.0"
 
 
 [tools."ubi:gitlab-org/cli"]
