@@ -38,7 +38,7 @@ settings.experimental = true
 "github:mvdan/sh" = { version = "3.13.0", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
 "github:rtk-ai/rtk" = "0.31.0"
-"github:rvben/rumdl" = "0.1.58"
+"github:rvben/rumdl" = "0.1.59"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
 "github:sharkdp/hyperfine" = "1.20.0"
