@@ -8,7 +8,7 @@
     "dev": "concurrently --kill-others --names 'app,cypress' --prefix-colors 'blue,yellow' 'pnpm tui start'  'pnpm cypress open --e2e --browser=electron'"
   },
   "dependencies": {
-    "@catppuccin/palette": "1.7.1",
+    "@catppuccin/palette": "1.8.0",
     "cypress": "15.12.0",
     "wait-on": "9.0.4"
   },
