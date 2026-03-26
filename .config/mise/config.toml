@@ -71,7 +71,7 @@ glab completion -s fish > ~/.config/fish/completions/glab.fish
 """
 
 [tools.github-cli]
-version = "2.88.1"
+version = "2.89.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
