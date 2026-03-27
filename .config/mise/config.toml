@@ -35,7 +35,7 @@ settings.experimental = true
 "github:jesseduffield/lazydocker" = "0.25.0"
 "github:junegunn/fzf" = "0.70.0"
 "github:k1LoW/git-wt" = "0.25.0"
-"github:koalaman/shellcheck" = "0.10.0"
+"github:koalaman/shellcheck" = "0.11.0"
 "github:mvdan/sh" = { version = "3.13.0", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
 "github:rtk-ai/rtk" = "0.34.0"
