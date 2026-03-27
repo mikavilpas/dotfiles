@@ -26,7 +26,7 @@ settings.experimental = true
 "github:ajeetdsouza/zoxide" = "0.9.9"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:ast-grep/ast-grep" = "0.42.0"
-"github:atuinsh/atuin" = { version = "18.13.5", matching_regex = ".tar.gz$" }
+"github:atuinsh/atuin" = { version = "18.13.6", matching_regex = ".tar.gz$" }
 "github:cargo-bins/cargo-binstall" = "1.17.8"
 "github:charmbracelet/glow" = "2.1.1"
 "github:chmln/sd" = "1.1.0"
@@ -55,7 +55,7 @@ settings.experimental = true
 "npm:yaml-language-server" = "1.21.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.22"
 actionlint = "1.7.11"
-aws-cli = { version = "2.34.18", symlink_bins = "true" }
+aws-cli = { version = "2.34.19", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.44.0"
