@@ -39,7 +39,7 @@ settings.experimental = true
 "github:mvdan/sh" = { version = "3.13.0", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
 "github:rtk-ai/rtk" = "0.34.0"
-"github:rvben/rumdl" = "0.1.61"
+"github:rvben/rumdl" = "0.1.62"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
 "github:sharkdp/hyperfine" = "1.20.0"
@@ -49,7 +49,7 @@ settings.experimental = true
 "github:watchexec/watchexec" = "2.5.0"
 "npm:@anthropic-ai/claude-code" = "2.1.81"
 "npm:@fsouza/prettierd" = "0.27.0"
-"npm:@typescript/native-preview" = "7.0.0-dev.20260323.1"
+"npm:@typescript/native-preview" = "7.0.0-dev.20260324.1"
 "npm:oxlint" = "1.56.0"
 "npm:oxlint-tsgolint" = "0.17.2"
 "npm:yaml-language-server" = "1.21.0"
