@@ -91,6 +91,20 @@ if status is-interactive && test -z "$CI"
         end
     end
 
+    # save last command's exit status before prompt hooks overwrite it
+    function __save_last_status --on-event fish_postexec
+        set -g __last_cmd_status $status
+    end
+
+    # exit if the last command succeeded (for one-off terminal tabs)
+    function x
+        if test "$__last_cmd_status" -eq 0
+            exit
+        else
+            echo "Last command failed (status $__last_cmd_status), not exiting"
+        end
+    end
+
     # pipe to this guy to colorize the output stream! 🪄
     # ya sub cd,hover | batrs
     abbr -a batrs 'bat --paging=never --language=rs --decorations=never'
