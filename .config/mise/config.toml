@@ -17,7 +17,7 @@ settings.experimental = true
 "aqua:ClementTsang/bottom" = "0.12.3"
 "aqua:MordechaiHadad/bob" = "4.1.6"
 "aqua:Schniz/fnm" = "1.39.0"
-"aqua:fish-shell/fish-shell" = "4.5.0"
+"aqua:fish-shell/fish-shell" = "4.6.0"
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.6.1"
 "github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
