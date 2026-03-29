@@ -38,7 +38,7 @@ settings.experimental = true
 "github:koalaman/shellcheck" = "0.11.0"
 "github:mvdan/sh" = { version = "3.13.0", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
-"github:rtk-ai/rtk" = "0.34.0"
+"github:rtk-ai/rtk" = "v0.34.1"
 "github:rvben/rumdl" = "0.1.62"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
@@ -47,7 +47,7 @@ settings.experimental = true
 "github:tekumara/typos-lsp" = "0.1.50"
 "github:tree-sitter/tree-sitter" = "0.26.7"
 "github:watchexec/watchexec" = "2.5.0"
-"npm:@anthropic-ai/claude-code" = "2.1.83"
+"npm:@anthropic-ai/claude-code" = "2.1.84"
 "npm:@fsouza/prettierd" = "0.27.0"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260325.1"
 "npm:oxlint" = "1.57.0"
