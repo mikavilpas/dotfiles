@@ -38,7 +38,7 @@ settings.experimental = true
 "github:koalaman/shellcheck" = "0.11.0"
 "github:mvdan/sh" = { version = "3.13.0", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
-"github:rtk-ai/rtk" = "v0.34.1"
+"github:rtk-ai/rtk" = "v0.34.2"
 "github:rvben/rumdl" = "0.1.62"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
@@ -51,7 +51,7 @@ settings.experimental = true
 "npm:@fsouza/prettierd" = "0.27.0"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260327.2"
 "npm:oxlint" = "1.57.0"
-"npm:oxlint-tsgolint" = "0.17.4"
+"npm:oxlint-tsgolint" = "0.18.0"
 "npm:yaml-language-server" = "1.21.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.22"
 actionlint = "1.7.11"
