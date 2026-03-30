@@ -270,9 +270,28 @@ end, { desc = "Save all files", silent = true })
 vim.keymap.set({ "n", "v" }, "<up>", "<cmd>Yazi<cr>", { desc = "Open yazi" })
 
 vim.keymap.set("n", "'", function()
+  -- Workaround for neovim bug: vim.lsp.buf.code_action() sends empty
+  -- diagnostics to tsgo because pull diagnostic namespace lookup uses
+  -- nil identifier while storage uses string "nil". Manually collect
+  -- all diagnostics for the current line and pass them in the context.
+  -- https://github.com/neovim/neovim/issues/38401
+  local bufnr = vim.api.nvim_get_current_buf()
+  local lnum = vim.api.nvim_win_get_cursor(0)[1] - 1
+  local all_diags = vim.diagnostic.get(bufnr, { lnum = lnum })
+  local lsp_diags = {}
+  for _, d in ipairs(all_diags) do
+    if d.user_data and d.user_data.lsp then
+      table.insert(lsp_diags, d.user_data.lsp)
+    end
+  end
+
   local found = false
   vim.lsp.buf.code_action({
     apply = true,
+    context = {
+      diagnostics = lsp_diags,
+      triggerKind = vim.lsp.protocol.CodeActionTriggerKind.Invoked,
+    },
     filter = function(action)
       if found then
         return false
