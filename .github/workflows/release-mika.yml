@@ -1,0 +1,33 @@
+name: Release mika
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Setup Rust toolchain
+        run: rustup toolchain install nightly --profile minimal
+        working-directory: scripts
+
+      - name: Build release binary
+        working-directory: scripts
+        run: cargo build --release --bin mika
+
+      - name: Package binary
+        working-directory: scripts/target/release
+        run: tar czf "$GITHUB_WORKSPACE/mika-aarch64-apple-darwin.tar.gz" mika
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2
+        with:
+          files: mika-aarch64-apple-darwin.tar.gz
+          generate_release_notes: true
