@@ -40,13 +40,13 @@ settings.experimental = true
 "github:mvdan/sh" = { version = "3.13.0", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
 "github:rtk-ai/rtk" = "v0.34.2"
-"github:rvben/rumdl" = "0.1.63"
+"github:rvben/rumdl" = "0.1.64"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
 "github:sharkdp/hyperfine" = "1.20.0"
 "github:starship/starship" = "1.24.2"
 "github:tekumara/typos-lsp" = "0.1.50"
-"github:tree-sitter/tree-sitter" = "0.26.7"
+"github:tree-sitter/tree-sitter" = "0.26.8"
 "github:watchexec/watchexec" = "2.5.1"
 "npm:@anthropic-ai/claude-code" = "2.1.86"
 "npm:@fsouza/prettierd" = "0.27.0"
@@ -56,7 +56,7 @@ settings.experimental = true
 "npm:yaml-language-server" = "1.21.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.22"
 actionlint = "1.7.12"
-aws-cli = { version = "2.34.20", symlink_bins = "true" }
+aws-cli = { version = "2.34.21", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.44.0"
