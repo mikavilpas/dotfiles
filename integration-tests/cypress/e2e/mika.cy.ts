@@ -7,6 +7,10 @@ describe("mika terminal application (personal application)", () => {
       commandToRun: ["fish"],
       additionalEnvironmentVariables: {
         MISE_NO_CONFIG: "1", // disable mise config for the test
+        CI: "1", // skip fish config init (fnm, atuin, etc.) that isn't available in tests
+      },
+      configureTerminal: (t) => {
+        t.recipes.supportDA1()
       },
     }).then((t) => {
       // the mika application should have been installed earlier in the build process
