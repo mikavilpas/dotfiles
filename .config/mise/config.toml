@@ -36,6 +36,7 @@ settings.experimental = true
 "github:junegunn/fzf" = "0.70.0"
 "github:k1LoW/git-wt" = "0.26.0"
 "github:koalaman/shellcheck" = "0.11.0"
+"github:mikavilpas/dotfiles" = { version = "1.0.0", exe = "mika" }
 "github:mvdan/sh" = { version = "3.13.0", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
 "github:rtk-ai/rtk" = "v0.34.2"
