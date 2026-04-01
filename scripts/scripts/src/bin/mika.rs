@@ -2,14 +2,12 @@ use clap::Parser;
 use std::process::exit;
 
 use scripts::{
-    arguments::{Cli, Commands, MrsFormat, PrsFormat},
+    arguments::{Cli, Commands, InitShell, MrsFormat, PrsFormat},
     commit_messages::{
         format_patch_with_instructions, get_commit_messages_between_commits,
         get_commit_messages_on_branch, get_current_branch_name,
     },
-    github::github_prs::{
-        self, format_prs_as_markdown, parse_github_prs_from_file_or_stdin,
-    },
+    github::github_prs::{self, format_prs_as_markdown, parse_github_prs_from_file_or_stdin},
     gitlab::gitlab_mrs::{
         OutputFormat, format_mrs_as_markdown, mr_stack, parse_gitlab_mrs_from_file_or_stdin,
     },
@@ -17,14 +15,31 @@ use scripts::{
 };
 
 pub fn main() {
+    let cli = match Cli::try_parse() {
+        Ok(cli) => cli,
+        Err(e) => e.exit(),
+    };
+
+    // Handle commands that don't need a git repo
+    if let Commands::Init { shell, output_dir } = &cli.command {
+        match shell {
+            InitShell::Fish => match scripts::init::write_fish_init(output_dir) {
+                Ok(summary) => {
+                    println!("{summary}");
+                }
+                Err(e) => {
+                    eprintln!("failed to write fish init files: {e}");
+                    exit(1);
+                }
+            },
+        }
+        return;
+    }
+
     let cwd = std::env::current_dir().expect("failed to get current directory");
     let repo = match gix::discover(cwd) {
         Ok(repo) => repo,
         Err(e) => panic!("failed to open: {e}"),
-    };
-    let cli = match Cli::try_parse() {
-        Ok(cli) => cli,
-        Err(e) => e.exit(),
     };
     match cli.command {
         Commands::Summary { from, to } => {
@@ -150,5 +165,8 @@ pub fn main() {
                 }
             };
         }
+
+        // Already handled above before git repo discovery
+        Commands::Init { .. } => unreachable!(),
     }
 }

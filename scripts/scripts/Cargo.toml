@@ -5,6 +5,7 @@ edition = "2024"
 
 [dependencies]
 clap = { version = "4.5.47", features = ["std", "derive", "help", "usage", "error-context", "suggestions"], default-features = false }
+clap_complete = { version = "4.5.57" }
 gix = { workspace = true }
 anyhow = { workspace = true }
 serde = { workspace = true }
