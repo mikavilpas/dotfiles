@@ -526,9 +526,7 @@ fn prs_summary_can_process_test_data() -> Result<(), Box<dyn std::error::Error>>
         .join("../test_utils/src/gh-pr-stack-three.json");
 
     let mut cmd = cargo::cargo_bin_cmd!("mika");
-    let assert = cmd
-        .args(["prs-summary", file.to_str().unwrap()])
-        .assert();
+    let assert = cmd.args(["prs-summary", file.to_str().unwrap()]).assert();
 
     let stderr = String::from_utf8(assert.get_output().stderr.clone())
         .expect("failed to convert stderr to string");

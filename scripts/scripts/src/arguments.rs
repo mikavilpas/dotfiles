@@ -88,6 +88,17 @@ pub enum Commands {
         format: PrsFormat,
     },
 
+    /// Generate shell functions for initializing support for a shell.
+    Init {
+        /// The shell to generate initialization for
+        #[arg(value_enum)]
+        shell: InitShell,
+
+        /// The directory to write shell function files to
+        #[arg(long)]
+        output_dir: PathBuf,
+    },
+
     /// Generate a markdown summary of the current branch as part of the stack of PRs
     PrStackSummary {
         /// Path to the JSON file containing GitHub PRs (from `gh pr list --json`), or "-" to read from stdin
@@ -107,6 +118,12 @@ pub enum MrsFormat {
     Links,
     /// Show branch names instead of links
     Branches,
+}
+
+#[derive(Debug, Clone, Copy, ValueEnum)]
+pub enum InitShell {
+    /// The Fish shell
+    Fish,
 }
 
 #[derive(Debug, Clone, Copy, Default, ValueEnum)]
