@@ -36,7 +36,6 @@ settings.experimental = true
 "github:junegunn/fzf" = "0.70.0"
 "github:k1LoW/git-wt" = "0.26.1"
 "github:koalaman/shellcheck" = "0.11.0"
-"github:mikavilpas/dotfiles" = { version = "1.1.0", exe = "mika" }
 "github:mvdan/sh" = { version = "3.13.0", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
 "github:rtk-ai/rtk" = "v0.34.2"
@@ -62,6 +61,15 @@ jq = "1.8.1"
 typos = "1.45.0"
 uv = "0.11.2"
 
+
+[tools."github:mikavilpas/dotfiles"]
+version = "1.2.0"
+exe = "mika"
+postinstall = """
+mkdir -p ~/.config/fish/completions ~/.config/fish/mika
+# run initialization for the fish shell after installing / updating
+mika init fish --output-dir ~/.config/fish/mika/
+"""
 
 [tools."ubi:gitlab-org/cli"]
 version = "1.90.0"

@@ -17,6 +17,9 @@ fish_add_path $HOME/.local/share/bob/nvim-bin:$PATH
 fish_add_path ~/.cargo/bin
 fish_add_path $HOME/.local/share/nvim/mason/bin
 
+# activate the lazy loadable completions for the mika tool
+set --append fish_function_path ~/.config/fish/mika
+
 # skip everything in CI because initialization will fail if all the required
 # applications are not installed. They take a long time to install, and I don't
 # have e2e tests for them anyway.
@@ -108,14 +111,4 @@ if status is-interactive && test -z "$CI"
     # pipe to this guy to colorize the output stream! 🪄
     # ya sub cd,hover | batrs
     abbr -a batrs 'bat --paging=never --language=rs --decorations=never'
-
-    # show gitlab merge requests in a tree
-    function mrs # "merge requests"
-        glab mr list --author=@me --output=json | mika mrs-summary - --format=branches | glow --width=0
-    end
-
-    # show github pull requests in a tree
-    function prs # "pull requests"
-        gh pr list --author=@me --json number,title,url,headRefName,baseRefName,isDraft | mika prs-summary - --format=branches | glow --width=0
-    end
 end
