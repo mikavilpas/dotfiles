@@ -29,7 +29,7 @@ jobs:
         run: tar czf "$GITHUB_WORKSPACE/mika-aarch64-apple-darwin.tar.gz" mika
 
       - name: Attest build provenance
-        uses: actions/attest-build-provenance@v4.1.0
+        uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
         with:
           subject-path: mika-aarch64-apple-darwin.tar.gz
 
