@@ -21,7 +21,8 @@ jobs:
           install: false
 
       - name: Install mika with mise
-        run: mise install "github:mikavilpas/dotfiles@1.1.0" --verbose
+        # note: the mise config in the repo might apply hooks
+        run: mise install "github:mikavilpas/dotfiles@latest" --verbose
 
       - name: Verify mika is executable
-        run: mise exec "github:mikavilpas/dotfiles@1.1.0" -- mika --help
+        run: mise exec "github:mikavilpas/dotfiles@latest" -- mika --help
