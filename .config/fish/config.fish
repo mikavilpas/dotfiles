@@ -15,6 +15,7 @@ fish_add_path /Users/mikavilpas/.local/share/bob/nvim-bin
 fish_add_path $HOME/.luarocks/bin
 fish_add_path $HOME/.local/share/bob/nvim-bin:$PATH
 fish_add_path ~/.cargo/bin
+fish_add_path ~/.local/share/mise/shims
 fish_add_path $HOME/.local/share/nvim/mason/bin
 
 # activate the lazy loadable completions for the mika tool
