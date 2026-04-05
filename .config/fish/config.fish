@@ -15,7 +15,9 @@ fish_add_path /Users/mikavilpas/.local/share/bob/nvim-bin
 fish_add_path $HOME/.luarocks/bin
 fish_add_path $HOME/.local/share/bob/nvim-bin:$PATH
 fish_add_path ~/.cargo/bin
-fish_add_path ~/.local/share/mise/shims
+# mise manages its own version (aqua:jdx/mise) - add its binary to PATH
+# early so `mise activate fish` below can find it
+fish_add_path ~/.local/share/mise/installs/aqua-jdx-mise/latest/mise/bin
 fish_add_path $HOME/.local/share/nvim/mason/bin
 
 # activate the lazy loadable completions for the mika tool
