@@ -1,8 +1,13 @@
 use assert_cmd::cargo;
 use pretty_assertions::assert_eq;
 use scripts::gitlab::gitlab_mrs::MergeRequest;
+use scripts::style::{OSC8_END, OSC8_MID, OSC8_START};
 use std::io::Write;
 use tempfile::NamedTempFile;
+
+fn hyperlink(url: &str, text: &str) -> String {
+    format!("`{OSC8_START}{url}{OSC8_MID}{text}{OSC8_END}`")
+}
 
 fn create_mrs_json(mrs: &[MergeRequest]) -> NamedTempFile {
     let mut file = NamedTempFile::new().expect("failed to create temp file");
@@ -375,13 +380,13 @@ fn test_mrs_summary_branches_format() {
     let stdout = String::from_utf8(assert.success().get_output().stdout.clone())
         .expect("failed to convert stdout to string");
 
-    // OSC 8 hyperlink format: \x1b]8;;URL\x1b\\TEXT\x1b]8;;\x1b\\
+    let url = |iid: u64| format!("https://gitlab.example.com/acme/webapp/-/merge_requests/{iid}");
     assert_eq!(
         stdout,
         [
-            "- `\x1b]8;;https://gitlab.example.com/acme/webapp/-/merge_requests/101\x1b\\feature-base\x1b]8;;\x1b\\` feat: base feature",
-            "  - `\x1b]8;;https://gitlab.example.com/acme/webapp/-/merge_requests/102\x1b\\feature-child\x1b]8;;\x1b\\` **Draft:** child feature",
-            "- `\x1b]8;;https://gitlab.example.com/acme/webapp/-/merge_requests/103\x1b\\feature-another\x1b]8;;\x1b\\` feat: another root",
+            &format!("- {} feat: base feature", hyperlink(&url(101), "feature-base")),
+            &format!("  - {} **Draft:** child feature", hyperlink(&url(102), "feature-child")),
+            &format!("- {} feat: another root", hyperlink(&url(103), "feature-another")),
             "",
         ]
         .join("\n")
@@ -405,12 +410,12 @@ fn test_mrs_summary_branches_format_from_stdin() {
     let stdout = String::from_utf8(assert.success().get_output().stdout.clone())
         .expect("failed to convert stdout to string");
 
-    // OSC 8 hyperlink format: \x1b]8;;URL\x1b\\TEXT\x1b]8;;\x1b\\
+    let url = |iid: u64| format!("https://gitlab.example.com/acme/webapp/-/merge_requests/{iid}");
     assert_eq!(
         stdout,
         [
-            "- `\x1b]8;;https://gitlab.example.com/acme/webapp/-/merge_requests/101\x1b\\branch-first\x1b]8;;\x1b\\` feat: first",
-            "  - `\x1b]8;;https://gitlab.example.com/acme/webapp/-/merge_requests/102\x1b\\branch-second\x1b]8;;\x1b\\` feat: second",
+            &format!("- {} feat: first", hyperlink(&url(101), "branch-first")),
+            &format!("  - {} feat: second", hyperlink(&url(102), "branch-second")),
             "",
         ]
         .join("\n")

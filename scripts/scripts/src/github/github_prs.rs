@@ -124,9 +124,11 @@ fn format_pr_tree(
         }
         OutputFormat::Branches => {
             // Use OSC 8 hyperlink escape sequence for clickable links in modern terminals
+            use crate::style::*;
             output.push_str(&format!(
-                "{}- `\x1b]8;;{}\x1b\\{}\x1b]8;;\x1b\\` {}\n",
-                indent, pr.url, pr.head_ref_name, title_display
+                "{indent}- `{OSC8_START}{url}{OSC8_MID}{branch}{OSC8_END}` {title_display}\n",
+                url = pr.url,
+                branch = pr.head_ref_name,
             ));
         }
     }
