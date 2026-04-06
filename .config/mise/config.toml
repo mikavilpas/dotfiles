@@ -33,7 +33,6 @@ settings.experimental = true
 "github:ast-grep/ast-grep" = "0.42.1"
 "github:atuinsh/atuin" = { version = "18.13.6", matching_regex = ".tar.gz$" }
 "github:cargo-bins/cargo-binstall" = "1.17.9"
-"github:charmbracelet/glow" = "2.1.1"
 "github:chmln/sd" = "1.1.0"
 "github:dandavison/delta" = "0.19.2"
 "github:hadolint/hadolint" = "2.14.0"
@@ -69,7 +68,7 @@ uv = "0.11.3"
 
 
 [tools."github:mikavilpas/dotfiles"]
-version = "1.2.0"
+version = "1.2.1"
 exe = "mika"
 postinstall = """
 mkdir -p ~/.config/fish/completions ~/.config/fish/mika
