@@ -126,7 +126,7 @@ fn format_pr_tree(
             // Use OSC 8 hyperlink escape sequence for clickable links in modern terminals
             use crate::style::*;
             output.push_str(&format!(
-                "{indent}- `{OSC8_START}{url}{OSC8_MID}{branch}{OSC8_END}` {title_display}\n",
+                "{indent}- {BOLD_BLUE}{OSC8_START}{url}{OSC8_MID}{branch}{OSC8_END}{RESET} {title_display}\n",
                 url = pr.url,
                 branch = pr.head_ref_name,
             ));

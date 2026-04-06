@@ -31,14 +31,14 @@ pub fn write_fish_init(output_dir: &Path) -> std::io::Result<String> {
         (
             "prs.fish",
             r#"function prs --description "Show GitHub pull requests"
-    gh pr list --author=@me --json number,title,url,headRefName,baseRefName,isDraft | mika prs-summary - --format=branches | glow --width=0
+    gh pr list --author=@me --json number,title,url,headRefName,baseRefName,isDraft | mika prs-summary - --format=branches
 end
 "#,
         ),
         (
             "mrs.fish",
             r#"function mrs --description "Show GitLab merge requests"
-    glab mr list --author=@me --output=json | mika mrs-summary - --format=branches | glow --width=0
+    glab mr list --author=@me --output=json | mika mrs-summary - --format=branches
 end
 "#,
         ),

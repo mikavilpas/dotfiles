@@ -9,6 +9,10 @@ pub mod project;
 
 /// ANSI escape codes for terminal styling.
 pub mod style {
+    /// Bold + blue text.
+    pub const BOLD_BLUE: &str = "\x1b[1;34m";
+    /// Reset all styling.
+    pub const RESET: &str = "\x1b[0m";
     /// Start an OSC 8 hyperlink: `{OSC8_START}{url}{OSC8_MID}`.
     pub const OSC8_START: &str = "\x1b]8;;";
     /// Separator between URL and visible text in an OSC 8 hyperlink.
