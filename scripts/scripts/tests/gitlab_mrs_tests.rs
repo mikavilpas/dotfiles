@@ -1,12 +1,12 @@
 use assert_cmd::cargo;
 use pretty_assertions::assert_eq;
 use scripts::gitlab::gitlab_mrs::MergeRequest;
-use scripts::style::{OSC8_END, OSC8_MID, OSC8_START};
+use scripts::style::{BOLD_BLUE, OSC8_END, OSC8_MID, OSC8_START, RESET};
 use std::io::Write;
 use tempfile::NamedTempFile;
 
 fn hyperlink(url: &str, text: &str) -> String {
-    format!("`{OSC8_START}{url}{OSC8_MID}{text}{OSC8_END}`")
+    format!("{BOLD_BLUE}{OSC8_START}{url}{OSC8_MID}{text}{OSC8_END}{RESET}")
 }
 
 fn create_mrs_json(mrs: &[MergeRequest]) -> NamedTempFile {
