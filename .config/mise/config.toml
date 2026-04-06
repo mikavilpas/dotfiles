@@ -8,7 +8,7 @@ settings.experimental = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.4.4"
+"aqua:jdx/mise" = "2026.4.5"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.22.0"
@@ -43,7 +43,7 @@ settings.experimental = true
 "github:koalaman/shellcheck" = "0.11.0"
 "github:mvdan/sh" = { version = "3.13.0", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
-"github:rtk-ai/rtk" = "v0.34.3"
+"github:rtk-ai/rtk" = "v0.35.0"
 "github:rvben/rumdl" = "0.1.67"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
