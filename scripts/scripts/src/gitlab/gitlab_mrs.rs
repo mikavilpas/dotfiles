@@ -130,9 +130,11 @@ fn format_mr_tree(
             // Format: \x1b]8;;URL\x1b\\TEXT\x1b]8;;\x1b\\
             //
             // https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda
+            use crate::style::*;
             output.push_str(&format!(
-                "{}- `\x1b]8;;{}\x1b\\{}\x1b]8;;\x1b\\` {}\n",
-                indent, mr.web_url, mr.source_branch, title_display
+                "{indent}- `{OSC8_START}{url}{OSC8_MID}{branch}{OSC8_END}` {title_display}\n",
+                url = mr.web_url,
+                branch = mr.source_branch,
             ));
         }
     }
