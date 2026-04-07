@@ -40,7 +40,7 @@ settings.experimental = true
 "github:junegunn/fzf" = "0.71.0"
 "github:k1LoW/git-wt" = "0.26.2"
 "github:koalaman/shellcheck" = "0.11.0"
-"github:mvdan/sh" = { version = "3.13.0", bin = "shfmt" }
+"github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
 "github:rtk-ai/rtk" = "v0.35.0"
 "github:rvben/rumdl" = "0.1.67"
@@ -52,7 +52,7 @@ settings.experimental = true
 "github:tekumara/typos-lsp" = "0.1.51"
 "github:tree-sitter/tree-sitter" = "0.26.8"
 "github:watchexec/watchexec" = "2.5.1"
-"npm:@anthropic-ai/claude-code" = "2.1.91"
+"npm:@anthropic-ai/claude-code" = "2.1.92"
 "npm:@fsouza/prettierd" = "0.27.0"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260403.1"
 "npm:oxlint" = "1.58.0"
