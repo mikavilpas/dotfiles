@@ -5,6 +5,11 @@ settings.experimental = true
 # https://docs.renovatebot.com/modules/manager/mise/
 [tools]
 
+# let renovate manage the version for mise itself. Note that in a new
+# installation this is a chicken-and-egg issue, so mise will need to be
+# bootstrapped with e.g. homebrew for the first installation.
+"aqua:jdx/mise" = "2026.4.5"
+
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.22.0"
 # renovate: datasource=crate depName=cargo-nextest
@@ -17,52 +22,62 @@ settings.experimental = true
 "aqua:ClementTsang/bottom" = "0.12.3"
 "aqua:MordechaiHadad/bob" = "4.1.6"
 "aqua:Schniz/fnm" = "1.39.0"
-"aqua:fish-shell/fish-shell" = "4.5.0"
+"aqua:fish-shell/fish-shell" = "4.6.0"
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.6.1"
 "github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
-"github:JohnnyMorganz/stylua" = "2.4.0"
+"github:JohnnyMorganz/stylua" = "2.4.1"
 "github:aaronriekenberg/rust-parallel" = "1.22.0"
 "github:ajeetdsouza/zoxide" = "0.9.9"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
-"github:ast-grep/ast-grep" = "0.42.0"
-"github:atuinsh/atuin" = { version = "18.13.3", matching_regex = ".tar.gz$" }
-"github:cargo-bins/cargo-binstall" = "1.17.7"
-"github:charmbracelet/glow" = "2.1.1"
+"github:ast-grep/ast-grep" = "0.42.1"
+"github:atuinsh/atuin" = { version = "18.13.6", matching_regex = ".tar.gz$" }
+"github:cargo-bins/cargo-binstall" = "1.17.9"
 "github:chmln/sd" = "1.1.0"
-"github:dandavison/delta" = "0.18.2"
+"github:dandavison/delta" = "0.19.2"
 "github:hadolint/hadolint" = "2.14.0"
 "github:jesseduffield/lazydocker" = "0.25.0"
-"github:junegunn/fzf" = "0.70.0"
-"github:k1LoW/git-wt" = "0.25.0"
-"github:mvdan/sh" = { version = "3.13.0", bin = "shfmt" }
-"github:pranshuparmar/witr" = "0.3.0"
-"github:rtk-ai/rtk" = "0.30.0"
-"github:rvben/rumdl" = "0.1.53"
+"github:junegunn/fzf" = "0.71.0"
+"github:k1LoW/git-wt" = "0.26.2"
+"github:koalaman/shellcheck" = "0.11.0"
+"github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
+"github:pranshuparmar/witr" = "0.3.1"
+"github:rtk-ai/rtk" = "v0.35.0"
+"github:rvben/rumdl" = "0.1.67"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
 "github:sharkdp/hyperfine" = "1.20.0"
+"github:afshinm/zerobox" = "0.1.11"
 "github:starship/starship" = "1.24.2"
-"github:tekumara/typos-lsp" = "0.1.50"
-"github:tree-sitter/tree-sitter" = "0.26.7"
-"github:watchexec/watchexec" = "2.5.0"
-"npm:@anthropic-ai/claude-code" = "2.1.76"
+"github:tekumara/typos-lsp" = "0.1.51"
+"github:tree-sitter/tree-sitter" = "0.26.8"
+"github:watchexec/watchexec" = "2.5.1"
+"npm:@anthropic-ai/claude-code" = "2.1.92"
 "npm:@fsouza/prettierd" = "0.27.0"
-"npm:@typescript/native-preview" = "7.0.0-dev.20260314.1"
-"npm:oxlint" = "1.55.0"
-"npm:oxlint-tsgolint" = "0.16.0"
+"npm:@typescript/native-preview" = "7.0.0-dev.20260403.1"
+"npm:oxlint" = "1.58.0"
+"npm:oxlint-tsgolint" = "0.19.0"
 "npm:yaml-language-server" = "1.21.0"
-"pipx:awslabs.cloudwatch-mcp-server" = "0.0.22"
-actionlint = "1.7.11"
-aws-cli = { version = "2.34.10", symlink_bins = "true" }
+"pipx:awslabs.cloudwatch-mcp-server" = "0.0.23"
+actionlint = "1.7.12"
+aws-cli = { version = "2.34.25", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
-typos = "1.44.0"
-uv = "0.10.11"
+typos = "1.45.0"
+uv = "0.11.3"
 
+
+[tools."github:mikavilpas/dotfiles"]
+version = "1.2.1"
+exe = "mika"
+postinstall = """
+mkdir -p ~/.config/fish/completions ~/.config/fish/mika
+# run initialization for the fish shell after installing / updating
+mika init fish --output-dir ~/.config/fish/mika/
+"""
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.89.0"
+version = "1.91.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
@@ -71,14 +86,14 @@ glab completion -s fish > ~/.config/fish/completions/glab.fish
 """
 
 [tools.github-cli]
-version = "2.88.1"
+version = "2.89.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
 """
 
 [tools.yq]
-version = "4.52.4"
+version = "4.52.5"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- yq completion fish > ~/.config/fish/completions/yq.fish

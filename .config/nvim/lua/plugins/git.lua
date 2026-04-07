@@ -33,6 +33,7 @@ return {
               vim.g.fugitive_gitlab_domains = {
                 ["gitlab.com"] = "https://gitlab.com",
                 ["gitlab.baronatechnologies.fi"] = "https://gitlab.baronatechnologies.fi",
+                ["barona.ghe.com"] = "https://barona.ghe.com/barona-group-tech",
               }
             end,
           },

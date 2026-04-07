@@ -15,7 +15,13 @@ fish_add_path /Users/mikavilpas/.local/share/bob/nvim-bin
 fish_add_path $HOME/.luarocks/bin
 fish_add_path $HOME/.local/share/bob/nvim-bin:$PATH
 fish_add_path ~/.cargo/bin
+# mise manages its own version (aqua:jdx/mise) - add its binary to PATH
+# early so `mise activate fish` below can find it
+fish_add_path ~/.local/share/mise/installs/aqua-jdx-mise/latest/mise/bin
 fish_add_path $HOME/.local/share/nvim/mason/bin
+
+# activate the lazy loadable completions for the mika tool
+set --append fish_function_path ~/.config/fish/mika
 
 # skip everything in CI because initialization will fail if all the required
 # applications are not installed. They take a long time to install, and I don't
@@ -91,12 +97,21 @@ if status is-interactive && test -z "$CI"
         end
     end
 
+    # save last command's exit status before prompt hooks overwrite it
+    function __save_last_status --on-event fish_postexec
+        set -g __last_cmd_status $status
+    end
+
+    # exit if the last command succeeded (for one-off terminal tabs)
+    function x
+        if test "$__last_cmd_status" -eq 0
+            exit
+        else
+            echo "Last command failed (status $__last_cmd_status), not exiting"
+        end
+    end
+
     # pipe to this guy to colorize the output stream! 🪄
     # ya sub cd,hover | batrs
     abbr -a batrs 'bat --paging=never --language=rs --decorations=never'
-
-    # show gitlab merge requests in a tree
-    function mrs # "merge requests"
-        glab mr list --author=@me --output=json | mika mrs-summary - --format=branches | glow --width=0
-    end
 end

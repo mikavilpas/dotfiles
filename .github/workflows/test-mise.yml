@@ -1,0 +1,28 @@
+---
+name: Test mise installation of "mika" tool
+on:
+  pull_request: ~
+  push:
+    branches:
+      - main
+  release:
+    types: [published]
+
+jobs:
+  test-mise-install:
+    name: Test installing mika with mise
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Install mise
+        uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
+        with:
+          install: false
+
+      - name: Install mika with mise
+        # note: the mise config in the repo might apply hooks
+        run: mise install "github:mikavilpas/dotfiles@latest" --verbose
+
+      - name: Verify mika is executable
+        run: mise exec "github:mikavilpas/dotfiles@latest" -- mika --help

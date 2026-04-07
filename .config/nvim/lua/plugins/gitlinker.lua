@@ -7,8 +7,8 @@ return {
     require("gitlinker").setup({
       router = {
         browse = {
-          -- gitlab.baronatechnologies.fi
           ["^gitlab%.baronatechnologies%.fi"] = require("gitlinker.routers").gitlab_browse,
+          ["^barona%.ghe%.com"] = require("gitlinker.routers").github_browse,
         },
 
         blame = {

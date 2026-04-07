@@ -2,11 +2,12 @@ use clap::Parser;
 use std::process::exit;
 
 use scripts::{
-    arguments::{Cli, Commands, MrsFormat},
+    arguments::{Cli, Commands, InitShell, MrsFormat, PrsFormat},
     commit_messages::{
         format_patch_with_instructions, get_commit_messages_between_commits,
         get_commit_messages_on_branch, get_current_branch_name,
     },
+    github::github_prs::{self, format_prs_as_markdown, parse_github_prs_from_file_or_stdin},
     gitlab::gitlab_mrs::{
         OutputFormat, format_mrs_as_markdown, mr_stack, parse_gitlab_mrs_from_file_or_stdin,
     },
@@ -14,14 +15,31 @@ use scripts::{
 };
 
 pub fn main() {
+    let cli = match Cli::try_parse() {
+        Ok(cli) => cli,
+        Err(e) => e.exit(),
+    };
+
+    // Handle commands that don't need a git repo
+    if let Commands::Init { shell, output_dir } = &cli.command {
+        match shell {
+            InitShell::Fish => match scripts::init::write_fish_init(output_dir) {
+                Ok(summary) => {
+                    println!("{summary}");
+                }
+                Err(e) => {
+                    eprintln!("failed to write fish init files: {e}");
+                    exit(1);
+                }
+            },
+        }
+        return;
+    }
+
     let cwd = std::env::current_dir().expect("failed to get current directory");
     let repo = match gix::discover(cwd) {
         Ok(repo) => repo,
         Err(e) => panic!("failed to open: {e}"),
-    };
-    let cli = match Cli::try_parse() {
-        Ok(cli) => cli,
-        Err(e) => e.exit(),
     };
     match cli.command {
         Commands::Summary { from, to } => {
@@ -116,5 +134,39 @@ pub fn main() {
                 }
             };
         }
+
+        Commands::PrsSummary { file, format } => {
+            let prs = parse_github_prs_from_file_or_stdin(file);
+            let output_format = match format {
+                PrsFormat::Links => github_prs::OutputFormat::Links,
+                PrsFormat::Branches => github_prs::OutputFormat::Branches,
+            };
+            match format_prs_as_markdown(prs, output_format) {
+                Ok(output) => println!("{output}"),
+                Err(e) => {
+                    eprintln!("failed to format PRs: {e}");
+                    exit(1);
+                }
+            };
+        }
+
+        Commands::PrStackSummary { file, branch } => {
+            let prs = parse_github_prs_from_file_or_stdin(file);
+            let branch = branch.unwrap_or_else(|| {
+                get_current_branch_name(&repo)
+                    .unwrap_or_else(|e| panic!("failed to get current branch name: {e}"))
+            });
+
+            match github_prs::pr_stack::format_pr_stack_as_markdown(prs, branch.as_str()) {
+                Ok(output) => println!("{output}"),
+                Err(error) => {
+                    eprintln!("failed to format PR stack: {error}");
+                    exit(1);
+                }
+            };
+        }
+
+        // Already handled above before git repo discovery
+        Commands::Init { .. } => unreachable!(),
     }
 }

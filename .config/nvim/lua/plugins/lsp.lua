@@ -36,6 +36,8 @@ return {
 
       opts = opts or {}
       opts.inlay_hints = { enabled = false }
+      opts.servers = opts.servers or {}
+      opts.servers.tailwindcss = { enabled = false }
       return opts
     end,
   },
