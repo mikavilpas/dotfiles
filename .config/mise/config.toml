@@ -28,6 +28,7 @@ settings.experimental = true
 "github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
 "github:JohnnyMorganz/stylua" = "2.4.1"
 "github:aaronriekenberg/rust-parallel" = "1.22.0"
+"github:afshinm/zerobox" = "0.1.11"
 "github:ajeetdsouza/zoxide" = "0.9.9"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:ast-grep/ast-grep" = "0.42.1"
@@ -47,7 +48,6 @@ settings.experimental = true
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
 "github:sharkdp/hyperfine" = "1.20.0"
-"github:afshinm/zerobox" = "0.1.11"
 "github:starship/starship" = "1.24.2"
 "github:tekumara/typos-lsp" = "0.1.51"
 "github:tree-sitter/tree-sitter" = "0.26.8"
