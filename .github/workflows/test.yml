@@ -108,3 +108,22 @@ jobs:
           path: integration-tests/cypress/screenshots
           if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
 
+  validate-target-branch:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Validate target branch
+        shell: bash
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          if [[ -z "$BASE_REF" ]]; then
+            echo "✓ Not a pull request, skipping target branch validation."
+            exit 0
+          fi
+          if [[ "$BASE_REF" == "main" ]]; then
+            echo "✓ PR targets 'main' branch."
+            exit 0
+          fi
+
+          echo "::error:: The PR must target the main branch to keep stacked branches in order."
+          exit 1
