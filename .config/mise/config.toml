@@ -69,7 +69,7 @@ uv = "0.11.4"
 
 
 [tools."github:mikavilpas/dotfiles"]
-version = "1.2.1"
+version = "1.3.0"
 exe = "mika"
 postinstall = """
 mkdir -p ~/.config/fish/completions ~/.config/fish/mika
