@@ -39,9 +39,7 @@ customCommands:
     description:
       "Autosquash only this branch (preserves fixups in branches above)"
     loadingText: "Autosquashing {{.SelectedLocalBranch.Name}}..."
-    # See git-autosquash-branch.sh for documentation
-    command:
-      ~/.config/lazygit/git-autosquash-branch.sh "{{.SelectedLocalBranch.Name}}"
+    command: mika autosquash-branch run "{{.SelectedLocalBranch.Name}}"
   - key: "<c-r>"
     context: commits
     description: "Reword the commit with verbose=false"
