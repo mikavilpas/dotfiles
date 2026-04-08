@@ -99,6 +99,12 @@ pub enum Commands {
         output_dir: PathBuf,
     },
 
+    /// Autosquash only the specified branch in a stack, preserving fixups in branches above.
+    AutosquashBranch {
+        #[command(subcommand)]
+        command: AutosquashSubcommand,
+    },
+
     /// Generate a markdown summary of the current branch as part of the stack of PRs
     PrStackSummary {
         /// Path to the JSON file containing GitHub PRs (from `gh pr list --json`), or "-" to read from stdin
@@ -108,6 +114,24 @@ pub enum Commands {
         /// The current branch name
         #[arg(long)]
         branch: Option<String>,
+    },
+}
+
+#[derive(Subcommand)]
+pub enum AutosquashSubcommand {
+    /// Run the autosquash rebase for a branch in a stack.
+    Run {
+        /// The branch to autosquash
+        branch: String,
+    },
+    /// Edit a rebase todo file (internal: used as GIT_SEQUENCE_EDITOR).
+    EditTodo {
+        /// The branch name (fixups after this branch's update-ref become picks)
+        #[arg(long)]
+        branch: String,
+        /// Path to the rebase todo file (passed by git as the positional argument)
+        #[arg(value_name = "FILE", value_hint = clap::ValueHint::FilePath)]
+        file: PathBuf,
     },
 }
 

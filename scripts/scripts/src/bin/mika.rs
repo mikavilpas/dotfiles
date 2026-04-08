@@ -2,7 +2,7 @@ use clap::Parser;
 use std::process::exit;
 
 use scripts::{
-    arguments::{Cli, Commands, InitShell, MrsFormat, PrsFormat},
+    arguments::{AutosquashSubcommand, Cli, Commands, InitShell, MrsFormat, PrsFormat},
     commit_messages::{
         format_patch_with_instructions, get_commit_messages_between_commits,
         get_commit_messages_on_branch, get_current_branch_name,
@@ -21,6 +21,24 @@ pub fn main() {
     };
 
     // Handle commands that don't need a git repo
+    if let Commands::AutosquashBranch { command } = &cli.command {
+        match command {
+            AutosquashSubcommand::Run { branch } => {
+                if let Err(e) = scripts::autosquash::run_autosquash(branch) {
+                    eprintln!("failed to autosquash branch: {e}");
+                    exit(1);
+                }
+            }
+            AutosquashSubcommand::EditTodo { branch, file } => {
+                if let Err(e) = scripts::autosquash::edit_rebase_todo(branch, file) {
+                    eprintln!("failed to edit rebase todo: {e}");
+                    exit(1);
+                }
+            }
+        }
+        return;
+    }
+
     if let Commands::Init { shell, output_dir } = &cli.command {
         match shell {
             InitShell::Fish => match scripts::init::write_fish_init(output_dir) {
@@ -167,6 +185,7 @@ pub fn main() {
         }
 
         // Already handled above before git repo discovery
+        Commands::AutosquashBranch { .. } => unreachable!(),
         Commands::Init { .. } => unreachable!(),
     }
 }
