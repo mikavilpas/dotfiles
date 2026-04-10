@@ -55,11 +55,11 @@ settings.experimental = true
 "npm:@anthropic-ai/claude-code" = "2.1.92"
 "npm:@fission-ai/openspec" = "1.2.0"
 "npm:@fsouza/prettierd" = "0.27.0"
-"npm:@typescript/native-preview" = "7.0.0-dev.20260406.1"
+"npm:@typescript/native-preview" = "7.0.0-dev.20260407.1"
 "npm:oxlint" = "1.59.0"
 "npm:oxlint-tsgolint" = "0.20.0"
 "npm:yaml-language-server" = "1.21.0"
-"pipx:awslabs.cloudwatch-mcp-server" = "0.0.23"
+"pipx:awslabs.cloudwatch-mcp-server" = "0.0.24"
 actionlint = "1.7.12"
 aws-cli = { version = "2.34.28", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
