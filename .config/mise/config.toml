@@ -52,7 +52,7 @@ settings.experimental = true
 "github:tekumara/typos-lsp" = "0.1.51"
 "github:tree-sitter/tree-sitter" = "0.26.8"
 "github:watchexec/watchexec" = "2.5.1"
-"npm:@anthropic-ai/claude-code" = "2.1.92"
+"npm:@anthropic-ai/claude-code" = "2.1.94"
 "npm:@fission-ai/openspec" = "1.2.0"
 "npm:@fsouza/prettierd" = "0.27.0"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260407.1"
@@ -61,7 +61,7 @@ settings.experimental = true
 "npm:yaml-language-server" = "1.21.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.24"
 actionlint = "1.7.12"
-aws-cli = { version = "2.34.28", symlink_bins = "true" }
+aws-cli = { version = "2.34.29", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.45.0"
@@ -78,7 +78,7 @@ mika init fish --output-dir ~/.config/fish/mika/
 """
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.92.0"
+version = "1.92.1"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
