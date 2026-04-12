@@ -33,7 +33,7 @@ settings.experimental = true
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:ast-grep/ast-grep" = "0.42.1"
 "github:atuinsh/atuin" = { version = "18.13.6", matching_regex = ".tar.gz$" }
-"github:cargo-bins/cargo-binstall" = "1.17.9"
+"github:cargo-bins/cargo-binstall" = "1.18.0"
 "github:chmln/sd" = "1.1.0"
 "github:dandavison/delta" = "0.19.2"
 "github:hadolint/hadolint" = "2.14.0"
