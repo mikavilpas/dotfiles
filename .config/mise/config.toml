@@ -8,7 +8,7 @@ settings.experimental = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.4.10"
+"aqua:jdx/mise" = "2026.4.11"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.22.0"
@@ -33,7 +33,7 @@ settings.experimental = true
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:ast-grep/ast-grep" = "0.42.1"
 "github:atuinsh/atuin" = { version = "18.13.6", matching_regex = ".tar.gz$" }
-"github:cargo-bins/cargo-binstall" = "1.18.0"
+"github:cargo-bins/cargo-binstall" = "1.18.1"
 "github:chmln/sd" = "1.1.0"
 "github:dandavison/delta" = "0.19.2"
 "github:hadolint/hadolint" = "2.14.0"
@@ -44,7 +44,7 @@ settings.experimental = true
 "github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
 "github:rtk-ai/rtk" = "v0.35.0"
-"github:rvben/rumdl" = "0.1.70"
+"github:rvben/rumdl" = "0.1.71"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
 "github:sharkdp/hyperfine" = "1.20.0"
