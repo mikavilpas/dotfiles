@@ -76,7 +76,7 @@ jobs:
           # renovate: datasource=github-releases depName=houseabsolute/ubi
           UBI_VERSION: v0.9.0
           # renovate: datasource=github-releases depName=jesseduffield/lazygit
-          LAZYGIT_VERSION: v0.61.0
+          LAZYGIT_VERSION: v0.61.1
 
       - name: Build
         run: cargo install --locked --path scripts/
