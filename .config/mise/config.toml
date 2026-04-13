@@ -28,7 +28,7 @@ settings.experimental = true
 "github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
 "github:JohnnyMorganz/stylua" = "2.4.1"
 "github:aaronriekenberg/rust-parallel" = "1.22.0"
-"github:afshinm/zerobox" = "0.1.11"
+"github:afshinm/zerobox" = "0.2.0"
 "github:ajeetdsouza/zoxide" = "0.9.9"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:ast-grep/ast-grep" = "0.42.1"
@@ -43,7 +43,7 @@ settings.experimental = true
 "github:koalaman/shellcheck" = "0.11.0"
 "github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
-"github:rtk-ai/rtk" = "v0.35.0"
+"github:rtk-ai/rtk" = "v0.36.0"
 "github:rvben/rumdl" = "0.1.71"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
@@ -52,7 +52,7 @@ settings.experimental = true
 "github:tekumara/typos-lsp" = "0.1.51"
 "github:tree-sitter/tree-sitter" = "0.26.8"
 "github:watchexec/watchexec" = "2.5.1"
-"npm:@anthropic-ai/claude-code" = "2.1.100"
+"npm:@anthropic-ai/claude-code" = "2.1.101"
 "npm:@fission-ai/openspec" = "1.2.0"
 "npm:@fsouza/prettierd" = "0.27.0"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260410.1"
@@ -61,7 +61,7 @@ settings.experimental = true
 "npm:yaml-language-server" = "1.21.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.24"
 actionlint = "1.7.12"
-aws-cli = { version = "2.34.29", symlink_bins = "true" }
+aws-cli = { version = "2.34.30", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.45.1"
