@@ -28,7 +28,7 @@ settings.experimental = true
 "github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
 "github:JohnnyMorganz/stylua" = "2.4.1"
 "github:aaronriekenberg/rust-parallel" = "1.22.0"
-"github:afshinm/zerobox" = "0.2.0"
+"github:afshinm/zerobox" = "0.2.2"
 "github:ajeetdsouza/zoxide" = "0.9.9"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:ast-grep/ast-grep" = "0.42.1"
@@ -55,7 +55,7 @@ settings.experimental = true
 "npm:@anthropic-ai/claude-code" = "2.1.101"
 "npm:@fission-ai/openspec" = "1.2.0"
 "npm:@fsouza/prettierd" = "0.27.0"
-"npm:@typescript/native-preview" = "7.0.0-dev.20260410.1"
+"npm:@typescript/native-preview" = "7.0.0-dev.20260411.1"
 "npm:oxlint" = "1.59.0"
 "npm:oxlint-tsgolint" = "0.20.0"
 "npm:yaml-language-server" = "1.21.0"
