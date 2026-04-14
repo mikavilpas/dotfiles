@@ -32,7 +32,7 @@ settings.experimental = true
 "github:ajeetdsouza/zoxide" = "0.9.9"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:ast-grep/ast-grep" = "0.42.1"
-"github:atuinsh/atuin" = { version = "18.13.6", matching_regex = ".tar.gz$" }
+"github:atuinsh/atuin" = { version = "18.14.1", matching_regex = ".tar.gz$" }
 "github:cargo-bins/cargo-binstall" = "1.18.1"
 "github:chmln/sd" = "1.1.0"
 "github:dandavison/delta" = "0.19.2"
