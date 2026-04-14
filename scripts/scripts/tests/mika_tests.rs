@@ -6,6 +6,7 @@ use scripts::commit_messages::{
     my_commit::{FixupCommit, MyCommit},
 };
 use std::path::Path;
+use tempfile::NamedTempFile;
 use test_utils::common::TestRepoBuilder;
 
 #[test]
@@ -543,6 +544,107 @@ fn prs_summary_can_process_test_data() -> Result<(), Box<dyn std::error::Error>>
             "",
         ]
         .join("\n")
+    );
+
+    Ok(())
+}
+
+#[test]
+fn autosquash_edit_todo_only_keeps_fixups_for_target_branch()
+-> Result<(), Box<dyn std::error::Error>> {
+    use std::io::Write;
+
+    let input = "\
+pick abc123 commit A
+fixup def456 fixup! A
+update-ref refs/heads/branch1
+pick 111aaa commit B
+fixup 222bbb fixup! B
+update-ref refs/heads/branch2
+pick 333ccc commit C
+fixup 444ddd fixup! C
+update-ref refs/heads/branch3
+";
+
+    let mut tmpfile = NamedTempFile::new()?;
+    tmpfile.write_all(input.as_bytes())?;
+    let path = tmpfile.path().to_path_buf();
+
+    let mut cmd = cargo::cargo_bin_cmd!("mika");
+    cmd.args([
+        "autosquash-branch",
+        "edit-todo",
+        "--branch",
+        "branch2",
+        path.to_str().unwrap(),
+    ])
+    .assert()
+    .success();
+
+    let result = std::fs::read_to_string(&path)?;
+    assert_eq!(
+        result,
+        "\
+pick abc123 commit A
+pick def456 fixup! A
+update-ref refs/heads/branch1
+pick 111aaa commit B
+fixup 222bbb fixup! B
+update-ref refs/heads/branch2
+pick 333ccc commit C
+pick 444ddd fixup! C
+update-ref refs/heads/branch3
+"
+    );
+
+    Ok(())
+}
+
+#[test]
+fn autosquash_branch_run_squashes_only_target_branch_fixups()
+-> Result<(), Box<dyn std::error::Error>> {
+    // Stack: main -> branch1 -> branch2 -> branch3
+    // Each branch has a commit and a fixup. We target branch2 only.
+    let repo = TestRepoBuilder::new()?;
+    repo.commit("initial commit")?;
+
+    repo.checkout_b("branch1")?;
+    repo.commit("feat: branch1 work")?;
+    repo.commit("fixup! feat: branch1 work")?;
+
+    repo.checkout_b("branch2")?;
+    repo.commit("feat: branch2 work")?;
+    repo.commit("fixup! feat: branch2 work")?;
+
+    repo.checkout_b("branch3")?;
+    repo.commit("feat: branch3 work")?;
+    repo.commit("fixup! feat: branch3 work")?;
+
+    // Autosquash only branch2 - fixups before and after should be preserved
+    let mut cmd = cargo::cargo_bin_cmd!("mika");
+    let assert = cmd
+        .current_dir(repo.path())
+        .args(["autosquash-branch", "run", "branch2"])
+        .assert();
+
+    assert.success();
+
+    // branch1's fixup is preserved (before the target)
+    assert_eq!(
+        repo.log_subjects("main..branch1")?,
+        ["fixup! feat: branch1 work", "feat: branch1 work"],
+    );
+
+    // branch2's fixup was squashed (the target)
+    assert_eq!(
+        repo.log_subjects("branch1..branch2")?,
+        ["feat: branch2 work"],
+    );
+
+    // branch3's fixup is preserved (after the target)
+    assert_eq!(
+        repo.log_subjects("branch2..branch3")?,
+        ["fixup! feat: branch3 work", "feat: branch3 work"],
     );
 
     Ok(())

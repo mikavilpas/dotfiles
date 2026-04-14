@@ -76,7 +76,7 @@ jobs:
           # renovate: datasource=github-releases depName=houseabsolute/ubi
           UBI_VERSION: v0.9.0
           # renovate: datasource=github-releases depName=jesseduffield/lazygit
-          LAZYGIT_VERSION: v0.61.0
+          LAZYGIT_VERSION: v0.61.1
 
       - name: Build
         run: cargo install --locked --path scripts/
@@ -99,7 +99,7 @@ jobs:
       - run: pnpm --filter integration-tests exec cypress install
       - run: pnpm tui run
 
-      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         # add the line below to store screenshots only on failures
         # if: failure()
         if: failure()
@@ -108,3 +108,24 @@ jobs:
           path: integration-tests/cypress/screenshots
           if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
 
+  validate-target-branch:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Validate target branch
+        shell: bash
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          if [[ -z "$BASE_REF" ]]; then
+            echo "✓ Not a pull request, skipping target branch validation."
+            exit 0
+          fi
+          if [[ "$BASE_REF" == "main" ]]; then
+            echo "✓ PR targets 'main' branch."
+            exit 0
+          fi
+
+          echo "::error:: The PR must target the main branch to keep stacked branches in order."
+          echo "::error:: Please change the target branch to 'main' and re-run the checks."
+          echo "::error:: It now targets '$BASE_REF'."
+          exit 1

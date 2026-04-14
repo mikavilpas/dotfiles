@@ -1,9 +1,9 @@
 import assert from "assert"
 
 describe("shell scripts", () => {
-  describe("git-autosquash-branch.sh", () => {
-    // This script autosquashes only the specified branch in a stack,
-    // preserving fixup commits in branches above.
+  describe("mika autosquash-branch", () => {
+    // This command autosquashes only the specified branch in a stack,
+    // preserving fixup commits in all other branches.
 
     it("squashes fixups in the target branch only, preserving fixups in branches above", () => {
       cy.visit("/")
@@ -56,10 +56,9 @@ describe("shell scripts", () => {
             expect(output.stdout).to.include("fixup! commit C")
           })
 
-        // ACTION: Run the autosquash script on stack-branch-1 only
+        // ACTION: Run the autosquash on stack-branch-1 only
         term.runBlockingShellCommand({
-          command:
-            "cd myrepo && ~/.config/lazygit/git-autosquash-branch.sh stack-branch-1",
+          command: "cd myrepo && mika autosquash-branch run stack-branch-1",
         })
 
         // VERIFY: stack-branch-1's fixup should be squashed (no more fixup commits)
@@ -137,35 +136,25 @@ describe("shell scripts", () => {
         `
         term.runBlockingShellCommand({ command: setup })
 
-        // ACTION: Run the autosquash script on branch2 (the middle branch)
+        // ACTION: Run the autosquash on branch2 (the middle branch)
         term.runBlockingShellCommand({
-          command:
-            "cd myrepo && ~/.config/lazygit/git-autosquash-branch.sh branch2",
+          command: "cd myrepo && mika autosquash-branch run branch2",
         })
 
-        // VERIFY: branch1's fixup should be squashed (it's below the target)
+        // VERIFY: branch1's fixup should be preserved (it's below the target)
         term
           .runBlockingShellCommand({
             command: "cd myrepo && git log --oneline branch1",
           })
           .then((output) => {
             assert(output.type === "success")
-            expect(output.stdout).to.not.include("fixup!")
-          })
-
-        term
-          .runBlockingShellCommand({
-            command: "cd myrepo && git show branch1:a.txt",
-          })
-          .then((output) => {
-            assert(output.type === "success")
-            expect(output.stdout.trim()).to.equal("fix-a")
+            expect(output.stdout).to.include("fixup! commit A")
           })
 
         // VERIFY: branch2's fixup should be squashed (it's the target)
         term
           .runBlockingShellCommand({
-            command: "cd myrepo && git log --oneline branch2",
+            command: "cd myrepo && git log --oneline branch1..branch2",
           })
           .then((output) => {
             assert(output.type === "success")
@@ -236,10 +225,9 @@ describe("shell scripts", () => {
         `
         term.runBlockingShellCommand({ command: setup })
 
-        // ACTION: Run the autosquash script on branch1 (the bottom branch)
+        // ACTION: Run the autosquash on branch1 (the bottom branch)
         term.runBlockingShellCommand({
-          command:
-            "cd myrepo && ~/.config/lazygit/git-autosquash-branch.sh branch1",
+          command: "cd myrepo && mika autosquash-branch run branch1",
         })
 
         // VERIFY: branch1's fixup should be squashed (it's the target)
@@ -313,8 +301,7 @@ describe("shell scripts", () => {
 
         // Should succeed even with no fixups
         term.runBlockingShellCommand({
-          command:
-            "cd myrepo && ~/.config/lazygit/git-autosquash-branch.sh branch1",
+          command: "cd myrepo && mika autosquash-branch run branch1",
         })
 
         // Branch should still have the same commit

@@ -384,9 +384,18 @@ fn test_mrs_summary_branches_format() {
     assert_eq!(
         stdout,
         [
-            &format!("- {} feat: base feature", hyperlink(&url(101), "feature-base")),
-            &format!("  - {} **Draft:** child feature", hyperlink(&url(102), "feature-child")),
-            &format!("- {} feat: another root", hyperlink(&url(103), "feature-another")),
+            &format!(
+                "- {} feat: base feature",
+                hyperlink(&url(101), "feature-base")
+            ),
+            &format!(
+                "  - {} **Draft:** child feature",
+                hyperlink(&url(102), "feature-child")
+            ),
+            &format!(
+                "- {} feat: another root",
+                hyperlink(&url(103), "feature-another")
+            ),
             "",
         ]
         .join("\n")

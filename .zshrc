@@ -1,3 +1,10 @@
+# OPENSPEC:START
+# OpenSpec shell completions configuration
+fpath=("/Users/mikavilpas/.zsh/completions" $fpath)
+autoload -Uz compinit
+compinit
+# OPENSPEC:END
+
 source ~/dotfiles/.wezterm.sh
 
 # If you come from bash you might have to change your $PATH.

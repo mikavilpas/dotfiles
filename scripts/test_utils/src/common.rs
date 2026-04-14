@@ -62,6 +62,19 @@ impl TestRepoBuilder {
         self.tmpdir.path()
     }
 
+    /// Get the commit subjects between two refs (e.g. "main..branch1"),
+    /// newest first. Returns one string per commit.
+    pub fn log_subjects(&self, range: &str) -> Result<Vec<String>> {
+        let output = process::Command::new("git")
+            .current_dir(self.path())
+            .args(["log", "--format=%s", range])
+            .output()
+            .map_err(|e| panic!("failed to run git log: {e}"))?;
+        let stdout = String::from_utf8(output.stdout)
+            .map_err(|e| anyhow::anyhow!("git log output is not valid UTF-8: {e}"))?;
+        Ok(stdout.trim().lines().map(|l| l.to_string()).collect())
+    }
+
     pub fn apply_patch(&self, patch: &str) -> Result<()> {
         let patch_file = self.create_file(Path::new("patch.diff"))?;
         std::fs::write(&patch_file, patch)?;
