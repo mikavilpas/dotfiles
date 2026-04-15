@@ -6,11 +6,6 @@ services:
   "gitlab.baronatechnologies.fi": "gitlab:gitlab.baronatechnologies.fi"
   "barona.ghe.com": "github:barona.ghe.com"
 customCommands:
-  - key: "-"
-    context: global
-    description: Show branch graph
-    command: git lg # custom git alias
-    output: terminal
   - key: "<c-a>"
     context: "global"
     description: "Save everything as WIP"
