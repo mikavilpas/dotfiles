@@ -66,6 +66,9 @@
   ; quickly create a backup of the current branch (accepts optional branch name)
   backup-branch = "!f() { branch=\"${1:-$(git rev-parse --abbrev-ref HEAD)}\"; git branch \"${branch}--backup-$(date +%Y%m%d%H%M%S)\"; }; f"
 
+[includeIf "gitdir:~/git/work-development-environment/"]
+	path = ~/git/work-development-environment/.gitconfig
+
 [commit]
 	verbose = true
 [init]
