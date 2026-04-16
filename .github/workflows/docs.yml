@@ -1,0 +1,16 @@
+name: Documentation
+on:
+  pull_request:
+  workflow_call:
+
+jobs:
+  check-links:
+    name: links are valid
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Link Checker
+        id: lychee
+        uses: lycheeverse/lychee-action@v2.8.0
+        with:
+          fail: false
