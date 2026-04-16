@@ -4,6 +4,12 @@ set -g fish_greeting ''
 export XDG_CONFIG_HOME="$HOME/.config"
 export FZF_DEFAULT_OPTS="--color=fg:#cad3f5,bg:#24273a,hl:#f5a97f:bold,fg+:#cad3f5,bg+:#494d64,hl+:#f5a97f:bold,spinner:#a6da95,info:#c6a0f6,prompt:#8aadf4,pointer:#ed8796,marker:#ee99a0,header:#8bd5ca,border:#6e738d"
 
+# LS_COLORS (catppuccin-macchiato) is stored as a fish universal variable in
+# fish_variables. Regenerate with:
+# set -Ux LS_COLORS "$(vivid generate catppuccin-macchiato)"
+#
+# https://github.com/sharkdp/vivid
+
 # https://typicode.github.io/husky/how-to.html#for-multiple-commands
 export HUSKY=0
 export EDITOR=nvim
