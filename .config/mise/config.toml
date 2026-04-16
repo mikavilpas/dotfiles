@@ -63,7 +63,7 @@ settings.experimental = true
 "npm:yaml-language-server" = "1.21.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.24"
 actionlint = "1.7.12"
-aws-cli = { version = "2.34.30", symlink_bins = "true" }
+aws-cli = { version = "2.34.31", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.45.1"
@@ -89,7 +89,7 @@ glab completion -s fish > ~/.config/fish/completions/glab.fish
 """
 
 [tools.github-cli]
-version = "2.89.0"
+version = "2.90.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
