@@ -32,7 +32,7 @@ settings.experimental = true
 "github:ajeetdsouza/zoxide" = "0.9.9"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:ast-grep/ast-grep" = "0.42.1"
-"github:atuinsh/atuin" = { version = "18.15.1", matching_regex = ".tar.gz$" }
+"github:atuinsh/atuin" = { version = "18.15.2", matching_regex = ".tar.gz$" }
 "github:cargo-bins/cargo-binstall" = "1.18.1"
 "github:chmln/sd" = "1.1.0"
 "github:dandavison/delta" = "0.19.2"
@@ -54,7 +54,7 @@ settings.experimental = true
 "github:tekumara/typos-lsp" = "0.1.51"
 "github:tree-sitter/tree-sitter" = "0.26.8"
 "github:watchexec/watchexec" = "2.5.1"
-"npm:@anthropic-ai/claude-code" = "2.1.104"
+"npm:@anthropic-ai/claude-code" = "2.1.105"
 "npm:@fission-ai/openspec" = "1.3.0"
 "npm:@fsouza/prettierd" = "0.27.0"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260413.1"
