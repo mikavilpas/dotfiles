@@ -6,14 +6,12 @@
   "scripts": {
     "cy:run": "pnpm --filter ./integration-tests/ cy:run",
     "dev": "pnpm --filter ./integration-tests/ dev",
-    "linkspector": "linkspector check",
     "lint": "pnpx oxlint --type-aware && eslint --max-warnings=0 .",
     "prettier": "prettier --check .",
     "tui": "pnpm --filter ./integration-tests/ exec tui"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@umbrelladocs/linkspector": "0.4.8",
     "eslint": "10.2.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-no-only-tests": "3.3.0",
