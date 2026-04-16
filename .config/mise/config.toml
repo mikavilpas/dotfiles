@@ -41,6 +41,7 @@ settings.experimental = true
 "github:junegunn/fzf" = "0.71.0"
 "github:k1LoW/git-wt" = "0.26.2"
 "github:koalaman/shellcheck" = "0.11.0"
+"github:lycheeverse/lychee" = "lychee-v0.23.0"
 "github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
 "github:rtk-ai/rtk" = "v0.36.0"
