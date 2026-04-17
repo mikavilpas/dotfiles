@@ -44,8 +44,8 @@ settings.experimental = true
 "github:lycheeverse/lychee" = "lychee-v0.23.0"
 "github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
-"github:rtk-ai/rtk" = "v0.36.0"
-"github:rvben/rumdl" = "0.1.72"
+"github:rtk-ai/rtk" = "v0.37.0"
+"github:rvben/rumdl" = "0.1.73"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
 "github:sharkdp/hyperfine" = "1.20.0"
@@ -57,9 +57,9 @@ settings.experimental = true
 "npm:@anthropic-ai/claude-code" = "2.1.107"
 "npm:@fission-ai/openspec" = "1.3.0"
 "npm:@fsouza/prettierd" = "0.27.0"
-"npm:@typescript/native-preview" = "7.0.0-dev.20260413.1"
+"npm:@typescript/native-preview" = "7.0.0-dev.20260414.1"
 "npm:oxlint" = "1.60.0"
-"npm:oxlint-tsgolint" = "0.20.0"
+"npm:oxlint-tsgolint" = "0.21.0"
 "npm:yaml-language-server" = "1.21.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.24"
 actionlint = "1.7.12"
@@ -96,7 +96,7 @@ mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
 """
 
 [tools.yq]
-version = "4.52.5"
+version = "4.53.2"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- yq completion fish > ~/.config/fish/completions/yq.fish
