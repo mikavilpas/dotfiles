@@ -50,6 +50,7 @@ settings.experimental = true
 "github:sharkdp/fd" = "10.4.2"
 "github:sharkdp/hyperfine" = "1.20.0"
 "github:sharkdp/vivid" = "0.11.1"
+"github:endevco/aube" = "1.0.0-beta.11"
 "github:starship/starship" = "1.25.0"
 "github:tekumara/typos-lsp" = "0.1.52"
 "github:tree-sitter/tree-sitter" = "0.26.8"
