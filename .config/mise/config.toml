@@ -64,7 +64,7 @@ settings.experimental = true
 "npm:yaml-language-server" = "1.22.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.25"
 actionlint = "1.7.12"
-aws-cli = { version = "2.34.35", symlink_bins = "true" }
+aws-cli = { version = "2.34.36", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.45.1"
@@ -81,7 +81,7 @@ mika init fish --output-dir ~/.config/fish/mika/
 """
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.92.1"
+version = "1.93.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
