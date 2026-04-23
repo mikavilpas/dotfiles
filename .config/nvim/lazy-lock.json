@@ -23,6 +23,7 @@
   "flatten.nvim": { "branch": "main", "commit": "72527798e75b5e34757491947c2cb853ce21dc0e" },
   "friendly-snippets": { "branch": "main", "commit": "6cd7280adead7f586db6fccbd15d2cac7e2188b9" },
   "fugitive-gitlab.vim": { "branch": "master", "commit": "3584cf7e607ba7822f991d407a8d780e05aae287" },
+  "gh-actions.nvim": { "branch": "master", "commit": "77926d232db697644f87aa7ab21680f0f2fe1a8d" },
   "gitlinker.nvim": { "branch": "master", "commit": "d7adb5e4ba5bab4fd443a3f4c46af3f4c864685d" },
   "gitsigns.nvim": { "branch": "main", "commit": "6d808f99bd63303646794406e270bd553ad7792e" },
   "grug-far.nvim": { "branch": "main", "commit": "21604255d0e8f9968322f61f2b6c09e5efe1285a" },
