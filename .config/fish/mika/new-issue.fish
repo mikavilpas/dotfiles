@@ -14,11 +14,13 @@ function new-issue --description "Create a GitHub issue, rename branch to <prefi
     set --local original_message (git log -n1 --format=%B | string collect)
     echo "new-issue: using commit subject as title: $subject"
 
+    set --local body (mika branch-summary | string collect)
+
     echo "new-issue: creating issue on $GH_HOST (assignee=@me)..."
     set --local issue_url (gh issue create \
         --assignee=@me \
         --title="$subject" \
-        --body=(mika branch-summary))
+        --body="$body")
     or return 1
     echo "new-issue: created $issue_url"
 
