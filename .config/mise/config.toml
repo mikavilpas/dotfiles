@@ -45,7 +45,7 @@ settings.experimental = true
 "github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
 "github:rtk-ai/rtk" = "v0.37.2"
-"github:rvben/rumdl" = "0.1.80"
+"github:rvben/rumdl" = "0.1.81"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
 "github:sharkdp/hyperfine" = "1.20.0"
@@ -55,16 +55,16 @@ settings.experimental = true
 "github:tekumara/typos-lsp" = "0.1.52"
 "github:tree-sitter/tree-sitter" = "0.26.8"
 "github:watchexec/watchexec" = "2.5.1"
-"npm:@anthropic-ai/claude-code" = "2.1.116"
+"npm:@anthropic-ai/claude-code" = "2.1.117"
 "npm:@fission-ai/openspec" = "1.3.1"
 "npm:@fsouza/prettierd" = "0.27.0"
-"npm:@typescript/native-preview" = "7.0.0-dev.20260421.1"
+"npm:@typescript/native-preview" = "7.0.0-dev.20260421.2"
 "npm:oxlint" = "1.61.0"
 "npm:oxlint-tsgolint" = "0.21.1"
 "npm:yaml-language-server" = "1.22.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.25"
 actionlint = "1.7.12"
-aws-cli = { version = "2.34.36", symlink_bins = "true" }
+aws-cli = { version = "2.34.37", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.45.1"
