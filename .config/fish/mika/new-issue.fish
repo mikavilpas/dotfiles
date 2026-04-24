@@ -1,4 +1,4 @@
-function new-issue --description "Create a GitHub issue, rename branch to chore/<num>-<slug>, amend HEAD with Fixes footer"
+function new-issue --description "Create a GitHub issue, rename branch to <prefix>/<num>-<slug>, amend HEAD with Fixes footer"
     if test -z "$GH_HOST"
         echo "new-issue: GH_HOST is not set. GH_HOST must be set explicitly for safety." >&2
         return 1
@@ -29,7 +29,12 @@ function new-issue --description "Create a GitHub issue, rename branch to chore/
         | string replace --all --regex '[^a-z0-9]+' '-' \
         | string trim --chars '-')
 
-    set --local new_branch "chore/$issue_number-$slug"
+    read --prompt-str "new-issue: branch prefix [chore]: " --local prefix
+    if test -z "$prefix"
+        set prefix chore
+    end
+
+    set --local new_branch "$prefix/$issue_number-$slug"
     echo "new-issue: renaming branch '$current_branch' -> '$new_branch'"
     git branch --move $new_branch
 
