@@ -8,7 +8,7 @@ settings.experimental = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.4.21"
+"aqua:jdx/mise" = "2026.4.22"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.22.0"
