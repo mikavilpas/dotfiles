@@ -19,12 +19,10 @@ settings.experimental = true
 # renovate: datasource=crate depName=sccache
 "cargo:sccache" = "0.14.0"
 
-# renovate: datasource=npm depName=@anthropic-ai/claude-code
-"aqua:anthropics/claude-code" = "2.1.120"
-
 "aqua:ClementTsang/bottom" = "0.12.3"
 "aqua:MordechaiHadad/bob" = "4.1.6"
 "aqua:Schniz/fnm" = "1.39.0"
+"aqua:anthropics/claude-code" = "2.1.120"
 "aqua:fish-shell/fish-shell" = "4.6.0"
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.7.1"
