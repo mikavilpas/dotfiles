@@ -20,7 +20,7 @@ settings.experimental = true
 "cargo:sccache" = "0.14.0"
 
 # renovate: datasource=npm depName=@anthropic-ai/claude-code
-"aqua:anthropics/claude-code" = "2.1.117"
+"aqua:anthropics/claude-code" = "2.1.120"
 
 "aqua:ClementTsang/bottom" = "0.12.3"
 "aqua:MordechaiHadad/bob" = "4.1.6"
