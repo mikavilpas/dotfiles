@@ -8,7 +8,7 @@ settings.experimental = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.4.24"
+"aqua:jdx/mise" = "2026.4.25"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.22.0"
@@ -60,7 +60,7 @@ settings.experimental = true
 "npm:@fsouza/prettierd" = "0.27.0"
 "npm:@typescript/native-preview" = "7.0.0-dev.20260425.1"
 "npm:oxlint" = "1.61.0"
-"npm:oxlint-tsgolint" = "0.21.1"
+"npm:oxlint-tsgolint" = "0.22.0"
 "npm:yaml-language-server" = "1.22.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.25"
 actionlint = "1.7.12"
@@ -90,7 +90,7 @@ glab completion -s fish > ~/.config/fish/completions/glab.fish
 """
 
 [tools.github-cli]
-version = "2.91.0"
+version = "2.92.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
