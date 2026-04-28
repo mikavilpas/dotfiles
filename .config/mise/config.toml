@@ -22,7 +22,7 @@ settings.experimental = true
 "aqua:ClementTsang/bottom" = "0.12.3"
 "aqua:MordechaiHadad/bob" = "4.1.7"
 "aqua:Schniz/fnm" = "1.39.0"
-"aqua:anthropics/claude-code" = "2.1.121"
+"aqua:anthropics/claude-code" = "2.1.122"
 "aqua:fish-shell/fish-shell" = "4.6.0"
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.7.1"
@@ -33,7 +33,7 @@ settings.experimental = true
 "github:ajeetdsouza/zoxide" = "0.9.9"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:ast-grep/ast-grep" = "0.42.1"
-"github:atuinsh/atuin" = { version = "18.15.2", matching_regex = ".tar.gz$" }
+"github:atuinsh/atuin" = { version = "18.16.0", matching_regex = ".tar.gz$" }
 "github:cargo-bins/cargo-binstall" = "1.18.1"
 "github:chmln/sd" = "1.1.0"
 "github:dandavison/delta" = "0.19.2"
