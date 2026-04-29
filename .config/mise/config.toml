@@ -8,7 +8,7 @@ settings.experimental = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.4.26"
+"aqua:jdx/mise" = "2026.4.27"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.22.0"
@@ -37,7 +37,7 @@ settings.experimental = true
 "github:cargo-bins/cargo-binstall" = "1.18.1"
 "github:chmln/sd" = "1.1.0"
 "github:dandavison/delta" = "0.19.2"
-"github:endevco/aube" = "v1.4.0"
+"github:endevco/aube" = "v1.5.0"
 "github:hadolint/hadolint" = "2.14.0"
 "github:jesseduffield/lazydocker" = "0.25.2"
 "github:junegunn/fzf" = "0.72.0"
@@ -46,7 +46,7 @@ settings.experimental = true
 "github:lycheeverse/lychee" = "lychee-v0.23.0"
 "github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
-"github:rtk-ai/rtk" = "v0.37.2"
+"github:rtk-ai/rtk" = "v0.38.0"
 "github:rvben/rumdl" = "0.1.84"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
@@ -64,7 +64,7 @@ settings.experimental = true
 "npm:yaml-language-server" = "1.22.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.26"
 actionlint = "1.7.12"
-aws-cli = { version = "2.34.38", symlink_bins = "true" }
+aws-cli = { version = "2.34.39", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.45.2"
