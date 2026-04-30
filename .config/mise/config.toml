@@ -17,7 +17,7 @@ settings.experimental = true
 # renovate: datasource=crate depName=eza
 "cargo:eza" = "0.23.3"
 # renovate: datasource=crate depName=sccache
-"cargo:sccache" = "0.14.0"
+"cargo:sccache" = "0.15.0"
 
 "aqua:ClementTsang/bottom" = "0.12.3"
 "aqua:MordechaiHadad/bob" = "4.1.7"
@@ -47,12 +47,12 @@ settings.experimental = true
 "github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
 "github:rtk-ai/rtk" = "v0.38.0"
-"github:rvben/rumdl" = "0.1.84"
+"github:rvben/rumdl" = "0.1.85"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
 "github:sharkdp/hyperfine" = "1.20.0"
 "github:sharkdp/vivid" = "0.11.1"
-"github:starship/starship" = "1.25.0"
+"github:starship/starship" = "1.25.1"
 "github:tekumara/typos-lsp" = "0.1.52"
 "github:tree-sitter/tree-sitter" = "0.26.8"
 "github:watchexec/watchexec" = "2.5.1"
@@ -64,7 +64,7 @@ settings.experimental = true
 "npm:yaml-language-server" = "1.22.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.26"
 actionlint = "1.7.12"
-aws-cli = { version = "2.34.39", symlink_bins = "true" }
+aws-cli = { version = "2.34.40", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.46.0"
