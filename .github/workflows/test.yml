@@ -61,21 +61,19 @@ jobs:
 
       - name: Install tools with mise
         uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
+        env:
+          # renovate: datasource=github-releases depName=jesseduffield/lazygit
+          LAZYGIT_VERSION: v0.61.1
         with:
           version: ${{ steps.mise-version.outputs.version }}
+          mise_toml: |
+            [tools]
+            lazygit = "${{ env.LAZYGIT_VERSION }}"
           # prettier-ignore
           install_args: >-
             aqua:fish-shell/fish-shell
             github:dandavison/delta
-
-      - name: Install lazygit
-        # Needs to be run separately because it's not in the
-        # .config/mise/config.toml. Otherwise it won't be shimmed and cannot be
-        # used easily.
-        run: mise use --global lazygit@${{ env.LAZYGIT_VERSION }}
-        env:
-          # renovate: datasource=github-releases depName=jesseduffield/lazygit
-          LAZYGIT_VERSION: v0.61.1
+            lazygit@${{ env.LAZYGIT_VERSION }}
 
       - name: Build
         run: cargo install --locked --path scripts/
