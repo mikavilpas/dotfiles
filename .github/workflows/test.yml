@@ -11,6 +11,12 @@ env:
   RUSTC_WRAPPER: sccache
   CARGO_TERM_COLOR: always
 
+  # mise's `auto_install` etc. cause activation/exec to install every
+  # tool in the trusted config. Disable so only `install_args` is honored.
+  MISE_AUTO_INSTALL: "false"
+  MISE_EXEC_AUTO_INSTALL: "false"
+  MISE_NOT_FOUND_AUTO_INSTALL: "false"
+
 jobs:
   build:
     name: Run tests
@@ -56,37 +62,18 @@ jobs:
       - name: Install tools with mise
         uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
         env:
-          # mise's `auto_install` etc. cause activation/exec to install every
-          # tool in the trusted config. Disable so only `install_args` is honored.
-          MISE_AUTO_INSTALL: "false"
-          MISE_EXEC_AUTO_INSTALL: "false"
-          MISE_NOT_FOUND_AUTO_INSTALL: "false"
+          # renovate: datasource=github-releases depName=jesseduffield/lazygit
+          LAZYGIT_VERSION: v0.61.1
         with:
           version: ${{ steps.mise-version.outputs.version }}
+          mise_toml: |
+            [tools]
+            lazygit = "${{ env.LAZYGIT_VERSION }}"
           # prettier-ignore
           install_args: >-
             aqua:fish-shell/fish-shell
             github:dandavison/delta
-
-      - name: Install lazygit with UBI
-        shell: bash
-        run: |
-          mkdir -p "$HOME/.local/bin"
-          # make the tools available for subsequent steps
-          echo "$(pwd)/bin" >> "$GITHUB_PATH"
-          curl --silent --location \
-              "https://raw.githubusercontent.com/houseabsolute/ubi/${UBI_VERSION}/bootstrap/bootstrap-ubi.sh" |
-              TARGET="$HOME/.local/bin" sh
-
-          ubi --project jesseduffield/lazygit --tag "${LAZYGIT_VERSION}"
-
-          ls -alR bin
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # renovate: datasource=github-releases depName=houseabsolute/ubi
-          UBI_VERSION: v0.9.0
-          # renovate: datasource=github-releases depName=jesseduffield/lazygit
-          LAZYGIT_VERSION: v0.61.1
+            lazygit@${{ env.LAZYGIT_VERSION }}
 
       - name: Build
         run: cargo install --locked --path scripts/
