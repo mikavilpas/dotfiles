@@ -37,7 +37,7 @@ settings.experimental = true
 "github:cargo-bins/cargo-binstall" = "1.18.1"
 "github:chmln/sd" = "1.1.0"
 "github:dandavison/delta" = "0.19.2"
-"github:endevco/aube" = "v1.6.2"
+"github:endevco/aube" = "v1.7.0"
 "github:hadolint/hadolint" = "2.14.0"
 "github:jesseduffield/lazydocker" = "0.25.2"
 "github:junegunn/fzf" = "0.72.0"
@@ -47,7 +47,7 @@ settings.experimental = true
 "github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
 "github:rtk-ai/rtk" = "v0.38.0"
-"github:rvben/rumdl" = "0.1.86"
+"github:rvben/rumdl" = "0.1.87"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
 "github:sharkdp/hyperfine" = "1.20.0"
