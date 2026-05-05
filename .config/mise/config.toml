@@ -22,7 +22,7 @@ settings.experimental = true
 "aqua:ClementTsang/bottom" = "0.12.3"
 "aqua:MordechaiHadad/bob" = "4.1.7"
 "aqua:Schniz/fnm" = "1.39.0"
-"aqua:anthropics/claude-code" = "2.1.126"
+"aqua:anthropics/claude-code" = "2.1.128"
 "aqua:fish-shell/fish-shell" = "4.6.0"
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.7.1"
@@ -47,7 +47,7 @@ settings.experimental = true
 "github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
 "github:rtk-ai/rtk" = "v0.38.0"
-"github:rvben/rumdl" = "0.1.87"
+"github:rvben/rumdl" = "0.1.88"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
 "github:sharkdp/hyperfine" = "1.20.0"
@@ -64,7 +64,7 @@ settings.experimental = true
 "npm:yaml-language-server" = "1.22.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.26"
 actionlint = "1.7.12"
-aws-cli = { version = "2.34.41", symlink_bins = "true" }
+aws-cli = { version = "2.34.42", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.46.0"
