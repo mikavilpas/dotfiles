@@ -17,6 +17,15 @@
     {
       "matchPackageNames": ["gitlab-org/cli"],
       "overrideDatasource": "gitlab-releases"
+    },
+    {
+      "description": [
+        "https://github.com/fish-shell/fish-shell",
+        "Its updates can be broken for a few days from time to time.",
+        "Put them to a separate group to avoid blocking other updates."
+      ],
+      "matchPackageNames": ["aqua:fish-shell/fish-shell"],
+      "groupName": "fish-shell"
     }
   ]
 }
