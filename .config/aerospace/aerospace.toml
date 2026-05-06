@@ -31,12 +31,12 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 30
 
 # Possible values: tiles|accordion
-default-root-container-layout = 'tiles'
+default-root-container-layout = "tiles"
 
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
 #               tall monitor (anything higher than wide) gets vertical orientation
-default-root-container-orientation = 'auto'
+default-root-container-orientation = "auto"
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
@@ -55,21 +55,20 @@ gaps.outer.right = 0
 
 [workspace-to-monitor-force-assignment]
 # Can find these out using `aerospace list-monitors`
-1 = 'D32u-40'
-4 = 'D32u-40'
-7 = 'D32u-40'
-2 = 'main'
-5 = 'main'
-8 = 'main'
-3 = 'DELL U2415'
-6 = 'DELL U2415'
-9 = 'DELL U2415'
+1 = "D32u-40"
+4 = "D32u-40"
+7 = "D32u-40"
+2 = "main"
+5 = "main"
+8 = "main"
+3 = "DELL U2415"
+6 = "DELL U2415"
+9 = "DELL U2415"
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide.html#binding-modes
 # 'main' binding mode must be always presented
 [mode.main.binding]
-
 # All possible keys:
 # - Letters.        a, b, c, ..., z
 # - Numbers.        0, 1, 2, ..., 9
@@ -120,15 +119,15 @@ gaps.outer.right = 0
 # show 123 but focus on 2. I find this reduces the cognitive load of
 # remembering which workspace is where.
 
-ctrl-shift-alt-1 = ['workspace 2', 'workspace 3', 'workspace 1']
-ctrl-shift-alt-2 = ['workspace 1', 'workspace 3', 'workspace 2']
-ctrl-shift-alt-3 = ['workspace 1', "workspace 2", 'workspace 3']
-ctrl-shift-alt-4 = ['workspace 5', 'workspace 6', 'workspace 4']
-ctrl-shift-alt-5 = ['workspace 4', 'workspace 6', 'workspace 5']
-ctrl-shift-alt-6 = ['workspace 4', 'workspace 5', 'workspace 6']
-ctrl-shift-alt-7 = ['workspace 8', 'workspace 9', 'workspace 7']
-ctrl-shift-alt-8 = ['workspace 7', 'workspace 9', 'workspace 8']
-ctrl-shift-alt-9 = ['workspace 7', 'workspace 8', 'workspace 9']
+ctrl-shift-alt-1 = ["workspace 2", "workspace 3", "workspace 1"]
+ctrl-shift-alt-2 = ["workspace 1", "workspace 3", "workspace 2"]
+ctrl-shift-alt-3 = ["workspace 1", "workspace 2", "workspace 3"]
+ctrl-shift-alt-4 = ["workspace 5", "workspace 6", "workspace 4"]
+ctrl-shift-alt-5 = ["workspace 4", "workspace 6", "workspace 5"]
+ctrl-shift-alt-6 = ["workspace 4", "workspace 5", "workspace 6"]
+ctrl-shift-alt-7 = ["workspace 8", "workspace 9", "workspace 7"]
+ctrl-shift-alt-8 = ["workspace 7", "workspace 9", "workspace 8"]
+ctrl-shift-alt-9 = ["workspace 7", "workspace 8", "workspace 9"]
 # alt-a = 'workspace A'
 # alt-b = 'workspace B'
 # alt-c = 'workspace C'
@@ -153,19 +152,64 @@ ctrl-shift-alt-9 = ['workspace 7', 'workspace 8', 'workspace 9']
 # alt-z = 'workspace Z'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands.html#move-node-to-workspace
-cmd-ctrl-shift-alt-1 = ['move-node-to-workspace 1', 'workspace 2', 'workspace 3', 'workspace 1']
-cmd-ctrl-shift-alt-2 = ['move-node-to-workspace 2', 'workspace 1', 'workspace 3', 'workspace 2']
-cmd-ctrl-shift-alt-3 = ['move-node-to-workspace 3', 'workspace 1', "workspace 2", 'workspace 3']
-cmd-ctrl-shift-alt-4 = ['move-node-to-workspace 4', 'workspace 5', 'workspace 6', 'workspace 4']
-cmd-ctrl-shift-alt-5 = ['move-node-to-workspace 5', 'workspace 4', 'workspace 6', 'workspace 5']
-cmd-ctrl-shift-alt-6 = ['move-node-to-workspace 6', 'workspace 4', 'workspace 5', 'workspace 6']
-cmd-ctrl-shift-alt-7 = ['move-node-to-workspace 7', 'workspace 8', 'workspace 9', 'workspace 7']
-cmd-ctrl-shift-alt-8 = ['move-node-to-workspace 8', 'workspace 7', 'workspace 9', 'workspace 8']
-cmd-ctrl-shift-alt-9 = ['move-node-to-workspace 9', 'workspace 7', 'workspace 8', 'workspace 9']
-cmd-ctrl-shift-alt-0 = ['move-node-to-workspace 0', 'workspace 0']
+cmd-ctrl-shift-alt-1 = [
+  "move-node-to-workspace 1",
+  "workspace 2",
+  "workspace 3",
+  "workspace 1"
+]
+cmd-ctrl-shift-alt-2 = [
+  "move-node-to-workspace 2",
+  "workspace 1",
+  "workspace 3",
+  "workspace 2"
+]
+cmd-ctrl-shift-alt-3 = [
+  "move-node-to-workspace 3",
+  "workspace 1",
+  "workspace 2",
+  "workspace 3"
+]
+cmd-ctrl-shift-alt-4 = [
+  "move-node-to-workspace 4",
+  "workspace 5",
+  "workspace 6",
+  "workspace 4"
+]
+cmd-ctrl-shift-alt-5 = [
+  "move-node-to-workspace 5",
+  "workspace 4",
+  "workspace 6",
+  "workspace 5"
+]
+cmd-ctrl-shift-alt-6 = [
+  "move-node-to-workspace 6",
+  "workspace 4",
+  "workspace 5",
+  "workspace 6"
+]
+cmd-ctrl-shift-alt-7 = [
+  "move-node-to-workspace 7",
+  "workspace 8",
+  "workspace 9",
+  "workspace 7"
+]
+cmd-ctrl-shift-alt-8 = [
+  "move-node-to-workspace 8",
+  "workspace 7",
+  "workspace 9",
+  "workspace 8"
+]
+cmd-ctrl-shift-alt-9 = [
+  "move-node-to-workspace 9",
+  "workspace 7",
+  "workspace 8",
+  "workspace 9"
+]
+cmd-ctrl-shift-alt-0 = ["move-node-to-workspace 0", "workspace 0"]
 
 # See: https://nikitabobko.github.io/AeroSpace/commands.html#workspace-back-and-forth
-alt-tab = 'workspace-back-and-forth'
+alt-tab = "workspace-back-and-forth"
 # See: https://nikitabobko.github.io/AeroSpace/commands.html#move-workspace-to-monitor
 # alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
@@ -184,7 +228,7 @@ cmd-ctrl-shift-alt-t = "resize smart -150"
 # See: https://nikitabobko.github.io/AeroSpace/guide.html#binding-modes
 # [mode.service.binding]
 # r = ['flatten-workspace-tree', 'mode main'] # reset layout
-#s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
+# s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 # f = [
 # 'layout floating tiling',
 # 'mode main',

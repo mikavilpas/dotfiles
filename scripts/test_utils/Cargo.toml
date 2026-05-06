@@ -1,10 +1,10 @@
 [package]
 name = "test_utils"
-description = "Test utilities to make e2e/integration testing easier"
 version = "0.1.0"
 edition = "2024"
+description = "Test utilities to make e2e/integration testing easier"
 
 [dependencies]
-gix = { workspace = true }
 anyhow = { workspace = true }
+gix = { workspace = true }
 tempfile = "=3.27.0"
