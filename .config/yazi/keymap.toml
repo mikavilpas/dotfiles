@@ -2,58 +2,7 @@
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
-[[mgr.prepend_keymap]]
-on = ["i"]
-run = "plugin easyjump"
-desc = "easyjump"
-
-[[mgr.prepend_keymap]]
-on = ["<Right>"]
-run = "shell lazygit --block --confirm"
-
-# When yazi is opened within neovim, go to neovim's cwd. Otherwise fallback to
-# https://yazi-rs.github.io/docs/tips/#cd-to-git-root
-[[mgr.prepend_keymap]]
-on = ["g", "r"]
-run = '''
-	shell 'ya emit cd "${NVIM_CWD:-$(git rev-parse --show-toplevel 2>/dev/null)}"'
-'''
-
-# copy the relative path to the current file/selected files in the current git repo
-# (remove the last newline)
-[[mgr.prepend_keymap]]
-desc = "Copy git repo relative path(s) to the clipboard"
-on = ["c", "r"]
-run = '''
-  shell 'mika path $@ | perl -pe "chomp if eof" | pbcopy'
-'''
-
-[[mgr.prepend_keymap]]
-desc = "Copy contents to the clipboard"
-on = ["c", "i"] # copy inside
-run = '''
-shell 'cat $@ | pbcopy'
-'''
-
-[[mgr.prepend_keymap]]
-on = ["c", "v"] # convert video
-desc = "Convert video to mp4 using ffmpeg"
-run = '''
-shell --block "ffmpeg -i $1 -c:v libx264 -c:a aac output.mp4"
-'''
-
-[[mgr.prepend_keymap]]
-on = "<tab>"
-run = """shell "ya pub-to 0 nvim-cycle-buffer""""
-
-# keymap.toml
-[[mgr.prepend_keymap]]
-on = ["g", "<right>"]
-run = "plugin vcs-files"
-desc = "Show Git file changes"
-
 [mgr]
-
 keymap = [
   { on = ["<Esc>"], run = "escape", desc = "Exit visual mode, clear selected, or cancel search" },
   { on = ["<C-[>"], run = "escape", desc = "Exit visual mode, clear selected, or cancel search" },
@@ -209,16 +158,89 @@ keymap = [
   { on = ["~"], run = "help", desc = "Open help" },
 ]
 
-[tasks]
+[[mgr.prepend_keymap]]
+on = ["i"]
+run = "plugin easyjump"
+desc = "easyjump"
 
-keymap = [{ on = ["<Esc>"], run = "close", desc = "Hide the task manager" }, { on = ["<C-[>"], run = "close", desc = "Hide the task manager" }, { on = ["<C-q>"], run = "close", desc = "Hide the task manager" }, { on = ["w"], run = "close", desc = "Hide the task manager" }, { on = ["k"], run = "arrow -1", desc = "Move cursor up" }, { on = ["j"], run = "arrow 1", desc = "Move cursor down" }, { on = ["<Up>"], run = "arrow -1", desc = "Move cursor up" }, { on = ["<Down>"], run = "arrow 1", desc = "Move cursor down" }, { on = ["<Enter>"], run = "inspect", desc = "Inspect the task" }, { on = ["x"], run = "cancel", desc = "Cancel the task" }, { on = ["~"], run = "help", desc = "Open help" }]
+[[mgr.prepend_keymap]]
+on = ["<Right>"]
+run = "shell lazygit --block --confirm"
+
+# When yazi is opened within neovim, go to neovim's cwd. Otherwise fallback to
+# https://yazi-rs.github.io/docs/tips/#cd-to-git-root
+[[mgr.prepend_keymap]]
+on = ["g", "r"]
+run = '''
+	shell 'ya emit cd "${NVIM_CWD:-$(git rev-parse --show-toplevel 2>/dev/null)}"'
+'''
+
+# copy the relative path to the current file/selected files in the current git repo
+# (remove the last newline)
+[[mgr.prepend_keymap]]
+desc = "Copy git repo relative path(s) to the clipboard"
+on = ["c", "r"]
+run = '''
+  shell 'mika path $@ | perl -pe "chomp if eof" | pbcopy'
+'''
+
+[[mgr.prepend_keymap]]
+desc = "Copy contents to the clipboard"
+on = ["c", "i"]  # copy inside
+run = '''
+shell 'cat $@ | pbcopy'
+'''
+
+[[mgr.prepend_keymap]]
+on = ["c", "v"]  # convert video
+desc = "Convert video to mp4 using ffmpeg"
+run = '''
+shell --block "ffmpeg -i $1 -c:v libx264 -c:a aac output.mp4"
+'''
+
+[[mgr.prepend_keymap]]
+on = "<tab>"
+run = """shell "ya pub-to 0 nvim-cycle-buffer""""
+
+# keymap.toml
+[[mgr.prepend_keymap]]
+on = ["g", "<right>"]
+run = "plugin vcs-files"
+desc = "Show Git file changes"
+
+[tasks]
+keymap = [
+  { on = ["<Esc>"], run = "close", desc = "Hide the task manager" },
+  { on = ["<C-[>"], run = "close", desc = "Hide the task manager" },
+  { on = ["<C-q>"], run = "close", desc = "Hide the task manager" },
+  { on = ["w"], run = "close", desc = "Hide the task manager" },
+  { on = ["k"], run = "arrow -1", desc = "Move cursor up" },
+  { on = ["j"], run = "arrow 1", desc = "Move cursor down" },
+  { on = ["<Up>"], run = "arrow -1", desc = "Move cursor up" },
+  { on = ["<Down>"], run = "arrow 1", desc = "Move cursor down" },
+  { on = ["<Enter>"], run = "inspect", desc = "Inspect the task" },
+  { on = ["x"], run = "cancel", desc = "Cancel the task" },
+  { on = ["~"], run = "help", desc = "Open help" }
+]
 
 [pick]
-
-keymap = [{ on = ["<Esc>"], run = "close", desc = "Cancel selection" }, { on = ["<C-[>"], run = "close", desc = "Cancel selection" }, { on = ["<C-q>"], run = "close", desc = "Cancel selection" }, { on = ["<Enter>"], run = "close --submit", desc = "Submit the selection" }, { on = ["k"], run = "arrow -1", desc = "Move cursor up" }, { on = ["j"], run = "arrow 1", desc = "Move cursor down" }, { on = ["K"], run = "arrow -5", desc = "Move cursor up 5 lines" }, { on = ["J"], run = "arrow 5", desc = "Move cursor down 5 lines" }, { on = ["<Up>"], run = "arrow -1", desc = "Move cursor up" }, { on = ["<Down>"], run = "arrow 1", desc = "Move cursor down" }, { on = ["<S-Up>"], run = "arrow -5", desc = "Move cursor up 5 lines" }, { on = ["<S-Down>"], run = "arrow 5", desc = "Move cursor down 5 lines" }, { on = ["~"], run = "help", desc = "Open help" }]
+keymap = [
+  { on = ["<Esc>"], run = "close", desc = "Cancel selection" },
+  { on = ["<C-[>"], run = "close", desc = "Cancel selection" },
+  { on = ["<C-q>"], run = "close", desc = "Cancel selection" },
+  { on = ["<Enter>"], run = "close --submit", desc = "Submit the selection" },
+  { on = ["k"], run = "arrow -1", desc = "Move cursor up" },
+  { on = ["j"], run = "arrow 1", desc = "Move cursor down" },
+  { on = ["K"], run = "arrow -5", desc = "Move cursor up 5 lines" },
+  { on = ["J"], run = "arrow 5", desc = "Move cursor down 5 lines" },
+  { on = ["<Up>"], run = "arrow -1", desc = "Move cursor up" },
+  { on = ["<Down>"], run = "arrow 1", desc = "Move cursor down" },
+  { on = ["<S-Up>"], run = "arrow -5", desc = "Move cursor up 5 lines" },
+  { on = ["<S-Down>"], run = "arrow 5", desc = "Move cursor down 5 lines" },
+  { on = ["~"], run = "help", desc = "Open help" }
+]
 
 [input]
-
 keymap = [
   { on = ["<C-q>"], run = "close", desc = "Cancel input" },
   { on = ["<Enter>"], run = "close --submit", desc = "Submit the input" },
@@ -287,9 +309,8 @@ keymap = [
 ]
 
 [cmp]
-
 keymap = [
-  # 
+  #
   { on = ["<C-q>"], run = "close", desc = "Cancel completion" },
   { on = ["<Tab>"], run = "close --submit", desc = "Submit the completion" },
   { on = ["<Enter>"], run = ["close --submit", "close_input --submit"], desc = "Submit the completion and input" },
@@ -303,7 +324,6 @@ keymap = [
 ]
 
 [help]
-
 keymap = [
   { on = ["<Esc>"], run = "escape", desc = "Clear the filter, or hide the help" },
   { on = ["<C-[>"], run = "escape", desc = "Clear the filter, or hide the help" },

@@ -44,39 +44,39 @@ truncation_symbol = "…/"
 [git_branch]
 symbol = ""
 style = "fg:crust bg:peach"
-format = '[[ $symbol $branch ](fg:crust bg:peach)]($style)'
+format = "[[ $symbol $branch ](fg:crust bg:peach)]($style)"
 
 [git_status]
 style = "fg:crust bg:peach"
-format = '[[($all_status$ahead_behind )](fg:crust bg:peach)]($style)'
+format = "[[($all_status$ahead_behind )](fg:crust bg:peach)]($style)"
 
 [nodejs]
 symbol = "󰎙"
 style = "fg:crust bg:mauve"
-format = '[[ $symbol ($version) ](fg:crust bg:mauve)]($style)'
+format = "[[ $symbol ($version) ](fg:crust bg:mauve)]($style)"
 
 [rust]
 symbol = ""
 style = "fg:crust bg:mauve"
-format = '[[ $symbol ($version) ](fg:crust bg:mauve)]($style)'
+format = "[[ $symbol ($version) ](fg:crust bg:mauve)]($style)"
 
 [time]
 disabled = false
-time_format = "%R"                                 # Hour:Minute Format
+time_format = "%R"  # Hour:Minute Format
 style = "fg:crust bg:blue"
-format = '[[ 󱑎 $time ](fg:crust bg:blue)]($style)'
+format = "[[ 󱑎 $time ](fg:crust bg:blue)]($style)"
 
 [cmd_duration]
 min_time = 500
 # format = 'underwent [$duration](bold yellow)'
 style = "fg:crust bg:blue"
-format = '[[  $duration ](fg:crust bg:blue)]($style)'
+format = "[[  $duration ](fg:crust bg:blue)]($style)"
 
 [status]
-style = 'fg:crust bg:green'
-symbol = '🔴'
-success_symbol = ''
-format = '[ $symbol$signal_name$int]($style)'
+style = "fg:crust bg:green"
+symbol = "🔴"
+success_symbol = ""
+format = "[ $symbol$signal_name$int]($style)"
 map_symbol = true
 disabled = false
 
@@ -85,12 +85,11 @@ format = "$symbol "
 success_symbol = "\\$"
 
 [aws]
-format = '[$symbol$profile ]($style)'
-style = 'fg:crust bg:green'
-symbol = ' 󰸏 '
+format = "[$symbol$profile ]($style)"
+style = "fg:crust bg:green"
+symbol = " 󰸏 "
 # [aws.profile_aliases]
 # Enterprise_Naming_Scheme-voidstars = 'void**'
-
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
