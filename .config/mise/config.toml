@@ -33,7 +33,7 @@ settings.experimental = true
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:ast-grep/ast-grep" = "0.42.1"
 "github:atuinsh/atuin" = { version = "18.16.0", matching_regex = ".tar.gz$" }
-"github:cargo-bins/cargo-binstall" = "1.19.0"
+"github:cargo-bins/cargo-binstall" = "1.19.1"
 "github:chmln/sd" = "1.1.0"
 "github:dandavison/delta" = "0.19.2"
 "github:endevco/aube" = "v1.9.0"
@@ -45,7 +45,7 @@ settings.experimental = true
 "github:lycheeverse/lychee" = "lychee-v0.23.0"
 "github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
-"github:rtk-ai/rtk" = "v0.38.0"
+"github:rtk-ai/rtk" = "v0.39.0"
 "github:rvben/rumdl" = "0.1.89"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
