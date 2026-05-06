@@ -81,7 +81,7 @@ mika init fish --output-dir ~/.config/fish/mika/
 """
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.93.0"
+version = "1.94.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
