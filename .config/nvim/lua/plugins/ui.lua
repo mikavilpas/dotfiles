@@ -35,6 +35,7 @@ return {
     opts = {
       static = { enabled = false },
       scope = {
+        indent_at_cursor = true,
         char = "▏",
         highlights = { "MyIndentScope" },
       },
