@@ -61,7 +61,7 @@ settings.experimental = true
 "npm:@typescript/native-preview" = "7.0.0-dev.20260507.1"
 "npm:oxlint" = "1.63.0"
 "npm:oxlint-tsgolint" = "0.22.1"
-"npm:yaml-language-server" = "1.22.0"
+"npm:yaml-language-server" = "1.23.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.0.28"
 actionlint = "1.7.12"
 aws-cli = { version = "2.34.45", symlink_bins = "true" }
