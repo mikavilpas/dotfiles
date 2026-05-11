@@ -1,6 +1,5 @@
-# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
+#:schema https://yazi-rs.github.io/schemas/theme.json
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
 
 [flavor]
 dark = "catppuccin-macchiato"
@@ -8,5 +7,7 @@ light = "catppuccin-macchiato"
 
 [mgr]
 cwd = { fg = "#8bd5ca" }
-hovered = { fg = "#24273a", bg = "#8aadf4" }
-preview_hovered = { underline = true }
+
+[indicator]
+current = { fg = "#24273a", bg = "#8aadf4" }
+preview = { underline = true }
