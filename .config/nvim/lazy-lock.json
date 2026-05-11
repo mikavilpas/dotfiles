@@ -14,9 +14,9 @@
   "catppuccin-delta": { "branch": "main", "commit": "74b47a345638a2f19b3e5bdb9d7e4984066f9ac7" },
   "catppuccin-glamour": { "branch": "main", "commit": "00c97fa3823d272d9d041d5d872ae6335555a776" },
   "conform.nvim": { "branch": "master", "commit": "dca1a190aa85f9065979ef35802fb77131911106" },
-  "copilot.lua": { "branch": "master", "commit": "b57ee71bc6671aae055ef1911b3f72771219bb2d" },
+  "copilot.lua": { "branch": "master", "commit": "18a58c62b20b7c724da808ef6d8fb002673b903f" },
   "crates.nvim": { "branch": "main", "commit": "694357861ec9ebf12475ddcdd04ea45a0923c32d" },
-  "debugprint.nvim": { "branch": "main", "commit": "63fa7f8ea879865791fa21bc0d0032e882ab5586" },
+  "debugprint.nvim": { "branch": "main", "commit": "78db7b1a12365865742e199804d322d6170dc2e3" },
   "easyjump.yazi": { "branch": "main", "commit": "3247c86fed93a3ba774f2bbf060fb6dbb52c4678" },
   "faster.nvim": { "branch": "main", "commit": "2e7a50f659711854b9a7fdc76d943b59b30d7852" },
   "flash.nvim": { "branch": "main", "commit": "b68bda044d68e4026c4e1ec6df3c5afd7eb8e341" },
@@ -92,6 +92,6 @@
   "wezterm-types": { "branch": "main", "commit": "3d66a8377f27af81d247c1961bc617c02fe80ebb" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
   "yazi-flavor-catppuccin-macchiato": { "branch": "main", "commit": "06708015bfb53b169d99bb3907829f9175105d57" },
-  "yazi-rs-plugins": { "branch": "main", "commit": "4ffa48f33465c22cce48c5d506295a3eb27c1979" },
+  "yazi-rs-plugins": { "branch": "main", "commit": "1db18bb5a1c962f95873654a7af1202abb98da60" },
   "yazi.nvim": { "branch": "main", "commit": "172bd64a4c2d3adbe2e0ef56289f47ffe139ca55" }
 }
