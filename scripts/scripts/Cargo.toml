@@ -19,7 +19,7 @@ serde = { workspace = true }
 serde_json = { workspace = true }
 
 [dev-dependencies]
-assert_cmd = "=2.2.1"
+assert_cmd = "=2.2.2"
 insta = "=1.47.2"
 pretty_assertions = "=1.4.1"
 tempfile = "=3.27.0"
