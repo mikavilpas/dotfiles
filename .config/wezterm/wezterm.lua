@@ -95,6 +95,26 @@ config.keys = {
     action = wezterm.action.ActivateCommandPalette,
   },
   {
+    -- Open a new window and run `x` (fish function that exits on success)
+    -- in the previous pane, so one-off terminals close themselves once
+    -- their work is done.
+    key = "n",
+    mods = "SUPER|SHIFT",
+    action = wezterm.action_callback(function(window, pane)
+      window:perform_action(act.SpawnWindow, pane)
+      pane:send_text("x\r")
+    end),
+  },
+  {
+    -- Same as SUPER|SHIFT n, but spawns a new tab instead of a window.
+    key = "t",
+    mods = "SUPER|SHIFT",
+    action = wezterm.action_callback(function(window, pane)
+      window:perform_action(act.SpawnTab("CurrentPaneDomain"), pane)
+      pane:send_text("x\r")
+    end),
+  },
+  {
     -- Open URL with <leader>o
     key = "o",
     mods = "LEADER",
