@@ -45,7 +45,7 @@ settings.experimental = true
 "github:lycheeverse/lychee" = "lychee-v0.23.0"
 "github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.1"
-"github:rtk-ai/rtk" = "v0.39.0"
+"github:rtk-ai/rtk" = "v0.40.0"
 "github:rvben/rumdl" = "0.1.91"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
@@ -64,7 +64,7 @@ settings.experimental = true
 "npm:yaml-language-server" = "1.23.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.1.1"
 actionlint = "1.7.12"
-aws-cli = { version = "2.34.45", symlink_bins = "true" }
+aws-cli = { version = "2.34.46", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.46.1"
