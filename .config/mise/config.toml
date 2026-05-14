@@ -36,11 +36,11 @@ settings.experimental = true
 "github:cargo-bins/cargo-binstall" = "1.19.1"
 "github:chmln/sd" = "1.1.0"
 "github:dandavison/delta" = "0.19.2"
-"github:endevco/aube" = "v1.13.0"
+"github:endevco/aube" = "v1.13.1"
 "github:hadolint/hadolint" = "2.14.0"
 "github:jesseduffield/lazydocker" = "0.25.2"
 "github:junegunn/fzf" = "0.72.0"
-"github:k1LoW/git-wt" = "0.27.0"
+"github:k1LoW/git-wt" = "0.28.0"
 "github:koalaman/shellcheck" = "0.11.0"
 "github:lycheeverse/lychee" = "lychee-v0.23.0"
 "github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
