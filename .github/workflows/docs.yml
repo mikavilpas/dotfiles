@@ -2,6 +2,8 @@ name: Documentation
 on:
   pull_request:
   workflow_call:
+permissions:
+  contents: read
 
 jobs:
   check-links:
@@ -9,6 +11,8 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
       - name: Link Checker
         id: lychee
         uses: lycheeverse/lychee-action@8646ba30535128ac92d33dfc9133794bfdd9b411 # v2.8.0
