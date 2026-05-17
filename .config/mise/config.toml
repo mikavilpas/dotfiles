@@ -27,7 +27,7 @@ settings.experimental = true
 "aqua:ouch-org/ouch" = "0.7.1"
 "github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
 "github:JohnnyMorganz/stylua" = "2.5.2"
-"github:aaronriekenberg/rust-parallel" = "1.22.0"
+"github:aaronriekenberg/rust-parallel" = "1.23.0"
 "github:afshinm/zerobox" = "0.2.6"
 "github:ajeetdsouza/zoxide" = "0.9.9"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
