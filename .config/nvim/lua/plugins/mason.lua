@@ -10,6 +10,11 @@ return {
         filetypes = { "yaml", "yaml.ghaction" },
       })
       vim.lsp.enable("gh_actions_ls")
+
+      vim.lsp.config("zizmor", {
+        filetypes = { "yaml", "yaml.ghaction" },
+      })
+      vim.lsp.enable("zizmor")
     end,
   },
   {
