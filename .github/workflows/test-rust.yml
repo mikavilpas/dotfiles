@@ -43,7 +43,7 @@ jobs:
         run: cargo build --workspace --verbose
         working-directory: scripts
 
-      - uses: taiki-e/install-action@213ccc1a076163c093f914550b94feb90fab916d # v2
+      - uses: taiki-e/install-action@305bebabd4457bed9b82541755f034994382465b # v2
         # https://nexte.st/docs/installation/pre-built-binaries/
         name: Install cargo-nextest
         with:
