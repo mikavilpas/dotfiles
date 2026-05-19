@@ -109,3 +109,28 @@ postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- xh --generate complete-fish > ~/.config/fish/completions/xh.fish
 """
+
+# weave
+#
+# currently mise supports only one exe per tool, but weave has two. Use the ubi
+# and github backends to install the same version of weave twice, once for each
+# exe.
+[tools."github:Ataraxy-Labs/weave"]
+version = "0.3.3"
+# After (re)installing weave-cli, refresh ~/dotfiles/.gitattributes so it
+# matches the binary's current language coverage. That file is pointed at by
+# `core.attributesFile` in ~/dotfiles/.gitconfig and acts as the user-global
+# default for all repos. The guard handles fresh installs where weave-driver
+# may install after this entry.
+postinstall = """
+if command -v weave-driver >/dev/null 2>&1; then
+  ( cd ~/dotfiles && weave setup )
+else
+  echo "weave-cli postinstall: weave-driver not yet on PATH, skipping setup"
+fi
+"""
+
+[tools."ubi:Ataraxy-Labs/weave"]
+version = "0.3.3"
+exe = "weave-driver"
+matching_regex = "weave-driver"

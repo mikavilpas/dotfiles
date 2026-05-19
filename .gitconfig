@@ -20,6 +20,11 @@
   #   so the benefit is questionable
   hooksPath = /dev/null
 
+  # user-global gitattributes: pointed at the file weave maintains in this
+  # dotfiles repo. Per-repo `.gitattributes` files still override per-attribute,
+  # so individual projects can make additions or override as needed.
+  attributesFile = ~/dotfiles/.gitattributes
+
 [diff]
   colorMoved = default
 
@@ -79,3 +84,13 @@
 	prune = true
 [wt]
 	basedir = ~/git/worktrees/{gitroot}
+
+# weave — entity-level semantic merge driver. Patterns that route files
+# through this driver live in ~/dotfiles/.gitattributes (maintained by
+# `weave setup`; see the postinstall hook in ~/dotfiles/.config/mise/config.toml).
+# `weave setup` also writes this same block to each repo's .git/config; this
+# global copy means any repo finds the driver even without per-repo setup.
+# https://github.com/Ataraxy-Labs/weave
+[merge "weave"]
+	name = Entity-level semantic merge
+	driver = weave-driver %O %A %B %L %P
