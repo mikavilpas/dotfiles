@@ -50,7 +50,8 @@ customCommands:
     description: "Summarize selected commits for a PR"
     command:
       "mika summary --from={{.SelectedCommitRange.To}}
-      --to={{.SelectedCommitRange.From}}^ | pbcopy"
+      --to={{.SelectedCommitRange.From}}^ | prettier --no-config --parser
+      markdown --prose-wrap never | pbcopy"
   - key: X
     description: Custom commands
     commandMenu:
