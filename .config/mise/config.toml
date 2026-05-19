@@ -31,7 +31,7 @@ settings.experimental = true
 "github:afshinm/zerobox" = "0.3.3"
 "github:ajeetdsouza/zoxide" = "0.9.9"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
-"github:ast-grep/ast-grep" = "0.42.2"
+"github:ast-grep/ast-grep" = "0.42.3"
 "github:atuinsh/atuin" = { version = "18.16.1", matching_regex = ".tar.gz$" }
 "github:cargo-bins/cargo-binstall" = "1.19.1"
 "github:chmln/sd" = "1.1.0"
@@ -54,7 +54,7 @@ settings.experimental = true
 "github:starship/starship" = "1.25.1"
 "github:tekumara/typos-lsp" = "0.1.52"
 "github:tombi-toml/tombi" = "v0.11.5"
-"github:tree-sitter/tree-sitter" = "0.26.8"
+"github:tree-sitter/tree-sitter" = "0.26.9"
 "github:watchexec/watchexec" = "2.5.1"
 "npm:@fission-ai/openspec" = "1.3.1"
 "npm:@fsouza/prettierd" = "0.27.0"
