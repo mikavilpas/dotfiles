@@ -21,7 +21,7 @@ settings.experimental = true
 "aqua:ClementTsang/bottom" = "0.12.3"
 "aqua:MordechaiHadad/bob" = "4.1.7"
 "aqua:Schniz/fnm" = "1.39.0"
-"aqua:anthropics/claude-code" = "2.1.145"
+"aqua:anthropics/claude-code" = "2.1.146"
 "aqua:fish-shell/fish-shell" = "4.7.1"
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.7.1"
@@ -62,7 +62,7 @@ settings.experimental = true
 "npm:oxlint" = "1.65.0"
 "npm:oxlint-tsgolint" = "0.22.1"
 "npm:yaml-language-server" = "1.23.0"
-"pipx:awslabs.cloudwatch-mcp-server" = "0.1.2"
+"pipx:awslabs.cloudwatch-mcp-server" = "0.1.4"
 actionlint = "1.7.12"
 aws-cli = { version = "2.34.51", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
@@ -81,7 +81,7 @@ mika init fish --output-dir ~/.config/fish/mika/
 """
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.98.1"
+version = "1.99.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
