@@ -7,7 +7,7 @@ settings.experimental = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.5.13"
+"aqua:jdx/mise" = "2026.5.14"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.22.0"
@@ -64,7 +64,7 @@ settings.experimental = true
 "npm:yaml-language-server" = "1.23.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.1.4"
 actionlint = "1.7.12"
-aws-cli = { version = "2.34.52", symlink_bins = "true" }
+aws-cli = { version = "2.34.53", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.46.2"
@@ -116,7 +116,7 @@ mise exec -- xh --generate complete-fish > ~/.config/fish/completions/xh.fish
 # and github backends to install the same version of weave twice, once for each
 # exe.
 [tools."github:Ataraxy-Labs/weave"]
-version = "0.3.3"
+version = "0.3.4"
 # After (re)installing weave-cli, refresh ~/dotfiles/.gitattributes so it
 # matches the binary's current language coverage. That file is pointed at by
 # `core.attributesFile` in ~/dotfiles/.gitconfig and acts as the user-global
@@ -131,6 +131,6 @@ fi
 """
 
 [tools."ubi:Ataraxy-Labs/weave"]
-version = "0.3.3"
+version = "0.3.4"
 exe = "weave-driver"
 matching_regex = "weave-driver"
