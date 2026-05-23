@@ -1,5 +1,6 @@
 settings.cargo.binstall = true
 settings.experimental = true
+settings.github.credential_command = "gh auth token --hostname github.com"
 
 # Pick tools that renovate can manage updates for. See:
 # https://docs.renovatebot.com/modules/manager/mise/
