@@ -46,7 +46,7 @@ settings.github.credential_command = "gh auth token --hostname github.com"
 "github:lycheeverse/lychee" = "lychee-v0.23.0"
 "github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.2"
-"github:rtk-ai/rtk" = "v0.41.0"
+"github:rtk-ai/rtk" = "v0.42.0"
 "github:rvben/rumdl" = "0.2.0"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
