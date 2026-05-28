@@ -8,7 +8,7 @@ settings.github.credential_command = "gh auth token --hostname github.com"
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.5.15"
+"aqua:jdx/mise" = "2026.5.16"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.22.0"
@@ -22,7 +22,7 @@ settings.github.credential_command = "gh auth token --hostname github.com"
 "aqua:ClementTsang/bottom" = "0.12.3"
 "aqua:MordechaiHadad/bob" = "4.1.7"
 "aqua:Schniz/fnm" = "1.39.0"
-"aqua:anthropics/claude-code" = "2.1.153"
+"aqua:anthropics/claude-code" = "2.1.154"
 "aqua:fish-shell/fish-shell" = "4.7.1"
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.8.0"
@@ -54,7 +54,7 @@ settings.github.credential_command = "gh auth token --hostname github.com"
 "github:sharkdp/vivid" = "0.11.1"
 "github:starship/starship" = "1.25.1"
 "github:tekumara/typos-lsp" = "0.1.52"
-"github:tombi-toml/tombi" = "v1.1.0"
+"github:tombi-toml/tombi" = "v1.1.1"
 "github:tree-sitter/tree-sitter" = "0.26.9"
 "github:watchexec/watchexec" = "2.5.1"
 "npm:@fission-ai/openspec" = "1.3.1"
@@ -65,11 +65,11 @@ settings.github.credential_command = "gh auth token --hostname github.com"
 "npm:yaml-language-server" = "1.23.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.1.4"
 actionlint = "1.7.12"
-aws-cli = { version = "2.34.55", symlink_bins = "true" }
+aws-cli = { version = "2.34.56", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.46.3"
-uv = "0.11.16"
+uv = "0.11.17"
 zizmor = "1.25.2"
 
 [tools."github:mikavilpas/dotfiles"]
