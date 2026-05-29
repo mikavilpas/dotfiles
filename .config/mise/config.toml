@@ -16,8 +16,6 @@ settings.github.credential_command = "gh auth token --hostname github.com"
 "cargo:cargo-nextest" = "0.9.117"
 # renovate: datasource=crate depName=eza
 "cargo:eza" = "0.23.3"
-# renovate: datasource=crate depName=sccache
-"cargo:sccache" = "0.15.0"
 
 "aqua:ClementTsang/bottom" = "0.12.3"
 "aqua:MordechaiHadad/bob" = "4.1.7"
@@ -44,6 +42,7 @@ settings.github.credential_command = "gh auth token --hostname github.com"
 "github:k1LoW/git-wt" = "0.28.0"
 "github:koalaman/shellcheck" = "0.11.0"
 "github:lycheeverse/lychee" = "lychee-v0.23.0"
+"github:mozilla/sccache" = "0.15.0"
 "github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.2"
 "github:rtk-ai/rtk" = "v0.42.0"
