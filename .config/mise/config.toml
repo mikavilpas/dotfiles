@@ -117,7 +117,7 @@ mise exec -- xh --generate complete-fish > ~/.config/fish/completions/xh.fish
 # and github backends to install the same version of weave twice, once for each
 # exe.
 [tools."github:Ataraxy-Labs/weave"]
-version = "0.3.4"
+version = "0.3.5"
 # After (re)installing weave-cli, refresh ~/dotfiles/.gitattributes so it
 # matches the binary's current language coverage. That file is pointed at by
 # `core.attributesFile` in ~/dotfiles/.gitconfig and acts as the user-global
@@ -132,6 +132,6 @@ fi
 """
 
 [tools."ubi:Ataraxy-Labs/weave"]
-version = "0.3.4"
+version = "0.3.5"
 exe = "weave-driver"
 matching_regex = "weave-driver"
