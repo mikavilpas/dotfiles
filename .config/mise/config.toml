@@ -65,11 +65,11 @@ settings.github.credential_command = "gh auth token --hostname github.com"
 "npm:yaml-language-server" = "1.23.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.1.4"
 actionlint = "1.7.12"
-aws-cli = { version = "2.34.57", symlink_bins = "true" }
+aws-cli = { version = "2.34.58", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.47.0"
-uv = "0.11.17"
+uv = "0.11.18"
 zizmor = "1.25.2"
 
 [tools."github:mikavilpas/dotfiles"]
@@ -82,7 +82,7 @@ mika init fish --output-dir ~/.config/fish/mika/
 """
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.100.0"
+version = "1.101.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
