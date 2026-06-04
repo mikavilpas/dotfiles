@@ -67,7 +67,7 @@ actionlint = "1.7.12"
 aws-cli = { version = "2.34.61", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
-typos = "1.47.1"
+typos = "1.47.2"
 uv = "0.11.19"
 zizmor = "1.25.2"
 
