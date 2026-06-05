@@ -87,7 +87,15 @@ customCommands:
 
       BRANCH="{{.SelectedLocalBranch.Name}}"
       SUMMARY="$(mika branch-summary --branch "$BRANCH")"
-      REMOTE_URL="$(git remote get-url origin)"
+
+      # Resolve the forge from the branch's upstream remote rather than always
+      # using "origin". Some projects work with multiple git forges, so the
+      # branch may track a remote other than origin.
+      REMOTE_NAME="$(git config "branch.$BRANCH.remote" || true)"
+      if [[ -z "$REMOTE_NAME" ]]; then
+        REMOTE_NAME="origin"
+      fi
+      REMOTE_URL="$(git remote get-url "$REMOTE_NAME")"
 
       if [[ "$REMOTE_URL" == *"github"* || "$REMOTE_URL" == *"ghe.com"* ]]; then
         STACK_SUMMARY=$(gh pr list --json number,title,headRefName,baseRefName,state,url | mika pr-stack-summary - --branch "$BRANCH")
