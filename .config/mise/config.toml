@@ -1,4 +1,5 @@
 settings.cargo.binstall = true
+settings.cargo.binstall_only = true
 settings.experimental = true
 settings.github.credential_command = "gh auth token --hostname github.com"
 
