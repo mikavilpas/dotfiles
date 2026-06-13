@@ -1,7 +1,6 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.lang.docker",
-    "lazyvim.plugins.extras.lang.dotnet"
+    "lazyvim.plugins.extras.lang.docker"
   ],
   "install_version": 7,
   "news": {
