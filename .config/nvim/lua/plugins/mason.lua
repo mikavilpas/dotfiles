@@ -39,8 +39,9 @@ return {
     -- },
     opts = function(_, opts)
       -- remove tools from the ensure_installed list as I manage them with mise
+      local mise_managed = { hadolint = true, shfmt = true, stylua = true }
       opts.ensure_installed = vim.tbl_filter(function(tool)
-        return tool ~= "hadolint" and tool ~= "shfmt"
+        return not mise_managed[tool]
       end, opts.ensure_installed)
 
       return opts

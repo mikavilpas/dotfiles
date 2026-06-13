@@ -6,12 +6,8 @@
 ---@module "lazy"
 ---@type LazySpec
 return {
-  {
-    "mason-org/mason.nvim",
-    opts = function(_, opts)
-      table.insert(opts.ensure_installed, "prettierd")
-    end,
-  },
+  -- prettierd is installed and updated via mise, so it is not added to mason's
+  -- ensure_installed. conform finds it on PATH.
   {
     "stevearc/conform.nvim",
     ---@type conform.FormatOpts
