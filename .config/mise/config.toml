@@ -9,7 +9,7 @@ settings.github.credential_command = "gh auth token --hostname github.com"
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.6.3"
+"aqua:jdx/mise" = "2026.6.5"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.22.0"
@@ -21,7 +21,7 @@ settings.github.credential_command = "gh auth token --hostname github.com"
 "aqua:ClementTsang/bottom" = "0.12.3"
 "aqua:MordechaiHadad/bob" = "4.1.7"
 "aqua:Schniz/fnm" = "1.39.0"
-"aqua:anthropics/claude-code" = "2.1.175"
+"aqua:anthropics/claude-code" = "2.1.177"
 "aqua:fish-shell/fish-shell" = "4.7.1"
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.8.0"
@@ -46,8 +46,8 @@ settings.github.credential_command = "gh auth token --hostname github.com"
 "github:mozilla/sccache" = "0.15.0"
 "github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
 "github:pranshuparmar/witr" = "0.3.2"
-"github:rtk-ai/rtk" = "v0.42.3"
-"github:rvben/rumdl" = "0.2.14"
+"github:rtk-ai/rtk" = "v0.42.4"
+"github:rvben/rumdl" = "0.2.15"
 "github:sharkdp/bat" = "0.26.1"
 "github:sharkdp/fd" = "10.4.2"
 "github:sharkdp/hyperfine" = "1.20.0"
@@ -65,7 +65,7 @@ settings.github.credential_command = "gh auth token --hostname github.com"
 "npm:yaml-language-server" = "1.23.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.1.4"
 actionlint = "1.7.12"
-aws-cli = { version = "2.35.3", symlink_bins = "true" }
+aws-cli = { version = "2.35.4", symlink_bins = "true" }
 dotenv-linter = "4.0.0"
 jq = "1.8.1"
 typos = "1.47.2"
