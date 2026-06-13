@@ -53,6 +53,7 @@ jq = "1.8.1"
 lazydocker = "0.25.2"
 lychee = "0.24.2"
 oxlint = "1.69.0"
+prettier = "3.8.4"
 ripgrep = { version = "15.1.0", exe = "rg" }
 rtk = "v0.42.4"
 rumdl = "0.2.16"
