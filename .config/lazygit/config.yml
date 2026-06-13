@@ -19,11 +19,12 @@ customCommands:
   - key: "E"
     description: "Add empty commit"
     context: files
-    command: 'git commit --allow-empty -m "empty commit"'
+    command: 'git commit --allow-empty -m "{{.Form.CommitMessage}}"'
     loadingText: "Committing empty commit..."
     prompts:
       - type: input
         title: Empty commit message
+        key: CommitMessage
         initialValue: "(empty commit)"
   - key: "b"
     context: localBranches
