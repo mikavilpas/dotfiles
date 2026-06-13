@@ -34,19 +34,6 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install GNU stow and setup the dotfiles
-        run: |
-          sudo apt-get install stow tree
-          pwd
-          ls -la
-          echo "Installing dotfiles to HOME $HOME"
-          stow --verbose 2 . --target="$HOME"
-          echo "Installed dotfiles to HOME $HOME"
-          echo "List files in HOME"
-          ls -la ~/
-          echo "List files in ~/.config"
-          ls -la ~/.config/
-
       - name: Setup the mold linker
         uses: rui314/setup-mold@9c9c13bf4c3f1adef0cc596abc155580bcb04444 # v1
 
@@ -80,6 +67,11 @@ jobs:
             aqua:fish-shell/fish-shell
             github:dandavison/delta
             lazygit@${{ env.LAZYGIT_VERSION }}
+
+      - name: Symlink the dotfiles with mise
+        run: mise dotfiles apply --verbose --yes
+        env:
+          MISE_DOTFILES_ROOT: ${{ github.workspace }}
 
       - name: Build
         run: cargo install --locked --path scripts/

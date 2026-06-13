@@ -2,6 +2,43 @@ settings.cargo.binstall = true
 settings.cargo.binstall_only = true
 settings.experimental = true
 
+settings.dotfiles.root = "~/dotfiles"
+settings.dotfiles.default_mode = "symlink"
+
+[dotfiles]
+# ~/.npmrc is intentionally NOT managed here: the real ~/.npmrc holds secret
+# authTokens that must never be committed, and the repo .npmrc only sets the
+# default registry (which npm uses anyway). Leave the home file untouched.
+
+# List everything explicitly. This is annoying but clear, and avoids bad
+# surprises completely.
+#
+# Manage with:
+# $ mise dotfiles apply --dry-run
+
+"~/.config/aerospace" = {}
+"~/.config/atuin" = {}
+"~/.config/bat" = {}
+"~/.config/delta" = {}
+"~/.config/fd" = {}
+"~/.config/fish" = {}
+"~/.config/glow" = {}
+"~/.config/husky" = {}
+"~/.config/lazygit" = {}
+"~/.config/mise" = {}
+"~/.config/nvim" = {}
+"~/.config/presenterm" = {}
+"~/.config/starship.toml" = {}
+"~/.config/wezterm" = {}
+"~/.config/yazi" = {}
+"~/.fdignore" = {}
+"~/.gitattributes" = {}
+"~/.gitconfig" = {}
+"~/.rgignore" = {}
+"~/.typos.toml" = {}
+"~/.zshrc" = {}
+"~/Library/Application Support/org.dystroy.bacon" = {}
+
 # Pick tools that renovate can manage updates for. See:
 # https://docs.renovatebot.com/modules/manager/mise/
 [tools]

@@ -38,20 +38,18 @@ Here are the basics:
 
 ### Dotfile management
 
-I manage my dotfiles with GNU Stow. It creates symlinks from the repository to
-the home directory. See
-[how-i-manage-my-dotfiles-using-gnu-stow](https://dev.to/spacerockmedia/how-i-manage-my-dotfiles-using-gnu-stow-4l59)
-for an introduction by Shawn McElroy.
+I manage my dotfiles with [mise](https://mise.jdx.dev/). It creates symlinks
+from the repository to the home directory.
 
 This way I can keep the configuration under version control and still have it in
 the home directory.
 
 ```sh
 # Sync the dotfiles (practice run)
-stow --verbose 2 . --simulate
+mise dotfiles apply --dry-run
 
 # Really sync the dotfiles
-stow --verbose 2 .
+mise dotfiles apply
 ```
 
 ### Dependency management
