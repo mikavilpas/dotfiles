@@ -25,12 +25,7 @@ fish_add_path ~/.cargo/bin
 # early so `mise activate fish` below can find it
 fish_add_path ~/.local/share/mise/installs/aqua-jdx-mise/latest/mise/bin
 
-# ~/.config/mise/config.toml is a symlink into this dotfiles repo. mise
-# canonicalizes the path to ~/dotfiles/..., which no longer matches the
-# global-config path it expects, so it treats the file as a non-global config
-# and ignores security-sensitive settings like github.credential_command. Point
-# mise at the resolved path so it's recognized as global.
-set -gx MISE_GLOBAL_CONFIG_FILE "$HOME/dotfiles/.config/mise/config.toml"
+set --global --export MISE_GITHUB_CREDENTIAL_COMMAND "gh auth token --hostname github.com"
 fish_add_path $HOME/.local/share/nvim/mason/bin
 
 # activate the lazy loadable completions for the mika tool
