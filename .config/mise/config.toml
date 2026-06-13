@@ -22,7 +22,6 @@ settings.dotfiles.default_mode = "symlink"
 "~/.config/delta" = {}
 "~/.config/fd" = {}
 "~/.config/fish" = {}
-"~/.config/glow" = {}
 "~/.config/husky" = {}
 "~/.config/lazygit" = {}
 "~/.config/mise" = {}
