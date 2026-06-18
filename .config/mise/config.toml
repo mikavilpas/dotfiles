@@ -73,12 +73,12 @@ actionlint = "1.7.12"
 ast-grep = "0.43.0"
 atuin = "18.16.1"
 aube = "v1.22.0"
-aws-cli = { version = "2.35.6", symlink_bins = "true" }
+aws-cli = { version = "2.35.7", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.1.7"
 bottom = "0.12.3"
 cargo-binstall = "1.20.0"
-claude-code = "2.1.179"
+claude-code = "2.1.181"
 delta = "0.19.2"
 dotenv-linter = "4.0.0"
 fd = "10.4.2"
@@ -128,7 +128,7 @@ glab completion -s fish > ~/.config/fish/completions/glab.fish
 """
 
 [tools.github-cli]
-version = "2.94.0"
+version = "2.95.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
