@@ -73,7 +73,7 @@ actionlint = "1.7.12"
 ast-grep = "0.43.0"
 atuin = "18.16.1"
 aube = "v1.22.0"
-aws-cli = { version = "2.35.8", symlink_bins = "true" }
+aws-cli = { version = "2.35.9", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.1.7"
 bottom = "0.12.3"
@@ -142,7 +142,7 @@ mise exec -- yq completion fish > ~/.config/fish/completions/yq.fish
 """
 
 [tools."github:ducaale/xh"]
-version = "0.25.3"
+version = "0.26.1"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- xh --generate complete-fish > ~/.config/fish/completions/xh.fish
