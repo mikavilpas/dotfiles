@@ -76,7 +76,7 @@ aube = "v1.22.0"
 aws-cli = { version = "2.35.9", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.1.7"
-bottom = "0.13.0"
+bottom = "0.14.0"
 cargo-binstall = "1.20.0"
 claude-code = "2.1.183"
 delta = "0.19.2"
