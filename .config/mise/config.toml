@@ -72,7 +72,7 @@ settings.dotfiles.default_mode = "symlink"
 actionlint = "1.7.12"
 ast-grep = "0.43.0"
 atuin = "18.16.1"
-aube = "v1.22.0"
+aube = "v1.23.0"
 aws-cli = { version = "2.35.9", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.1.7"
