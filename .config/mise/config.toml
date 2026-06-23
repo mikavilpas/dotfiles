@@ -73,7 +73,7 @@ actionlint = "1.7.12"
 ast-grep = "0.44.0"
 atuin = "18.16.1"
 aube = "v1.23.0"
-aws-cli = { version = "2.35.10", symlink_bins = "true" }
+aws-cli = { version = "2.35.11", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.1.7"
 bottom = "0.14.1"
