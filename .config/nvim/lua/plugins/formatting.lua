@@ -14,6 +14,7 @@ return {
     opts = {
       undojoin = true,
       formatters_by_ft = {
+        ["dockerfile"] = { "dockerfmt" },
         ["javascript"] = { "prettierd" },
         ["javascriptreact"] = { "prettierd" },
         ["typescript"] = { "prettierd" },
