@@ -44,7 +44,7 @@ settings.dotfiles.default_mode = "symlink"
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.6.13"
+"aqua:jdx/mise" = "2026.6.14"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.22.0"
@@ -74,7 +74,7 @@ settings.dotfiles.default_mode = "symlink"
 actionlint = "1.7.12"
 ast-grep = "0.44.0"
 atuin = "18.16.1"
-aube = "v1.24.0"
+aube = "v1.25.0"
 aws-cli = { version = "2.35.11", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.1.7"
