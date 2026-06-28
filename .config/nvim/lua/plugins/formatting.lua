@@ -13,6 +13,12 @@ return {
     ---@type conform.FormatOpts
     opts = {
       undojoin = true,
+      formatters = {
+        prettierd = {
+          -- only run prettier in projects that use it
+          require_cwd = true,
+        },
+      },
       formatters_by_ft = {
         ["dockerfile"] = { "dockerfmt" },
         ["javascript"] = { "prettierd" },
