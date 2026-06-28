@@ -93,7 +93,7 @@ lychee = "0.24.2"
 oxlint = "1.69.0"
 prettier = "3.9.1"
 ripgrep = { version = "15.1.0", exe = "rg" }
-rtk = "v0.42.4"
+rtk = "v0.43.0"
 rumdl = "0.2.24"
 sccache = "0.16.0"
 sd = "1.1.0"
