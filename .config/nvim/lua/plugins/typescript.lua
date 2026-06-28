@@ -9,6 +9,9 @@ return {
         oxlint = {
           mason = false,
         },
+        oxfmt = {
+          mason = false,
+        },
         tsgo = {
           on_attach = function(client, bufnr)
             require("twoslash-queries").attach(client, bufnr)
