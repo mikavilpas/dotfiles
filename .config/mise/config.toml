@@ -54,7 +54,7 @@ settings.dotfiles.default_mode = "symlink"
 "cargo:eza" = "0.23.3"
 
 "aqua:Schniz/fnm" = "1.39.0"
-"aqua:fish-shell/fish-shell" = "4.7.1"
+"aqua:fish-shell/fish-shell" = "4.8.0"
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.8.0"
 "github:reteps/dockerfmt" = "0.5.4"
