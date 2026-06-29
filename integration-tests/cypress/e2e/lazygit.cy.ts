@@ -1,6 +1,7 @@
+import assert from "assert"
+
 import { flavors } from "@catppuccin/palette"
 import { rgbify, textIsVisibleWithBackgroundColor } from "@tui-sandbox/library"
-import assert from "assert"
 
 describe("lazygit", () => {
   it("sanity check: .gitconfig and lazygit config are available for tests", () => {

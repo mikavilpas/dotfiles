@@ -7,7 +7,7 @@
     "cy:run": "pnpm --filter ./integration-tests/ cy:run",
     "dev": "pnpm --filter ./integration-tests/ dev",
     "lint": "pnpx oxlint --type-aware && eslint --max-warnings=0 .",
-    "prettier": "prettier --check .",
+    "format:check": "pnpx oxfmt --check .",
     "tui": "pnpm --filter ./integration-tests/ exec tui"
   },
   "devDependencies": {
@@ -16,11 +16,9 @@
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-no-only-tests": "3.4.0",
     "eslint-plugin-oxlint": "1.71.0",
+    "oxfmt": "0.56.0",
     "oxlint": "1.71.0",
     "oxlint-tsgolint": "0.23.0",
-    "prettier": "3.8.5",
-    "prettier-plugin-organize-imports": "4.3.0",
-    "prettier-plugin-packagejson": "3.0.2",
     "typescript-eslint": "8.62.0"
   },
   "packageManager": "pnpm@11.9.0",
