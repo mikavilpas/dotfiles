@@ -36,6 +36,17 @@ return {
   },
 
   {
+    "neovim/nvim-lspconfig",
+    opts = function()
+      vim.lsp.config("oxfmt", {
+        -- oxfmt matches a buffer's *full* filetype exactly, so its default
+        -- "yaml" doesn't cover my "yaml.ghaction" buffers
+        filetypes = vim.list_extend(vim.deepcopy(vim.lsp.config.oxfmt.filetypes or {}), { "yaml.ghaction" }),
+      })
+    end,
+  },
+
+  {
     -- Neovim plugin to automatic change normal string to template string
     -- in JS like languages
     -- https://github.com/axelvc/template-string.nvim
