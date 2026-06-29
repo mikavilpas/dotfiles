@@ -95,13 +95,12 @@ Lately I have been experimenting with implementing common development
 
 ### Formatting
 
-Here is how the files in this repository are formatted. Since I am the only
-maintainer, most use the editor's "format on save" functionality.
+Here is how the files in this repository are formatted.
 
-| Filetype | Formatter                                 | Notes                   |
-| -------- | ----------------------------------------- | ----------------------- |
-| Markdown | [prettier](https://prettier.io/)          |                         |
-| TOML     | [taplo](https://github.com/tamasfe/taplo) | Run with `taplo format` |
+| Filetype | Formatter                                               |
+| -------- | ------------------------------------------------------- |
+| Markdown | [oxfmt](https://oxc.rs/docs/guide/usage/formatter.html) |
+| TOML     | [oxfmt](https://oxc.rs/docs/guide/usage/formatter.html) |
 
 ### Git
 
