@@ -80,7 +80,7 @@
   "trouble.nvim": { "branch": "main", "commit": "bd67efe408d4816e25e8491cc5ad4088e708a69a" },
   "ts-comments.nvim": { "branch": "main", "commit": "a59d6092213447450191122c9346f309161504cb" },
   "ts-node-action": { "branch": "master", "commit": "dda34b5b440a4f1137f8e815756a19cf655b516f" },
-  "tsugit.nvim": { "branch": "main", "commit": "7521dff6012d4b511956097cb6dd096593b6ffc2" },
+  "tsugit.nvim": { "branch": "main", "commit": "ac04e12a8a68a194e8de4d030fa64a34d9e53b81" },
   "twoslash-queries.nvim": { "branch": "main", "commit": "1262c20cad5abd6e89995dc4bc0eaab0e2e4e0b9" },
   "vim-abolish": { "branch": "master", "commit": "dcbfe065297d31823561ba787f51056c147aa682" },
   "vim-characterize": { "branch": "master", "commit": "a8bffac6cead6b2869d939ecad06312b187a4c79" },
