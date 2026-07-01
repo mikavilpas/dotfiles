@@ -78,6 +78,22 @@ customCommands:
         context: localBranches
         output: terminal
         description: "Create worktree for the selected branch"
+      - key: r
+        description: Rebase to the selected branch without Ataraxy-Labs/weave
+        # Issue:
+        #
+        # https://github.com/Ataraxy-Labs/weave sometimes creates large diffs -
+        # in these cases it's very difficult to resolve a conflict.
+        #
+        # Solution:
+        #
+        # Provide this mapping to rebase the current branch to the selected
+        # branch without Ataraxy-Labs/weave. In these cases the normal git
+        # conflict is sometimes much easier to resolve.
+        context: localBranches
+        command:
+          git -c core.attributesFile=/dev/null rebase --autostash --keep-empty
+          --no-autosquash --rebase-merges "{{.SelectedLocalBranch.Name}}"
   - key: "="
     description: "Update MR/PR description"
     context: localBranches
