@@ -72,7 +72,7 @@ settings.dotfiles.default_mode = "symlink"
 "npm:yaml-language-server" = "1.23.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.1.4"
 actionlint = "1.7.12"
-ast-grep = "0.44.0"
+ast-grep = "0.44.1"
 atuin = "18.16.1"
 aube = "v1.25.2"
 aws-cli = { version = "2.35.15", symlink_bins = "true" }
