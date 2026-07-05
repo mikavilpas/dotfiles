@@ -228,4 +228,48 @@ mod tests {
 
         Ok(())
     }
+
+    /// A fork opening a PR from its own default branch reports the head as the
+    /// bare branch name (e.g. `main`) with no owner qualifier, so it collides
+    /// with our own `main`. Such a `main` -> `main` PR must not be treated as the
+    /// parent of every PR based on `main`, which would leave the tree rootless
+    /// and make every real branch look like it has no open PR.
+    #[test]
+    fn test_self_referential_fork_pr_does_not_poison_the_stack()
+    -> Result<(), Box<dyn std::error::Error>> {
+        let url = |n: u64| format!("https://github.com/acme/webapp/pull/{n}");
+        let pr = |number: u64, title: &str, head: &str, base: &str| PullRequest {
+            number,
+            title: title.to_string(),
+            url: url(number),
+            head_ref_name: head.to_string(),
+            base_ref_name: base.to_string(),
+            is_draft: false,
+        };
+
+        let prs = Vec::from([
+            pr(
+                2031,
+                "feat: send to quickfix list",
+                "send-to-quickfix-list",
+                "main",
+            ),
+            // cross-repo PR from a fork opened from the fork's own `main`
+            pr(2030, "fix: honor winborder settings", "main", "main"),
+            pr(1969, "fix: suppress keybindings", "winsplit", "main"),
+        ]);
+
+        // Before the fix this errored with "Current branch '...' is not the head
+        // branch of any open PR." even though PR #2031 clearly exists.
+        let output = pr_stack::format_pr_stack_as_markdown(prs, "send-to-quickfix-list")?;
+        assert_eq!(
+            output,
+            format!(
+                "- 👉🏻 **[#2031]({})** | feat: send to quickfix list 👈🏻",
+                url(2031),
+            )
+        );
+
+        Ok(())
+    }
 }
