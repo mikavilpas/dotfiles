@@ -28,7 +28,7 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: "pnpm"
-      - run: pnpm install
+      - run: pnpm install --filter @dotfiles/root
       - run: pnpm format:check
 
   stylua:
