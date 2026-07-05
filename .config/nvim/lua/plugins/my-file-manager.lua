@@ -30,10 +30,26 @@ return {
         grep_in_selected_files = "snacks.picker",
         picker_add_copy_relative_path_action = "snacks.picker",
       },
+      future_features = {
+        yazi_plugin_keymaps = {
+          open_file_in_vertical_split = "<c-v>",
+          open_file_in_horizontal_split = "<c-x>",
+          open_file_in_tab = "<c-t>",
+          cycle_open_buffers = "<tab>",
+          grep_in_directory = "<c-s>",
+          replace_in_directory = "<c-g>",
+        },
+      },
     },
     init = function()
       -- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
       vim.g.loaded_netrwPlugin = 1
+    end,
+    build = function(plugin)
+      require("yazi.plugin").build_plugin(plugin, {
+        name = "nvim.yazi",
+        sub_dir = "nvim.yazi",
+      })
     end,
   },
   {
