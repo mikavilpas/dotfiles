@@ -258,9 +258,21 @@ end, { desc = "Evaluate visual selection as lua" })
 vim.keymap.set("v", "y", "ygv<esc>")
 
 vim.keymap.set("n", "<backspace>", function()
-  pcall(function()
-    vim.cmd("LspOxlintFixAll")
-  end)
+  -- my commands that should run before saving the file
+  local bufnr = vim.api.nvim_get_current_buf()
+
+  -- For projects that use oxlint
+  --
+  -- oxlint's fixAll is asynchronous by default - run it synchronously to avoid
+  -- racing with the save, corrupting the file
+  for _, client in ipairs(vim.lsp.get_clients({ bufnr = bufnr, name = "oxlint" })) do
+    client:request_sync("workspace/executeCommand", {
+      command = "oxc.fixAll",
+      arguments = { { uri = vim.uri_from_bufnr(bufnr) } },
+    }, 2000, bufnr)
+  end
+
+  -- For projects that use eslint
   pcall(function()
     vim.cmd("LspEslintFixAll")
   end)
