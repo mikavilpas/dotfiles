@@ -53,6 +53,15 @@ pub(crate) fn treeify_prs(prs: Vec<PullRequest>) -> Result<TreeifyResult> {
     }
     let mut head_to_idx: HashMap<&str, usize> = HashMap::new();
     for (idx, pr) in prs.iter().enumerate() {
+        // If there is a PR from a fork-main->main, ignore it.
+        //
+        // These are never a legitimate parent in a stack. In practice they appear when a fork opens
+        // a PR from its own default branch: `gh pr list` reports the head as the bare branch name
+        // (e.g. `main`) with no owner qualifier, so a fork's `main` -> `main` PR collides with our
+        // own `main`.
+        if pr.head_ref_name == pr.base_ref_name {
+            continue;
+        }
         head_to_idx.insert(&pr.head_ref_name, idx);
     }
     let mut nodes: Vec<PrNode> = prs
