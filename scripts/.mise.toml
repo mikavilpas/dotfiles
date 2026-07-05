@@ -1,2 +1,3 @@
 [tools]
 "github:mitsuhiko/insta" = { version = "1.48.0", exe = "cargo-insta" }
+"aqua:rust-lang/rust-analyzer" = "2026-06-29"
