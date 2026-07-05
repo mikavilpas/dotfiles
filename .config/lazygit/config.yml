@@ -116,7 +116,11 @@ customCommands:
 
       if [[ "$REMOTE_URL" == *"github"* || "$REMOTE_URL" == *"ghe.com"* ]]; then
         echo "Updating PR description for $BRANCH on GitHub"
-        STACK_SUMMARY=$(gh pr list --json number,title,headRefName,baseRefName,state,url | mika pr-stack-summary - --branch "$BRANCH")
+        # Exclude PRs from other forks: they are not part of our own stack, and a
+        # fork PR opened from the fork's default branch reports its head as the
+        # bare branch name (e.g. `main`), colliding with our `main`, breaking the
+        # `mika` stack tracking.
+        STACK_SUMMARY=$(gh pr list --json number,title,headRefName,baseRefName,state,url,isCrossRepository --jq '[.[] | select(.isCrossRepository == false)]' | mika pr-stack-summary - --branch "$BRANCH")
         SUMMARY="$(printf '%s\n\n---\n\n# Pull request stack\n\n%s' "$SUMMARY" "$STACK_SUMMARY")"
         SUMMARY="$(echo "$SUMMARY" | prettier --no-config --parser markdown --prose-wrap never)"
         gh pr edit "$BRANCH" --body="$SUMMARY" --add-assignee="@me"
