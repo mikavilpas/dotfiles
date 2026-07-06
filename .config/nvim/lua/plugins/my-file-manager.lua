@@ -38,6 +38,7 @@ return {
           cycle_open_buffers = "<tab>",
           grep_in_directory = "<c-s>",
           replace_in_directory = "<c-g>",
+          send_to_quickfix_list = "<c-q>",
         },
       },
     },
