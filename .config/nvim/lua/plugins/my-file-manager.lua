@@ -48,7 +48,7 @@ return {
     build = function(plugin)
       require("yazi.plugin").build_plugin(plugin, {
         name = "nvim.yazi",
-        sub_dir = "nvim.yazi",
+        sub_dir = "yazi-plugin/nvim.yazi",
       })
     end,
   },
