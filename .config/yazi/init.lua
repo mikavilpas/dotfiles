@@ -36,5 +36,7 @@ th.git.updated_sign = ""
 require("git"):setup()
 
 if os.getenv("YAZI_NVIM_ID") ~= nil then
-  require("nvim").setup()
+  pcall(function()
+    require("nvim").setup()
+  end)
 end
