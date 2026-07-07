@@ -44,7 +44,7 @@ settings.dotfiles.default_mode = "symlink"
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.7.0"
+"aqua:jdx/mise" = "2026.7.1"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.22.0"
@@ -67,7 +67,7 @@ settings.dotfiles.default_mode = "symlink"
 "github:tekumara/typos-lsp" = "0.1.52"
 "npm:@fission-ai/openspec" = "1.5.0"
 "npm:@fsouza/prettierd" = "0.28.0"
-"npm:@typescript/native-preview" = "7.0.0-dev.20260703.1"
+"npm:@typescript/native-preview" = "7.0.0-dev.20260704.1"
 "npm:oxlint-tsgolint" = "0.24.0"
 "npm:yaml-language-server" = "1.23.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.1.4"
