@@ -44,7 +44,7 @@ settings.dotfiles.default_mode = "symlink"
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.7.1"
+"aqua:jdx/mise" = "2026.7.2"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.22.0"
@@ -75,7 +75,7 @@ actionlint = "1.7.12"
 ast-grep = "0.44.1"
 atuin = "18.16.1"
 aube = "v1.26.0"
-aws-cli = { version = "2.35.16", symlink_bins = "true" }
+aws-cli = { version = "2.35.17", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.1.7"
 bottom = "0.14.3"
@@ -122,7 +122,7 @@ mika init fish --output-dir ~/.config/fish/mika/
 """
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.106.0"
+version = "1.107.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
