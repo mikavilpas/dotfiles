@@ -44,7 +44,7 @@ settings.dotfiles.default_mode = "symlink"
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.7.4"
+"aqua:jdx/mise" = "2026.7.5"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.22.0"
@@ -75,10 +75,10 @@ actionlint = "1.7.12"
 ast-grep = "0.44.1"
 atuin = "18.17.0"
 aube = "v1.26.0"
-aws-cli = { version = "2.35.19", symlink_bins = "true" }
+aws-cli = { version = "2.35.20", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.1.7"
-bottom = "0.14.3"
+bottom = "0.14.4"
 cargo-binstall = "1.20.1"
 claude-code = "2.1.205"
 delta = "0.19.2"
@@ -95,7 +95,7 @@ oxlint = "1.69.0"
 prettier = "3.9.5"
 ripgrep = { version = "15.1.0", exe = "rg" }
 rtk = "v0.43.0"
-rumdl = "0.2.29"
+rumdl = "0.2.30"
 sccache = "0.16.0"
 sd = "1.1.0"
 shellcheck = "0.11.0"
