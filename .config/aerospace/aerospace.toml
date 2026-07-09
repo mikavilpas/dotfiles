@@ -53,6 +53,12 @@ gaps.outer.bottom = 0
 gaps.outer.top = 0
 gaps.outer.right = 0
 
+# Park noisy utility windows on a workspace we never switch to, so they stay
+# out of the tiling flow. See: https://nikitabobko.github.io/AeroSpace/guide.html#on-window-detected-callback
+[[on-window-detected]]
+if.app-id = 'com.microsoft.autoupdate2'
+run = 'move-node-to-workspace hidden'
+
 [workspace-to-monitor-force-assignment]
 # Can find these out using `aerospace list-monitors`
 1 = "D32u-40"
