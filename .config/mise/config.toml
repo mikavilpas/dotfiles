@@ -44,7 +44,7 @@ settings.dotfiles.default_mode = "symlink"
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.7.3"
+"aqua:jdx/mise" = "2026.7.4"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.22.0"
@@ -92,10 +92,10 @@ lazydocker = "0.25.2"
 lychee = "0.24.2"
 oxfmt = "latest"
 oxlint = "1.69.0"
-prettier = "3.9.4"
+prettier = "3.9.5"
 ripgrep = { version = "15.1.0", exe = "rg" }
 rtk = "v0.43.0"
-rumdl = "0.2.28"
+rumdl = "0.2.29"
 sccache = "0.16.0"
 sd = "1.1.0"
 shellcheck = "0.11.0"
