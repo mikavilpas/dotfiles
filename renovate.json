@@ -26,6 +26,14 @@
       ],
       "matchDepNames": ["aqua:fish-shell/fish-shell"],
       "groupName": "fish-shell"
+    },
+    {
+      "description": [
+        "pnpm 11.12.0's self-installer crashes in pnpm/action-setup",
+        "https://github.com/mikavilpas/dotfiles/actions/runs/29474716998/job/87545125670?pr=1420"
+      ],
+      "matchDepNames": ["pnpm"],
+      "allowedVersions": "!/^11\\.12\\.0$/"
     }
   ]
 }
