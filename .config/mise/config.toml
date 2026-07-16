@@ -44,7 +44,7 @@ settings.dotfiles.default_mode = "symlink"
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.7.6"
+"aqua:jdx/mise" = "2026.7.7"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.22.0"
@@ -75,12 +75,12 @@ actionlint = "1.7.12"
 ast-grep = "0.44.1"
 atuin = "18.17.1"
 aube = "v1.27.0"
-aws-cli = { version = "2.35.23", symlink_bins = "true" }
+aws-cli = { version = "2.35.24", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.1.7"
 bottom = "0.14.4"
 cargo-binstall = "1.21.0"
-claude-code = "2.1.209"
+claude-code = "2.1.211"
 delta = "0.19.2"
 dotenv-linter = "4.0.0"
 fd = "10.4.2"
@@ -93,9 +93,9 @@ lychee = "0.24.2"
 oxfmt = "latest"
 oxlint = "1.69.0"
 prettier = "3.9.5"
-ripgrep = { version = "15.1.0", exe = "rg" }
+ripgrep = { version = "15.2.0", exe = "rg" }
 rtk = "v0.43.0"
-rumdl = "0.2.33"
+rumdl = "0.2.34"
 sccache = "0.16.0"
 sd = "1.1.0"
 shellcheck = "0.11.0"
@@ -106,7 +106,7 @@ tombi = "v1.2.0"
 tree-sitter = "0.26.11"
 typos = "1.48.0"
 usage = "3.5.5"
-uv = "0.11.28"
+uv = "0.11.29"
 vivid = "0.11.1"
 watchexec = "2.5.1"
 zizmor = "1.27.0"
