@@ -58,10 +58,24 @@ fn format_mr_stack(
     // Indentation
     let indent = "  ".repeat(depth.0);
 
+    // Clean up the title by removing any "Draft: " prefix that GitLab adds
+    let title_display = mr
+        .title
+        .strip_prefix("Draft: ")
+        .or_else(|| mr.title.strip_prefix("Draft:"))
+        .or_else(|| mr.title.strip_prefix("WIP: "))
+        .unwrap_or(&mr.title);
+
     if is_current {
-        output.push_str(&format!("{}- 👉🏻 {} 👈🏻\n", indent, mr.web_url));
+        output.push_str(&format!(
+            "{}- 👉🏻 **[!{}]({})** | {} 👈🏻\n",
+            indent, mr.iid, mr.web_url, title_display
+        ));
     } else {
-        output.push_str(&format!("{}- {}\n", indent, mr.web_url));
+        output.push_str(&format!(
+            "{}- [!{}]({}) | {}\n",
+            indent, mr.iid, mr.web_url, title_display
+        ));
     }
 
     // Sort children by iid ascending and recurse
@@ -118,33 +132,30 @@ mod tests {
         assert_eq!(
             output_from_root,
             [
-                "- 👉🏻 https://gitlab.example.com/acme/webapp/-/merge_requests/101 👈🏻",
-                "  - https://gitlab.example.com/acme/webapp/-/merge_requests/102",
-                "    - https://gitlab.example.com/acme/webapp/-/merge_requests/103",
-            ]
-            .join("\n")
+                "- 👉🏻 **[!101](https://gitlab.example.com/acme/webapp/-/merge_requests/101)** | feat: base feature 👈🏻",
+                "  - [!102](https://gitlab.example.com/acme/webapp/-/merge_requests/102) | feat: dependent feature",
+                "    - [!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) | fix: bug in dependent feature",
+            ].join("\n")
         );
 
         let output_from_middle = mr_stack::format_mr_stack_as_markdown(mrs.clone(), second_branch)?;
         assert_eq!(
             output_from_middle,
             [
-                "- https://gitlab.example.com/acme/webapp/-/merge_requests/101",
-                "  - 👉🏻 https://gitlab.example.com/acme/webapp/-/merge_requests/102 👈🏻",
-                "    - https://gitlab.example.com/acme/webapp/-/merge_requests/103",
-            ]
-            .join("\n")
+                "- [!101](https://gitlab.example.com/acme/webapp/-/merge_requests/101) | feat: base feature",
+                "  - 👉🏻 **[!102](https://gitlab.example.com/acme/webapp/-/merge_requests/102)** | feat: dependent feature 👈🏻",
+                "    - [!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103) | fix: bug in dependent feature",
+            ].join("\n")
         );
 
         let output_from_leaf = mr_stack::format_mr_stack_as_markdown(mrs, "feature-103")?;
         assert_eq!(
             output_from_leaf,
             [
-                "- https://gitlab.example.com/acme/webapp/-/merge_requests/101",
-                "  - https://gitlab.example.com/acme/webapp/-/merge_requests/102",
-                "    - 👉🏻 https://gitlab.example.com/acme/webapp/-/merge_requests/103 👈🏻",
-            ]
-            .join("\n")
+                "- [!101](https://gitlab.example.com/acme/webapp/-/merge_requests/101) | feat: base feature",
+                "  - [!102](https://gitlab.example.com/acme/webapp/-/merge_requests/102) | feat: dependent feature",
+                "    - 👉🏻 **[!103](https://gitlab.example.com/acme/webapp/-/merge_requests/103)** | fix: bug in dependent feature 👈🏻",
+            ].join("\n")
         );
 
         Ok(())
@@ -191,10 +202,10 @@ mod tests {
             output,
             format!(
                 "\
-- {}
-  - 👉🏻 {} 👈🏻
-    - {}
-  - {}",
+- [!101]({}) | feat: base feature
+  - 👉🏻 **[!102]({})** | feat: add API layer 👈🏻
+    - [!103]({}) | feat: add tests for API
+  - [!104]({}) | feat: docs for base",
                 url(101),
                 url(102),
                 url(103),
@@ -208,8 +219,8 @@ mod tests {
             output,
             format!(
                 "\
-- {}
-  - 👉🏻 {} 👈🏻",
+- [!105]({}) | chore: CI setup
+  - 👉🏻 **[!106]({})** | chore: add linting 👈🏻",
                 url(105),
                 url(106),
             )
@@ -221,10 +232,10 @@ mod tests {
             output,
             format!(
                 "\
-- 👉🏻 {} 👈🏻
-  - {}
-    - {}
-  - {}",
+- 👉🏻 **[!101]({})** | feat: base feature 👈🏻
+  - [!102]({}) | feat: add API layer
+    - [!103]({}) | feat: add tests for API
+  - [!104]({}) | feat: docs for base",
                 url(101),
                 url(102),
                 url(103),
