@@ -53,7 +53,7 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Install tools with mise
-        uses: jdx/mise-action@e6a8b3978addb5a52f2b4cd9d91eafa7f0ab959d # v4.2.0
+        uses: jdx/mise-action@dad1bfd3df957f44999b559dd69dc1671cb4e9ea # v4.2.1
         env:
           # renovate: datasource=github-releases depName=jesseduffield/lazygit
           LAZYGIT_VERSION: v0.63.1
