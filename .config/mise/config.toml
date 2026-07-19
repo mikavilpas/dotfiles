@@ -1,7 +1,7 @@
 settings.cargo.binstall = true
 settings.cargo.binstall_only = true
 settings.experimental = true
-
+settings.auto_install = false
 settings.dotfiles.root = "~/dotfiles"
 settings.dotfiles.default_mode = "symlink"
 
