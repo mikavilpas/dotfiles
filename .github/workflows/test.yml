@@ -62,11 +62,26 @@ jobs:
           mise_toml: |
             [tools]
             lazygit = "${{ env.LAZYGIT_VERSION }}"
+          # Use the same tool identifiers as .config/mise/config.toml so the
+          # shims and the config agree on the backend. `delta` (registry ->
+          # aqua:dandavison/delta) matches the config; `github:dandavison/delta`
+          # would install a different backend that the `delta` shim can't
+          # resolve ("No version is set for shim: delta").
           # prettier-ignore
           install_args: >-
             aqua:fish-shell/fish-shell
-            github:dandavison/delta
+            delta
             lazygit@${{ env.LAZYGIT_VERSION }}
+
+      # mise-action v4.2.1 no longer exports the tools' install-dir PATH
+      # (jdx/mise-action#556), so the tui-sandbox test terminal can no longer
+      # find lazygit/fish/delta. Export the bin paths ourselves so this does
+      # not depend on the action's PATH behavior. GITHUB_PATH is inherited by
+      # the spawned test terminal.
+      - name: Expose test tools to the sandbox terminal
+        run:
+          mise bin-paths lazygit aqua:fish-shell/fish-shell delta >>
+          "$GITHUB_PATH"
 
       - name: Verify installed tools work
         run: |
