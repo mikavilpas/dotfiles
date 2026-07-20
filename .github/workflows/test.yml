@@ -68,6 +68,13 @@ jobs:
             github:dandavison/delta
             lazygit@${{ env.LAZYGIT_VERSION }}
 
+      - name: Verify installed tools work
+        run: |
+          echo "mise version: " && mise --version
+          echo "lazygit version: " && lazygit --version
+          echo "delta version: " && delta --version
+          echo "fish version: " && fish --version
+
       - name: Symlink the dotfiles with mise
         run: mise dotfiles apply --verbose --yes
         env:
