@@ -15,6 +15,7 @@ export default defineConfig(
       "eslint.config.mjs",
       "dist/",
       "integration-tests/cypress/support/tui-sandbox.ts",
+      "integration-tests/tui-sandbox.config.ts",
     ],
   },
 

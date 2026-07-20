@@ -14,7 +14,8 @@
     "**/test-environment/",
     "eslint.config.mjs",
     "dist/",
-    "integration-tests/cypress/support/tui-sandbox.ts"
+    "integration-tests/cypress/support/tui-sandbox.ts",
+    "integration-tests/tui-sandbox.config.ts"
   ],
   "rules": {
     "for-direction": "error",
