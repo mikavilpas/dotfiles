@@ -47,7 +47,7 @@ describe("lazygit", () => {
     cy.typeIntoTerminal("3")
     textIsVisibleWithBackgroundColor(
       "main",
-      rgbify(flavors.macchiato.colors.crust.rgb),
+      rgbify(flavors.macchiato.colors.surface0.rgb),
     )
 
     // create a backup branch
@@ -74,7 +74,7 @@ describe("lazygit", () => {
     cy.typeIntoTerminal("4")
     textIsVisibleWithBackgroundColor(
       "initial commit",
-      rgbify(flavors.macchiato.colors.crust.rgb),
+      rgbify(flavors.macchiato.colors.surface0.rgb),
     )
 
     cy.typeIntoTerminal("X")
