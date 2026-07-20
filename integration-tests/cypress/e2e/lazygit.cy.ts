@@ -44,11 +44,9 @@ describe("lazygit", () => {
 
     // enter the branch pane and wait for the branch to be selected
 
+    cy.contains("HEAD -> main").should("not.exist")
     cy.typeIntoTerminal("3")
-    textIsVisibleWithBackgroundColor(
-      "main",
-      rgbify(flavors.macchiato.colors.crust.rgb),
-    )
+    cy.contains("HEAD -> main")
 
     // create a backup branch
     cy.typeIntoTerminal("?")
@@ -71,11 +69,9 @@ describe("lazygit", () => {
     cy.contains("Donate")
 
     // enter the commits pane and wait for the commit to be selected
+    cy.contains("insertions(+)").should("not.exist")
     cy.typeIntoTerminal("4")
-    textIsVisibleWithBackgroundColor(
-      "initial commit",
-      rgbify(flavors.macchiato.colors.crust.rgb),
-    )
+    cy.contains("insertions(+)")
 
     cy.typeIntoTerminal("X")
     cy.contains("Copy selected commits to clipboard")
