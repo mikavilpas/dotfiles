@@ -75,12 +75,12 @@ actionlint = "1.7.12"
 ast-grep = "0.44.1"
 atuin = "18.17.1"
 aube = "v1.31.0"
-aws-cli = { version = "2.36.4", symlink_bins = "true" }
+aws-cli = { version = "2.36.5", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.1.7"
 bottom = "0.14.6"
 cargo-binstall = "1.21.0"
-claude-code = "2.1.216"
+claude-code = "2.1.217"
 delta = "0.19.2"
 dotenv-linter = "4.0.0"
 fd = "10.4.2"
@@ -109,7 +109,7 @@ usage = "3.5.6"
 uv = "0.11.30"
 vivid = "0.11.1"
 watchexec = "2.5.1"
-zizmor = "1.27.0"
+zizmor = "1.28.0"
 zoxide = "0.10.0"
 
 [tools."github:mikavilpas/dotfiles"]
