@@ -23,17 +23,6 @@ export default defineConfig({
   ],
   rules: {
     "no-only-tests/no-only-tests": "error",
-    "no-unused-vars": [
-      "warn",
-      {
-        argsIgnorePattern: "^_",
-        varsIgnorePattern: "^_",
-        caughtErrorsIgnorePattern: "^_",
-        fix: {
-          imports: "safe-fix",
-        },
-      },
-    ],
   },
   overrides: [
     {
