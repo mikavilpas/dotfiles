@@ -6,6 +6,7 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - "@tui-sandbox/library@13.0.1"
   - "@mikavilpas/oxfmt-config@3.0.2"
+  - "@mikavilpas/oxlint-config@1.0.0 || 1.1.0"
 saveExact: true
 
 # https://pnpm.io/pnpm-workspace_yaml
