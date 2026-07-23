@@ -6,13 +6,13 @@ import { rgbify, textIsVisibleWithBackgroundColor } from "@tui-sandbox/library"
 describe("lazygit", () => {
   it("sanity check: .gitconfig and lazygit config are available for tests", () => {
     cy.visit("/")
-    cy.startTerminalApplication({ commandToRun: ["bash"] }).then((t) => {
-      t.runBlockingShellCommand({ command: "echo $HOME" }).then((output) => {
+    cy.startTerminalApplication({ commandToRun: ["bash"] }).then(t => {
+      t.runBlockingShellCommand({ command: "echo $HOME" }).then(output => {
         assert(output.type === "success")
         expect(output.stdout).includes("testdirs/")
       })
 
-      t.runBlockingShellCommand({ command: "ls -al $HOME" }).then((output) => {
+      t.runBlockingShellCommand({ command: "ls -al $HOME" }).then(output => {
         assert(output.type === "success")
         expect(output.stdout).includes(".gitconfig")
       })
@@ -23,7 +23,7 @@ describe("lazygit", () => {
 
       t.runBlockingShellCommand({
         command: `git config --list --show-origin`,
-      }).then((output) => {
+      }).then(output => {
         assert(output.type === "success")
         expect(output.stdout).includes(".gitconfig")
       })

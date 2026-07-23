@@ -7,7 +7,7 @@ describe("shell scripts", () => {
 
     it("squashes fixups in the target branch only, preserving fixups in branches above", () => {
       cy.visit("/")
-      cy.startTerminalApplication({ commandToRun: ["bash"] }).then((term) => {
+      cy.startTerminalApplication({ commandToRun: ["bash"] }).then(term => {
         // Set up a git repo with stacked branches, each with their own fixups
         const setup = `
           set -eu
@@ -37,20 +37,18 @@ describe("shell scripts", () => {
         // Verify initial state: both branches have fixup commits
         term
           .runBlockingShellCommand({
-            command:
-              "cd myrepo && git log --oneline stack-branch-1 | grep fixup",
+            command: "cd myrepo && git log --oneline stack-branch-1 | grep fixup",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout).to.include("fixup! commit A")
           })
 
         term
           .runBlockingShellCommand({
-            command:
-              "cd myrepo && git log --oneline stack-branch-2 | grep fixup",
+            command: "cd myrepo && git log --oneline stack-branch-2 | grep fixup",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout).to.include("fixup! commit A")
             expect(output.stdout).to.include("fixup! commit C")
@@ -66,7 +64,7 @@ describe("shell scripts", () => {
           .runBlockingShellCommand({
             command: "cd myrepo && git log --oneline stack-branch-1",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout).to.not.include("fixup!")
           })
@@ -76,7 +74,7 @@ describe("shell scripts", () => {
           .runBlockingShellCommand({
             command: "cd myrepo && git show stack-branch-1:a.txt",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout.trim()).to.equal("fix-a")
           })
@@ -86,7 +84,7 @@ describe("shell scripts", () => {
           .runBlockingShellCommand({
             command: "cd myrepo && git log --oneline stack-branch-2",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout).to.include("fixup! commit C")
           })
@@ -94,10 +92,9 @@ describe("shell scripts", () => {
         // VERIFY: stack-branch-2 is still stacked on stack-branch-1
         term
           .runBlockingShellCommand({
-            command:
-              "cd myrepo && git merge-base --is-ancestor stack-branch-1 stack-branch-2 && echo 'OK'",
+            command: "cd myrepo && git merge-base --is-ancestor stack-branch-1 stack-branch-2 && echo 'OK'",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout.trim()).to.equal("OK")
           })
@@ -106,7 +103,7 @@ describe("shell scripts", () => {
 
     it("can target a middle branch in a stack of 3 branches", () => {
       cy.visit("/")
-      cy.startTerminalApplication({ commandToRun: ["bash"] }).then((term) => {
+      cy.startTerminalApplication({ commandToRun: ["bash"] }).then(term => {
         // Set up: main -> branch1 -> branch2 -> branch3, each with their own fixups
         const setup = `
           set -eu
@@ -146,7 +143,7 @@ describe("shell scripts", () => {
           .runBlockingShellCommand({
             command: "cd myrepo && git log --oneline branch1",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout).to.include("fixup! commit A")
           })
@@ -156,7 +153,7 @@ describe("shell scripts", () => {
           .runBlockingShellCommand({
             command: "cd myrepo && git log --oneline branch1..branch2",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout).to.not.include("fixup!")
           })
@@ -165,7 +162,7 @@ describe("shell scripts", () => {
           .runBlockingShellCommand({
             command: "cd myrepo && git show branch2:b.txt",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout.trim()).to.equal("fix-b")
           })
@@ -175,7 +172,7 @@ describe("shell scripts", () => {
           .runBlockingShellCommand({
             command: "cd myrepo && git log --oneline branch3",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout).to.include("fixup! commit C")
           })
@@ -186,7 +183,7 @@ describe("shell scripts", () => {
             command:
               "cd myrepo && git merge-base --is-ancestor branch1 branch2 && git merge-base --is-ancestor branch2 branch3 && echo 'OK'",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout.trim()).to.equal("OK")
           })
@@ -195,7 +192,7 @@ describe("shell scripts", () => {
 
     it("can target the bottom branch in a stack of 3 branches", () => {
       cy.visit("/")
-      cy.startTerminalApplication({ commandToRun: ["bash"] }).then((term) => {
+      cy.startTerminalApplication({ commandToRun: ["bash"] }).then(term => {
         // Set up: main -> branch1 -> branch2 -> branch3, each with their own fixups
         const setup = `
           set -eu
@@ -235,7 +232,7 @@ describe("shell scripts", () => {
           .runBlockingShellCommand({
             command: "cd myrepo && git log --oneline branch1",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout).to.not.include("fixup!")
           })
@@ -244,7 +241,7 @@ describe("shell scripts", () => {
           .runBlockingShellCommand({
             command: "cd myrepo && git show branch1:a.txt",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout.trim()).to.equal("fix-a")
           })
@@ -254,7 +251,7 @@ describe("shell scripts", () => {
           .runBlockingShellCommand({
             command: "cd myrepo && git log --oneline branch2",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout).to.include("fixup! commit B")
           })
@@ -264,7 +261,7 @@ describe("shell scripts", () => {
           .runBlockingShellCommand({
             command: "cd myrepo && git log --oneline branch3",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout).to.include("fixup! commit C")
           })
@@ -275,7 +272,7 @@ describe("shell scripts", () => {
             command:
               "cd myrepo && git merge-base --is-ancestor branch1 branch2 && git merge-base --is-ancestor branch2 branch3 && echo 'OK'",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout.trim()).to.equal("OK")
           })
@@ -284,7 +281,7 @@ describe("shell scripts", () => {
 
     it("handles the case when there are no fixups to squash", () => {
       cy.visit("/")
-      cy.startTerminalApplication({ commandToRun: ["bash"] }).then((term) => {
+      cy.startTerminalApplication({ commandToRun: ["bash"] }).then(term => {
         const setup = `
           set -eu
           mkdir myrepo && cd myrepo
@@ -309,7 +306,7 @@ describe("shell scripts", () => {
           .runBlockingShellCommand({
             command: "cd myrepo && git log --oneline branch1 | head -1",
           })
-          .then((output) => {
+          .then(output => {
             assert(output.type === "success")
             expect(output.stdout).to.include("commit A")
           })

@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
+    "@mikavilpas/oxfmt-config": "3.0.2",
     "eslint": "10.7.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-no-only-tests": "3.4.0",

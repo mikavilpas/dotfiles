@@ -32,8 +32,7 @@ customCommands:
     command: git backup-branch {{.SelectedLocalBranch.Name}}
   - key: "<f8>"
     context: localBranches
-    description:
-      "Autosquash only this branch (preserves fixups in branches above)"
+    description: "Autosquash only this branch (preserves fixups in branches above)"
     loadingText: "Autosquashing {{.SelectedLocalBranch.Name}}..."
     command: mika autosquash-branch run "{{.SelectedLocalBranch.Name}}"
   - key: "<c-r>"
@@ -44,22 +43,18 @@ customCommands:
   - key: "Y"
     context: localBranches
     description: "Summarize branch commits for a PR"
-    command:
-      "mika branch-summary --branch '{{.SelectedLocalBranch.Name}}' | pbcopy"
+    command: "mika branch-summary --branch '{{.SelectedLocalBranch.Name}}' | pbcopy"
   - key: "Y"
     context: reflogCommits,commits,subCommits
     description: "Summarize selected commits for a PR"
     command:
-      "mika summary --from={{.SelectedCommitRange.To}}
-      --to={{.SelectedCommitRange.From}}^ | prettier --no-config --parser
-      markdown --prose-wrap never | pbcopy"
+      "mika summary --from={{.SelectedCommitRange.To}} --to={{.SelectedCommitRange.From}}^ | prettier --no-config
+      --parser markdown --prose-wrap never | pbcopy"
   - key: X
     description: Custom commands
     commandMenu:
       - key: c
-        command:
-          "git format-patch --stdout
-          {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
+        command: "git format-patch --stdout {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
         context: commits, subCommits
         description: "Copy selected commits to clipboard"
       - key: v
@@ -68,13 +63,11 @@ customCommands:
         description: "Paste selected commits from clipboard"
       - key: s
         command:
-          "mika share-patch --with-instructions --commit
-          {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
+          "mika share-patch --with-instructions --commit {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} |
+          pbcopy"
         description: "Share selected commits as a patch with instructions"
       - key: w
-        command:
-          ~/.config/lazygit/git-create-worktree.sh
-          "{{.SelectedLocalBranch.Name}}"
+        command: ~/.config/lazygit/git-create-worktree.sh "{{.SelectedLocalBranch.Name}}"
         context: localBranches
         output: terminal
         description: "Create worktree for the selected branch"
@@ -92,8 +85,8 @@ customCommands:
         # conflict is sometimes much easier to resolve.
         context: localBranches
         command:
-          git -c core.attributesFile=/dev/null rebase --autostash --keep-empty
-          --no-autosquash --rebase-merges "{{.SelectedLocalBranch.Name}}"
+          git -c core.attributesFile=/dev/null rebase --autostash --keep-empty --no-autosquash --rebase-merges
+          "{{.SelectedLocalBranch.Name}}"
   - key: "="
     description: "Update MR/PR description"
     context: localBranches
@@ -162,9 +155,7 @@ os:
   editAtLineAndWait: "nvim +{{line}} {{filename}}"
   # Create pull request command opens a URL with incorrect escaping #3064
   # https://github.com/jesseduffield/lazygit/issues/3064
-  openLink:
-    open -n "$(echo {{link}} | sed 's/%3E/>/g' | sed 's/%2F/\//g' | sed
-    s/%27/\'/g )"
+  openLink: open -n "$(echo {{link}} | sed 's/%3E/>/g' | sed 's/%2F/\//g' | sed s/%27/\'/g )"
 promptToReturnFromSubprocess: false
 notARepository: "quit"
 # https://github.com/catppuccin/lazygit/blob/main/themes-mergable/macchiato/pink.yml
