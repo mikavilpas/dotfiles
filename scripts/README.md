@@ -1,7 +1,6 @@
 # mika
 
-A personal CLI tool for working with various things, including Git, GitHub PRs,
-and GitLab MRs.
+A personal CLI tool for working with various things, including Git, GitHub PRs, and GitLab MRs.
 
 ## Installation
 
@@ -23,8 +22,7 @@ mika init fish --output-dir ~/.config/fish/mika/
 mise install "github:mikavilpas/dotfiles"
 ```
 
-Then add this to your `config.fish` (one-time setup, for lazy-loaded shell
-functions):
+Then add this to your `config.fish` (one-time setup, for lazy-loaded shell functions):
 
 ```fish
 set --append fish_function_path ~/.config/fish/mika
@@ -32,8 +30,7 @@ set --append fish_function_path ~/.config/fish/mika
 
 ## Shell integration (fish)
 
-Some related utilities are provided for integrating with other tools. To install
-them as well, follow these steps:
+Some related utilities are provided for integrating with other tools. To install them as well, follow these steps:
 
 1. Add a mise postinstall hook as described in [[#Shell integration (fish)]].
 2. Then add this to your `config.fish` (one-time setup):

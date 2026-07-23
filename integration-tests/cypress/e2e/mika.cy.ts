@@ -9,12 +9,12 @@ describe("mika terminal application (personal application)", () => {
         MISE_NO_CONFIG: "1", // disable mise config for the test
         CI: "1", // skip fish config init (fnm, atuin, etc.) that isn't available in tests
       },
-      configureTerminal: (t) => {
+      configureTerminal: t => {
         t.recipes.supportDA1()
       },
-    }).then((t) => {
+    }).then(t => {
       // the mika application should have been installed earlier in the build process
-      t.runBlockingShellCommand({ command: "which mika" }).then((output) => {
+      t.runBlockingShellCommand({ command: "which mika" }).then(output => {
         assert(output.type === "success")
         expect(output.stdout).matches(/\/mika/)
       })
@@ -55,13 +55,11 @@ describe("mika terminal application (personal application)", () => {
         MISE_NO_CONFIG: "1",
         CI: "1",
       },
-      configureTerminal: (t) => {
+      configureTerminal: t => {
         t.recipes.supportDA1()
       },
-    }).then((t) => {
-      t.typeIntoTerminal(
-        "mika init fish --output-dir ~/.config/fish/mika/{enter}",
-      )
+    }).then(t => {
+      t.typeIntoTerminal("mika init fish --output-dir ~/.config/fish/mika/{enter}")
       cy.contains("Wrote 3 fish files to")
       t.typeIntoTerminal("clear{enter}")
 
@@ -78,7 +76,7 @@ describe("mika terminal application (personal application)", () => {
         shell: "fish",
         command:
           "set --append fish_function_path ~/.config/fish/mika; and functions --query prs; and echo prs:ok; or echo prs:missing",
-      }).then((output) => {
+      }).then(output => {
         assert(output.type === "success")
         expect(output.stdout).to.include("prs:ok")
       })
@@ -87,16 +85,14 @@ describe("mika terminal application (personal application)", () => {
         shell: "fish",
         command:
           "set --append fish_function_path ~/.config/fish/mika; and functions --query mrs; and echo mrs:ok; or echo mrs:missing",
-      }).then((output) => {
+      }).then(output => {
         assert(output.type === "success")
         expect(output.stdout).to.include("mrs:ok")
       })
 
       // set it for the interactive shell as well, to allow for interactive
       // experimentation when maintaining the tests
-      t.typeIntoTerminal(
-        "set --append fish_function_path ~/.config/fish/mika{enter}",
-      )
+      t.typeIntoTerminal("set --append fish_function_path ~/.config/fish/mika{enter}")
 
       // verify that tab completions for mika are available
       t.typeIntoTerminal("mika {control+i}")
