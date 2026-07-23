@@ -94,7 +94,7 @@ oxlint = "1.69.0"
 prettier = "3.9.6"
 ripgrep = { version = "15.2.0", exe = "rg" }
 rtk = "v0.43.0"
-rumdl = "0.2.40"
+rumdl = "0.2.41"
 sccache = "0.16.0"
 sd = "1.1.0"
 shellcheck = "0.11.0"
