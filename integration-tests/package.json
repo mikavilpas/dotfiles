@@ -20,7 +20,7 @@
     "concurrently": "10.0.3",
     "tinycolor2": "1.6.0",
     "type-fest": "5.8.0",
-    "typescript": "6.0.3",
+    "typescript": "7.0.2",
     "zod": "4.4.3"
   }
 }
