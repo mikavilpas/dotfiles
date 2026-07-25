@@ -189,7 +189,7 @@ run = '''
 desc = "Copy contents to the clipboard"
 on = ["c", "i"]  # copy inside
 run = '''
-shell 'cat $@ | pbcopy'
+shell 'cat %h | pbcopy'
 '''
 
 [[mgr.prepend_keymap]]
