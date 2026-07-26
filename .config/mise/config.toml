@@ -43,7 +43,7 @@ settings.dotfiles.default_mode = "symlink"
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.7.13"
+"aqua:jdx/mise" = "2026.7.14"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.22.0"
@@ -143,7 +143,7 @@ mise exec -- yq completion fish > ~/.config/fish/completions/yq.fish
 """
 
 [tools."github:ducaale/xh"]
-version = "0.26.1"
+version = "0.26.2"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- xh --generate complete-fish > ~/.config/fish/completions/xh.fish
