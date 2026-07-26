@@ -151,11 +151,9 @@ mise exec -- xh --generate complete-fish > ~/.config/fish/completions/xh.fish
 
 # weave
 #
-# currently mise supports only one exe per tool, but weave has two. Use the ubi
-# and github backends to install the same version of weave twice, once for each
-# exe.
 [tools."github:Ataraxy-Labs/weave"]
 version = "0.3.6"
+additional_asset_patterns = ["weave-driver-*"]
 # After (re)installing weave-cli, refresh ~/dotfiles/.gitattributes so it
 # matches the binary's current language coverage. That file is pointed at by
 # `core.attributesFile` in ~/dotfiles/.gitconfig and acts as the user-global
@@ -168,8 +166,3 @@ else
   echo "weave-cli postinstall: weave-driver not yet on PATH, skipping setup"
 fi
 """
-
-[tools."ubi:Ataraxy-Labs/weave"]
-version = "0.3.6"
-exe = "weave-driver"
-matching_regex = "weave-driver"
