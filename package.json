@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@mikavilpas/oxfmt-config": "3.0.2",
-    "@mikavilpas/oxlint-config": "2.0.0",
+    "@mikavilpas/oxlint-config": "3.0.0",
     "eslint-plugin-no-only-tests": "3.4.0",
     "oxfmt": "0.60.0",
     "oxlint": "1.75.0",
