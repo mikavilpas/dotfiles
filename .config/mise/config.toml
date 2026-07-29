@@ -73,7 +73,7 @@ settings.dotfiles.default_mode = "symlink"
 actionlint = "1.7.12"
 ast-grep = "0.45.0"
 atuin = "18.18.1"
-aws-cli = { version = "2.36.10", symlink_bins = "true" }
+aws-cli = { version = "2.36.11", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.1.7"
 bottom = "0.14.7"
@@ -93,7 +93,7 @@ oxlint = "1.69.0"
 prettier = "3.9.6"
 ripgrep = { version = "15.2.0", exe = "rg" }
 rtk = "v0.44.1"
-rumdl = "0.2.45"
+rumdl = "0.2.46"
 sccache = "0.17.0"
 sd = "1.1.0"
 shellcheck = "0.11.0"
