@@ -201,9 +201,9 @@ gui:
     "Mika Vilpas": "#8aadf4"
 git:
   parseEmoji: true
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --paging=never
+      command: delta --paging=never
   ignoreWhitespaceInDiffView: true
 # useful for e2e tests. They don't have a separate configuration right now, so
 # this needs to be specified here.
