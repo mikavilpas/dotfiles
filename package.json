@@ -11,12 +11,12 @@
     "tui": "pnpm --filter ./integration-tests/ exec tui"
   },
   "devDependencies": {
-    "@mikavilpas/oxfmt-config": "3.0.2",
-    "@mikavilpas/oxlint-config": "3.0.0",
+    "@mikavilpas/oxfmt-config": "3.0.3",
+    "@mikavilpas/oxlint-config": "3.0.1",
     "eslint-plugin-no-only-tests": "3.4.0",
     "oxfmt": "0.61.0",
     "oxlint": "1.76.0",
     "oxlint-tsgolint": "7.0.2001"
   },
-  "packageManager": "pnpm@11.18.0"
+  "packageManager": "pnpm@11.19.0"
 }
