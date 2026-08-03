@@ -44,7 +44,7 @@ settings.dotfiles.default_mode = "symlink"
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.8.0"
+"aqua:jdx/mise" = "2026.8.1"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.24.0"
@@ -103,7 +103,7 @@ starship = "1.26.0"
 stylua = "2.5.2"
 tombi = "v1.2.6"
 tree-sitter = "0.26.11"
-typos = "1.48.0"
+typos = "1.49.0"
 usage = "4.1.0"
 uv = "0.12.1"
 vivid = "0.11.1"
