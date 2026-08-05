@@ -67,7 +67,6 @@ jobs:
             aqua:fish-shell/fish-shell
             delta
             lazygit@${{ env.LAZYGIT_VERSION }}
-
       - name: Verify installed tools work
         run: |
           echo "mise version: " && mise --version
