@@ -7,7 +7,7 @@
     "cy:run": "pnpm --filter ./integration-tests/ cy:run",
     "dev": "pnpm --filter ./integration-tests/ dev",
     "lint": "oxlint",
-    "format:check": "pnpx oxfmt --check .",
+    "format:check": "oxfmt --check .",
     "tui": "pnpm --filter ./integration-tests/ exec tui"
   },
   "devDependencies": {
