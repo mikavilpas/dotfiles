@@ -18,6 +18,37 @@ return {
           -- only run prettier in projects that use it
           require_cwd = true,
         },
+        oxfmt = {
+          -- oxfmt is installed globally via mise, so conform would otherwise run
+          -- it on every file everywhere - including projects that use prettier.
+          -- Instead, defer to the oxfmt language server.
+          --
+          -- conform's own builtin `cwd` markers are not enough here: they count
+          -- any vite.config.{ts,js} as an oxfmt project, which would hijack Vite
+          -- repos that format with prettier.
+          condition = function(_, ctx)
+            if next(vim.lsp.get_clients({ bufnr = ctx.buf, name = "oxfmt" })) ~= nil then
+              return true
+            end
+            -- The server attaches asynchronously, so a save very early in a
+            -- buffer's life can race it. Ask its root_dir directly in that case,
+            -- otherwise a parent directory's .prettierrc could win the race and
+            -- reformat an oxfmt project with prettier.
+            local config = vim.lsp.config.oxfmt
+            if type(config) ~= "table" or type(config.root_dir) ~= "function" then
+              return false
+            end
+            local root = nil
+            config.root_dir(ctx.buf, function(dir)
+              root = dir
+            end)
+            return root ~= nil
+          end,
+          cwd = function(_, ctx)
+            local client = vim.lsp.get_clients({ bufnr = ctx.buf, name = "oxfmt" })[1]
+            return client and client.root_dir
+          end,
+        },
       },
       formatters_by_ft = {
         ["dockerfile"] = { "dockerfmt" },
