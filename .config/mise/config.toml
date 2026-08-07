@@ -93,7 +93,7 @@ oxfmt = "0.62.0"
 oxlint = "1.69.0"
 prettier = "3.9.6"
 ripgrep = { version = "15.2.0", exe = "rg" }
-rtk = "v0.44.2"
+rtk = "v0.45.0"
 rumdl = "0.2.52"
 sccache = "0.17.0"
 sd = "1.1.0"
