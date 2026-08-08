@@ -204,7 +204,7 @@ gui:
     "wip-.+": "#7dc4e4" # catppuccin-macchiato-sapphire
     "feature/.+": "#f5e0dc" # catppuccin-mocha-rosewater
   authorColors:
-    "Mika Vilpas": "#8aadf4"
+    "Mika Vilpas": "#f0c6c6" # catppuccin-macchiato-flamingo
 git:
   mainBranches: [master, main, development]
   parseEmoji: true
