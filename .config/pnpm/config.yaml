@@ -1,0 +1,14 @@
+# Global pnpm settings (pnpm 11+ reads this path as `globalconfig`).
+# Credentials live separately in ./auth.ini — keep them out of this file.
+#
+# These mirror the npm defaults in ~/.npmrc so both package managers behave the
+# same way. Projects override these via their own pnpm-workspace.yaml.
+
+# 3 days, in minutes. pnpm 11 already defaults to 1440 (1 day); this raises it to
+# match the npm setting and the Renovate cooldown, and it also covers repos still
+# on pnpm 10, where there is no default age gate at all.
+minimumReleaseAge: 4320 # 3 * 24 * 60
+
+# Blocks transitive dependencies resolved from git repos or tarball URLs.
+# Already the default in pnpm 11; set explicitly so pnpm 10 repos get it too.
+blockExoticSubdeps: true

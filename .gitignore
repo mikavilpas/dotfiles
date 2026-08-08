@@ -27,3 +27,7 @@ scripts/scripts/test_utils/target
 .mise.local.toml
 .oxlintrc.json.bak
 integration-tests/cypress/screenshots/
+
+# Credentials — pnpm stores auth tokens here. Never commit them.
+# The settings file (.config/pnpm/config.yaml) is safe and is tracked.
+.config/pnpm/auth.ini
