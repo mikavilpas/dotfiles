@@ -22,17 +22,26 @@ config.default_prog = {
 --
 --
 
--- You can download the newest version of this font (it gets updates) with:
---
--- brew install font-dejavu-sans-mono-nerd-font
 --
 -- See all system fonts with:
 --
 -- wezterm ls-fonts --list-system
-
-config.font = wezterm.font("DejaVuSansM Nerd Font Propo")
+--
+-- Use the *Mono* variant, not Propo. Nerd Fonts builds three widths, and only
+-- Mono forces the added icon glyphs to a single fixed-width cell. Propo means
+-- "do not adjust advance width", which is meant for editors and design tools,
+-- not for a character grid.
+config.font = wezterm.font("DejaVuSansM Nerd Font Mono")
 config.font_size = 19
 config.freetype_load_target = "Light"
+
+-- Pin the hinting mode. wezterm's default for this is DPI-dependent:
+-- NO_HINTING at >=100 DPI, DEFAULT below it. With a Retina laptop screen and
+-- lower-density external monitors, that means glyphs are hinted differently
+-- depending on which display the window is on. Pinning it keeps rendering
+-- identical everywhere, and matches how macOS itself renders (CoreText
+-- essentially ignores hinting and relies on high DPI).
+config.freetype_load_flags = "NO_HINTING"
 
 -- https://github.com/folke/dot/blob/1007fc65738ad1f7a3e9c91432430017a6878378/config/wezterm/wezterm.lua
 
