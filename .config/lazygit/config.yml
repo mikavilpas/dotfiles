@@ -200,6 +200,7 @@ gui:
   authorColors:
     "Mika Vilpas": "#8aadf4"
 git:
+  mainBranches: [master, main, development]
   parseEmoji: true
   diffRenderers:
     # switch with `|`
