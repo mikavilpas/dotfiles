@@ -6,6 +6,14 @@ parent = "catppuccin-macchiato-blue"
 AlertError = "#f5a97f"
 # AlertWarn = "#f38ba8"
 
+# colors fitting catppuccin-macchiato-blue
+SyntaxCommand = "#8aadf4" # Blue
+SyntaxFlag = "#8bd5ca" # Teal
+SyntaxString = "#a6da95" # Green
+SyntaxVariable = "#c6a0f6" # Mauve
+SyntaxOperator = "#91d7e3" # Sky
+SyntaxComment = "#6e738d" # Overlay 0
+
 # https://catppuccin.com/palette/
 # Rosewater
 #  #f4dbd6	 rgb(244, 219, 214)	 hsl(10deg, 58%, 90%)
