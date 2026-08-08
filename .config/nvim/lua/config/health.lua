@@ -81,6 +81,17 @@ return {
     -- https://github.com/Schniz/fnm
     check("fnm")
 
+    -- yazi previewers. Without these, image and media previews silently
+    -- degrade instead of failing loudly, so they are easy to miss.
+    --
+    -- read metadata from images and other media
+    -- https://exiftool.org/
+    check("exiftool")
+
+    -- report technical info about video and audio files
+    -- https://mediaarea.net/en/MediaInfo
+    check("mediainfo")
+
     vim.health.ok("my-cli-tools")
   end,
 }
