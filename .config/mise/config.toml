@@ -38,6 +38,29 @@ settings.dotfiles.default_mode = "symlink"
 "~/.zshrc" = {}
 "~/Library/Application Support/org.dystroy.bacon" = {}
 
+# Git checkouts. Split by ownership so my own code lives in one place and can
+# be iterated over in bulk:
+#
+#   mikavilpas/  - projects I own and release
+#   other/       - forks and upstream clones I read or contribute to
+#
+# Work repos are not included: work code stays is not managed by my dotfiles at
+# all, except for (public) tooling. The dotfiles are public source;
+# aggressively limit any risk of accidentally spilling work over.
+#
+# Only track the repos, no need to pin versions here.
+[bootstrap.repos]
+"~/git/mikavilpas/blink-ripgrep.nvim" = { url = "git@github.com:mikavilpas/blink-ripgrep.nvim.git" }
+"~/git/mikavilpas/easyjump.yazi" = { url = "git@github.com:mikavilpas/easyjump.yazi.git" }
+"~/git/mikavilpas/incr.nvim" = { url = "git@github.com:mikavilpas/incr.nvim.git" }
+"~/git/mikavilpas/mika-config" = { url = "git@github.com:mikavilpas/mika-config.git" }
+"~/git/mikavilpas/my-nvim-micro-plugins.nvim" = { url = "git@github.com:mikavilpas/my-nvim-micro-plugins.nvim.git" }
+"~/git/mikavilpas/neovim-action" = { url = "git@github.com:mikavilpas/neovim-action.git" }
+"~/git/mikavilpas/tsugit.nvim" = { url = "git@github.com:mikavilpas/tsugit.nvim.git" }
+"~/git/mikavilpas/tui-sandbox" = { url = "git@github.com:mikavilpas/tui-sandbox.git" }
+"~/git/mikavilpas/yazi-action" = { url = "git@github.com:mikavilpas/yazi-action.git" }
+"~/git/mikavilpas/yazi.nvim" = { url = "git@github.com:mikavilpas/yazi.nvim.git" }
+
 # Pick tools that renovate can manage updates for. See:
 # https://docs.renovatebot.com/modules/manager/mise/
 [tools]
