@@ -26,12 +26,8 @@ config.default_prog = {
 -- See all system fonts with:
 --
 -- wezterm ls-fonts --list-system
---
--- Use the *Mono* variant, not Propo. Nerd Fonts builds three widths, and only
--- Mono forces the added icon glyphs to a single fixed-width cell. Propo means
--- "do not adjust advance width", which is meant for editors and design tools,
--- not for a character grid.
-config.font = wezterm.font("DejaVuSansM Nerd Font Mono")
+
+config.font = wezterm.font("DejaVuSansM Nerd Font Propo")
 config.font_size = 19
 config.freetype_load_target = "Light"
 
