@@ -61,6 +61,19 @@ settings.dotfiles.default_mode = "symlink"
 "~/git/mikavilpas/yazi-action" = { url = "git@github.com:mikavilpas/yazi-action.git" }
 "~/git/mikavilpas/yazi.nvim" = { url = "git@github.com:mikavilpas/yazi.nvim.git" }
 
+# Things mise cannot manage are installed via homebrew instead: GUI apps, and
+# libraries with heavy native deps.
+#
+# https://mise.jdx.dev/bootstrap/packages/brew.html
+[bootstrap.packages]
+# yazi previewers
+"brew:imagemagick" = "latest"
+"brew:exiftool" = "latest"
+"brew:media-info" = "latest" # installs mediainfo
+
+[bootstrap.hooks]
+post-packages = ["brew install --cask aerospace", "brew install --cask wezterm@nightly"]
+
 # Pick tools that renovate can manage updates for. See:
 # https://docs.renovatebot.com/modules/manager/mise/
 [tools]
