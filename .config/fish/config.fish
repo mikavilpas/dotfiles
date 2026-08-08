@@ -14,13 +14,16 @@ export FZF_DEFAULT_OPTS="--color=fg:#cad3f5,bg:#24273a,hl:#f5a97f:bold,fg+:#cad3
 export HUSKY=0
 export EDITOR=nvim
 
+# colorize man pages with bat
+# https://github.com/sharkdp/bat?tab=readme-ov-file#man
+set --global --export MANPAGER "sh -c 'col -bx | bat -l man -p'"
+
 fish_add_path $HOME/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/go/bin/
-fish_add_path /Users/mikavilpas/.local/share/bob/nvim-bin
+fish_add_path $HOME/.local/share/bob/nvim-bin
 fish_add_path $HOME/.luarocks/bin
-fish_add_path $HOME/.local/share/bob/nvim-bin:$PATH
-fish_add_path ~/.cargo/bin
+fish_add_path $HOME/.cargo/bin
 # mise manages its own version (aqua:jdx/mise) - add its binary to PATH
 # early so `mise activate fish` below can find it
 fish_add_path ~/.local/share/mise/installs/aqua-jdx-mise/latest/mise/bin

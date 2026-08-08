@@ -193,7 +193,8 @@ klm() {
 export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"
 export FZF_CTRL_T_OPTS="--min-height 30 --preview-window right:60% --preview-window noborder --preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'"
 
-eval "$(zoxide init zsh)"export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+eval "$(zoxide init zsh)"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export RUSTC_WRAPPER=/opt/homebrew/bin/sccache
 
