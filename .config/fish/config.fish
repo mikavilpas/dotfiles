@@ -54,13 +54,21 @@ if status is-interactive && test -z "$CI"
 
     abbr --add -- n nvim
     abbr --add -- j zi
-    abbr --add -- dc "docker compose"
+    # `--position anywhere` so it still expands after `f` (see below), which
+    # puts it in argument position rather than command position. Safe for `dc`
+    # because it is not a word that shows up as a literal argument.
+    abbr --add --position anywhere -- dc "docker compose"
     abbr --add -- lg lazygit
     abbr --add -- - 'cd -'
     abbr --add -- ... 'cd ../../'
     abbr --add -- top btm
     abbr --add -- parallel rust-parallel
     abbr --add -- a aube
+
+    # Run a command with the secrets fnox resolves for the current directory,
+    # e.g. `f npm ci` in a Barona repo. Only real binaries work: fnox execs the
+    # command directly, so fish functions and aliases are invisible to it.
+    abbr --add -- f "fnox exec --"
 
     # https://github.com/catppuccin/fish
     fish_config theme choose catppuccin-macchiato

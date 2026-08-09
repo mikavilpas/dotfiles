@@ -138,6 +138,9 @@ tap_to_click = true
 "npm:yaml-language-server" = "1.24.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.1.7"
 actionlint = "1.7.12"
+# Only needed to generate/rotate keypairs: fnox implements age natively and
+# does not shell out to this binary.
+age = "1.3.1"
 ast-grep = "0.45.1"
 atuin = "18.19.0"
 aws-cli = { version = "2.36.19", symlink_bins = "true" }
@@ -193,6 +196,13 @@ exe = "glab"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 glab completion -s fish > ~/.config/fish/completions/glab.fish
+"""
+
+[tools.fnox]
+version = "1.32.0"
+postinstall = """
+mkdir -p ~/.config/fish/completions
+mise exec -- fnox completion fish > ~/.config/fish/completions/fnox.fish
 """
 
 [tools.github-cli]
