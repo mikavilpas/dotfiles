@@ -14,6 +14,12 @@ export FZF_DEFAULT_OPTS="--color=fg:#cad3f5,bg:#24273a,hl:#f5a97f:bold,fg+:#cad3
 export HUSKY=0
 export EDITOR=nvim
 
+# ~/.npmrc references my work ${ARTIFACTORY_NPM_TOKEN}. pnpm warns "Failed to
+# replace env in config" on every invocation when it is unset, including in
+# personal projects that never touch that registry. Define it as an empty value
+# to avoid the warning in non-work projects.
+export ARTIFACTORY_NPM_TOKEN=""
+
 # colorize man pages with bat
 # https://github.com/sharkdp/bat?tab=readme-ov-file#man
 set --global --export MANPAGER "sh -c 'col -bx | bat -l man -p'"
