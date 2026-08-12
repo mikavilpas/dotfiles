@@ -87,6 +87,10 @@ customCommands:
         command:
           git -c core.attributesFile=/dev/null rebase --autostash --keep-empty --no-autosquash --rebase-merges
           "{{.SelectedLocalBranch.Name}}"
+      - key: v # valmis
+        description: Mark the PR as ready for review
+        context: localBranches
+        command: gh pr ready "{{.SelectedLocalBranch.Name}}"
   - key: "="
     description: "Update MR/PR description"
     context: localBranches
