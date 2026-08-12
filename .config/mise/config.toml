@@ -110,7 +110,7 @@ tap_to_click = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.8.4"
+"aqua:jdx/mise" = "2026.8.5"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.24.0"
@@ -170,7 +170,7 @@ shellcheck = "0.11.0"
 shfmt = "3.13.1"
 starship = "1.26.0"
 stylua = "2.5.2"
-tombi = "v1.3.1"
+tombi = "v1.3.2"
 tree-sitter = "0.26.12"
 typos = "1.49.0"
 usage = "5.1.0"
