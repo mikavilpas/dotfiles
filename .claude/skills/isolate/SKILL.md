@@ -1,6 +1,8 @@
 ---
 name: isolate
-description: Implement a task in an isolated git worktree using git-wt. Use when asked to isolate work, work in a worktree, or implement something separately.
+description:
+  Implement a task in an isolated git worktree using git-wt. Use when asked to isolate work, work in a worktree, or
+  implement something separately.
 allowed-tools: Bash, Read, Edit, Write, Grep, Glob, Task
 ---
 
@@ -8,7 +10,9 @@ allowed-tools: Bash, Read, Edit, Write, Grep, Glob, Task
 
 Implement a task in a new git worktree using `git-wt` (https://github.com/k1LoW/git-wt).
 
-**IMPORTANT: Execute all steps autonomously without asking for confirmation. The user is offloading this task to you — proceed through every step (worktree creation, implementation, tests, commits) on your own and report back only when finished.**
+**IMPORTANT: Execute all steps autonomously without asking for confirmation. The user is offloading this task to you —
+proceed through every step (worktree creation, implementation, tests, commits) on your own and report back only when
+finished.**
 
 ## Instructions
 
