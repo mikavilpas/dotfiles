@@ -127,7 +127,7 @@ tap_to_click = true
 "github:aaronriekenberg/rust-parallel" = "1.23.0"
 "github:afshinm/zerobox" = "0.3.3"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
-"github:k1LoW/git-wt" = "0.29.0"
+"github:k1LoW/git-wt" = "0.29.1"
 "github:pranshuparmar/witr" = "0.3.3"
 "github:reteps/dockerfmt" = "0.5.4"
 "github:tekumara/typos-lsp" = "0.1.55"
