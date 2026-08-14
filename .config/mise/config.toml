@@ -119,6 +119,9 @@ tap_to_click = true
 # renovate: datasource=crate depName=eza
 "cargo:eza" = "0.23.5"
 
+# renovate: datasource=npm depName=jfrog-cli-v2
+"asdf:mise-plugins/mise-jfrog-cli" = "2.120.0"
+
 "aqua:Schniz/fnm" = "1.39.0"
 "aqua:fish-shell/fish-shell" = "4.8.1"
 "aqua:mfontanini/presenterm" = "0.16.1"
