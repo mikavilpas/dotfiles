@@ -16,6 +16,7 @@ settings.dotfiles.default_mode = "symlink"
 # Manage with:
 # $ mise bootstrap dotfiles
 
+"~/.claude/skills/*" = {}
 "~/.config/aerospace" = {}
 "~/.config/atuin" = {}
 "~/.config/bat" = {}
