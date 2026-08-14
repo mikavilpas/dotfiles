@@ -12,10 +12,17 @@ return {
         oxfmt = {
           mason = false,
         },
-        tsgo = {
+        tsc = {
           on_attach = function(client, bufnr)
             require("twoslash-queries").attach(client, bufnr)
           end,
+
+          -- Always use the mise-installed TypeScript 7. lspconfig's own tsc
+          -- config prefers <root>/node_modules/.bin/tsc when it exists, but
+          -- most work repos are still on TypeScript 6, whose tsc has no --lsp
+          -- mode ("error TS5023: Unknown compiler option '--lsp'") and so
+          -- fails to start.
+          cmd = { "tsc", "--lsp", "--stdio" },
 
           -- this is installed with mise, so don't install another one via mason
           -- https://www.lazyvim.org/plugins/lsp#nvim-lspconfig

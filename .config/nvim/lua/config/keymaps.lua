@@ -283,7 +283,7 @@ vim.keymap.set({ "n", "v" }, "<up>", "<cmd>Yazi<cr>", { desc = "Open yazi" })
 
 vim.keymap.set("n", "'", function()
   -- Workaround for neovim bug: vim.lsp.buf.code_action() sends empty
-  -- diagnostics to tsgo because pull diagnostic namespace lookup uses
+  -- diagnostics to tsc because pull diagnostic namespace lookup uses
   -- nil identifier while storage uses string "nil". Manually collect
   -- all diagnostics for the current line and pass them in the context.
   -- https://github.com/neovim/neovim/issues/38401
