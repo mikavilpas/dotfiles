@@ -33,6 +33,26 @@
   # so individual projects can make additions or override as needed.
   attributesFile = ~/dotfiles/.gitattributes
 
+# My global hooks, requiring git 2.54+
+# (https://github.blog/open-source/git/highlights-from-git-2-54/#h-config-based-hooks).
+#
+# Unlike hooksPath they compose across system/global/local scope and can be
+# switched off per repo with `git config hook.<name>.enabled false`.
+[hook "gitleaks"]
+  # scan outgoing commits for secrets. pre-push never fires during
+  # rebasing/amending, so it stays out of the way of history editing. More than
+  # enough for a belt-and-suspenders check that might catch an issue once in 5
+  # years.
+  event = pre-push
+  command = ~/dotfiles/.config/git/hooks/pre-push-gitleaks
+
+[hook "pre-commit"]
+  # `npm install` running husky/hk/lefthook can write config-based hooks into a
+  # repo's .git/config, which hooksPath cannot block. Nothing should be adding
+  # work to every commit I make, so refuse the whole event globally. A repo that
+  # genuinely needs one can re-enable it locally.
+  enabled = false
+
 [diff]
   colorMoved = default
 
