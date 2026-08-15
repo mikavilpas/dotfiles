@@ -18,12 +18,14 @@ $username\
 $directory\
 [](fg:text bg:peach)\
 $git_branch\
+$git_state\
 $git_status\
 [](fg:peach bg:mauve)\
 $nodejs\
 $rust\
 [](fg:mauve bg:teal)\
 $aws\
+$jobs\
 $status\
 [](fg:teal bg:blue)\
 $time\
@@ -33,6 +35,14 @@ $cmd_duration\
 
 # Disable the blank line at the start of the prompt
 # add_newline = false
+
+# $username only renders as root or over SSH. Without this section it would fall
+# back to starship's default format ("$user in ", bold yellow, no background),
+# which breaks the blue cap of the prompt on every remote session.
+[username]
+style_user = "fg:crust bg:blue"
+style_root = "fg:red bg:blue"
+format = "[[ $user ](fg:crust bg:blue)]($style)"
 
 [directory]
 style = "fg:crust bg:text"
@@ -45,6 +55,12 @@ truncation_symbol = "…/"
 symbol = ""
 style = "fg:crust bg:peach"
 format = "[[ $symbol $branch ](fg:crust bg:peach)]($style)"
+
+# Shows REBASING 2/5, MERGING, CHERRY-PICKING etc. Only renders mid-operation,
+# so it costs nothing the rest of the time.
+[git_state]
+style = "fg:crust bg:peach"
+format = "[[ $state( $progress_current/$progress_total) ](fg:crust bg:peach)]($style)"
 
 [git_status]
 style = "fg:crust bg:peach"
@@ -72,22 +88,34 @@ min_time = 500
 style = "fg:crust bg:blue"
 format = "[[  $duration ](fg:crust bg:blue)]($style)"
 
+[jobs]
+style = "fg:crust bg:teal"
+symbol = "󰜎 "
+number_threshold = 1
+format = "[[ $symbol$number ](fg:crust bg:teal)]($style)"
+
 [status]
-style = "fg:crust bg:green"
+style = "fg:crust bg:teal"
 symbol = "🔴"
 success_symbol = ""
-format = "[ $symbol$signal_name$int]($style)"
+format = "[[ $symbol$signal_name$int ](fg:crust bg:teal)]($style)"
 map_symbol = true
 disabled = false
 
 [character]
 format = "$symbol "
 success_symbol = "\\$"
+error_symbol = "[\\$](red)"
+vimcmd_symbol = "[\\$](mauve)"
 
+# force_display is required: without it the module never renders, because
+# starship otherwise only shows it in directories it recognises as AWS-related.
+# With it, the module still stays quiet unless a profile is actually active.
 [aws]
-format = "[$symbol$profile ]($style)"
-style = "fg:crust bg:green"
-symbol = " 󰸏 "
+force_display = true
+format = "[[ $symbol$profile ](fg:crust bg:teal)]($style)"
+style = "fg:crust bg:teal"
+symbol = "󰸏 "
 # [aws.profile_aliases]
 # Enterprise_Naming_Scheme-voidstars = 'void**'
 
