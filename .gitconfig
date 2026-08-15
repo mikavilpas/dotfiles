@@ -6,7 +6,11 @@
   pager = delta
   ; commentChar = ";"
 
-  # disable using git hooks completely.
+  # Disable using project specific git hooks completely. Although their
+  # intentions are good, I have found them to carry a lot of implicit and
+  # accidental baggage about what ways of working are "correct". Getting them
+  # wrong can spell a lot of trouble for any other git workflows, including:
+  #
   # - sometimes other developers add hooks that are slow. Sometimes it's me.
   # - some implementations of git hooks do not work at all in legacy projects
   #   when hooks are included from submodules or parent repositories
@@ -18,6 +22,10 @@
   #   not a reliable way to enforce checks
   # - good projects should put important checks in CI pipelines/tests anyway,
   #   so the benefit is questionable
+  #
+  # To many developers, using git is a simpler "save and share my changes"
+  # tool, and I would never want to bother them with problems that come up in
+  # my own complicated usage.
   hooksPath = /dev/null
 
   # user-global gitattributes: pointed at the file weave maintains in this
