@@ -8,7 +8,7 @@ allowed-tools: Bash, Read, Edit, Write, Grep, Glob, Task
 
 # Isolated Worktree Task
 
-Implement a task in a new git worktree using `git-wt` (https://github.com/k1LoW/git-wt).
+Implement a task in a new git worktree using `git-wt` (<https://github.com/k1LoW/git-wt>).
 
 **IMPORTANT: Execute all steps autonomously without asking for confirmation. The user is offloading this task to you —
 proceed through every step (worktree creation, implementation, tests, commits) on your own and report back only when
