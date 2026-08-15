@@ -131,7 +131,7 @@ tap_to_click = true
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.8.1"
 "github:DeusData/codebase-memory-mcp" = "v0.10.5"
-"github:aaronriekenberg/rust-parallel" = "1.23.0"
+"github:aaronriekenberg/rust-parallel" = "1.24.0"
 "github:afshinm/zerobox" = "0.3.3"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:k1LoW/git-wt" = "0.29.1"
