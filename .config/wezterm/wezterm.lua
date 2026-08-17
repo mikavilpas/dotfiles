@@ -70,6 +70,11 @@ config.leader = { key = "a", mods = "SUPER", timeout_milliseconds = 1000 }
 
 config.scrollback_lines = 5000
 
+-- Default is 16 cells, which cuts most titles off mid-path. The fancy tab bar
+-- sizes each tab to its own title, so this is a ceiling rather than a fixed
+-- width: short titles stay short, long ones grow up to here.
+config.tab_max_width = 40
+
 local act = wezterm.action
 config.keys = {
   -- Clears the scrollback and viewport leaving the prompt line the new first line.
