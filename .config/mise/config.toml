@@ -119,7 +119,7 @@ tap_to_click = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.8.6"
+"aqua:jdx/mise" = "2026.8.8"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.24.0"
@@ -135,7 +135,7 @@ tap_to_click = true
 "aqua:fish-shell/fish-shell" = "4.8.1"
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.8.1"
-"github:DeusData/codebase-memory-mcp" = "v0.10.5"
+"github:DeusData/codebase-memory-mcp" = "v0.10.6"
 "github:aaronriekenberg/rust-parallel" = "1.24.0"
 "github:afshinm/zerobox" = "0.3.3"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
@@ -164,7 +164,7 @@ claude-code = "2.1.233"
 delta = "0.19.2"
 dotenv-linter = "4.0.0"
 fd = "10.4.2"
-fzf = "0.74.2"
+fzf = "0.74.3"
 gitleaks = "8.30.1"
 hadolint = "2.15.1"
 hyperfine = "1.20.0"
@@ -212,7 +212,7 @@ glab completion -s fish > ~/.config/fish/completions/glab.fish
 """
 
 [tools.fnox]
-version = "1.33.0"
+version = "1.33.1"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- fnox completion fish > ~/.config/fish/completions/fnox.fish
