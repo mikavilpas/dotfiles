@@ -17,7 +17,7 @@
     "@types/node": "24.13.3",
     "@types/tinycolor2": "1.4.6",
     "assert": "2.1.0",
-    "concurrently": "10.0.4",
+    "concurrently": "10.0.5",
     "tinycolor2": "1.6.0",
     "type-fest": "5.8.0",
     "typescript": "7.0.2",
