@@ -183,7 +183,7 @@ run = '''
 desc = "Copy git repo relative path(s) to the clipboard"
 on = ["c", "r"]
 run = '''
-  shell 'mika path $@ | perl -pe "chomp if eof" | pbcopy'
+  shell 'mika path %s | perl -pe "chomp if eof" | pbcopy'
 '''
 
 [[mgr.prepend_keymap]]
@@ -197,7 +197,7 @@ shell 'cat %h | pbcopy'
 on = ["c", "v"]  # convert video
 desc = "Convert video to mp4 using ffmpeg"
 run = '''
-shell --block "ffmpeg -i $1 -c:v libx264 -c:a aac output.mp4"
+shell --block "ffmpeg -i %s1 -c:v libx264 -c:a aac output.mp4"
 '''
 
 [[mgr.prepend_keymap]]
