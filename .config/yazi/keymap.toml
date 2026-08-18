@@ -212,6 +212,7 @@ desc = "Show Git file changes"
 
 [tasks]
 keymap = [
+  #
   { on = ["<Esc>"], run = "close", desc = "Hide the task manager" },
   { on = ["<C-[>"], run = "close", desc = "Hide the task manager" },
   { on = ["<C-q>"], run = "close", desc = "Hide the task manager" },
@@ -227,6 +228,7 @@ keymap = [
 
 [pick]
 keymap = [
+  #
   { on = ["<Esc>"], run = "close", desc = "Cancel selection" },
   { on = ["<C-[>"], run = "close", desc = "Cancel selection" },
   { on = ["<C-q>"], run = "close", desc = "Cancel selection" },
