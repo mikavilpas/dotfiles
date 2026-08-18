@@ -29,15 +29,10 @@
     },
     {
       "description": [
-        "pnpm 11.12.0's self-installer crashes in pnpm/action-setup",
-        "https://github.com/mikavilpas/dotfiles/actions/runs/29474716998/job/87545125670?pr=1420"
+        "mise ERROR Failed to install aqua:tombi-toml/tombi@v1.4.1: HTTP status client error (404 Not Found) for url (https://api.github.com/repos/tombi-toml/tombi/releases/tags/v1.4.1)"
       ],
-      "matchDepNames": ["pnpm"],
-      "allowedVersions": "!/^11\\.12\\.0$/"
-    },
-    {
-      "matchPackageNames": ["jdx/mise"],
-      "allowedVersions": "!/2026\\.7\\.10/"
+      "matchDepNames": ["tombi"],
+      "allowedVersions": "!/1.4.1/"
     }
   ]
 }
