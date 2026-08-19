@@ -135,7 +135,7 @@ tap_to_click = true
 "aqua:fish-shell/fish-shell" = "4.8.1"
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.8.1"
-"github:DeusData/codebase-memory-mcp" = "v0.10.6"
+"github:DeusData/codebase-memory-mcp" = "v0.10.8"
 "github:aaronriekenberg/rust-parallel" = "1.24.0"
 "github:afshinm/zerobox" = "0.3.3"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
@@ -225,7 +225,7 @@ mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
 """
 
 [tools.yq]
-version = "4.53.3"
+version = "4.53.4"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- yq completion fish > ~/.config/fish/completions/yq.fish
