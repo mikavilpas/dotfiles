@@ -119,7 +119,7 @@ tap_to_click = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.8.9"
+"aqua:jdx/mise" = "2026.8.10"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.24.0"
@@ -154,7 +154,7 @@ actionlint = "1.7.12"
 age = "1.3.1"
 ast-grep = "0.45.1"
 atuin = "18.19.0"
-aws-cli = { version = "2.36.27", symlink_bins = "true" }
+aws-cli = { version = "2.36.28", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.1.7"
 bottom = "0.14.8"
