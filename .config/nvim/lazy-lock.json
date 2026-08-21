@@ -40,7 +40,7 @@
   "mini.ai": { "branch": "main", "commit": "25248c6aa002391936a6200f12d1466015987133" },
   "mini.cursorword": { "branch": "main", "commit": "d06a70d2779851b2119459943312a4215039b153" },
   "mini.icons": { "branch": "main", "commit": "98faae31e9be1cc054ae63485e58ceb185efcad0" },
-  "mini.operators": { "branch": "main", "commit": "59c7f7362461a5db830a5752b22ce9f5cd25a966" },
+  "mini.operators": { "branch": "main", "commit": "9e0aa164b097c6cb45e59b9371c9347ac06eb822" },
   "mini.pairs": { "branch": "main", "commit": "b1c5a726921b7a8c9321e9a7a208aa0571de5810" },
   "move.nvim": { "branch": "main", "commit": "599b14047b82e92874b9a408e4df228b965c3a1d" },
   "multicursor.nvim": { "branch": "main", "commit": "704b99f10a72cc05d370cfeb294ff83412a8ab55" },

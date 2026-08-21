@@ -4,7 +4,6 @@ return {
   {
     -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-operators.md
     "nvim-mini/mini.operators",
-    version = "*",
     opts = {
       exchange = {
         -- mnemonic: l for "last"
