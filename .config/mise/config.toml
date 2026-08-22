@@ -129,7 +129,7 @@ tap_to_click = true
 "cargo:eza" = "0.23.5"
 
 # renovate: datasource=npm depName=jfrog-cli-v2
-"asdf:mise-plugins/mise-jfrog-cli" = "2.120.0"
+"asdf:mise-plugins/mise-jfrog-cli" = "2.121.0"
 
 "aqua:Schniz/fnm" = "1.39.0"
 "aqua:fish-shell/fish-shell" = "4.8.1"
@@ -158,8 +158,8 @@ aws-cli = { version = "2.36.29", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.1.7"
 bottom = "0.14.8"
-cargo-binstall = "1.21.1"
-claude-code = "2.1.239"
+cargo-binstall = "1.22.0"
+claude-code = "2.1.240"
 delta = "0.19.2"
 dotenv-linter = "4.0.0"
 fd = "10.4.2"
@@ -241,7 +241,7 @@ mise exec -- xh --generate complete-fish > ~/.config/fish/completions/xh.fish
 # weave
 #
 [tools."github:Ataraxy-Labs/weave"]
-version = "0.5.1"
+version = "0.5.2"
 additional_asset_patterns = ["weave-driver-*"]
 # After (re)installing weave-cli, refresh ~/dotfiles/.gitattributes so it
 # matches the binary's current language coverage. That file is pointed at by
