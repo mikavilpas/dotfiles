@@ -211,7 +211,7 @@ glab completion -s fish > ~/.config/fish/completions/glab.fish
 """
 
 [tools.fnox]
-version = "1.33.1"
+version = "1.34.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- fnox completion fish > ~/.config/fish/completions/fnox.fish
