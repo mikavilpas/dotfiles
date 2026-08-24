@@ -19,6 +19,7 @@ return {
       open_for_directories = true,
       keymaps = {
         cycle_open_buffers = false,
+        open_and_pick_window = false,
       },
       floating_window_scaling_factor = {
         width = 0.95,
@@ -84,6 +85,7 @@ return {
     lazy = true,
     build = function(plugin)
       require("yazi.plugin").build_plugin(plugin, { sub_dir = "git.yazi" })
+      require("yazi.plugin").build_plugin(plugin, { sub_dir = "visual-pivot.yazi" })
       require("yazi.plugin").build_plugin(plugin, { sub_dir = "vcs-files.yazi" })
     end,
   },

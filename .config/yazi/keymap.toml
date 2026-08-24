@@ -201,6 +201,11 @@ shell --block "ffmpeg -i %s1 -c:v libx264 -c:a aac output.mp4"
 '''
 
 [[mgr.prepend_keymap]]
+on = "o"
+run = "plugin visual-pivot"
+desc = "Move cursor to the other end of the selection"
+
+[[mgr.prepend_keymap]]
 on = "<tab>"
 run = """shell "ya pub-to 0 nvim-cycle-buffer""""
 
