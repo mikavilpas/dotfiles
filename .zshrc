@@ -159,13 +159,13 @@ alias dc="docker compose"
 
 function w() {
   # https://github.com/watchexec/watchexec/issues/716
-  watchexec --timings --no-process-group --project-origin . $@
+  watchexec --timings --no-process-group $@
 }
 
 function ww() {
   # like `w`, but restart running command on file changes
   # https://github.com/watchexec/watchexec/issues/716
-  watchexec --on-busy-update=restart --timings --no-process-group --project-origin . $@
+  watchexec --on-busy-update=restart --timings --no-process-group $@
 }
 
 # A modern, maintained replacement for ls
