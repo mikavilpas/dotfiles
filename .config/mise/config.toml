@@ -147,14 +147,14 @@ tap_to_click = true
 "npm:oxlint-tsgolint" = "7.0.2001"
 "npm:typescript" = "7.0.2"
 "npm:yaml-language-server" = "1.24.0"
-"pipx:awslabs.cloudwatch-mcp-server" = "0.1.8"
+"pipx:awslabs.cloudwatch-mcp-server" = "0.2.0"
 actionlint = "1.7.12"
 # Only needed to generate/rotate keypairs: fnox implements age natively and
 # does not shell out to this binary.
 age = "1.3.1"
 ast-grep = "0.45.2"
-atuin = "18.20.0"
-aws-cli = { version = "2.36.31", symlink_bins = "true" }
+atuin = "18.20.1"
+aws-cli = { version = "2.36.32", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.1.7"
 bottom = "0.14.8"
@@ -174,8 +174,8 @@ oxfmt = "0.64.0"
 oxlint = "1.69.0"
 prettier = "3.9.6"
 ripgrep = { version = "15.2.0", exe = "rg" }
-rtk = "v0.45.0"
-rumdl = "0.2.60"
+rtk = "v0.46.0"
+rumdl = "0.2.61"
 sccache = "0.17.0"
 sd = "1.1.0"
 shellcheck = "0.11.0"
@@ -211,7 +211,7 @@ glab completion -s fish > ~/.config/fish/completions/glab.fish
 """
 
 [tools.fnox]
-version = "1.34.0"
+version = "1.34.1"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- fnox completion fish > ~/.config/fish/completions/fnox.fish
