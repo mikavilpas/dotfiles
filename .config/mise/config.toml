@@ -122,7 +122,7 @@ tap_to_click = true
 "aqua:jdx/mise" = "2026.8.15"
 
 # renovate: datasource=crate depName=bacon
-"cargo:bacon" = "3.25.0"
+"cargo:bacon" = "3.24.0"
 # renovate: datasource=crate depName=cargo-nextest
 "cargo:cargo-nextest" = "0.9.143"
 # renovate: datasource=crate depName=eza

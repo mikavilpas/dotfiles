@@ -40,7 +40,7 @@
         "Upstream now hosts binaries at https://dystroy.org/bacon/download/ and intends to attach the zip to",
         "future GitHub releases, so drop this rule once a release carries assets and switch to the ubi backend."
       ],
-      "matchDepNames": ["bacon"],
+      "matchPackageNames": ["bacon"],
       "allowedVersions": "!/3.25.0/"
     }
   ]
