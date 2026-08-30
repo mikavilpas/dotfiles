@@ -149,8 +149,6 @@ tap_to_click = true
 "npm:yaml-language-server" = "1.24.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.2.0"
 actionlint = "1.7.12"
-# Only needed to generate/rotate keypairs: fnox implements age natively and
-# does not shell out to this binary.
 age = "1.3.2"
 ast-grep = "0.45.2"
 atuin = "18.20.1"
