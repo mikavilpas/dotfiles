@@ -81,8 +81,10 @@ settings.dotfiles.default_mode = "symlink"
 "brew:imagemagick" = "latest"
 "brew:exiftool" = "latest"
 "brew:media-info" = "latest" # installs mediainfo
-"brew-cask:wezterm@nightly" = "latest"
+
 "brew-cask:font-dejavu-sans-mono-nerd-font" = "latest"
+"brew-cask:secretive" = "latest"
+"brew-cask:wezterm@nightly" = "latest"
 
 [bootstrap.hooks]
 # some mise tools still ship x86_64-only builds (e.g. hyperfine), so rosetta

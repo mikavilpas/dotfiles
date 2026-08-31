@@ -1,3 +1,4 @@
+export SSH_AUTH_SOCK=/Users/mikavilpas/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 source ~/dotfiles/.wezterm.sh
 
 # If you come from bash you might have to change your $PATH.
