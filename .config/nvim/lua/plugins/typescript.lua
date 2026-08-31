@@ -8,9 +8,11 @@ return {
       servers = {
         oxlint = {
           mason = false,
+          workspace_required = true,
         },
         oxfmt = {
           mason = false,
+          workspace_required = true,
         },
         tsc = {
           on_attach = function(client, bufnr)
