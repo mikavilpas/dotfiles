@@ -119,7 +119,7 @@ tap_to_click = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.8.16"
+"aqua:jdx/mise" = "2026.9.0"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.24.0"
@@ -142,7 +142,7 @@ tap_to_click = true
 "github:k1LoW/git-wt" = "0.29.1"
 "github:pranshuparmar/witr" = "0.3.3"
 "github:reteps/dockerfmt" = "0.5.4"
-"github:tekumara/typos-lsp" = "0.1.55"
+"github:tekumara/typos-lsp" = "0.1.56"
 "npm:@fsouza/prettierd" = "0.29.0"
 "npm:oxlint-tsgolint" = "7.0.2001"
 "npm:typescript" = "7.0.2"
@@ -200,7 +200,7 @@ mika init fish --output-dir ~/.config/fish/mika/
 """
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.115.0"
+version = "1.116.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
@@ -239,7 +239,7 @@ mise exec -- xh --generate complete-fish > ~/.config/fish/completions/xh.fish
 # weave
 #
 [tools."github:Ataraxy-Labs/weave"]
-version = "0.5.3"
+version = "0.5.4"
 additional_asset_patterns = ["weave-driver-*"]
 # After (re)installing weave-cli, refresh ~/dotfiles/.gitattributes so it
 # matches the binary's current language coverage. That file is pointed at by
