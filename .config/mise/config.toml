@@ -157,7 +157,7 @@ bat = "0.26.1"
 bob = "4.1.7"
 bottom = "0.14.9"
 cargo-binstall = "1.22.0"
-claude-code = "2.1.257"
+claude-code = "2.1.258"
 delta = "0.19.2"
 dotenv-linter = "4.0.0"
 fd = "10.5.0"
@@ -184,7 +184,7 @@ tombi = "v1.5.0"
 tree-sitter = "0.27.0"
 typos = "1.50.1"
 usage = "6.6.1"
-uv = "0.12.8"
+uv = "0.12.9"
 vivid = "0.11.1"
 watchexec = "2.7.0"
 zizmor = "1.30.0"
@@ -216,7 +216,7 @@ mise exec -- fnox completion fish > ~/.config/fish/completions/fnox.fish
 """
 
 [tools.github-cli]
-version = "2.98.0"
+version = "2.99.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
