@@ -499,15 +499,14 @@ dependencies = [
 
 [[package]]
 name = "gix-command"
-version = "0.10.0"
+version = "0.10.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0d96b8e8423ce2665232bda1b682a62541f07ab801ffad69a034ef962bed3244"
+checksum = "aa00adbd2c77f584cfe41f348772d2f131af1fa519a7f6b98638f1144ead96a4"
 dependencies = [
  "bstr",
  "gix-path",
  "gix-quote",
  "gix-trace",
- "shell-words",
 ]
 
 [[package]]
@@ -597,9 +596,9 @@ dependencies = [
 
 [[package]]
 name = "gix-error"
-version = "0.3.1"
+version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e73b2794a6a746953c24d4ed51e4d408b83d8d599ed4e5c39a47736d75687cf0"
+checksum = "4a1ba536602db507119eb5f3cdf80bef3ca5a5ec0dfc6e9c7f46dc70ade7c112"
 dependencies = [
  "bstr",
 ]
@@ -829,9 +828,9 @@ dependencies = [
 
 [[package]]
 name = "gix-path"
-version = "0.12.5"
+version = "0.12.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2b075e730586bba7341304d6fc1b4efc1d10cf64532622521c0e07f30e661046"
+checksum = "38fc6f029ea67de83cbcbd33fd98c05a48360d2932b39d9fdacbc6eae802d475"
 dependencies = [
  "bstr",
  "gix-trace",
@@ -982,9 +981,9 @@ checksum = "be3eb81d9dc914335923e50d52829c551feefd6a72d176c4130c546b67a60814"
 
 [[package]]
 name = "gix-transport"
-version = "0.59.1"
+version = "0.59.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b1295b6ada647b5b4ac6eb123d95a82ee80aef11a7d9db6ea9cb38dcbd411362"
+checksum = "b3f41a64939953ff49117df4eb91334d299abc59ff57a90fb2193d8ffa5886f1"
 dependencies = [
  "bstr",
  "gix-command",
@@ -1505,12 +1504,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "shell-words"
-version = "1.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dc6fe69c597f9c37bfeeeeeb33da3530379845f10be461a66d16d03eca2ded77"
-
-[[package]]
 name = "similar"
 version = "2.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1518,9 +1511,9 @@ checksum = "bbbb5d9659141646ae647b42fe094daf6c6192d1620870b449d9557f748b2daa"
 
 [[package]]
 name = "smallvec"
-version = "1.15.2"
+version = "1.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8ed6a63f02c8539c91a8685a86f4099661ba3da017932f6ebbea6de3f0fa7c90"
+checksum = "b9be42f50aa861c555654aa3a37f52f4b1074bacf4e48fe0ef7fa584e80f1f0f"
 
 [[package]]
 name = "stable_deref_trait"
