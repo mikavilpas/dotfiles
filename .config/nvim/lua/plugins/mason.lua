@@ -13,6 +13,9 @@ return {
 
       vim.lsp.config("zizmor", {
         filetypes = { "yaml", "yaml.ghaction" },
+        root_dir = function(bufnr, on_dir)
+          on_dir(vim.fs.root(bufnr, ".git"))
+        end,
       })
       vim.lsp.enable("zizmor")
     end,
