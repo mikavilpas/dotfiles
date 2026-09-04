@@ -134,7 +134,7 @@ tap_to_click = true
 "asdf:mise-plugins/mise-jfrog-cli" = "2.122.0"
 
 "aqua:Schniz/fnm" = "1.39.0"
-"aqua:fish-shell/fish-shell" = "4.8.1"
+"aqua:fish-shell/fish-shell" = "4.9.0"
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.8.2"
 "github:DeusData/codebase-memory-mcp" = "v0.10.8"
