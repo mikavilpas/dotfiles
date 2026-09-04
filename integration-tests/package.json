@@ -13,7 +13,7 @@
     "wait-on": "9.1.0"
   },
   "devDependencies": {
-    "@tui-sandbox/library": "13.0.2",
+    "@tui-sandbox/library": "13.0.3",
     "@types/node": "24.13.3",
     "@types/tinycolor2": "1.4.6",
     "assert": "2.1.0",
