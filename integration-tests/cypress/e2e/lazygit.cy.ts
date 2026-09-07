@@ -49,6 +49,7 @@ describe("lazygit", () => {
     cy.typeIntoTerminal("?")
     cy.contains("Backup branch")
     cy.typeIntoTerminal("b")
+    cy.typeIntoTerminal("{enter}")
 
     cy.contains("main--backup-")
   })
