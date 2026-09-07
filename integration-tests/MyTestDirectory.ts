@@ -14,11 +14,7 @@ export const MyTestDirectorySchema = z.object({
   name: z.literal("test-environment/"),
   type: z.literal("directory"),
   contents: z.object({
-    ".config": z.object({
-      name: z.literal(".config/"),
-      type: z.literal("directory"),
-      contents: z.object({}),
-    }),
+    ".config": z.object({ name: z.literal(".config/"), type: z.literal("directory"), contents: z.object({}) }),
     ".gitconfig": z.object({
       name: z.literal(".gitconfig"),
       type: z.literal("file-symlink"),
