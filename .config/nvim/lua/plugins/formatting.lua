@@ -18,11 +18,10 @@ return {
           -- only run prettier in projects that use it
           require_cwd = true,
 
-          cwd = function(self, ctx)
+          cwd = function(_, ctx)
             local gitdir = vim.fs.root(ctx.dirname, { ".git" }) or "not-found"
 
-            -- bound the search to the nearest git directory
-            local prettier_config = vim.fs.root(ctx.dirname, {
+            local configs = {
               -- https://github.com/stevearc/conform.nvim/blob/016802de402556da54c36bd7359b441266b01cdd/lua/conform/formatters/prettierd.lua?plain=1#L5-L25
               ".prettierrc",
               ".prettierrc.json",
@@ -42,16 +41,21 @@ return {
               "prettier.config.ts",
               "prettier.config.cts",
               "prettier.config.mts",
-            })
-            if not prettier_config then
-              return nil
-            end
+            }
+            -- bound the search to the nearest git directory
+            local prettier_config = vim.fs.root(ctx.dirname, function(name, path)
+              if not vim.tbl_contains(configs, name) then
+                return false
+              end
 
-            local match = vim.startswith(prettier_config, gitdir)
-            if match and match ~= "" then
-              return vim.fs.dirname(prettier_config)
-            end
-            return nil
+              local in_git_dir = vim.startswith(path, gitdir)
+              if not in_git_dir then
+                return false
+              end
+
+              return true
+            end)
+            return prettier_config
           end,
         },
       },
