@@ -121,7 +121,7 @@ tap_to_click = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.9.2"
+"aqua:jdx/mise" = "2026.9.3"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.24.0"
@@ -202,7 +202,7 @@ mika init fish --output-dir ~/.config/fish/mika/
 """
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.116.0"
+version = "1.117.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
