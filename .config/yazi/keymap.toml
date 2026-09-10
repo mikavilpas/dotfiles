@@ -215,6 +215,12 @@ on = ["g", "<right>"]
 run = "plugin vcs-files"
 desc = "Show Git file changes"
 
+# Open one wezterm tab per selected project
+[[mgr.prepend_keymap]]
+on = ["T"]
+run = "shell '~/.config/yazi/scripts/open-wezterm-tabs.sh %s'"
+desc = "Open a wezterm tab per selected directory"
+
 [tasks]
 keymap = [
   #
