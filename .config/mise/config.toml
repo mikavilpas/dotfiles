@@ -121,12 +121,12 @@ tap_to_click = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.9.4"
+"aqua:jdx/mise" = "2026.9.5"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.24.0"
 # renovate: datasource=crate depName=cargo-nextest
-"cargo:cargo-nextest" = "0.9.143"
+"cargo:cargo-nextest" = "0.9.144"
 # renovate: datasource=crate depName=eza
 "cargo:eza" = "0.23.5"
 
@@ -141,7 +141,7 @@ tap_to_click = true
 "github:aaronriekenberg/rust-parallel" = "1.24.0"
 "github:afshinm/zerobox" = "0.3.3"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
-"github:k1LoW/git-wt" = "0.29.2"
+"github:k1LoW/git-wt" = "0.29.3"
 "github:pranshuparmar/witr" = "0.3.3"
 "github:reteps/dockerfmt" = "0.5.4"
 "github:tekumara/typos-lsp" = "0.1.56"
