@@ -1,0 +1,16 @@
+# Tasks for this repo. Kept out of .config/mise/config.toml on purpose: that
+# file is the global mise config, and these act on files in this repo.
+
+[tasks.vendor-ponytail-skill]
+description = "Vendor the ponytail skill from upstream and link it into ~/.claude/skills"
+dir = "{{config_root}}"
+run = """
+set -e
+mkdir -p .claude/skills/ponytail ~/.claude/skills
+ln -sfn "$(pwd)/.claude/skills/ponytail" ~/.claude/skills/ponytail
+curl --fail --silent --show-error --location \
+  https://raw.githubusercontent.com/DietrichGebert/ponytail/main/skills/ponytail/SKILL.md \
+  --output .claude/skills/ponytail/SKILL.md
+# Upstream ships no version, so the diff is the review: nothing is staged.
+git --no-pager diff --stat -- .claude/skills/ponytail/SKILL.md
+"""
