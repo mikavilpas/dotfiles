@@ -121,7 +121,7 @@ tap_to_click = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.9.8"
+"aqua:jdx/mise" = "2026.9.9"
 
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.24.0"
@@ -184,11 +184,11 @@ starship = "1.26.0"
 stylua = "2.5.2"
 tombi = "v1.5.5"
 tree-sitter = "0.27.0"
-typos = "1.50.1"
+typos = "1.50.2"
 usage = "6.9.1"
-uv = "0.12.14"
+uv = "0.12.15"
 vivid = "0.11.1"
-watchexec = "2.7.2"
+watchexec = "2.7.3"
 zizmor = "1.30.1"
 zoxide = "0.10.0"
 
@@ -202,7 +202,7 @@ mika init fish --output-dir ~/.config/fish/mika/
 """
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.117.0"
+version = "1.118.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
@@ -218,7 +218,7 @@ mise exec -- fnox completion fish > ~/.config/fish/completions/fnox.fish
 """
 
 [tools.github-cli]
-version = "2.100.0"
+version = "2.101.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
