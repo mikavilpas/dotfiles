@@ -126,7 +126,7 @@ tap_to_click = true
 # renovate: datasource=crate depName=bacon
 "cargo:bacon" = "3.24.0"
 # renovate: datasource=crate depName=cargo-nextest
-"cargo:cargo-nextest" = "0.9.144"
+"cargo:cargo-nextest" = "0.9.145"
 # renovate: datasource=crate depName=eza
 "cargo:eza" = "0.23.5"
 
@@ -159,7 +159,7 @@ bat = "0.26.1"
 bob = "4.1.7"
 bottom = "0.14.9"
 cargo-binstall = "1.23.0"
-claude-code = "2.1.273"
+claude-code = "2.1.274"
 delta = "0.19.2"
 dotenv-linter = "4.0.0"
 fd = "10.5.0"
