@@ -142,6 +142,7 @@ tap_to_click = true
 "github:afshinm/zerobox" = "0.3.3"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:k1LoW/git-wt" = "0.29.3"
+"github:kjanat/actionlint" = "1.17.0"
 "github:pranshuparmar/witr" = "0.3.3"
 "github:reteps/dockerfmt" = "0.5.4"
 "github:tekumara/typos-lsp" = "0.1.56"
@@ -150,7 +151,6 @@ tap_to_click = true
 "npm:typescript" = "7.0.2"
 "npm:yaml-language-server" = "1.24.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.2.1"
-actionlint = "1.7.12"
 age = "1.3.2"
 ast-grep = "0.45.3"
 atuin = "18.23.0"
