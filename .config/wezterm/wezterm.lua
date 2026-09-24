@@ -22,9 +22,6 @@ config.default_prog = {
 --
 --
 
--- You can download the newest version of this font (it gets updates) with:
---
--- brew install font-dejavu-sans-mono-nerd-font
 --
 -- See all system fonts with:
 --
@@ -33,6 +30,14 @@ config.default_prog = {
 config.font = wezterm.font("DejaVuSansM Nerd Font Propo")
 config.font_size = 19
 config.freetype_load_target = "Light"
+
+-- Pin the hinting mode. wezterm's default for this is DPI-dependent:
+-- NO_HINTING at >=100 DPI, DEFAULT below it. With a Retina laptop screen and
+-- lower-density external monitors, that means glyphs are hinted differently
+-- depending on which display the window is on. Pinning it keeps rendering
+-- identical everywhere, and matches how macOS itself renders (CoreText
+-- essentially ignores hinting and relies on high DPI).
+config.freetype_load_flags = "NO_HINTING"
 
 -- https://github.com/folke/dot/blob/1007fc65738ad1f7a3e9c91432430017a6878378/config/wezterm/wezterm.lua
 
@@ -65,6 +70,11 @@ config.leader = { key = "a", mods = "SUPER", timeout_milliseconds = 1000 }
 
 config.scrollback_lines = 5000
 
+-- Default is 16 cells, which cuts most titles off mid-path. The fancy tab bar
+-- sizes each tab to its own title, so this is a ceiling rather than a fixed
+-- width: short titles stay short, long ones grow up to here.
+config.tab_max_width = 40
+
 local act = wezterm.action
 config.keys = {
   -- Clears the scrollback and viewport leaving the prompt line the new first line.
@@ -93,6 +103,26 @@ config.keys = {
     key = "P",
     mods = "SUPER|SHIFT",
     action = wezterm.action.ActivateCommandPalette,
+  },
+  {
+    -- Open a new window and run `x` (fish function that exits on success)
+    -- in the previous pane, so one-off terminals close themselves once
+    -- their work is done.
+    key = "n",
+    mods = "SUPER|SHIFT",
+    action = wezterm.action_callback(function(window, pane)
+      window:perform_action(act.SpawnWindow, pane)
+      pane:send_text("x\r")
+    end),
+  },
+  {
+    -- Same as SUPER|SHIFT n, but spawns a new tab instead of a window.
+    key = "t",
+    mods = "SUPER|SHIFT",
+    action = wezterm.action_callback(function(window, pane)
+      window:perform_action(act.SpawnTab("CurrentPaneDomain"), pane)
+      pane:send_text("x\r")
+    end),
   },
   {
     -- Open URL with <leader>o

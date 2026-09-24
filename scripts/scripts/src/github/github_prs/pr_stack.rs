@@ -53,27 +53,10 @@ fn format_pr_stack(
 
     let indent = "  ".repeat(depth.0);
 
-    let title_display = if pr.is_draft {
-        let clean_title = pr
-            .title
-            .strip_prefix("Draft: ")
-            .or_else(|| pr.title.strip_prefix("Draft:"))
-            .unwrap_or(&pr.title);
-        format!("**Draft:** {}", clean_title)
-    } else {
-        pr.title.clone()
-    };
-
     if is_current {
-        output.push_str(&format!(
-            "{}- 👉🏻 **[#{}]({})** | {} 👈🏻\n",
-            indent, pr.number, pr.url, title_display
-        ));
+        output.push_str(&format!("{}- 👉🏻 {} 👈🏻\n", indent, pr.url));
     } else {
-        output.push_str(&format!(
-            "{}- [#{}]({}) | {}\n",
-            indent, pr.number, pr.url, title_display
-        ));
+        output.push_str(&format!("{}- {}\n", indent, pr.url));
     }
 
     let mut sorted_children = node.children.clone();
@@ -127,30 +110,33 @@ mod tests {
         assert_eq!(
             output_from_root,
             [
-                "- 👉🏻 **[#101](https://github.com/acme/webapp/pull/101)** | feat: base feature 👈🏻",
-                "  - [#102](https://github.com/acme/webapp/pull/102) | feat: dependent feature",
-                "    - [#103](https://github.com/acme/webapp/pull/103) | **Draft:** fix: bug in dependent feature",
-            ].join("\n")
+                "- 👉🏻 https://github.com/acme/webapp/pull/101 👈🏻",
+                "  - https://github.com/acme/webapp/pull/102",
+                "    - https://github.com/acme/webapp/pull/103",
+            ]
+            .join("\n")
         );
 
         let output_from_middle = pr_stack::format_pr_stack_as_markdown(prs.clone(), second_branch)?;
         assert_eq!(
             output_from_middle,
             [
-                "- [#101](https://github.com/acme/webapp/pull/101) | feat: base feature",
-                "  - 👉🏻 **[#102](https://github.com/acme/webapp/pull/102)** | feat: dependent feature 👈🏻",
-                "    - [#103](https://github.com/acme/webapp/pull/103) | **Draft:** fix: bug in dependent feature",
-            ].join("\n")
+                "- https://github.com/acme/webapp/pull/101",
+                "  - 👉🏻 https://github.com/acme/webapp/pull/102 👈🏻",
+                "    - https://github.com/acme/webapp/pull/103",
+            ]
+            .join("\n")
         );
 
         let output_from_leaf = pr_stack::format_pr_stack_as_markdown(prs, "feature-103")?;
         assert_eq!(
             output_from_leaf,
             [
-                "- [#101](https://github.com/acme/webapp/pull/101) | feat: base feature",
-                "  - [#102](https://github.com/acme/webapp/pull/102) | feat: dependent feature",
-                "    - 👉🏻 **[#103](https://github.com/acme/webapp/pull/103)** | **Draft:** fix: bug in dependent feature 👈🏻",
-            ].join("\n")
+                "- https://github.com/acme/webapp/pull/101",
+                "  - https://github.com/acme/webapp/pull/102",
+                "    - 👉🏻 https://github.com/acme/webapp/pull/103 👈🏻",
+            ]
+            .join("\n")
         );
 
         Ok(())
@@ -185,10 +171,10 @@ mod tests {
             output,
             format!(
                 "\
-- [#101]({}) | feat: base feature
-  - 👉🏻 **[#102]({})** | feat: add API layer 👈🏻
-    - [#103]({}) | feat: add tests for API
-  - [#104]({}) | feat: docs for base",
+- {}
+  - 👉🏻 {} 👈🏻
+    - {}
+  - {}",
                 url(101),
                 url(102),
                 url(103),
@@ -202,8 +188,8 @@ mod tests {
             output,
             format!(
                 "\
-- [#105]({}) | chore: CI setup
-  - 👉🏻 **[#106]({})** | chore: add linting 👈🏻",
+- {}
+  - 👉🏻 {} 👈🏻",
                 url(105),
                 url(106),
             )
@@ -215,16 +201,54 @@ mod tests {
             output,
             format!(
                 "\
-- 👉🏻 **[#101]({})** | feat: base feature 👈🏻
-  - [#102]({}) | feat: add API layer
-    - [#103]({}) | feat: add tests for API
-  - [#104]({}) | feat: docs for base",
+- 👉🏻 {} 👈🏻
+  - {}
+    - {}
+  - {}",
                 url(101),
                 url(102),
                 url(103),
                 url(104),
             )
         );
+
+        Ok(())
+    }
+
+    /// A fork opening a PR from its own default branch reports the head as the
+    /// bare branch name (e.g. `main`) with no owner qualifier, so it collides
+    /// with our own `main`. Such a `main` -> `main` PR must not be treated as the
+    /// parent of every PR based on `main`, which would leave the tree rootless
+    /// and make every real branch look like it has no open PR.
+    #[test]
+    fn test_self_referential_fork_pr_does_not_poison_the_stack()
+    -> Result<(), Box<dyn std::error::Error>> {
+        let url = |n: u64| format!("https://github.com/acme/webapp/pull/{n}");
+        let pr = |number: u64, title: &str, head: &str, base: &str| PullRequest {
+            number,
+            title: title.to_string(),
+            url: url(number),
+            head_ref_name: head.to_string(),
+            base_ref_name: base.to_string(),
+            is_draft: false,
+        };
+
+        let prs = Vec::from([
+            pr(
+                2031,
+                "feat: send to quickfix list",
+                "send-to-quickfix-list",
+                "main",
+            ),
+            // cross-repo PR from a fork opened from the fork's own `main`
+            pr(2030, "fix: honor winborder settings", "main", "main"),
+            pr(1969, "fix: suppress keybindings", "winsplit", "main"),
+        ]);
+
+        // Before the fix this errored with "Current branch '...' is not the head
+        // branch of any open PR." even though PR #2031 clearly exists.
+        let output = pr_stack::format_pr_stack_as_markdown(prs, "send-to-quickfix-list")?;
+        assert_eq!(output, format!("- 👉🏻 {} 👈🏻", url(2031),));
 
         Ok(())
     }

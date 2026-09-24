@@ -4,7 +4,8 @@
   "extends": [
     "config:best-practices",
     "group:allNonMajor",
-    "github>Turbo87/renovate-config//rust/updateToolchain"
+    "github>Turbo87/renovate-config//rust/updateToolchain",
+    "local>mikavilpas/mika-renovate"
   ],
   "commitBodyTable": true,
   "packageRules": [
@@ -16,16 +17,31 @@
     {
       "matchPackageNames": ["gitlab-org/cli"],
       "overrideDatasource": "gitlab-releases"
-    }
-  ],
-  "customManagers": [
+    },
     {
-      "customType": "regex",
-      "datasourceTemplate": "github-releases",
-      "managerFilePatterns": [".github/workflows/*.yml"],
-      "matchStrings": [
-        "#\\s*renovate:\\s*datasource=github-releases\\s+depName=(?<depName>\\S+)\\s*[\\r\\n]+[^:]+:\\s*(?<currentValue>\\S+)"
-      ]
+      "description": [
+        "https://github.com/fish-shell/fish-shell",
+        "Its updates can be broken for a few days from time to time.",
+        "Put them to a separate group to avoid blocking other updates."
+      ],
+      "matchDepNames": ["aqua:fish-shell/fish-shell"],
+      "groupName": "fish-shell"
+    },
+    {
+      "description": [
+        "mise ERROR Failed to install aqua:tombi-toml/tombi@v1.4.1: HTTP status client error (404 Not Found) for url (https://api.github.com/repos/tombi-toml/tombi/releases/tags/v1.4.1)"
+      ],
+      "matchDepNames": ["tombi"],
+      "allowedVersions": "!/1.4.1/"
+    },
+    {
+      "description": [
+        "bacon ships no binaries of its own on GitHub, so cargo-binstall resolves it through cargo-quickinstall.",
+        "Upstream now hosts binaries at https://dystroy.org/bacon/download/ and intends to attach the zip to",
+        "future GitHub releases, so drop this rule once a release carries assets and switch to the ubi backend."
+      ],
+      "matchPackageNames": ["bacon"],
+      "allowedVersions": "!/3.25.0/"
     }
   ]
 }

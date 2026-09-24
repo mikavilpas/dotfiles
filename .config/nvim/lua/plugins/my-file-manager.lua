@@ -19,6 +19,7 @@ return {
       open_for_directories = true,
       keymaps = {
         cycle_open_buffers = false,
+        open_and_pick_window = false,
       },
       floating_window_scaling_factor = {
         width = 0.95,
@@ -30,10 +31,27 @@ return {
         grep_in_selected_files = "snacks.picker",
         picker_add_copy_relative_path_action = "snacks.picker",
       },
+      future_features = {
+        yazi_plugin_keymaps = {
+          open_file_in_vertical_split = "<c-v>",
+          open_file_in_horizontal_split = "<c-x>",
+          open_file_in_tab = "<c-t>",
+          cycle_open_buffers = "<tab>",
+          grep_in_directory = "<c-s>",
+          replace_in_directory = "<c-g>",
+          send_to_quickfix_list = "<c-q>",
+        },
+      },
     },
     init = function()
       -- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
       vim.g.loaded_netrwPlugin = 1
+    end,
+    build = function(plugin)
+      require("yazi.plugin").build_plugin(plugin, {
+        name = "nvim.yazi",
+        sub_dir = "yazi-plugin/nvim.yazi",
+      })
     end,
   },
   {
@@ -67,6 +85,7 @@ return {
     lazy = true,
     build = function(plugin)
       require("yazi.plugin").build_plugin(plugin, { sub_dir = "git.yazi" })
+      require("yazi.plugin").build_plugin(plugin, { sub_dir = "visual-pivot.yazi" })
       require("yazi.plugin").build_plugin(plugin, { sub_dir = "vcs-files.yazi" })
     end,
   },

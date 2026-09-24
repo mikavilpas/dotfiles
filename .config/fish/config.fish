@@ -3,21 +3,39 @@
 set -g fish_greeting ''
 export XDG_CONFIG_HOME="$HOME/.config"
 export FZF_DEFAULT_OPTS="--color=fg:#cad3f5,bg:#24273a,hl:#f5a97f:bold,fg+:#cad3f5,bg+:#494d64,hl+:#f5a97f:bold,spinner:#a6da95,info:#c6a0f6,prompt:#8aadf4,pointer:#ed8796,marker:#ee99a0,header:#8bd5ca,border:#6e738d"
+set -x SSH_AUTH_SOCK /Users/mikavilpas/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+
+# LS_COLORS (catppuccin-macchiato) is stored as a fish universal variable in
+# fish_variables. Regenerate with:
+# set -Ux LS_COLORS "$(vivid generate catppuccin-macchiato)"
+#
+# https://github.com/sharkdp/vivid
 
 # https://typicode.github.io/husky/how-to.html#for-multiple-commands
 export HUSKY=0
 export EDITOR=nvim
 
+# ~/.npmrc references my work ${ARTIFACTORY_NPM_TOKEN}. pnpm warns "Failed to
+# replace env in config" on every invocation when it is unset, including in
+# personal projects that never touch that registry. Define it as an empty value
+# to avoid the warning in non-work projects.
+export ARTIFACTORY_NPM_TOKEN=""
+
+# colorize man pages with bat
+# https://github.com/sharkdp/bat?tab=readme-ov-file#man
+set --global --export MANPAGER "sh -c 'col -bx | bat -l man -p'"
+
 fish_add_path $HOME/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/go/bin/
-fish_add_path /Users/mikavilpas/.local/share/bob/nvim-bin
+fish_add_path $HOME/.local/share/bob/nvim-bin
 fish_add_path $HOME/.luarocks/bin
-fish_add_path $HOME/.local/share/bob/nvim-bin:$PATH
-fish_add_path ~/.cargo/bin
+fish_add_path $HOME/.cargo/bin
 # mise manages its own version (aqua:jdx/mise) - add its binary to PATH
 # early so `mise activate fish` below can find it
 fish_add_path ~/.local/share/mise/installs/aqua-jdx-mise/latest/mise/bin
+
+set --global --export MISE_GITHUB_CREDENTIAL_COMMAND "gh auth token --hostname github.com"
 fish_add_path $HOME/.local/share/nvim/mason/bin
 
 # activate the lazy loadable completions for the mika tool
@@ -43,12 +61,21 @@ if status is-interactive && test -z "$CI"
 
     abbr --add -- n nvim
     abbr --add -- j zi
-    abbr --add -- dc "docker compose"
+    # `--position anywhere` so it still expands after `f` (see below), which
+    # puts it in argument position rather than command position. Safe for `dc`
+    # because it is not a word that shows up as a literal argument.
+    abbr --add --position anywhere -- dc "docker compose"
     abbr --add -- lg lazygit
     abbr --add -- - 'cd -'
     abbr --add -- ... 'cd ../../'
     abbr --add -- top btm
     abbr --add -- parallel rust-parallel
+    abbr --add -- a aube
+
+    # Run a command with the secrets fnox resolves for the current directory,
+    # e.g. `f npm ci` in a Barona repo. Only real binaries work: fnox execs the
+    # command directly, so fish functions and aliases are invisible to it.
+    abbr --add -- f "fnox exec --"
 
     # https://github.com/catppuccin/fish
     fish_config theme choose catppuccin-macchiato
@@ -72,7 +99,7 @@ if status is-interactive && test -z "$CI"
         # set the root of the git repository exactly to make sure watchexec is
         # able to match the ignore rules as expected
         set root (git rev-parse --show-toplevel 2>/dev/null)
-        watchexec --timings --interactive --no-process-group --project-origin "$root" $argv
+        watchexec --timings --interactive --wrap-process=none --project-origin "$root" $argv
     end
     complete --command w --wraps watchexec
 
@@ -82,7 +109,7 @@ if status is-interactive && test -z "$CI"
         # set the root of the git repository exactly to make sure watchexec is
         # able to match the ignore rules as expected
         set root (git rev-parse --show-toplevel 2>/dev/null)
-        watchexec --on-busy-update=restart --interactive --timings --no-process-group --project-origin "$root" $argv
+        watchexec --on-busy-update=restart --interactive --timings --wrap-process=none --project-origin "$root" $argv
     end
     complete --command ww --wraps watchexec
 

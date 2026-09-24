@@ -73,7 +73,7 @@ return {
       -- debug = true,
       integrations = {
         conform = {
-          formatter = "prettierd",
+          formatter = "oxfmt",
         },
       },
     },

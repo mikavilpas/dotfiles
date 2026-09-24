@@ -11,39 +11,31 @@ env:
   RUSTC_WRAPPER: sccache
   CARGO_TERM_COLOR: always
 
+  # mise's `auto_install` etc. cause activation/exec to install every
+  # tool in the trusted config. Disable so only `install_args` is honored.
+  MISE_AUTO_INSTALL: "false"
+  MISE_EXEC_AUTO_INSTALL: "false"
+  MISE_NOT_FOUND_AUTO_INSTALL: "false"
+
+permissions: {}
+
 jobs:
   build:
     name: Run tests
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     strategy:
       matrix:
         neovim_version: ["nightly"]
 
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-
-      - name: Install GNU stow and setup the dotfiles
-        run: |
-          sudo apt-get install stow tree
-          pwd
-          ls -la
-          echo "Installing dotfiles to HOME $HOME"
-          stow --verbose 2 . --target="$HOME"
-          echo "Installed dotfiles to HOME $HOME"
-          echo "List files in HOME"
-          ls -la ~/
-          echo "List files in ~/.config"
-          ls -la ~/.config/
-
-      - name: Install the fish shell
-        run: |
-          sudo apt-add-repository ppa:fish-shell/release-4
-          sudo apt update
-          sudo apt install fish
-          echo "Installed fish version $(fish --version)"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
 
       - name: Setup the mold linker
-        uses: rui314/setup-mold@725a8794d15fc7563f59595bd9556495c0564878 # v1
+        uses: rui314/setup-mold@7e4f20ad28a2e8ca6fd0892ccf72e2abb706b9c3 # v1
 
       # install the "mika" terminal application from source
       - name: Setup Rust toolchain
@@ -51,44 +43,53 @@ jobs:
         working-directory: scripts
 
       - name: Setup sccache
-        uses: mozilla-actions/sccache-action@7d986dd989559c6ecdb630a3fd2557667be217ad # v0.0.9
+        uses: mozilla-actions/sccache-action@fc920bf0ec8de6ee65d409111f7ec508035751ba # v0.0.11
 
-      - name: Install tools with UBI
+      - name: Read mise version from config
+        id: mise-version
         shell: bash
         run: |
-          mkdir -p "$HOME/.local/bin"
-          # make the tools available for subsequent steps
-          echo "$(pwd)/bin" >> "$GITHUB_PATH"
-          curl --silent --location \
-              "https://raw.githubusercontent.com/houseabsolute/ubi/${UBI_VERSION}/bootstrap/bootstrap-ubi.sh" |
-              TARGET="$HOME/.local/bin" sh
+          VERSION=$(yq '.tools."aqua:jdx/mise"' .config/mise/config.toml)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
-          VERSION=$(yq '.tools.yq.version' .config/mise/config.toml)
-          ubi --project mikefarah/yq --tag "v$VERSION"
-
-          VERSION=$(yq '.tools."github:dandavison/delta"' .config/mise/config.toml)
-          ubi --project dandavison/delta --tag "$VERSION"
-          ubi --project jesseduffield/lazygit --tag "${LAZYGIT_VERSION}"
-
-          ls -alR bin
+      - name: Install tools with mise
+        uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # renovate: datasource=github-releases depName=houseabsolute/ubi
-          UBI_VERSION: v0.9.0
           # renovate: datasource=github-releases depName=jesseduffield/lazygit
-          LAZYGIT_VERSION: v0.61.1
+          LAZYGIT_VERSION: v0.65.1
+        with:
+          version: ${{ steps.mise-version.outputs.version }}
+          mise_toml: |
+            [tools]
+            lazygit = "${{ env.LAZYGIT_VERSION }}"
+          # prettier-ignore
+          install_args: >-
+            aqua:fish-shell/fish-shell
+            delta
+            lazygit@${{ env.LAZYGIT_VERSION }}
+      - name: Verify installed tools work
+        run: |
+          echo "mise version: " && mise --version
+          echo "lazygit version: " && lazygit --version
+          echo "delta version: " && delta --version
+          echo "fish version: " && fish --version
+
+      - name: Symlink the dotfiles with mise
+        run: mise dotfiles apply --verbose --yes
+        env:
+          MISE_DOTFILES_ROOT: ${{ github.workspace }}
 
       - name: Build
         run: cargo install --locked --path scripts/
         working-directory: scripts
 
       # https://github.com/cypress-io/github-action?tab=readme-ov-file#pnpm-workspaces
-      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v5.0.0
-      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .nvmrc
           cache: "pnpm"
-      - uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: |
             ~/.cache/Cypress
@@ -110,6 +111,7 @@ jobs:
 
   validate-target-branch:
     runs-on: ubuntu-24.04
+    permissions: {}
     steps:
       - name: Validate target branch
         shell: bash

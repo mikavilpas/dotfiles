@@ -5,6 +5,11 @@ return {
     -- NOTE the defaults for LazyVim are here https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/treesitter.lua
 
     "nvim-treesitter/nvim-treesitter",
+    init = function()
+      -- jsonc was dropped from nvim-treesitter main branch; reuse the json
+      -- parser so jsonc filetype still gets highlighting
+      vim.treesitter.language.register("json", "jsonc")
+    end,
     ---@type TSConfig
     ---@diagnostic disable-next-line: missing-fields
     opts = {

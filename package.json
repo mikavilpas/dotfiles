@@ -6,33 +6,17 @@
   "scripts": {
     "cy:run": "pnpm --filter ./integration-tests/ cy:run",
     "dev": "pnpm --filter ./integration-tests/ dev",
-    "linkspector": "linkspector check",
-    "lint": "pnpx oxlint --type-aware && eslint --max-warnings=0 .",
-    "prettier": "prettier --check .",
+    "lint": "oxlint",
+    "format:check": "oxfmt --check .",
     "tui": "pnpm --filter ./integration-tests/ exec tui"
   },
   "devDependencies": {
-    "@eslint/js": "10.0.1",
-    "@umbrelladocs/linkspector": "0.4.8",
-    "eslint": "10.2.0",
-    "eslint-config-prettier": "10.1.8",
-    "eslint-plugin-no-only-tests": "3.3.0",
-    "eslint-plugin-oxlint": "1.59.0",
-    "oxlint": "1.59.0",
-    "oxlint-tsgolint": "0.20.0",
-    "prettier": "3.8.2",
-    "prettier-plugin-organize-imports": "4.3.0",
-    "prettier-plugin-packagejson": "3.0.2",
-    "typescript-eslint": "8.58.1"
+    "@mikavilpas/oxfmt-config": "3.0.3",
+    "@mikavilpas/oxlint-config": "3.0.1",
+    "eslint-plugin-no-only-tests": "3.4.0",
+    "oxfmt": "0.68.0",
+    "oxlint": "1.83.0",
+    "oxlint-tsgolint": "7.0.2002"
   },
-  "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "core-js",
-      "cypress",
-      "esbuild",
-      "node-pty",
-      "puppeteer"
-    ]
-  }
+  "packageManager": "pnpm@12.5.1"
 }

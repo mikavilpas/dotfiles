@@ -3,6 +3,7 @@
 return {
   {
     "mistweaverco/kulala.nvim",
+    version = "v5.3.4", -- 6 seems broken
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       ---@type TSConfig

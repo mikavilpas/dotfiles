@@ -465,9 +465,9 @@ fn pr_stack_summary_can_process_test_data() -> Result<(), Box<dyn std::error::Er
     assert_eq!(
         output,
         [
-            "- 👉🏻 **[#101](https://github.com/acme/webapp/pull/101)** | Set up authentication module 👈🏻",
-            "  - [#102](https://github.com/acme/webapp/pull/102) | Implement user profile page",
-            "    - [#103](https://github.com/acme/webapp/pull/103) | Add input validation to user form",
+            "- 👉🏻 https://github.com/acme/webapp/pull/101 👈🏻",
+            "  - https://github.com/acme/webapp/pull/102",
+            "    - https://github.com/acme/webapp/pull/103",
             "",
         ]
         .join("\n")
@@ -510,9 +510,9 @@ fn pr_stack_summary_defaults_to_current_branch_if_not_given()
     assert_eq!(
         output,
         [
-            "- [#101](https://github.com/acme/webapp/pull/101) | Set up authentication module",
-            "  - 👉🏻 **[#102](https://github.com/acme/webapp/pull/102)** | Implement user profile page 👈🏻",
-            "    - [#103](https://github.com/acme/webapp/pull/103) | Add input validation to user form",
+            "- https://github.com/acme/webapp/pull/101",
+            "  - 👉🏻 https://github.com/acme/webapp/pull/102 👈🏻",
+            "    - https://github.com/acme/webapp/pull/103",
             "",
         ]
         .join("\n")

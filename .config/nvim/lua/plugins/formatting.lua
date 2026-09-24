@@ -6,18 +6,63 @@
 ---@module "lazy"
 ---@type LazySpec
 return {
-  {
-    "mason-org/mason.nvim",
-    opts = function(_, opts)
-      table.insert(opts.ensure_installed, "prettierd")
-    end,
-  },
+  -- prettierd is installed and updated via mise, so it is not added to mason's
+  -- ensure_installed. conform finds it on PATH.
   {
     "stevearc/conform.nvim",
-    ---@type conform.FormatOpts
+    ---@type conform.setupOpts
     opts = {
       undojoin = true,
+      formatters = {
+        prettierd = {
+          -- only run prettier in projects that use it
+          require_cwd = true,
+
+          cwd = function(_, ctx)
+            local gitdir = vim.fs.root(ctx.dirname, { ".git" }) or "not-found"
+
+            local configs = {
+              -- https://github.com/stevearc/conform.nvim/blob/016802de402556da54c36bd7359b441266b01cdd/lua/conform/formatters/prettierd.lua?plain=1#L5-L25
+              ".prettierrc",
+              ".prettierrc.json",
+              ".prettierrc.yml",
+              ".prettierrc.yaml",
+              ".prettierrc.json5",
+              ".prettierrc.js",
+              ".prettierrc.cjs",
+              ".prettierrc.mjs",
+              ".prettierrc.ts",
+              ".prettierrc.cts",
+              ".prettierrc.mts",
+              ".prettierrc.toml",
+              "prettier.config.js",
+              "prettier.config.cjs",
+              "prettier.config.mjs",
+              "prettier.config.ts",
+              "prettier.config.cts",
+              "prettier.config.mts",
+            }
+            -- bound the search to the nearest git directory
+            local prettier_config = vim.fs.root(ctx.dirname, function(name, path)
+              if not vim.tbl_contains(configs, name) then
+                return false
+              end
+
+              local in_git_dir = vim.startswith(path, gitdir)
+              if not in_git_dir then
+                return false
+              end
+
+              return true
+            end)
+            return prettier_config
+          end,
+        },
+      },
       formatters_by_ft = {
+        ["dockerfile"] = { "dockerfmt" },
+        -- oxfmt is preferred if it's available - it's used through its lsp to
+        -- avoid overhead and conflicts with versions
         ["javascript"] = { "prettierd" },
         ["javascriptreact"] = { "prettierd" },
         ["typescript"] = { "prettierd" },

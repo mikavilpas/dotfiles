@@ -7,27 +7,24 @@ return {
       ---@type table<string, vim.lsp.Config>
       servers = {
         oxlint = {
-          -- opt in to early changes from this PR, these can be removed when it
-          -- gets merged
-          -- https://github.com/neovim/nvim-lspconfig/pull/4242
-          cmd = { "oxlint", "--lsp" },
-          on_attach = function(client, bufnr)
-            vim.api.nvim_buf_create_user_command(bufnr, "LspOxlintFixAll", function()
-              client:exec_cmd({
-                title = "Apply Oxlint automatic fixes",
-                command = "oxc.fixAll",
-                arguments = { { uri = vim.uri_from_bufnr(bufnr) } },
-              })
-            end, {
-              desc = "Apply Oxlint automatic fixes",
-            })
-          end,
           mason = false,
+          workspace_required = true,
         },
-        tsgo = {
+        oxfmt = {
+          mason = false,
+          workspace_required = true,
+        },
+        tsc = {
           on_attach = function(client, bufnr)
             require("twoslash-queries").attach(client, bufnr)
           end,
+
+          -- Always use the mise-installed TypeScript 7. lspconfig's own tsc
+          -- config prefers <root>/node_modules/.bin/tsc when it exists, but
+          -- most work repos are still on TypeScript 6, whose tsc has no --lsp
+          -- mode ("error TS5023: Unknown compiler option '--lsp'") and so
+          -- fails to start.
+          cmd = { "tsc", "--lsp", "--stdio" },
 
           -- this is installed with mise, so don't install another one via mason
           -- https://www.lazyvim.org/plugins/lsp#nvim-lspconfig
@@ -45,6 +42,17 @@ return {
         },
       },
     },
+  },
+
+  {
+    "neovim/nvim-lspconfig",
+    opts = function()
+      vim.lsp.config("oxfmt", {
+        -- oxfmt matches a buffer's *full* filetype exactly, so its default
+        -- "yaml" doesn't cover my "yaml.ghaction" buffers
+        filetypes = vim.list_extend(vim.deepcopy(vim.lsp.config.oxfmt.filetypes or {}), { "yaml.ghaction" }),
+      })
+    end,
   },
 
   {

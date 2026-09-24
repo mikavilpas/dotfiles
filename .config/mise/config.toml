@@ -1,75 +1,199 @@
 settings.cargo.binstall = true
-settings.experimental = true
+
+settings.cargo.binstall_only = true
+
+settings.cargo.binstall_quickinstall = true
+
+settings.auto_install = false
+
+settings.dotfiles.root = "~/dotfiles"
+
+settings.dotfiles.default_mode = "symlink"
+
+[dotfiles]
+# ~/.npmrc is intentionally NOT managed here: the real ~/.npmrc holds secret
+# authTokens that must never be committed, and the repo .npmrc only sets the
+# default registry (which npm uses anyway). Leave the home file untouched.
+
+# List everything explicitly. This is annoying but clear, and avoids bad
+# surprises completely.
+#
+# Manage with:
+# $ mise bootstrap dotfiles
+
+"~/.claude/skills/*" = {}
+"~/.config/aerospace" = {}
+"~/.config/atuin" = {}
+"~/.config/bat" = {}
+"~/.config/delta" = {}
+"~/.config/fd" = {}
+"~/.config/fish" = {}
+"~/.config/husky" = {}
+"~/.config/lazygit" = {}
+"~/.config/mise" = {}
+"~/.config/npm/defaults.npmrc" = {}
+"~/.config/nvim" = {}
+"~/.config/pnpm/config.yaml" = {}
+"~/.config/presenterm" = {}
+"~/.config/starship.toml" = {}
+"~/.config/wezterm" = {}
+"~/.config/yazi" = {}
+"~/.fdignore" = {}
+"~/.gitattributes" = {}
+"~/.gitconfig" = {}
+"~/.rgignore" = {}
+"~/.typos.toml" = {}
+"~/.zshrc" = {}
+"~/Library/Application Support/org.dystroy.bacon" = {}
+
+# Git checkouts. Split by ownership so my own code lives in one place and can
+# be iterated over in bulk:
+#
+#   mikavilpas/  - projects I own and release
+#   other/       - forks and upstream clones I read or contribute to
+#
+# Work repos are not included: work code stays is not managed by my dotfiles at
+# all, except for (public) tooling. The dotfiles are public source;
+# aggressively limit any risk of accidentally spilling work over.
+#
+# Only track the repos, no need to pin versions here.
+[bootstrap.repos]
+"~/git/mikavilpas/blink-ripgrep.nvim" = { url = "git@github.com:mikavilpas/blink-ripgrep.nvim.git" }
+"~/git/mikavilpas/easyjump.yazi" = { url = "git@github.com:mikavilpas/easyjump.yazi.git" }
+"~/git/mikavilpas/incr.nvim" = { url = "git@github.com:mikavilpas/incr.nvim.git" }
+"~/git/mikavilpas/mika-config" = { url = "git@github.com:mikavilpas/mika-config.git" }
+"~/git/mikavilpas/my-nvim-micro-plugins.nvim" = { url = "git@github.com:mikavilpas/my-nvim-micro-plugins.nvim.git" }
+"~/git/mikavilpas/neovim-action" = { url = "git@github.com:mikavilpas/neovim-action.git" }
+"~/git/mikavilpas/tsugit.nvim" = { url = "git@github.com:mikavilpas/tsugit.nvim.git" }
+"~/git/mikavilpas/tui-sandbox" = { url = "git@github.com:mikavilpas/tui-sandbox.git" }
+"~/git/mikavilpas/yazi-action" = { url = "git@github.com:mikavilpas/yazi-action.git" }
+"~/git/mikavilpas/yazi.nvim" = { url = "git@github.com:mikavilpas/yazi.nvim.git" }
+
+#
+# https://mise.jdx.dev/bootstrap/packages/brew.html
+[bootstrap.packages]
+# macOS only has Apple's build cannot be upgraded independently and lags
+# upstream by several releases. Homebrew's git is bottled, so this is a fast
+# binary install, not a build.
+"brew:git" = "latest"
+
+# yazi previewers
+"brew:imagemagick" = "latest"
+"brew:exiftool" = "latest"
+"brew:media-info" = "latest" # installs mediainfo
+
+"brew-cask:font-dejavu-sans-mono-nerd-font" = "latest"
+"brew-cask:secretive" = "latest"
+"brew-cask:wezterm@nightly" = "latest"
+
+[bootstrap.hooks]
+# some mise tools still ship x86_64-only builds (e.g. hyperfine), so rosetta
+# has to exist before anything is installed
+pre-packages = "softwareupdate --install-rosetta --agree-to-license"
+post-packages = ["brew install --cask aerospace"]
+# dock settings only take effect after it restarts
+post-defaults = "killall Dock || true"
+
+# macOS preferences. Only settings that actually differ from stock macOS are
+# listed - pinning a default just adds noise and hides the real intent.
+#
+# Apply with:
+# $ mise bootstrap macos defaults apply
+[bootstrap.macos.keyboard]
+key_repeat = 5
+initial_key_repeat = 15
+# disable the accent picker so held keys repeat instead - required for
+# vim-style navigation in neovim
+press_and_hold = false
+
+[bootstrap.macos.dock]
+autohide = true
+tilesize = 61
+# aerospace requires this off, otherwise macOS reorders spaces underneath it
+mru_spaces = false
+
+[bootstrap.macos.trackpad]
+tap_to_click = true
 
 # Pick tools that renovate can manage updates for. See:
 # https://docs.renovatebot.com/modules/manager/mise/
 [tools]
-
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.4.11"
+"aqua:jdx/mise" = "2026.9.12"
 
 # renovate: datasource=crate depName=bacon
-"cargo:bacon" = "3.22.0"
+"cargo:bacon" = "3.24.0"
 # renovate: datasource=crate depName=cargo-nextest
-"cargo:cargo-nextest" = "0.9.117"
+"cargo:cargo-nextest" = "0.9.146"
 # renovate: datasource=crate depName=eza
-"cargo:eza" = "0.23.3"
-# renovate: datasource=crate depName=sccache
-"cargo:sccache" = "0.14.0"
+"cargo:eza" = "0.23.5"
 
-"aqua:ClementTsang/bottom" = "0.12.3"
-"aqua:MordechaiHadad/bob" = "4.1.6"
+# renovate: datasource=npm depName=jfrog-cli-v2
+"asdf:mise-plugins/mise-jfrog-cli" = "2.125.0"
+
 "aqua:Schniz/fnm" = "1.39.0"
-"aqua:fish-shell/fish-shell" = "4.6.0"
+"aqua:fish-shell/fish-shell" = "4.9.3"
 "aqua:mfontanini/presenterm" = "0.16.1"
-"aqua:ouch-org/ouch" = "0.6.1"
-"github:BurntSushi/ripgrep" = { version = "15.1.0", exe = "rg" }
-"github:JohnnyMorganz/stylua" = "2.4.1"
-"github:aaronriekenberg/rust-parallel" = "1.22.0"
-"github:afshinm/zerobox" = "0.2.0"
-"github:ajeetdsouza/zoxide" = "0.9.9"
+"aqua:ouch-org/ouch" = "0.8.3"
+"github:DeusData/codebase-memory-mcp" = "v0.11.0"
+"github:aaronriekenberg/rust-parallel" = "1.24.0"
+"github:afshinm/zerobox" = "0.3.3"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
-"github:ast-grep/ast-grep" = "0.42.1"
-"github:atuinsh/atuin" = { version = "18.14.1", matching_regex = ".tar.gz$" }
-"github:cargo-bins/cargo-binstall" = "1.18.1"
-"github:chmln/sd" = "1.1.0"
-"github:dandavison/delta" = "0.19.2"
-"github:hadolint/hadolint" = "2.14.0"
-"github:jesseduffield/lazydocker" = "0.25.0"
-"github:junegunn/fzf" = "0.71.0"
-"github:k1LoW/git-wt" = "0.26.2"
-"github:koalaman/shellcheck" = "0.11.0"
-"github:mvdan/sh" = { version = "3.13.1", bin = "shfmt" }
-"github:pranshuparmar/witr" = "0.3.1"
-"github:rtk-ai/rtk" = "v0.36.0"
-"github:rvben/rumdl" = "0.1.71"
-"github:sharkdp/bat" = "0.26.1"
-"github:sharkdp/fd" = "10.4.2"
-"github:sharkdp/hyperfine" = "1.20.0"
-"github:starship/starship" = "1.24.2"
-"github:tekumara/typos-lsp" = "0.1.51"
-"github:tree-sitter/tree-sitter" = "0.26.8"
-"github:watchexec/watchexec" = "2.5.1"
-"npm:@anthropic-ai/claude-code" = "2.1.101"
-"npm:@fission-ai/openspec" = "1.2.0"
-"npm:@fsouza/prettierd" = "0.27.0"
-"npm:@typescript/native-preview" = "7.0.0-dev.20260410.1"
-"npm:oxlint" = "1.59.0"
-"npm:oxlint-tsgolint" = "0.20.0"
-"npm:yaml-language-server" = "1.21.0"
-"pipx:awslabs.cloudwatch-mcp-server" = "0.0.24"
-actionlint = "1.7.12"
-aws-cli = { version = "2.34.30", symlink_bins = "true" }
+"github:k1LoW/git-wt" = "0.29.3"
+"github:kjanat/actionlint" = "1.17.0"
+"github:pranshuparmar/witr" = "0.3.3"
+"github:reteps/dockerfmt" = "0.5.4"
+"github:tekumara/typos-lsp" = "0.1.56"
+"npm:@fsouza/prettierd" = "0.29.0"
+"npm:oxlint-tsgolint" = "7.0.2002"
+"npm:typescript" = "7.0.2"
+"npm:yaml-language-server" = "1.24.0"
+"pipx:awslabs.cloudwatch-mcp-server" = "0.3.1"
+age = "1.3.2"
+ast-grep = "0.45.3"
+atuin = "18.23.0"
+aws-cli = { version = "2.37.1", symlink_bins = "true" }
+bat = "0.26.1"
+bob = "4.2.0"
+bottom = "0.14.9"
+cargo-binstall = "1.23.0"
+claude-code = "2.1.281"
+delta = "0.19.2"
 dotenv-linter = "4.0.0"
-jq = "1.8.1"
-typos = "1.45.1"
-uv = "0.11.6"
-
+fd = "10.5.0"
+fzf = "0.74.4"
+gitleaks = "8.30.1"
+hadolint = "2.15.1"
+hyperfine = "1.20.0"
+jq = "1.8.2"
+lazydocker = "0.25.2"
+lychee = "0.24.2"
+oxfmt = "0.68.0"
+oxlint = "1.69.0"
+prettier = "3.9.9"
+ripgrep = { version = "15.2.0", exe = "rg" }
+rtk = "v0.49.0"
+rumdl = "0.2.77"
+sccache = "0.18.0"
+sd = "1.1.0"
+shellcheck = "0.11.0"
+shfmt = "3.14.1"
+starship = "1.26.0"
+stylua = "2.5.2"
+tombi = "v1.5.5"
+tree-sitter = "0.27.0"
+typos = "1.50.2"
+usage = "6.11.1"
+uv = "0.12.18"
+vivid = "0.11.1"
+watchexec = "2.7.3"
+zizmor = "1.30.1"
+zoxide = "0.10.0"
 
 [tools."github:mikavilpas/dotfiles"]
-version = "1.3.1"
+version = "1.4.1"
 exe = "mika"
 postinstall = """
 mkdir -p ~/.config/fish/completions ~/.config/fish/mika
@@ -78,7 +202,7 @@ mika init fish --output-dir ~/.config/fish/mika/
 """
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.92.1"
+version = "1.119.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
@@ -86,23 +210,48 @@ mkdir -p ~/.config/fish/completions
 glab completion -s fish > ~/.config/fish/completions/glab.fish
 """
 
+[tools.fnox]
+version = "1.35.3"
+postinstall = """
+mkdir -p ~/.config/fish/completions
+mise exec -- fnox completion fish > ~/.config/fish/completions/fnox.fish
+"""
+
 [tools.github-cli]
-version = "2.89.0"
+version = "2.101.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
 """
 
 [tools.yq]
-version = "4.52.5"
+version = "4.53.6"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- yq completion fish > ~/.config/fish/completions/yq.fish
 """
 
 [tools."github:ducaale/xh"]
-version = "0.25.3"
+version = "0.26.2"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- xh --generate complete-fish > ~/.config/fish/completions/xh.fish
+"""
+
+# weave
+#
+[tools."github:Ataraxy-Labs/weave"]
+version = "0.5.4"
+additional_asset_patterns = ["weave-driver-*"]
+# After (re)installing weave-cli, refresh ~/dotfiles/.gitattributes so it
+# matches the binary's current language coverage. That file is pointed at by
+# `core.attributesFile` in ~/dotfiles/.gitconfig and acts as the user-global
+# default for all repos. The guard handles fresh installs where weave-driver
+# may install after this entry.
+postinstall = """
+if command -v weave-driver >/dev/null 2>&1; then
+  ( cd ~/dotfiles && weave setup )
+else
+  echo "weave-cli postinstall: weave-driver not yet on PATH, skipping setup"
+fi
 """

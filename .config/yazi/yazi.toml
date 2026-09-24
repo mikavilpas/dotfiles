@@ -1,16 +1,14 @@
-"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
-
-# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
+#:schema https://yazi-rs.github.io/schemas/yazi.json
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 
 # https://github.com/yazi-rs/plugins/tree/main/git.yazi#setup
 [[plugin.prepend_fetchers]]
-id = "git"
+group = "git"
 url = "*"
 run = "git"
 
 [[plugin.prepend_fetchers]]
-id = "git"
+group = "git"
 url = "*/"
 run = "git"
 

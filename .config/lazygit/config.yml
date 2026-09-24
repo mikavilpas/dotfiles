@@ -6,11 +6,6 @@ services:
   "gitlab.baronatechnologies.fi": "gitlab:gitlab.baronatechnologies.fi"
   "barona.ghe.com": "github:barona.ghe.com"
 customCommands:
-  - key: "-"
-    context: global
-    description: Show branch graph
-    command: git lg # custom git alias
-    output: terminal
   - key: "<c-a>"
     context: "global"
     description: "Save everything as WIP"
@@ -24,11 +19,12 @@ customCommands:
   - key: "E"
     description: "Add empty commit"
     context: files
-    command: 'git commit --allow-empty -m "empty commit"'
+    command: 'git commit --allow-empty -m "{{.Form.CommitMessage}}"'
     loadingText: "Committing empty commit..."
     prompts:
       - type: input
         title: Empty commit message
+        key: CommitMessage
         initialValue: "(empty commit)"
   - key: "b"
     context: localBranches
@@ -36,8 +32,7 @@ customCommands:
     command: git backup-branch {{.SelectedLocalBranch.Name}}
   - key: "<f8>"
     context: localBranches
-    description:
-      "Autosquash only this branch (preserves fixups in branches above)"
+    description: "Autosquash only this branch (preserves fixups in branches above)"
     loadingText: "Autosquashing {{.SelectedLocalBranch.Name}}..."
     command: mika autosquash-branch run "{{.SelectedLocalBranch.Name}}"
   - key: "<c-r>"
@@ -48,21 +43,18 @@ customCommands:
   - key: "Y"
     context: localBranches
     description: "Summarize branch commits for a PR"
-    command:
-      "mika branch-summary --branch '{{.SelectedLocalBranch.Name}}' | pbcopy"
+    command: "mika branch-summary --branch '{{.SelectedLocalBranch.Name}}' | pbcopy"
   - key: "Y"
     context: reflogCommits,commits,subCommits
     description: "Summarize selected commits for a PR"
     command:
-      "mika summary --from={{.SelectedCommitRange.To}}
-      --to={{.SelectedCommitRange.From}}^ | pbcopy"
+      "mika summary --from={{.SelectedCommitRange.To}} --to={{.SelectedCommitRange.From}}^ | prettier --no-config
+      --parser markdown --prose-wrap never | pbcopy"
   - key: X
     description: Custom commands
     commandMenu:
       - key: c
-        command:
-          "git format-patch --stdout
-          {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
+        command: "git format-patch --stdout {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
         context: commits, subCommits
         description: "Copy selected commits to clipboard"
       - key: v
@@ -71,16 +63,34 @@ customCommands:
         description: "Paste selected commits from clipboard"
       - key: s
         command:
-          "mika share-patch --with-instructions --commit
-          {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
+          "mika share-patch --with-instructions --commit {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} |
+          pbcopy"
         description: "Share selected commits as a patch with instructions"
       - key: w
-        command:
-          ~/.config/lazygit/git-create-worktree.sh
-          "{{.SelectedLocalBranch.Name}}"
+        command: ~/.config/lazygit/git-create-worktree.sh "{{.SelectedLocalBranch.Name}}"
         context: localBranches
         output: terminal
         description: "Create worktree for the selected branch"
+      - key: r
+        description: Rebase to the selected branch without Ataraxy-Labs/weave
+        # Issue:
+        #
+        # https://github.com/Ataraxy-Labs/weave sometimes creates large diffs -
+        # in these cases it's very difficult to resolve a conflict.
+        #
+        # Solution:
+        #
+        # Provide this mapping to rebase the current branch to the selected
+        # branch without Ataraxy-Labs/weave. In these cases the normal git
+        # conflict is sometimes much easier to resolve.
+        context: localBranches
+        command:
+          git -c core.attributesFile=/dev/null rebase --autostash --keep-empty --no-autosquash --rebase-merges
+          "{{.SelectedLocalBranch.Name}}"
+      - key: v # valmis
+        description: Mark the PR as ready for review
+        context: localBranches
+        command: gh pr ready "{{.SelectedLocalBranch.Name}}"
   - key: "="
     description: "Update MR/PR description"
     context: localBranches
@@ -91,19 +101,36 @@ customCommands:
 
       BRANCH="{{.SelectedLocalBranch.Name}}"
       SUMMARY="$(mika branch-summary --branch "$BRANCH")"
-      REMOTE_URL="$(git remote get-url origin)"
+
+      # Resolve the forge from the branch's upstream remote rather than always
+      # using "origin". Some projects work with multiple git forges, so the
+      # branch may track a remote other than origin.
+      REMOTE_NAME="$(git config "branch.$BRANCH.remote" || true)"
+      if [[ -z "$REMOTE_NAME" ]]; then
+        REMOTE_NAME="origin"
+      fi
+      REMOTE_URL="$(git remote get-url "$REMOTE_NAME")"
 
       if [[ "$REMOTE_URL" == *"github"* || "$REMOTE_URL" == *"ghe.com"* ]]; then
-        STACK_SUMMARY=$(gh pr list --json number,title,headRefName,baseRefName,state,url | mika pr-stack-summary - --branch "$BRANCH")
+        echo "Updating PR description for $BRANCH on GitHub"
+        # Exclude PRs from other forks: they are not part of our own stack, and a
+        # fork PR opened from the fork's default branch reports its head as the
+        # bare branch name (e.g. `main`), colliding with our `main`, breaking the
+        # `mika` stack tracking.
+        # `gh pr list` pages at 30 by default, so try to avoid issues when many
+        # PRs are open
+        STACK_SUMMARY=$(gh pr list --limit 200 --json number,title,headRefName,baseRefName,state,url,isCrossRepository --jq '[.[] | select(.isCrossRepository == false)]' | mika pr-stack-summary - --branch "$BRANCH")
         SUMMARY="$(printf '%s\n\n---\n\n# Pull request stack\n\n%s' "$SUMMARY" "$STACK_SUMMARY")"
         SUMMARY="$(echo "$SUMMARY" | prettier --no-config --parser markdown --prose-wrap never)"
         gh pr edit "$BRANCH" --body="$SUMMARY" --add-assignee="@me"
       else
+        echo "Updating MR description for $BRANCH on GitLab"
         # Wait for GitLab to process the push (up to 30s)
         LOCAL_SHA="$(git rev-parse "$BRANCH")"
 
         # build a summary of the current mr stack
-        STACK_SUMMARY=$(glab mr list --output=json | mika mr-stack-summary - --branch "$BRANCH")
+        # Same paging caveat as the GitHub branch above; 100 is glab's maximum.
+        STACK_SUMMARY=$(glab mr list --per-page=100 --output=json | mika mr-stack-summary - --branch "$BRANCH")
         SUMMARY="$(printf '%s\n\n---\n\n# Merge request stack\n\n%s' "$SUMMARY" "$STACK_SUMMARY")"
 
         echo "$SUMMARY"
@@ -135,9 +162,7 @@ os:
   editAtLineAndWait: "nvim +{{line}} {{filename}}"
   # Create pull request command opens a URL with incorrect escaping #3064
   # https://github.com/jesseduffield/lazygit/issues/3064
-  openLink:
-    open -n "$(echo {{link}} | sed 's/%3E/>/g' | sed 's/%2F/\//g' | sed
-    s/%27/\'/g )"
+  openLink: open -n "$(echo {{link}} | sed 's/%3E/>/g' | sed 's/%2F/\//g' | sed s/%27/\'/g )"
 promptToReturnFromSubprocess: false
 notARepository: "quit"
 # https://github.com/catppuccin/lazygit/blob/main/themes-mergable/macchiato/pink.yml
@@ -158,10 +183,16 @@ gui:
       - "#8aadf4"
     selectedLineBgColor:
       - "#363a4f"
+    inactiveViewSelectedLineBgColor:
+      - "#6e738d"
     cherryPickedCommitBgColor:
       - "#494d64"
     cherryPickedCommitFgColor:
       - "#f5bde6"
+    markedBaseCommitFgColor:
+      - "#8aadf4"
+    markedBaseCommitBgColor:
+      - "#eed49f"
     unstagedChangesColor:
       - "#ed8796"
     defaultFgColor:
@@ -180,12 +211,20 @@ gui:
     "wip-.+": "#7dc4e4" # catppuccin-macchiato-sapphire
     "feature/.+": "#f5e0dc" # catppuccin-mocha-rosewater
   authorColors:
-    "Mika Vilpas": "#8aadf4"
+    "Mika Vilpas": "#f0c6c6" # catppuccin-macchiato-flamingo
 git:
+  mainBranches: [master, main, development]
   parseEmoji: true
-  pagers:
+  diffRenderers:
+    # switch with `|`
     - colorArg: always
-      pager: delta --paging=never
+      command: delta --paging=never
+      name: delta
+    - colorArg: always
+      # doesn't fully color everything but might be useful for some cases where
+      # I need to eyeball a long branch commit log
+      command: bat --paging=never --color=always --style=plain --language=markdown --paging=never --decorations=never
+      name: bat
   ignoreWhitespaceInDiffView: true
 # useful for e2e tests. They don't have a separate configuration right now, so
 # this needs to be specified here.

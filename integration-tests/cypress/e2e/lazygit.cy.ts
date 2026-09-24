@@ -1,17 +1,15 @@
-import { flavors } from "@catppuccin/palette"
-import { rgbify, textIsVisibleWithBackgroundColor } from "@tui-sandbox/library"
 import assert from "assert"
 
 describe("lazygit", () => {
   it("sanity check: .gitconfig and lazygit config are available for tests", () => {
     cy.visit("/")
-    cy.startTerminalApplication({ commandToRun: ["bash"] }).then((t) => {
-      t.runBlockingShellCommand({ command: "echo $HOME" }).then((output) => {
+    cy.startTerminalApplication({ commandToRun: ["bash"] }).then(t => {
+      t.runBlockingShellCommand({ command: "echo $HOME" }).then(output => {
         assert(output.type === "success")
         expect(output.stdout).includes("testdirs/")
       })
 
-      t.runBlockingShellCommand({ command: "ls -al $HOME" }).then((output) => {
+      t.runBlockingShellCommand({ command: "ls -al $HOME" }).then(output => {
         assert(output.type === "success")
         expect(output.stdout).includes(".gitconfig")
       })
@@ -22,7 +20,7 @@ describe("lazygit", () => {
 
       t.runBlockingShellCommand({
         command: `git config --list --show-origin`,
-      }).then((output) => {
+      }).then(output => {
         assert(output.type === "success")
         expect(output.stdout).includes(".gitconfig")
       })
@@ -43,16 +41,15 @@ describe("lazygit", () => {
 
     // enter the branch pane and wait for the branch to be selected
 
+    cy.contains("HEAD -> main").should("not.exist")
     cy.typeIntoTerminal("3")
-    textIsVisibleWithBackgroundColor(
-      "main",
-      rgbify(flavors.macchiato.colors.crust.rgb),
-    )
+    cy.contains("HEAD -> main")
 
     // create a backup branch
     cy.typeIntoTerminal("?")
     cy.contains("Backup branch")
     cy.typeIntoTerminal("b")
+    cy.typeIntoTerminal("{enter}")
 
     cy.contains("main--backup-")
   })
@@ -70,11 +67,9 @@ describe("lazygit", () => {
     cy.contains("Donate")
 
     // enter the commits pane and wait for the commit to be selected
+    cy.contains("insertions(+)").should("not.exist")
     cy.typeIntoTerminal("4")
-    textIsVisibleWithBackgroundColor(
-      "initial commit",
-      rgbify(flavors.macchiato.colors.crust.rgb),
-    )
+    cy.contains("insertions(+)")
 
     cy.typeIntoTerminal("X")
     cy.contains("Copy selected commits to clipboard")

@@ -6,7 +6,11 @@
   pager = delta
   ; commentChar = ";"
 
-  # disable using git hooks completely.
+  # Disable using project specific git hooks completely. Although their
+  # intentions are good, I have found them to carry a lot of implicit and
+  # accidental baggage about what ways of working are "correct". Getting them
+  # wrong can spell a lot of trouble for any other git workflows, including:
+  #
   # - sometimes other developers add hooks that are slow. Sometimes it's me.
   # - some implementations of git hooks do not work at all in legacy projects
   #   when hooks are included from submodules or parent repositories
@@ -18,7 +22,36 @@
   #   not a reliable way to enforce checks
   # - good projects should put important checks in CI pipelines/tests anyway,
   #   so the benefit is questionable
+  #
+  # To many developers, using git is a simpler "save and share my changes"
+  # tool, and I would never want to bother them with problems that come up in
+  # my own complicated usage.
   hooksPath = /dev/null
+
+  # user-global gitattributes: pointed at the file weave maintains in this
+  # dotfiles repo. Per-repo `.gitattributes` files still override per-attribute,
+  # so individual projects can make additions or override as needed.
+  attributesFile = ~/dotfiles/.gitattributes
+
+# My global hooks, requiring git 2.54+
+# (https://github.blog/open-source/git/highlights-from-git-2-54/#h-config-based-hooks).
+#
+# Unlike hooksPath they compose across system/global/local scope and can be
+# switched off per repo with `git config hook.<name>.enabled false`.
+[hook "gitleaks"]
+  # scan outgoing commits for secrets. pre-push never fires during
+  # rebasing/amending, so it stays out of the way of history editing. More than
+  # enough for a belt-and-suspenders check that might catch an issue once in 5
+  # years.
+  event = pre-push
+  command = ~/dotfiles/.config/git/hooks/pre-push-gitleaks
+
+[hook "pre-commit"]
+  # `npm install` running husky/hk/lefthook can write config-based hooks into a
+  # repo's .git/config, which hooksPath cannot block. Nothing should be adding
+  # work to every commit I make, so refuse the whole event globally. A repo that
+  # genuinely needs one can re-enable it locally.
+  enabled = false
 
 [diff]
   colorMoved = default
@@ -59,17 +92,15 @@
   ; https://youtu.be/Md44rcw13k4?t=1077
   updateRefs = true
 [alias]
-  ; https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
-  lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
-  lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
-  lg = lg1
-
   ; How to stash changes while keeping the changes in the working directory? (Git)
   ; https://stackoverflow.com/a/60557208/1336788
   stash-keep = "!f() { git stash store --message \"$(date +'%Y-%m-%d %H:%M:%S')\" \"$1\"; }; f $(git stash create)"
 
   ; quickly create a backup of the current branch (accepts optional branch name)
   backup-branch = "!f() { branch=\"${1:-$(git rev-parse --abbrev-ref HEAD)}\"; git branch \"${branch}--backup-$(date +%Y%m%d%H%M%S)\"; }; f"
+
+[includeIf "gitdir:~/git/work-development-environment/"]
+	path = ~/git/work-development-environment/.gitconfig
 
 [commit]
 	verbose = true
@@ -82,3 +113,13 @@
 	prune = true
 [wt]
 	basedir = ~/git/worktrees/{gitroot}
+
+# weave — entity-level semantic merge driver. Patterns that route files
+# through this driver live in ~/dotfiles/.gitattributes (maintained by
+# `weave setup`; see the postinstall hook in ~/dotfiles/.config/mise/config.toml).
+# `weave setup` also writes this same block to each repo's .git/config; this
+# global copy means any repo finds the driver even without per-repo setup.
+# https://github.com/Ataraxy-Labs/weave
+[merge "weave"]
+	name = Entity-level semantic merge
+	driver = weave-driver %O %A %B %L %P
