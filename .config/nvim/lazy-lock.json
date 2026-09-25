@@ -68,7 +68,7 @@
   "plenary.nvim": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
   "render-markdown.nvim": { "branch": "main", "commit": "640a3ec6d538bad17c328be373c7cad0293d9589" },
   "rustaceanvim": { "branch": "main", "commit": "a968f5133b8b24f481de12f08cd79420d1ace559" },
-  "smear-cursor.nvim": { "branch": "main", "commit": "f63ff221158b5b0ca9de1d7d1ff2e0dce5649614" },
+  "smear-cursor.nvim": { "branch": "main", "commit": "af2e5325760abbdc121ac5a963c8d8ceaa28552a" },
   "snacks.nvim": { "branch": "main", "commit": "882c996cf28183f4d63640de0b4c02ec886d01f2" },
   "sqlite.lua": { "branch": "master", "commit": "50092d60feb242602d7578398c6eb53b4a8ffe7b" },
   "starship.yazi": { "branch": "main", "commit": "ea92cf49380466f07231c952b409831e6afd2156" },
@@ -91,5 +91,5 @@
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
   "yazi-flavor-catppuccin-macchiato": { "branch": "main", "commit": "20b47bfd78880c2674899597fd26bc01b21ff48c" },
   "yazi-rs-plugins": { "branch": "main", "commit": "f703392df78b5fba5e8f9f1ad0b1cb6d3def9736" },
-  "yazi.nvim": { "branch": "main", "commit": "2508e758d9057da9a3ec3f8c53e9f33a46a66e2d" }
+  "yazi.nvim": { "branch": "main", "commit": "d8344ddd5e58bae647002baa670de07e678b60bf" }
 }
