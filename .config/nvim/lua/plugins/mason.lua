@@ -8,6 +8,18 @@ return {
     config = function(_, _)
       vim.lsp.config("gh_actions_ls", {
         filetypes = { "yaml", "yaml.ghaction" },
+        before_init = function(params, _)
+          -- https://github.com/actions/languageservices/tree/main/languageserver#in-neovim
+          local token = vim.system({ "gh", "auth", "token" }):wait()
+          if token.code ~= 0 then
+            return
+          end
+          local host = vim.env.GH_HOST
+          params.initializationOptions = vim.tbl_extend("force", params.initializationOptions or {}, {
+            sessionToken = vim.trim(token.stdout),
+            gitHubApiUrl = host and ("https://api." .. host) or nil,
+          })
+        end,
       })
       vim.lsp.enable("gh_actions_ls")
 
