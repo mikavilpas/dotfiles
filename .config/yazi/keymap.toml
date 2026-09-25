@@ -221,6 +221,11 @@ on = ["T"]
 run = "shell '~/.config/yazi/scripts/open-wezterm-tabs.sh %s'"
 desc = "Open a wezterm tab per selected directory"
 
+[[mgr.prepend_keymap]]
+on = ["F"]
+run = "plugin fd"
+desc = "Search files by name using fd"
+
 [tasks]
 keymap = [
   #
