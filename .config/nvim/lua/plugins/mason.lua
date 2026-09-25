@@ -50,13 +50,18 @@ return {
           params.initializationOptions = vim.tbl_extend("force", params.initializationOptions or {}, options)
         end,
         handlers = {
-          -- The server looks up every action on the one API host it is given,
-          -- so with a GitHub Enterprise host each public github.com action is
-          -- reported as unresolvable.
           ["textDocument/publishDiagnostics"] = function(err, result, ctx)
-            if vim.env.GH_HOST and result then
+            if result then
               result.diagnostics = vim.tbl_filter(function(diagnostic)
-                return not diagnostic.message:match("^Unable to resolve action")
+                -- The server looks up every action on the one API host it is
+                -- given, so with a GitHub Enterprise host each public
+                -- github.com action is reported as unresolvable.
+                if vim.env.GH_HOST and diagnostic.message:match("^Unable to resolve action") then
+                  return false
+                end
+                -- The server's workflow schema does not know the `cache-mode` key.
+                -- https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#cache-mode
+                return diagnostic.message ~= "Unexpected value 'cache-mode'"
               end, result.diagnostics)
             end
             vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx)
