@@ -17,9 +17,9 @@ export EDITOR=nvim
 
 # ~/.npmrc references my work ${ARTIFACTORY_NPM_TOKEN}. pnpm warns "Failed to
 # replace env in config" on every invocation when it is unset, including in
-# personal projects that never touch that registry. Define it as an empty value
+# personal projects that never touch that registry. Define it as a dummy value
 # to avoid the warning in non-work projects.
-export ARTIFACTORY_NPM_TOKEN=""
+export ARTIFACTORY_NPM_TOKEN="dummy"
 
 # colorize man pages with bat
 # https://github.com/sharkdp/bat?tab=readme-ov-file#man
