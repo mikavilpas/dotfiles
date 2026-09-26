@@ -123,8 +123,6 @@ tap_to_click = true
 # bootstrapped with e.g. homebrew for the first installation.
 "aqua:jdx/mise" = "2026.9.14"
 
-# renovate: datasource=crate depName=bacon
-"cargo:bacon" = "3.26.0"
 # renovate: datasource=crate depName=cargo-nextest
 "cargo:cargo-nextest" = "0.9.146"
 # renovate: datasource=crate depName=eza
@@ -200,6 +198,12 @@ mkdir -p ~/.config/fish/completions ~/.config/fish/mika
 # run initialization for the fish shell after installing / updating
 mika init fish --output-dir ~/.config/fish/mika/
 """
+
+# The release zip bundles every platform, one directory per target triple
+[tools."github:Canop/bacon"]
+version = "3.26.0"
+asset_pattern = "bacon_*.zip"
+bin_path = "aarch64-apple-darwin"
 
 [tools."ubi:gitlab-org/cli"]
 version = "1.119.0"
