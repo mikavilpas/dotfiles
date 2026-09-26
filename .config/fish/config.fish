@@ -70,6 +70,7 @@ if status is-interactive && test -z "$CI"
     abbr --add -- ... 'cd ../../'
     abbr --add -- top btm
     abbr --add -- parallel rust-parallel
+    abbr --add -- mi 'mise install'
 
     # Run a command with the secrets fnox resolves for the current directory,
     # e.g. `f npm ci` in a Barona repo. Only real binaries work: fnox execs the
