@@ -156,7 +156,7 @@ aws-cli = { version = "2.37.4", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.2.0"
 bottom = "0.14.9"
-cargo-binstall = "1.23.0"
+cargo-binstall = "1.24.0"
 claude-code = "2.1.283"
 delta = "0.19.2"
 dotenv-linter = "4.0.0"
