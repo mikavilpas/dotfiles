@@ -54,13 +54,31 @@ customCommands:
     description: Custom commands
     commandMenu:
       - key: c
-        command: "git format-patch --stdout {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
+        command:
+          'echo "$(git rev-parse --show-toplevel) {{.SelectedCommitRange.From}} {{.SelectedCommitRange.To}}" | pbcopy'
         context: commits, subCommits
-        description: "Copy selected commits to clipboard"
+        description: "Copy selected commits to clipboard (paste in another local repo)"
       - key: v
-        command: "pbpaste | git am"
         context: "commits"
-        description: "Paste selected commits from clipboard"
+        description: "Cherry-pick commits copied from another local repo"
+        # Fetch the commits as real objects instead of applying a patch with
+        # `git am`. Conflicts are then a normal cherry-pick, which lazygit can
+        # continue and abort. A failed `git am` leaves .git/rebase-apply behind,
+        # which lazygit mistakes for a rebase and cannot resolve.
+        command: |
+          #!/bin/bash
+          set -euo pipefail
+
+          # "<repo path> <oldest sha> <newest sha>", written by the copy command
+          read -r repo from to <<<"$(pbpaste)"
+
+          if [[ -z "${to:-}" || ! -d "$repo" ]]; then
+            echo "Clipboard does not contain copied commits: $(pbpaste | head -c 200)" >&2
+            exit 1
+          fi
+
+          git fetch --quiet --no-tags "$repo" "$to"
+          git cherry-pick "$from^..$to"
       - key: s
         command:
           "mika share-patch --with-instructions --commit {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} |
