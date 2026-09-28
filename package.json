@@ -16,7 +16,7 @@
     "eslint-plugin-no-only-tests": "3.4.0",
     "oxfmt": "0.70.0",
     "oxlint": "1.85.0",
-    "oxlint-tsgolint": "7.0.2002"
+    "oxlint-tsgolint": "7.0.2003"
   },
   "packageManager": "pnpm@12.6.0"
 }
