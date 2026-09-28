@@ -213,19 +213,19 @@ gui:
       - "#cad3f5"
     searchingActiveBorderColor:
       - "#eed49f"
-  showNumstatInFilesView: true
-  branchColorPatterns:
-    # https://catppuccin.com/palette/
+    authorColors:
+      "Mika Vilpas": "#f0c6c6" # catppuccin-macchiato-flamingo
+    branchColorPatterns:
+      # https://catppuccin.com/palette/
 
-    # my "git backup-branch" branches should show up in a darker color
-    ".+?--backup": "#6e738d"
-    "renovate/.+": "#cba6f7" # catppuccin-mocha-mauve
-    "main$": "#a6da95"
-    "master$": "#a6da95"
-    "wip-.+": "#7dc4e4" # catppuccin-macchiato-sapphire
-    "feature/.+": "#f5e0dc" # catppuccin-mocha-rosewater
-  authorColors:
-    "Mika Vilpas": "#f0c6c6" # catppuccin-macchiato-flamingo
+      # my "git backup-branch" branches should show up in a darker color
+      ".+?--backup": "#6e738d"
+      "renovate/.+": "#cba6f7" # catppuccin-mocha-mauve
+      "main$": "#a6da95"
+      "master$": "#a6da95"
+      "wip-.+": "#7dc4e4" # catppuccin-macchiato-sapphire
+      "feature/.+": "#f5e0dc" # catppuccin-mocha-rosewater
+  showNumstatInFilesView: true
 git:
   mainBranches: [master, main, development]
   parseEmoji: true
