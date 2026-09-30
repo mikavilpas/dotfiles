@@ -180,7 +180,7 @@ shellcheck = "0.11.0"
 shfmt = "3.14.1"
 starship = "1.26.0"
 stylua = "2.5.2"
-tombi = "v1.6.0"
+tombi = "v1.6.1"
 tree-sitter = "0.27.0"
 typos = "1.50.3"
 usage = "6.12.0"
@@ -222,7 +222,7 @@ mise exec -- fnox completion fish > ~/.config/fish/completions/fnox.fish
 """
 
 [tools.github-cli]
-version = "2.101.0"
+version = "2.102.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
