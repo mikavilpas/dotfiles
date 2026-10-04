@@ -2,6 +2,8 @@
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Command_Keybindings.md#placeholder-values
 
+worktree:
+  defaultPath: ~/git/worktrees/
 services:
   "gitlab.baronatechnologies.fi": "gitlab:gitlab.baronatechnologies.fi"
   "barona.ghe.com": "github:barona.ghe.com"
