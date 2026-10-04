@@ -56,7 +56,8 @@ customCommands:
     description: Custom commands
     commandMenu:
       - key: c
-        command: 'echo "$(git rev-parse --show-toplevel) {{.SelectedCommitRange.From}} {{.SelectedCommitRange.To}}" | pbcopy'
+        command:
+          'echo "$(git rev-parse --show-toplevel) {{.SelectedCommitRange.From}} {{.SelectedCommitRange.To}}" | pbcopy'
         context: commits, subCommits
         description: "Copy selected commits to clipboard (paste in another local repo)"
       - key: v
