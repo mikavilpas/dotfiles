@@ -133,7 +133,8 @@ customCommands:
 
           REMOTE_URL="$(git remote get-url "$REMOTE_NAME")"
           if [[ "$REMOTE_URL" == *"github"* || "$REMOTE_URL" == *"ghe.com"* ]]; then
-            PR=$(gh pr create --fill --base main --head "$BRANCH" --assignee "@me")
+            # no --base: gh targets the repo's default branch (main, master, ...)
+            PR=$(gh pr create --fill --head "$BRANCH" --assignee "@me")
             echo "Created PR: $PR"
             open "$PR" # open it in the browser
             {{.Form.MergeStrategy}}
