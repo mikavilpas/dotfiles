@@ -193,6 +193,10 @@ customCommands:
           glab mr update "$BRANCH" --ready
         done
       fi
+  - key: "T"
+    context: worktrees
+    description: Open worktree in wezterm tab
+    command: ~/.config/yazi/scripts/open-wezterm-tabs.sh '{{.SelectedWorktree.Path}}'
 keybinding:
   universal:
     edit: e
