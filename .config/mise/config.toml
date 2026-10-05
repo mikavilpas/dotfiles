@@ -121,7 +121,7 @@ tap_to_click = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.10.2"
+"aqua:jdx/mise" = "2026.10.3"
 
 # renovate: datasource=crate depName=cargo-nextest
 "cargo:cargo-nextest" = "0.9.146"
@@ -164,7 +164,7 @@ fd = "10.5.0"
 fzf = "0.74.4"
 gitleaks = "8.30.1"
 hadolint = "2.15.1"
-hyperfine = "1.20.0"
+hyperfine = "1.21.0"
 jq = "1.8.2"
 lazydocker = "0.25.2"
 lychee = "0.24.2"
