@@ -20,6 +20,8 @@ return {
       version = "*",
       -- dir = "~/git/blink-ripgrep.nvim/",
     },
+    -- completes github issues/PRs (#), mentions (@) and commits (:) via `gh`
+    "Kaiser-Yang/blink-cmp-git",
   },
 
   config = function(_, opts)
@@ -53,6 +55,7 @@ return {
           "snippets",
           "buffer",
           "ripgrep",
+          "git",
         },
         -- cmdline = {
         --   -- disable cmdline completion for now
@@ -87,6 +90,89 @@ return {
             end,
           },
           buffer = { score_offset = 5 },
+          git = {
+            module = "blink-cmp-git",
+            name = "Git",
+            enabled = function()
+              return vim.tbl_contains({ "gitcommit", "markdown" }, vim.bo.filetype)
+            end,
+            opts = (function()
+              local utils = require("blink-cmp-git.utils")
+              local github = require("blink-cmp-git.default.github")
+
+              -- e.g. github.com or foo.ghe.com
+              ---@async
+              local function git_host()
+                return utils.get_repo_remote_url():gsub("^%a+://", ""):gsub("^[^/@]+@", ""):match("^[^:/]+") or ""
+              end
+
+              -- the default only enables github.com, also enable GitHub Enterprise
+              ---@async
+              local function enable()
+                local host = git_host()
+                return host == "github.com" or host:find("%.ghe%.com$") ~= nil
+              end
+
+              -- `gh api` queries github.com unless told otherwise, so pass the
+              -- repo's host. Also fetch more than the default 30 items.
+              local function get_command_args(default)
+                ---@async
+                return function(command, token)
+                  local args = default(command, token)
+                  if command == "gh" then
+                    args[#args] = args[#args] .. "?per_page=100"
+                    vim.list_extend(args, { "--hostname", git_host() })
+                  end
+                  return args
+                end
+              end
+
+              -- insert the full url instead of `#123`
+              local function get_insert_text(item)
+                return item.html_url
+              end
+
+              return {
+                commit = {
+                  -- short dates so the AuthorDate can be used in the insert text
+                  get_command_args = function(command, token)
+                    local args = require("blink-cmp-git.default.commit").get_command_args(command, token)
+                    if command == "git" then
+                      table.insert(args, "--date=short")
+                    end
+                    return args
+                  end,
+                  -- `abc123de (feat(x): subject, 2026-10-05)`, like
+                  -- `git show --no-patch --pretty=reference`
+                  get_insert_text = function(item)
+                    local sha, subject, date
+                    if type(item) == "table" then
+                      sha, subject = item.sha, item.commit.message:match("[^\n]*")
+                      date = item.commit.author.date:sub(1, 10)
+                    else
+                      sha, subject = item:match("^commit (%x+)"), item:match("\n\n%s*([^\n]*)")
+                      date = item:match("\nAuthorDate:%s*(%S+)")
+                    end
+                    return ("%s (%s, %s)"):format(sha:sub(1, 8), subject or "", date or "")
+                  end,
+                },
+                git_centers = {
+                  github = {
+                    issue = {
+                      enable = enable,
+                      get_command_args = get_command_args(github.issue.get_command_args),
+                      get_insert_text = get_insert_text,
+                    },
+                    pull_request = {
+                      enable = enable,
+                      get_command_args = get_command_args(github.pull_request.get_command_args),
+                      get_insert_text = get_insert_text,
+                    },
+                  },
+                },
+              }
+            end)(),
+          },
           ripgrep = {
             module = "blink-ripgrep",
             name = "Ripgrep",
