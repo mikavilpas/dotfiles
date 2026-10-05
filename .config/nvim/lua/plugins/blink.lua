@@ -132,6 +132,7 @@ return {
                 return item.html_url
               end
 
+              ---@type blink-cmp-git.Options
               return {
                 commit = {
                   -- short dates so the AuthorDate can be used in the insert text
