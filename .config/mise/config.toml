@@ -124,7 +124,7 @@ tap_to_click = true
 "aqua:jdx/mise" = "2026.10.4"
 
 # renovate: datasource=crate depName=cargo-nextest
-"cargo:cargo-nextest" = "0.9.146"
+"cargo:cargo-nextest" = "0.9.148"
 # renovate: datasource=crate depName=eza
 "cargo:eza" = "0.23.5"
 
@@ -157,7 +157,7 @@ bat = "0.26.1"
 bob = "4.2.0"
 bottom = "0.14.9"
 cargo-binstall = "1.25.2"
-claude-code = "2.1.293"
+claude-code = "2.1.294"
 delta = "0.20.1"
 dotenv-linter = "4.0.0"
 fd = "10.5.0"
