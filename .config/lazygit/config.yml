@@ -191,7 +191,11 @@ gui:
     optionsTextColor:
       - "#8aadf4"
     selectedLineBgColor:
-      - "#363a4f"
+      - "#c6a0f6" # catppuccin-macchiato-mauve
+    # dark text so it stays readable on the bright background
+    selectedLineFgColor:
+      - "#24273a" # catppuccin-macchiato-base
+      - bold
     inactiveViewSelectedLineBgColor:
       - "#6e738d"
     cherryPickedCommitBgColor:
