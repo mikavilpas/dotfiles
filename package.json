@@ -14,8 +14,8 @@
     "@mikavilpas/oxfmt-config": "3.0.3",
     "@mikavilpas/oxlint-config": "3.0.1",
     "eslint-plugin-no-only-tests": "3.4.0",
-    "oxfmt": "0.71.0",
-    "oxlint": "1.86.0",
+    "oxfmt": "0.72.0",
+    "oxlint": "1.87.0",
     "oxlint-tsgolint": "7.0.2003"
   },
   "packageManager": "pnpm@12.9.1"
