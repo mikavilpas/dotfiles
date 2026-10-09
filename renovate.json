@@ -26,13 +26,6 @@
       ],
       "matchDepNames": ["aqua:fish-shell/fish-shell"],
       "groupName": "fish-shell"
-    },
-    {
-      "description": [
-        "mise ERROR Failed to install aqua:tombi-toml/tombi@v1.4.1: HTTP status client error (404 Not Found) for url (https://api.github.com/repos/tombi-toml/tombi/releases/tags/v1.4.1)"
-      ],
-      "matchDepNames": ["tombi"],
-      "allowedVersions": "!/1.4.1/"
     }
   ]
 }
