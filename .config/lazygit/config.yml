@@ -232,6 +232,7 @@ gui:
   showNumstatInFilesView: true
 git:
   mainBranches: [master, main, development]
+  autoForwardBranches: allBranches
   parseEmoji: true
   diffRenderers:
     # switch with `|`
