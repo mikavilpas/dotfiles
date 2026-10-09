@@ -55,6 +55,9 @@
 
 [diff]
   colorMoved = default
+  ; cleaner diffs than myers when code is added or moved around
+  ; https://adamj.eu/tech/2024/01/18/git-improve-diff-histogram/
+  algorithm = histogram
 
 [merge]
   # show the common ancestor in conflict markers, with lines identical on both
