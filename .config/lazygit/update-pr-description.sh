@@ -25,7 +25,7 @@ if [[ "$REMOTE_URL" == *"github"* || "$REMOTE_URL" == *"ghe.com"* ]]; then
   # PRs are open
   STACK_SUMMARY=$(gh pr list --limit 200 --json number,title,headRefName,baseRefName,state,url,isCrossRepository --jq '[.[] | select(.isCrossRepository == false)]' | mika pr-stack-summary - --branch "$BRANCH")
   SUMMARY="$(printf '%s\n\n---\n\n# Pull request stack\n\n%s' "$SUMMARY" "$STACK_SUMMARY")"
-  SUMMARY="$(echo "$SUMMARY" | prettier --no-config --parser markdown --prose-wrap never)"
+  SUMMARY="$(echo "$SUMMARY" | oxfmt --config ~/.config/lazygit/oxfmt-markdown.json --stdin-filepath summary.md)"
   gh pr edit "$BRANCH" --body="$SUMMARY" --add-assignee="@me"
 else
   echo "Updating MR description for $BRANCH on GitLab"

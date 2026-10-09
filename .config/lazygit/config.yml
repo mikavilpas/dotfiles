@@ -50,8 +50,8 @@ customCommands:
     context: reflogCommits,commits,subCommits
     description: "Summarize selected commits for a PR"
     command:
-      "mika summary --from={{.SelectedCommitRange.To}} --to={{.SelectedCommitRange.From}}^ | prettier --no-config
-      --parser markdown --prose-wrap never | pbcopy"
+      "mika summary --from={{.SelectedCommitRange.To}} --to={{.SelectedCommitRange.From}}^ | oxfmt --config
+      ~/.config/lazygit/oxfmt-markdown.json --stdin-filepath summary.md | pbcopy"
   - key: X
     description: Custom commands
     commandMenu:
