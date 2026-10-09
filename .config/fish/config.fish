@@ -84,58 +84,10 @@ if status is-interactive && test -z "$CI"
     # https://github.com/eza-community/eza
     abbr --add -- l "eza --oneline --all --long --no-user --icons=auto --no-permissions --time-style=long-iso"
 
-    # open yazi, and cd to the directory it was closed in
-    function y
-        set tmp (mktemp -t "yazi-cwd.XXXXXX")
-        yazi $argv --cwd-file="$tmp"
-        if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-            builtin cd -- "$cwd"
-        end
-        rm -f -- "$tmp"
-    end
-
-    # run the given command when files change in the current git repository
-    function w
-        # set the root of the git repository exactly to make sure watchexec is
-        # able to match the ignore rules as expected
-        set root (git rev-parse --show-toplevel 2>/dev/null)
-        watchexec --timings --interactive --wrap-process=none --project-origin "$root" $argv
-    end
-    complete --command w --wraps watchexec
-
-    # like `w`, but restart running command instantly on file changes
-    function ww
-        # like `w`, but restart running command on file changes
-        # set the root of the git repository exactly to make sure watchexec is
-        # able to match the ignore rules as expected
-        set root (git rev-parse --show-toplevel 2>/dev/null)
-        watchexec --on-busy-update=restart --interactive --timings --wrap-process=none --project-origin "$root" $argv
-    end
-    complete --command ww --wraps watchexec
-
-    function battail
-        set file $argv[1]
-        set needle $argv[2]
-        # https://github.com/sharkdp/bat?tab=readme-ov-file#tail--f
-        if [ -z "$needle" ]
-            tail -F $file | bat --style="plain" --color=always --paging=never --language log
-        else
-            tail -F $file | rg --line-buffered "$needle" | bat --style="plain" --paging=never --language log
-        end
-    end
-
     # save last command's exit status before prompt hooks overwrite it
     function __save_last_status --on-event fish_postexec
+        # cannot be lazy loaded - needs to be registered eagerly
         set -g __last_cmd_status $status
-    end
-
-    # exit if the last command succeeded (for one-off terminal tabs)
-    function x
-        if test "$__last_cmd_status" -eq 0
-            exit
-        else
-            echo "Last command failed (status $__last_cmd_status), not exiting"
-        end
     end
 
     # pipe to this guy to colorize the output stream! 🪄
