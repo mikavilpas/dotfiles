@@ -19,7 +19,7 @@ settings.dotfiles.default_mode = "symlink"
 # surprises completely.
 #
 # Manage with:
-# $ mise bootstrap dotfiles
+# $ mise dot apply [--dry-run]
 
 "~/.claude/skills/*" = {}
 "~/.config/aerospace" = {}
