@@ -56,6 +56,13 @@
 [diff]
   colorMoved = default
 
+[merge]
+  # show the common ancestor in conflict markers, with lines identical on both
+  # sides moved out of the conflict
+  #
+  # explanation: https://www.ductile.systems/zdiff3/
+  conflictStyle = zdiff3
+
 [interactive]
   diffFilter = delta --color-only --features=interactive
 
