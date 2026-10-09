@@ -1,0 +1,36 @@
+# https://github.com/agavra/tuicr/blob/main/docs/CONFIG.md
+
+# Same palette as lazygit
+theme = "catppuccin-macchiato"
+transparent_background = true
+diff_view = "side-by-side"
+single_file_view = true
+
+# Neovim
+editor = "nvim"
+comment_vim = true
+relative_line_numbers = false
+scroll_offset = 15
+leader = " "
+q_quits = true
+
+username = "Mika Vilpas"
+
+# mise + Renovate manage the version
+no_update_check = true
+
+compact_folders = true
+show_pr_checks = true
+ignore_whitespace = "auto"
+
+# https://conventionalcomments.org/#labels
+comment_types = [
+  { id = "suggestion", definition = "propose a specific improvement, explaining why", color = "blue" },
+  { id = "issue", definition = "a specific problem that needs fixing", color = "red" },
+  { id = "question", definition = "a potential concern you are unsure about; ask for clarification", color = "yellow" },
+  { id = "nitpick", definition = "trivial, preference-based request; non-blocking", color = "#8087a2" },
+  { id = "praise", definition = "highlight something positive", color = "green" },
+  { id = "todo", definition = "small, trivial, but necessary change", color = "#f5a97f" },
+  { id = "thought", definition = "an idea that popped up from the review; non-blocking", color = "#c6a0f6" },
+  { id = "chore", definition = "simple task that must be done before merging, e.g. a process step", color = "#8bd5ca" },
+]
