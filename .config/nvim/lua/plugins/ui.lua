@@ -52,6 +52,16 @@ return {
     -- 🍿 A collection of small QoL plugins for Neovim
     -- https://github.com/folke/snacks.nvim
     "folke/snacks.nvim",
+    init = function()
+      -- open a vertical split next to the intro dashboard on startup
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "SnacksDashboardOpened",
+        once = true,
+        callback = function()
+          vim.cmd("vnew")
+        end,
+      })
+    end,
     keys = {
       -- prevent conflicts with hop
       { "<leader><leader>", false },
