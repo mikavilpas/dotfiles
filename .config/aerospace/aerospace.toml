@@ -57,7 +57,20 @@ gaps.outer.right = 0
 # out of the tiling flow. See: https://nikitabobko.github.io/AeroSpace/guide.html#on-window-detected-callback
 [[on-window-detected]]
 if.app-id = 'com.microsoft.autoupdate2'
-run = 'move-node-to-workspace hidden'
+run = [
+  'move-node-to-workspace hidden',
+  'exec-and-forget osascript -e "tell application \"System Events\" to set visible of (first process whose bundle identifier is \"com.microsoft.autoupdate2\") to false"',
+]
+
+# The Update Assistant is the helper app that opens the update windows. It
+# takes focus when it opens, so hiding the app also returns focus to the
+# previous app.
+[[on-window-detected]]
+if.app-id = 'com.microsoft.autoupdate.fba'
+run = [
+  'move-node-to-workspace hidden',
+  'exec-and-forget osascript -e "tell application \"System Events\" to set visible of (first process whose bundle identifier is \"com.microsoft.autoupdate.fba\") to false"',
+]
 
 [workspace-to-monitor-force-assignment]
 # Can find these out using `aerospace list-monitors`
