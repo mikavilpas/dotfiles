@@ -64,6 +64,10 @@
   # sides moved out of the conflict
   #
   # explanation: https://www.ductile.systems/zdiff3/
+  #
+  # delta also recommended this in
+  # https://github.com/dandavison/delta/pull/1260
+  # (https://github.com/dandavison/delta/releases/tag/0.19.0)
   conflictStyle = zdiff3
 
 [interactive]
