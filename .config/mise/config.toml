@@ -36,7 +36,6 @@ settings.dotfiles.default_mode = "symlink"
 "~/.config/pnpm/config.yaml" = {}
 "~/.config/presenterm" = {}
 "~/.config/starship.toml" = {}
-"~/.config/tuicr" = {}
 "~/.config/wezterm" = {}
 "~/.config/yazi" = {}
 "~/.fdignore" = {}
@@ -139,7 +138,6 @@ tap_to_click = true
 "github:DeusData/codebase-memory-mcp" = "v0.11.0"
 "github:aaronriekenberg/rust-parallel" = "1.24.0"
 "github:afshinm/zerobox" = "0.3.3"
-"github:agavra/tuicr" = "0.27.0"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
 "github:k1LoW/git-wt" = "0.30.0"
 "github:kjanat/actionlint" = "1.17.0"
