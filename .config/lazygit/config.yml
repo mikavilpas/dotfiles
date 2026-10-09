@@ -86,6 +86,11 @@ customCommands:
           "mika share-patch --with-instructions --commit {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} |
           pbcopy"
         description: "Share selected commits as a patch with instructions"
+      - key: i
+        context: commits
+        description: "Replace the issue body with a summary of the selected commits"
+        output: terminal
+        command: rewrite-issue-description "{{.SelectedCommitRange.From}}" "{{.SelectedCommitRange.To}}"
       - key: w
         command: ~/.config/lazygit/git-create-worktree.sh "{{.SelectedLocalBranch.Name}}"
         context: localBranches
