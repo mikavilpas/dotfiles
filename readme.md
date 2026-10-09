@@ -93,10 +93,12 @@ Here is how the files in this repository are formatted.
 ### Git
 
 I use [lazygit](https://github.com/jesseduffield/lazygit) and the
-[tsugit.nvim](https://github.com/mikavilpas/tsugit.nvim) plugin to use git.
+[tsugit.nvim](https://github.com/mikavilpas/tsugit.nvim) plugin to use git. I use
+[delta](https://github.com/dandavison/delta) as my pager.
 
 Some features that I like:
 
+- my [.gitconfig](.gitconfig) includes a ton of useful things. They are documented in the file.
 - an AI (in my case, Github Copilot) helps me write commit messages in Neovim when using tsugit.nvim
 - I set up [conform.nvim](https://github.com/stevearc/conform.nvim) to use
   [prettierd](https://github.com/fsouza/prettierd) to format my gitcommit messages using markdown syntax. You can see a
