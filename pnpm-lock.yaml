@@ -198,8 +198,8 @@ importers:
         version: 9.5.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
     devDependencies:
       '@tui-sandbox/library':
-        specifier: 13.0.4
-        version: 13.0.4(cypress@16.1.1)(oxfmt@0.72.0)(prettier@3.9.9)(type-fest@5.10.0)(typescript@7.0.2)(wait-on@9.5.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(zod@4.6.5)
+        specifier: 13.0.6
+        version: 13.0.6(cypress@16.1.1)(oxfmt@0.72.0)(prettier@3.9.9)(type-fest@5.10.0)(typescript@7.0.2)(wait-on@9.5.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(zod@4.6.5)
       '@types/node':
         specifier: 24.19.1
         version: 24.19.1
@@ -735,8 +735,8 @@ packages:
     peerDependencies:
       typescript: '>=5.7.2'
 
-  '@tui-sandbox/library@13.0.4':
-    resolution: {integrity: sha512-hJLZ2NXqBbkakp4+cmldA+uEoIV5B3CJqXfZu34jMiw2JTEDgnEN83cWfYezEzUU2PWXPhy538bsEiCc+PMLeQ==}
+  '@tui-sandbox/library@13.0.6':
+    resolution: {integrity: sha512-ehIpPDEcvOBu/fVz3efgaOxAtRiaVIM28Q58Tv5QCZTvenasEfDIRkNbD9eYKrUjbRnXcc1sxaiORSGaXAjELA==}
     engines: {node: '>=24.0.0'}
     hasBin: true
     peerDependencies:
@@ -1708,10 +1708,6 @@ packages:
     resolution: {integrity: sha512-tsaTIkKW9b4N+AEj+SVA+WhJzV7/zMhcSu78mLKWSk7cXMOSHsBKFWUs0fWwq8QyK3MgJBQRX6Gbi4kYbdvGkQ==}
     engines: {node: '>=18'}
 
-  string-width@8.2.2:
-    resolution: {integrity: sha512-GaPUh5gfdrYzqeVNZvUfT23vYYxXzKYidUcnMtJg/3rxRV63EFZy3k6xfKlmfeJD0176lnUV/Usr3XcwSvFzpg==}
-    engines: {node: '>=20'}
-
   string-width@8.3.0:
     resolution: {integrity: sha512-ZbmZM0JCihQN91dWnxoipT2KOEyHqEyfRXUyjuRhW8b/xnqPDoq4gWEVApTVa9db2wN8mmoikgFBbjh71+cGeQ==}
     engines: {node: '>=20'}
@@ -2219,7 +2215,7 @@ snapshots:
     dependencies:
       typescript: 7.0.2
 
-  '@tui-sandbox/library@13.0.4(cypress@16.1.1)(oxfmt@0.72.0)(prettier@3.9.9)(type-fest@5.10.0)(typescript@7.0.2)(wait-on@9.5.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(zod@4.6.5)':
+  '@tui-sandbox/library@13.0.6(cypress@16.1.1)(oxfmt@0.72.0)(prettier@3.9.9)(type-fest@5.10.0)(typescript@7.0.2)(wait-on@9.5.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(zod@4.6.5)':
     dependencies:
       '@catppuccin/palette': 1.8.0
       '@trpc/client': 11.19.0(@trpc/server@11.19.0(typescript@7.0.2))(typescript@7.0.2)
@@ -2236,7 +2232,7 @@ snapshots:
       oxfmt: 0.72.0
       prettier: 3.9.9
       sirv: 3.0.2
-      string-width: 8.2.2
+      string-width: 8.3.0
       tsx: 4.23.15
       type-fest: 5.10.0
       typescript: 7.0.2
@@ -3239,11 +3235,6 @@ snapshots:
   string-width@7.2.0:
     dependencies:
       emoji-regex: 10.6.0
-      get-east-asian-width: 1.7.0
-      strip-ansi: 7.2.0
-
-  string-width@8.2.2:
-    dependencies:
       get-east-asian-width: 1.7.0
       strip-ansi: 7.2.0
 
