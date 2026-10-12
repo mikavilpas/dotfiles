@@ -97,36 +97,6 @@ return {
               return vim.tbl_contains({ "gitcommit", "markdown" }, vim.bo.filetype)
             end,
             opts = (function()
-              local utils = require("blink-cmp-git.utils")
-              local github = require("blink-cmp-git.default.github")
-
-              -- e.g. github.com or foo.ghe.com
-              ---@async
-              local function git_host()
-                return utils.get_repo_remote_url():gsub("^%a+://", ""):gsub("^[^/@]+@", ""):match("^[^:/]+") or ""
-              end
-
-              -- the default only enables github.com, also enable GitHub Enterprise
-              ---@async
-              local function enable()
-                local host = git_host()
-                return host == "github.com" or host:find("%.ghe%.com$") ~= nil
-              end
-
-              -- `gh api` queries github.com unless told otherwise, so pass the
-              -- repo's host. Also fetch more than the default 30 items.
-              local function get_command_args(default)
-                ---@async
-                return function(command, token)
-                  local args = default(command, token)
-                  if command == "gh" then
-                    args[#args] = args[#args] .. "?per_page=100"
-                    vim.list_extend(args, { "--hostname", git_host() })
-                  end
-                  return args
-                end
-              end
-
               -- insert the full url instead of `#123`
               local function get_insert_text(item)
                 return item.html_url
@@ -160,13 +130,11 @@ return {
                 git_centers = {
                   github = {
                     issue = {
-                      enable = enable,
-                      get_command_args = get_command_args(github.issue.get_command_args),
+                      enable = true,
                       get_insert_text = get_insert_text,
                     },
                     pull_request = {
-                      enable = enable,
-                      get_command_args = get_command_args(github.pull_request.get_command_args),
+                      enable = true,
                       get_insert_text = get_insert_text,
                     },
                   },
