@@ -139,7 +139,8 @@ customCommands:
           REMOTE_URL="$(git remote get-url "$REMOTE_NAME")"
           if [[ "$REMOTE_URL" == *"github"* || "$REMOTE_URL" == *"ghe.com"* ]]; then
             # no --base: gh targets the repo's default branch (main, master, ...)
-            PR=$(gh pr create --fill --head "$BRANCH" --assignee "@me")
+            # --fill titles a multi-commit branch from its name, so use the tip commit subject, like new-issue does
+            PR=$(gh pr create --fill --title "$(git log -n1 --format=%s "$BRANCH")" --head "$BRANCH" --assignee "@me")
             echo "Created PR: $PR"
             ~/.config/lazygit/update-pr-description.sh "$BRANCH" # set the formatted description
             open "$PR" # open it in the browser
