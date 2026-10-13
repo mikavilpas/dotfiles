@@ -1,7 +1,7 @@
 {
   "LazyVim": { "branch": "main", "commit": "999700997f72227187d49d8b92667183dc7fc809" },
   "LuaSnip": { "branch": "master", "commit": "0abc8f390b278c3b4aabc4c004ac8a088b65cf24" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "054d18bbb0f3b31ff387f0ea5094cc9a24580e70" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "9ec57eeac6e2e14b7b9b9e74dc8b0ca4954a684b" },
   "advanced-git-search.nvim": { "branch": "main", "commit": "cead1214709226bdef89093f0c58964fb65c81e8" },
   "blink-cmp-git": { "branch": "master", "commit": "52fae6028287b5c2663f26e60a9db00ff647c4d3" },
   "blink-ripgrep.nvim": { "branch": "main", "commit": "5ed7bac817777994cb80abccd052b73eb844166c" },
@@ -14,7 +14,7 @@
   "catppuccin-bat": { "branch": "main", "commit": "6810349b28055dce54076712fc05fc68da4b8ec0" },
   "catppuccin-delta": { "branch": "main", "commit": "011516f5d14f66b771b3e716f29c77231e008c74" },
   "conform.nvim": { "branch": "master", "commit": "016802de402556da54c36bd7359b441266b01cdd" },
-  "copilot.lua": { "branch": "master", "commit": "b4bf055bf394c2e17eed3bf65ccf427e60f7e64c" },
+  "copilot.lua": { "branch": "master", "commit": "84c129a0fe6841743ad7180fb714d4018e132f1e" },
   "crates.nvim": { "branch": "main", "commit": "7039bc1d130e424232a7aa64ceddb170a154ff5b" },
   "debugprint.nvim": { "branch": "main", "commit": "957093d8b695aa4cc18c18f421ef0cb6c7380c59" },
   "easyjump.yazi": { "branch": "main", "commit": "73938982ebc4fde19fd6401f1d5d7548a5aa1f92" },
