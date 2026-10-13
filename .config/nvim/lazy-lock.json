@@ -1,7 +1,7 @@
 {
   "LazyVim": { "branch": "main", "commit": "999700997f72227187d49d8b92667183dc7fc809" },
   "LuaSnip": { "branch": "master", "commit": "0abc8f390b278c3b4aabc4c004ac8a088b65cf24" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "a470cbcd112e717a8955efee3929bd59f7473c7b" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "054d18bbb0f3b31ff387f0ea5094cc9a24580e70" },
   "advanced-git-search.nvim": { "branch": "main", "commit": "cead1214709226bdef89093f0c58964fb65c81e8" },
   "blink-cmp-git": { "branch": "master", "commit": "52fae6028287b5c2663f26e60a9db00ff647c4d3" },
   "blink-ripgrep.nvim": { "branch": "main", "commit": "5ed7bac817777994cb80abccd052b73eb844166c" },
@@ -24,7 +24,7 @@
   "friendly-snippets": { "branch": "main", "commit": "b4d01b0fdf3c9a549961c2f9ffe8dc09be166219" },
   "fugitive-gitlab.vim": { "branch": "master", "commit": "effc1fcb81803aa9c1322b089c7f7a2b53cf3dcc" },
   "gitlinker.nvim": { "branch": "master", "commit": "cc6a52ee2b5d3639ce5c5d6c97bcc8e98d1c5980" },
-  "gitsigns.nvim": { "branch": "main", "commit": "851a051e2bd2caba97e23314c68d69f1b1cf5d19" },
+  "gitsigns.nvim": { "branch": "main", "commit": "aa6cc2d7addb288cfd79a05ac257695d5ff61deb" },
   "grug-far.nvim": { "branch": "main", "commit": "11595bf747edc270bce2069d1020502ad4ae56cf" },
   "hop.nvim": { "branch": "master", "commit": "08ddca799089ab96a6d1763db0b8adc5320bf050" },
   "incr.nvim": { "branch": "main", "commit": "2d94a4762cd3909c8d17184140a75247577b5f7e" },
