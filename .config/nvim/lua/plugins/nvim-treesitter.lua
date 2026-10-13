@@ -9,6 +9,10 @@ return {
       -- jsonc was dropped from nvim-treesitter main branch; reuse the json
       -- parser so jsonc filetype still gets highlighting
       vim.treesitter.language.register("json", "jsonc")
+
+      -- neovim detects ~/.aws/config and similar files as confini, which has
+      -- no parser of its own. The ini parser highlights it.
+      vim.treesitter.language.register("ini", "confini")
     end,
     ---@type TSConfig
     ---@diagnostic disable-next-line: missing-fields
@@ -19,6 +23,7 @@ return {
         "css",
         "fish",
         "html",
+        "ini",
         "javascript",
         "json",
         "just",
