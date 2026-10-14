@@ -10,6 +10,11 @@ set -eu
 
 scan="mise x gitleaks -- gitleaks"
 
+# a repository's own config wins; otherwise use the global one
+if [ ! -f .gitleaks.toml ]; then
+  scan="$scan --config $HOME/dotfiles/.config/gitleaks/gitleaks.toml"
+fi
+
 zero=$(git hash-object --stdin </dev/null | tr 0-9a-f 0)
 status=0
 
