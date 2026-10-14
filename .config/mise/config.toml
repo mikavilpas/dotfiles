@@ -140,6 +140,7 @@ tap_to_click = true
 "github:aaronriekenberg/rust-parallel" = "1.24.0"
 "github:afshinm/zerobox" = "0.3.3"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
+"github:atkrad/wait4x" = "3.7.2"
 "github:dlvhdr/gh-dash" = "4.26.1"
 "github:k1LoW/git-wt" = "0.30.0"
 "github:kjanat/actionlint" = "1.17.0"
