@@ -81,7 +81,7 @@ settings.dotfiles.default_mode = "symlink"
 # yazi previewers
 "brew:imagemagick" = "latest"
 "brew:exiftool" = "latest"
-"brew:media-info" = "latest"  # installs mediainfo
+"brew:media-info" = "latest" # installs mediainfo
 
 "brew-cask:font-dejavu-sans-mono-nerd-font" = "latest"
 "brew-cask:secretive" = "latest"
@@ -122,7 +122,7 @@ tap_to_click = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.10.8"
+"aqua:jdx/mise" = "2026.10.9"
 
 # renovate: datasource=crate depName=cargo-nextest
 "cargo:cargo-nextest" = "0.9.148"
@@ -147,19 +147,19 @@ tap_to_click = true
 "github:reteps/dockerfmt" = "0.5.4"
 "github:tekumara/typos-lsp" = "0.1.57"
 "npm:@fsouza/prettierd" = "0.29.0"
-"npm:oxlint-tsgolint" = "7.0.2003"
+"npm:oxlint-tsgolint" = "7.0.2004"
 "npm:typescript" = "7.0.2"
 "npm:yaml-language-server" = "1.25.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.3.1"
 age = "1.3.2"
 ast-grep = "0.50.0"
 atuin = "18.23.0"
-aws-cli = { version = "2.37.13", symlink_bins = "true" }
+aws-cli = { version = "2.38.0", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.2.0"
 bottom = "0.14.9"
 cargo-binstall = "1.25.3"
-claude-code = "2.1.296"
+claude-code = "2.1.299"
 delta = "0.20.1"
 dotenv-linter = "4.0.0"
 fd = "10.5.0"
@@ -173,7 +173,7 @@ lychee = "0.24.2"
 oxfmt = "0.72.0"
 oxlint = "1.69.0"
 ripgrep = { version = "15.2.0", exe = "rg" }
-rtk = "v0.51.0"
+rtk = "v0.52.0"
 rumdl = "0.2.79"
 sccache = "0.18.0"
 sd = "1.1.0"
@@ -207,7 +207,7 @@ asset_pattern = "bacon_*.zip"
 bin_path = "aarch64-apple-darwin"
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.122.0"
+version = "1.123.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
