@@ -88,8 +88,8 @@ settings.dotfiles.default_mode = "symlink"
 "brew-cask:wezterm@nightly" = "latest"
 
 [bootstrap.hooks]
-# some mise tools still ship x86_64-only builds (e.g. hyperfine), so rosetta
-# has to exist before anything is installed
+# some mise tools still ship x86_64-only builds, so rosetta has to exist before
+# anything is installed
 pre-packages = "softwareupdate --install-rosetta --agree-to-license"
 post-packages = ["brew install --cask aerospace"]
 # dock settings only take effect after it restarts
