@@ -1,7 +1,7 @@
 {
   "LazyVim": { "branch": "main", "commit": "999700997f72227187d49d8b92667183dc7fc809" },
   "LuaSnip": { "branch": "master", "commit": "0abc8f390b278c3b4aabc4c004ac8a088b65cf24" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "1c6d5e0b721c877c4c8061d2361f8fc20adaf896" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "9485dacfff2828f06c4678b059e382e49ec54aeb" },
   "advanced-git-search.nvim": { "branch": "main", "commit": "cead1214709226bdef89093f0c58964fb65c81e8" },
   "blink-cmp-git": { "branch": "master", "commit": "52fae6028287b5c2663f26e60a9db00ff647c4d3" },
   "blink-ripgrep.nvim": { "branch": "main", "commit": "5ed7bac817777994cb80abccd052b73eb844166c" },
@@ -44,7 +44,7 @@
   "mini.operators": { "branch": "main", "commit": "6b007eb6604dcf169f3a9baec2666d3c5b534fcd" },
   "mini.pairs": { "branch": "main", "commit": "03eb1f0062a2cee5314d1ac3939246e4bb21352e" },
   "move.nvim": { "branch": "main", "commit": "599b14047b82e92874b9a408e4df228b965c3a1d" },
-  "multicursor.nvim": { "branch": "main", "commit": "704b99f10a72cc05d370cfeb294ff83412a8ab55" },
+  "multicursor.nvim": { "branch": "main", "commit": "c574bfc1f7e63dfea3e64b8453c9f7c660127238" },
   "my-nvim-micro-plugins.nvim": { "branch": "main", "commit": "71a03698c89fa1078cd736ab68c715a69723f17a" },
   "neo-tree.nvim": { "branch": "main", "commit": "d5b8a12b74683ddaefa519ce66a097610672859f" },
   "noice.nvim": { "branch": "main", "commit": "7bfd942445fb63089b59f97ca487d605e715f155" },
@@ -59,7 +59,7 @@
   "nvim-neoclip.lua": { "branch": "main", "commit": "831a97c7697736411a05ff8b91e8798ea4c2d6fb" },
   "nvim-rip-substitute": { "branch": "main", "commit": "e3e1696bf934af7ae9130daabcafa07d9176d195" },
   "nvim-surround": { "branch": "main", "commit": "8b47db616ef658b8fc27e61db2896aa2f40134de" },
-  "nvim-treesitter": { "branch": "main", "commit": "1a4f47b03dfe92d28de7d5654c67327ef008c9e6" },
+  "nvim-treesitter": { "branch": "main", "commit": "ca581c3436fc2b236847f5b739ebc263739e5ca6" },
   "nvim-treesitter-context": { "branch": "master", "commit": "8decd73460d26ef0a0befb745d022dd1fc2c38b8" },
   "nvim-treesitter-textobjects": { "branch": "main", "commit": "5c7b0263797dfd1bd6202f2b219f3b53a80b2187" },
   "nvim-ts-autotag": { "branch": "main", "commit": "d7220b55e16ed3c04e88086256def5d282429493" },
@@ -88,9 +88,9 @@
   "vim-fugitive": { "branch": "master", "commit": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0" },
   "vim-indent-object": { "branch": "master", "commit": "8ab36d5ec2a3a60468437a95e142ce994df598c6" },
   "vim-rhubarb": { "branch": "master", "commit": "5496d7c94581c4c9ad7430357449bb57fc59f501" },
-  "wezterm-types": { "branch": "main", "commit": "18c276bcb503a6a152c714b0d3a15baed787052d" },
+  "wezterm-types": { "branch": "main", "commit": "39511289aa040a7746a9e2d551b35ef330f15c77" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
   "yazi-flavor-catppuccin-macchiato": { "branch": "main", "commit": "1183892c904f7f0efdf4473e856ed308b7bea98d" },
-  "yazi-rs-plugins": { "branch": "main", "commit": "603fa36d554750a827bbdb3b4d5f779c5b066c38" },
+  "yazi-rs-plugins": { "branch": "main", "commit": "6cf1f4389b4d56954260f713fa999067d0b2f20a" },
   "yazi.nvim": { "branch": "main", "commit": "d8bd4cc258fdbe2bad71a383d390a96c80ecb628" }
 }
