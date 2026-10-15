@@ -24,7 +24,15 @@ if [[ "$REMOTE_URL" == *"github"* || "$REMOTE_URL" == *"ghe.com"* ]]; then
   # `gh pr list` pages at 30 by default, so try to avoid issues when many
   # PRs are open
   STACK_SUMMARY=$(gh pr list --limit 200 --json number,title,headRefName,baseRefName,state,url,isCrossRepository --jq '[.[] | select(.isCrossRepository == false)]' | mika pr-stack-summary - --branch "$BRANCH")
-  SUMMARY="$(printf '%s\n\n---\n\n# Pull request stack\n\n%s' "$SUMMARY" "$STACK_SUMMARY")"
+  STACK_LENGTH=$(echo "$STACK_SUMMARY" | wc -l)
+  if [[ "$STACK_LENGTH" -ge 3 ]]; then
+    # Don't show the stack if there is only one PR. The team reads enough text
+    # as it is, be considerate.
+    SUMMARY="$(printf '%s\n\n---\n\n# Pull request stack\n\n%s' "$SUMMARY" "$STACK_SUMMARY")"
+  else
+    echo "Skipping stack summary for $BRANCH because it is too short ($STACK_LENGTH lines)"
+  fi
+
   SUMMARY="$(echo "$SUMMARY" | oxfmt --config ~/.config/lazygit/oxfmt-markdown.json --stdin-filepath summary.md)"
   gh pr edit "$BRANCH" --body="$SUMMARY" --add-assignee="@me"
 else
