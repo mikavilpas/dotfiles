@@ -14,7 +14,6 @@ Commands:
   prs-summary        Display a markdown summary of GitHub pull requests from a JSON file
   init               Generate shell functions for initializing support for a shell
   autosquash-branch  Autosquash only the specified branch in a stack, preserving fixups in branches above
-  pr-stack-summary   Generate a markdown summary of the current branch as part of the stack of PRs
   help               Print this message or the help of the given subcommand(s)
 
 Options:
