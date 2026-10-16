@@ -80,7 +80,7 @@ settings.dotfiles.default_mode = "symlink"
 # yazi previewers
 "brew:imagemagick" = "latest"
 "brew:exiftool" = "latest"
-"brew:media-info" = "latest" # installs mediainfo
+"brew:media-info" = "latest"  # installs mediainfo
 
 "brew-cask:font-dejavu-sans-mono-nerd-font" = "latest"
 "brew-cask:secretive" = "latest"
@@ -191,7 +191,7 @@ zizmor = "1.31.1"
 zoxide = "0.10.0"
 
 [tools."github:mikavilpas/dotfiles"]
-version = "2.0.0"
+version = "2.0.1"
 exe = "mika"
 postinstall = """
 mkdir -p ~/.config/fish/completions ~/.config/fish/mika
