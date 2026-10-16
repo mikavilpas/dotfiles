@@ -80,7 +80,7 @@ settings.dotfiles.default_mode = "symlink"
 # yazi previewers
 "brew:imagemagick" = "latest"
 "brew:exiftool" = "latest"
-"brew:media-info" = "latest"  # installs mediainfo
+"brew:media-info" = "latest" # installs mediainfo
 
 "brew-cask:font-dejavu-sans-mono-nerd-font" = "latest"
 "brew-cask:secretive" = "latest"
