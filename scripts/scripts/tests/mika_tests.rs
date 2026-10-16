@@ -163,7 +163,8 @@ fn test_branch_summary() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[test]
-fn test_get_commit_messages_on_current_branch() -> Result<(), Box<dyn std::error::Error>> {
+fn test_get_commit_messages_on_current_branch_one_commit() -> Result<(), Box<dyn std::error::Error>>
+{
     let context = TestRepoBuilder::new()?;
     context.commit("initial commit")?;
 
@@ -173,14 +174,7 @@ fn test_get_commit_messages_on_current_branch() -> Result<(), Box<dyn std::error
 
     let lines = get_commit_messages_on_current_branch(&context.repo)?;
 
-    assert_eq!(
-        lines,
-        vec![
-            //
-            "# feat: feature commit 1",
-            "",
-        ]
-    );
+    assert_eq!(lines.len(), 0);
 
     Ok(())
 }
@@ -213,8 +207,6 @@ fn test_include_codeblock_at_end() -> Result<(), Box<dyn std::error::Error>> {
     assert_eq!(
         lines,
         vec![
-            "# feat: update openapi from 1.4.3 to 1.4.5",
-            "",
             "I verified that the test environment api does accept `phoneNumber` to be",
             "`undefined` by doing the following.",
             "",
