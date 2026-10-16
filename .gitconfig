@@ -135,4 +135,4 @@
 # https://github.com/Ataraxy-Labs/weave
 [merge "weave"]
 	name = Entity-level semantic merge
-	driver = weave-driver %O %A %B %L %P
+	driver = $HOME/dotfiles/.config/git/weave-driver-quiet %O %A %B %L %P

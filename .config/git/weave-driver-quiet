@@ -1,0 +1,12 @@
+#!/bin/sh
+# Wrapper around weave-driver that removes the trailing
+# "// weave: run 'weave explain ...'" footer it appends to conflicted files.
+# Same arguments as weave-driver: %O %A %B %L %P (git merges into %A, $2).
+weave-driver "$@"
+status=$?
+tmp=$(mktemp) || exit "$status"
+# grep exits 1 when every line was filtered out; the (empty) result is still correct
+grep -Ev "^(//|#) weave: run 'weave explain " "$2" >"$tmp"
+cat "$tmp" >"$2"
+rm -f "$tmp"
+exit "$status"

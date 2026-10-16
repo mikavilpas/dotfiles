@@ -255,6 +255,9 @@ additional_asset_patterns = ["weave-driver-*"]
 postinstall = """
 if command -v weave-driver >/dev/null 2>&1; then
   ( cd ~/dotfiles && weave setup )
+  # `weave setup` also writes a per-repo driver that overrides the global
+  # wrapper (.config/git/weave-driver-quiet); drop it.
+  git -C ~/dotfiles config --local --unset-all merge.weave.driver || true
 else
   echo "weave-cli postinstall: weave-driver not yet on PATH, skipping setup"
 fi
