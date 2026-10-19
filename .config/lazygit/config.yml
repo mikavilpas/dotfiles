@@ -121,10 +121,13 @@ customCommands:
             key: MergeStrategy
             options:
               - name: Squash
+                key: s
                 value: "gh pr merge '{{.SelectedLocalBranch.Name}}' --auto --squash --delete-branch"
               - name: Rebase
+                key: r
                 value: "gh pr merge '{{.SelectedLocalBranch.Name}}' --auto --rebase --delete-branch"
               - name: No automerge
+                key: n
                 value: "echo 'PR created, but not merged. Merge manually in the browser.'"
 
         command: |
