@@ -199,7 +199,7 @@ importers:
     devDependencies:
       '@tui-sandbox/library':
         specifier: 13.0.6
-        version: 13.0.6(cypress@16.2.0)(oxfmt@0.73.0)(prettier@3.9.9)(type-fest@5.10.0)(typescript@7.0.2)(wait-on@9.5.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(zod@4.6.7)
+        version: 13.0.6(cypress@16.2.0)(oxfmt@0.73.0)(prettier@3.9.10)(type-fest@5.10.0)(typescript@7.0.2)(wait-on@9.5.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(zod@4.6.7)
       '@types/node':
         specifier: 24.19.2
         version: 24.19.2
@@ -1578,8 +1578,8 @@ packages:
     resolution: {integrity: sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg==}
     engines: {node: '>= 0.4'}
 
-  prettier@3.9.9:
-    resolution: {integrity: sha512-Z/CJHIkdujO/OtN7nXUii0Rf3VT5SRuhjBA82Xvu2XhBUgX3nhP67T0LHceBdQLex7OOFGTox+Q5Yg8Jk2Qivg==}
+  prettier@3.9.10:
+    resolution: {integrity: sha512-skGHTH1Yb9QvaTC4hWnRTzEYtCpApF0UMBPz+t/0ZPzP8ihefo/btKd+QA7pUE0fEwA1SbS/NmhyEcstdXOIdA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -1601,8 +1601,8 @@ packages:
   pump@3.0.4:
     resolution: {integrity: sha512-VS7sjc6KR7e1ukRFhQSY5LM2uBWAUPiOPa/A3mkKmiMwSmRFUITt0xuj+/lesgnCv+dPIEYlkzrcyXgquIHMcA==}
 
-  qs@6.16.0:
-    resolution: {integrity: sha512-h6fhOIaRrID2CbEY2fqs+7t+UXZo+MLAnU5gRIq85uFtdiUPCdsApMlHhXogKVM4HM2DVbIjGNTTYH2OcmP1vA==}
+  qs@6.16.1:
+    resolution: {integrity: sha512-5Px6J7rfHBAGUhNQ3es4YzcOdBBw0SDcVtThJml4RdnKw4tKs2epA0kPZ+K8X+WiHktT93RHVcQ/3ym5aTCgtg==}
     engines: {node: '>=0.6'}
 
   readable-stream@3.6.2:
@@ -1945,7 +1945,7 @@ snapshots:
       json-stringify-safe: 5.0.1
       mime-types: 2.1.35
       performance-now: 2.1.0
-      qs: 6.16.0
+      qs: 6.16.1
       safe-buffer: 5.2.1
       tough-cookie: 5.1.2
       tunnel-agent: 0.6.0
@@ -2218,7 +2218,7 @@ snapshots:
     dependencies:
       typescript: 7.0.2
 
-  '@tui-sandbox/library@13.0.6(cypress@16.2.0)(oxfmt@0.73.0)(prettier@3.9.9)(type-fest@5.10.0)(typescript@7.0.2)(wait-on@9.5.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(zod@4.6.7)':
+  '@tui-sandbox/library@13.0.6(cypress@16.2.0)(oxfmt@0.73.0)(prettier@3.9.10)(type-fest@5.10.0)(typescript@7.0.2)(wait-on@9.5.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(zod@4.6.7)':
     dependencies:
       '@catppuccin/palette': 1.8.0
       '@trpc/client': 11.19.0(@trpc/server@11.19.0(typescript@7.0.2))(typescript@7.0.2)
@@ -2233,7 +2233,7 @@ snapshots:
       dree: 5.1.5
       neovim: 5.5.0
       oxfmt: 0.73.0
-      prettier: 3.9.9
+      prettier: 3.9.10
       sirv: 3.0.2
       string-width: 8.3.0
       tsx: 4.23.15
@@ -3093,7 +3093,7 @@ snapshots:
 
   possible-typed-array-names@1.1.0: {}
 
-  prettier@3.9.9: {}
+  prettier@3.9.10: {}
 
   pretty-bytes@5.6.0: {}
 
@@ -3108,7 +3108,7 @@ snapshots:
       end-of-stream: 1.4.5
       once: 1.4.0
 
-  qs@6.16.0:
+  qs@6.16.1:
     dependencies:
       es-define-property: 1.0.1
       side-channel: 1.1.1
