@@ -243,7 +243,8 @@ git:
   diffRenderers:
     # switch with `|`
     - colorArg: always
-      command: delta --paging=never
+      # --width makes delta wrap to the lazygit pane instead of the terminal
+      command: delta --paging=never --wrap-max-lines=unlimited
       name: delta
     - colorArg: always
       # doesn't fully color everything but might be useful for some cases where
