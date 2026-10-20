@@ -243,9 +243,12 @@ git:
   diffRenderers:
     # switch with `|`
     - colorArg: always
-      # --width makes delta wrap to the lazygit pane instead of the terminal
       command: delta --paging=never --wrap-max-lines=unlimited
       name: delta
+    - colorArg: always
+      # unified view uses the full pane width, which is better for long lines
+      command: delta --paging=never --features=catppuccin-macchiato
+      name: delta unified
   ignoreWhitespaceInDiffView: true
 # useful for e2e tests. They don't have a separate configuration right now, so
 # this needs to be specified here.
