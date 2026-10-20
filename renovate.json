@@ -26,6 +26,10 @@
       ],
       "matchDepNames": ["aqua:fish-shell/fish-shell"],
       "groupName": "fish-shell"
+    },
+    {
+      "matchPackageNames": ["jdx/mise"],
+      "allowedVersions": "!/2026\\.10\\.16/"
     }
   ]
 }

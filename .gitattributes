@@ -92,3 +92,7 @@
 *.tsv merge=weave
 *.xaml merge=weave
 *.xhtml merge=weave
+*.bsl merge=weave
+*.cfg merge=weave
+*.ini merge=weave
+*.osl merge=weave
