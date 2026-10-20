@@ -246,11 +246,6 @@ git:
       # --width makes delta wrap to the lazygit pane instead of the terminal
       command: delta --paging=never --wrap-max-lines=unlimited
       name: delta
-    - colorArg: always
-      # doesn't fully color everything but might be useful for some cases where
-      # I need to eyeball a long branch commit log
-      command: bat --paging=never --color=always --style=plain --language=markdown --paging=never --decorations=never
-      name: bat
   ignoreWhitespaceInDiffView: true
 # useful for e2e tests. They don't have a separate configuration right now, so
 # this needs to be specified here.
