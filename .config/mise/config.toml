@@ -153,12 +153,12 @@ tap_to_click = true
 age = "1.3.2"
 ast-grep = "0.51.0"
 atuin = "18.24.1"
-aws-cli = { version = "2.38.2", symlink_bins = "true" }
+aws-cli = { version = "2.38.3", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.2.0"
 bottom = "0.14.9"
 cargo-binstall = "1.26.0"
-claude-code = "2.1.304"
+claude-code = "2.1.305"
 delta = "0.20.1"
 dotenv-linter = "4.0.0"
 fd = "10.5.0"
@@ -184,7 +184,7 @@ tombi = "v1.8.9"
 tree-sitter = "0.27.1"
 typos = "1.51.1"
 usage = "7.1.0"
-uv = "0.13.3"
+uv = "0.13.4"
 vivid = "0.11.1"
 watchexec = "2.8.0"
 zizmor = "1.31.1"
@@ -205,7 +205,7 @@ asset_pattern = "bacon_*.zip"
 bin_path = "aarch64-apple-darwin"
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.123.0"
+version = "1.124.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
@@ -214,14 +214,14 @@ glab completion -s fish > ~/.config/fish/completions/glab.fish
 """
 
 [tools.fnox]
-version = "1.41.0"
+version = "1.42.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- fnox completion fish > ~/.config/fish/completions/fnox.fish
 """
 
 [tools.github-cli]
-version = "2.102.0"
+version = "2.102.1"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
