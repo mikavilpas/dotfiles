@@ -129,7 +129,7 @@ tap_to_click = true
 "cargo:eza" = "0.23.5"
 
 # renovate: datasource=npm depName=jfrog-cli-v2
-"asdf:mise-plugins/mise-jfrog-cli" = "2.127.0"
+"asdf:mise-plugins/mise-jfrog-cli" = "2.128.0"
 
 "aqua:Schniz/fnm" = "1.39.0"
 "aqua:fish-shell/fish-shell" = "4.9.3"
@@ -180,7 +180,7 @@ shellcheck = "0.11.0"
 shfmt = "3.14.1"
 starship = "1.27.0"
 stylua = "2.6.0"
-tombi = "v1.9.0"
+tombi = "v1.9.1"
 tree-sitter = "0.27.1"
 typos = "1.51.1"
 usage = "7.1.1"
@@ -214,14 +214,14 @@ glab completion -s fish > ~/.config/fish/completions/glab.fish
 """
 
 [tools.fnox]
-version = "1.42.0"
+version = "1.42.1"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- fnox completion fish > ~/.config/fish/completions/fnox.fish
 """
 
 [tools.github-cli]
-version = "2.103.0"
+version = "2.103.1"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
