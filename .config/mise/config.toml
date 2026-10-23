@@ -139,7 +139,7 @@ tap_to_click = true
 "github:aaronriekenberg/rust-parallel" = "1.24.0"
 "github:afshinm/zerobox" = "0.3.3"
 "github:ankitpokhrel/jira-cli" = { version = "1.7.0" }
-"github:atkrad/wait4x" = "3.7.2"
+"github:atkrad/wait4x" = "3.7.3"
 "github:k1LoW/git-wt" = "0.30.0"
 "github:kjanat/actionlint" = "1.17.0"
 "github:pranshuparmar/witr" = "0.3.4"
@@ -221,7 +221,7 @@ mise exec -- fnox completion fish > ~/.config/fish/completions/fnox.fish
 """
 
 [tools.github-cli]
-version = "2.103.1"
+version = "2.103.2"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
