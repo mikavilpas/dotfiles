@@ -121,7 +121,7 @@ tap_to_click = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.10.18"
+"aqua:jdx/mise" = "2026.10.19"
 
 # renovate: datasource=crate depName=cargo-nextest
 "cargo:cargo-nextest" = "0.9.149"
@@ -157,7 +157,7 @@ aws-cli = { version = "2.38.5", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.2.0"
 bottom = "0.14.9"
-cargo-binstall = "1.26.0"
+cargo-binstall = "1.26.1"
 claude-code = "2.1.310"
 delta = "0.20.1"
 dotenv-linter = "4.0.0"
@@ -180,10 +180,10 @@ shellcheck = "0.11.0"
 shfmt = "3.14.1"
 starship = "1.27.0"
 stylua = "2.6.0"
-tombi = "v1.9.3"
+tombi = "v1.9.4"
 tree-sitter = "0.27.1"
 typos = "1.51.1"
-usage = "7.1.1"
+usage = "7.1.2"
 uv = "0.13.5"
 vivid = "0.11.1"
 watchexec = "2.8.0"
