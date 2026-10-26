@@ -180,7 +180,7 @@ shellcheck = "0.11.0"
 shfmt = "3.14.1"
 starship = "1.27.0"
 stylua = "2.6.0"
-tombi = "v1.9.5"
+tombi = "v1.9.6"
 tree-sitter = "0.27.1"
 typos = "1.51.1"
 usage = "7.1.2"
@@ -244,7 +244,7 @@ mise exec -- xh --generate complete-fish > ~/.config/fish/completions/xh.fish
 # weave
 #
 [tools."github:Ataraxy-Labs/weave"]
-version = "0.6.1"
+version = "0.6.2"
 additional_asset_patterns = ["weave-driver-*"]
 # After (re)installing weave-cli, refresh ~/dotfiles/.gitattributes so it
 # matches the binary's current language coverage. That file is pointed at by
