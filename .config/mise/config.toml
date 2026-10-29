@@ -154,7 +154,7 @@ tap_to_click = true
 age = "1.3.2"
 ast-grep = "0.51.0"
 atuin = "18.24.3"
-aws-cli = { version = "2.39.1", symlink_bins = "true" }
+aws-cli = { version = "2.39.2", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.2.0"
 bottom = "0.14.9"
@@ -214,7 +214,7 @@ glab completion -s fish > ~/.config/fish/completions/glab.fish
 """
 
 [tools.fnox]
-version = "1.44.0"
+version = "1.45.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- fnox completion fish > ~/.config/fish/completions/fnox.fish
