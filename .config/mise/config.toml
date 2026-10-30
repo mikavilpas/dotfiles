@@ -244,7 +244,7 @@ mise exec -- xh --generate complete-fish > ~/.config/fish/completions/xh.fish
 # weave
 #
 [tools."github:Ataraxy-Labs/weave"]
-version = "0.6.2"
+version = "0.7.0"
 additional_asset_patterns = ["weave-driver-*"]
 # After (re)installing weave-cli, refresh ~/dotfiles/.gitattributes so it
 # matches the binary's current language coverage. That file is pointed at by
