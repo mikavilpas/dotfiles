@@ -96,3 +96,7 @@
 *.cfg merge=weave
 *.ini merge=weave
 *.osl merge=weave
+*.bazel merge=weave
+*.bxl merge=weave
+*.bzl merge=weave
+*.star merge=weave
