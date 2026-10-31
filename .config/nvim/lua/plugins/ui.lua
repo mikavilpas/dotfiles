@@ -42,10 +42,47 @@ return {
       mappings = {
         object_scope = "",
         object_scope_with_border = "",
-        goto_top = "ö",
-        goto_bottom = "ä",
+        goto_top = "",
+        goto_bottom = "",
       },
     },
+    keys = (function()
+      -- Upstream's goto_top/goto_bottom always land on the border line (one
+      -- line outside the scope) and have no option to change that. This is
+      -- the previous behavior: land on the first/last line of the scope.
+      ---@param side "top" | "bottom"
+      local goto_scope_edge = function(side)
+        return function()
+          local parser = require("blink.indent.parser")
+          local scope = parser.get_scope()
+          if scope.indent_level == 0 then
+            return
+          end
+
+          -- count1 is reset by the jumplist command
+          local count = vim.v.count1
+          if vim.fn.mode() == "n" then
+            vim.cmd("normal! m`")
+          end
+
+          for _ = 1, count do
+            local line = side == "top" and scope.start_line or scope.end_line
+            vim.api.nvim_win_set_cursor(0, { line, 0 })
+            vim.cmd("normal! ^")
+
+            scope = parser.get_scope()
+            if scope.indent_level == 0 then
+              return
+            end
+          end
+        end
+      end
+
+      return {
+        { "ö", goto_scope_edge("top"), mode = { "n", "x", "o" }, desc = "Go to indent scope top" },
+        { "ä", goto_scope_edge("bottom"), mode = { "n", "x", "o" }, desc = "Go to indent scope bottom" },
+      }
+    end)(),
   },
 
   {
