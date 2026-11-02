@@ -9,12 +9,12 @@
   },
   "dependencies": {
     "@catppuccin/palette": "1.8.0",
-    "cypress": "16.2.0",
+    "cypress": "16.2.1",
     "wait-on": "9.5.1"
   },
   "devDependencies": {
     "@tui-sandbox/library": "13.0.6",
-    "@types/node": "26.6.5",
+    "@types/node": "26.6.6",
     "@types/tinycolor2": "1.4.6",
     "assert": "2.1.0",
     "concurrently": "10.0.6",
