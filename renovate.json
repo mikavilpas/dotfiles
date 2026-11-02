@@ -30,6 +30,10 @@
     {
       "matchPackageNames": ["jdx/mise"],
       "allowedVersions": "!/2026\\.10\\.16/"
+    },
+    {
+      "matchPackageNames": ["ast-grep/ast-grep"],
+      "allowedVersions": "!/0\\.51\\.1/"
     }
   ]
 }
