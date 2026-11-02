@@ -2,6 +2,9 @@ settings.cargo.binstall = true
 settings.cargo.binstall_only = true
 settings.cargo.binstall_quickinstall = true
 settings.auto_install = false
+# read the pnpm version from `packageManager` in package.json, so that
+# renovate and pnpm/action-setup in CI share the same single source
+settings.idiomatic_version_file_enable_tools = ["pnpm"]
 settings.dotfiles.root = "~/dotfiles"
 settings.dotfiles.default_mode = "symlink"
 
@@ -166,7 +169,6 @@ jq = "1.8.2"
 lazydocker = "0.25.2"
 lychee = "0.24.2"
 oxfmt = "0.75.0"
-pnpm = "12.16.1"
 ripgrep = { version = "15.2.0", exe = "rg" }
 rtk = "v1.1.0"
 rumdl = "0.3.2"
