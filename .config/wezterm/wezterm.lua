@@ -60,6 +60,9 @@ config.color_scheme = "Catppuccin Macchiato"
 -- config.color_scheme = "Catppuccin Frappe"
 -- config.color_scheme = "Catppuccin Mocha"
 
+-- get rid of the title bar to add more space
+config.window_decorations = "RESIZE"
+
 -- fix not being able to write "|" on a mac
 -- https://wezfurlong.org/wezterm/config/keyboard-concepts.html?h=mac#macos-left-and-right-option-key
 config.send_composed_key_when_left_alt_is_pressed = false
