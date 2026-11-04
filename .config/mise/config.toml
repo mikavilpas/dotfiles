@@ -119,7 +119,7 @@ tap_to_click = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.11.0"
+"aqua:jdx/mise" = "2026.11.1"
 
 # renovate: datasource=crate depName=cargo-nextest
 "cargo:cargo-nextest" = "0.9.151"
@@ -146,7 +146,7 @@ tap_to_click = true
 "npm:@fsouza/prettierd" = "0.29.0"
 "npm:oxlint" = "1.90.0"
 "npm:oxlint-tsgolint" = "7.0.2005"
-"npm:typescript" = "7.1.0-dev.20261031.1"
+"npm:typescript" = "7.1.0-dev.20261101.1"
 "npm:yaml-language-server" = "2.0.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.3.1"
 age = "1.3.2"
@@ -160,7 +160,7 @@ cargo-binstall = "1.26.2"
 claude-code = "2.1.318"
 delta = "0.20.1"
 dotenv-linter = "4.0.0"
-fd = "10.5.0"
+fd = "10.5.1"
 fzf = "0.74.5"
 gitleaks = "8.30.1"
 hadolint = "2.15.1"
@@ -178,7 +178,7 @@ shellcheck = "0.11.0"
 shfmt = "3.14.1"
 starship = "1.27.0"
 stylua = "2.6.0"
-tombi = "v1.9.9"
+tombi = "v1.10.0"
 tree-sitter = "0.27.1"
 typos = "1.52.0"
 usage = "7.2.0"
