@@ -119,7 +119,7 @@ tap_to_click = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.11.1"
+"aqua:jdx/mise" = "2026.11.2"
 
 # renovate: datasource=crate depName=cargo-nextest
 "cargo:cargo-nextest" = "0.9.151"
@@ -127,7 +127,7 @@ tap_to_click = true
 "cargo:eza" = "0.23.5"
 
 # renovate: datasource=npm depName=jfrog-cli-v2
-"asdf:mise-plugins/mise-jfrog-cli" = "2.129.0"
+"asdf:mise-plugins/mise-jfrog-cli" = "2.130.0"
 
 "aqua:Schniz/fnm" = "1.39.0"
 "aqua:fish-shell/fish-shell" = "4.9.3"
@@ -146,13 +146,13 @@ tap_to_click = true
 "npm:@fsouza/prettierd" = "0.29.0"
 "npm:oxlint" = "1.90.0"
 "npm:oxlint-tsgolint" = "7.0.2005"
-"npm:typescript" = "7.1.0-dev.20261101.1"
+"npm:typescript" = "7.1.0-dev.20261102.1"
 "npm:yaml-language-server" = "2.0.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.3.1"
 age = "1.3.2"
 ast-grep = "0.51.0"
 atuin = "18.24.5"
-aws-cli = { version = "2.39.4", symlink_bins = "true" }
+aws-cli = { version = "2.39.5", symlink_bins = "true" }
 bat = "0.26.1"
 bob = "4.3.0"
 bottom = "0.15.0"
