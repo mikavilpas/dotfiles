@@ -142,7 +142,7 @@ tap_to_click = true
 "github:kjanat/actionlint" = "1.17.0"
 "github:pranshuparmar/witr" = "0.3.4"
 "github:reteps/dockerfmt" = "0.5.4"
-"github:tekumara/typos-lsp" = "0.1.57"
+"github:tekumara/typos-lsp" = "0.1.58"
 "npm:@fsouza/prettierd" = "0.29.0"
 "npm:oxlint" = "1.90.0"
 "npm:oxlint-tsgolint" = "7.0.2005"
@@ -181,7 +181,7 @@ stylua = "2.6.0"
 tombi = "v1.10.0"
 tree-sitter = "0.27.1"
 typos = "1.52.0"
-usage = "7.2.0"
+usage = "7.3.0"
 uv = "0.13.7"
 vivid = "0.11.1"
 watchexec = "2.8.0"
@@ -226,7 +226,7 @@ mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
 """
 
 [tools.yq]
-version = "4.54.1"
+version = "4.54.2"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- yq completion fish > ~/.config/fish/completions/yq.fish
