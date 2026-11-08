@@ -56,7 +56,7 @@ jobs:
         uses: jdx/mise-action@b44d12e7d0d8ee7461bb893e1b1993500433185b # v5.2.7
         env:
           # renovate: datasource=github-releases depName=jesseduffield/lazygit
-          LAZYGIT_VERSION: v0.66.2
+          LAZYGIT_VERSION: v0.66.3
         with:
           version: ${{ steps.mise-version.outputs.version }}
           mise_toml: |
