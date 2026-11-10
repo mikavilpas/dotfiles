@@ -119,7 +119,7 @@ tap_to_click = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.11.5"
+"aqua:jdx/mise" = "2026.11.6"
 
 # renovate: datasource=crate depName=cargo-nextest
 "cargo:cargo-nextest" = "0.9.151"
@@ -178,7 +178,7 @@ shellcheck = "0.11.0"
 shfmt = "3.14.1"
 starship = "1.27.0"
 stylua = "2.6.0"
-tombi = "v1.11.1"
+tombi = "v1.11.2"
 tree-sitter = "0.27.2"
 typos = "1.52.1"
 usage = "7.3.0"
@@ -204,7 +204,7 @@ asset_pattern = "bacon_*.zip"
 bin_path = "aarch64-apple-darwin"
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.128.0"
+version = "1.130.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
