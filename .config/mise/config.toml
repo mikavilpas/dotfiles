@@ -187,6 +187,7 @@ vivid = "0.11.1"
 watchexec = "2.8.0"
 zizmor = "1.32.0"
 zoxide = "0.10.0"
+jouet = { version = "0.0.3", workflow = "release.yml@refs/heads/main" }
 
 [tools."github:mikavilpas/dotfiles"]
 version = "2.0.1"
