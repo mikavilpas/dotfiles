@@ -171,7 +171,7 @@ lychee = "0.24.2"
 oxfmt = "0.75.0"
 ripgrep = { version = "15.2.0", exe = "rg" }
 rtk = "v1.2.0"
-rumdl = "0.3.2"
+rumdl = "0.3.3"
 sccache = "0.19.0"
 sd = "1.1.0"
 shellcheck = "0.11.0"
