@@ -144,7 +144,7 @@ tap_to_click = true
 "github:reteps/dockerfmt" = "0.6.0"
 "github:tekumara/typos-lsp" = "0.1.58"
 "npm:@fsouza/prettierd" = "0.29.0"
-"npm:oxlint" = "1.92.0"
+"npm:oxlint" = "1.93.0"
 "npm:oxlint-tsgolint" = "7.0.2006"
 "npm:typescript" = "7.1.0-dev.20261109.1"
 "npm:yaml-language-server" = "2.0.0"
@@ -182,7 +182,7 @@ tombi = "v1.11.2"
 tree-sitter = "0.27.2"
 typos = "1.52.2"
 usage = "7.3.0"
-uv = "0.13.7"
+uv = "0.13.8"
 vivid = "0.11.1"
 watchexec = "2.8.0"
 zizmor = "1.32.0"
@@ -220,7 +220,7 @@ mise exec -- fnox completion fish > ~/.config/fish/completions/fnox.fish
 """
 
 [tools.github-cli]
-version = "2.103.3"
+version = "2.104.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
