@@ -163,7 +163,8 @@ fn test_branch_summary() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[test]
-fn test_get_commit_messages_on_current_branch() -> Result<(), Box<dyn std::error::Error>> {
+fn test_get_commit_messages_on_current_branch_one_commit() -> Result<(), Box<dyn std::error::Error>>
+{
     let context = TestRepoBuilder::new()?;
     context.commit("initial commit")?;
 
@@ -173,14 +174,7 @@ fn test_get_commit_messages_on_current_branch() -> Result<(), Box<dyn std::error
 
     let lines = get_commit_messages_on_current_branch(&context.repo)?;
 
-    assert_eq!(
-        lines,
-        vec![
-            //
-            "# feat: feature commit 1",
-            "",
-        ]
-    );
+    assert_eq!(lines.len(), 0);
 
     Ok(())
 }
@@ -213,8 +207,6 @@ fn test_include_codeblock_at_end() -> Result<(), Box<dyn std::error::Error>> {
     assert_eq!(
         lines,
         vec![
-            "# feat: update openapi from 1.4.3 to 1.4.5",
-            "",
             "I verified that the test environment api does accept `phoneNumber` to be",
             "`undefined` by doing the following.",
             "",
@@ -404,115 +396,6 @@ fn mr_stack_summary_can_process_test_data() -> Result<(), Box<dyn std::error::Er
             "- 👉🏻 **[!101](https://gitlab.example.com/my-group/my-project/-/merge_requests/101)** | Set up authentication module 👈🏻",
             "  - [!102](https://gitlab.example.com/my-group/my-project/-/merge_requests/102) | Implement user profile page",
             "    - [!103](https://gitlab.example.com/my-group/my-project/-/merge_requests/103) | Add input validation to user form",
-            "",
-        ]
-        .join("\n")
-    );
-
-    Ok(())
-}
-
-#[test]
-fn pr_stack_summary_reports_missing_pr_for_branch() -> Result<(), Box<dyn std::error::Error>> {
-    let file = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("../test_utils/src/gh-pr-stack-three.json");
-
-    let mut cmd = cargo::cargo_bin_cmd!("mika");
-    let assert = cmd
-        .args([
-            "pr-stack-summary",
-            file.to_str().unwrap(),
-            "--branch",
-            "feature-missing-pr",
-        ])
-        .assert();
-
-    let stderr = String::from_utf8(assert.get_output().stderr.clone())
-        .expect("failed to convert stderr to string");
-    assert_eq!(
-        stderr,
-        [
-            "failed to format PR stack: Current branch 'feature-missing-pr' is not the head branch of any open PR.",
-            "",
-        ]
-        .join("\n")
-    );
-
-    Ok(())
-}
-
-#[test]
-fn pr_stack_summary_can_process_test_data() -> Result<(), Box<dyn std::error::Error>> {
-    let file = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("../test_utils/src/gh-pr-stack-three.json");
-
-    let mut cmd = cargo::cargo_bin_cmd!("mika");
-    let assert = cmd
-        .args([
-            "pr-stack-summary",
-            file.to_str().unwrap(),
-            "--branch",
-            "feature-a",
-        ])
-        .assert();
-
-    let stderr = String::from_utf8(assert.get_output().stderr.clone())
-        .expect("failed to convert stderr to string");
-    assert!(stderr.is_empty(), "expected no errors, got: {stderr}");
-
-    let output = String::from_utf8(assert.get_output().stdout.clone())
-        .expect("failed to convert stdout to string");
-    assert_eq!(
-        output,
-        [
-            "- 👉🏻 https://github.com/acme/webapp/pull/101 👈🏻",
-            "  - https://github.com/acme/webapp/pull/102",
-            "    - https://github.com/acme/webapp/pull/103",
-            "",
-        ]
-        .join("\n")
-    );
-
-    Ok(())
-}
-
-#[test]
-fn pr_stack_summary_defaults_to_current_branch_if_not_given()
--> Result<(), Box<dyn std::error::Error>> {
-    let file = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("../test_utils/src/gh-pr-stack-three.json");
-
-    let context = TestRepoBuilder::new()?;
-    context.checkout_b("feature-a")?;
-    context.commit("feat: commit on feature-a")?;
-    context.checkout_b("feature-b")?;
-    context.commit("feat: commit on feature-b")?;
-    context.checkout_b("feature-c")?;
-    context.commit("feat: commit on feature-c")?;
-    context.switch("feature-b")?;
-
-    let mut cmd = cargo::cargo_bin_cmd!("mika");
-    let assert = cmd
-        .current_dir(context.path())
-        .args([
-            "pr-stack-summary",
-            file.to_str().unwrap(),
-            // don't include a branch. Should default to the current branch.
-        ])
-        .assert();
-
-    let stderr = String::from_utf8(assert.get_output().stderr.clone())
-        .expect("failed to convert stderr to string");
-    assert!(stderr.is_empty(), "expected no errors, got: {stderr}");
-
-    let output = String::from_utf8(assert.get_output().stdout.clone())
-        .expect("failed to convert stdout to string");
-    assert_eq!(
-        output,
-        [
-            "- https://github.com/acme/webapp/pull/101",
-            "  - 👉🏻 https://github.com/acme/webapp/pull/102 👈🏻",
-            "    - https://github.com/acme/webapp/pull/103",
             "",
         ]
         .join("\n")

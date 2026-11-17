@@ -168,22 +168,6 @@ pub fn main() {
             };
         }
 
-        Commands::PrStackSummary { file, branch } => {
-            let prs = parse_github_prs_from_file_or_stdin(file);
-            let branch = branch.unwrap_or_else(|| {
-                get_current_branch_name(&repo)
-                    .unwrap_or_else(|e| panic!("failed to get current branch name: {e}"))
-            });
-
-            match github_prs::pr_stack::format_pr_stack_as_markdown(prs, branch.as_str()) {
-                Ok(output) => println!("{output}"),
-                Err(error) => {
-                    eprintln!("failed to format PR stack: {error}");
-                    exit(1);
-                }
-            };
-        }
-
         // Already handled above before git repo discovery
         Commands::AutosquashBranch { .. } => unreachable!(),
         Commands::Init { .. } => unreachable!(),

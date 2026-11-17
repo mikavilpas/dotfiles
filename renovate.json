@@ -28,20 +28,12 @@
       "groupName": "fish-shell"
     },
     {
-      "description": [
-        "mise ERROR Failed to install aqua:tombi-toml/tombi@v1.4.1: HTTP status client error (404 Not Found) for url (https://api.github.com/repos/tombi-toml/tombi/releases/tags/v1.4.1)"
-      ],
-      "matchDepNames": ["tombi"],
-      "allowedVersions": "!/1.4.1/"
+      "matchPackageNames": ["jdx/mise"],
+      "allowedVersions": "!/2026\\.10\\.16/"
     },
     {
-      "description": [
-        "bacon ships no binaries of its own on GitHub, so cargo-binstall resolves it through cargo-quickinstall.",
-        "Upstream now hosts binaries at https://dystroy.org/bacon/download/ and intends to attach the zip to",
-        "future GitHub releases, so drop this rule once a release carries assets and switch to the ubi backend."
-      ],
-      "matchPackageNames": ["bacon"],
-      "allowedVersions": "!/3.25.0/"
+      "matchPackageNames": ["ast-grep/ast-grep"],
+      "allowedVersions": "!/0\\.51\\.1/"
     }
   ]
 }

@@ -1,0 +1,7 @@
+[extend]
+useDefault = true
+
+[[rules]]
+id = "merge-tool-leftovers"
+description = "Merge-tool leftovers (weave footer, conflict markers) committed by accident"
+regex = '''(?m)^(\| )?(// (weave|refused_by):|<{7}( |$)|>{7}( |$))'''

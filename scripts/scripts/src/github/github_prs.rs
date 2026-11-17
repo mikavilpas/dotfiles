@@ -5,7 +5,6 @@ use std::path::Path;
 use anyhow::{Context, Result, bail};
 use serde::{Deserialize, Serialize};
 
-pub mod pr_stack;
 mod pr_tree;
 
 /// A GitHub pull request, matching the JSON output of `gh pr list --json number,title,url,headRefName,baseRefName,isDraft`

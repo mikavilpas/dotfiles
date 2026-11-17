@@ -1,4 +1,5 @@
 ---@module "lazy"
+---@module "nvim-lspconfig"
 ---@type LazySpec
 return {
   {
@@ -18,6 +19,15 @@ return {
           on_attach = function(client, bufnr)
             require("twoslash-queries").attach(client, bufnr)
           end,
+
+          ---@type lspconfig.settings.ts_ls
+          settings = {
+            ["js/ts"] = {
+              format = {
+                enabled = false,
+              },
+            },
+          },
 
           -- Always use the mise-installed TypeScript 7. lspconfig's own tsc
           -- config prefers <root>/node_modules/.bin/tsc when it exists, but

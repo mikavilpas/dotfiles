@@ -55,6 +55,20 @@
 
 [diff]
   colorMoved = default
+  ; cleaner diffs than myers when code is added or moved around
+  ; https://adamj.eu/tech/2024/01/18/git-improve-diff-histogram/
+  algorithm = histogram
+
+[merge]
+  # show the common ancestor in conflict markers, with lines identical on both
+  # sides moved out of the conflict
+  #
+  # explanation: https://www.ductile.systems/zdiff3/
+  #
+  # delta also recommended this in
+  # https://github.com/dandavison/delta/pull/1260
+  # (https://github.com/dandavison/delta/releases/tag/0.19.0)
+  conflictStyle = zdiff3
 
 [interactive]
   diffFilter = delta --color-only --features=interactive
@@ -65,12 +79,14 @@
 [delta]
   ; https://github.com/dandavison/delta
   features = decorations
-  features = catppuccin-macchiato
+  features = catppuccin-macchiato side-by-side
   tabs = 4
-  side-by-side = true
   line-numbers-left-format = ""
   line-numbers-right-format = "│ "
   hyperlinks = true
+
+[delta "side-by-side"]
+  side-by-side = true
 
 [delta "interactive"]
   keep-plus-minus-markers = false
@@ -122,4 +138,4 @@
 # https://github.com/Ataraxy-Labs/weave
 [merge "weave"]
 	name = Entity-level semantic merge
-	driver = weave-driver %O %A %B %L %P
+	driver = $HOME/dotfiles/.config/git/weave-driver-quiet %O %A %B %L %P

@@ -104,17 +104,6 @@ pub enum Commands {
         #[command(subcommand)]
         command: AutosquashSubcommand,
     },
-
-    /// Generate a markdown summary of the current branch as part of the stack of PRs
-    PrStackSummary {
-        /// Path to the JSON file containing GitHub PRs (from `gh pr list --json`), or "-" to read from stdin
-        #[arg(value_name = "FILE", value_hint = clap::ValueHint::FilePath)]
-        file: PathBuf,
-
-        /// The current branch name
-        #[arg(long)]
-        branch: Option<String>,
-    },
 }
 
 #[derive(Subcommand)]

@@ -2,6 +2,8 @@
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Command_Keybindings.md#placeholder-values
 
+worktree:
+  defaultPath: ~/git/worktrees/
 services:
   "gitlab.baronatechnologies.fi": "gitlab:gitlab.baronatechnologies.fi"
   "barona.ghe.com": "github:barona.ghe.com"
@@ -48,24 +50,47 @@ customCommands:
     context: reflogCommits,commits,subCommits
     description: "Summarize selected commits for a PR"
     command:
-      "mika summary --from={{.SelectedCommitRange.To}} --to={{.SelectedCommitRange.From}}^ | prettier --no-config
-      --parser markdown --prose-wrap never | pbcopy"
+      "mika summary --from={{.SelectedCommitRange.To}} --to={{.SelectedCommitRange.From}}^ | oxfmt --config
+      ~/.config/lazygit/oxfmt-markdown.json --stdin-filepath summary.md | pbcopy"
   - key: X
     description: Custom commands
     commandMenu:
       - key: c
-        command: "git format-patch --stdout {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} | pbcopy"
+        command:
+          'echo "$(git rev-parse --show-toplevel) {{.SelectedCommitRange.From}} {{.SelectedCommitRange.To}}" | pbcopy'
         context: commits, subCommits
-        description: "Copy selected commits to clipboard"
+        description: "Copy selected commits to clipboard (paste in another local repo)"
       - key: v
-        command: "pbpaste | git am"
         context: "commits"
-        description: "Paste selected commits from clipboard"
+        description: "Cherry-pick commits copied from another local repo"
+        # Fetch the commits as real objects instead of applying a patch with
+        # `git am`. Conflicts are then a normal cherry-pick, which lazygit can
+        # continue and abort. A failed `git am` leaves .git/rebase-apply behind,
+        # which lazygit mistakes for a rebase and cannot resolve.
+        command: |
+          #!/bin/bash
+          set -euo pipefail
+
+          # "<repo path> <oldest sha> <newest sha>", written by the copy command
+          read -r repo from to <<<"$(pbpaste)"
+
+          if [[ -z "${to:-}" || ! -d "$repo" ]]; then
+            echo "Clipboard does not contain copied commits: $(pbpaste | head -c 200)" >&2
+            exit 1
+          fi
+
+          git fetch --quiet --no-tags "$repo" "$to"
+          git cherry-pick "$from^..$to"
       - key: s
         command:
           "mika share-patch --with-instructions --commit {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} |
           pbcopy"
         description: "Share selected commits as a patch with instructions"
+      - key: i
+        context: commits
+        description: "Replace the issue body with a summary of the selected commits"
+        output: terminal
+        command: rewrite-issue-description "{{.SelectedCommitRange.From}}" "{{.SelectedCommitRange.To}}"
       - key: w
         command: ~/.config/lazygit/git-create-worktree.sh "{{.SelectedLocalBranch.Name}}"
         context: localBranches
@@ -87,62 +112,57 @@ customCommands:
         command:
           git -c core.attributesFile=/dev/null rebase --autostash --keep-empty --no-autosquash --rebase-merges
           "{{.SelectedLocalBranch.Name}}"
-      - key: v # valmis
-        description: Mark the PR as ready for review
+      - key: p
+        description: Create PR
         context: localBranches
-        command: gh pr ready "{{.SelectedLocalBranch.Name}}"
+        prompts:
+          - type: menu
+            title: Select the merge strategy
+            key: MergeStrategy
+            options:
+              - name: No automerge
+                key: n
+                value: "echo 'PR created, but not merged. Merge manually in the browser.'"
+              - name: Squash
+                key: s
+                value: "gh pr merge '{{.SelectedLocalBranch.Name}}' --auto --squash --delete-branch"
+              - name: Rebase
+                key: r
+                value: "gh pr merge '{{.SelectedLocalBranch.Name}}' --auto --rebase --delete-branch"
+
+        command: |
+          #!/bin/bash
+          set -euo pipefail
+
+          BRANCH="{{.SelectedLocalBranch.Name}}"
+          REMOTE_NAME="$(git config "branch.$BRANCH.remote" || true)"
+          if [[ -z "$REMOTE_NAME" ]]; then
+            echo "Branch $BRANCH does not track a remote, cannot create PR" >&2
+            exit 1
+          fi
+
+          REMOTE_URL="$(git remote get-url "$REMOTE_NAME")"
+          if [[ "$REMOTE_URL" == *"github"* || "$REMOTE_URL" == *"ghe.com"* ]]; then
+            # no --base: gh targets the repo's default branch (main, master, ...)
+            # --fill titles a multi-commit branch from its name, so use the tip commit subject, like new-issue does
+            PR=$(gh pr create --fill --title "$(git log -n1 --format=%s "$BRANCH")" --head "$BRANCH" --assignee "@me")
+            echo "Created PR: $PR"
+            ~/.config/lazygit/update-pr-description.sh "$BRANCH" # set the formatted description
+            open "$PR" # open it in the browser
+            {{.Form.MergeStrategy}}
+          else
+            echo "Unsupported forge for PR creation: $REMOTE_URL" >&2
+            exit 1
+          fi
   - key: "="
     description: "Update MR/PR description"
     context: localBranches
     output: log
-    command: |
-      #!/bin/bash
-      set -euo pipefail
-
-      BRANCH="{{.SelectedLocalBranch.Name}}"
-      SUMMARY="$(mika branch-summary --branch "$BRANCH")"
-
-      # Resolve the forge from the branch's upstream remote rather than always
-      # using "origin". Some projects work with multiple git forges, so the
-      # branch may track a remote other than origin.
-      REMOTE_NAME="$(git config "branch.$BRANCH.remote" || true)"
-      if [[ -z "$REMOTE_NAME" ]]; then
-        REMOTE_NAME="origin"
-      fi
-      REMOTE_URL="$(git remote get-url "$REMOTE_NAME")"
-
-      if [[ "$REMOTE_URL" == *"github"* || "$REMOTE_URL" == *"ghe.com"* ]]; then
-        echo "Updating PR description for $BRANCH on GitHub"
-        # Exclude PRs from other forks: they are not part of our own stack, and a
-        # fork PR opened from the fork's default branch reports its head as the
-        # bare branch name (e.g. `main`), colliding with our `main`, breaking the
-        # `mika` stack tracking.
-        # `gh pr list` pages at 30 by default, so try to avoid issues when many
-        # PRs are open
-        STACK_SUMMARY=$(gh pr list --limit 200 --json number,title,headRefName,baseRefName,state,url,isCrossRepository --jq '[.[] | select(.isCrossRepository == false)]' | mika pr-stack-summary - --branch "$BRANCH")
-        SUMMARY="$(printf '%s\n\n---\n\n# Pull request stack\n\n%s' "$SUMMARY" "$STACK_SUMMARY")"
-        SUMMARY="$(echo "$SUMMARY" | prettier --no-config --parser markdown --prose-wrap never)"
-        gh pr edit "$BRANCH" --body="$SUMMARY" --add-assignee="@me"
-      else
-        echo "Updating MR description for $BRANCH on GitLab"
-        # Wait for GitLab to process the push (up to 30s)
-        LOCAL_SHA="$(git rev-parse "$BRANCH")"
-
-        # build a summary of the current mr stack
-        # Same paging caveat as the GitHub branch above; 100 is glab's maximum.
-        STACK_SUMMARY=$(glab mr list --per-page=100 --output=json | mika mr-stack-summary - --branch "$BRANCH")
-        SUMMARY="$(printf '%s\n\n---\n\n# Merge request stack\n\n%s' "$SUMMARY" "$STACK_SUMMARY")"
-
-        echo "$SUMMARY"
-
-        glab mr update "$BRANCH" --description="$SUMMARY" --assignee="@me" --ready
-
-        # GitLab may auto-draft if it sees fixup! commits, so mark ready a few more times
-        for i in {1..5}; do
-          sleep 2
-          glab mr update "$BRANCH" --ready
-        done
-      fi
+    command: ~/.config/lazygit/update-pr-description.sh "{{.SelectedLocalBranch.Name}}"
+  - key: "T"
+    context: worktrees
+    description: Open worktree in wezterm tab
+    command: ~/.config/yazi/scripts/open-wezterm-tabs.sh '{{.SelectedWorktree.Path}}'
 keybinding:
   universal:
     edit: e
@@ -182,7 +202,11 @@ gui:
     optionsTextColor:
       - "#8aadf4"
     selectedLineBgColor:
-      - "#363a4f"
+      - "#c6a0f6" # catppuccin-macchiato-mauve
+    # dark text so it stays readable on the bright background
+    selectedLineFgColor:
+      - "#24273a" # catppuccin-macchiato-base
+      - bold
     inactiveViewSelectedLineBgColor:
       - "#6e738d"
     cherryPickedCommitBgColor:
@@ -199,32 +223,32 @@ gui:
       - "#cad3f5"
     searchingActiveBorderColor:
       - "#eed49f"
-  showNumstatInFilesView: true
-  branchColorPatterns:
-    # https://catppuccin.com/palette/
+    authorColors:
+      "Mika Vilpas": "#f0c6c6" # catppuccin-macchiato-flamingo
+    branchColorPatterns:
+      # https://catppuccin.com/palette/
 
-    # my "git backup-branch" branches should show up in a darker color
-    ".+?--backup": "#6e738d"
-    "renovate/.+": "#cba6f7" # catppuccin-mocha-mauve
-    "main$": "#a6da95"
-    "master$": "#a6da95"
-    "wip-.+": "#7dc4e4" # catppuccin-macchiato-sapphire
-    "feature/.+": "#f5e0dc" # catppuccin-mocha-rosewater
-  authorColors:
-    "Mika Vilpas": "#f0c6c6" # catppuccin-macchiato-flamingo
+      # my "git backup-branch" branches should show up in a darker color
+      ".+?--backup": "#6e738d"
+      "renovate/.+": "#cba6f7" # catppuccin-mocha-mauve
+      "main$": "#a6da95"
+      "master$": "#a6da95"
+      "wip-.+": "#7dc4e4" # catppuccin-macchiato-sapphire
+      "feature/.+": "#f5e0dc" # catppuccin-mocha-rosewater
+  showNumstatInFilesView: true
 git:
   mainBranches: [master, main, development]
+  autoForwardBranches: allBranches
   parseEmoji: true
   diffRenderers:
     # switch with `|`
     - colorArg: always
-      command: delta --paging=never
+      command: delta --paging=never --wrap-max-lines=unlimited
       name: delta
     - colorArg: always
-      # doesn't fully color everything but might be useful for some cases where
-      # I need to eyeball a long branch commit log
-      command: bat --paging=never --color=always --style=plain --language=markdown --paging=never --decorations=never
-      name: bat
+      # unified view uses the full pane width, which is better for long lines
+      command: delta --paging=never --features=catppuccin-macchiato
+      name: delta unified
   ignoreWhitespaceInDiffView: true
 # useful for e2e tests. They don't have a separate configuration right now, so
 # this needs to be specified here.

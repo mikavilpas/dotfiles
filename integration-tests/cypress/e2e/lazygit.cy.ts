@@ -73,7 +73,7 @@ describe("lazygit", () => {
 
     cy.typeIntoTerminal("X")
     cy.contains("Copy selected commits to clipboard")
-    cy.contains("Paste selected commits from clipboard")
+    cy.contains("Cherry-pick commits copied from another local repo")
     cy.contains("Share selected commits as a patch with instructions")
   })
 })

@@ -54,6 +54,8 @@ pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
 
 fn render_commits(commits: Vec<MyCommit>) -> std::result::Result<Vec<String>, anyhow::Error> {
     let mut results = Vec::new();
+    let commit_count = commits.len();
+
     let mut commits_iter = commits.into_iter().rev().peekable();
     while let Some(commit) = commits_iter.next() {
         commit_as_markdown(&mut results, commit);
@@ -64,6 +66,14 @@ fn render_commits(commits: Vec<MyCommit>) -> std::result::Result<Vec<String>, an
     }
 
     results.push("".to_string());
+
+    if commit_count == 1 {
+        // When we only have 1 commit, assume the PR always has the commit subject. Don't repeat it
+        // out of courtesy for the team members. They read enough text already.
+        results.remove(0);
+        results.remove(0);
+    }
+
     Ok(results)
 }
 

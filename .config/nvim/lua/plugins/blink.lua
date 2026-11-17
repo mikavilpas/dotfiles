@@ -20,6 +20,8 @@ return {
       version = "*",
       -- dir = "~/git/blink-ripgrep.nvim/",
     },
+    -- completes github issues/PRs (#), mentions (@) and commits (:) via `gh`
+    "Kaiser-Yang/blink-cmp-git",
   },
 
   config = function(_, opts)
@@ -53,6 +55,7 @@ return {
           "snippets",
           "buffer",
           "ripgrep",
+          "git",
         },
         -- cmdline = {
         --   -- disable cmdline completion for now
@@ -87,6 +90,58 @@ return {
             end,
           },
           buffer = { score_offset = 5 },
+          git = {
+            module = "blink-cmp-git",
+            name = "Git",
+            enabled = function()
+              return vim.tbl_contains({ "gitcommit", "markdown" }, vim.bo.filetype)
+            end,
+            opts = (function()
+              -- insert the full url instead of `#123`
+              local function get_insert_text(item)
+                return item.html_url
+              end
+
+              ---@type blink-cmp-git.Options
+              return {
+                commit = {
+                  -- short dates so the AuthorDate can be used in the insert text
+                  get_command_args = function(command, token)
+                    local args = require("blink-cmp-git.default.commit").get_command_args(command, token)
+                    if command == "git" then
+                      table.insert(args, "--date=short")
+                    end
+                    return args
+                  end,
+                  -- `abc123de (feat(x): subject, 2026-10-05)`, like
+                  -- `git show --no-patch --pretty=reference`
+                  get_insert_text = function(item)
+                    local sha, subject, date
+                    if type(item) == "table" then
+                      sha, subject = item.sha, item.commit.message:match("[^\n]*")
+                      date = item.commit.author.date:sub(1, 10)
+                    else
+                      sha, subject = item:match("^commit (%x+)"), item:match("\n\n%s*([^\n]*)")
+                      date = item:match("\nAuthorDate:%s*(%S+)")
+                    end
+                    return ("%s (%s, %s)"):format(sha:sub(1, 8), subject or "", date or "")
+                  end,
+                },
+                git_centers = {
+                  github = {
+                    issue = {
+                      enable = true,
+                      get_insert_text = get_insert_text,
+                    },
+                    pull_request = {
+                      enable = true,
+                      get_insert_text = get_insert_text,
+                    },
+                  },
+                },
+              }
+            end)(),
+          },
           ripgrep = {
             module = "blink-ripgrep",
             name = "Ripgrep",

@@ -1,13 +1,11 @@
 settings.cargo.binstall = true
-
 settings.cargo.binstall_only = true
-
 settings.cargo.binstall_quickinstall = true
-
 settings.auto_install = false
-
+# read the pnpm version from `packageManager` in package.json, so that
+# renovate and pnpm/action-setup in CI share the same single source
+settings.idiomatic_version_file_enable_tools = ["pnpm"]
 settings.dotfiles.root = "~/dotfiles"
-
 settings.dotfiles.default_mode = "symlink"
 
 [dotfiles]
@@ -19,7 +17,7 @@ settings.dotfiles.default_mode = "symlink"
 # surprises completely.
 #
 # Manage with:
-# $ mise bootstrap dotfiles
+# $ mise dot apply [--dry-run]
 
 "~/.claude/skills/*" = {}
 "~/.config/aerospace" = {}
@@ -87,8 +85,8 @@ settings.dotfiles.default_mode = "symlink"
 "brew-cask:wezterm@nightly" = "latest"
 
 [bootstrap.hooks]
-# some mise tools still ship x86_64-only builds (e.g. hyperfine), so rosetta
-# has to exist before anything is installed
+# some mise tools still ship x86_64-only builds, so rosetta has to exist before
+# anything is installed
 pre-packages = "softwareupdate --install-rosetta --agree-to-license"
 post-packages = ["brew install --cask aerospace"]
 # dock settings only take effect after it restarts
@@ -121,88 +119,92 @@ tap_to_click = true
 # let renovate manage the version for mise itself. Note that in a new
 # installation this is a chicken-and-egg issue, so mise will need to be
 # bootstrapped with e.g. homebrew for the first installation.
-"aqua:jdx/mise" = "2026.9.12"
+"aqua:jdx/mise" = "2026.11.9"
 
-# renovate: datasource=crate depName=bacon
-"cargo:bacon" = "3.24.0"
 # renovate: datasource=crate depName=cargo-nextest
-"cargo:cargo-nextest" = "0.9.146"
+"cargo:cargo-nextest" = "0.9.152"
 # renovate: datasource=crate depName=eza
 "cargo:eza" = "0.23.5"
 
 # renovate: datasource=npm depName=jfrog-cli-v2
-"asdf:mise-plugins/mise-jfrog-cli" = "2.125.0"
+"asdf:mise-plugins/mise-jfrog-cli" = "2.132.0"
 
 "aqua:Schniz/fnm" = "1.39.0"
 "aqua:fish-shell/fish-shell" = "4.9.3"
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.8.3"
-"github:DeusData/codebase-memory-mcp" = "v0.11.0"
+"github:DeusData/codebase-memory-mcp" = "v0.12.1"
 "github:aaronriekenberg/rust-parallel" = "1.24.0"
 "github:afshinm/zerobox" = "0.3.3"
-"github:ankitpokhrel/jira-cli" = { version = "1.7.0", exe = "jira" }
-"github:k1LoW/git-wt" = "0.29.3"
-"github:kjanat/actionlint" = "1.17.0"
-"github:pranshuparmar/witr" = "0.3.3"
-"github:reteps/dockerfmt" = "0.5.4"
-"github:tekumara/typos-lsp" = "0.1.56"
+"github:ankitpokhrel/jira-cli" = { version = "1.7.0" }
+"github:atkrad/wait4x" = "3.7.3"
+"github:k1LoW/git-wt" = "0.30.0"
+"github:kjanat/actionlint" = "1.17.1"
+"github:pranshuparmar/witr" = "0.3.4"
+"github:reteps/dockerfmt" = "1.0.0"
+"github:tekumara/typos-lsp" = "0.1.58"
 "npm:@fsouza/prettierd" = "0.29.0"
-"npm:oxlint-tsgolint" = "7.0.2002"
-"npm:typescript" = "7.0.2"
-"npm:yaml-language-server" = "1.24.0"
+"npm:oxlint" = "1.93.0"
+"npm:oxlint-tsgolint" = "7.0.2007"
+"npm:typescript" = "7.1.0-dev.20261113.1"
+"npm:yaml-language-server" = "2.0.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.3.1"
 age = "1.3.2"
-ast-grep = "0.45.3"
-atuin = "18.23.0"
-aws-cli = { version = "2.37.1", symlink_bins = "true" }
+ast-grep = "0.51.3"
+atuin = "18.24.8"
+aws-cli = { version = "2.40.4", symlink_bins = "true" }
 bat = "0.26.1"
-bob = "4.2.0"
-bottom = "0.14.9"
-cargo-binstall = "1.23.0"
-claude-code = "2.1.281"
-delta = "0.19.2"
+bob = "4.3.0"
+bottom = "0.15.0"
+cargo-binstall = "1.27.0"
+claude-code = "2.1.326"
+delta = "0.20.1"
 dotenv-linter = "4.0.0"
-fd = "10.5.0"
-fzf = "0.74.4"
+fd = "10.5.2"
+fzf = "0.75.0"
 gitleaks = "8.30.1"
 hadolint = "2.15.1"
-hyperfine = "1.20.0"
+hyperfine = "2.0.0"
 jq = "1.8.2"
 lazydocker = "0.25.2"
 lychee = "0.24.2"
-oxfmt = "0.68.0"
-oxlint = "1.69.0"
-prettier = "3.9.9"
+oxfmt = "0.75.0"
 ripgrep = { version = "15.2.0", exe = "rg" }
-rtk = "v0.49.0"
-rumdl = "0.2.77"
-sccache = "0.18.0"
+rtk = "v1.2.0"
+rumdl = "0.3.4"
+sccache = "0.19.0"
 sd = "1.1.0"
 shellcheck = "0.11.0"
 shfmt = "3.14.1"
-starship = "1.26.0"
-stylua = "2.5.2"
-tombi = "v1.5.5"
-tree-sitter = "0.27.0"
-typos = "1.50.2"
-usage = "6.11.1"
-uv = "0.12.18"
+starship = "1.27.0"
+stylua = "2.6.0"
+tombi = "v1.11.3"
+tree-sitter = "0.27.2"
+typos = "1.52.2"
+usage = "7.4.0"
+uv = "0.13.8"
 vivid = "0.11.1"
-watchexec = "2.7.3"
-zizmor = "1.30.1"
+watchexec = "2.8.0"
+zizmor = "1.32.0"
 zoxide = "0.10.0"
+jouet = { version = "0.0.5", workflow = "release.yml@refs/heads/main" }
 
 [tools."github:mikavilpas/dotfiles"]
-version = "1.4.1"
-exe = "mika"
+version = "2.0.1"
 postinstall = """
 mkdir -p ~/.config/fish/completions ~/.config/fish/mika
 # run initialization for the fish shell after installing / updating
 mika init fish --output-dir ~/.config/fish/mika/
 """
 
+# The release zip bundles every platform, one directory per target triple
+[tools."github:Canop/bacon"]
+version = "3.26.0"
+asset_pattern = "bacon_*.zip"
+bin_path = "aarch64-apple-darwin"
+
 [tools."ubi:gitlab-org/cli"]
-version = "1.119.0"
+version = "1.130.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
@@ -211,28 +213,28 @@ glab completion -s fish > ~/.config/fish/completions/glab.fish
 """
 
 [tools.fnox]
-version = "1.35.3"
+version = "1.48.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- fnox completion fish > ~/.config/fish/completions/fnox.fish
 """
 
 [tools.github-cli]
-version = "2.101.0"
+version = "2.104.0"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- gh completion --shell fish > ~/.config/fish/completions/gh.fish
 """
 
 [tools.yq]
-version = "4.53.6"
+version = "4.54.3"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- yq completion fish > ~/.config/fish/completions/yq.fish
 """
 
 [tools."github:ducaale/xh"]
-version = "0.26.2"
+version = "0.26.3"
 postinstall = """
 mkdir -p ~/.config/fish/completions
 mise exec -- xh --generate complete-fish > ~/.config/fish/completions/xh.fish
@@ -241,7 +243,7 @@ mise exec -- xh --generate complete-fish > ~/.config/fish/completions/xh.fish
 # weave
 #
 [tools."github:Ataraxy-Labs/weave"]
-version = "0.5.4"
+version = "0.7.1"
 additional_asset_patterns = ["weave-driver-*"]
 # After (re)installing weave-cli, refresh ~/dotfiles/.gitattributes so it
 # matches the binary's current language coverage. That file is pointed at by
@@ -251,6 +253,9 @@ additional_asset_patterns = ["weave-driver-*"]
 postinstall = """
 if command -v weave-driver >/dev/null 2>&1; then
   ( cd ~/dotfiles && weave setup )
+  # `weave setup` also writes a per-repo driver that overrides the global
+  # wrapper (.config/git/weave-driver-quiet); drop it.
+  git -C ~/dotfiles config --local --unset-all merge.weave.driver || true
 else
   echo "weave-cli postinstall: weave-driver not yet on PATH, skipping setup"
 fi
