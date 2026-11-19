@@ -33,6 +33,7 @@ set --append fish_function_path ~/.config/fish/mika
 Some related utilities are provided for integrating with other tools. To install them as well, follow these steps:
 
 1. Add a mise postinstall hook as described in [[#Shell integration (fish)]].
+
 2. Then add this to your `config.fish` (one-time setup):
 
    ```fish
