@@ -127,7 +127,7 @@ tap_to_click = true
 "cargo:eza" = "0.23.5"
 
 # renovate: datasource=npm depName=jfrog-cli-v2
-"asdf:mise-plugins/mise-jfrog-cli" = "2.132.0"
+"asdf:mise-plugins/mise-jfrog-cli" = "2.133.0"
 
 "aqua:Schniz/fnm" = "1.39.0"
 "aqua:fish-shell/fish-shell" = "4.9.3"
@@ -144,9 +144,9 @@ tap_to_click = true
 "github:reteps/dockerfmt" = "1.0.0"
 "github:tekumara/typos-lsp" = "0.1.58"
 "npm:@fsouza/prettierd" = "0.29.0"
-"npm:oxlint" = "1.93.0"
+"npm:oxlint" = "1.94.0"
 "npm:oxlint-tsgolint" = "7.0.2007"
-"npm:typescript" = "7.1.0-dev.20261115.1"
+"npm:typescript" = "7.1.0-dev.20261116.1"
 "npm:yaml-language-server" = "2.0.0"
 "pipx:awslabs.cloudwatch-mcp-server" = "0.3.2"
 age = "1.3.2"
