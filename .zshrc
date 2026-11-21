@@ -242,10 +242,7 @@ alias top="btm"
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(atuin init zsh)"
 
-# fnm (🚀 Fast and simple Node.js version manager, built in Rust)
-# https://github.com/Schniz/fnm
-eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
-alias nvm="fnm"
+eval "$(mise activate zsh)"
 
 prepend_text_to_last_command() {
   # Get the previous command

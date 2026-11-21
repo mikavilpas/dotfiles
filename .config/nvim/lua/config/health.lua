@@ -77,10 +77,6 @@ return {
     -- https://github.com/mozilla/sccache
     check("sccache")
 
-    -- 🦀 fnm (🚀 Fast and simple Node.js version manager, built in Rust)
-    -- https://github.com/Schniz/fnm
-    check("fnm")
-
     -- yazi previewers. Without these, image and media previews silently
     -- degrade instead of failing loudly, so they are easy to miss.
     --

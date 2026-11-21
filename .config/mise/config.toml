@@ -4,7 +4,7 @@ settings.cargo.binstall_quickinstall = true
 settings.auto_install = false
 # read the pnpm version from `packageManager` in package.json, so that
 # renovate and pnpm/action-setup in CI share the same single source
-settings.idiomatic_version_file_enable_tools = ["pnpm"]
+settings.idiomatic_version_file_enable_tools = ["pnpm", "node"]
 settings.dotfiles.root = "~/dotfiles"
 settings.dotfiles.default_mode = "symlink"
 
@@ -129,7 +129,6 @@ tap_to_click = true
 # renovate: datasource=npm depName=jfrog-cli-v2
 "asdf:mise-plugins/mise-jfrog-cli" = "2.133.0"
 
-"aqua:Schniz/fnm" = "1.39.0"
 "aqua:fish-shell/fish-shell" = "4.9.3"
 "aqua:mfontanini/presenterm" = "0.16.1"
 "aqua:ouch-org/ouch" = "0.8.3"
