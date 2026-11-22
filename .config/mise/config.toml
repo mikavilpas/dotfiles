@@ -186,7 +186,7 @@ usage = "7.4.0"
 uv = "0.13.9"
 vivid = "0.11.1"
 watchexec = "2.8.0"
-zizmor = "1.32.0"
+zizmor = "1.33.0"
 zoxide = "0.10.0"
 jouet = { version = "0.0.5", workflow = "release.yml@refs/heads/main" }
 
