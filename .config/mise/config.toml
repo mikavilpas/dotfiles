@@ -80,6 +80,7 @@ settings.dotfiles.default_mode = "symlink"
 "brew:exiftool" = "latest"
 "brew:media-info" = "latest" # installs mediainfo
 
+"brew-cask:caffeine" = "latest"
 "brew-cask:font-dejavu-sans-mono-nerd-font" = "latest"
 "brew-cask:secretive" = "latest"
 "brew-cask:wezterm@nightly" = "latest"
