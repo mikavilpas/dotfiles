@@ -37,11 +37,10 @@ pub fn get_current_branch_name(repo: &Repository) -> anyhow::Result<String> {
             repo.path().display()
         )
     })?;
-    let a = match head.kind {
-        gix::head::Kind::Symbolic(reference) => reference.name.shorten().to_string(),
-        _ => bail!("current HEAD is not a symbolic reference"),
+    let Some(name) = head.referent_name() else {
+        bail!("current HEAD is not a symbolic reference");
     };
-    Ok(a)
+    Ok(name.shorten().to_string())
 }
 
 pub fn get_commit_messages_on_branch<S: AsRef<str> + std::fmt::Display>(
