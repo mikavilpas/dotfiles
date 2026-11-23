@@ -169,7 +169,7 @@ jq = "1.8.2"
 lazydocker = "0.25.2"
 lychee = "0.24.2"
 oxfmt = "0.75.0"
-ripgrep = { version = "15.2.0", exe = "rg" }
+ripgrep = { version = "16.0.0", exe = "rg" }
 rtk = "1.2.1"
 rtk-proxy = "1.2.1"
 rumdl = "0.3.5"
