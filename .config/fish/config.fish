@@ -72,6 +72,7 @@ if status is-interactive && test -z "$CI"
     # e.g. `f npm ci` in a Barona repo. Only real binaries work: fnox execs the
     # command directly, so fish functions and aliases are invisible to it.
     abbr --add -- f "fnox exec --"
+    abbr --add -- ni "fnox exec -- npm install"
 
     # https://github.com/catppuccin/fish
     fish_config theme choose catppuccin-macchiato
