@@ -205,7 +205,7 @@ asset_pattern = "bacon_*.zip"
 bin_path = "aarch64-apple-darwin"
 
 [tools."ubi:gitlab-org/cli"]
-version = "1.132.0"
+version = "1.133.0"
 provider = "gitlab"
 exe = "glab"
 postinstall = """
